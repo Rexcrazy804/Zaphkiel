@@ -125,6 +125,8 @@
       vscode
       wineWowPackages.staging
 
+      # nvim
+      nerdfonts
       lua-language-server
       nixd
       ripgrep

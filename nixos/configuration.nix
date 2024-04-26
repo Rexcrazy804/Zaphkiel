@@ -59,7 +59,13 @@
     driSupport32Bit = true;
 
     # setting for amd
-    extraPackages = with pkgs; [ amdvlk rocm-opencl-icd rocm-opencl-runtime ];
+    extraPackages = with pkgs; [
+      amdvlk
+      rocm-opencl-icd
+      rocm-opencl-runtime
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
     extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
   };
 

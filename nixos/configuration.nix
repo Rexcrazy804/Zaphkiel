@@ -132,8 +132,12 @@
     description = "Rexiel Scarlet";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
+      #general
       firefox
       vscode
+      vesktop
+
+      # wine 
       wineWowPackages.staging
 
       # terminal

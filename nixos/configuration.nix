@@ -136,6 +136,7 @@
       firefox
       vscode
       vesktop
+      mpv
 
       # wine 
       wineWowPackages.staging

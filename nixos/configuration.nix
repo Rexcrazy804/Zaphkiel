@@ -135,6 +135,8 @@
       nixd
       ripgrep
       zoxide
+
+      kdePackages.kdeconnect-kde
     ];
   };
 
@@ -161,6 +163,16 @@
       dates = "weekly";
       options = "--delete-older-than 8d";
     };
+  };
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPortRanges = [
+      { from = 1714; to = 1764; } # KDE Connect
+    ];
+    allowedUDPPortRanges = [
+      { from = 1714; to = 1764; } # KDE Connect
+    ];
   };
 
   system.stateVersion = "23.11"; # Did you read the comment?

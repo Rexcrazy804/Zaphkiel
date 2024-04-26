@@ -38,6 +38,9 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  # SSD TRIM
+  services.fstrim.enable = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -54,11 +57,16 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
+
+    # setting for amd
+    extraPackages = with pkgs; [ amdvlk rocm-opencl-icd rocm-opencl-runtime ];
+    extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
   };
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
 
+  # nvidia stuff
   hardware.nvidia = {
     modesetting.enable = true;
 

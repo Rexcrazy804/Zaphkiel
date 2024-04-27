@@ -37,4 +37,10 @@
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
   ];
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+  };
 }

@@ -1,7 +1,10 @@
 { pkgs, ... }: {
+  # uncategorized
   services.fstrim.enable = true;
   services.xserver.enable = true;
+  services.hardware.openrgb.enable = true;
 
+  # KDE
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
@@ -16,7 +19,7 @@
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing.enable = false;
 
   # Enable sound with pipewire.
   sound.enable = true;

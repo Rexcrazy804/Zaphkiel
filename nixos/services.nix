@@ -2,7 +2,6 @@
   # uncategorized
   services.fstrim.enable = true;
   services.xserver.enable = true;
-  services.hardware.openrgb.enable = true;
 
   # KDE
   services.displayManager.sddm = {

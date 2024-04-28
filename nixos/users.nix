@@ -11,6 +11,7 @@
       vscode
       vesktop
       mpv
+      cemu
 
       # wine
       wineWowPackages.staging

@@ -21,6 +21,15 @@
     neovim
     git
     lenovo-legion
+
+    # obs specific configuration
+    (pkgs.wrapOBS {
+      plugins = with pkgs.obs-studio-plugins; [
+        wlrobs
+        obs-backgroundremoval
+        obs-pipewire-audio-capture
+      ];
+    })
   ];
 
   nix = {

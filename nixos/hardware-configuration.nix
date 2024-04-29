@@ -29,6 +29,11 @@
     options = ["fmask=0022" "dmask=0022"];
   };
 
+  fileSystems."/run/media/rexies/subzero" = {
+    device = "/dev/disk/by-uuid/c97eafca-0e24-4969-99f9-7ee03516a90f";
+    fsType = "btrfs";
+  };
+
   swapDevices = [
     {device = "/dev/disk/by-uuid/9190de7d-02b9-4f07-8dce-d15f0c63d3d5";}
   ];

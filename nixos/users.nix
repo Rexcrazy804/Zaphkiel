@@ -31,14 +31,6 @@
     ];
   };
 
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-emoji
-    noto-fonts-cjk
-    noto-fonts-cjk-sans
-    noto-fonts-cjk-serif
-  ];
-
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;

@@ -23,13 +23,21 @@
     lenovo-legion
 
     # obs specific configuration
-    (pkgs.wrapOBS {
-      plugins = with pkgs.obs-studio-plugins; [
+    (wrapOBS {
+      plugins = with obs-studio-plugins; [
         wlrobs
         obs-backgroundremoval
         obs-pipewire-audio-capture
       ];
     })
+  ];
+
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-emoji
+    noto-fonts-cjk
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
   ];
 
   nix = {

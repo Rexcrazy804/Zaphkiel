@@ -12,6 +12,7 @@
       vesktop
       mpv
       cemu
+      losslesscut-bin
 
       # wine
       wineWowPackages.staging

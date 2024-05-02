@@ -17,8 +17,8 @@
   boot.supportedFilesystems = ["ntfs"];
 
   nixpkgs.config.allowUnfree = true;
+  programs.neovim.defaultEditor = true;
   environment.systemPackages = with pkgs; [
-    neovim
     git
     lenovo-legion
 

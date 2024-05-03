@@ -27,6 +27,7 @@
       nixd
       ripgrep
       zoxide
+      wl-clipboard
 
       kdePackages.kdeconnect-kde
     ];

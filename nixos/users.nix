@@ -13,6 +13,7 @@
       mpv
       cemu
       losslesscut-bin
+      transmission_4-qt6
 
       # wine
       wineWowPackages.staging

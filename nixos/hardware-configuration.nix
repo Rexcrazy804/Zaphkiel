@@ -32,6 +32,7 @@
   fileSystems."/run/media/rexies/subzero" = {
     device = "/dev/disk/by-uuid/c97eafca-0e24-4969-99f9-7ee03516a90f";
     fsType = "btrfs";
+    options = ["compress=zstd"];
   };
 
   swapDevices = [

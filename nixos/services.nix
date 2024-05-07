@@ -41,6 +41,9 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
 
+  # extra firmware
+  hardware.enableAllFirmware = true;
+
   systemd.user.services.mpris-proxy = {
     description = "Mpris proxy";
     after = [ "network.target" "sound.target" ];

@@ -15,6 +15,7 @@
       losslesscut-bin
       transmission_4-qt6
       alacritty
+      ryujinx
 
       # wine
       wineWowPackages.staging

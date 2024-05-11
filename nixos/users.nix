@@ -18,6 +18,7 @@
       ryujinx
 
       # wine
+      bottles
       wineWowPackages.staging
 
       # terminal

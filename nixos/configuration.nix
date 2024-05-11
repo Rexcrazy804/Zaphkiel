@@ -16,7 +16,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = ["ntfs"];
 
-  nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     neovim
     git
@@ -40,6 +39,10 @@
     noto-fonts-cjk-serif
   ];
 
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
+
   nix = {
     settings = {
       experimental-features = [
@@ -58,7 +61,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 8d";
+      options = "--delete-older-than 7d";
     };
   };
 

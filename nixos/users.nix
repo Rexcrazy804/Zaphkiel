@@ -33,6 +33,10 @@
       zoxide
       wl-clipboard
 
+      # archives
+      p7zip
+      unrar
+
       kdePackages.kdeconnect-kde
     ];
   };

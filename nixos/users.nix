@@ -1,44 +1,50 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  pkgs-stable,
+  ...
+}: {
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.rexies = {
     shell = pkgs.nushell;
     isNormalUser = true;
     description = "Rexiel Scarlet";
     extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [
-      #general
-      firefox
-      vscode
-      vesktop
-      mpv
-      cemu
-      losslesscut-bin
-      transmission_4-qt6
-      alacritty
-      ryujinx
+    packages =
+      (with pkgs; [
+        #general
+        firefox
+        vesktop
+        mpv
+        cemu
+        losslesscut-bin
+        transmission_4-qt6
+        alacritty
+        ryujinx
 
-      # wine
-      bottles
-      wineWowPackages.staging
+        # wine
+        wineWowPackages.staging
 
-      # terminal
-      zoxide
-      oh-my-posh
+        # terminal
+        zoxide
+        oh-my-posh
 
-      # nvim
-      nerdfonts
-      lua-language-server
-      nixd
-      ripgrep
-      zoxide
-      wl-clipboard
+        # nvim
+        nerdfonts
+        lua-language-server
+        nixd
+        ripgrep
+        zoxide
+        wl-clipboard
 
-      # archives
-      p7zip
-      unrar
+        # archives
+        p7zip
+        unrar
 
-      kdePackages.kdeconnect-kde
-    ];
+        kdePackages.kdeconnect-kde
+      ])
+      ++ (with pkgs-stable; [
+        bottles
+      ]);
   };
 
   programs.steam = {

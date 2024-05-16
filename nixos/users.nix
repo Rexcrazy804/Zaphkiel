@@ -28,6 +28,7 @@
         # terminal
         zoxide
         oh-my-posh
+        carapace
 
         # nvim
         nerdfonts

@@ -22,6 +22,7 @@
         ryujinx
 
         # wine
+        bottles
         wineWowPackages.staging
 
         # terminal
@@ -43,7 +44,7 @@
         kdePackages.kdeconnect-kde
       ])
       ++ (with pkgs-stable; [
-        bottles
+        # bottles
       ]);
   };
 

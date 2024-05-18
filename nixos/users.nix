@@ -43,6 +43,15 @@
         unrar
 
         kdePackages.kdeconnect-kde
+
+        # obs specific configuration
+        (wrapOBS {
+          plugins = with obs-studio-plugins; [
+            wlrobs
+            obs-backgroundremoval
+            obs-pipewire-audio-capture
+          ];
+        })
       ])
       ++ (with pkgs-stable; [
         # bottles

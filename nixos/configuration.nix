@@ -20,16 +20,10 @@
     neovim
     git
     lenovo-legion
-
-    # obs specific configuration
-    (wrapOBS {
-      plugins = with obs-studio-plugins; [
-        wlrobs
-        obs-backgroundremoval
-        obs-pipewire-audio-capture
-      ];
-    })
   ];
+
+  # wayland on electron and chromium based aps
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   fonts.packages = with pkgs; [
     noto-fonts

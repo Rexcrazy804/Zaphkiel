@@ -43,6 +43,7 @@
 
   # extra firmware
   hardware.enableAllFirmware = true;
+  hardware.steam-hardware.enable = true;
 
   systemd.user.services.mpris-proxy = {
     description = "Mpris proxy";

@@ -20,6 +20,7 @@
         transmission_4-qt6
         alacritty
         ryujinx
+        komikku
 
         # wine
         bottles

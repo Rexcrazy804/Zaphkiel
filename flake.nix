@@ -12,6 +12,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-stable,
     aagl,
     ...
   } @ inputs: let
@@ -25,7 +26,7 @@
         specialArgs = {
           inherit inputs outputs;
 
-          pkgs-stable = import inputs.nixpkgs-stable {
+          pkgs-stable = import nixpkgs-stable {
             inherit system;
             config.allowUnfree = true;
           };
@@ -37,7 +38,7 @@
           # anime game launcher
           {
             imports = [aagl.nixosModules.default];
-            programs.anime-game-launcher.enable = true; # Adds launcher and /etc/hosts rules
+            programs.anime-game-launcher.enable = false;
             programs.honkers-railway-launcher.enable = true;
           }
         ];

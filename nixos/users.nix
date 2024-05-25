@@ -15,6 +15,7 @@
         firefox
         (discord.override {
           withOpenASAR = true;
+          withVencord = true;
         })
         mpv
         cemu

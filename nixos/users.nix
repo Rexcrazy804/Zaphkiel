@@ -13,7 +13,9 @@
       (with pkgs; [
         #general
         firefox
-        vesktop
+        (discord.override {
+          withOpenASAR = true;
+        })
         mpv
         cemu
         losslesscut-bin

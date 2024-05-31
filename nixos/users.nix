@@ -13,15 +13,14 @@
       (with pkgs; [
         #general
         firefox
-        (discord.override {
-          withOpenASAR = true;
-          withVencord = true;
-        })
         mpv
-        cemu
         losslesscut-bin
         transmission_4-qt6
         alacritty
+
+        # emulators
+        cemu
+        ryujinx
 
         # wine
         bottles
@@ -47,17 +46,23 @@
         kdePackages.kdeconnect-kde
 
         # obs specific configuration
-        (wrapOBS {
-          plugins = with obs-studio-plugins; [
+      ])
+      ++ (with pkgs-stable; [ # stabilized packages
+        # bottles
+      ]) ++ [ # overriden packages
+        (pkgs.discord.override {
+          withOpenASAR = true;
+          withVencord = true;
+        })
+
+        (pkgs.wrapOBS {
+          plugins = with pkgs.obs-studio-plugins; [
             wlrobs
             obs-backgroundremoval
             obs-pipewire-audio-capture
           ];
         })
-      ])
-      ++ (with pkgs-stable; [
-        ryujinx
-      ]);
+      ];
   };
 
   programs.steam = {

@@ -62,6 +62,11 @@
             obs-pipewire-audio-capture
           ];
         })
+
+        (pkgs.catppuccin-kde.override {
+          flavour = ["mocha"];
+          accents = ["red"];
+        })
       ];
   };
 

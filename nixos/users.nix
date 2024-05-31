@@ -47,9 +47,12 @@
 
         # obs specific configuration
       ])
-      ++ (with pkgs-stable; [ # stabilized packages
+      ++ (with pkgs-stable; [
+        # stabilized packages
         # bottles
-      ]) ++ [ # overriden packages
+      ])
+      ++ [
+        # overriden packages
         (pkgs.discord.override {
           withOpenASAR = true;
           withVencord = true;

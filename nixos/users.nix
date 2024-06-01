@@ -21,6 +21,7 @@
     users.rexies = import ../home;
   };
 
+  # specials might relocate later, let it be here for the time being
   programs = {
     anime-game-launcher.enable = false;
     honkers-railway-launcher.enable = true;

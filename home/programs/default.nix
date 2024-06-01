@@ -1,4 +1,8 @@
-{ pkgs, pkgs-stable, ... }: {
+{
+  pkgs,
+  pkgs-stable,
+  ...
+}: {
   imports = [
     ./alacritty.nix
     ./generic.nix
@@ -33,8 +37,6 @@
       unrar
 
       kdePackages.kdeconnect-kde
-
-      # obs specific configuration
     ])
     ++ (with pkgs-stable; [
       # stabilized packages

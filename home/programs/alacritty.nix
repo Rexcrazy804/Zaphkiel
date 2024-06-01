@@ -1,11 +1,14 @@
-{ ... }: {
+{...}: {
   programs.alacritty = {
     enable = true;
     settings = {
       window = {
         opacity = 0.9;
         startup_mode = "Maximized";
-        padding = { x = 5; y = 10; };
+        padding = {
+          x = 5;
+          y = 10;
+        };
       };
 
       env = {
@@ -13,11 +16,17 @@
       };
 
       font = {
-        normal = { family = "CaskaydiaMono Nerd font"; style = "Regular"; };
+        normal = {
+          family = "CaskaydiaMono Nerd font";
+          style = "Regular";
+        };
       };
 
       cursor = {
-        style = { shape = "Block"; blinking = "On"; };
+        style = {
+          shape = "Block";
+          blinking = "On";
+        };
       };
 
       mouse = {

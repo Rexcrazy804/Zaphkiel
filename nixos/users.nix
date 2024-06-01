@@ -78,4 +78,6 @@
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
   };
+
+  programs.partition-manager.enable = true;
 }

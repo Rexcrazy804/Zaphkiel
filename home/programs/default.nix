@@ -2,6 +2,7 @@
   imports = [
     ./alacritty.nix
     ./generic.nix
+    ./shell.nix
   ];
 
   home.packages =
@@ -19,11 +20,6 @@
       # wine
       bottles
       wineWowPackages.staging
-
-      # terminal
-      zoxide
-      oh-my-posh
-      carapace
 
       # nvim
       nerdfonts

@@ -9,7 +9,6 @@
     (with pkgs; [
       #general
       firefox
-      mpv
       losslesscut-bin
       transmission_4-qt6
 

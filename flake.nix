@@ -6,7 +6,7 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
-    aagl.inputs.nixpkgs.follows = "nixpkgs"; # Name of nixpkgs input you want to use
+    aagl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -20,7 +20,6 @@
     system = "x86_64-linux";
   in {
     formatter.x86_64-linux = nixpkgs.legacyPackages.${system}.alejandra;
-    # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       Zaphkiel = nixpkgs.lib.nixosSystem {
         specialArgs = {
@@ -32,15 +31,7 @@
           };
         };
         modules = [
-          # main
           ./nixos/configuration.nix
-
-          # anime game launcher
-          {
-            imports = [aagl.nixosModules.default];
-            programs.anime-game-launcher.enable = false;
-            programs.honkers-railway-launcher.enable = true;
-          }
         ];
       };
     };

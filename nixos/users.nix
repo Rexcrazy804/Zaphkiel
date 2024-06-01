@@ -1,6 +1,7 @@
 {
   pkgs,
   pkgs-stable,
+  inputs,
   ...
 }: {
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -72,6 +73,10 @@
         })
       ];
   };
+
+  imports = [inputs.aagl.nixosModules.default];
+  programs.anime-game-launcher.enable = false;
+  programs.honkers-railway-launcher.enable = true;
 
   programs.steam = {
     enable = true;

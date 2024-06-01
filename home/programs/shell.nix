@@ -2,6 +2,9 @@
   programs.zoxide = {
     enable = true;
     enableNushellIntegration = true;
+    options = [
+      "--cmd cd"
+    ];
   };
 
   programs.carapace = {
@@ -23,5 +26,8 @@
     extraConfig = ''
       $env.config.show_banner = false
     '';
+    environmentVariables = {
+      EDITOR = "nvim";
+    };
   };
 }

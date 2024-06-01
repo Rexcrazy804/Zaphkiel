@@ -15,6 +15,7 @@
       firefox
       losslesscut-bin
       transmission_4-qt6
+      amberol
 
       # emulators
       cemu

@@ -14,6 +14,11 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim = {
+      url = "github:Rexcrazy804/nixvim-config";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

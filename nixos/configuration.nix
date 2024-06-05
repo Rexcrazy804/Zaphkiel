@@ -1,4 +1,8 @@
-{pkgs, inputs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./graphics.nix
     ./hardware-configuration.nix
@@ -13,13 +17,15 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = ["ntfs"];
 
-  environment.systemPackages = [
-    inputs.nixvim.packages.${pkgs.system}.default
-  ] ++ (with pkgs; [
-    # neovim
-    git
-    lenovo-legion
-  ]);
+  environment.systemPackages =
+    [
+      inputs.nixvim.packages.${pkgs.system}.default
+    ]
+    ++ (with pkgs; [
+      # neovim
+      git
+      lenovo-legion
+    ]);
 
   # wayland on electron and chromium based aps
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

@@ -1,9 +1,9 @@
-{...}: {
+{
   programs.alacritty = {
     enable = true;
     settings = {
       window = {
-        opacity = 0.9;
+        opacity = 0.87;
         startup_mode = "Maximized";
         padding = {
           x = 5;

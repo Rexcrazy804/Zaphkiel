@@ -26,11 +26,6 @@
       wineWowPackages.staging
 
       # nvim
-      nerdfonts
-      lua-language-server
-      nixd
-      ripgrep
-      zoxide
       wl-clipboard
 
       # archives
@@ -61,6 +56,13 @@
       (pkgs.catppuccin-kde.override {
         flavour = ["mocha"];
         accents = ["red"];
+      })
+
+      (pkgs.nerdfonts.override {
+        fonts = [
+          "CascadiaMono"
+          "CascadiaCode"
+        ];
       })
     ];
 }

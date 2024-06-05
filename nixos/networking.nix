@@ -1,4 +1,4 @@
-{...}: {
+{
   networking = {
     hostName = "Zaphkiel"; # Define your hostname.
 

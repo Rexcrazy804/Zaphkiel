@@ -23,6 +23,7 @@
 
   # specials might relocate later, let it be here for the time being
   programs = {
+    partition-manager.enable = true;
     anime-game-launcher.enable = false;
     honkers-railway-launcher.enable = true;
 
@@ -31,7 +32,5 @@
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
     };
-
-    partition-manager.enable = true;
   };
 }

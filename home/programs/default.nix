@@ -27,6 +27,7 @@
 
       # nvim
       wl-clipboard
+      ripgrep
 
       # archives
       p7zip

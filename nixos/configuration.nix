@@ -10,12 +10,8 @@
     ./networking.nix
     ./services.nix
     ./users.nix
+    ./boot.nix
   ];
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = ["ntfs"];
 
   environment.systemPackages =
     [

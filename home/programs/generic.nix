@@ -14,7 +14,7 @@
       gpu-context = "wayland";
       geometry = "75%x75%";
       screenshot-template = "'%F - [%P] (%#01n)'";
-      gamma = "-20";
+      # gamma = "-20";
     };
   };
 }

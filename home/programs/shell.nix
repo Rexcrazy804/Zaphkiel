@@ -25,6 +25,10 @@
     };
     extraConfig = ''
       $env.config.show_banner = false
+      $env.config.edit_mode = vi
+      $env.PROMPT_INDICATOR_VI_INSERT = ""
+      $env.PROMPT_INDICATOR_VI_NORMAL = ""
+
     '';
     environmentVariables = {
       EDITOR = "nvim";

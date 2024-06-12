@@ -40,6 +40,7 @@
     enable = true;
     shellAliases = {
       snowfall = "sudo nixos-rebuild switch --flake ~/nixos/#Zaphkiel";
+      envinit = "envinit";
     };
     extraConfig = ''
       $env.config.show_banner = false
@@ -47,6 +48,7 @@
       $env.PROMPT_INDICATOR_VI_INSERT = ""
       $env.PROMPT_INDICATOR_VI_NORMAL = ""
 
+      def envinit [] { 'use flake' | save .envrc }
     '';
     environmentVariables = {
       EDITOR = "nvim";

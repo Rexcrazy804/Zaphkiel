@@ -26,6 +26,7 @@
     partition-manager.enable = true;
     anime-game-launcher.enable = false;
     honkers-railway-launcher.enable = true;
+    mosh.enable = true;
 
     steam = {
       enable = true;

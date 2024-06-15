@@ -54,14 +54,14 @@
   hardware.steam-hardware.enable = true;
 
 
-  # finger print
-  services.fprintd = {
-    enable = true;
-    tod.enable = true;
-    tod.driver = pkgs.libfprint-2-tod1-elan;
-  };
-  systemd.services.fprintd = {
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig.Type = "simple";
-  };
+  # finger print [disabled cause 30s delay on sddm login]
+  # services.fprintd = {
+  #   enable = true;
+  #   tod.enable = true;
+  #   tod.driver = pkgs.libfprint-2-tod1-elan;
+  # };
+  # systemd.services.fprintd = {
+  #   wantedBy = [ "multi-user.target" ];
+  #   serviceConfig.Type = "simple";
+  # };
 }

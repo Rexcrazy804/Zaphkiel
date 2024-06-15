@@ -42,15 +42,26 @@
     powerOnBoot = true;
     settings.General.Experimental = true;
   };
-
-  # extra firmware
-  hardware.enableAllFirmware = true;
-  hardware.steam-hardware.enable = true;
-
   systemd.user.services.mpris-proxy = {
     description = "Mpris proxy";
     after = ["network.target" "sound.target"];
     wantedBy = ["default.target"];
     serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
+  };
+
+  # extra firmware
+  hardware.enableAllFirmware = true;
+  hardware.steam-hardware.enable = true;
+
+
+  # finger print
+  services.fprintd = {
+    enable = true;
+    tod.enable = true;
+    tod.driver = pkgs.libfprint-2-tod1-elan;
+  };
+  systemd.services.fprintd = {
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.Type = "simple";
   };
 }

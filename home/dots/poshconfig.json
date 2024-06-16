@@ -5,8 +5,7 @@
       "alignment": "left",
       "newline": true,
       "segments": [
-        {
-          "foreground": "#ffbebc",
+        { "foreground": "#ffbebc",
           "leading_diamond": "<#ff70a6> \ue200 </>",
           "properties": {
             "display_host": true
@@ -81,7 +80,7 @@
       "segments": [
         {
           "foreground": "#ffafd2",
-          "leading_diamond": "<#00c7fc> \ue285 </><#ffafd2>{</>",
+          "leading_diamond": "<#bc93ff> \ue285 </><#ffafd2>{</>",
           "properties": {
             "folder_icon": "\uf07b",
             "folder_separator_icon": " \uebcb ",
@@ -94,7 +93,7 @@
           "type": "path"
         },
         {
-          "foreground": "#00c7fc",
+          "foreground": "#ffafd2",
           "foreground_templates": [
             "{{ if gt .Code 0 }}#ff70a6{{ end }}",
             "{{ if .Env.IN_NIX_SHELL }}#bc93ff{{ end }}",

@@ -20,7 +20,7 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/bdb9ae6f-e3e3-4e3e-80c6-b5a51be7c293";
     fsType = "ext4";
-    options = ["barrier=0"];
+    # options = ["barrier=0"];
   };
 
   fileSystems."/boot" = {
@@ -32,7 +32,7 @@
   fileSystems."/run/media/rexies/subzero" = {
     device = "/dev/disk/by-uuid/c97eafca-0e24-4969-99f9-7ee03516a90f";
     fsType = "btrfs";
-    options = ["compress=zstd" "nobarrier"];
+    options = ["compress=zstd"];
   };
 
   swapDevices = [

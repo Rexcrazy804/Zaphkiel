@@ -42,16 +42,22 @@
       snowfall = "sudo nixos-rebuild switch --flake ~/nixos/#Zaphkiel";
       envinit = "envinit";
     };
+    environmentVariables = {
+      EDITOR = "nvim";
+    };
+
     extraConfig = ''
+      # nushell configuration
       $env.config.show_banner = false
       $env.config.edit_mode = vi
       $env.PROMPT_INDICATOR_VI_INSERT = ""
       $env.PROMPT_INDICATOR_VI_NORMAL = ""
+      
+      # sourcing nushell scripts
+      source ${../dots/nuscripts/nix.nu}
 
+      # custom definitions
       def envinit [] { 'use flake' | save .envrc }
     '';
-    environmentVariables = {
-      EDITOR = "nvim";
-    };
   };
 }

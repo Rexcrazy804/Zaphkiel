@@ -1,9 +1,9 @@
-{pkgs, ... }: {
+{pkgs, ...}: {
   fonts = {
     fontDir.enable = true;
-    packages = let 
+    packages = let
       caskydia = pkgs.nerdfonts.override {
-        fonts = [ "CascadiaMono" "CascadiaCode" ];
+        fonts = ["CascadiaMono" "CascadiaCode"];
       };
 
       noto = with pkgs; [
@@ -13,7 +13,7 @@
         noto-fonts-cjk-sans
         noto-fonts-cjk-serif
       ];
-
-    in [ caskydia ] ++ noto;
+    in
+      [caskydia] ++ noto;
   };
 }

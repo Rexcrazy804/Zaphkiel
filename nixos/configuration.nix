@@ -14,11 +14,9 @@
     ./fonts.nix
   ];
 
-  environment.systemPackages = let
-    nixvim = inputs.nixvim.packages.${pkgs.system}.default;
-  in builtins.attrValues {
+  environment.systemPackages = builtins.attrValues {
     inherit (pkgs) git lenovo-legion;
-    inherit nixvim;
+    nixvim = inputs.nixvim.packages.${pkgs.system}.default;
   };
 
   # wayland on electron and chromium based aps

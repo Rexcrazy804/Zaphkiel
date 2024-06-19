@@ -53,7 +53,6 @@
   hardware.enableAllFirmware = true;
   hardware.steam-hardware.enable = true;
 
-
   # finger print [disabled cause 30s delay on sddm login]
   # services.fprintd = {
   #   enable = true;

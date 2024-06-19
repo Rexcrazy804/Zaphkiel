@@ -9,7 +9,7 @@
     ./shell.nix
   ];
 
-  home.packages = let 
+  home.packages = let
     discord = pkgs.discord.override {
       withOpenASAR = true;
       withVencord = true;
@@ -29,33 +29,34 @@
     };
 
     unstable = with pkgs; [
-        #general
-        firefox
-        losslesscut-bin
-        transmission_4-qt6
-        amberol
+      #general
+      firefox
+      losslesscut-bin
+      transmission_4-qt6
+      amberol
 
-        # emulators
-        cemu
-        ryujinx
+      # emulators
+      cemu
+      ryujinx
 
-        # wine
-        bottles
-        wineWowPackages.staging
+      # wine
+      bottles
+      wineWowPackages.staging
 
-        # nvim
-        wl-clipboard
-        ripgrep
+      # nvim
+      wl-clipboard
+      ripgrep
 
-        # archives
-        p7zip
-        unrar
+      # archives
+      p7zip
+      unrar
 
-        kdePackages.kdeconnect-kde
-      ];
+      kdePackages.kdeconnect-kde
+    ];
 
     stable = with pkgs-stable; [];
 
-    overriden = [ discord obs catppuccin-kde ];
-  in unstable ++ stable ++ overriden;
+    overriden = [discord obs catppuccin-kde];
+  in
+    unstable ++ stable ++ overriden;
 }

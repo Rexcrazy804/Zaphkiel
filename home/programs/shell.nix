@@ -22,7 +22,7 @@
     enable = true;
     nix-direnv.enable = true;
     enableNushellIntegration = true;
-    stdlib =  ''
+    stdlib = ''
       : "''${XDG_CACHE_HOME:="''${HOME}/.cache"}"
       declare -A direnv_layout_dirs
       direnv_layout_dir() {
@@ -52,7 +52,7 @@
       $env.config.edit_mode = vi
       $env.PROMPT_INDICATOR_VI_INSERT = ""
       $env.PROMPT_INDICATOR_VI_NORMAL = ""
-      
+
       # sourcing nushell scripts
       source ${../dots/nuscripts/nix.nu}
 

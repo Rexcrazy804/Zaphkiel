@@ -25,10 +25,12 @@
     };
 
     wine = pkgs.wineWowPackages.staging;
-    kdeconnect-kde = pkgs.kdePackages.kdeconnect-kde;
 
-    inherit
-      (pkgs)
+    inherit (pkgs.kdePackages) 
+      kdeconnect-kde
+      kdenlive;
+
+    inherit (pkgs)
       firefox
       losslesscut-bin
       transmission_4-qt6
@@ -49,7 +51,6 @@
       p7zip
       unrar
       # archives
-      
       ;
   };
 }

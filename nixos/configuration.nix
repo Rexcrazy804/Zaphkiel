@@ -11,54 +11,44 @@
     ./services.nix
     ./users.nix
     ./boot.nix
+    ./fonts.nix
   ];
 
-  environment.systemPackages =
-    [
-      inputs.nixvim.packages.${pkgs.system}.default
-    ]
-    ++ (with pkgs; [
-      # neovim
-      git
-      lenovo-legion
-    ]);
+  environment.systemPackages = let
+    nixvim = inputs.nixvim.packages.${pkgs.system}.default;
+  in builtins.attrValues {
+    inherit (pkgs) git lenovo-legion;
+    inherit nixvim;
+  };
 
   # wayland on electron and chromium based aps
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-emoji
-    noto-fonts-cjk
-    noto-fonts-cjk-sans
-    noto-fonts-cjk-serif
-  ];
 
   nixpkgs.config = {
     allowUnfree = true;
   };
 
   system.activationScripts.diff = ''
-  if [[ -e /run/current-system ]]; then
-    echo
-    ${pkgs.nushell}/bin/nu -c "let diff_closure = ${pkgs.nix}/bin/nix store diff-closures /run/current-system '$systemConfig'; if \$diff_closure != \"\" {
-      let table = \$diff_closure
-      | lines
-      | where \$it =~ KiB
-      | where \$it =~ →
-      | parse -r '^(?<Package>\S+): (?<Old_Version>[^,]+)(?:.*) → (?<New_Version>[^,]+)(?:.*, )(?<DiffBin>.*)$'
-      | insert Diff {
-        get DiffBin
-        | ansi strip
-        | str trim -l -c '+'
-        | into filesize
-      }
-      | reject DiffBin
-      | sort-by -r Diff; print \$table; \$table
-      | math sum
-    }"
-  fi
-'';
+    if [[ -e /run/current-system ]]; then
+      echo
+      ${pkgs.nushell}/bin/nu -c "let diff_closure = ${pkgs.nix}/bin/nix store diff-closures /run/current-system '$systemConfig'; if \$diff_closure != \"\" {
+        let table = \$diff_closure
+        | lines
+        | where \$it =~ KiB
+        | where \$it =~ →
+        | parse -r '^(?<Package>\S+): (?<Old_Version>[^,]+)(?:.*) → (?<New_Version>[^,]+)(?:.*, )(?<DiffBin>.*)$'
+        | insert Diff {
+          get DiffBin
+          | ansi strip
+          | str trim -l -c '+'
+          | into filesize
+        }
+        | reject DiffBin
+        | sort-by -r Diff; print \$table; \$table
+        | math sum
+      }"
+    fi
+  '';
 
   nix = {
     settings = {
@@ -77,6 +67,7 @@
     };
 
     gc = {
+      persistent = true;
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 7d";

@@ -9,61 +9,53 @@
     ./shell.nix
   ];
 
-  home.packages =
-    (with pkgs; [
-      #general
-      firefox
-      losslesscut-bin
-      transmission_4-qt6
-      amberol
+  home.packages = let 
+    discord = pkgs.discord.override {
+      withOpenASAR = true;
+      withVencord = true;
+    };
 
-      # emulators
-      cemu
-      ryujinx
+    obs = pkgs.wrapOBS {
+      plugins = with pkgs.obs-studio-plugins; [
+        wlrobs
+        obs-backgroundremoval
+        obs-pipewire-audio-capture
+      ];
+    };
 
-      # wine
-      bottles
-      wineWowPackages.staging
+    catppuccin-kde = pkgs.catppuccin-kde.override {
+      flavour = ["mocha"];
+      accents = ["red"];
+    };
 
-      # nvim
-      wl-clipboard
-      ripgrep
+    unstable = with pkgs; [
+        #general
+        firefox
+        losslesscut-bin
+        transmission_4-qt6
+        amberol
 
-      # archives
-      p7zip
-      unrar
+        # emulators
+        cemu
+        ryujinx
 
-      kdePackages.kdeconnect-kde
-    ])
-    ++ (with pkgs-stable; [
-      # stabilized packages
-      # bottles
-    ])
-    ++ [
-      # overriden packages
-      (pkgs.discord.override {
-        withOpenASAR = true;
-        withVencord = true;
-      })
+        # wine
+        bottles
+        wineWowPackages.staging
 
-      (pkgs.wrapOBS {
-        plugins = with pkgs.obs-studio-plugins; [
-          wlrobs
-          obs-backgroundremoval
-          obs-pipewire-audio-capture
-        ];
-      })
+        # nvim
+        wl-clipboard
+        ripgrep
 
-      (pkgs.catppuccin-kde.override {
-        flavour = ["mocha"];
-        accents = ["red"];
-      })
+        # archives
+        p7zip
+        unrar
 
-      (pkgs.nerdfonts.override {
-        fonts = [
-          "CascadiaMono"
-          "CascadiaCode"
-        ];
-      })
-    ];
+        kdePackages.kdeconnect-kde
+      ];
+
+    stable = with pkgs-stable; [];
+
+    overriden = [ discord obs catppuccin-kde ];
+  in unstable ++ stable ++ overriden;
 }

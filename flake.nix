@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
     aagl = {
       url = "github:ezKEa/aagl-gtk-on-nix";
@@ -24,7 +23,6 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-stable,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -35,11 +33,6 @@
       Zaphkiel = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs outputs;
-
-          pkgs-stable = import nixpkgs-stable {
-            inherit system;
-            config.allowUnfree = true;
-          };
         };
         modules = [
           ./nixos/configuration.nix

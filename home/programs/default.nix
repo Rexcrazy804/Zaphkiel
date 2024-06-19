@@ -1,15 +1,11 @@
-{
-  pkgs,
-  pkgs-stable,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./alacritty.nix
     ./generic.nix
     ./shell.nix
   ];
 
-  home.packages = let
+  home.packages = builtins.attrValues {
     discord = pkgs.discord.override {
       withOpenASAR = true;
       withVencord = true;
@@ -28,35 +24,32 @@
       accents = ["red"];
     };
 
-    unstable = with pkgs; [
-      #general
+    wine = pkgs.wineWowPackages.staging;
+    kdeconnect-kde = pkgs.kdePackages.kdeconnect-kde;
+
+    inherit
+      (pkgs)
       firefox
       losslesscut-bin
       transmission_4-qt6
       amberol
-
-      # emulators
+      #general
+      
       cemu
       ryujinx
-
-      # wine
+      # emulators
+      
       bottles
-      wineWowPackages.staging
-
-      # nvim
+      #wine
+      
       wl-clipboard
       ripgrep
-
-      # archives
+      # nvim
+      
       p7zip
       unrar
-
-      kdePackages.kdeconnect-kde
-    ];
-
-    stable = with pkgs-stable; [];
-
-    overriden = [discord obs catppuccin-kde];
-  in
-    unstable ++ stable ++ overriden;
+      # archives
+      
+      ;
+  };
 }

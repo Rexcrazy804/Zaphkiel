@@ -24,7 +24,7 @@
       accents = ["red"];
     };
 
-    wine = pkgs.wineWowPackages.staging;
+    wine = pkgs.wineWowPackages.stable;
 
     inherit (pkgs.kdePackages) 
       kdeconnect-kde
@@ -41,6 +41,7 @@
       ryujinx
       # emulators
       
+      winetricks
       bottles
       #wine
       

@@ -35,6 +35,7 @@
       losslesscut-bin
       transmission_4-qt6
       amberol
+      zenith-nvidia
       #general
       
       cemu

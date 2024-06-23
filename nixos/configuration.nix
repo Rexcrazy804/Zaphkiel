@@ -48,7 +48,6 @@
     fi
   '';
 
-
   # Make `nix repl '<nixpkgs>'` use the same nixpkgs as the one used by this
   # flake.
   environment.etc."nix/inputs/nixpkgs".source = "${inputs.nixpkgs}";
@@ -58,7 +57,7 @@
     registry.nixpkgs.flake = inputs.nixpkgs;
 
     # remove nix-channel related tools & configs, we use flakes instead.
-    channel.enable = false; 
+    channel.enable = false;
 
     settings = {
       nix-path = pkgs.lib.mkForce "nixpkgs=/etc/nix/inputs/nixpkgs";

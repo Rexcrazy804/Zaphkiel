@@ -26,15 +26,17 @@
 
     wine = pkgs.wineWowPackages.stable;
 
-    inherit (pkgs.kdePackages) 
+    inherit
+      (pkgs.kdePackages)
       kdeconnect-kde
-      kdenlive;
+      kdenlive
+      ;
 
-    inherit (pkgs)
+    inherit
+      (pkgs)
       firefox
       losslesscut-bin
       transmission_4-qt6
-      amberol
       zenith-nvidia
       #general
       
@@ -53,6 +55,7 @@
       p7zip
       unrar
       # archives
+      
       ;
   };
 }

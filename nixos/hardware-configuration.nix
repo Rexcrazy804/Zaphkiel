@@ -14,8 +14,13 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" "sdhci_pci"];
+  boot.initrd.kernelModules = ["amdgpu"];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = with config.boot.kernelPackages; [lenovo-legion-module];
+  boot.kernelParams = [
+    "video=eDP-1:1920x1080@165"
+    "video=eDP-2:1920x1080@165"
+  ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/bdb9ae6f-e3e3-4e3e-80c6-b5a51be7c293";

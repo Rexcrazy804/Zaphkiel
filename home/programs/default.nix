@@ -3,6 +3,7 @@
     ./alacritty.nix
     ./generic.nix
     ./shell.nix
+    ./mpv.nix
   ];
 
   home.packages = builtins.attrValues {
@@ -16,6 +17,7 @@
         wlrobs
         obs-backgroundremoval
         obs-pipewire-audio-capture
+        obs-vkcapture
       ];
     };
 

@@ -41,6 +41,7 @@
     shellAliases = {
       snowfall = "sudo nixos-rebuild switch --flake ~/nixos/#Zaphkiel";
       envinit = "envinit";
+      nmpv = "nvidia-offload mpv";
     };
     environmentVariables = {
       EDITOR = "nvim";

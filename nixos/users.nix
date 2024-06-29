@@ -21,11 +21,16 @@
     users.rexies = import ../home;
   };
 
+  # anime games launcher stuff
+  nix.settings = inputs.aagl.nixConfig;
+  programs = {
+    anime-game-launcher.enable = false;
+    honkers-railway-launcher.enable = true;
+  };
+
   # specials might relocate later, let it be here for the time being
   programs = {
     partition-manager.enable = true;
-    anime-game-launcher.enable = false;
-    honkers-railway-launcher.enable = true;
     mosh.enable = true;
 
     steam = {

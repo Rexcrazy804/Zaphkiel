@@ -17,6 +17,7 @@
   boot.initrd.kernelModules = ["amdgpu"];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = with config.boot.kernelPackages; [lenovo-legion-module];
+  boot.kernelParams = ["acpi_osi=linux"];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/bdb9ae6f-e3e3-4e3e-80c6-b5a51be7c293";

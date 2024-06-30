@@ -41,6 +41,7 @@
       losslesscut-bin
       transmission_4-qt6
       zenith-nvidia
+      radeontop
       #general
       
       cemu

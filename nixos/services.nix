@@ -2,6 +2,7 @@
   # uncategorized
   services.fstrim.enable = true;
   services.xserver.enable = true;
+  services.thermald.enable = true;
 
   # KDE
   services.displayManager.sddm = {

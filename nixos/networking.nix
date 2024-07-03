@@ -6,7 +6,7 @@
       enable = true;
       wifi = {
         powersave = false;
-        backend = "iwd";
+        # backend = "iwd";
         macAddress = "random";
       };
     };
@@ -14,16 +14,16 @@
     firewall = {
       enable = true;
       allowedTCPPortRanges = [
-        {
-          from = 1714;
-          to = 1764;
-        } # KDE Connect
+        # {
+        #   from = 1714;
+        #   to = 1764;
+        # } # KDE Connect
       ];
       allowedUDPPortRanges = [
-        {
-          from = 1714;
-          to = 1764;
-        } # KDE Connect
+        # {
+        #   from = 1714;
+        #   to = 1764;
+        # } # KDE Connect
       ];
     };
   };

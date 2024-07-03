@@ -31,6 +31,7 @@
   # specials might relocate later, let it be here for the time being
   programs = {
     partition-manager.enable = true;
+    kdeconnect.enable = true;
     mosh.enable = true;
 
     steam = {

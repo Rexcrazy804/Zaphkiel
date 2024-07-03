@@ -30,7 +30,6 @@
 
     inherit
       (pkgs.kdePackages)
-      kdeconnect-kde
       kdenlive
       filelight
       ;

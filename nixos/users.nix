@@ -26,6 +26,7 @@
   programs = {
     anime-game-launcher.enable = false;
     honkers-railway-launcher.enable = true;
+    sleepy-launcher.enable = true;
   };
 
   # specials might relocate later, let it be here for the time being

@@ -12,29 +12,40 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" "sdhci_pci"];
-  boot.initrd.kernelModules = ["amdgpu"];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = with config.boot.kernelPackages; [lenovo-legion-module];
-  # boot.kernelParams = ["acpi_osi=linux"];
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/bdb9ae6f-e3e3-4e3e-80c6-b5a51be7c293";
-    fsType = "ext4";
-    options = ["discard"];
+    initrd = {
+      availableKernelModules = ["nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" "sdhci_pci"];
+      kernelModules = ["amdgpu"];
+    };
+
+    # blacklisted to prefer zenpower
+    blacklistedKernelModules = ["k10temp"];
+    kernelModules = ["kvm-amd" "zenpower"];
+    extraModulePackages = with config.boot.kernelPackages; [lenovo-legion-module zenpower];
+
+    kernelParams = ["amd_pstate=active"];
   };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/91DB-2206";
-    fsType = "vfat";
-    options = ["fmask=0022" "dmask=0022"];
-  };
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/bdb9ae6f-e3e3-4e3e-80c6-b5a51be7c293";
+      fsType = "ext4";
+      options = ["discard"];
+    };
 
-  fileSystems."/run/media/rexies/subzero" = {
-    device = "/dev/disk/by-uuid/c97eafca-0e24-4969-99f9-7ee03516a90f";
-    fsType = "btrfs";
-    options = ["compress=zstd"];
+    "/boot" = {
+      device = "/dev/disk/by-uuid/91DB-2206";
+      fsType = "vfat";
+      options = ["fmask=0022" "dmask=0022"];
+    };
+
+    "/run/media/rexies/subzero" = {
+      device = "/dev/disk/by-uuid/c97eafca-0e24-4969-99f9-7ee03516a90f";
+      fsType = "btrfs";
+      options = ["compress=zstd"];
+    };
   };
 
   swapDevices = [

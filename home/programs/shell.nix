@@ -47,7 +47,9 @@
       EDITOR = "nvim";
     };
 
-    extraConfig = ''
+    extraConfig = let 
+      nuscripts = ../dots/nuscripts;
+    in ''
       # nushell configuration
       $env.config.show_banner = false
       $env.config.edit_mode = vi
@@ -55,7 +57,8 @@
       $env.PROMPT_INDICATOR_VI_NORMAL = ""
 
       # sourcing nushell scripts
-      source ${../dots/nuscripts/nix.nu}
+      source ${nuscripts}/nix.nu
+      source ${nuscripts}/error_hook.nu
 
       # custom definitions
       def envinit [] { 'use flake' | save .envrc }

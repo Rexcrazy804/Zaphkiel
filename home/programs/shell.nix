@@ -58,7 +58,7 @@
 
       # sourcing nushell scripts
       source ${nuscripts}/nix.nu
-      source ${nuscripts}/error_hook.nu
+      # source ${nuscripts}/error_hook.nu
 
       # custom definitions
       def envinit [] { 'use flake' | save .envrc }

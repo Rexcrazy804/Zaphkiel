@@ -7,8 +7,10 @@
   # KDE
   services.displayManager.sddm = {
     enable = true;
+    enableHidpi = true;
     wayland.enable = true;
     theme = "sddm-astronaut-theme";
+    settings.Theme.CursorSize = 24;
   };
   services.desktopManager.plasma6.enable = true;
 

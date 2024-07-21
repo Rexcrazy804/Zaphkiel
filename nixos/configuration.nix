@@ -14,12 +14,26 @@
     ./fonts.nix
   ];
 
-  environment.systemPackages = builtins.attrValues {
-    inherit (pkgs) git lenovo-legion;
-    nixvim = inputs.nixvim.packages.${pkgs.system}.default;
-  };
+  environment.systemPackages = let
+    wallpaper = ../home/dots/sddm-wall.png;
+  in
+    builtins.attrValues {
+      inherit (pkgs) git lenovo-legion;
 
-  # wayland on electron and chromium based aps
+      sddm-astronaut = pkgs.sddm-astronaut.override {
+        themeConfig = {
+          Background = "${wallpaper}";
+          PartialBlur = "true";
+          BlurRadius = "45";
+          ForceHideVirtualKeyboardButton = "true";
+          FormPosition = "right";
+        };
+      };
+
+      nixvim = inputs.nixvim.packages.${pkgs.system}.default;
+    };
+
+  # wayland on electron and chromium based apps
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   nixpkgs.config = {

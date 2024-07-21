@@ -47,7 +47,7 @@
       EDITOR = "nvim";
     };
 
-    extraConfig = let 
+    extraConfig = let
       nuscripts = ../dots/nuscripts;
     in ''
       # nushell configuration

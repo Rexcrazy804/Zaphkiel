@@ -1,4 +1,9 @@
-{pkgs, lib, config, ...}: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options = {
     packages = {
       wine.enable = lib.mkEnableOption "Enable Wine";

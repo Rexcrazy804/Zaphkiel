@@ -1,4 +1,9 @@
-{pkgs, lib, config, ...}: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options = {
     progModule.steam.enable = lib.mkEnableOption "Enable steam";
   };

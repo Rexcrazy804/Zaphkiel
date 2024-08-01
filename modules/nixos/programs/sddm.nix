@@ -1,5 +1,10 @@
-{pkgs, lib, config, ...}: {
-  options = { 
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
+  options = {
     progModule.sddm-custom-theme = {
       enable = lib.mkEnableOption "Enable custom sddm theme";
       wallpaper = lib.mkOption {
@@ -8,7 +13,7 @@
     };
   };
 
-  config = let 
+  config = let
     cfg = config.progModule.sddm-custom-theme;
   in {
     environment.systemPackages = let
@@ -22,9 +27,10 @@
           FormPosition = "right";
         };
       };
-    in lib.mkIf cfg.enable [
-      sddm-astronaut
-    ];
+    in
+      lib.mkIf cfg.enable [
+        sddm-astronaut
+      ];
 
     services.displayManager.sddm = {
       enable = true;

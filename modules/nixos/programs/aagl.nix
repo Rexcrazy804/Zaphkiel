@@ -1,4 +1,9 @@
-{lib, inputs, config, ...}: {
+{
+  lib,
+  inputs,
+  config,
+  ...
+}: {
   imports = [
     inputs.aagl.nixosModules.default
   ];

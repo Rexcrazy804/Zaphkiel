@@ -17,11 +17,11 @@ in {
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs username hostname; };
+    extraSpecialArgs = {inherit inputs username hostname;};
     useGlobalPkgs = true;
     useUserPackages = true;
     users = {
-      ${username} = import ../../modules/home { inherit username hostname; };
+      ${username} = import ../../modules/home {inherit username hostname;};
     };
   };
 }

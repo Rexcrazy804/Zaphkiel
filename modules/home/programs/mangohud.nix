@@ -1,4 +1,8 @@
-{lib, config, ... }: {
+{
+  lib,
+  config,
+  ...
+}: {
   options = {
     packages.mangohud.enable = lib.mkEnableOption "Enable mangohud";
   };

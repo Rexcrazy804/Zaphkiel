@@ -1,4 +1,9 @@
-{lib, pkgs, config, ... }: {
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   options = {
     packageGroup = {
       emulators.enable = lib.mkEnableOption "Enable Emulators";

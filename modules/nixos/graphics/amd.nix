@@ -1,4 +1,9 @@
-{pkgs, config, lib, ...}: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   # Enable OpenGL
   config = lib.mkIf config.graphicsModule.amd.enable {
     hardware.graphics = {

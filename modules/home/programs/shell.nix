@@ -1,4 +1,4 @@
-{hostname, ... }: {
+{hostname, ...}: {
   programs.zoxide = {
     enable = true;
     enableNushellIntegration = true;

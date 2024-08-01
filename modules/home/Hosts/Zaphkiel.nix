@@ -6,4 +6,3 @@
 
   # alacritty.enable = lib.mkForce false;
 }
-

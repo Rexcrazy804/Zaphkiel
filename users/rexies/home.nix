@@ -1,12 +1,11 @@
-{
-username ? "rexies",
-...
-}: {
+{...}: let
+  username = "rexies";
+in {
   home.username = username;
   home.homeDirectory = "/home/${username}";
 
   imports = [
-    ./programs
+    ../../modules/home
   ];
 
   home.stateVersion = "24.05";

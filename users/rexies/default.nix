@@ -5,21 +5,23 @@
   ...
 }: let
   username = "rexies";
+  description = "Rexiel Scarlet";
 in {
   imports = [
     inputs.home-manager.nixosModules.home-manager
   ];
 
   users.users.${username} = {
+    inherit description;
+
     shell = pkgs.nushell;
     isNormalUser = true;
-    description = "Rexiel Scarlet";
     extraGroups = ["networkmanager" "wheel"];
   };
 
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.${username} = import ../../modules/home;
+    users.${username} = import ../../modules/home { inherit username; };
   };
 }

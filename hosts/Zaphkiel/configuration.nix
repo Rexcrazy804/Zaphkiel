@@ -1,9 +1,5 @@
 {...}: {
-  imports = [
-    ../../modules/nixos
-    ./hardware-configuration.nix
-    ../../users/rexies
-  ];
+  imports = [ ./hardware-configuration.nix ];
 
   networking.hostName = "Zaphkiel";
 
@@ -17,6 +13,8 @@
     steam.enable = true;
     sddm-custom-theme.enable = true;
   };
+
+  time.timeZone = "Asia/Kolkata";
 
   system.stateVersion = "23.11";
 }

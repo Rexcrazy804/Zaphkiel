@@ -4,7 +4,6 @@
   packages = {
     alacritty.enable = lib.mkDefault true;
     discord.enable = lib.mkDefault true;
-    wine.enable = lib.mkDefault true;
     obs.enable = lib.mkDefault true;
     mangohud.enable = lib.mkDefault true;
     mpv = {
@@ -14,6 +13,7 @@
   };
 
   packageGroup = {
+    wine.enable = lib.mkDefault true;
     emulators.enable = lib.mkDefault true;
     multimedia.enable = lib.mkDefault true;
   };

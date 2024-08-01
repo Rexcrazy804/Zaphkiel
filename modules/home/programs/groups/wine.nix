@@ -5,12 +5,12 @@
   ...
 }: {
   options = {
-    packages = {
+    packageGroup = {
       wine.enable = lib.mkEnableOption "Enable Wine";
     };
   };
 
-  config = lib.mkIf config.packages.wine.enable {
+  config = lib.mkIf config.packageGroup.wine.enable {
     home.packages = with pkgs; [
       wineWowPackages.stable
       winetricks

@@ -40,7 +40,7 @@
 
           ./hosts/Zaphkiel/configuration.nix
           ./modules/nixos
-          ./users/rexies
+          ./users/rexies.nix
         ];
       };
     };

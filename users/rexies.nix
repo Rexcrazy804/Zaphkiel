@@ -21,7 +21,7 @@ in {
     useGlobalPkgs = true;
     useUserPackages = true;
     users = {
-      ${username} = import ../../modules/home {inherit username hostname;};
+      ${username} = import ../modules/home {inherit username hostname;};
     };
   };
 }

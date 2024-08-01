@@ -4,6 +4,5 @@
     ./system
     ./graphics
     ./programs
-    ./options.nix
   ];
 }

@@ -1,11 +1,11 @@
 {config, ...}: let
   username = "rexies";
 in {
-    home.username = username;
-    home.homeDirectory = "/home/${username}";
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
 
   imports = [
-   ./programs
+    ./programs
   ];
 
   home.stateVersion = "24.05";

@@ -1,4 +1,9 @@
-{pkgs, inputs, config, ...}: let
+{
+  pkgs,
+  inputs,
+  config,
+  ...
+}: let
   username = "rexies";
 in {
   imports = [

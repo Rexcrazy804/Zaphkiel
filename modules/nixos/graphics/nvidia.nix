@@ -1,7 +1,4 @@
-{
-  config,
-  ...
-}: {
+{config, ...}: {
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
@@ -37,5 +34,4 @@
       nvidiaBusId = "PCI:1:0:0";
     };
   };
-
 }

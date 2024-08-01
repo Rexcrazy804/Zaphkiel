@@ -25,6 +25,7 @@
         };
 
         # may needa make these an option once I have more hosts
+        # lazy for now so let me be :)
         amdgpuBusId = "PCI:6:0:0"; 
         nvidiaBusId = "PCI:1:0:0";
       };

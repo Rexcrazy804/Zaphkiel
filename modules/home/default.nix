@@ -1,5 +1,5 @@
 {
-username ? "rexies",
+username ? null,
 ...
 }: {
   home.username = username;

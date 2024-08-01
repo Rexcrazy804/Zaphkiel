@@ -1,5 +1,6 @@
 {...}: {
   # uncategorized
+  services.btrfs.autoScrub.enable = true;
   services.fstrim.enable = true;
   services.xserver.enable = true;
   services.thermald.enable = true;

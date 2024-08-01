@@ -1,11 +1,15 @@
 {
-username ? null,
-...
+  username ? null,
+  hostname ? null,
+  ...
 }: {
   home.username = username;
   home.homeDirectory = "/home/${username}";
 
   imports = [
+    ./Users/${username}.nix
+    ./Hosts/${hostname}.nix
+
     ./programs
   ];
 

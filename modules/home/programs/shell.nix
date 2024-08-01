@@ -1,4 +1,4 @@
-{
+{hostname, ... }: {
   programs.zoxide = {
     enable = true;
     enableNushellIntegration = true;
@@ -39,7 +39,7 @@
   programs.nushell = {
     enable = true;
     shellAliases = {
-      snowfall = "sudo nixos-rebuild switch --flake ~/nixos/#Zaphkiel";
+      snowfall = "sudo nixos-rebuild switch --flake ~/nixos/#${hostname}";
       envinit = "envinit";
       nmpv = "nvidia-offload mpv";
     };

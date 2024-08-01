@@ -6,11 +6,8 @@
 }: let
   username = "rexies";
   description = "Rexiel Scarlet";
+  hostname = config.networking.hostName;
 in {
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-  ];
-
   users.users.${username} = {
     inherit description;
 
@@ -20,8 +17,11 @@ in {
   };
 
   home-manager = {
+    extraSpecialArgs = { inherit inputs username hostname; };
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.${username} = import ../../modules/home { inherit username; };
+    users = {
+      ${username} = import ../../modules/home { inherit username hostname; };
+    };
   };
 }

@@ -23,6 +23,7 @@
   outputs = {
     self,
     nixpkgs,
+    home-manager,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -35,6 +36,8 @@
           inherit inputs outputs;
         };
         modules = [
+          home-manager.nixosModules.home-manager
+
           ./hosts/Zaphkiel/configuration.nix
           ./modules/nixos
           ./users/rexies

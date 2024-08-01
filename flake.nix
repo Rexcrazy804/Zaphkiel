@@ -35,7 +35,7 @@
           inherit inputs outputs;
         };
         modules = [
-          ./nixos/configuration.nix
+          ./hosts/Zaphkiel/configuration.nix
         ];
       };
     };

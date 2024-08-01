@@ -1,5 +1,5 @@
 {config, lib, ...}: {
-  config = lib.mkIf config.graphics.nvidia.enable {
+  config = lib.mkIf config.graphicsModule.nvidia.enable {
     services.xserver.videoDrivers = ["nvidia"];
 
     hardware.nvidia = {

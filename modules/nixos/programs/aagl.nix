@@ -4,10 +4,10 @@
   ];
 
   options = {
-    anime-games.enable = lib.mkEnableOption "Enable a certain Anime Game";
+    progModule.anime-games.enable = lib.mkEnableOption "Enable a certain Anime Game";
   };
 
-  config = lib.mkIf config.anime-games.enable {
+  config = lib.mkIf config.progModule.anime-games.enable {
     nix.settings = inputs.aagl.nixConfig;
 
     programs = {

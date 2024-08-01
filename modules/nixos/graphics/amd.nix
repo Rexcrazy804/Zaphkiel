@@ -1,6 +1,6 @@
 {pkgs, config, lib, ...}: {
   # Enable OpenGL
-  config = lib.mkIf config.graphics.amd.enable {
+  config = lib.mkIf config.graphicsModule.amd.enable {
     hardware.graphics = {
       extraPackages = with pkgs; [
         amdvlk

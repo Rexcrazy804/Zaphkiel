@@ -12,7 +12,7 @@
   };
 
   options = {
-    graphics = {
+    graphicsModule = {
       amd.enable = lib.mkEnableOption "Enable amd graphics card";
       nvidia = {
         enable = lib.mkEnableOption "Enable nVidia graphics card";

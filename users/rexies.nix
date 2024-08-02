@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   config,
   ...
 }: let
@@ -8,6 +7,10 @@
   description = "Rexiel Scarlet";
   hostname = config.networking.hostName;
 in {
+  imports = [
+    ./common.nix
+  ];
+
   users.users.${username} = {
     inherit description;
 
@@ -16,12 +19,5 @@ in {
     extraGroups = ["networkmanager" "wheel"];
   };
 
-  home-manager = {
-    extraSpecialArgs = {inherit inputs username hostname;};
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users = {
-      ${username} = import ../homeManagerModules {inherit username hostname;};
-    };
-  };
+  home-manager.users.${username} = import ../homeManagerModules {inherit username hostname;};
 }

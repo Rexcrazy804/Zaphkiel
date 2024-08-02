@@ -36,11 +36,11 @@
           inherit inputs outputs;
         };
         modules = [
-          home-manager.nixosModules.home-manager
-
           ./hosts/Zaphkiel/configuration.nix
           ./nixosModules
-          ./users/rexies.nix
+
+          # responsible for importing home manager modules
+          ./users/rexies.nix 
         ];
       };
     };

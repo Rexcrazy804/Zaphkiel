@@ -9,7 +9,13 @@
   };
 
   progModule = {
-    anime-games.enable = true;
+    anime-games = {
+      enable = true;
+      cache.enable = true;
+      impact.enable = false;
+      rail.enable = true;
+      zone.enable = true;
+    };
     steam.enable = true;
     sddm-custom-theme.enable = true;
   };

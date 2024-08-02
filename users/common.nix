@@ -1,4 +1,8 @@
-{inputs, config, ... }: let
+{
+  inputs,
+  config,
+  ...
+}: let
   hostname = config.networking.hostName;
 in {
   imports = [

@@ -40,7 +40,7 @@
           ./nixosModules
 
           # responsible for importing home manager modules
-          ./users/rexies.nix 
+          ./users/rexies.nix
         ];
       };
     };

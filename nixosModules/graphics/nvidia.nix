@@ -3,36 +3,63 @@
   lib,
   ...
 }: {
-  config = lib.mkIf config.graphicsModule.nvidia.enable {
-    services.xserver.videoDrivers = ["nvidia"];
-
-    hardware.nvidia = {
-      modesetting.enable = true;
-      dynamicBoost.enable = true;
-
-      powerManagement = {
-        enable = true;
-        finegrained = true;
-      };
-
-      # Use the NVidia open source kernel module (not to be confused with the
-      # independent third-party "nouveau" open source driver).
-      open = false;
-
-      nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-
-      prime = {
-        offload = {
-          enable = true;
-          enableOffloadCmd = true;
+  options = {
+    graphicsModule = {
+      nvidia = {
+        enable = lib.mkEnableOption "Enable nVidia graphics card";
+        hybrid = {
+          enable = lib.mkEnableOption "Enable nVidia optimus prime";
+          igpu = {
+            vendor = lib.mkOption {
+              type = lib.types.enum ["amd" "intel"];
+              default = "amd";
+            };
+            port = lib.mkOption {
+              default = "";
+              description = "Bus Port of igpu";
+            };
+          };
+          dgpu.port = lib.mkOption {
+            default = "";
+            description = "Bus Port of dgpu";
+          };
         };
-
-        # may needa make these an option once I have more hosts
-        # lazy for now so let me be :)
-        amdgpuBusId = "PCI:6:0:0";
-        nvidiaBusId = "PCI:1:0:0";
       };
     };
   };
+
+  config = let
+    cfg = config.graphicsModule.nvidia;
+  in
+    lib.mkIf cfg.enable {
+      services.xserver.videoDrivers = ["nvidia"];
+
+      hardware.nvidia = {
+        modesetting.enable = true;
+        dynamicBoost.enable = true;
+
+        powerManagement = {
+          enable = true;
+          finegrained = true;
+        };
+
+        # Use the NVidia open source kernel module (not to be confused with the
+        # independent third-party "nouveau" open source driver).
+        open = false;
+
+        nvidiaSettings = true;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+        prime = lib.mkIf cfg.hybrid.enable {
+          offload = {
+            enable = true;
+            enableOffloadCmd = true;
+          };
+
+          amdgpuBusId = lib.mkIf (cfg.hybrid.igpu.vendor == "amd") cfg.hybrid.igpu.port;
+          intelBusId = lib.mkIf (cfg.hybrid.igpu.vendor == "intel") cfg.hybrid.igpu.port;
+          nvidiaBusId = cfg.hybrid.dgpu.port;
+        };
+      };
+    };
 }

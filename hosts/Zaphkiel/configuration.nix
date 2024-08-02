@@ -5,7 +5,18 @@
 
   graphicsModule = {
     amd.enable = true;
-    nvidia.enable = true;
+    nvidia = {
+      enable = true;
+
+      hybrid = {
+        enable = true;
+        igpu = {
+          vendor = "amd";
+          port = "PCI:6:0:0";
+        };
+        dgpu.port = "PCI:1:0:0";
+      };
+    };
   };
 
   progModule = {

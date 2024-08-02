@@ -4,6 +4,11 @@
   lib,
   ...
 }: {
+  options = {
+    graphicsModule = {
+      amd.enable = lib.mkEnableOption "Enable amd graphics card";
+    };
+  };
   # Enable OpenGL
   config = lib.mkIf config.graphicsModule.amd.enable {
     hardware.graphics = {

@@ -1,5 +1,5 @@
 # My NixOS Configuration
-![wall](https://github.com/Rexcrazy804/Zaphkiel/blob/master/modules/home/dots/sddm-wall.png?raw=true)
+![wall](https://github.com/Rexcrazy804/Zaphkiel/blob/master/homeManagerModules/dots/sddm-wall.png?raw=true)
 
 ### What the hell have you done with home manager modules?
 I couldn't find anyone that approached home manager modules in a multi user manner with host specific configuration, thus I came up with something of my own.

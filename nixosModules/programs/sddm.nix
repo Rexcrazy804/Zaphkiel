@@ -8,7 +8,7 @@
     progModule.sddm-custom-theme = {
       enable = lib.mkEnableOption "Enable custom sddm theme";
       wallpaper = lib.mkOption {
-        default = ../../home/dots/sddm-wall.png;
+        default = ../../homeManagerModules/dots/sddm-wall.png;
       };
     };
   };

@@ -39,7 +39,7 @@
           home-manager.nixosModules.home-manager
 
           ./hosts/Zaphkiel/configuration.nix
-          ./modules/nixos
+          ./nixosModules
           ./users/rexies.nix
         ];
       };

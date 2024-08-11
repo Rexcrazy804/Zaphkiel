@@ -5,8 +5,8 @@
 I couldn't find anyone that approached home manager modules in a multi user manner with host specific configuration, thus I came up with something of my own.
 
 To give you a better picture, Say you've got an user with different preferences of home manager modules across multiple hosts.
-What my configuration lets you do for such an user, is to let the user enable all their preferred modules in `modules/home/users/{username}.nix`
-and selectively disable (or enable) certain modules they wouldn't want on specfic hosts in the `modules/home/hosts/{hostname}.nix` file
+What my configuration lets you do for such an user, is to let the user enable all their preferred modules in `homeManagerModules/Users/{username}.nix`
+and selectively disable (or enable) certain modules they wouldn't want on specfic hosts in the `homeManagerModules/Hosts/{hostname}.nix` file
 
 I do not think this is the best way of doing this so feel free to address a better approach. (also sharing that with me would be highly appreciated)
 

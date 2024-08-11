@@ -34,13 +34,17 @@
       Zaphkiel = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs outputs;
+
+          # every user in this list must have a username.nix under users/
+          # and another homeManagerModules/Users/
+          users = ["rexies"];
         };
         modules = [
           ./hosts/Zaphkiel/configuration.nix
           ./nixosModules
 
-          # responsible for importing home manager modules
-          ./users/rexies.nix
+          # responsible for importing home manager modules & users
+          ./users
         ];
       };
     };

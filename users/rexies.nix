@@ -7,10 +7,6 @@
   description = "Rexiel Scarlet";
   hostname = config.networking.hostName;
 in {
-  imports = [
-    ./common.nix
-  ];
-
   users.users.${username} = {
     inherit description;
 

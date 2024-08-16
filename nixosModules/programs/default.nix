@@ -4,7 +4,6 @@
   ...
 }: {
   imports = [
-    ./aagl.nix
     ./steam.nix
     ./sddm.nix
   ];

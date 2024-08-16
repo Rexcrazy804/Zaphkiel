@@ -1,5 +1,8 @@
-{...}: {
-  imports = [./hardware-configuration.nix];
+{inputs, ...}: {
+  imports = [
+    ./hardware-configuration.nix
+    inputs.aagl.nixosModules.default
+  ];
 
   networking.hostName = "Zaphkiel";
 
@@ -20,15 +23,16 @@
   };
 
   progModule = {
-    anime-games = {
-      enable = true;
-      cache.enable = true;
-      impact.enable = false;
-      rail.enable = true;
-      zone.enable = true;
-    };
     steam.enable = true;
     sddm-custom-theme.enable = true;
+  };
+
+  # aagl stuff
+  nix.settings = inputs.aagl.nixConfig;
+  programs = {
+    anime-game-launcher.enable = true;
+    honkers-railway-launcher.enable = true;
+    sleepy-launcher.enable = true;
   };
 
   time.timeZone = "Asia/Kolkata";

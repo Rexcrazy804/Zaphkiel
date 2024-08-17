@@ -4,5 +4,9 @@
   # enabled. [primarily for disabling shit like say some games/multimedia apps
   # on a office computer]
 
-  # alacritty.enable = lib.mkForce false;
+  # packages.alacritty.enable = lib.mkForce false;
+
+  packageGroup = {
+    emulators.enable = lib.mkForce false;
+  };
 }

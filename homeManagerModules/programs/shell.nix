@@ -43,7 +43,7 @@
       nmpv = "nvidia-offload mpv";
     };
     environmentVariables = {
-      EDITOR = "nvim";
+      EDITOR = "'nvim'";
     };
 
     extraConfig = let
@@ -51,7 +51,7 @@
     in ''
       # nushell configuration
       $env.config.show_banner = false
-      $env.config.edit_mode = vi
+      $env.config.edit_mode = "vi"
       $env.PROMPT_INDICATOR_VI_INSERT = ""
       $env.PROMPT_INDICATOR_VI_NORMAL = ""
 

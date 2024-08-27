@@ -1,6 +1,7 @@
 {
   inputs,
   config,
+  pkgs,
   ...
 }: {
   imports = [
@@ -9,6 +10,8 @@
   ];
 
   networking.hostName = "Zaphkiel";
+  time.timeZone = "Asia/Kolkata";
+  system.stateVersion = "23.11";
 
   graphicsModule = {
     amd.enable = true;
@@ -31,6 +34,10 @@
     sddm-custom-theme.enable = true;
   };
 
+  environment.systemPackages = with pkgs; [
+    lenovo-legion
+  ];
+
   # aagl stuff
   nix.settings = inputs.aagl.nixConfig;
   programs = {
@@ -38,10 +45,6 @@
     honkers-railway-launcher.enable = true;
     sleepy-launcher.enable = true;
   };
-
-  time.timeZone = "Asia/Kolkata";
-
-  system.stateVersion = "23.11";
 
   # obs stuff
   boot.extraModulePackages = with config.boot.kernelPackages; [

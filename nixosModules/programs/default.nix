@@ -17,7 +17,7 @@
 
   # global
   environment.systemPackages = builtins.attrValues {
-    inherit (pkgs) git lenovo-legion;
+    inherit (pkgs) git;
     nixvim = inputs.nixvim.packages.${pkgs.system}.default;
   };
 

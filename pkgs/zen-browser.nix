@@ -14,6 +14,7 @@
   libva,
   pipewire,
   libglvnd,
+  ffmpeg,
 }: let
   desktopItem = makeDesktopItem {
     name = "zen-browser";
@@ -108,6 +109,7 @@ in
         pipewire
         libva
         libglvnd
+        ffmpeg
       ]}"
       )
       gappsWrapperArgs+=(--set MOZ_LEGACY_PROFILES 1)

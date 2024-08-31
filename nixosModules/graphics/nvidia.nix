@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   ...
@@ -33,6 +34,7 @@
   in
     lib.mkIf cfg.enable {
       services.xserver.videoDrivers = ["nvidia"];
+      environment.systemPackages = [ pkgs.zenith-nvidia ];
 
       hardware.nvidia = {
         modesetting.enable = true;

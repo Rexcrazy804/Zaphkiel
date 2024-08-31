@@ -17,7 +17,7 @@
 
   # global
   environment.systemPackages = builtins.attrValues {
-    inherit (pkgs) git;
+    inherit (pkgs) git wl-clipboard ripgrep p7zip unrar;
     nixvim = inputs.nixvim.packages.${pkgs.system}.default;
   };
 

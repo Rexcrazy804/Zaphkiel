@@ -1,4 +1,4 @@
-{lib, ...}: {
+{lib, pkgs, ...}: {
   # entry point for tuning home manager options per user [lower priority than
   # system so mostly mkdefaults here]
   packages = {
@@ -23,4 +23,13 @@
     userName = "Rexiel Scarlet";
     userEmail = "37258415+Rexcrazy804@users.noreply.github.com";
   };
+
+  home.packages = with pkgs; [
+    kdePackages.filelight
+
+    (pkgs.catppuccin-kde.override {
+      flavour = ["mocha"];
+      accents = ["red"];
+    })
+  ];
 }

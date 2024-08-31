@@ -11,7 +11,7 @@
   };
   # Enable OpenGL
   config = lib.mkIf config.graphicsModule.amd.enable {
-    environment.systemPackages = [ pkgs.radeontop ];
+    environment.systemPackages = [pkgs.radeontop];
     hardware.graphics = {
       extraPackages = with pkgs; [
         amdvlk

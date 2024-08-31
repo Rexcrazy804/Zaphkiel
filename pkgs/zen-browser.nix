@@ -102,19 +102,23 @@ in
       runHook postInstall
     '';
 
-    preFixup = /*bash*/''
-      gappsWrapperArgs+=(
-        --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [
-        pciutils
-        pipewire
-        libva
-        libglvnd
-        ffmpeg
-      ]}"
-      )
-      gappsWrapperArgs+=(--set MOZ_LEGACY_PROFILES 1)
-      wrapGApp $out/lib/zen/zen
-    '';
+    preFixup =
+      /*
+      bash
+      */
+      ''
+        gappsWrapperArgs+=(
+          --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [
+          pciutils
+          pipewire
+          libva
+          libglvnd
+          ffmpeg
+        ]}"
+        )
+        gappsWrapperArgs+=(--set MOZ_LEGACY_PROFILES 1)
+        wrapGApp $out/lib/zen/zen
+      '';
 
     meta = with lib; {
       license = licenses.mpl20;

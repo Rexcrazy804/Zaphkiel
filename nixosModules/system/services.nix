@@ -4,6 +4,7 @@
   services.fstrim.enable = true;
   services.xserver.enable = true;
   services.thermald.enable = true;
+  services.fwupd.enable = true;
 
   # KDE
   services.desktopManager.plasma6.enable = true;

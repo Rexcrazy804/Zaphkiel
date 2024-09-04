@@ -41,8 +41,8 @@
   # aagl stuff
   nix.settings = inputs.aagl.nixConfig;
   programs = {
-    anime-game-launcher.enable = true;
-    honkers-railway-launcher.enable = true;
+    anime-game-launcher.enable = false;
+    honkers-railway-launcher.enable = false;
     sleepy-launcher.enable = true;
   };
 

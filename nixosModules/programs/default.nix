@@ -8,13 +8,6 @@
     ./sddm.nix
   ];
 
-  # generic
-  programs = {
-    partition-manager.enable = true;
-    kdeconnect.enable = true;
-    mosh.enable = true;
-  };
-
   # global
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs) git wl-clipboard ripgrep p7zip unrar;

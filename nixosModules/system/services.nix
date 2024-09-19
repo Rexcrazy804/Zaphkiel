@@ -1,13 +1,9 @@
 {...}: {
   # uncategorized
-  services.btrfs.autoScrub.enable = true;
-  services.fstrim.enable = true;
   services.xserver.enable = true;
   services.thermald.enable = true;
   services.fwupd.enable = true;
 
-  # KDE
-  services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver = {

@@ -38,6 +38,20 @@
     lenovo-legion
   ];
 
+  # KDE
+  services.desktopManager.plasma6.enable = true;
+  
+  # ssd + btrfs stuff
+  services.btrfs.autoScrub.enable = true;
+  services.fstrim.enable = true;
+
+  # generic
+  programs = {
+    partition-manager.enable = true;
+    kdeconnect.enable = true;
+    mosh.enable = true;
+  };
+
   # aagl stuff
   nix.settings = inputs.aagl.nixConfig;
   programs = {

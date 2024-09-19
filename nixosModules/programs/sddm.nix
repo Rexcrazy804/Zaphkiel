@@ -33,7 +33,7 @@
       ];
 
     services.displayManager.sddm = {
-      enable = true;
+      enable = lib.mkDefault true;
       enableHidpi = true;
       wayland.enable = true;
       theme = "sddm-astronaut-theme";

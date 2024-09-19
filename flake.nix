@@ -16,7 +16,7 @@
 
     nixvim = {
       url = "github:Rexcrazy804/nixvim-config";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -44,6 +44,18 @@
           ./nixosModules
 
           # responsible for importing home manager modules & users
+          ./users
+        ];
+      };
+
+      Raphael = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs outputs;
+          users = ["rexies"];
+        };
+        modules = [
+          ./hosts/Raphael/configuration.nix
+          ./nixosModules
           ./users
         ];
       };

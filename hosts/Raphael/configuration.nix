@@ -12,12 +12,14 @@
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.desktopManager.xfce.enable = true;
 
   # flatpak
   services.flatpak.enable = true;
   xdg.portal.enable = true;
 
 
+  # should improve how this work on the module level
   progModule = {
     sddm-custom-theme.enable = false;
   };

@@ -1,6 +1,8 @@
-{ lib, pkgs, ... }:
-
 {
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -17,7 +19,6 @@
   # flatpak
   services.flatpak.enable = true;
   xdg.portal.enable = true;
-
 
   # should improve how this work on the module level
   progModule = {

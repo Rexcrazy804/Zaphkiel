@@ -40,7 +40,7 @@
 
   # KDE
   services.desktopManager.plasma6.enable = true;
-  
+
   # ssd + btrfs stuff
   services.btrfs.autoScrub.enable = true;
   services.fstrim.enable = true;

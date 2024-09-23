@@ -34,6 +34,7 @@
 
   environment.systemPackages = with pkgs; [
     gnome-tweaks
+    brightnessctl
   ];
   system.stateVersion = "24.05"; # Did you read the comment?
 }

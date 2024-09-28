@@ -11,4 +11,7 @@
   packageGroup = {
     emulators.enable = lib.mkForce false;
   };
+
+  # additional overides
+  programs.mpv.config.gpu-context = lib.mkForce "x11egl";
 }

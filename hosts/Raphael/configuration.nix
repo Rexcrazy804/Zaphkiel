@@ -10,6 +10,8 @@
   networking.hostName = "Raphael"; # Define your hostname.
   time.timeZone = "Asia/Kolkata";
 
+  graphicsModule.intel.enable = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
@@ -21,9 +23,6 @@
   xdg.portal.enable = true;
 
   # should improve how this work on the module level
-  progModule = {
-    sddm-custom-theme.enable = false;
-  };
   services.displayManager.sddm.enable = lib.mkForce false;
 
   programs.firefox.enable = true;

@@ -18,6 +18,9 @@
     initrd.kernelModules = [];
     kernelModules = ["kvm-intel"];
     extraModulePackages = [];
+    kernelParams = [
+      "i915.enable_guc=2"
+    ];
   };
 
   fileSystems."/" = {

@@ -22,6 +22,12 @@
   services.flatpak.enable = true;
   xdg.portal.enable = true;
 
+  #mysql
+  services.mysql = {
+    enable = true;
+    package = pkgs.mariadb;
+  };
+
   # should improve how this work on the module level
   services.displayManager.sddm.enable = lib.mkForce false;
 
@@ -35,5 +41,7 @@
     gnome-tweaks
     brightnessctl
   ];
+
+
   system.stateVersion = "24.05"; # Did you read the comment?
 }

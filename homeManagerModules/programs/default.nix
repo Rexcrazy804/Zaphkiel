@@ -7,5 +7,6 @@
     ./discord.nix
     ./obs.nix
     ./groups
+    ./hyprland.nix
   ];
 }

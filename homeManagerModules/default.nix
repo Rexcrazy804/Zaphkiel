@@ -7,9 +7,7 @@
   home.homeDirectory = "/home/${username}";
 
   imports = [
-    ./Users/${username}.nix
-    ./Hosts/${hostname}.nix
-
+    ./homeUsers/${username}/${hostname}.nix
     ./programs
   ];
 

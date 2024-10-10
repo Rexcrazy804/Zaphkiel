@@ -62,7 +62,7 @@
           enabled = true;
           bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
 
-          animation = [ 
+          animation = [
             "windows, 1, 7, myBezier"
             "windowsOut, 1, 7, default, popin 80%"
             "border, 1, 10, default"
@@ -73,7 +73,7 @@
         };
 
         dwindle = {
-          pseudotile = true; 
+          pseudotile = true;
           preserve_split = true;
         };
 
@@ -89,12 +89,12 @@
         input = {
           kb_layout = "us";
           follow_mouse = 1;
-          sensitivity = 0; 
+          sensitivity = 0;
           touchpad.natural_scroll = true;
         };
         gestures.workspace_swipe = true;
 
-        bind = [ 
+        bind = [
           "$mainMod, Q, exec, $terminal"
           "$mainMod, C, killactive,"
           "$mainMod, M, exit,"
@@ -144,13 +144,13 @@
         ];
 
         # Move/resize windows with mainMod + LMB/RMB and dragging
-        bindm = [ 
+        bindm = [
           "$mainMod, mouse:272, movewindow"
           "$mainMod, mouse:273, resizewindow"
         ];
 
         # Laptop multimedia keys for volume and LCD brightness
-        # bindel = [ 
+        # bindel = [
         #   "XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
         #   ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         #   ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
@@ -168,18 +168,18 @@
 
     services.hyprpaper = {
       enable = true;
-      settings = let 
+      settings = let
         wall = ../dots/__yoru_chainsaw_man_drawn_by_banechiii__b55e78c91ee67398c7222a3a1c4286cc.jpg;
       in {
         ipc = "on";
         splash = false;
         splash_offset = 2.0;
 
-        preload = [ 
+        preload = [
           "${wall}"
         ];
 
-        wallpaper = [ "DP-1,${wall}" ];
+        wallpaper = ["DP-1,${wall}"];
       };
     };
     programs.waybar.enable = true;

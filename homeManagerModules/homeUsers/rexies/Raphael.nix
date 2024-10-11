@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./common.nix
   ];
@@ -14,4 +18,10 @@
   };
 
   programs.mpv.config.gpu-context = lib.mkForce "x11egl";
+
+  home.packages = with pkgs; [
+    brightnessctl
+    xclip
+    sct
+  ];
 }

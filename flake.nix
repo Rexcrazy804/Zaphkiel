@@ -15,7 +15,7 @@
     };
 
     nixvim = {
-      url = "github:Rexcrazy804/nixvim-config/unready";
+      url = "github:Rexcrazy804/nixvim-config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

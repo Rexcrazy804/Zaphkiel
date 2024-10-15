@@ -13,7 +13,7 @@
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     initrd.availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "sd_mod"];
     initrd.kernelModules = [];
     kernelModules = ["kvm-intel"];
@@ -38,7 +38,16 @@
     {device = "/dev/disk/by-uuid/2d3e053b-0243-423e-86b6-9beb1556ef38";}
   ];
 
-  zramSwap.enable = true;
+  zramSwap = {
+    enable = true;
+    priority = 100;
+  };
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 200;
+    "vm.watermark_boost_factor" = 0;
+    "vm.watermark_scale_factor" = 125;
+    "vm.page-cluster" = 0;
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

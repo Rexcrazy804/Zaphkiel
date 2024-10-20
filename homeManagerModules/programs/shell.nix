@@ -78,6 +78,13 @@
             { entry: $data.0 value: $data.1}
           }
         }
+        def freemem [] {
+          free -h
+          | detect columns
+          | insert 1.device "swap"
+          | insert 0.device "mem"
+          | move device --before total
+        }
       '';
   };
 }

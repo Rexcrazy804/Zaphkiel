@@ -8,5 +8,6 @@
     ./obs.nix
     ./groups
     ./hyprland.nix
+    ./sway.nix
   ];
 }

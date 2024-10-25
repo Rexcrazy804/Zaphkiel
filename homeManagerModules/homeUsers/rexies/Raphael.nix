@@ -10,6 +10,7 @@
   packages = {
     alacritty.enable = true;
     mpv.enable = true;
+    sway.enable = true;
   };
 
   packageGroup = {

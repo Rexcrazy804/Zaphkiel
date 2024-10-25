@@ -32,6 +32,7 @@
       export _JAVA_AWT_WM_NONREPARENTING=1
     '';
   };
+  security.polkit.enable = true;
 
   # flatpak
   services.flatpak.enable = true;

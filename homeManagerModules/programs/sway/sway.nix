@@ -40,15 +40,15 @@
         	"XF86MonBrightnessDown" = "exec 'brightnessctl set 1%-'";
         	"XF86MonBrightnessUp" = "exec 'brightnessctl set 1%+'";
           # Volume
-        	"XF86AudioRaiseVolume" = "exec 'pamixer --alow-boost -i 5'";
+        	"XF86AudioRaiseVolume" = "exec 'pamixer --allow-boost -i 5'";
         	"XF86AudioLowerVolume" = "exec 'pamixer --allow-boost -d 5'";
         	"XF86AudioMute" = "exec 'pamixer -t'";
         };
 
         # support for volume rocker on VMAX keybaord
         keycodebindings = {
-        	"115" = "exec 'pamixer -i 1'";
-        	"114" = "exec 'pamixer -d 1'";
+        	"115" = "exec 'pamixer --allow-boost -i 1'";
+        	"114" = "exec 'pamixer --allow-boost -d 1'";
         };
 
         input = {

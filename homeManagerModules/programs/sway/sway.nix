@@ -32,10 +32,11 @@
         };
 
         keybindings = lib.mkOptionDefault {
-          # "${modifier}+Return" = "exec ${terminal}";
+          "${modifier}+Return" = "exec ${terminal}";
           "${modifier}+Shift+q" = "kill";
-          "${modifier}+Return" = "exec wofi --show drun";
-          "${modifier}+Shift+Return" = "exec wofi --show run";
+          # I think I like drun better, [enabled by default with win + d]
+          # "${modifier}+Return" = "exec wofi --show drun";
+          # "${modifier}+Shift+Return" = "exec wofi --show run";
           "${modifier}+Shift+s" = "exec grim -g \"$(slurp)\" - | wl-copy";
           # Brightness
         	"XF86MonBrightnessDown" = "exec 'brightnessctl set 1%-'";

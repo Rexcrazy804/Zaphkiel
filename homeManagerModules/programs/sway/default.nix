@@ -3,6 +3,6 @@
     ./sway.nix
     # ./swaync.nix
     # ./waybar.nix 
-    ./wofi.nix
+    # ./wofi.nix
   ];
 }

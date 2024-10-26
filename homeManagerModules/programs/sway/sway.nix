@@ -37,16 +37,13 @@
           "${modifier}+Return" = "exec wofi --show drun";
           "${modifier}+Shift+Return" = "exec wofi --show run";
           "${modifier}+Shift+s" = "exec grim -g \"$(slurp)\" - | wl-copy";
-        };
-
-        keycodebindings = {
           # Brightness
-        	# "XF86MonBrightnessDown" = "exec brightnessctl set 1%-";
-        	# "XF86MonBrightnessUp" = "exec brightnessctl set 1%+";
+        	"XF86MonBrightnessDown" = "exec 'brightnessctl set 1%-'";
+        	"XF86MonBrightnessUp" = "exec 'brightnessctl set 1%+'";
           # Volume
-        	# "XF86AudioRaiseVolume" = "exec 'pamixer -i 5'";
-        	# "XF86AudioLowerVolume" = "exec 'pamixer -d 5'";
-        	# "XF86AudioMute" = "exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'";
+        	"XF86AudioRaiseVolume" = "exec 'pamixer -i 5'";
+        	"XF86AudioLowerVolume" = "exec 'pamixer -d 5'";
+        	"XF86AudioMute" = "exec 'pamixer -t'";
         };
 
         input = {

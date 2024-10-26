@@ -9,6 +9,8 @@
     home.packages = with pkgs; [
       brightnessctl
       pamixer
+      grim
+      slurp
     ];
 
     wayland.windowManager.sway = {
@@ -33,6 +35,8 @@
           # "${modifier}+Return" = "exec ${terminal}";
           "${modifier}+Shift+q" = "kill";
           "${modifier}+Return" = "exec wofi --show drun";
+          "${modifier}+Shift+Return" = "exec wofi --show run";
+          "${modifier}+Shift+s" = "exec grim -g \"$(slurp)\" - | wl-copy";
         };
 
         keycodebindings = {

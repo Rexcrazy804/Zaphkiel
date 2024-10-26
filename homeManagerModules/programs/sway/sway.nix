@@ -6,11 +6,6 @@
   };
 
   config = lib.mkIf config.packages.sway.enable {
-    services.swayosd = {
-      enable = true;
-      # stylePath = null;
-    };
-
     home.packages = with pkgs; [
       brightnessctl
       pamixer

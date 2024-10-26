@@ -1,10 +1,7 @@
 {...}: {
   imports = [
     ./sway.nix
-    ./swaylock.nix
-    ./swayidle.nix
-    ./swaync.nix
-    # get this to look cool
+    # ./swaync.nix
     # ./waybar.nix 
     ./wofi.nix
   ];

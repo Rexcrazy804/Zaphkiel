@@ -35,9 +35,9 @@
         };
 
         keybindings = lib.mkOptionDefault {
-          "${modifier}+Return" = "exec ${terminal}";
+          # "${modifier}+Return" = "exec ${terminal}";
           "${modifier}+Shift+q" = "kill";
-          "${modifier}+d" = "exec wofi --show drun";
+          "${modifier}+Return" = "exec wofi --show drun";
         };
 
         keycodebindings = {

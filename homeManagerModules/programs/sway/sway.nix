@@ -11,11 +11,16 @@
       # stylePath = null;
     };
 
+    home.packages = with pkgs; [
+      brightnessctl
+      pamixer
+    ];
+
     wayland.windowManager.sway = {
       enable = true;
       systemd.enable = true;
       checkConfig = true;
-      config = {
+      config = rec {
         modifier = "Mod4";
         terminal = "alacritty";
         gaps = {
@@ -25,13 +30,24 @@
           outer = 5;
         };
 
-        keybindings = let
-          cfg = config.wayland.windowManager.sway.config;
-          modifier = cfg.modifier;
-        in lib.mkOptionDefault {
-          "${modifier}+Return" = "exec ${cfg.terminal}";
+        window = {
+          titlebar = false;
+        };
+
+        keybindings = lib.mkOptionDefault {
+          "${modifier}+Return" = "exec ${terminal}";
           "${modifier}+Shift+q" = "kill";
-          "${modifier}+d" = "exec ${pkgs.dmenu}/bin/dmenu_path | ${pkgs.dmenu}/bin/dmenu | ${pkgs.findutils}/bin/xargs swaymsg exec --";
+          "${modifier}+d" = "exec wofi --show drun";
+        };
+
+        keycodebindings = {
+          # Brightness
+        	# "XF86MonBrightnessDown" = "exec brightnessctl set 1%-";
+        	# "XF86MonBrightnessUp" = "exec brightnessctl set 1%+";
+          # Volume
+        	# "XF86AudioRaiseVolume" = "exec 'pamixer -i 5'";
+        	# "XF86AudioLowerVolume" = "exec 'pamixer -d 5'";
+        	# "XF86AudioMute" = "exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'";
         };
 
         input = {
@@ -54,7 +70,7 @@
         startup = let 
           wall = ../../dots/__yoru_chainsaw_man_drawn_by_banechiii__b55e78c91ee67398c7222a3a1c4286cc.jpg;
         in [
-          {command="${pkgs.swaybg}/bin/swaybg -i ${wall} -m fill"; always = true;}
+          {command="${pkgs.swaybg}/bin/swaybg -i ${wall} -m fill";}
           {command="systemctl --user restart waybar"; always = true;}
         ];
 

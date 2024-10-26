@@ -46,6 +46,12 @@
         	"XF86AudioMute" = "exec 'pamixer -t'";
         };
 
+        # support for volume rocker on VMAX keybaord
+        keycodebindings = {
+        	"115" = "exec 'pamixer -i 1'";
+        	"114" = "exec 'pamixer -d 1'";
+        };
+
         input = {
           "type:touchpad" = {
             dwt = "enabled";

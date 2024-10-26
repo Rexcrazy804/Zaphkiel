@@ -15,8 +15,8 @@
           opacity = 0.87;
           startup_mode = "Maximized";
           padding = {
-            x = 2;
-            y = 2;
+            x = 5;
+            y = 10;
           };
         };
 

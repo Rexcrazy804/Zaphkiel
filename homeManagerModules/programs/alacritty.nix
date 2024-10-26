@@ -18,6 +18,8 @@
             x = 5;
             y = 10;
           };
+          # enabling sway will set this
+          # size = 12;
         };
 
         env = {

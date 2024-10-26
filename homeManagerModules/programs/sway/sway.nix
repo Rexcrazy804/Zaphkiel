@@ -41,8 +41,8 @@
         	"XF86MonBrightnessDown" = "exec 'brightnessctl set 1%-'";
         	"XF86MonBrightnessUp" = "exec 'brightnessctl set 1%+'";
           # Volume
-        	"XF86AudioRaiseVolume" = "exec 'pamixer -i 5'";
-        	"XF86AudioLowerVolume" = "exec 'pamixer -d 5'";
+        	"XF86AudioRaiseVolume" = "exec 'pamixer --alow-boost -i 5'";
+        	"XF86AudioLowerVolume" = "exec 'pamixer --allow-boost -d 5'";
         	"XF86AudioMute" = "exec 'pamixer -t'";
         };
 

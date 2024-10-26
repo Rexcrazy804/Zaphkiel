@@ -1,6 +1,6 @@
 {
-  username ? null,
-  hostname ? null,
+  username ? throw "Username Required",
+  hostname ? throw "Hostname Required",
   ...
 }: {
   home.username = username;

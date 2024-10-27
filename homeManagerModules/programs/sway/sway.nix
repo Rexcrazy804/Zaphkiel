@@ -68,6 +68,13 @@
           size = 8.0;
         };
 
+        # seat seat0 xcursor_theme $cursor_theme $cursor_size
+        seat = {
+          "seat0" = {
+            xcursor_theme = "Adwaita 24";
+          };
+        };
+
         startup = let 
           wall = ../../dots/__yoru_chainsaw_man_drawn_by_banechiii__b55e78c91ee67398c7222a3a1c4286cc.jpg;
         in [

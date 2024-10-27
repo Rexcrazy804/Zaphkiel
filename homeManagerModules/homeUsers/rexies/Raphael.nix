@@ -12,6 +12,7 @@
     alacritty.enable = true;
     mpv.enable = true;
     sway.enable = true;
+    stylix.enable = true;
   };
 
   packageGroup = {

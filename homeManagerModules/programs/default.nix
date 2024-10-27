@@ -10,5 +10,6 @@
     ./discord.nix
     ./obs.nix
     ./hyprland.nix
+    ./stylix.nix
   ];
 }

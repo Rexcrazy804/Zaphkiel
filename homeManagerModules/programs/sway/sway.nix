@@ -65,7 +65,7 @@
         fonts = {
           names = ["CaskaydiaMono Nerd font"];
           style = "Regular";
-          size = 8.0;
+          size = lib.mkForce 8.0;
         };
 
         startup = let 

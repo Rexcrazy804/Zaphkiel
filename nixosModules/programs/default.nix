@@ -6,6 +6,7 @@
   imports = [
     ./steam.nix
     ./sddm.nix
+    ./stylix.nix
   ];
 
   # global

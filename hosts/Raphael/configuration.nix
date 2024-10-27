@@ -11,6 +11,7 @@
   time.timeZone = "Asia/Kolkata";
 
   graphicsModule.intel.enable = true;
+  progModule.stylix.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;

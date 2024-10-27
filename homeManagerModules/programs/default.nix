@@ -1,4 +1,4 @@
-{...}: {
+{lib, ...}: {
   imports = [
     ./groups
     ./sway
@@ -12,4 +12,7 @@
     ./hyprland.nix
     ./stylix.nix
   ];
+
+  # special case
+  stylix.enable = lib.mkOverride 60 false;
 }

@@ -11,6 +11,7 @@
       pamixer
       grim
       slurp
+      swaybg
     ];
 
     wayland.windowManager.sway = {
@@ -71,8 +72,13 @@
         startup = let 
           wall = ../../dots/__yoru_chainsaw_man_drawn_by_banechiii__b55e78c91ee67398c7222a3a1c4286cc.jpg;
         in [
-          {command="${pkgs.swaybg}/bin/swaybg -i ${wall} -m fill";}
+          # set by stylix
+          # {command="swaybg -i ${wall} -m fill";}
+
+          # atostarted by service
           # {command="wlsunset";}
+
+          # should probably add it from within waybar
           # {command="systemctl --user restart waybar"; always = true;}
         ];
 

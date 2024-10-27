@@ -27,6 +27,6 @@
   programs.alacritty.settings.font.size = lib.mkIf config.packages.sway.enable 12;
 
   home.packages = with pkgs; [
-    sct
+    qutebrowser
   ];
 }

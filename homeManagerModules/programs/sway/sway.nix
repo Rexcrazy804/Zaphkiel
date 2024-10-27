@@ -23,8 +23,8 @@
         gaps = {
           smartGaps = true;
           smartBorders = "on";
-          inner = 10;
-          outer = 5;
+          inner = 6;
+          outer = 2;
         };
 
         window = {

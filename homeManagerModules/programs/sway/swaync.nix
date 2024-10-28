@@ -1,4 +1,8 @@
-{lib, config, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   config = lib.mkIf config.packages.sway.enable {
     services.swaync = {
       enable = true;

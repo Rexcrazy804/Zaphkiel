@@ -1,4 +1,9 @@
-{lib, config, pkgs, ...}: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   options = {
     packages = {
       sway.enable = lib.mkEnableOption "Enable Sway";
@@ -37,18 +42,18 @@
           # "${modifier}+d" = "exec fuzzel";
           "${modifier}+Shift+s" = "exec grim -g \"$(slurp)\" - | wl-copy";
           # Brightness
-        	"XF86MonBrightnessDown" = "exec 'brightnessctl set 1%-'";
-        	"XF86MonBrightnessUp" = "exec 'brightnessctl set 1%+'";
+          "XF86MonBrightnessDown" = "exec 'brightnessctl set 1%-'";
+          "XF86MonBrightnessUp" = "exec 'brightnessctl set 1%+'";
           # Volume
-        	"XF86AudioRaiseVolume" = "exec 'pamixer --allow-boost -i 5'";
-        	"XF86AudioLowerVolume" = "exec 'pamixer --allow-boost -d 5'";
-        	"XF86AudioMute" = "exec 'pamixer -t'";
+          "XF86AudioRaiseVolume" = "exec 'pamixer --allow-boost -i 5'";
+          "XF86AudioLowerVolume" = "exec 'pamixer --allow-boost -d 5'";
+          "XF86AudioMute" = "exec 'pamixer -t'";
         };
 
         # support for volume rocker on VMAX keybaord
         keycodebindings = {
-        	"115" = "exec 'pamixer --allow-boost -i 1'";
-        	"114" = "exec 'pamixer --allow-boost -d 1'";
+          "115" = "exec 'pamixer --allow-boost -i 1'";
+          "114" = "exec 'pamixer --allow-boost -d 1'";
         };
 
         input = {
@@ -75,10 +80,10 @@
           };
         };
 
-        startup = let 
+        startup = let
           wall = ../../dots/__yoru_chainsaw_man_drawn_by_banechiii__b55e78c91ee67398c7222a3a1c4286cc.jpg;
         in [
-          {command="${pkgs.swaybg}/bin/swaybg -i ${wall} -m fill";}
+          {command = "${pkgs.swaybg}/bin/swaybg -i ${wall} -m fill";}
           # {command="wlsunset";}
           # {command="systemctl --user restart waybar"; always = true;}
         ];

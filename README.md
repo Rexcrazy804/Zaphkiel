@@ -17,7 +17,7 @@ Any suggestions to improve this model are welcome!
 
 ### Is that it?
 Well besides a really nice
-[mpv.nix](https://github.com/Rexcrazy804/Zaphkiel/blob/master/modules/home/programs/mpv.nix)
+[mpv.nix](https://github.com/Rexcrazy804/Zaphkiel/blob/master/homeManagerModules/programs/mpv.nix)
 file that is configured to work with
 [Anime4k](https://github.com/bloc97/Anime4K) Shadders. There prolly isn't
 anything else worth noting about this config. That said I still have room to

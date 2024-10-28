@@ -6,7 +6,6 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    inputs.aagl.nixosModules.default
   ];
 
   networking.hostName = "Zaphkiel";
@@ -32,6 +31,7 @@
   progModule = {
     steam.enable = true;
     sddm-custom-theme.enable = true;
+    anime-games.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -50,14 +50,6 @@
     partition-manager.enable = true;
     kdeconnect.enable = true;
     mosh.enable = true;
-  };
-
-  # aagl stuff
-  nix.settings = inputs.aagl.nixConfig;
-  programs = {
-    anime-game-launcher.enable = false;
-    honkers-railway-launcher.enable = false;
-    sleepy-launcher.enable = true;
   };
 
   # obs stuff

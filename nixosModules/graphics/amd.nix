@@ -15,8 +15,7 @@
     hardware.graphics = {
       extraPackages = with pkgs; [
         amdvlk
-        rocm-opencl-icd
-        rocm-opencl-runtime
+        rocmPackages.clr.icd
         vaapiVdpau
         libvdpau-va-gl
       ];

@@ -13,7 +13,6 @@
   config = lib.mkIf config.packages.sway.enable {
     home.packages = with pkgs; [
       brightnessctl
-      pamixer
       grim
       slurp
     ];
@@ -45,15 +44,15 @@
           "XF86MonBrightnessDown" = "exec 'brightnessctl set 1%-'";
           "XF86MonBrightnessUp" = "exec 'brightnessctl set 1%+'";
           # Volume
-          "XF86AudioRaiseVolume" = "exec 'pamixer --allow-boost -i 5'";
-          "XF86AudioLowerVolume" = "exec 'pamixer --allow-boost -d 5'";
-          "XF86AudioMute" = "exec 'pamixer -t'";
+          "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 5%+";
+          "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 5%-";
+          "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_SINK@ toggle";
         };
 
         # support for volume rocker on VMAX keybaord
         keycodebindings = {
-          "115" = "exec 'pamixer --allow-boost -i 1'";
-          "114" = "exec 'pamixer --allow-boost -d 1'";
+          "115" = "exec wpctl set-volume @DEFAULT_SINK@ 1%+";
+          "114" = "exec wpctl set-volume @DEFAULT_SINK@ 1%-";
         };
 
         input = {

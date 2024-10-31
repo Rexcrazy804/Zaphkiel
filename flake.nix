@@ -51,7 +51,7 @@
       Raphael = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs outputs;
-          users = ["rexies" "ancys"];
+          users = ["rexies" "ancys" "sanoys"];
         };
         modules = [
           ./hosts/Raphael/configuration.nix

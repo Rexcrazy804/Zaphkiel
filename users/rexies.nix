@@ -16,6 +16,13 @@ in {
     # packages = builtins.attrValues {
     #   # zen = pkgs.callPackage ../pkgs/zen-browser.nix {};
     # };
+    hashedPasswordFile = config.age.secrets.rexiesPass.path;
+  };
+
+  # define secrets
+  age.secrets.rexiesPass = {
+    file = ../secrets/secret1.age;
+    owner = username;
   };
 
   home-manager.users.${username} = import ../homeManagerModules {inherit username hostname;};

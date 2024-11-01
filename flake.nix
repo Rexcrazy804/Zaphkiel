@@ -18,12 +18,18 @@
       url = "github:Rexcrazy804/nixvim-config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.darwin.follows = "";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
-    home-manager,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -51,7 +57,7 @@
       Raphael = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs outputs;
-          users = ["rexies" "ancys" "sanoys"];
+          users = ["rexies" "ancys"];
         };
         modules = [
           ./hosts/Raphael/configuration.nix

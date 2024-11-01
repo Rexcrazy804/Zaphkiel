@@ -48,7 +48,7 @@
       nmpv = "nvidia-offload mpv";
     };
     environmentVariables = {
-      EDITOR = "'nvim'";
+      EDITOR = "\"/run/current-system/sw/bin/nvim\"";
     };
 
     extraConfig = let

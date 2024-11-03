@@ -18,29 +18,10 @@
   services.xserver.desktopManager.gnome.enable = true;
 
   # Sway
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    extraSessionCommands =
-      /*
-      bash
-      */
-      ''
-        # SDL:
-        export SDL_VIDEODRIVER=wayland
-        # QT (needs qt5.qtwayland in systemPackages):
-        export QT_QPA_PLATFORM=wayland-egl
-        export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-        # Fix for some Java AWT applications (e.g. Android Studio),
-        # use this if they aren't displayed properly:
-        export _JAVA_AWT_WM_NONREPARENTING=1
-        # SCREEN SHARING
-        export MOZ_ENABLE_WAYLAND=1
-      '';
-  };
+  programs.sway.enable = true;
   security.polkit.enable = true;
   xdg.portal = {
-    # enable = true; enabled by flat pack
+    # enable = true; enabled by flatpak
     wlr.enable = true;
     xdgOpenUsePortal = true;
   };

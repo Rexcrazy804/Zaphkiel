@@ -13,9 +13,6 @@ in {
     shell = pkgs.nushell;
     isNormalUser = true;
     extraGroups = ["networkmanager" "wheel"];
-    # packages = builtins.attrValues {
-    #   # zen = pkgs.callPackage ../pkgs/zen-browser.nix {};
-    # };
     hashedPasswordFile = config.age.secrets.rexiesPass.path;
   };
 

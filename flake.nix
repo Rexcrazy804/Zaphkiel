@@ -51,6 +51,7 @@
 
           # responsible for importing home manager modules & users
           ./users
+          ./pkgs/overlay.nix
         ];
       };
 
@@ -63,6 +64,7 @@
           ./hosts/Raphael/configuration.nix
           ./nixosModules
           ./users
+          ./pkgs/overlay.nix
         ];
       };
     };

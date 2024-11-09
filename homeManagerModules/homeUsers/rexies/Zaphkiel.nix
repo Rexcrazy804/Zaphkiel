@@ -5,7 +5,6 @@
 
   packages = {
     alacritty.enable = true;
-    discord.enable = true;
     obs.enable = true;
     mangohud.enable = true;
     mpv = {
@@ -26,5 +25,6 @@
       accents = ["red"];
     })
     heroic
+    vesktop
   ];
 }

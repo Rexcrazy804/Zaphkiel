@@ -8,6 +8,7 @@
     ./sddm.nix
     ./aagl.nix
     ./age.nix
+    ./tailscale.nix
   ];
 
   # global

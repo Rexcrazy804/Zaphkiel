@@ -14,6 +14,11 @@ in {
     isNormalUser = true;
     extraGroups = ["networkmanager" "wheel"];
     hashedPasswordFile = config.age.secrets.rexiesPass.path;
+
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICELSL45m4ptWDZwQDi2AUmCgt4n93KsmZtt69fyb0vy"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHZTLQQzgCvdaAPdxUkpytDHgwd8K1N1IWtriY4tWSvn"
+    ];
   };
 
   # define secrets

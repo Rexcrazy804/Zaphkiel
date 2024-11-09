@@ -25,6 +25,6 @@
       flavour = ["mocha"];
       accents = ["red"];
     })
-    zenbrowser
+    heroic
   ];
 }

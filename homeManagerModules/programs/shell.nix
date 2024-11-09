@@ -45,6 +45,7 @@
     enable = true;
     shellAliases = {
       snowfall = "sudo nixos-rebuild switch --flake ~/nixos/#${hostname}";
+      snowtest = "sudo nixos-rebuild test --flake ~/nixos/#${hostname}";
       nmpv = "nvidia-offload mpv";
     };
     environmentVariables = {

@@ -21,7 +21,7 @@
         enable = true;
         igpu = {
           vendor = "amd";
-          port = "PCI:6:0:0";
+          port = "PCI:5:0:0";
         };
         dgpu.port = "PCI:1:0:0";
       };

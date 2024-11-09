@@ -16,7 +16,7 @@
       package = pkgs.steam.override {
         extraPkgs = pkgs: [
           pkgs.mangohud
-          pkgs.bottles
+          # pkgs.bottles
         ];
       };
     };

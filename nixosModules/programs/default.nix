@@ -9,6 +9,7 @@
     ./aagl.nix
     ./age.nix
     ./tailscale.nix
+    ./immich.nix
   ];
 
   # global

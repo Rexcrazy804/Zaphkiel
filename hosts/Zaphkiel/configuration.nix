@@ -33,6 +33,7 @@
     sddm-custom-theme.enable = true;
     anime-games.enable = true;
     tailscale.enable = true;
+    immich.enable = true;
   };
 
   # generic

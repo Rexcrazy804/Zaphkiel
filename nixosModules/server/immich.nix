@@ -1,16 +1,15 @@
 {
-  inputs,
   lib,
   config,
   ...
 }: {
   options = {
-    progModule.immich = {
+    servModule.immich = {
       enable = lib.mkEnableOption "Enable Immich Service";
     };
   };
 
-  config = lib.mkIf config.progModule.immich.enable {
+  config = lib.mkIf (config.servModule.immich.enable && config.servModule.enable) {
     services.immich = {
       enable = true;
       openFirewall = true;

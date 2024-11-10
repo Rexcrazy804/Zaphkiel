@@ -71,6 +71,7 @@
     integrated.configuration = {
       system.nixos.tags = ["integrated"];
       graphicsModule.nvidia.enable = lib.mkForce false;
+      servModule.enable = lib.mkForce false;
       boot.extraModprobeConfig = ''
         blacklist nouveau
         options nouveau modeset=0

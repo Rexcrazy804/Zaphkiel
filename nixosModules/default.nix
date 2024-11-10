@@ -4,5 +4,6 @@
     ./system
     ./graphics
     ./programs
+    ./server
   ];
 }

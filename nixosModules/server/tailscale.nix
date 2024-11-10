@@ -1,16 +1,15 @@
 {
-  inputs,
   lib,
   config,
   ...
 }: {
   options = {
-    progModule.tailscale = {
+    servModule.tailscale = {
       enable = lib.mkEnableOption "Enable Tailscale Service";
     };
   };
 
-  config = lib.mkIf config.progModule.tailscale.enable {
+  config = lib.mkIf (config.servModule.tailscale.enable && config.servModule.enable) {
     services.tailscale = {
       enable = true;
       openFirewall = true;

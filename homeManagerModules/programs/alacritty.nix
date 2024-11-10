@@ -12,7 +12,7 @@
       enable = true;
       settings = {
         window = {
-          opacity = 0.87;
+          opacity = 0.80;
           startup_mode = "Maximized";
           padding = {
             x = 5;

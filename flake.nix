@@ -67,6 +67,19 @@
           ./pkgs/overlay.nix
         ];
       };
+
+      Orion = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs outputs;
+          users = ["rexies" "aarons"];
+        };
+        modules = [
+          ./hosts/Raphael/configuration.nix
+          ./nixosModules
+          ./users
+          ./pkgs/overlay.nix
+        ];
+      };
     };
   };
 }

@@ -48,9 +48,6 @@
       snowtest = "sudo nixos-rebuild test --flake ~/nixos/#${hostname}";
       nmpv = "nvidia-offload mpv";
     };
-    environmentVariables = {
-      EDITOR = "/run/current-system/sw/bin/nvim";
-    };
 
     extraConfig = let
       nuscripts = ../dots/nuscripts;

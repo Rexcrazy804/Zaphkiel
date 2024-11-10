@@ -3,8 +3,8 @@
   config,
   ...
 }: let
-  username = "rexies";
-  description = "Rexiel Scarlet";
+  username = "aarons";
+  description = "Aaron Johns";
   hostname = config.networking.hostName;
 in {
   users.users.${username} = {
@@ -13,7 +13,6 @@ in {
     shell = pkgs.nushell;
     isNormalUser = true;
     extraGroups = ["networkmanager" "wheel"];
-    hashedPasswordFile = config.age.secrets.rexiesPass.path;
 
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICELSL45m4ptWDZwQDi2AUmCgt4n93KsmZtt69fyb0vy"

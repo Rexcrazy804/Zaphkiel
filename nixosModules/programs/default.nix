@@ -7,7 +7,6 @@
     ./steam.nix
     ./sddm.nix
     ./aagl.nix
-    ./age.nix
   ];
 
   # global

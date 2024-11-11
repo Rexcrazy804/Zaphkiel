@@ -13,24 +13,29 @@
     };
   };
 
-  config = let
+  config = let 
     cfg = config.progModule.sddm-custom-theme;
-  in {
+  in lib.mkIf cfg.enable {
     environment.systemPackages = let
-      wallpaper = cfg.wallpaper;
       sddm-astronaut = pkgs.sddm-astronaut.override {
         themeConfig = {
-          Background = "${wallpaper}";
+          Background = "${cfg.wallpaper}";
           PartialBlur = "true";
-          BlurRadius = "45";
+          BlurRadius = "13";
           ForceHideVirtualKeyboardButton = "true";
           FormPosition = "right";
+
+          AccentColor="\"#313FAB\"";
+          placeholderColor="\"#192E59\"";
+
+          # MainColor="#F8F8F2";
+          # OverrideTextFieldColor="";
+          # BackgroundColor="#21222C";
+          # IconColor="#ffffff";
+          # OverrideLoginButtonTextColor="";
         };
       };
-    in
-      lib.mkIf cfg.enable [
-        sddm-astronaut
-      ];
+    in [ sddm-astronaut ];
 
     services.displayManager.sddm = {
       enable = lib.mkDefault true;

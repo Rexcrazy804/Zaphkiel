@@ -29,7 +29,7 @@
   };
 
   servModule = {
-    enable = true;
+    enable = false;
     tailscale.enable = true;
     immich.enable = true;
     openssh.enable = true;

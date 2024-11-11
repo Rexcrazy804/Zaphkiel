@@ -13,36 +13,37 @@
     };
   };
 
-  config = let 
+  config = let
     cfg = config.progModule.sddm-custom-theme;
-  in lib.mkIf cfg.enable {
-    environment.systemPackages = let
-      sddm-astronaut = pkgs.sddm-astronaut.override {
-        themeConfig = {
-          Background = "${cfg.wallpaper}";
-          PartialBlur = "true";
-          BlurRadius = "13";
-          ForceHideVirtualKeyboardButton = "true";
-          FormPosition = "right";
+  in
+    lib.mkIf cfg.enable {
+      environment.systemPackages = let
+        sddm-astronaut = pkgs.sddm-astronaut.override {
+          themeConfig = {
+            Background = "${cfg.wallpaper}";
+            PartialBlur = "true";
+            BlurRadius = "13";
+            ForceHideVirtualKeyboardButton = "true";
+            FormPosition = "right";
 
-          AccentColor="\"#313FAB\"";
-          placeholderColor="\"#192E59\"";
+            AccentColor = "\"#313FAB\"";
+            placeholderColor = "\"#192E59\"";
 
-          # MainColor="#F8F8F2";
-          # OverrideTextFieldColor="";
-          # BackgroundColor="#21222C";
-          # IconColor="#ffffff";
-          # OverrideLoginButtonTextColor="";
+            # MainColor="#F8F8F2";
+            # OverrideTextFieldColor="";
+            # BackgroundColor="#21222C";
+            # IconColor="#ffffff";
+            # OverrideLoginButtonTextColor="";
+          };
         };
-      };
-    in [ sddm-astronaut ];
+      in [sddm-astronaut];
 
-    services.displayManager.sddm = {
-      enable = lib.mkDefault true;
-      enableHidpi = true;
-      wayland.enable = true;
-      theme = "sddm-astronaut-theme";
-      settings.Theme.CursorSize = 24;
+      services.displayManager.sddm = {
+        enable = lib.mkDefault true;
+        enableHidpi = true;
+        wayland.enable = true;
+        theme = "sddm-astronaut-theme";
+        settings.Theme.CursorSize = 24;
+      };
     };
-  };
 }

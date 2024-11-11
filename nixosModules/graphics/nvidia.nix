@@ -42,7 +42,7 @@
 
         powerManagement = {
           enable = true;
-          finegrained = true;
+          finegrained = cfg.hybrid.enable;
         };
 
         # Use the NVidia open source kernel module (not to be confused with the

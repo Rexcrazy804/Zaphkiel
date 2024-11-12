@@ -16,7 +16,7 @@
     nix.settings = inputs.aagl.nixConfig;
     programs = {
       anime-game-launcher.enable = lib.mkDefault false;
-      honkers-railway-launcher.enable = lib.mkDefault false;
+      honkers-railway-launcher.enable = lib.mkDefault true;
       sleepy-launcher.enable = lib.mkDefault true;
     };
   };

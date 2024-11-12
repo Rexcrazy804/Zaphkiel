@@ -8,7 +8,7 @@ let
 
   hosts = {
     Zaphkiel = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEL+RcwQjikBAOFxI3GSlvB7S0E0groj2I6h4XajvMAy"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINZAm8+KGrsCGT7dJbz/Rcm18NslDLrYzzcgHZ4334aa"
     ];
   };
 in {

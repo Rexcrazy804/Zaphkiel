@@ -14,8 +14,11 @@
       enable = true;
       openFirewall = true;
       useRoutingFeatures = "both";
+      extraSetFlags = [ 
+        "--advertise-exit-node" 
+        "--accept-dns=false"
+        "--webclient"
+      ];
     };
-
-    services.resolved.enable = true;
   };
 }

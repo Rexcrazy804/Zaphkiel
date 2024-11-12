@@ -29,9 +29,9 @@
   };
 
   servModule = {
-    enable = false;
+    enable = true;
     tailscale.enable = true;
-    immich.enable = true;
+    immich.enable = false;
     openssh.enable = true;
   };
 

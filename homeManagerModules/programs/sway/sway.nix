@@ -15,6 +15,7 @@
       brightnessctl
       grim
       slurp
+      kdePackages.breeze
     ];
 
     wayland.windowManager.sway = {
@@ -24,6 +25,9 @@
         base = true;
       };
       systemd.enable = true;
+      extraOptions = [
+        "--unsupported-gpu"
+      ];
       extraSessionCommands =
         /*
         bash
@@ -96,12 +100,12 @@
         # seat seat0 xcursor_theme $cursor_theme $cursor_size
         seat = {
           "seat0" = {
-            xcursor_theme = "Adwaita 24";
+            xcursor_theme = "Breeze 24";
           };
         };
 
         startup = let
-          wall = ../../dots/__yoru_chainsaw_man_drawn_by_banechiii__b55e78c91ee67398c7222a3a1c4286cc.jpg;
+          wall = ../../dots/_koko.jpg;
         in [
           {command = "${pkgs.swaybg}/bin/swaybg -i ${wall} -m fill";}
           # {command="wlsunset";}

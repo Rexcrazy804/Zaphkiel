@@ -4,6 +4,7 @@
   ];
 
   packages = {
+    sway.enable = true;
     alacritty.enable = true;
     discord.enable = true;
     obs.enable = true;

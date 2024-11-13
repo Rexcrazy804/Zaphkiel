@@ -15,9 +15,10 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
+  boot.kernelModules = ["kvm-amd" "zenpower"];
+  boot.blacklistedKernelModules = ["k10temp"];
   boot.kernelParams = ["idle=nowwait" "iommu=pt"];
-  boot.extraModulePackages = with config.boot.kernelPackages; [lenovo-legion-module];
+  boot.extraModulePackages = with config.boot.kernelPackages; [lenovo-legion-module zenpower];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/6c64bac4-08fd-40e4-b995-5f164175dffb";

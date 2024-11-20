@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  config,
   ...
 }: {
   imports = [
@@ -36,8 +37,16 @@
     package = pkgs.mariadb;
   };
 
-  # should improve how this work on the module level
-  services.displayManager.sddm.enable = lib.mkForce false;
+  servModule = {
+    enable = true;
+    tailscale.enable = true;
+    immich.enable = false;
+    openssh.enable = true;
+  };
+
+  # tailscale
+  age.secrets.tailAuth.file = ../../secrets/secret3.age;
+  services.tailscale.authKeyFile = config.age.secrets.tailAuth.path;
 
   programs.firefox.enable = true;
   programs.kdeconnect = {

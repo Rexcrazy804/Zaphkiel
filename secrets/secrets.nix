@@ -10,8 +10,12 @@ let
     Zaphkiel = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINZAm8+KGrsCGT7dJbz/Rcm18NslDLrYzzcgHZ4334aa"
     ];
+    Raphael = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILJFWrIy+ZoppWlZIG6qHrCfM9yChsKdW39iP5yPeBdl"
+    ];
   };
 in {
   "secret1.age".publicKeys = users.rexies;
   "secret2.age".publicKeys = hosts.Zaphkiel;
+  "secret3.age".publicKeys = hosts.Raphael;
 }

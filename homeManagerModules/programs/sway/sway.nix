@@ -1,9 +1,15 @@
 {
+  inputs,
   lib,
   config,
   pkgs,
   ...
 }: {
+  # required for some secrets .w.
+  imports = [
+    inputs.agenix.homeManagerModules.default
+  ];
+
   options = {
     packages = {
       sway.enable = lib.mkEnableOption "Enable Sway";
@@ -17,6 +23,11 @@
       slurp
       kdePackages.breeze
     ];
+
+    age.secrets.wallpaper = {
+      file = ../../../secrets/wall_kok.age;
+      name = "wallpaper.jpg";
+    };
 
     wayland.windowManager.sway = {
       enable = true;

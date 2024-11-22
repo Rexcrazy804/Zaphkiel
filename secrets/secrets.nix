@@ -19,4 +19,5 @@ in {
   "secret2.age".publicKeys = hosts.Zaphkiel;
   "secret3.age".publicKeys = hosts.Raphael;
   "secret4.age".publicKeys = users.rexies;
+  "wall_kok.age".publicKeys = users.rexies;
 }

@@ -89,6 +89,10 @@
             natural_scroll = "enabled";
             middle_emulation = "enabled";
           };
+
+          "1:1:AT_Translated_Set_2_keyboard" = {
+            xkb_layout = "us";
+          };
         };
 
         fonts = {
@@ -100,17 +104,15 @@
         # seat seat0 xcursor_theme $cursor_theme $cursor_size
         seat = {
           "seat0" = {
-            xcursor_theme = "Breeze 24";
+            xcursor_theme = "Adwaita 24";
           };
         };
 
-        startup = let
-          wall = ../../dots/_koko.jpg;
-        in [
-          {command = "${pkgs.swaybg}/bin/swaybg -i ${wall} -m fill";}
-          # {command="wlsunset";}
-          # {command="systemctl --user restart waybar"; always = true;}
-        ];
+        output = {
+          "*" = {
+            bg = "${../../dots/_koko.jpg} fill";
+          };
+        };
 
         bars = [];
       };

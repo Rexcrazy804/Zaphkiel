@@ -1,9 +1,15 @@
 {
+  inputs,
   lib,
   config,
   pkgs,
   ...
 }: {
+  # required for some secrets .w.
+  imports = [
+    inputs.agenix.homeManagerModules.default
+  ];
+
   options = {
     packages = {
       sway.enable = lib.mkEnableOption "Enable Sway";
@@ -17,6 +23,11 @@
       slurp
       kdePackages.breeze
     ];
+
+    age.secrets.wallpaper = {
+      file = ../../../secrets/media_kok.age;
+      name = "wallpaper.jpg";
+    };
 
     wayland.windowManager.sway = {
       enable = true;
@@ -45,7 +56,9 @@
           export MOZ_ENABLE_WAYLAND=1
         '';
 
-      checkConfig = true;
+      # temporary
+      # TODO switch back to swaybg and return this value to true
+      checkConfig = false;
       config = rec {
         modifier = "Mod4";
         terminal = "alacritty";
@@ -110,7 +123,7 @@
 
         output = {
           "*" = {
-            bg = "${../../dots/_koko.jpg} fill";
+            bg = "${config.age.secrets.wallpaper.path} fill";
           };
         };
 

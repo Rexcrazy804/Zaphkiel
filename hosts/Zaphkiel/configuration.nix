@@ -35,11 +35,16 @@
     openssh.enable = true;
   };
 
+  age.secrets.wallpaper = {
+    file = ../../secrets/media_robin.age;
+    name = "wallpaper.jpg";
+  };
+
   progModule = {
     steam.enable = true;
     sddm-custom-theme = {
       enable = true;
-      wallpaper = ../../homeManagerModules/dots/__robin_honkai_and_1_more_drawn_by_niukou_kouzi__7dec319b80b9720c93928c03197d6f1a.jpg;
+      wallpaper = config.age.secrets.wallpaper.path;
     };
     anime-games.enable = true;
   };

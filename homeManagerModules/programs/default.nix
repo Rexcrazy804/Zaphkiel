@@ -1,4 +1,4 @@
-{...}: {
+{inputs, ...}: {
   imports = [
     ./groups
     ./sway
@@ -10,5 +10,7 @@
     ./discord.nix
     ./obs.nix
     ./hyprland.nix
+  ] ++ [
+    inputs.agenix.homeManagerModules.default
   ];
 }

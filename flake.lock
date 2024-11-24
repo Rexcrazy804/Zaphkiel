@@ -33,15 +33,15 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1723293904,
-        "narHash": "sha256-b+uqzj+Wa6xgMS9aNbX4I+sXeb5biPDi39VgvSFqFvU=",
-        "owner": "ryantm",
+        "lastModified": 1732446811,
+        "narHash": "sha256-zds4nSTojXys86McRSq9F9QW/dceBX3dkD728kIi8FM=",
+        "owner": "Rexcrazy804",
         "repo": "agenix",
-        "rev": "f6291c5935fdc4e0bef208cfc0dcab7e3f7a1c41",
+        "rev": "cfb1ead5b0698f20ed504b0270c78844f273089d",
         "type": "github"
       },
       "original": {
-        "owner": "ryantm",
+        "owner": "Rexcrazy804",
         "repo": "agenix",
         "type": "github"
       }

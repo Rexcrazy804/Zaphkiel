@@ -25,7 +25,7 @@
     ];
 
     age.secrets.wallpaper = {
-      file = ../../../secrets/wall_kok.age;
+      file = ../../../secrets/media_kok.age;
       name = "wallpaper.jpg";
     };
 
@@ -56,7 +56,9 @@
           export MOZ_ENABLE_WAYLAND=1
         '';
 
-      checkConfig = true;
+      # temporary
+      # TODO switch back to swaybg and return this value to true
+      checkConfig = false;
       config = rec {
         modifier = "Mod4";
         terminal = "alacritty";
@@ -121,7 +123,7 @@
 
         output = {
           "*" = {
-            bg = "${../../dots/_koko.jpg} fill";
+            bg = "${config.age.secrets.wallpaper.path} fill";
           };
         };
 

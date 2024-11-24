@@ -20,7 +20,7 @@
     };
 
     agenix = {
-      url = "github:ryantm/agenix";
+      url = "github:Rexcrazy804/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
       inputs.home-manager.follows = "home-manager";

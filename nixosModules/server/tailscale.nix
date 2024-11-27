@@ -16,9 +16,11 @@
       useRoutingFeatures = "both";
       extraSetFlags = [ 
         "--advertise-exit-node" 
-        "--accept-dns=false"
+        "--accept-dns"
         "--webclient"
       ];
     };
+
+    services.resolved.enable = true;
   };
 }

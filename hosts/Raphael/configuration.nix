@@ -39,7 +39,11 @@
 
   servModule = {
     enable = true;
-    tailscale.enable = true;
+    tailscale = {
+      enable = true;
+      exitNode.enable = true;
+      exitNode.networkDevice = "wlp1s0";
+    };
     immich.enable = false;
     openssh.enable = true;
   };

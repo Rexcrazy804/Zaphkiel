@@ -4,7 +4,6 @@
   fetchFromGitHub,
   cargo-make,
   pkg-config,
-
   glib,
   vcpkg,
   libclang,
@@ -18,7 +17,6 @@
   libyuv,
   zstd,
 }:
-
 rustPlatform.buildRustPackage rec {
   pname = "legion-rgb-control";
   version = "0.19.6";
@@ -42,7 +40,7 @@ rustPlatform.buildRustPackage rec {
 
   # PKG_CONFIG_PATH = "${glib.dev}/lib/pkgconfig";
 
-  nativeBuildInputs = [ 
+  nativeBuildInputs = [
     cargo-make
     pkg-config
     rustPlatform.bindgenHook

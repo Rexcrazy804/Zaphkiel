@@ -63,4 +63,18 @@
   ];
 
   system.stateVersion = "24.05"; # Did you read the comment?
+
+  # conservation mode to preserve battery life on AC power
+  systemd.tmpfiles.settings = {
+    "ideapad-set-conservation-mode" = {
+      "/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode" = {
+        "f+" = {
+          group = "root";
+          user = "root";
+          mode = "0644";
+          argument = "1";
+        };
+      };
+    };
+  };
 }

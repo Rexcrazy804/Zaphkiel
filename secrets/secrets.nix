@@ -21,4 +21,5 @@ in {
   "secret4.age".publicKeys = users.rexies;
   "media_kok.age".publicKeys = users.rexies;
   "media_robin.age".publicKeys = hosts.Zaphkiel ++ users.rexies;
+  "media_kok_exquisite.age".publicKeys = users.rexies;
 }

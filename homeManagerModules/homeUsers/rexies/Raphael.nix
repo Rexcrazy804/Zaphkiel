@@ -29,4 +29,11 @@
   home.packages = with pkgs; [
     qutebrowser
   ];
+
+  age.secrets.wallpaper_alt = {
+    file = ../../../secrets/media_kok_exquisite.age;
+    name = "wallpaper_alt.png";
+  };
+
+  wayland.windowManager.sway.config.output."*".bg = lib.mkForce "${config.age.secrets.wallpaper_alt.path} fill";
 }

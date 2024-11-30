@@ -1,15 +1,9 @@
 {
-  inputs,
   lib,
   config,
   pkgs,
   ...
 }: {
-  # required for some secrets .w.
-  imports = [
-    inputs.agenix.homeManagerModules.default
-  ];
-
   options = {
     packages = {
       sway.enable = lib.mkEnableOption "Enable Sway";

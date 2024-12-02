@@ -11,6 +11,7 @@
       ./discord.nix
       ./obs.nix
       ./hyprland.nix
+      ./firefox.nix
     ]
     ++ [
       inputs.agenix.homeManagerModules.default

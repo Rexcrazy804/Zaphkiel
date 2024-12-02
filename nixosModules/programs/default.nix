@@ -17,5 +17,6 @@
   };
 
   # wayland on electron and chromium based apps
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # disabled due to insanely slow startup time
+  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
 }

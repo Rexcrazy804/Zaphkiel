@@ -9,6 +9,7 @@
   ];
 
   packages = {
+    firefox.enable = true;
     alacritty.enable = true;
     mpv.enable = true;
     sway.enable = true;

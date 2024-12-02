@@ -4,6 +4,7 @@
   ];
 
   packages = {
+    firefox.enable = true;
     sway.enable = true;
     alacritty.enable = true;
     discord.enable = true;

@@ -77,4 +77,7 @@
       };
     };
   };
+
+  # disable suspend on lid close on external power
+  services.logind.lidSwitchExternalPower = "ignore";
 }

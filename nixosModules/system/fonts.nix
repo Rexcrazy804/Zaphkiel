@@ -2,9 +2,10 @@
   fonts = {
     fontDir.enable = true;
     packages = let
-      caskydia = pkgs.nerdfonts.override {
-        fonts = ["CascadiaMono" "CascadiaCode"];
-      };
+      caskydia = with pkgs.nerd-fonts; [
+        caskaydia-mono
+        caskaydia-cove
+      ];
 
       noto = with pkgs; [
         noto-fonts
@@ -13,6 +14,6 @@
         noto-fonts-cjk-serif
       ];
     in
-      [caskydia] ++ noto;
+      caskydia ++ noto;
   };
 }

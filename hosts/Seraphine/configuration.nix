@@ -18,18 +18,13 @@
   servModule = {
     enable = true;
     tailscale = {
-      enable = false;
+      enable = true;
       exitNode.enable = true;
       exitNode.networkDevice = "wlp1s0";
     };
     openssh.enable = true;
   };
 
-  age.secrets.wallpaper = {
-    file = ../../secrets/media_robin.age;
-    name = "wallpaper.jpg";
-    mode = "644";
-  };
 
   progModule = {
     sddm-custom-theme = {
@@ -37,6 +32,17 @@
       wallpaper = config.age.secrets.wallpaper.path;
     };
     # anime-games.enable = true;
+  };
+
+
+  # tailscale
+  age.secrets.tailAuth.file = ../../secrets/secret5.age;
+  services.tailscale.authKeyFile = config.age.secrets.tailAuth.path;
+  # sddm
+  age.secrets.wallpaper = {
+    file = ../../secrets/media_robin.age;
+    name = "wallpaper.jpg";
+    mode = "644";
   };
 
   # generic
@@ -49,9 +55,6 @@
   services.desktopManager.plasma6.enable = true;
   services.fstrim.enable = true;
 
-  # tailscale
-  # age.secrets.tailAuth.file = ../../secrets/secret2.age;
-  # services.tailscale.authKeyFile = config.age.secrets.tailAuth.path;
 
   system.stateVersion = "24.05";
 }

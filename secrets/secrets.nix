@@ -23,6 +23,7 @@ in {
   "secret2.age".publicKeys = hosts.Zaphkiel;
   "secret3.age".publicKeys = hosts.Raphael;
   "secret4.age".publicKeys = users.rexies;
+  "secret5.age".publicKeys = hosts.Seraphine;
 
   "media_kok.age".publicKeys = users.rexies;
   "media_robin.age".publicKeys = hosts.Zaphkiel ++ hosts.Raphael ++ users.rexies;

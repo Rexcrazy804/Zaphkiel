@@ -11,8 +11,9 @@
   packages = {
     firefox.enable = true;
     alacritty.enable = true;
+    discord.enable = true;
     mpv.enable = true;
-    sway.enable = true;
+    sway.enable = false;
   };
 
   packageGroup = {

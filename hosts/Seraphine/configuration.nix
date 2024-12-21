@@ -25,7 +25,6 @@
     openssh.enable = true;
   };
 
-
   progModule = {
     sddm-custom-theme = {
       enable = true;
@@ -33,7 +32,6 @@
     };
     # anime-games.enable = true;
   };
-
 
   # tailscale
   age.secrets.tailAuth.file = ../../secrets/secret5.age;
@@ -54,7 +52,6 @@
   # KDE
   services.desktopManager.plasma6.enable = true;
   services.fstrim.enable = true;
-
 
   system.stateVersion = "24.05";
 }

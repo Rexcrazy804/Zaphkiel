@@ -67,6 +67,24 @@
           ./pkgs/overlay.nix
         ];
       };
+
+      Seraphine = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs outputs;
+
+          # every user in this list must have a username.nix under users/
+          # and another homeManagerModules/Users/
+          users = ["rexies"];
+        };
+        modules = [
+          ./hosts/Seraphine/configuration.nix
+          ./nixosModules
+
+          # responsible for importing home manager modules & users
+          ./users
+          ./pkgs/overlay.nix
+        ];
+      };
     };
   };
 }

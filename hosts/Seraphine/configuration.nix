@@ -18,7 +18,7 @@
   servModule = {
     enable = true;
     tailscale = {
-      enable = true;
+      enable = false;
       exitNode.enable = true;
       exitNode.networkDevice = "wlp1s0";
     };
@@ -28,6 +28,7 @@
   age.secrets.wallpaper = {
     file = ../../secrets/media_robin.age;
     name = "wallpaper.jpg";
+    mode = "644";
   };
 
   progModule = {

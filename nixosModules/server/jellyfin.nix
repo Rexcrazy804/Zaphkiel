@@ -52,12 +52,14 @@ in {
       "aspnetcore-runtime-6.0.36"
     ];
 
-    users.groups."multimedia".members = [
-      "root"
-      "jellyfin"
-      "transmission"
-      "sonarr"
-    ] ++ users;
+    users.groups."multimedia".members =
+      [
+        "root"
+        "jellyfin"
+        "transmission"
+        "sonarr"
+      ]
+      ++ users;
 
     # Transmission configuration
     age.secrets.transJson = {

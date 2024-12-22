@@ -12,7 +12,7 @@ in {
 
     shell = pkgs.nushell;
     isNormalUser = true;
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "multimedia"];
     hashedPasswordFile = config.age.secrets.rexiesPass.path;
 
     openssh.authorizedKeys.keys = [

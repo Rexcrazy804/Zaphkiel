@@ -1,9 +1,12 @@
 {
+  pkgs,
   users,
   lib,
   config,
   ...
-}: {
+}: let
+  multimediaDir = "/home/multimedia";
+in {
   options = {
     servModule.jellyfin = {
       enable = lib.mkEnableOption "Enable Jellyfin and related Services";
@@ -16,9 +19,39 @@
       openFirewall = true;
     };
 
+    services.transmission = {
+      enable = true;
+      package = pkgs.transmission_4;
+
+      openRPCPort = true;
+      openFirewall = true;
+
+      settings = {
+        anti-brute-force-enabled = true;
+        rpc-authentication-required = true;
+        watch-dir-enabled = false;
+        peer-port-random-on-start = true;
+        incomplete-dir-enabled = false;
+
+        download-dir = multimediaDir + "/Downloads";
+        peer-limit-global = 400;
+        peer-limit-per-torrent = 200;
+      };
+      credentialsFile = config.age.secrets.transJson.path;
+    };
+
     users.groups."multimedia".members = [
       "root"
       "jellyfin"
+      "transmission"
     ] ++ users;
+
+    # Transmission configuration
+    age.secrets.transJson = {
+      file = ../../secrets/secret6.age;
+      name = "settings.json";
+      owner = "transmission";
+      group = "transmission";
+    };
   };
 }

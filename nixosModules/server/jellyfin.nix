@@ -40,10 +40,23 @@ in {
       credentialsFile = config.age.secrets.transJson.path;
     };
 
+    services.sonarr = {
+      enable = true;
+      openFirewall = true;
+    };
+
+    # TODO remove this once sonarr is updated
+    # required for sonarr
+    nixpkgs.config.permittedInsecurePackages = [
+      "dotnet-sdk-6.0.428"
+      "aspnetcore-runtime-6.0.36"
+    ];
+
     users.groups."multimedia".members = [
       "root"
       "jellyfin"
       "transmission"
+      "sonarr"
     ] ++ users;
 
     # Transmission configuration

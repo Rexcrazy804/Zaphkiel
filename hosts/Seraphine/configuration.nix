@@ -23,6 +23,7 @@
       exitNode.networkDevice = "wlp1s0";
     };
     openssh.enable = true;
+    jellyfin.enable = true;
   };
 
   progModule = {

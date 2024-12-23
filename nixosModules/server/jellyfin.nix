@@ -6,6 +6,7 @@
   ...
 }: let
   multimediaDir = "/home/multimedia";
+  stateDirectory = "/var/lib/tailscale/tailscaled-jellyfin";
 in {
   options = {
     servModule.jellyfin = {
@@ -18,6 +19,9 @@ in {
       enable = true;
       openFirewall = true;
     };
+
+
+
 
     services.transmission = {
       enable = true;
@@ -39,6 +43,7 @@ in {
       };
       credentialsFile = config.age.secrets.transJson.path;
     };
+
 
     services.sonarr = {
       enable = true;
@@ -68,5 +73,36 @@ in {
       owner = "transmission";
       group = "transmission";
     };
+
+    # age.secrets.servarrAuth = {
+    #   file = ../../secrets/secret7.age;
+    # };
+
+    # Figure out if I really need this :]
+    # systemd.services.tailscale-jellyfin = {
+    #   after = ["tailscaled.service"];
+    #   wants = ["tailscaled.service"];
+    #   wantedBy = [ "multi-user.target" ];
+    #   serviceConfig = {
+    #     Type = "simple";
+    #   };
+    #   script = ''
+    #     ${pkgs.tailscale}/bin/tailscaled --statedir=${stateDirectory} --socket=${stateDirectory}/tailscaled.sock --port=0 --tun=user
+    #   '';
+    # };
+    #
+    # systemd.services.tailscale-jellyfin-up = {
+    #   after = ["tailscale-jellyfin-up.service"];
+    #   wants = ["tailscaled.service"];
+    #   wantedBy = [ "multi-user.target" ];
+    #   serviceConfig = {
+    #     Type = "oneshot";
+    #   };
+    #   script = ''
+    #     ${pkgs.tailscale}/bin/tailscale --socket=${stateDirectory}/tailscaled.sock up --auth-key=$(cat ${config.age.secrets.servarrAuth.path}) --hostname=jellyfin --reset
+    #     ${pkgs.tailscale}/bin/tailscale --socket=${stateDirectory}/tailscaled.sock serve --bg localhost:8096
+    #   '';
+    # };
   };
+
 }

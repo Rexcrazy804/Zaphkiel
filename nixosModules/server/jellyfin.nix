@@ -20,9 +20,6 @@ in {
       openFirewall = true;
     };
 
-
-
-
     services.transmission = {
       enable = true;
       package = pkgs.transmission_4;
@@ -43,7 +40,6 @@ in {
       };
       credentialsFile = config.age.secrets.transJson.path;
     };
-
 
     services.sonarr = {
       enable = true;
@@ -104,5 +100,4 @@ in {
     #   '';
     # };
   };
-
 }

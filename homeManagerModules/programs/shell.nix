@@ -87,6 +87,25 @@
           | insert 0.device "mem"
           | move device --before total
         }
+
+        # helping out the homies
+        def snowupdate [] {
+          let original = open ~/nixos/flake.lock | str join
+          nix flake update --flake ~/nixos
+          let new = open ~/nixos/flake.lock | str join
+          if $original != $new {
+            # Right now if you ctrl + c out of snowfall you will not apply the
+            # updates but the next time you run snowupdate it will say no updates
+            # so if you ctrl + c out of snowfall when running snowupdate just
+            # snowfall instead
+            print "Updates found :)\nRunning snowfall..."
+            # snowfall [the actuall command the alias runs]
+            sudo nixos-rebuild switch --flake ~/nixos/#${hostname}
+            print "Update Complete :D"
+          } else {
+            print "Nothing to update :<"
+          }
+        }
       '';
   };
 }

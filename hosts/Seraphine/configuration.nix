@@ -2,6 +2,7 @@
   inputs,
   config,
   pkgs,
+  lib,
   ...
 }: {
   imports = [
@@ -24,6 +25,7 @@
     };
     openssh.enable = true;
     jellyfin.enable = true;
+    minecraft.enable = true;
   };
 
   progModule = {
@@ -56,6 +58,9 @@
 
   # disabled autosuspend
   services.logind.lidSwitchExternalPower = "ignore";
+
+  # minecraft server
+  services.minecraft-servers.servers.hollyj.serverProperties.max-players = lib.mkForce 5;
 
   system.stateVersion = "24.05";
 }

@@ -60,7 +60,7 @@
   services.logind.lidSwitchExternalPower = "ignore";
 
   # minecraft server
-  services.minecraft-servers.servers.HollyJ.serverProperties.max-players = lib.mkForce 5;
+  services.minecraft-servers.servers.hollyj.serverProperties.max-players = lib.mkForce 5;
 
   system.stateVersion = "24.05";
 }

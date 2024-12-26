@@ -54,5 +54,8 @@
   services.desktopManager.plasma6.enable = true;
   services.fstrim.enable = true;
 
+  # disabled autosuspend
+  services.logind.lidSwitchExternalPower = "ignore";
+
   system.stateVersion = "24.05";
 }

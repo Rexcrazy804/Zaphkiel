@@ -88,6 +88,11 @@
                 url = "https://cdn.modrinth.com/data/uXXizFIs/versions/IPM0JlHd/ferritecore-7.1.1-fabric.jar";
                 hash = "sha256-DdXpIDVSAk445zoPW0aoLrZvAxiyMonGhCsmhmMnSnk=";
               };
+
+              SkinRestorer = pkgs.fetchurl {
+                url = "https://cdn.modrinth.com/data/ghrZDhGW/versions/1ozhCpij/skinrestorer-2.2.1%2B1.21-fabric.jar";
+                hash = "sha256-9f1yqKwzHeCcuDEP2JiwCXeRvwzWthiAbQ5O3FovJv4=";
+              };
             });
           };
         };

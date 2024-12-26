@@ -20,7 +20,7 @@
     # WARN enable offline auth imperatively in the geyser config
     # will figure out a better way to do it later
     networking.firewall = {
-      allowedUDPPorts = [ 19132 ];
+      allowedUDPPorts = [19132];
     };
     services.minecraft-servers = {
       enable = true;
@@ -35,7 +35,8 @@
           openFirewall = true;
           enableReload = true;
           restart = "no";
-          jvmOpts = builtins.concatStringsSep
+          jvmOpts =
+            builtins.concatStringsSep
             " "
             [
               "-Xms1024M"

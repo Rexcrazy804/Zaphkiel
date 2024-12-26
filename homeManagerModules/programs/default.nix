@@ -17,10 +17,10 @@
       inputs.agenix.homeManagerModules.default
     ];
 
-    # gc stuff for home manager profiles 
-    nix.gc = {
-      automatic = true;
-      frequency = "weekly";
-      options = "--delete-older-than 7d";
-    };
+  # gc stuff for home manager profiles
+  nix.gc = {
+    automatic = true;
+    frequency = "weekly";
+    options = "--delete-older-than 7d";
+  };
 }

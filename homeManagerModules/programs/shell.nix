@@ -47,6 +47,17 @@
       snowfall = "sudo nixos-rebuild switch --flake ~/nixos/#${hostname}";
       snowtest = "sudo nixos-rebuild test --flake ~/nixos/#${hostname}";
       snowboot = "sudo nixos-rebuild boot --flake ~/nixos/#${hostname}";
+
+      # servarr
+      servarrStop = "systemctl start jellyfin.service sonarr.service transmission.service";
+      servarrStart = "systemctl stop jellyfin.service sonarr.service transmission.service";
+      servarrStatus = "systemctl status jellyfin.service sonarr.service transmission.service";
+
+      # minecraft-nix
+      mchollyjStart = "systemctl start minecraft-server-hollyj.service";
+      mchollyjStop = "systemctl stop minecraft-server-hollyj.service";
+      mchollyjStatus = "systemctl status minecraft-server-hollyj.service";
+
       nmpv = "nvidia-offload mpv";
     };
     environmentVariables = {

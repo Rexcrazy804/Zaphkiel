@@ -40,7 +40,7 @@
             " "
             [
               "-Xms1024M"
-              "-Xmx4096M"
+              "-Xmx6144M"
             ];
 
           serverProperties = {
@@ -59,10 +59,6 @@
                 hash = "sha256-V6sJzn/0qgbpZIjbjpbQynvHqjcRcNkVqaKmmamXRkU=";
               };
 
-              Terralith = pkgs.fetchurl {
-                url = "https://cdn.modrinth.com/data/8oi3bsk5/versions/lQreFvOm/Terralith_1.21.x_v2.5.7.jar";
-                hash = "sha256-4Si09xC+/m78i2cMzMrF6H6TZXlns27DSouA+DlO6s0=";
-              };
 
               C2ME = pkgs.fetchurl {
                 url = "https://cdn.modrinth.com/data/VSNURh3q/versions/c8KSyi6D/c2me-fabric-mc1.21.4-0.3.1%2Brc.1.0.jar";
@@ -92,6 +88,26 @@
               SkinRestorer = pkgs.fetchurl {
                 url = "https://cdn.modrinth.com/data/ghrZDhGW/versions/1ozhCpij/skinrestorer-2.2.1%2B1.21-fabric.jar";
                 hash = "sha256-9f1yqKwzHeCcuDEP2JiwCXeRvwzWthiAbQ5O3FovJv4=";
+              };
+
+              Terralith = pkgs.fetchurl {
+                url = "https://cdn.modrinth.com/data/8oi3bsk5/versions/lQreFvOm/Terralith_1.21.x_v2.5.7.jar";
+                hash = "sha256-4Si09xC+/m78i2cMzMrF6H6TZXlns27DSouA+DlO6s0=";
+              };
+
+              NullScape = pkgs.fetchurl {
+                url = "https://cdn.modrinth.com/data/LPjGiSO4/versions/dHJAVX8s/Nullscape_1.21.x_v1.2.10.jar";
+                hash = "sha256-DaR0Vv8+o4Nd8B14qCjtuvryDc/tfXf6Ntg1T4dmys4=";
+              };
+
+              Incendium = pkgs.fetchurl {
+                url = "https://cdn.modrinth.com/data/ZVzW5oNS/versions/7mVvV9Th/Incendium_1.21.x_v5.4.4.jar";
+                hash = "sha256-KFpPaf4jkfIXX3/JMW1yejnHm90hSSPFkoTVabzmVvQ=";
+              };
+
+              UniversalGraves = pkgs.fetchurl {
+                url = "https://cdn.modrinth.com/data/yn9u3ypm/versions/o2f2Idvu/graves-3.6.0%2B1.21.4.jar";
+                hash = "sha256-BStX6+EBPlmCpyZlEunBjy4E7DYc/EJCPCg0PnVSu9E=";
               };
             });
           };

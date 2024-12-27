@@ -49,8 +49,8 @@
       snowboot = "sudo nixos-rebuild boot --flake ~/nixos/#${hostname}";
 
       # servarr
-      servarrStop = "systemctl start jellyfin.service sonarr.service transmission.service";
-      servarrStart = "systemctl stop jellyfin.service sonarr.service transmission.service";
+      servarrStart = "systemctl start jellyfin.service sonarr.service transmission.service";
+      servarrStop = "systemctl stop jellyfin.service sonarr.service transmission.service";
       servarrStatus = "systemctl status jellyfin.service sonarr.service transmission.service";
 
       # minecraft-nix

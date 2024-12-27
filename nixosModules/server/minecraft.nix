@@ -59,7 +59,6 @@
                 hash = "sha256-V6sJzn/0qgbpZIjbjpbQynvHqjcRcNkVqaKmmamXRkU=";
               };
 
-
               C2ME = pkgs.fetchurl {
                 url = "https://cdn.modrinth.com/data/VSNURh3q/versions/c8KSyi6D/c2me-fabric-mc1.21.4-0.3.1%2Brc.1.0.jar";
                 hash = "sha256-0Z51G9Kn5npvQpaB1PmcPJa0OF3f5JxHCncMp4G+HFA=";

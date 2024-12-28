@@ -22,6 +22,13 @@
     networking.firewall = {
       allowedUDPPorts = [19132];
     };
+
+    # mongodb :< [EasyAuth]
+    services.mongodb = {
+      enable = true;
+      package = pkgs.mongodb-ce;
+    };
+
     services.minecraft-servers = {
       enable = true;
       eula = true;
@@ -57,6 +64,11 @@
               FabricApi = pkgs.fetchurl {
                 url = "https://cdn.modrinth.com/data/P7dR8mSH/versions/15ijyoD6/fabric-api-0.113.0%2B1.21.4.jar";
                 hash = "sha256-V6sJzn/0qgbpZIjbjpbQynvHqjcRcNkVqaKmmamXRkU=";
+              };
+
+              EasyAuth = pkgs.fetchurl {
+                url = "https://cdn.modrinth.com/data/aZj58GfX/versions/cNfqAFbs/easyauth-mc1.21.2-3.0.27.jar";
+                hash = "sha256-YA4TWqmIZ7eXhgKM7eHsMmjU/YzvX4Wir+PHdZNaGqQ=";
               };
 
               C2ME = pkgs.fetchurl {

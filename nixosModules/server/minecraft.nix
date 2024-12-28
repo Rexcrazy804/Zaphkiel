@@ -38,7 +38,7 @@
           package = pkgs.fabricServers.fabric-1_21_4;
           enable = true;
           # start with: systemctl start minecraft-server-hollyj.service
-          autoStart = false;
+          autoStart = true;
           openFirewall = true;
           enableReload = true;
           restart = "no";

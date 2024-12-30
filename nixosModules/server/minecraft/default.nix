@@ -8,6 +8,7 @@
   imports = [
     inputs.nix-minecraft.nixosModules.minecraft-servers
     ./hollyj.nix
+    ./backupservice.nix
   ];
 
   options = {

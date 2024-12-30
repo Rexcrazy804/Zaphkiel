@@ -33,5 +33,13 @@ in {
         ExecStart = "${script}/bin/rcon-backup";
       };
     };
+    systemd.timers.mc-hollyj-backup = {
+      description = "Timer to regularly backup the mc server";
+      enable = true;
+      timerConfig = {
+        OnCalendar = "daily";
+        Persistent = true;
+      };
+    };
   };
 }

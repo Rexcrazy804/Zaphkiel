@@ -17,9 +17,8 @@
     };
   };
 
-
   config = lib.mkIf (config.servModule.minecraft.enable && config.servModule.enable) {
-    users.users.minecraft.packages = [ pkgs.rconc ];
+    users.users.minecraft.packages = [pkgs.rconc];
     nixpkgs.overlays = [inputs.nix-minecraft.overlay];
 
     # allows geyser proxy for hollyj

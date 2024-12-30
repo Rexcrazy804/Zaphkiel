@@ -1,4 +1,9 @@
-{pkgs, config, lib, ...}: let 
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
   script = pkgs.writeShellScriptBin "rcon-backup" ''
     function rcon {
         ${lib.getExe pkgs.rconc} hollyj "$1"
@@ -21,13 +26,12 @@
     ## Delete older backups
     find ~/backups/hollyj -type f -mtime +7 -name 'backup-*.tar.gz' -delete
   '';
-
 in {
   config = lib.mkIf (config.servModule.minecraft.enable && config.servModule.enable) {
     systemd.services.mc-hollyj-backup = {
       enable = true;
       description = "Backup minecraft world data to backup folder";
-      serviceConfig = { 
+      serviceConfig = {
         User = "minecraft";
         Type = "oneshot";
         ExecStart = "${script}/bin/rcon-backup";

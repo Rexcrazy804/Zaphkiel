@@ -1,4 +1,8 @@
-{pkgs, config, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   services.minecraft-servers = {
     servers.hollyj = {
       package = pkgs.fabricServers.fabric-1_21_4;

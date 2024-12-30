@@ -32,4 +32,5 @@ in {
   "media_kok_exquisite.age".publicKeys = users.rexies;
 
   "bak_sak.age".publicKeys = users.rexies;
+  "mc_rcon.age".publicKeys = users.rexies ++ hosts.Seraphine;
 }

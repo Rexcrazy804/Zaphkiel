@@ -40,6 +40,7 @@ in {
     systemd.timers.mc-hollyj-backup = {
       description = "Timer to regularly backup the mc server";
       enable = true;
+      wantedBy = ["timers.target"];
       timerConfig = {
         OnCalendar = "daily";
         Persistent = true;

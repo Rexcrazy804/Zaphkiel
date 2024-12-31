@@ -94,6 +94,11 @@
             url = "https://cdn.modrinth.com/data/yn9u3ypm/versions/o2f2Idvu/graves-3.6.0%2B1.21.4.jar";
             hash = "sha256-BStX6+EBPlmCpyZlEunBjy4E7DYc/EJCPCg0PnVSu9E=";
           };
+
+          Pl3xMap = pkgs.fetchurl {
+            url = "https://cdn.modrinth.com/data/34T8oVNY/versions/SdgU0i4e/Pl3xMap-1.21.4-520.jar";
+            hash = "sha256-HvJpMK7esmPXo9aIacsNJ7QV4+uWGyOoX5DKIAPCNkY=";
+          };
         });
       };
     };

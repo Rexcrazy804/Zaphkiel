@@ -62,11 +62,6 @@
             hash = "sha256-lPGVgZsk5dpk7/3J2hXN2Eg2zHXo/w/QmLq2vC9J4/4=";
           };
 
-          Geyser = pkgs.fetchurl {
-            url = "https://cdn.modrinth.com/data/wKkoqHrH/versions/5fXHHtpx/geyser-fabric-Geyser-Fabric-2.6.0-b738.jar";
-            hash = "sha256-P2n2vUfpQXSXs3XiFqabMnkoDtStXrtidcryrsRNrzE=";
-          };
-
           Lithium = pkgs.fetchurl {
             url = "https://cdn.modrinth.com/data/gvQqBUqZ/versions/t1FlWYl9/lithium-fabric-0.14.3%2Bmc1.21.4.jar";
             hash = "sha256-LJFVhw/3MnsPnYTHVZbM3xJtne1lV5twuYeqZSMZEn4=";
@@ -80,6 +75,11 @@
           AlternateCurrent = pkgs.fetchurl {
             url = "https://cdn.modrinth.com/data/r0v8vy1s/versions/ponAdJiF/alternate-current-mc1.21.2-1.9.0.jar";
             hash = "sha256-qP6ZRyf5MIkgZl03XeJwjwMwqcA2kildKNY5QyAcPus=";
+          };
+
+          ModernFix = pkgs.fetchurl {
+            url = "https://cdn.modrinth.com/data/nmDcB62a/versions/gx7PIV8n/modernfix-fabric-5.20.1%2Bmc1.21.4.jar";
+            hash = "sha256-yDjUaCH3wW/e5ccG4tpeO4JkMJScj8EbDSvQTlLVu+s=";
           };
 
           # CRASH
@@ -129,7 +129,6 @@
             url = "https://cdn.modrinth.com/data/ZVzW5oNS/versions/7mVvV9Th/Incendium_1.21.x_v5.4.4.jar";
             hash = "sha256-KFpPaf4jkfIXX3/JMW1yejnHm90hSSPFkoTVabzmVvQ=";
           };
-
         });
       };
     };

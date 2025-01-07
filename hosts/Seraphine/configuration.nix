@@ -62,5 +62,10 @@
   # minecraft server
   services.minecraft-servers.servers.hollyj.serverProperties.max-players = lib.mkForce 8;
 
+  # Resolves wifi connectivity issues on Seraphine
+  boot.extraModprobeConfig = lib.concatStringsSep "\n" [
+    "options iwlwifi 11n_disable=1"
+  ];
+
   system.stateVersion = "24.05";
 }

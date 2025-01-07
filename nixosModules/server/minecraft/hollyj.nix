@@ -77,10 +77,18 @@
             hash = "sha256-qP6ZRyf5MIkgZl03XeJwjwMwqcA2kildKNY5QyAcPus=";
           };
 
-          ModernFix = pkgs.fetchurl {
-            url = "https://cdn.modrinth.com/data/nmDcB62a/versions/gx7PIV8n/modernfix-fabric-5.20.1%2Bmc1.21.4.jar";
-            hash = "sha256-yDjUaCH3wW/e5ccG4tpeO4JkMJScj8EbDSvQTlLVu+s=";
-          };
+          # Supected for Multiple Server Overloads .w.
+          # ModernFix = pkgs.fetchurl {
+          #   url = "https://cdn.modrinth.com/data/nmDcB62a/versions/gx7PIV8n/modernfix-fabric-5.20.1%2Bmc1.21.4.jar";
+          #   hash = "sha256-yDjUaCH3wW/e5ccG4tpeO4JkMJScj8EbDSvQTlLVu+s=";
+          # };
+
+          # More Ram use .w. dk too lazy for this
+          # Minecord = pkgs.fetchurl {
+          #   url = "https://cdn.modrinth.com/data/DoVQa3oa/versions/VczzsOxU/minecord-2.1.0%2B1.21.3.jar";
+          #   hash = "sha256-yDjUaCH3wW/e5ccG4tpeO4JkMJScj8EbDSvQTlLVu+s=";
+          # };
+          
 
           # CRASH
           # ScalableLux = pkgs.fetchurl {

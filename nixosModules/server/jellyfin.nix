@@ -25,18 +25,23 @@ in {
       package = pkgs.transmission_4;
 
       openRPCPort = true;
+      openPeerPorts = true;
       openFirewall = true;
 
       settings = {
+        rpc-bind-address = "0.0.0.0";
         anti-brute-force-enabled = true;
         rpc-authentication-required = true;
+        # rpc-port = 8090:
         watch-dir-enabled = false;
         peer-port-random-on-start = true;
         incomplete-dir-enabled = false;
 
         download-dir = multimediaDir + "/Downloads";
-        peer-limit-global = 400;
-        peer-limit-per-torrent = 200;
+        peer-limit-global = 200;
+        peer-limit-per-torrent = 100;
+        ratio-limit = 2.0;
+        ratio-limit-enabled = true;
       };
       credentialsFile = config.age.secrets.transJson.path;
     };

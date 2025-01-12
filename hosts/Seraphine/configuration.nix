@@ -25,7 +25,7 @@
     };
     openssh.enable = true;
     jellyfin.enable = true;
-    minecraft.enable = true;
+    minecraft.enable = false;
   };
 
   progModule = {

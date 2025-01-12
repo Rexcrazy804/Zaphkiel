@@ -38,8 +38,8 @@ in {
         incomplete-dir-enabled = false;
 
         download-dir = multimediaDir + "/Downloads";
-        peer-limit-global = 200;
-        peer-limit-per-torrent = 100;
+        peer-limit-global = 2000;
+        peer-limit-per-torrent = 300;
         ratio-limit = 2.0;
         ratio-limit-enabled = true;
       };

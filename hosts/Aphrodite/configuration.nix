@@ -1,4 +1,4 @@
-{lib, pkgs, ...}: {
+{lib, pkgs, config, ...}: {
   imports = [
     ./hardware-configuration.nix
     ../../nixosModules/server
@@ -38,14 +38,13 @@
     minecraft.enable = false;
   };
 
+  # tailscale
+  age.secrets.tailAuth.file = ../../secrets/secret8.age;
+  services.tailscale.authKeyFile = config.age.secrets.tailAuth.path;
+
   services.openssh.settings = {
     PasswordAuthentication = lib.mkForce true;
   };
-
-  users.users.root.initialPassword = "verycoolpassword";
-  users.users.root.openssh.authorizedKeys.keys = [
-    ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICZvsZTvR5wQedjnuSoz9p7vK7vLxCdfOdRFmbfQ7GUd rexies@Seraphine''
-  ];
 
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs) git ripgrep fd;

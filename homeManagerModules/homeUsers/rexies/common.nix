@@ -7,7 +7,5 @@
 
   home.packages = with pkgs; [
     btop
-    filelight
-    plasma-panel-colorizer
   ];
 }

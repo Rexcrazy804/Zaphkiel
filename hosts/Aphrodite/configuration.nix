@@ -1,4 +1,4 @@
-{lib, ...}: {
+{lib, pkgs, inputs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ../../nixosModules/server
@@ -31,7 +31,7 @@
     tailscale = {
       enable = true;
       exitNode.enable = true;
-      exitNode.networkDevice = "wlp1s0";
+      exitNode.networkDevice = "ens18";
     };
     openssh.enable = true;
     jellyfin.enable = false;
@@ -40,12 +40,17 @@
 
   services.openssh.settings = {
     PasswordAuthentication = lib.mkForce true;
-    PermitRootLogin = lib.mkForce "yes";
   };
 
   users.users.root.initialPassword = "verycoolpassword";
   users.users.root.openssh.authorizedKeys.keys = [
     ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICZvsZTvR5wQedjnuSoz9p7vK7vLxCdfOdRFmbfQ7GUd rexies@Seraphine''
   ];
+
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs) git ripgrep fd;
+    nixvim = inputs.nixvim.packages.${pkgs.system}.default;
+  };
+
   system.stateVersion = "23.11";
 }

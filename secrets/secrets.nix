@@ -17,9 +17,12 @@ let
     Seraphine = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID2iNLNXkHv5CXeKy7zhR/bbJ/3SKjp/g/i6l09rjFdZ"
     ];
+    Aphrodite = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILfTXG9nFMbm3Gwkx+RT4ift402Q6sQiQrAKdl3lN3C5"
+    ];
   };
 in {
-  "secret1.age".publicKeys = users.rexies;
+  "secret1.age".publicKeys = users.rexies ++ hosts.Aphrodite;
   "secret2.age".publicKeys = hosts.Zaphkiel;
   "secret3.age".publicKeys = hosts.Raphael;
   "secret4.age".publicKeys = users.rexies;

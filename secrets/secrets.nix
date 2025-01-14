@@ -4,6 +4,7 @@ let
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICELSL45m4ptWDZwQDi2AUmCgt4n93KsmZtt69fyb0vy"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHZTLQQzgCvdaAPdxUkpytDHgwd8K1N1IWtriY4tWSvn"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICZvsZTvR5wQedjnuSoz9p7vK7vLxCdfOdRFmbfQ7GUd rexies@Seraphine"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHhkSRUQLV7JpjtPdbFR8vXnJhLhSfbh3vL+j9v/5Bv/ rexies@Aphrodite"
     ];
   };
 
@@ -17,6 +18,9 @@ let
     Seraphine = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID2iNLNXkHv5CXeKy7zhR/bbJ/3SKjp/g/i6l09rjFdZ"
     ];
+    Aphrodite = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILfTXG9nFMbm3Gwkx+RT4ift402Q6sQiQrAKdl3lN3C5"
+    ];
   };
 in {
   "secret1.age".publicKeys = users.rexies;
@@ -26,6 +30,7 @@ in {
   "secret5.age".publicKeys = hosts.Seraphine;
   "secret6.age".publicKeys = users.rexies;
   "secret7.age".publicKeys = hosts.Seraphine;
+  "secret8.age".publicKeys = hosts.Aphrodite;
 
   "media_kok.age".publicKeys = users.rexies;
   "media_robin.age".publicKeys = hosts.Zaphkiel ++ hosts.Raphael ++ users.rexies;

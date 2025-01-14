@@ -25,5 +25,7 @@
 
   home.packages = [
     pkgs.rconc
+    pkgs.filelight
+    pkgs.plasma-panel-colorizer
   ];
 }

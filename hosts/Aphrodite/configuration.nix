@@ -1,4 +1,4 @@
-{lib, pkgs, config, inputs, ...}: {
+{lib, pkgs, config, ...}: {
   imports = [
     ./hardware-configuration.nix
     ../../nixosModules/server
@@ -48,7 +48,6 @@
 
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs) git ripgrep fd;
-    nixvim = inputs.nixvim.packages.${pkgs.system}.default;
   };
 
   system.stateVersion = "23.11";

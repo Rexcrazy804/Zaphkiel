@@ -1,11 +1,16 @@
-{pkgs, ...}: {
+{pkgs, lib, ...}: {
   networking = {
+    # DNS
     nameservers = [
       "1.1.1.1"
       "1.0.0.1"
       "2606:4700:4700::1111" 
       "2606:4700:4700::1001" 
     ];
+    # don't resolve dns over dhcpd or networkmanager
+    dhcpcd.extraConfig = "nohook resolv.conf";
+    networkmanager.dns = lib.mkForce "none";
+
     nftables.enable = true;
     networkmanager = {
       enable = true;

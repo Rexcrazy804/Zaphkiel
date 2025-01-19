@@ -5,7 +5,7 @@
     ./audio.nix
     ./fonts.nix
     ./locales.nix
-    ./networking.nix
+    ./networking
     ./services.nix
   ];
 }

@@ -9,13 +9,15 @@
     ../../nixosModules/server
     ../../nixosModules/nix
     ../../nixosModules/programs/age.nix
+    ../../nixosModules/system/networking/dnsproxy2.nix
   ];
 
   boot.tmp.cleanOnBoot = true;
   networking.hostName = "Aphrodite";
   networking.domain = "divinity.org";
+
+
   networking = {
-    nameservers = ["1.1.1.1, 1.0.0.1"];
     interfaces = {
       ens18.ipv4.addresses = [
         {

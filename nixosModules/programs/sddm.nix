@@ -22,21 +22,56 @@
           themeConfig = {
             Background = "${cfg.wallpaper}";
             PartialBlur = "true";
-            BlurRadius = "13";
-            ForceHideVirtualKeyboardButton = "true";
+            Blur = 0.0;
             FormPosition = "right";
+            HideLoginButton = true;
+            HideVirtualKeyboard = true;
+            # RoundCorners = 0;
 
-            AccentColor = "\"#313FAB\"";
-            placeholderColor = "\"#192E59\"";
+            # COLORS
+            # LoginButtonBackgroundColor="#313FAB";
+            # HoverVirtualKeyboardButtonTextColor="#313FAB";
+            HoverUserIconColor="#313FAB";
+            HoverPasswordIconColor="#313FAB";
+            HoverSystemButtonsIconsColor="#313FAB";
+            HoverSessionButtonTextColor="#313FAB";
 
-            # MainColor="#F8F8F2";
-            # OverrideTextFieldColor="";
+            # Extra stuff for fine tuning colors (maybe later)
+            # HeaderTextColor="#ffffff";
+            # DateTextColor="#ffffff";
+            # TimeTextColor="#ffffff";
+            # FormBackgroundColor="#21222C";
             # BackgroundColor="#21222C";
-            # IconColor="#ffffff";
-            # OverrideLoginButtonTextColor="";
+            # DimBackgroundColor="#21222C";
+
+            # LoginFieldBackgroundColor="#222222";
+            # PasswordFieldBackgroundColor="#222222";
+            # LoginFieldTextColor="#ffffff";
+            # PasswordFieldTextColor="#ffffff";
+            # UserIconColor="#ffffff";
+            # PasswordIconColor="#ffffff";
+
+            # PlaceholderTextColor="#bbbbbb";
+            # WarningColor="#343746";
+
+            # LoginButtonTextColor="#ffffff";
+            # SystemButtonsIconsColor="#F8F8F2";
+            # SessionButtonTextColor="#F8F8F2";
+            # VirtualKeyboardButtonTextColor="#F8F8F2";
+
+            # DropdownTextColor="#ffffff";
+            # DropdownSelectedBackgroundColor="#343746";
+            # DropdownBackgroundColor="#21222C";
+
+            # HighlightTextColor="#bbbbbb";
+            # HighlightBackgroundColor="#343746";
+            # HighlightBorderColor="#343746";
           };
         };
-      in [sddm-astronaut];
+      in [
+        sddm-astronaut
+        pkgs.kdePackages.qtmultimedia
+      ];
 
       services.displayManager.sddm = {
         enable = lib.mkDefault true;

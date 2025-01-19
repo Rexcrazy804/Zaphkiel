@@ -26,7 +26,7 @@
     # will figure out a better way to do it later
     networking.firewall = {
       allowedUDPPorts = [19132];
-      allowedTCPPorts = [ 8080 ];
+      allowedTCPPorts = [8080];
     };
 
     # mongodb :< [EasyAuth]

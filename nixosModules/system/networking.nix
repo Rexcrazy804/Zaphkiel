@@ -1,11 +1,15 @@
-{pkgs, lib, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   networking = {
     # DNS
     nameservers = [
       "1.1.1.1"
       "1.0.0.1"
-      "2606:4700:4700::1111" 
-      "2606:4700:4700::1001" 
+      "2606:4700:4700::1111"
+      "2606:4700:4700::1001"
     ];
     # don't resolve dns over dhcpd or networkmanager
     dhcpcd.extraConfig = "nohook resolv.conf";
@@ -27,7 +31,6 @@
     };
   };
 
-
   services.dnscrypt-proxy2 = {
     enable = true;
     settings = {
@@ -44,7 +47,7 @@
       };
 
       # You can choose a specific set of servers from https://github.com/DNSCrypt/dnscrypt-resolvers/blob/master/v3/public-resolvers.md
-      server_names = [ 
+      server_names = [
         "cloudflare-security"
         "cloudflare-security-ipv6"
       ];

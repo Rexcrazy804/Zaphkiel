@@ -88,7 +88,6 @@
           #   url = "https://cdn.modrinth.com/data/DoVQa3oa/versions/VczzsOxU/minecord-2.1.0%2B1.21.3.jar";
           #   hash = "sha256-yDjUaCH3wW/e5ccG4tpeO4JkMJScj8EbDSvQTlLVu+s=";
           # };
-          
 
           # CRASH
           # ScalableLux = pkgs.fetchurl {

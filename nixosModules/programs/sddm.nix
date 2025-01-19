@@ -31,10 +31,10 @@
             # COLORS
             # LoginButtonBackgroundColor="#313FAB";
             # HoverVirtualKeyboardButtonTextColor="#313FAB";
-            HoverUserIconColor="#313FAB";
-            HoverPasswordIconColor="#313FAB";
-            HoverSystemButtonsIconsColor="#313FAB";
-            HoverSessionButtonTextColor="#313FAB";
+            HoverUserIconColor = "#313FAB";
+            HoverPasswordIconColor = "#313FAB";
+            HoverSystemButtonsIconsColor = "#313FAB";
+            HoverSessionButtonTextColor = "#313FAB";
 
             # Extra stuff for fine tuning colors (maybe later)
             # HeaderTextColor="#ffffff";

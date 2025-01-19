@@ -23,4 +23,7 @@
     frequency = "weekly";
     options = "--delete-older-than 7d";
   };
+
+  # https://nixos.wiki/wiki/Bluetooth [enabled mpris proxy for wireless buttons]
+  services.mpris-proxy.enable = true;
 }

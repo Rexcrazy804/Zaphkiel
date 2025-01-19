@@ -54,7 +54,7 @@
     };
   };
   systemd.services.dnscrypt-proxy2.serviceConfig = {
-    StateDirectory = "dnscrypt-proxy";
+    StateDirectory = lib.mkForce "dnscrypt-proxy2";
   };
 
   # Bluetooth
@@ -62,11 +62,5 @@
     enable = true;
     powerOnBoot = true;
     settings.General.Experimental = true;
-  };
-  systemd.user.services.mpris-proxy = {
-    description = "Mpris proxy";
-    after = ["network.target" "sound.target"];
-    wantedBy = ["default.target"];
-    serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
   };
 }

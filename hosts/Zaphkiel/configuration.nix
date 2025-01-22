@@ -21,7 +21,7 @@
         enable = true;
         igpu = {
           vendor = "amd";
-          port = "PCI:5:0:0";
+          port = "PCI:6:0:0";
         };
         dgpu.port = "PCI:1:0:0";
       };
@@ -34,6 +34,15 @@
     immich.enable = false;
     openssh.enable = true;
   };
+
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+
+  };
+
 
   age.secrets.wallpaper = {
     file = ../../secrets/media_robin.age;

@@ -16,7 +16,6 @@
   networking.hostName = "Aphrodite";
   networking.domain = "divinity.org";
 
-
   networking = {
     interfaces = {
       ens18.ipv4.addresses = [

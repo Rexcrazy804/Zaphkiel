@@ -26,5 +26,5 @@
 
   # https://nixos.wiki/wiki/Bluetooth [enabled mpris proxy for wireless buttons]
   # [enable this for each specific device that needs it than globally]
-  # services.mpris-proxy.enable = true; 
+  # services.mpris-proxy.enable = true;
 }

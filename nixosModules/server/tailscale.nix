@@ -38,7 +38,7 @@
           ];
       };
 
-      services.resolved.enable = true;
+      # services.resolved.enable = true;
 
       # optimization for tailscale exitnode
       services = {

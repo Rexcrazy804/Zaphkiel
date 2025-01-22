@@ -1,8 +1,16 @@
-{lib, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   # don't resolve dns over dhcpd or networkmanager
   networking = {
     dhcpcd.extraConfig = "nohook resolv.conf";
     networkmanager.dns = lib.mkForce "none";
+    nameservers = [
+      "::1"
+      "127.0.0.1"
+    ];
   };
 
   services.dnscrypt-proxy2 = {

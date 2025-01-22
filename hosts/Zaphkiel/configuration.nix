@@ -90,11 +90,11 @@
   '';
 
   # Sway
-  programs.sway.enable = true;
-  security.polkit.enable = true;
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    xdgOpenUsePortal = true;
-  };
+  # programs.sway.enable = true;
+  # security.polkit.enable = true;
+  # xdg.portal = {
+  #   enable = true;
+  #   wlr.enable = true;
+  #   xdgOpenUsePortal = true;
+  # };
 }

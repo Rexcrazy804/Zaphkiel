@@ -5,7 +5,7 @@
 
   packages = {
     firefox.enable = true;
-    sway.enable = true;
+    sway.enable = false;
     alacritty.enable = true;
     discord.enable = true;
     obs.enable = true;

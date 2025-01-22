@@ -16,12 +16,9 @@
         },
         {
           "foreground": "#bc93ff",
-          "properties": {
-            "time_format": "Monday <#ffffff>at</> 3:04 PM"
-          },
           "style": "diamond",
-          "template": " {{ .CurrentDate | date .Format }} ",
-          "type": "time"
+          "template": " {{ .HostName }}",
+          "type": "session"
         },
         {
           "foreground": "#ee79d1",

@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   config,
   ...
 }: {
@@ -13,11 +14,26 @@
     ];
   };
 
-  services.dnscrypt-proxy2 = {
+  services.dnscrypt-proxy2 = let
+    forwarding-rules = pkgs.writeTextFile {
+      name = "forwarding-rules.txt";
+      text = ''
+        ts.net 100.100.100.100
+      '';
+    };
+  in {
     enable = true;
     settings = {
+      ipv4_servers = true;
       ipv6_servers = true;
+      doh_servers = true;
       require_dnssec = true;
+      forwarding_rules = forwarding-rules;
+
+      listen_addresses = [
+        "127.0.0.1:53"
+        "[::1]:53"
+      ];
 
       sources.public-resolvers = {
         urls = [

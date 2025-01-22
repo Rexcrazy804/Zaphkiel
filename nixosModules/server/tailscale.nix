@@ -28,14 +28,11 @@
         enable = true;
         openFirewall = true;
         useRoutingFeatures = "both";
-        extraSetFlags =
-          [
-            "--advertise-exit-node"
-            "--webclient"
-          ]
-          ++ [
-            ("--accept-dns" + lib.optionalString (! cfg.exitNode.enable) "=false")
-          ];
+        extraSetFlags = [
+          "--advertise-exit-node"
+          "--webclient"
+          "--accept-dns=false"
+        ];
       };
 
       # services.resolved.enable = true;

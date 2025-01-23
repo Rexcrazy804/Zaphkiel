@@ -40,9 +40,7 @@
     autoStart = true;
     capSysAdmin = true;
     openFirewall = true;
-
   };
-
 
   age.secrets.wallpaper = {
     file = ../../secrets/media_robin.age;

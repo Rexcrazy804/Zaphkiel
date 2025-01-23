@@ -28,6 +28,18 @@
     };
   };
 
+  # forward dns onto the tailnet
+  networking.firewall.allowedTCPPorts = [53];
+  networking.firewall.allowedUDPPorts = [53];
+  services.dnscrypt-proxy2.settings = {
+    listen_addresses = [
+      "100.99.174.18:53"
+      "[fd7a:115c:a1e0::5d01:ae12]:53"
+      "127.0.0.1:53"
+      "[::1]:53"
+    ];
+  };
+
   servModule = {
     enable = true;
     tailscale.enable = true;

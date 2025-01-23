@@ -36,6 +36,18 @@
     # anime-games.enable = true;
   };
 
+  # forward dns onto the tailnet
+  networking.firewall.allowedTCPPorts = [53];
+  networking.firewall.allowedUDPPorts = [53];
+  services.dnscrypt-proxy2.settings = {
+    listen_addresses = [
+      "100.112.116.17:53"
+      "[fd7a:115c:a1e0::eb01:7412]:53"
+      "127.0.0.1:53"
+      "[::1]:53"
+    ];
+  };
+
   # tailscale
   age.secrets.tailAuth.file = ../../secrets/secret5.age;
   services.tailscale.authKeyFile = config.age.secrets.tailAuth.path;

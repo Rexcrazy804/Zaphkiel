@@ -21,8 +21,14 @@
       ipv6_servers = true;
       doh_servers = true;
       require_dnssec = true;
+
       forwarding_rules = pkgs.writeText "forwarding_rules.txt" ''
         ts.net 100.100.100.100
+      '';
+
+      cloaking_rules = pkgs.writeText "cloaking_rules.txt" ''
+        mc.modded.maria.net 34.91.97.127
+        mc.vanilla.maria.net 34.141.241.246
       '';
 
       listen_addresses = [

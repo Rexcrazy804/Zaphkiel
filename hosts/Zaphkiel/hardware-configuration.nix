@@ -17,7 +17,7 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd" "zenpower"];
   boot.blacklistedKernelModules = ["k10temp"];
-  boot.kernelParams = ["idle=nowwait" "iommu=pt"];
+  # boot.kernelParams = ["idle=nowwait" "iommu=pt"];
   boot.extraModulePackages = with config.boot.kernelPackages; [lenovo-legion-module zenpower];
 
   fileSystems."/" = {

@@ -45,6 +45,7 @@
   age.secrets.wallpaper = {
     file = ../../secrets/media_robin.age;
     name = "wallpaper.jpg";
+    mode = "644";
   };
 
   progModule = {

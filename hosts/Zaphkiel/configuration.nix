@@ -47,6 +47,8 @@
     openssh.enable = true;
   };
 
+  # services.openssh.settings.X11Forwarding = true;
+
   services.sunshine = {
     enable = true;
     autoStart = true;

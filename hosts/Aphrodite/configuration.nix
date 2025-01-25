@@ -61,7 +61,13 @@
   services.tailscale.authKeyFile = config.age.secrets.tailAuth.path;
 
   services.openssh.settings = {
-    PasswordAuthentication = lib.mkForce true;
+    PasswordAuthentication = lib.mkForce false;
+  };
+
+  # user
+  age.secrets.rexiesPass = lib.mkForce {
+    file = ../secrets/secret9.age;
+    owner = "rexies";
   };
 
   environment.systemPackages = builtins.attrValues {

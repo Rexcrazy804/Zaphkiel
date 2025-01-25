@@ -101,18 +101,32 @@
 
         # helping out the homies
         def snowupdate [] {
-          let original = open ~/nixos/flake.lock | str join
-          nix flake update --flake ~/nixos
-          let new = open ~/nixos/flake.lock | str join
-          if $original != $new {
-            # Right now if you ctrl + c out of snowfall you will not apply the
-            # updates but the next time you run snowupdate it will say no updates
-            # so if you ctrl + c out of snowfall when running snowupdate just
-            # snowfall instead
+          let update_file = '~/nixos/updating';
+          mut should_update = $update_file | path exists;
+
+          if not ($should_update) {
+            let original = open ~/nixos/flake.lock | str join
+            nix flake update --flake ~/nixos
+            let new = open ~/nixos/flake.lock | str join
+            if $original != $new {
+              $should_update = true;
+              touch ~/nixos/updating;
+            }
+          }
+
+          if $should_update {
             print "Updates found :)\nRunning snowfall..."
-            # snowfall [the actuall command the alias runs]
-            sudo nixos-rebuild switch --flake ~/nixos/#${hostname}
-            print "Update Complete :D"
+            do { 
+              ^sudo nixos-rebuild switch --flake ~/nixos/#${hostname} 
+            }
+
+            if ($env.LAST_EXIT_CODE == 0) {
+              print "Update Complete :D"
+            } else {
+              print "Update Failed :<"
+            }
+
+            rm ~/nixos/updating
           } else {
             print "Nothing to update :<"
           }

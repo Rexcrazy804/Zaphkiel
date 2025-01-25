@@ -56,20 +56,6 @@
     minecraft.enable = false;
   };
 
-  # tailscale
-  age.secrets.tailAuth.file = ../../secrets/secret8.age;
-  services.tailscale.authKeyFile = config.age.secrets.tailAuth.path;
-
-  services.openssh.settings = {
-    PasswordAuthentication = lib.mkForce false;
-  };
-
-  # user
-  age.secrets.rexiesPass = lib.mkForce {
-    file = ../secrets/secret9.age;
-    owner = "rexies";
-  };
-
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs) git ripgrep fd;
   };

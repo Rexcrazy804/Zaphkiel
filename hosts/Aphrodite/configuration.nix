@@ -56,6 +56,18 @@
     minecraft.enable = false;
   };
 
+  # allow ssh only on the tailnet [only bind to the addresses]
+  services.openssh.listenAddresses = [
+    { 
+      addr = "100.121.86.4"; 
+      port = 22; 
+    }
+    { 
+      addr = "fd7a:115c:a1e0::6e01:5604";
+      port = 22;
+    }
+  ];
+
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs) git ripgrep fd;
   };

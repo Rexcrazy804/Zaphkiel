@@ -52,6 +52,7 @@
       exitNode.networkDevice = "ens18";
     };
     openssh.enable = true;
+    fail2ban.enable = true;
     jellyfin.enable = false;
     minecraft.enable = false;
   };

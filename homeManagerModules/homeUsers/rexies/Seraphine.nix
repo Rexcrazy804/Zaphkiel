@@ -21,7 +21,7 @@
     multimedia.enable = true;
   };
 
-  programs.alacritty.settings.font.size = lib.mkIf config.packages.sway.enable 12;
+  programs.alacritty.settings.font.size = lib.mkForce 13;
 
   home.packages = [
     pkgs.rconc

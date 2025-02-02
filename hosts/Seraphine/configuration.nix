@@ -63,6 +63,8 @@
     partition-manager.enable = true;
     kdeconnect.enable = true;
   };
+  programs.adb.enable = true;
+  users.users.rexies.extraGroups = [ "adbusers" "kvm"];
 
   # KDE
   services.desktopManager.plasma6.enable = true;

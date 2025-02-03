@@ -29,6 +29,16 @@
       cloaking_rules = pkgs.writeText "cloaking_rules.txt" ''
         mc.modded.maria.net 34.91.97.127
         mc.vanilla.maria.net 34.141.241.246
+
+        seraphine fd7a:115c:a1e0::eb01:7412
+        aphrodite fd7a:115c:a1e0::6e01:5604
+        zaphkiel fd7a:115c:a1e0::5d01:ae12
+        raphael fd7a:115c:a1e0::5801:e445
+
+        bread fd7a:115c:a1e0::2d01:be72
+        erza fd7a:115c:a1e0::b101:2875
+        orion fd7a:115c:a1e0::2a01:6c27
+        vortex fd7a:115c:a1e0::5801:637
       '';
 
       listen_addresses = [

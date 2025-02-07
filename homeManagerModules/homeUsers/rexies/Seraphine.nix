@@ -27,5 +27,9 @@
     pkgs.rconc
     pkgs.filelight
     pkgs.plasma-panel-colorizer
+    (pkgs.catppuccin-kde.override {
+      flavour = ["mocha"];
+      accents = ["pink"];
+    })
   ];
 }

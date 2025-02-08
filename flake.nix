@@ -97,7 +97,7 @@
 
           # every user in this list must have a username.nix under users/
           # and another homeManagerModules/Users/
-          users = ["rexies"];
+          users = ["rexies" "sivanis"];
         };
         modules = [
           ./hosts/Aphrodite/configuration.nix

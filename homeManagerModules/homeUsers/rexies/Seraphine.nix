@@ -9,27 +9,27 @@
   ];
 
   packages = {
-    firefox.enable = true;
+    firefox.enable = false;
     alacritty.enable = false;
-    discord.enable = true;
+    discord.enable = false;
     mpv.enable = true;
     sway.enable = false;
   };
 
   packageGroup = {
-    wine.enable = true;
-    multimedia.enable = true;
+    wine.enable = false;
+    multimedia.enable = false;
   };
 
   programs.alacritty.settings.font.size = lib.mkForce 13;
 
-  home.packages = [
-    pkgs.rconc
-    pkgs.filelight
-    pkgs.plasma-panel-colorizer
-    (pkgs.catppuccin-kde.override {
-      flavour = ["mocha"];
-      accents = ["pink"];
-    })
-  ];
+  # home.packages = [
+  #   pkgs.rconc
+  #   pkgs.filelight
+  #   pkgs.plasma-panel-colorizer
+  #   (pkgs.catppuccin-kde.override {
+  #     flavour = ["mocha"];
+  #     accents = ["pink"];
+  #   })
+  # ];
 }

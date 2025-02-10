@@ -17,7 +17,13 @@ in {
     hashedPasswordFile = config.age.secrets.rexiesPass.path;
 
     # only declare common packages here
+    # others: hosts/<hostname>/user-configuration.nix
     packages = [
+      pkgs.btop
+      (pkgs.wrappedPkgs.git.override {
+        username = description;
+        email = "37258415+Rexcrazy804@users.noreply.github.com";
+      })
     ];
 
     openssh.authorizedKeys.keys = [

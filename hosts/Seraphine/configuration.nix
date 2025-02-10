@@ -7,6 +7,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
+    ./user-configuration.nix
   ];
 
   networking.hostName = "Seraphine";
@@ -84,11 +85,12 @@
 
   system.stateVersion = "24.05";
 
-  users.users."rexies".packages = [
-    (pkgs.wrappedPkgs.alacritty.override {
-      extra-config = {
-        font.size = 13.0;
-      };
-    })
-  ];
+  # maybe move this into its own module idk
+  environment.systemPackages = [ pkgs.firefoxpwa ];
+  programs.firefox = {
+    enable = true;
+    nativeMessagingHosts.packages = [
+      pkgs.firefoxpwa
+    ];
+  };
 }

@@ -3,6 +3,7 @@
     wrappedPkgs = {
       alacritty = final.callPackage ./alacritty {};
       nushell = final.callPackage ./nushell {};
+      git = final.callPackage ./git {};
     };
   };
 in {

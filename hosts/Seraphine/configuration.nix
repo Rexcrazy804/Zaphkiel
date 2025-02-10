@@ -64,7 +64,7 @@
     kdeconnect.enable = true;
   };
   programs.adb.enable = true;
-  users.users.rexies.extraGroups = [ "adbusers" "kvm"];
+  users.users.rexies.extraGroups = ["adbusers" "kvm"];
   services.displayManager.autoLogin.user = "rexies";
 
   # KDE

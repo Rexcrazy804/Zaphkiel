@@ -1,7 +1,10 @@
-{ 
+{
   # nothing here yet will needa add sources probably
 }:
-/*nu*/ ''
+/*
+nu
+*/
+''
   load-env {
       "EDITOR": "/run/current-system/sw/bin/nvim"
   }

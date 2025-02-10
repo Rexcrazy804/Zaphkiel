@@ -1,22 +1,23 @@
 {
-  pkgs, 
+  pkgs,
   lib,
-  extra-config ? {}
-}: let 
+  extra-config ? {},
+}: let
   config = lib.recursiveUpdate (import ./config.nix) extra-config;
   config_file = pkgs.writers.writeTOML "alacritty.toml" config;
-in pkgs.symlinkJoin {
-  name = "alacritty";
-  paths = [
-    pkgs.alacritty
-  ];
+in
+  pkgs.symlinkJoin {
+    name = "alacritty";
+    paths = [
+      pkgs.alacritty
+    ];
 
-  buildInputs = [
-    pkgs.makeWrapper
-  ];
+    buildInputs = [
+      pkgs.makeWrapper
+    ];
 
-  postBuild = ''
-    wrapProgram $out/bin/alacritty \
-    --append-flags '--config-file ${config_file}'
-  '';
-}
+    postBuild = ''
+      wrapProgram $out/bin/alacritty \
+      --append-flags '--config-file ${config_file}'
+    '';
+  }

@@ -1,8 +1,8 @@
 {
-users,
-lib,
-config,
-...
+  users,
+  lib,
+  config,
+  ...
 }: {
   options = {
     servModule.fail2ban = {
@@ -21,14 +21,14 @@ config,
       ];
 
       # Ban IPs for one day on the first ban
-      bantime = "48h"; 
+      bantime = "48h";
       bantime-increment = {
-        enable = true; 
+        enable = true;
         formula = "ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)";
         # multipliers = "1 2 4 8 16 32 64 128"; # same functionality as above
         # Do not ban for more than 10 weeks
-        maxtime = "1680h"; 
-        overalljails = true; 
+        maxtime = "1680h";
+        overalljails = true;
       };
 
       # I only require the sshd jail [provided by default on nixos] so this works for now

@@ -116,8 +116,8 @@
 
           if $should_update {
             print "Updates found :)\nRunning snowfall..."
-            do { 
-              ^sudo nixos-rebuild switch --flake ~/nixos/#${hostname} 
+            do {
+              ^sudo nixos-rebuild switch --flake ~/nixos/#${hostname}
             }
 
             if ($env.LAST_EXIT_CODE == 0) {

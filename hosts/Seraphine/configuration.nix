@@ -86,7 +86,7 @@
   system.stateVersion = "24.05";
 
   # maybe move this into its own module idk
-  environment.systemPackages = [ pkgs.firefoxpwa ];
+  environment.systemPackages = [pkgs.firefoxpwa];
   programs.firefox = {
     enable = true;
     nativeMessagingHosts.packages = [

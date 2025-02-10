@@ -1,28 +1,29 @@
 {
   pkgs,
   lib,
-  anime4k ? false
+  anime4k ? false,
 }: let
-  mpvconf = let 
+  mpvconf = let
     conf = pkgs.writeText "mpv.conf" ''
-        geometry=75%x75%
-        gpu-context=wayland
-        hwdec=auto-safe
-        profile=gpu-hq
-        screenshot-template='%F - [%P] (%#01n)'
-        vo=gpu
+      geometry=75%x75%
+      gpu-context=wayland
+      hwdec=auto-safe
+      profile=gpu-hq
+      screenshot-template='%F - [%P] (%#01n)'
+      vo=gpu
     '';
     shadder = pkgs.writeText "input.conf" (import ./bindings.nix);
-  in pkgs.linkFarm "mods" [
-    {
-      name = "mpv.conf";
-      path = conf;
-    }
-    (lib.optionalAttrs anime4k {
-      name = "input.conf";
-      path = shadder;
-    })
-  ];
+  in
+    pkgs.linkFarm "mods" [
+      {
+        name = "mpv.conf";
+        path = conf;
+      }
+      (lib.optionalAttrs anime4k {
+        name = "input.conf";
+        path = shadder;
+      })
+    ];
 in
   pkgs.symlinkJoin {
     name = "mpv";

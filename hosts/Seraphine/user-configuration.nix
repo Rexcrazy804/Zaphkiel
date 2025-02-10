@@ -4,7 +4,6 @@
       extra-config = {
         font.size = 13.0;
       };
-
     };
 
     mpv = pkgs.wrappedPkgs.mpv.override {
@@ -17,13 +16,14 @@
     };
 
     inherit (pkgs.wineWowPackages) stable;
-    inherit (pkgs) 
-      bottles 
-      winetricks 
+    inherit
+      (pkgs)
+      bottles
+      winetricks
       rconc
       filelight
       plasma-panel-colorizer
-    ;
+      ;
 
     catppucin-kde = pkgs.catppuccin-kde.override {
       flavour = ["mocha"];

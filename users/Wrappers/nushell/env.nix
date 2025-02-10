@@ -12,6 +12,7 @@ nu
     mkdir $zoxide_cache
   }
   ${lib.getExe pkgs.zoxide} init nushell --cmd cd
+  | sed 's/($env | default false __zoxide_hooked | get __zoxide_hooked/\0 | into bool/'
   | save --force $"($zoxide_cache)/init.nu"
 
   let oh_my_posh_cache = $"($env.HOME)/.cache/oh-my-posh"

@@ -16,12 +16,8 @@ in {
     extraGroups = ["networkmanager" "wheel" "multimedia"];
     hashedPasswordFile = config.age.secrets.rexiesPass.path;
 
+    # only declare common packages here
     packages = [
-      (pkgs.wrappedPkgs.alacritty.override {
-        extra-config = lib.optionalAttrs (config.networking.hostName == "Seraphine") {
-          font.size = 13.0;
-        };
-      })
     ];
 
     openssh.authorizedKeys.keys = [

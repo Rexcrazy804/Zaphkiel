@@ -1,9 +1,10 @@
 {
   pkgs,
+  lib,
   poshconfig ? null,
   username ? throw "USERNAME REQUIRED :')",
 }: let
-  config = pkgs.writers.writeNu "config.nu" (import ./config.nix { inherit username; });
+  config = pkgs.writers.writeNu "config.nu" (import ./config.nix { inherit username pkgs lib; });
   env-config = pkgs.writers.writeNu "env.nu" (import ./env.nix {
     inherit pkgs;
     inherit (pkgs) lib;
@@ -17,6 +18,10 @@ in
     name = "nushell";
     paths = [
       pkgs.nushell
+      pkgs.direnv
+      pkgs.zoxide
+      pkgs.carapace
+      pkgs.oh-my-posh
     ];
 
     buildInputs = [

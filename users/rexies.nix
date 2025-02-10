@@ -1,12 +1,10 @@
 {
   pkgs,
   config,
-  lib,
   ...
 }: let
   username = "rexies";
   description = "Rexiel Scarlet";
-  hostname = config.networking.hostName;
 in {
   users.users.${username} = {
     inherit description;
@@ -38,6 +36,4 @@ in {
     file = ../secrets/secret1.age;
     owner = username;
   };
-
-  home-manager.users.${username} = import ../homeManagerModules {inherit username hostname;};
 }

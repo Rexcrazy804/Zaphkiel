@@ -1,5 +1,7 @@
 {
-  username
+  username,
+  pkgs,
+  lib,
 }:
 /*
 nu
@@ -43,7 +45,7 @@ nu
       $env.config.hooks.pre_prompt?
       | default []
       | append {||
-          /nix/store/5acgdhnifp5hsvhw2w34jhs5xqjgv0v3-direnv-2.35.0/bin/direnv export json
+          ${lib.getExe pkgs.direnv} export json
           | from json --strict
           | default {}
           | items {|key, value|

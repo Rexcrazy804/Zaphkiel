@@ -1,7 +1,7 @@
 {
   pkgs, 
   lib,
-  extra-config ? null
+  extra-config ? {}
 }: let 
   config = lib.recursiveUpdate (import ./config.nix) extra-config;
   config_file = pkgs.writers.writeTOML "alacritty.toml" config;

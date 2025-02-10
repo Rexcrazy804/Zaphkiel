@@ -18,7 +18,7 @@ in {
 
     packages = [
       (pkgs.wrappedPkgs.alacritty.override {
-        extra-config = {
+        extra-config = lib.optionalAttrs (config.networking.hostName == "Seraphine") {
           font.size = 13.0;
         };
       })

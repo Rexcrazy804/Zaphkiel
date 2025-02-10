@@ -11,7 +11,7 @@ in {
   users.users.${username} = {
     inherit description;
 
-    shell = pkgs.nushell;
+    shell = pkgs.wrappedPkgs.nushell;
     isNormalUser = true;
     extraGroups = ["networkmanager" "wheel" "multimedia"];
     hashedPasswordFile = config.age.secrets.rexiesPass.path;

@@ -42,7 +42,7 @@
   };
 
   programs.nushell = {
-    enable = true;
+    enable = false;
     shellAliases = {
       snowfall = "sudo nixos-rebuild switch --flake ~/nixos/#${hostname}";
       snowtest = "sudo nixos-rebuild test --flake ~/nixos/#${hostname}";

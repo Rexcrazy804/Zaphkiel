@@ -6,9 +6,7 @@
       };
     };
 
-    mpv = pkgs.wrappedPkgs.mpv.override {
-      anime4k = true;
-    };
+    mpv = pkgs.wrappedPkgs.mpv;
 
     discord = pkgs.discord.override {
       withOpenASAR = true;

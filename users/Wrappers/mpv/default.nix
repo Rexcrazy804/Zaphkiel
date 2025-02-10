@@ -1,7 +1,7 @@
 {
   pkgs,
   lib,
-  anime4k ? false,
+  anime ? false,
 }: let
   mpvconf = let
     conf = pkgs.writeText "mpv.conf" ''
@@ -14,16 +14,15 @@
     '';
     shadder = pkgs.writeText "input.conf" (import ./bindings.nix);
   in
-    pkgs.linkFarm "mods" [
+    pkgs.linkFarm "mods" ([
       {
         name = "mpv.conf";
         path = conf;
       }
-      (lib.optionalAttrs anime4k {
+    ] ++ (lib.optionals anime {
         name = "input.conf";
         path = shadder;
-      })
-    ];
+    }));
 in
   pkgs.symlinkJoin {
     name = "mpv";

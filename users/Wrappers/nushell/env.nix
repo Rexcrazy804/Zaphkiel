@@ -12,14 +12,14 @@ nu
     mkdir $zoxide_cache
   }
   ${lib.getExe pkgs.zoxide} init nushell --cmd cd
-  | save --force /home/rexies/.cache/zoxide/init.nu
+  | save --force $"($zoxide_cache)/init.nu"
 
   let oh_my_posh_cache = $"($env.HOME)/.cache/oh-my-posh"
   if not ($oh_my_posh_cache | path exists) {
     mkdir $oh_my_posh_cache
   }
   ${lib.getExe pkgs.oh-my-posh} init nu ${lib.optionalString (poshconfig != null) "--config ${poshconfig}"} --print
-  | save --force /home/rexies/.cache/oh-my-posh/init.nu
+  | save --force $"($oh_my_posh_cache)/init.nu"
 
   let carapace_cache = $"($env.HOME)/.cache/carapace"
   if not ($carapace_cache | path exists) {

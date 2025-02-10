@@ -1,5 +1,0 @@
-{...}: {
-  packages = {
-    alacritty.enable = true;
-  };
-}

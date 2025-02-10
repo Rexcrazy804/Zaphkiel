@@ -14,11 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    home-manager = {
-      url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixvim = {
       url = "github:Rexcrazy804/nixvim-config";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,7 +23,7 @@
       url = "github:Rexcrazy804/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
-      inputs.home-manager.follows = "home-manager";
+      inputs.home-manager.follows = "";
     };
   };
 

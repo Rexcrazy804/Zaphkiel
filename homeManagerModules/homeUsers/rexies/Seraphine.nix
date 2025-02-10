@@ -10,7 +10,7 @@
 
   packages = {
     firefox.enable = true;
-    alacritty.enable = true;
+    alacritty.enable = false;
     discord.enable = true;
     mpv.enable = true;
     sway.enable = false;

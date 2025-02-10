@@ -9,6 +9,7 @@ in {
   imports =
     [
       inputs.home-manager.nixosModules.home-manager
+      ./Wrappers
     ]
     # refer ExtraSpecialArgs.users in flake.nix
     ++ builtins.map (username: ./${username}.nix) users;

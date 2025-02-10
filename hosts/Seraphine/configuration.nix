@@ -83,4 +83,12 @@
   ];
 
   system.stateVersion = "24.05";
+
+  # users.users."rexies".packages = [
+  #   (pkgs.wrappedPkgs.alacritty.override {
+  #     extra-config = {
+  #       font.size = 13.0;
+  #     };
+  #   })
+  # ];
 }

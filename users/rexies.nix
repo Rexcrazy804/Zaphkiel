@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: let
   username = "rexies";
@@ -14,6 +15,14 @@ in {
     isNormalUser = true;
     extraGroups = ["networkmanager" "wheel" "multimedia"];
     hashedPasswordFile = config.age.secrets.rexiesPass.path;
+
+    packages = [
+      (pkgs.wrappedPkgs.alacritty.override {
+        extra-config = {
+          font.size = 13.0;
+        };
+      })
+    ];
 
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICELSL45m4ptWDZwQDi2AUmCgt4n93KsmZtt69fyb0vy rexies@Zaphkiel"

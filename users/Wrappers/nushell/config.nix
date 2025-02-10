@@ -1,5 +1,5 @@
 {
-  # nothing here yet will needa add sources probably
+  username
 }:
 /*
 nu
@@ -33,9 +33,9 @@ nu
     | move device --before total
   }
 
-  source /home/rexies/.cache/zoxide/init.nu
-  source /home/rexies/.cache/oh-my-posh/init.nu
-  source /home/rexies/.cache/carapace/init.nu
+  source /home/${username}/.cache/zoxide/init.nu
+  source /home/${username}/.cache/oh-my-posh/init.nu
+  source /home/${username}/.cache/carapace/init.nu
 
   $env.config = ($env.config? | default {})
   $env.config.hooks = ($env.config.hooks? | default {})

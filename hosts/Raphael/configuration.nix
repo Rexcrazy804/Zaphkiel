@@ -4,9 +4,12 @@
   config,
   ...
 }: {
-  imports = [
+  imports = let 
+    CONFIGURATION = throw "USER NOT CONFIGURED";
+  in [
     ./hardware-configuration.nix
   ];
+
 
   networking.hostName = "Raphael"; # Define your hostname.
   time.timeZone = "Asia/Kolkata";

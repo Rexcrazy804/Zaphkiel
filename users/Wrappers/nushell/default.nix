@@ -17,7 +17,7 @@ in
     name = "nushell";
     paths = [
       pkgs.nushell
-      pkgs.direnv
+      # pkgs.direnv added globally
       pkgs.zoxide
       pkgs.carapace
       pkgs.oh-my-posh

@@ -10,7 +10,6 @@
       # mangohud
       # sway
       # obs
-      # mpv
     };
   };
 in {

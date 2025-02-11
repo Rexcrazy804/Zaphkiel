@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  imports = let 
+  imports = let
     CONFIGURATION = throw "USER NOT CONFIGURED";
   in [
     ./hardware-configuration.nix

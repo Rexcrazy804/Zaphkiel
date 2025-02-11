@@ -15,14 +15,15 @@
     shadder = pkgs.writeText "input.conf" (import ./bindings.nix);
   in
     pkgs.linkFarm "mods" ([
-      {
-        name = "mpv.conf";
-        path = conf;
-      }
-    ] ++ (lib.optionals anime {
+        {
+          name = "mpv.conf";
+          path = conf;
+        }
+      ]
+      ++ (lib.optionals anime {
         name = "input.conf";
         path = shadder;
-    }));
+      }));
 in
   pkgs.symlinkJoin {
     name = "mpv";

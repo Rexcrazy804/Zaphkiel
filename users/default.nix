@@ -1,21 +1,9 @@
 {
-  inputs,
-  config,
   users,
   ...
-}: let
-  hostname = config.networking.hostName;
-in {
+}: {
+  # refer ExtraSpecialArgs.users in flake.nix
   imports =
-    [
-      inputs.home-manager.nixosModules.home-manager
-    ]
-    # refer ExtraSpecialArgs.users in flake.nix
+    [./Wrappers]
     ++ builtins.map (username: ./${username}.nix) users;
-
-  home-manager = {
-    extraSpecialArgs = {inherit inputs hostname;};
-    useGlobalPkgs = true;
-    useUserPackages = true;
-  };
 }

@@ -5,15 +5,24 @@
 }: let
   username = "rexies";
   description = "Rexiel Scarlet";
-  hostname = config.networking.hostName;
 in {
   users.users.${username} = {
     inherit description;
 
-    shell = pkgs.nushell;
+    shell = pkgs.wrappedPkgs.nushell;
     isNormalUser = true;
     extraGroups = ["networkmanager" "wheel" "multimedia"];
     hashedPasswordFile = config.age.secrets.rexiesPass.path;
+
+    # only declare common packages here
+    # others: hosts/<hostname>/user-configuration.nix
+    packages = [
+      pkgs.btop
+      (pkgs.wrappedPkgs.git.override {
+        username = description;
+        email = "37258415+Rexcrazy804@users.noreply.github.com";
+      })
+    ];
 
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICELSL45m4ptWDZwQDi2AUmCgt4n93KsmZtt69fyb0vy rexies@Zaphkiel"
@@ -27,6 +36,4 @@ in {
     file = ../secrets/secret1.age;
     owner = username;
   };
-
-  home-manager.users.${username} = import ../homeManagerModules {inherit username hostname;};
 }

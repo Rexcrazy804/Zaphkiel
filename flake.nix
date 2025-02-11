@@ -96,8 +96,6 @@
         };
         modules = [
           ./hosts/Aphrodite/configuration.nix
-
-          # responsible for importing home manager modules & users
           ./users
           ./pkgs/overlay.nix
         ];

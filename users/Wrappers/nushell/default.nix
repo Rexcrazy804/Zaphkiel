@@ -2,9 +2,8 @@
   pkgs,
   lib,
   poshconfig ? null,
-  username ? throw "USERNAME REQUIRED :')",
 }: let
-  config = pkgs.writers.writeNu "config.nu" (import ./config.nix {inherit username pkgs lib;});
+  config = pkgs.writers.writeNu "config.nu" (import ./config.nix {inherit pkgs lib;});
   env-config = pkgs.writers.writeNu "env.nu" (import ./env.nix {
     inherit pkgs;
     inherit (pkgs) lib;

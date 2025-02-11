@@ -1,8 +1,8 @@
 {
-  username,
   pkgs,
   lib,
-}:
+}: let 
+in
 /*
 nu
 */
@@ -35,9 +35,9 @@ nu
     | move device --before total
   }
 
-  source /home/${username}/.cache/zoxide/init.nu
-  source /home/${username}/.cache/oh-my-posh/init.nu
-  source /home/${username}/.cache/carapace/init.nu
+  source ~/.cache/zoxide/init.nu
+  source ~/.cache/oh-my-posh/init.nu
+  source ~/.cache/carapace/init.nu
 
   $env.config = ($env.config? | default {})
   $env.config.hooks = ($env.config.hooks? | default {})

@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   username = "sivanis";
   description = "Sivani SV";
 in {

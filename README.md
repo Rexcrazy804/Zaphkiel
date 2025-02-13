@@ -1,28 +1,21 @@
 # My NixOS Configuration
-![wall](https://github.com/Rexcrazy804/Zaphkiel/blob/master/homeManagerModules/dots/sddm-wall.png?raw=true)
+![wall](https://github.com/Rexcrazy804/Zaphkiel/blob/master/nixosModules/programs/sddm-wall.png?raw=true)
 
-### What the hell have you done with home manager modules?
-I couldn't find anyone that approached home manager modules in a multi user
-manner with host specific configuration, thus I came up with something of my
-own.
+#### What have you done?
+I have killed home manager, and then I've killed nixvim. All in the favour of
+wrapping stuff myself, you can lookinot `users/Wrappers` for config for each of
+the programs I have tinkered with most notably *mpv* featuring support for
+anime4k shadders and a custom *neovim* configuration with
+[lze](https://github.com/BirdeeHub/lze) lazy loading.
 
-To give you a better picture, Say you've got an user with different preferences
-of home manager modules across multiple hosts. What my configuration lets you
-do for such an user, is to let the user enable all their preferred modules in
-`homeManagerModules/homeUsers/{username}/common.nix` and selectively disable
-(or enable) certain modules they wouldn't want on specfic hosts in a
-corresponding `homeManagerModules/homeUsers/{hostname}.nix` file.
+I have exposed neovim in the flake for the convenience of running it with
+```bash
+nix run github:Rexcrazy804/Zaphkiel#nvim-lsp-wrapped
+```
 
-Any suggestions to improve this model are welcome!
-
-### Is that it?
-Well besides a really nice
-[mpv.nix](https://github.com/Rexcrazy804/Zaphkiel/blob/master/homeManagerModules/programs/mpv.nix)
-file that is configured to work with
-[Anime4k](https://github.com/bloc97/Anime4K) Shadders. There prolly isn't
-anything else worth noting about this config. That said I still have room to
-work on in the system modules. I'm too lazy to work on that for the time being,
-but will get it done eventaully/when the need arises :)
+> NOTE: nix running `nvim-lsp` will download the LSPs but neovim itself won't be able to access the binaries
+therefore `nvim-lsp` should only be used when installing the package. Hence please install `nvim-lsp-wrapped`
+for running with nix run and just `nvim` if you don't need the LSPs
 
 #### Where is that cute anime girl from?
 Its ai generated (using cetusmix whalefal2), so feel free to grab it /

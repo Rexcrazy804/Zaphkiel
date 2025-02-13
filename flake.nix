@@ -30,16 +30,16 @@
     inherit (self) outputs;
     system = "x86_64-linux";
   in {
-    packages.${system} = let 
-        pkgs = import nixpkgs { inherit system; };
-        nvimPkgs = pkgs.callPackage ./users/Wrappers/nvim/default.nix {};
-        nvim = nvimPkgs.nvim;
-        nvim-lsp = nvimPkgs.nvim-lsp;
-        nvim-lsp-wrapped = nvimPkgs.nvim-lsp;
+    packages.${system} = let
+      pkgs = import nixpkgs {inherit system;};
+      nvimPkgs = pkgs.callPackage ./users/Wrappers/nvim/default.nix {};
+      nvim = nvimPkgs.nvim;
+      nvim-lsp = nvimPkgs.nvim-lsp;
+      nvim-lsp-wrapped = nvimPkgs.nvim-lsp-wrapped;
     in {
-        inherit nvim nvim-lsp nvim-lsp-wrapped;
-        default = nvim-lsp-wrapped;
-    }; 
+      inherit nvim nvim-lsp nvim-lsp-wrapped;
+      default = nvim-lsp-wrapped;
+    };
     formatter.x86_64-linux = nixpkgs.legacyPackages.${system}.alejandra;
     nixosConfigurations = {
       Zaphkiel = nixpkgs.lib.nixosSystem {

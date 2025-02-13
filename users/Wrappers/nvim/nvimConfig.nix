@@ -1,9 +1,10 @@
-{ 
+{
   neovimUtils,
   vimPlugins,
   vimUtils,
   fetchFromGitHub,
-}: neovimUtils.makeNeovimConfig {
+}:
+neovimUtils.makeNeovimConfig {
   withPython3 = false;
   withRuby = false;
   withNodejs = false;
@@ -13,7 +14,8 @@
   '';
 
   plugins = builtins.attrValues {
-    inherit (vimPlugins)
+    inherit
+      (vimPlugins)
       lze
       catppuccin-nvim
       neo-tree-nvim
@@ -28,12 +30,10 @@
       fidget-nvim
       telescope-nvim
       telescope-fzf-native-nvim
-
       nvim-lspconfig
       nvim-lsputils
       nvim-autopairs
       indent-blankline-nvim
-
       nvim-cmp
       cmp-buffer
       cmp-path
@@ -41,7 +41,7 @@
       cmp-nvim-lsp-document-symbol
       cmp-nvim-lsp-signature-help
       lspkind-nvim
-    ;
+      ;
 
     treesitter = vimPlugins.nvim-treesitter.withAllGrammars;
 

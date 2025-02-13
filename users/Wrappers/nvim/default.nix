@@ -1,4 +1,4 @@
-{pkgs, ...}:let 
+{pkgs, ...}: let
   nvimConfig = pkgs.callPackage ./nvimConfig.nix {};
   nvim = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped nvimConfig;
   paths = [

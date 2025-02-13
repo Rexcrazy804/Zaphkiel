@@ -229,7 +229,7 @@ require("lze").load {
         vim.keymap.set({'n', 'v'}, '<leader>ca', '<CMD>lua vim.lsp.buf.code_action()<CR>', opts('Lsp: Code Actions'))
       end
 
-      local defaults = { "nixd", "lua_ls" }
+      local defaults = { "lua_ls" }
       for _, lsp in ipairs(defaults) do
         lspconfig[lsp].setup({
           on_attach = on_attach,
@@ -259,6 +259,32 @@ require("lze").load {
             rustfmt = { rangeFormatting = { enable = true } },
           }
         }
+      })
+
+      local file = io.open('/etc/hostname', 'r')
+      local hostname = file:read("*line")
+      -- only really works if I am the owner, should figure something out later
+      local expr = string.format('(builtins.getFlake "/home/rexies/nixos").nixosConfigurations.%s.options', hostname)
+
+      lspconfig["nixd"].setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+
+        settings = {
+          nixd = {
+            nixpkgs = {
+              expr = "import <nixpkgs> {}",
+            },
+            formatting = {
+              command = { "alejandra" },
+            },
+            options = {
+              nixos = {
+                expr = expr,
+              },
+            },
+          },
+        },
       })
 
       local border = {

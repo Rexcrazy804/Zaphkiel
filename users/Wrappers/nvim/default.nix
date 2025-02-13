@@ -10,6 +10,7 @@
     pkgs.ripgrep
     pkgs.wl-clipboard
     pkgs.fd
+    pkgs.alejandra
   ];
 
   # we don't have to wrap the PATH if installed on nixos I think

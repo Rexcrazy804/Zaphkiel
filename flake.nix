@@ -14,11 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:Rexcrazy804/nixvim-config";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     agenix = {
       url = "github:Rexcrazy804/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,6 +30,16 @@
     inherit (self) outputs;
     system = "x86_64-linux";
   in {
+    packages.${system} = let 
+        pkgs = import nixpkgs { inherit system; };
+        nvimPkgs = pkgs.callPackage ./users/Wrappers/nvim/default.nix {};
+        nvim = nvimPkgs.nvim;
+        nvim-lsp = nvimPkgs.nvim-lsp;
+        nvim-lsp-wrapped = nvimPkgs.nvim-lsp;
+    in {
+        inherit nvim nvim-lsp nvim-lsp-wrapped;
+        default = nvim-lsp-wrapped;
+    }; 
     formatter.x86_64-linux = nixpkgs.legacyPackages.${system}.alejandra;
     nixosConfigurations = {
       Zaphkiel = nixpkgs.lib.nixosSystem {

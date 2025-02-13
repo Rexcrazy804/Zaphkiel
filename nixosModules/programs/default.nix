@@ -12,8 +12,8 @@
 
   # global
   environment.systemPackages = builtins.attrValues {
-    inherit (pkgs) git wl-clipboard ripgrep p7zip unrar fd;
-    nixvim = inputs.nixvim.packages.${pkgs.system}.default;
+    inherit (pkgs) git p7zip unrar;
+    nixvim = pkgs.wrappedPkgs.nvim-lsp;
   };
 
   # wayland on electron and chromium based apps

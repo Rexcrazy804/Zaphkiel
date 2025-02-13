@@ -1,6 +1,8 @@
 {...}: let
   pkgsoverlay = final: _prev: {
-    wrappedPkgs = {
+    wrappedPkgs = let 
+      nvim = final.callPackage ./nvim {};
+    in {
       alacritty = final.callPackage ./alacritty {};
       nushell = final.callPackage ./nushell {};
       git = final.callPackage ./git {};
@@ -10,7 +12,7 @@
       # mangohud
       # sway
       # obs
-    };
+    } // nvim;
   };
 in {
   nixpkgs.overlays = [pkgsoverlay];

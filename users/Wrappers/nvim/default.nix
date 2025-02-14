@@ -1,4 +1,8 @@
-{pkgs, lib, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   nvimConfig = pkgs.callPackage ./nvimConfig.nix {};
   nvim = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped nvimConfig;
   packages = [
@@ -13,7 +17,7 @@
   ];
 
   nvimWrapped = pkgs.symlinkJoin {
-    name = "nvim";
+    name = "nvim-wrapped-${nvim.version}";
 
     paths = [
       nvim

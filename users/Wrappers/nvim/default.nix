@@ -1,8 +1,7 @@
-{pkgs, ...}: let
+{pkgs, lib, ...}: let
   nvimConfig = pkgs.callPackage ./nvimConfig.nix {};
   nvim = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped nvimConfig;
-  paths = [
-    nvim
+  packages = [
     pkgs.nixd
     pkgs.lua-language-server
     pkgs.rust-analyzer
@@ -13,15 +12,12 @@
     pkgs.alejandra
   ];
 
-  # we don't have to wrap the PATH if installed on nixos I think
-  nvimPathsOnly = pkgs.symlinkJoin {
-    name = "nvim";
-    inherit paths;
-  };
-
   nvimWrapped = pkgs.symlinkJoin {
     name = "nvim";
-    inherit paths;
+
+    paths = [
+      nvim
+    ];
 
     buildInputs = [
       pkgs.makeWrapper
@@ -29,11 +25,10 @@
 
     postBuild = ''
       wrapProgram $out/bin/nvim \
-      --prefix PATH : "$out/bin"
+      --prefix PATH : ${lib.makeBinPath packages}
     '';
   };
 in {
-  nvim = nvim;
-  nvim-lsp = nvimPathsOnly;
-  nvim-lsp-wrapped = nvimWrapped;
+  nvim-no-lsp = nvim;
+  nvim-wrapped = nvimWrapped;
 }

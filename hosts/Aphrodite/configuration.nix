@@ -59,7 +59,7 @@
 
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs) git;
-    nixvim = pkgs.wrappedPkgs.nvim-lsp;
+    nixvim = pkgs.wrappedPkgs.nvim-wrapped;
   };
 
   programs.direnv = {

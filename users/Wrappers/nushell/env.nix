@@ -7,9 +7,9 @@
 nu
 */
 ''
-  let zoxide_cache = $"~/.cache/zoxide"
-  let carapace_cache = $"~/.cache/carapace"
-  let oh_my_posh_cache = $"~/.cache/oh-my-posh"
+  let zoxide_cache = $"($env.HOME)/.cache/zoxide"
+  let carapace_cache = $"($env.HOME)/.cache/carapace"
+  let oh_my_posh_cache = $"($env.HOME)/.cache/oh-my-posh"
 
   if not ($zoxide_cache | path exists) { mkdir $zoxide_cache }
   if not ($oh_my_posh_cache | path exists) { mkdir $oh_my_posh_cache }

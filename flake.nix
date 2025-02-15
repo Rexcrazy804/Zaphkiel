@@ -28,25 +28,22 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
-    system = "x86_64-linux";
-
     # don't even know if darwin can generate the nvim but here we are
-    supportedSystems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
-    forAllSystems = func:
-      nixpkgs.lib.genAttrs supportedSystems (
-        sys:
-          func (import nixpkgs {system = sys;})
+    systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
+    forAllSystems = fn:
+      nixpkgs.lib.genAttrs systems (
+        system: fn (import nixpkgs { system = system;})
       );
   in {
     packages = forAllSystems (pkgs: let
-      nvimPkgs = pkgs.callPackage ./users/Wrappers/nvim/default.nix {};
-    in
-      nvimPkgs
-      // {
+      nvimPkgs = import ./users/Wrappers/nvim/default.nix { pkgs = pkgs; lib = pkgs.lib; };
+    in {
+        nvim-no-lsp = nvimPkgs.nvim-no-lsp;
+        nvim-wrapped = nvimPkgs.nvim-wrapped;
         default = nvimPkgs.nvim-wrapped; # use nvim-no-lsp for a minimal setup
       });
 
-    formatter.x86_64-linux = nixpkgs.legacyPackages.${system}.alejandra;
+    formatter = forAllSystems (pkgs: pkgs.alejandra);
     nixosConfigurations = {
       Zaphkiel = nixpkgs.lib.nixosSystem {
         specialArgs = {

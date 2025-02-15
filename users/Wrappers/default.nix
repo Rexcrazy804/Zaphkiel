@@ -1,7 +1,7 @@
-{...}: let
+{pkgs, lib,...}: let
   pkgsoverlay = final: _prev: {
     wrappedPkgs = let
-      nvim = final.callPackage ./nvim {};
+      nvim = import ./nvim { inherit pkgs lib; };
     in
       {
         alacritty = final.callPackage ./alacritty {};

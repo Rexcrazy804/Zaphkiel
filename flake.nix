@@ -109,5 +109,15 @@
         ];
       };
     };
+
+    templates = {
+      rust-minimal = {
+        path = ./Templates/Rust/minimal;
+        description = "Rust flake with oxalica overlay + mold linker";
+        welcomeText = ''
+          # A minimal rust template by Rexiel Scarlet (Rexcrazy804)
+        '';
+      };
+    };
   };
 }

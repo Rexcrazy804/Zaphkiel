@@ -89,8 +89,8 @@ require("lze").load {
 
   {
     "lualine.nvim",
-    lazy = false,
-    before = function()
+    event = "VimEnter",
+    after = function()
       require("lualine").setup({
         tabline = {
           lualine_a = {

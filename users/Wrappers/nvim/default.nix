@@ -31,6 +31,8 @@
       wrapProgram $out/bin/nvim \
       --prefix PATH : ${lib.makeBinPath packages}
     '';
+
+    meta.mainProgram = "nvim";
   };
 in {
   nvim-no-lsp = nvim;

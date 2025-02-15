@@ -48,7 +48,7 @@ require("lze").load {
 
   {
     "which-key.nvim",
-    lazy = false,
+    event = "UIEnter",
     after = function()
       require("which-key").setup({
         preset = "modern",
@@ -130,7 +130,7 @@ require("lze").load {
 
   {
     "nvim-treesitter",
-    lazy = false,
+    event = "FileType",
     after = function()
       require('nvim-treesitter.configs').setup({
         sync_install = false,
@@ -206,7 +206,7 @@ require("lze").load {
 
   {
     "nvim-lspconfig",
-    lazy = false,
+    event = "FileType",
     after = function()
       local lspconfig = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -226,16 +226,34 @@ require("lze").load {
         map(bufnr, 'n', '<leader>ra', '<cmd>lua vim.lsp.buf.rename()<cr>', opts('Lsp: Rename'))
         map(bufnr, 'n', '<leader>cr', '<cmd>lua vim.lsp.buf.references()<cr>', opts('Lsp: References'))
         map(bufnr, 'n', '<leader>fm', '<cmd>lua vim.lsp.buf.format()<cr>', opts('Lsp: Run the lsp formatter'))
-        vim.keymap.set({'n', 'v'}, '<leader>ca', '<CMD>lua vim.lsp.buf.code_action()<CR>', opts('Lsp: Code Actions'))
+        vim.keymap.set({ 'n', 'v' }, '<leader>ca', '<CMD>lua vim.lsp.buf.code_action()<CR>', opts('Lsp: Code Actions'))
       end
 
-      local defaults = { "lua_ls" }
-      for _, lsp in ipairs(defaults) do
-        lspconfig[lsp].setup({
-          on_attach = on_attach,
-          capabilities = capabilities,
-        })
-      end
+
+      lspconfig["lua_ls"].setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        on_init = function(client)
+          if client.workspace_folders then
+            local path = client.workspace_folders[1].name
+            if path ~= vim.fn.stdpath('config') and (vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc')) then
+              return
+            end
+          end
+          client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+            runtime = {
+              version = 'LuaJIT'
+            },
+            workspace = {
+              checkThirdParty = false,
+              library = {
+                vim.env.VIMRUNTIME
+              }
+            }
+          })
+        end,
+        settings = { Lua = {} }
+      })
 
       lspconfig["rust_analyzer"].setup({
         on_attach = on_attach,
@@ -309,7 +327,7 @@ require("lze").load {
 
   {
     "indent-blankline.nvim",
-    lazy = false,
+    event = "BufEnter",
     after = function()
       require("ibl").setup({
         scope = {
@@ -320,9 +338,10 @@ require("lze").load {
       })
     end,
   },
+
   {
     "nvim-autopairs",
-    lazy = false,
+    event = "InsertEnter",
     after = function()
       require("nvim-autopairs").setup()
     end,
@@ -330,7 +349,7 @@ require("lze").load {
 
   {
     "gitsigns.nvim",
-    lazy = false,
+    event = "BufAdd",
     after = function()
       require("gitsigns").setup({
         on_attach = function(bufnr)
@@ -343,17 +362,17 @@ require("lze").load {
           end
 
           -- Navigation
-          map('n', ']c', function()
+          map('n', ']h', function()
             if vim.wo.diff then
-              vim.cmd.normal({ ']c', bang = true })
+              vim.cmd.normal({ ']h', bang = true })
             else
               gitsigns.nav_hunk('next')
             end
           end, { desc = "Gitsigns: next hunk" })
 
-          map('n', '[c', function()
+          map('n', '[h', function()
             if vim.wo.diff then
-              vim.cmd.normal({ '[c', bang = true })
+              vim.cmd.normal({ '[h', bang = true })
             else
               gitsigns.nav_hunk('prev')
             end
@@ -382,8 +401,7 @@ require("lze").load {
 
   {
     "flash.nvim",
-    lazy = false,
-
+    event = "BufEnter",
     keys = {
       { "<leader>/", "<CMD>lua require('flash').jump()<CR>", desc = "FLASH jump" },
     },
@@ -402,15 +420,6 @@ require("lze").load {
     end,
   },
 
-  -- it doesn't want to load this way ig
-  -- {
-  --   "vim-startuptime",
-  --   cmd = "StartupTime",
-  --   before = function()
-  --     vim.g.startuptime_tries = 10
-  --   end,
-  -- },
-
   {
     "telescope.nvim",
     keys = {
@@ -422,10 +431,8 @@ require("lze").load {
       { "<leader>fw",  "<CMD>Telescope live_grep<CR>",             desc = "Find within all Files" },
       { "<leader>fo",  "<CMD>Telescope oldfiles<CR>",              desc = "Find recently opened files" },
       { "<leader>fd",  "<CMD>Telescope diagnostics<CR>",           desc = "Find Lsp Diagnostics" },
-
       { "<leader>fls", "<CMD>Telescope lsp_document_symbols<CR>",  desc = "Find LSP document symbols" },
       { "<leader>flw", "<CMD>Telescope lsp_workspace_symbols<CR>", desc = "Find LSP workspace symbols" },
-
     },
 
     after = function()
@@ -437,11 +444,10 @@ require("lze").load {
 
         extensions = {
           fzf = {
-            fuzzy = true,                    -- false will only do exact matching
-            override_generic_sorter = true,  -- override the generic sorter
-            override_file_sorter = true,     -- override the file sorter
-            case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-            -- the default case_mode is "smart_case"
+            fuzzy = true,                   -- false will only do exact matching
+            override_generic_sorter = true, -- override the generic sorter
+            override_file_sorter = true,    -- override the file sorter
+            case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
           },
         },
       })
@@ -451,13 +457,11 @@ require("lze").load {
 
   {
     "telescope-fzf-native.nvim",
-    -- after = function()
-    -- end,
   },
 
   {
     "fidget.nvim",
-    lazy = false,
+    event = "LspAttach",
     after = function()
       require("fidget").setup({
         notification = {
@@ -467,6 +471,11 @@ require("lze").load {
         },
       })
     end
+  },
+
+  {
+    "vim-startuptime",
+    commad = "StartupTime",
   },
 }
 

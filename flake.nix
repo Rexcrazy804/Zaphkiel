@@ -32,16 +32,19 @@
     systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
     forAllSystems = fn:
       nixpkgs.lib.genAttrs systems (
-        system: fn (import nixpkgs { system = system;})
+        system: fn (import nixpkgs {system = system;})
       );
   in {
     packages = forAllSystems (pkgs: let
-      nvimPkgs = import ./users/Wrappers/nvim/default.nix { pkgs = pkgs; lib = pkgs.lib; };
+      nvimPkgs = import ./users/Wrappers/nvim/default.nix {
+        pkgs = pkgs;
+        lib = pkgs.lib;
+      };
     in {
-        nvim-no-lsp = nvimPkgs.nvim-no-lsp;
-        nvim-wrapped = nvimPkgs.nvim-wrapped;
-        default = nvimPkgs.nvim-wrapped; # use nvim-no-lsp for a minimal setup
-      });
+      nvim-no-lsp = nvimPkgs.nvim-no-lsp;
+      nvim-wrapped = nvimPkgs.nvim-wrapped;
+      default = nvimPkgs.nvim-wrapped; # use nvim-no-lsp for a minimal setup
+    });
 
     formatter = forAllSystems (pkgs: pkgs.alejandra);
     nixosConfigurations = {

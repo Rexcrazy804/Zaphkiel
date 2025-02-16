@@ -26,7 +26,13 @@ vim.g.mapleader = " ";
 require("lze").load {
   {
     "catppuccin-nvim",
-    colorscheme = "catppuccin",
+    colorscheme = {
+      "catppuccin",
+      "catppuccin-frappe",
+      "catppuccin-latte",
+      "catppuccin-macchiato",
+      "catppuccin-mocha",
+    },
     after = function()
       require('catppuccin').setup({
         flavour = "mocha",

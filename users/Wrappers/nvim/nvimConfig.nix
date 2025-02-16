@@ -1,8 +1,6 @@
 {
   neovimUtils,
   vimPlugins,
-  vimUtils,
-  fetchFromGitHub,
 }:
 neovimUtils.makeNeovimConfig {
   withPython3 = false;

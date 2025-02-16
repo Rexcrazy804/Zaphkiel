@@ -48,7 +48,7 @@ require("lze").load {
 
   {
     "which-key.nvim",
-    event = "UIEnter",
+    event = "DeferredUIEnter",
     after = function()
       require("which-key").setup({
         preset = "modern",
@@ -161,6 +161,11 @@ require("lze").load {
   },
 
   {
+    "lspkind.nvim",
+    dep_of = "nvim-cmp",
+  },
+
+  {
     "nvim-cmp",
     event = "InsertEnter",
     after = function()
@@ -206,7 +211,7 @@ require("lze").load {
 
   {
     "nvim-lspconfig",
-    event = "FileType",
+    event = { "BufReadPost", "BufNewFile" },
     after = function()
       local lspconfig = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -327,7 +332,7 @@ require("lze").load {
 
   {
     "indent-blankline.nvim",
-    event = "BufEnter",
+    event = { "BufReadPost", "BufNewFile" },
     after = function()
       require("ibl").setup({
         scope = {
@@ -406,7 +411,7 @@ require("lze").load {
 
   {
     "flash.nvim",
-    event = "BufEnter",
+    event = "BufReadPost",
     keys = {
       { "<leader>/", "<CMD>lua require('flash').jump()<CR>", desc = "FLASH jump" },
     },

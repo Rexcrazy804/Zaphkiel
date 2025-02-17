@@ -27,21 +27,33 @@ in {
       openRPCPort = true;
       openPeerPorts = true;
       openFirewall = true;
+      downloadDirPermissions = "770";
+      webHome = null;
 
       settings = {
+        umask = "007";
         rpc-bind-address = "0.0.0.0";
         anti-brute-force-enabled = true;
         rpc-authentication-required = true;
         # rpc-port = 8090:
         watch-dir-enabled = false;
+        peer-port-random-low = 60000;
         peer-port-random-on-start = true;
         incomplete-dir-enabled = false;
 
         download-dir = multimediaDir + "/Downloads";
         peer-limit-global = 2000;
         peer-limit-per-torrent = 300;
+
         ratio-limit = 2.0;
-        ratio-limit-enabled = true;
+        ratio-limit-enabled = false;
+
+        alt-speed-time-enabled = true;
+        alt-speed-time-begin = 420;
+        alt-speed-time-end = 0;
+        alt-speed-up = 80;
+        alt-speed-down = 100000;
+        upload-slots-per-torrent = 10;
       };
       credentialsFile = config.age.secrets.transJson.path;
     };

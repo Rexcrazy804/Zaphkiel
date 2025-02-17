@@ -23,6 +23,7 @@ in {
     services.transmission = {
       enable = true;
       package = pkgs.transmission_4;
+      group = "multimedia";
 
       openRPCPort = true;
       openPeerPorts = true;
@@ -84,7 +85,7 @@ in {
       file = ../../secrets/secret6.age;
       name = "settings.json";
       owner = "transmission";
-      group = "transmission";
+      group = "users";
     };
 
     # age.secrets.servarrAuth = {

@@ -1,5 +1,13 @@
-{pkgs, ...}: {
-  users.users."rexies".packages = builtins.attrValues {
+{pkgs, ...}: let
+  generic = [
+    pkgs.wineWowPackages.stable
+    pkgs.bottles
+    pkgs.winetricks
+    pkgs.rconc
+    pkgs.filelight
+    pkgs.plasma-panel-colorizer
+  ];
+  special = builtins.attrValues {
     alacritty = pkgs.wrappedPkgs.alacritty.override {
       extra-config = {
         font.size = 13.0;
@@ -12,20 +20,11 @@
       withOpenASAR = true;
       withVencord = true;
     };
-
-    inherit (pkgs.wineWowPackages) stable;
-    inherit
-      (pkgs)
-      bottles
-      winetricks
-      rconc
-      filelight
-      plasma-panel-colorizer
-      ;
-
     catppucin-kde = pkgs.catppuccin-kde.override {
       flavour = ["mocha"];
       accents = ["pink"];
     };
   };
+in {
+  users.users."rexies".packages = special ++ generic;
 }

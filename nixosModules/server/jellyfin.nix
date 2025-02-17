@@ -17,7 +17,7 @@ in {
   config = lib.mkIf (config.servModule.jellyfin.enable && config.servModule.enable) {
     services.jellyfin = {
       enable = true;
-      openFirewall = true;
+      openFirewall = false;
     };
 
     services.transmission = {
@@ -25,9 +25,9 @@ in {
       package = pkgs.transmission_4;
       group = "multimedia";
 
-      openRPCPort = true;
-      openPeerPorts = true;
-      openFirewall = true;
+      openRPCPort = false;
+      openPeerPorts = false;
+      openFirewall = false;
       downloadDirPermissions = "770";
       webHome = null;
 
@@ -61,7 +61,7 @@ in {
 
     services.sonarr = {
       enable = true;
-      openFirewall = true;
+      openFirewall = false;
     };
 
     # TODO remove this once sonarr is updated

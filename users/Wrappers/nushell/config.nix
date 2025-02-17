@@ -72,7 +72,7 @@ in
     alias "servarrStop" = systemctl stop jellyfin.service sonarr.service transmission.service
 
     let host = cat /etc/hostname;
-    alias "snowboot" = sudo nixos-rebuild boot --flake ~/nixos/($host)
+    alias "snowboot" = sudo nixos-rebuild boot --flake ~/nixos/#($host)
     alias "snowfall" = sudo nixos-rebuild switch --flake ~/nixos/#($host)
     alias "snowtest" = sudo nixos-rebuild test --flake ~/nixos/#($host)
   ''

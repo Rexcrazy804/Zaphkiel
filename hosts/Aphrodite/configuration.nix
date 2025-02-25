@@ -33,8 +33,15 @@
   };
 
   # forward dns onto the tailnet
-  networking.firewall.allowedTCPPorts = [53];
-  networking.firewall.allowedUDPPorts = [53];
+  networking = {
+    nftables.enable = true;
+    firewall = {
+      interfaces."tailscale0" = {
+        allowedTCPPorts = config.services.openssh.ports;
+        allowedUDPPorts = [ 53 ];
+      };
+    };
+  };
   services.dnscrypt-proxy2.settings = {
     listen_addresses = [
       "100.121.86.4:53"
@@ -52,9 +59,12 @@
       exitNode.networkDevice = "ens18";
     };
     openssh.enable = true;
-    fail2ban.enable = true;
-    jellyfin.enable = false;
-    minecraft.enable = false;
+    fail2ban.enable = false;
+  };
+
+  services.openssh = {
+    openFirewall = lib.mkForce false;
+    startWhenNeeded = lib.mkForce false;
   };
 
   environment.systemPackages = builtins.attrValues {

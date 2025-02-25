@@ -34,7 +34,7 @@
       enable = true;
       wallpaper = config.age.secrets.wallpaper.path;
     };
-    # anime-games.enable = true;
+    direnv.enable = true;
   };
 
   # forward dns onto the tailnet

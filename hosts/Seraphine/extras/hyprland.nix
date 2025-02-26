@@ -8,5 +8,9 @@
 
   environment.systemPackages = [
     pkgs.hyprpaper
+    pkgs.wrappedPkgs.fuzzel
+    pkgs.wl-clipboard
+    pkgs.cliphist
+    pkgs.grim
   ];
 }

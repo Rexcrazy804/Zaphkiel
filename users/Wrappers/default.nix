@@ -12,6 +12,7 @@
         nushell = final.callPackage ./nushell {};
         git = final.callPackage ./git {};
         mpv = final.callPackage ./mpv {};
+        fuzzel = final.callPackage ./fuzzel {};
 
         # TODO
         # mangohud

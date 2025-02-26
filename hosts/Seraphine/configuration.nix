@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   pkgs,
   lib,
@@ -8,6 +7,7 @@
   imports = [
     ./hardware-configuration.nix
     ./user-configuration.nix
+    ./extras/hyprland.nix
   ];
 
   networking.hostName = "Seraphine";
@@ -66,7 +66,7 @@
   };
   programs.adb.enable = true;
   users.users.rexies.extraGroups = ["adbusers" "kvm"];
-  services.displayManager.autoLogin.user = "rexies";
+  # services.displayManager.autoLogin.user = "rexies";
 
   # KDE
   services.desktopManager.plasma6.enable = true;

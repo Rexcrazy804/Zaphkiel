@@ -10,6 +10,7 @@ pkgs.symlinkJoin {
     pkgs.grim
     pkgs.slurp
     pkgs.brightnessctl
+    pkgs.swaynotificationcenter
 
     pkgs.wrappedPkgs.fuzzel
   ];

@@ -13,5 +13,6 @@
     pkgs.cliphist
     pkgs.grim
     pkgs.slurp
+    pkgs.brightnessctl
   ];
 }

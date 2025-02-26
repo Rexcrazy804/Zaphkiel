@@ -15,6 +15,6 @@ in
 
     postBuild = ''
       wrapProgram $out/bin/fuzzel \
-      --add-flags '--config ${config_file}'
+       --add-flags '--config ${config_file}'
     '';
   }

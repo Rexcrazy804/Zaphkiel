@@ -66,7 +66,7 @@
   };
   programs.adb.enable = true;
   users.users.rexies.extraGroups = ["adbusers" "kvm"];
-  # services.displayManager.autoLogin.user = "rexies";
+  services.displayManager.autoLogin.user = "rexies";
 
   # KDE
   services.desktopManager.plasma6.enable = true;

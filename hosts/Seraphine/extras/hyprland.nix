@@ -15,4 +15,6 @@
     pkgs.slurp
     pkgs.brightnessctl
   ];
+
+  services.displayManager.defaultSession = "hyprland-uwsm";
 }

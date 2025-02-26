@@ -28,6 +28,6 @@
 in {
   users.users."rexies" = {
     packages = special ++ generic;
-    extraGroups = ["video"];
+    extraGroups = ["video" "input"];
   };
 }

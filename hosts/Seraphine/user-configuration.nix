@@ -26,5 +26,8 @@
     };
   };
 in {
-  users.users."rexies".packages = special ++ generic;
+  users.users."rexies" = {
+    packages = special ++ generic;
+    extraGroups = ["video"];
+  };
 }

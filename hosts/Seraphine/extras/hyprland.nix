@@ -12,5 +12,6 @@
     pkgs.wl-clipboard
     pkgs.cliphist
     pkgs.grim
+    pkgs.slurp
   ];
 }

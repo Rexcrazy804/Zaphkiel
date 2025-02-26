@@ -1,6 +1,4 @@
-{
-  pkgs,
-}: let
+{pkgs}: let
   config_file = ./fuzzel.ini;
 in
   pkgs.symlinkJoin {

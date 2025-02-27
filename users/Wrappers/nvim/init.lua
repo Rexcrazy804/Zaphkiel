@@ -266,6 +266,11 @@ require("lze").load {
         settings = { Lua = {} }
       })
 
+      lspconfig["r_language_server"].setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+      })
+
       lspconfig["rust_analyzer"].setup({
         on_attach = on_attach,
         capabilities = capabilities,

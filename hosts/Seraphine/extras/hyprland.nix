@@ -10,7 +10,7 @@
     package = pkgs.wrappedPkgs.hyprlock;
   };
 
-  services.hypridle.package = pkgs.wrappedPkgs.hypridle;
+  # services.hypridle.package = pkgs.wrappedPkgs.hypridle;
 
   services.displayManager.defaultSession = "hyprland-uwsm";
 }

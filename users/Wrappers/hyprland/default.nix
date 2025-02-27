@@ -20,12 +20,14 @@ pkgs.symlinkJoin {
   ];
 
   # basically I am not sure if I want it to be immutable just yet so we are gonna roll with this for now
-  postBuild = ''
+  postBuild = let 
+    confdir = "/home/rexies/nixos/users/Wrappers/hyprland/conf";
+  in ''
     wrapProgram $out/bin/Hyprland \
-      --add-flags '--config /home/rexies/nixos/users/Wrappers/hyprland/hyprland.conf'
+      --add-flags '--config ${confdir}/hyprland.conf'
     wrapProgram $out/bin/hyprland \
-      --add-flags '--config /home/rexies/nixos/users/Wrappers/hyprland/hyprland.conf'
+      --add-flags '--config ${confdir}/hyprland.conf'
     wrapProgram $out/bin/hyprpaper \
-      --add-flags '--config /home/rexies/nixos/users/Wrappers/hyprland/hyprpaper.conf'
+      --add-flags '--config ${confdir}/hyprpaper.conf'
   '';
 }

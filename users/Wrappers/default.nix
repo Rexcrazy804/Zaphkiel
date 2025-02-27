@@ -15,6 +15,7 @@
         fuzzel = final.callPackage ./fuzzel {};
         hyprland = final.callPackage ./hyprland {};
         hyprlock = final.callPackage ./hyprland/hyprlock.nix {};
+        hypridle = final.callPackage ./hyprland/hypridle.nix {};
 
         # TODO
         # mangohud

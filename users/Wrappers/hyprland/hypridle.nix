@@ -1,8 +1,8 @@
 {pkgs, ...}:
 pkgs.symlinkJoin {
-  name = "hyprlock";
+  name = "hypridle";
   paths = [
-    pkgs.hyprlock
+    pkgs.hypridle
   ];
 
   buildInputs = [
@@ -13,7 +13,7 @@ pkgs.symlinkJoin {
   postBuild = let 
     confdir = "/home/rexies/nixos/users/Wrappers/hyprland/conf";
   in /*bash*/ ''
-    wrapProgram $out/bin/hyprlock \
-      --add-flags '--config ${confdir}/hyprlock.conf'
+    wrapProgram $out/bin/hypridle \
+      --add-flags '--config ${confdir}/hypridle.conf'
   '';
 }

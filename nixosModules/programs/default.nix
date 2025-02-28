@@ -5,6 +5,7 @@
     ./aagl.nix
     ./age.nix
     ./direnv.nix
+    ./obs.nix
   ];
 
   # global

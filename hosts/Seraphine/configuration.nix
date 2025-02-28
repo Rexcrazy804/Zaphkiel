@@ -35,6 +35,7 @@
       wallpaper = config.age.secrets.wallpaper.path;
     };
     direnv.enable = true;
+    obs-studio.enable = true;
   };
 
   # forward dns onto the tailnet

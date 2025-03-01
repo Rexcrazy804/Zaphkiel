@@ -64,6 +64,7 @@
   programs = {
     partition-manager.enable = true;
     kdeconnect.enable = true;
+    gpu-screen-recorder.enable = true;
   };
   programs.adb.enable = true;
   users.users.rexies.extraGroups = ["adbusers" "kvm"];
@@ -87,7 +88,7 @@
   system.stateVersion = "24.05";
 
   # maybe move this into its own module idk
-  environment.systemPackages = [pkgs.firefoxpwa];
+  environment.systemPackages = [pkgs.firefoxpwa pkgs.gpu-screen-recorder]; # gpu sc recorder added temporarily
   programs.firefox = {
     enable = true;
     nativeMessagingHosts.packages = [

@@ -35,6 +35,18 @@ in
       | move device --before total
     }
 
+    def start_gpurecording [] {
+      notify-send -t 600 "recording started"; 
+      gpu-screen-recorder -w eDP-1 -f 60 -a default_output -o $"($env.HOME)/Videos/recording-(^date +%d%h%m_%H%M%S).mp4"; 
+      notify-send -t 600 "recording stoped"
+    }
+
+    def stop_gpurecording [] {
+      ps 
+      | where name =~ gpu-screen-reco
+      | kill -s 2 $in.0.pid
+    }
+
     source ~/.cache/zoxide/init.nu
     source ~/.cache/oh-my-posh/init.nu
     source ~/.cache/carapace/init.nu

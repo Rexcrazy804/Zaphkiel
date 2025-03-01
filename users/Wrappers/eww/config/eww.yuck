@@ -2,12 +2,14 @@
 
 ; ━━━━ windows ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
 
-(defwindow win0 :monitor 0
-               :geometry (geometry :x 0 :y 0 :height "15px" :width "100%" :anchor "center top")
-               :stacking "fg" 
-               :exclusive true
-               :focusable false
-  (bar0 :monitor "eDP-1"))
+(defwindow win0 
+  :monitor 0
+  :geometry (geometry :x 0 :y 0 :height "30px" :width "100%" :anchor "center top")
+  :stacking "fg" 
+  :exclusive true
+  :focusable false
+  (bar0 :monitor "eDP-1")
+)
 
 ; ━━━━ bars ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
 

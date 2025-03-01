@@ -33,7 +33,6 @@ $crust: #11111b;
 window {
   font-family: "CaskaydiaMono Nerd font";
   background-color: $base;
-  font-size: 15px;
 }
 
 .bar {
@@ -62,9 +61,10 @@ window {
 
 .workspace {
   .icon {
-  margin: 0 3px;
-  font-size: 10px;
-    }
+    margin: 0 3px;
+    font-size: 10px;
+  }
+
   .name {
     background-color: $base;
   }
@@ -76,13 +76,15 @@ window {
   }
 }
 
-.battery, .time, .date .tray .speakers .mic .wifi {
+.battery,
+.time,
+.date .tray .speakers .mic .wifi .banner {
   color: $text;
   font-size: 12px;
 }
 
 .time {
-  font-size: 14;
+  font-size: 12px;
 }
 
 .battery {
@@ -96,6 +98,7 @@ window {
   color: $text;
   font-size: 10px;
 }
+
 .camera {
   .icon.connected {
     color: $green;
@@ -113,8 +116,8 @@ window {
 }
 
 .tray image {
-   -gtk-icon-transform: scale(0.5); 
-  }
+  -gtk-icon-transform: scale(0.5);
+}
 
 
 scale trough {

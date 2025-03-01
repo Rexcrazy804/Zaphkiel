@@ -12,27 +12,37 @@
 ; ━━━━ bars ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
 
 (defwidget bar0 [monitor] 
-  (box :orientation "h"
-       :space-evenly true
-       :class "bar"
-    (box :class "right"
+  (box 
+    :orientation "h"
+    :space-evenly true
+    :class "bar"
+    (box 
+      :class "right"
       :halign "start"
       :spacing 20
-      (label :text "  RexOwOs"))
-    (box :class "right"
-         :halign "center"
-         :spacing 20
-         :space-evenly false
-      (time))
-    (box :class "right"
-         :halign "end"
-         :spacing 20
-         :space-evenly false
+      (left_banner)
+    )
+    (box 
+      :class "right"
+      :halign "center"
+      :spacing 20
+      :space-evenly false
+      (time)
+    )
+    (box 
+      :class "right"
+      :halign "end"
+      :spacing 20
+      :space-evenly false
       (tray)
       (speakers)
       (wifi)
       (camera)
-      (mic))))
+      (mic)
+      (notifications)
+    )
+  )
+)
       ; (battery)
       ;(date))))
 
@@ -139,3 +149,33 @@
   (box :class "time"
     :space-evenly false
     (label :text time_poll)))
+
+; ━━━━ notif ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+
+(defpoll notif_poll :interval "1s" "swaync-client -c")
+(defpoll notif_dnd_poll :interval "1s" "swaync-client -D")
+
+(defwidget notifications []
+  (box 
+    :class "notifications"
+    :space-evenly false
+    (button 
+      :onclick "swaync-client -t -sw"
+      :onmiddleclick "swaync-client -d"
+      (label 
+        :class "icon"
+        :text "${notif_dnd_poll? " " : notif_poll != 0? "󰂚 " : " "}"
+      )
+    )
+    (label :text "${notif_poll == 0? "" : notif_poll}")
+  )
+)
+
+(defwidget left_banner[]
+  (box
+    (label 
+      :class "banner"
+      :text "  RexOwOs"
+    )
+  )
+)

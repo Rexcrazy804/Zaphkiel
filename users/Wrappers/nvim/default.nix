@@ -14,6 +14,7 @@
     pkgs.wl-clipboard
     pkgs.fd
     pkgs.alejandra
+    pkgs.vscode-langservers-extracted
   ];
 
   nvimWrapped = pkgs.symlinkJoin {

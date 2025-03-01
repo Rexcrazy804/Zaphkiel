@@ -18,19 +18,23 @@
     (box :class "right"
       :halign "start"
       :spacing 20
-      (label :text "Rexuwu"))
+      (label :text "  RexOwOs"))
+    (box :class "right"
+         :halign "center"
+         :spacing 20
+         :space-evenly false
+      (time))
     (box :class "right"
          :halign "end"
          :spacing 20
          :space-evenly false
       (tray)
+      (speakers)
       (wifi)
       (camera)
-      (mic)
-      (speakers)
+      (mic))))
       ; (battery)
-      (time)
-      (date))))
+      ;(date))))
 
 ; ━━━━ tray ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
 
@@ -120,20 +124,18 @@
 
 ; ━━━━ date ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
 
-(defpoll date_poll :interval "1m" "date +%d/%m")
+(defpoll date_poll :interval "1m" "date +%D")
 
 (defwidget date []
   (box :class "date"
     :space-evenly false
-    (label :class "icon" :text "󰃶")
     (label :text date_poll)))
 
 ; ━━━━ time ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
 
-(defpoll time_poll :interval "1s" "date +%H:%M")
+(defpoll time_poll :interval "1s" "date +%r")
 
 (defwidget time []
   (box :class "time"
     :space-evenly false
-    (label :class "icon" :text "󰥔")
     (label :text time_poll)))

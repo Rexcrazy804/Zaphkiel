@@ -4,8 +4,10 @@ pkgs.symlinkJoin {
   paths = [pkgs.eww];
   buildInputs = [pkgs.makeWrapper];
 
-  postBuild = ''
+  postBuild = let 
+    confdir = "/home/rexies/nixos/users/Wrappers/eww/config";
+  in /*bash*/''
     wrapProgram $out/bin/eww \
-    --add-flags '--config ${./config}'
+    --add-flags '--config ${confdir}'
   '';
 }

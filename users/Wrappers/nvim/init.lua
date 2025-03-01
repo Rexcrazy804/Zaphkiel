@@ -87,6 +87,9 @@ require("lze").load {
     "nvim-colorizer",
     ft = {
       "lua",
+      "css",
+      "scss",
+      "html",
     },
     after = function()
       require("colorizer").setup()
@@ -267,6 +270,10 @@ require("lze").load {
       })
 
       lspconfig["r_language_server"].setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+      })
+      lspconfig["cssls"].setup({
         on_attach = on_attach,
         capabilities = capabilities,
       })

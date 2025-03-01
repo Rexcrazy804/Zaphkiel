@@ -21,7 +21,7 @@ $overlay0: #6c7086;
 $surface2: #585b70;
 $surface1: #45475a;
 $surface0: #313244;
-$base: #1e1e2e;
+$base: rgba(#202020, 0.6);
 $mantle: #181825;
 $crust: #11111b;
 
@@ -31,13 +31,18 @@ $crust: #11111b;
 }
 
 window {
-  font-family: "NotoSans Nerd Font", sans-serif;
+  font-family: "CaskaydiaMono Nerd font";
   background-color: $base;
+  font-size: 15px;
+}
+
+.bar {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .workspace {
   margin: 3px;
-  padding: 0px;
 }
 
 .icon {
@@ -73,7 +78,11 @@ window {
 
 .battery, .time, .date .tray .speakers .mic .wifi {
   color: $text;
-  font-size: 10px;
+  font-size: 12px;
+}
+
+.time {
+  font-size: 14;
 }
 
 .battery {

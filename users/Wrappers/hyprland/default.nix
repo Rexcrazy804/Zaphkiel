@@ -40,4 +40,6 @@ pkgs.symlinkJoin {
     pkgs.wrappedPkgs.fuzzel
     pkgs.wrappedPkgs.eww
   ];
+
+  passthru.providedSessions = [ "hyprland" ];
 }

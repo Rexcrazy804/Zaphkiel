@@ -1,0 +1,139 @@
+; eww config
+
+; ━━━━ windows ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+
+(defwindow win0 :monitor 0
+               :geometry (geometry :x 0 :y 0 :height "15px" :width "100%" :anchor "center top")
+               :stacking "fg" 
+               :exclusive true
+               :focusable false
+  (bar0 :monitor "eDP-1"))
+
+; ━━━━ bars ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+
+(defwidget bar0 [monitor] 
+  (box :orientation "h"
+       :space-evenly true
+       :class "bar"
+    (box :class "right"
+      :halign "start"
+      :spacing 20
+      (label :text "Rexuwu"))
+    (box :class "right"
+         :halign "end"
+         :spacing 20
+         :space-evenly false
+      (tray)
+      (wifi)
+      (camera)
+      (mic)
+      (speakers)
+      ; (battery)
+      (time)
+      (date))))
+
+; ━━━━ tray ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+
+(defwidget tray []
+  (box :class "tray"
+    (systray)))
+
+; ━━━━ camera ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+
+(defpoll camera :initial "0" :interval "10s" "./modules/camera.sh")
+
+(defwidget camera []
+  (box :class "camera"
+    :space-evenly false
+    (label :class "icon ${camera == 0 ? 'disconnected' : 'connected'}"
+         :text "${camera == 0 ? '󱜷' : '󰖠'}")))
+
+; ━━━━ wifi ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+
+(defpoll wifi :initial "0" :interval "1m" "./modules/wifi.sh")
+
+(defwidget wifi []
+  (tooltip
+    (label :class "tooltip" :text "${wifi == 0 ? 'Disconnected' : wifi}")
+    (box :class "wifi"
+      :space-evenly false
+      ;(label :class "icon" :text "󱚽󰖪")
+      (label 
+        :class "icon ${wifi == 0 ? 'disconnected' : 'connected'} " 
+        :text "${wifi == 0 ? '󰖪' : '󱚽' }"))))
+
+
+; ━━━━ mic ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+
+(deflisten mic :initial 0  "./modules/listen-mic.sh")
+
+(defwidget mic []
+  (box :class "mic"
+    :space-evenly false
+    (button :class "mute-toggle"
+            :onclick "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+      ; 0: muted, 1: unmuted, 2: running
+      (label :class "icon single-icon ${mic == 2 ? 'running' : mic == 0 ? 'muted' : ''}"
+             :text "${mic == 0 ? '󰍭' :  '󰍬' }"))))
+
+; ━━━━ volume ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+
+(deflisten speakers :initial '{ "volume": 0, "muted": "false" }' "./modules/listen-volume.sh")
+
+(defwidget speakers []
+  (tooltip 
+    (label :class "tooltip" :text "${ speakers.volume }%")
+    (box :class "speakers"
+      :space-evenly false
+      (button :class "icon ${ speakers.volume > 100 ? 'over' : '' } ${ speakers.muted ? 'muted' : '' }"
+        :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle"  
+        (label :text "${ speakers.muted ? '󰖁' : 
+                        speakers.volume > 70 ? '󰕾' : 
+                        speakers.volume > 35 ? '󰖀' : 
+                        '󰕿' }"))
+
+    (scale 
+      :class "${ speakers.volume > 100 ? 'over' : '' }"
+      :min 0  
+      :max 100 
+      :value "${speakers.volume}" 
+      :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"))))
+
+; ━━━━ battery ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+
+(defwidget battery []
+  (box :class "battery"
+    :space-evenly false
+    (label :class "icon ${ EWW_BATTERY["BAT0"].capacity <= 10 ? 'critical' : '' }"
+           :text "${  EWW_BATTERY["BAT0"].capacity > 95 ? '󰁹' 
+                    : EWW_BATTERY["BAT0"].capacity > 90 ? '󰂂' 
+                    : EWW_BATTERY["BAT0"].capacity > 80 ? '󰂁' 
+                    : EWW_BATTERY["BAT0"].capacity > 70 ? '󰂀' 
+                    : EWW_BATTERY["BAT0"].capacity > 60 ? '󰁿' 
+                    : EWW_BATTERY["BAT0"].capacity > 50 ? '󰁾' 
+                    : EWW_BATTERY["BAT0"].capacity > 40 ? '󰁽' 
+                    : EWW_BATTERY["BAT0"].capacity > 30 ? '󰁼' 
+                    : EWW_BATTERY["BAT0"].capacity > 20 ? '󰁻' 
+                    : EWW_BATTERY["BAT0"].capacity > 10 ? '󰁺' 
+                    : '󰂃' }")
+    (label :text "${EWW_BATTERY["BAT0"].capacity}" :halign "center" :xalign 0.5 :justify "right")))
+
+; ━━━━ date ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+
+(defpoll date_poll :interval "1m" "date +%d/%m")
+
+(defwidget date []
+  (box :class "date"
+    :space-evenly false
+    (label :class "icon" :text "󰃶")
+    (label :text date_poll)))
+
+; ━━━━ time ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+
+(defpoll time_poll :interval "1s" "date +%H:%M")
+
+(defwidget time []
+  (box :class "time"
+    :space-evenly false
+    (label :class "icon" :text "󰥔")
+    (label :text time_poll)))

@@ -16,6 +16,7 @@
         hyprland = final.callPackage ./hyprland {};
         hyprlock = final.callPackage ./hyprland/hyprlock.nix {};
         hypridle = final.callPackage ./hyprland/hypridle.nix {};
+        eww = final.callPackage ./eww {};
 
         # TODO
         # mangohud

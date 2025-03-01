@@ -13,4 +13,5 @@
   # services.hypridle.package = pkgs.wrappedPkgs.hypridle;
 
   services.displayManager.defaultSession = "hyprland-uwsm";
+  environment.systemPackages = pkgs.wrappedPkgs.hyprland.dependencies;
 }

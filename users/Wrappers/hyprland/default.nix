@@ -5,14 +5,6 @@ pkgs.symlinkJoin {
   paths = [
     pkgs.hyprland
     pkgs.hyprpaper
-    pkgs.wl-clipboard
-    pkgs.cliphist
-    pkgs.grim
-    pkgs.slurp
-    pkgs.brightnessctl
-    pkgs.swaynotificationcenter
-
-    pkgs.wrappedPkgs.fuzzel
   ];
 
   buildInputs = [
@@ -20,14 +12,32 @@ pkgs.symlinkJoin {
   ];
 
   # basically I am not sure if I want it to be immutable just yet so we are gonna roll with this for now
-  postBuild = let 
+  postBuild = let
     confdir = "/home/rexies/nixos/users/Wrappers/hyprland/conf";
-  in ''
-    wrapProgram $out/bin/Hyprland \
-      --add-flags '--config ${confdir}/hyprland.conf'
-    wrapProgram $out/bin/hyprland \
-      --add-flags '--config ${confdir}/hyprland.conf'
-    wrapProgram $out/bin/hyprpaper \
-      --add-flags '--config ${confdir}/hyprpaper.conf'
-  '';
+  in
+    /*
+    bash
+    */
+    ''
+      wrapProgram $out/bin/Hyprland \
+        --add-flags '--config ${confdir}/hyprland.conf'
+      # wrapProgram $out/bin/hyprland \
+      #   --add-flags '--config ${confdir}/hyprland.conf'
+      wrapProgram $out/bin/hyprpaper \
+        --add-flags '--config ${confdir}/hyprpaper.conf'
+    '';
+
+  passthru.dependencies = [
+    pkgs.wl-clipboard
+    pkgs.cliphist
+    pkgs.grim
+    pkgs.slurp
+    pkgs.brightnessctl
+    pkgs.swaynotificationcenter
+    pkgs.hyprsunset
+
+    # wrapped
+    pkgs.wrappedPkgs.fuzzel
+    pkgs.wrappedPkgs.eww
+  ];
 }

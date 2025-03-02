@@ -39,6 +39,7 @@ pkgs.symlinkJoin {
     # wrapped
     pkgs.wrappedPkgs.fuzzel
     pkgs.wrappedPkgs.eww
+    (pkgs.flameshot.override {enableWlrSupport = true;})
   ];
 
   passthru.providedSessions = [ "hyprland" ];

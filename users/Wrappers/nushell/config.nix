@@ -46,6 +46,9 @@ in
       | where name =~ gpu-screen-reco
       | kill -s 2 $in.0.pid
     }
+    def cowask [question] { 
+      cowsay $"($question)? \n (if (random bool) { 'yes lol' } else {'no fuck you' })" 
+    }
 
     source ~/.cache/zoxide/init.nu
     source ~/.cache/oh-my-posh/init.nu

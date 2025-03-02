@@ -7,6 +7,8 @@
     pkgs.filelight
     pkgs.plasma-panel-colorizer
     pkgs.wrappedPkgs.wezterm
+    pkgs.cbonsai
+    pkgs.cowsay
   ];
   special = builtins.attrValues {
     mpv = pkgs.wrappedPkgs.mpv;

@@ -29,7 +29,7 @@ in
 
     postBuild = ''
       wrapProgram $out/bin/nu \
-      --append-flags '--config ${config} --env-config ${env-config}'
+      --add-flags '--config ${config} --env-config ${env-config}'
     '';
   })
   .overrideAttrs (_: {

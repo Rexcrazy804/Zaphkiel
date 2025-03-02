@@ -155,7 +155,7 @@
 ; ━━━━ notif ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
 
 (defpoll notif_poll :interval "1s" "swaync-client -c")
-(defpoll notif_dnd_poll :interval "1s" "swaync-client -D")
+(defpoll notif_dnd_poll :interval "0.3s" "swaync-client -D")
 
 (defwidget notifications []
   (box 
@@ -165,7 +165,7 @@
       :onclick "swaync-client -t -sw"
       :onmiddleclick "swaync-client -d"
       (label 
-        :class "icon"
+        :class "icon ${notif_dnd_poll? "muted " : ""}"
         :text "${notif_dnd_poll? " " : notif_poll != 0? "󰂚 " : " "}"
       )
     )

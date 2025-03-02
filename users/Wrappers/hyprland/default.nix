@@ -35,6 +35,7 @@ pkgs.symlinkJoin {
     pkgs.brightnessctl
     pkgs.swaynotificationcenter
     pkgs.hyprsunset
+    pkgs.yazi
 
     # wrapped
     pkgs.wrappedPkgs.fuzzel

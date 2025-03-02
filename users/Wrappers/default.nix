@@ -8,6 +8,7 @@
       nvim = import ./nvim {inherit pkgs lib;};
     in
       {
+        wezterm = final.callPackage ./wezterm {};
         alacritty = final.callPackage ./alacritty {};
         nushell = final.callPackage ./nushell {};
         git = final.callPackage ./git {};

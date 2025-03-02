@@ -6,14 +6,9 @@
     pkgs.rconc
     pkgs.filelight
     pkgs.plasma-panel-colorizer
+    pkgs.wrappedPkgs.wezterm
   ];
   special = builtins.attrValues {
-    alacritty = pkgs.wrappedPkgs.alacritty.override {
-      extra-config = {
-        font.size = 13.0;
-      };
-    };
-
     mpv = pkgs.wrappedPkgs.mpv;
 
     discord = pkgs.discord.override {

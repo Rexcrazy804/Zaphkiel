@@ -518,3 +518,14 @@ map('n', '<Tab>', '<CMD>bnext<CR>', defaults("Cycle next buffer"))
 map('n', '<S-Tab>', '<CMD>bprevious<CR>', defaults("Cycle prev buffer"))
 map('n', '<leader>x', '<CMD>bdelete<CR>', defaults("Delete current buffer"))
 map('n', '<leader>X', '<CMD>bdelete!<CR>', defaults("Force delete current buffer"))
+
+-- extra filetypes
+vim.filetype.add {
+  -- extension = { rasi = 'rasi' },
+  pattern = {
+    -- ['.*/waybar/config'] = 'jsonc',
+    -- ['.*/mako/config'] = 'dosini',
+    -- ['.*/kitty/*.conf'] = 'bash',
+    ['.*/hyprland/.*%.conf'] = 'hyprlang',
+  },
+}

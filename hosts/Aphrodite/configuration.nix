@@ -38,7 +38,7 @@
     firewall = {
       interfaces."tailscale0" = {
         allowedTCPPorts = config.services.openssh.ports;
-        allowedUDPPorts = [ 53 ];
+        allowedUDPPorts = [53];
       };
     };
   };

@@ -1,13 +1,11 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./steam.nix
     ./sddm.nix
     ./aagl.nix
     ./age.nix
     ./direnv.nix
+    ./obs.nix
   ];
 
   # global

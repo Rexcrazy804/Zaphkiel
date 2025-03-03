@@ -4,7 +4,7 @@
     startup_mode = "Maximized";
     padding = {
       x = 5;
-      y = 10;
+      y = 5;
     };
   };
 

@@ -3,7 +3,7 @@
   lib,
   poshconfig ? null,
 }: let
-  config = pkgs.writers.writeNu "config.nu" (import ./config.nix {inherit pkgs lib;});
+  config = ./config.nu;
   env-config = pkgs.writers.writeNu "env.nu" (import ./env.nix {
     inherit pkgs;
     inherit (pkgs) lib;
@@ -17,7 +17,6 @@ in
     name = "nushell";
     paths = [
       pkgs.nushell
-      # pkgs.direnv added globally
       pkgs.zoxide
       pkgs.carapace
       pkgs.oh-my-posh

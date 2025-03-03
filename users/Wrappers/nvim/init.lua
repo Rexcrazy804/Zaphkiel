@@ -243,6 +243,13 @@ require("lze").load {
         vim.keymap.set({ 'n', 'v' }, '<leader>ca', '<CMD>lua vim.lsp.buf.code_action()<CR>', opts('Lsp: Code Actions'))
       end
 
+      local default_servers = { "r_language_server", "cssls", "html", "jsonls", "nushell" }
+      for _, lsp in ipairs(default_servers) do
+        lspconfig[lsp].setup({
+          on_attach = on_attach,
+          capabilities = capabilities,
+        })
+      end
 
       lspconfig["lua_ls"].setup({
         on_attach = on_attach,
@@ -267,15 +274,6 @@ require("lze").load {
           })
         end,
         settings = { Lua = {} }
-      })
-
-      lspconfig["r_language_server"].setup({
-        on_attach = on_attach,
-        capabilities = capabilities,
-      })
-      lspconfig["cssls"].setup({
-        on_attach = on_attach,
-        capabilities = capabilities,
       })
 
       lspconfig["rust_analyzer"].setup({

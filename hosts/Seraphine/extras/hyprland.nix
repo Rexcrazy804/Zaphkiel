@@ -34,7 +34,6 @@
     wantedBy = ["timers.target"];
     timerConfig = {
       OnCalendar = "*-*-* 17:30:00";
-      Persistent = true;
     };
   };
 

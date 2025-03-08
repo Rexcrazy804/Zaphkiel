@@ -62,7 +62,10 @@
 
   # generic
   programs = {
-    kdeconnect.enable = true;
+    kdeconnect = {
+      enable = true;
+      package = pkgs.kdePackages.kdeconnect-kde;
+    };
     gpu-screen-recorder.enable = true;
   };
   programs.adb.enable = true;

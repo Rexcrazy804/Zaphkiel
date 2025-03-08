@@ -4,8 +4,6 @@
     pkgs.bottles
     pkgs.winetricks
     pkgs.rconc
-    pkgs.filelight
-    pkgs.plasma-panel-colorizer
     pkgs.wrappedPkgs.wezterm
     pkgs.cbonsai
     pkgs.cowsay
@@ -16,10 +14,6 @@
     discord = pkgs.discord.override {
       withOpenASAR = true;
       withVencord = true;
-    };
-    catppucin-kde = pkgs.catppuccin-kde.override {
-      flavour = ["mocha"];
-      accents = ["pink"];
     };
   };
 in {

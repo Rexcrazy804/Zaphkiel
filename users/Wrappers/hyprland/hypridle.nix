@@ -10,10 +10,14 @@ pkgs.symlinkJoin {
   ];
 
   # basically I am not sure if I want it to be immutable just yet so we are gonna roll with this for now
-  postBuild = let 
+  postBuild = let
     confdir = "/home/rexies/nixos/users/Wrappers/hyprland/conf";
-  in /*bash*/ ''
-    wrapProgram $out/bin/hypridle \
-      --add-flags '--config ${confdir}/hypridle.conf'
-  '';
+  in
+    /*
+    bash
+    */
+    ''
+      wrapProgram $out/bin/hypridle \
+        --add-flags '--config ${confdir}/hypridle.conf'
+    '';
 }

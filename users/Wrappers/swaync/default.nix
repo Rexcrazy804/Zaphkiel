@@ -5,14 +5,18 @@ pkgs.symlinkJoin {
   buildInputs = [pkgs.makeWrapper];
 
   # practically just defaults, too lazy to configure this now
-  postBuild = let 
+  postBuild = let
     stylesheet = ./style.css;
     config = ./config.json;
     # stylesheet = "/home/rexies/nixos/users/Wrappers/swaync/style.css";
     # config = "/home/rexies/nixos/users/Wrappers/swaync/config.json";
-  in /*bash*/''
-    wrapProgram $out/bin/swaync \
-    --add-flags '-c ${config}' \
-    --add-flags '-s ${stylesheet}'
-  '';
+  in
+    /*
+    bash
+    */
+    ''
+      wrapProgram $out/bin/swaync \
+      --add-flags '-c ${config}' \
+      --add-flags '-s ${stylesheet}'
+    '';
 }

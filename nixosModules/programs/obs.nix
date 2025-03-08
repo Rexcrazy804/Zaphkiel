@@ -12,7 +12,7 @@
     programs.obs-studio = {
       enable = true;
       enableVirtualCamera = true;
-      plugins = let 
+      plugins = let
         obsplgns = pkgs.obs-studio-plugins;
       in [
         obsplgns.wlrobs

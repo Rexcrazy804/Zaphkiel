@@ -41,5 +41,5 @@ pkgs.symlinkJoin {
     (pkgs.flameshot.override {enableWlrSupport = true;})
   ];
 
-  passthru.providedSessions = [ "hyprland" ];
+  passthru.providedSessions = ["hyprland"];
 }

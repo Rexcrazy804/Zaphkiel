@@ -1,0 +1,140 @@
+$rosewater: #f5e0dc;
+$flamingo: #f2cdcd;
+$pink: #f5c2e7;
+$mauve: #cba6f7;
+$red: #f38ba8;
+$maroon: #eba0ac;
+$peach: #fab387;
+$yellow: #f9e2af;
+$green: #a6e3a1;
+$teal: #94e2d5;
+$sky: #89dceb;
+$sapphire: #74c7ec;
+$blue: #89b4fa;
+$lavender: #b4befe;
+$text: #cdd6f4;
+$subtext1: #bac2de;
+$subtext0: #a6adc8;
+$overlay2: #9399b2;
+$overlay1: #7f849c;
+$overlay0: #6c7086;
+$surface2: #585b70;
+$surface1: #45475a;
+$surface0: #313244;
+$base: rgba(#202020, 0.6);
+$mantle: #181825;
+$crust: #11111b;
+
+
+* {
+  all: unset;
+}
+
+window {
+  font-family: "CaskaydiaMono Nerd font";
+  background-color: $base;
+}
+
+.bar {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.workspace {
+  margin: 3px;
+}
+
+.icon {
+  margin: 0 5px;
+  color: $text;
+}
+
+.icon.single-icon {
+  margin: 0;
+}
+
+.mic {
+  .icon.running {
+    color: $green;
+  }
+}
+
+.workspace {
+  .icon {
+    margin: 0 3px;
+    font-size: 10px;
+  }
+
+  .name {
+    background-color: $base;
+  }
+}
+
+.workspace.focused {
+  .icon {
+    color: $text;
+  }
+}
+
+.battery,
+.time,
+.date .tray .speakers .mic .wifi .banner {
+  color: $text;
+  font-size: 12px;
+}
+
+.time {
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.battery {
+  .icon.critical {
+    color: $red;
+  }
+}
+
+.tooltip {
+  background-color: $surface0;
+  padding: 5px;
+  color: $text;
+  font-size: 14px;
+}
+
+.camera {
+  .icon.connected {
+    color: $green;
+  }
+}
+
+.icon.muted {
+  color: $red;
+}
+
+.wifi {
+  .icon.connected {
+    color: $green;
+  }
+}
+
+.tray image {
+  -gtk-icon-transform: scale(0.5);
+}
+
+
+scale trough {
+  background-color: $crust;
+  border-radius: 2px;
+  min-height: 5px;
+  min-width: 50px;
+}
+
+scale trough highlight {
+  background-color: $text;
+  border-radius: 2px;
+}
+
+scale.over trough highlight {
+  background-color: $peach;
+  border-radius: 2px;
+}

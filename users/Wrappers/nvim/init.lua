@@ -87,6 +87,9 @@ require("lze").load {
     "nvim-colorizer",
     ft = {
       "lua",
+      "css",
+      "scss",
+      "html",
     },
     after = function()
       require("colorizer").setup()
@@ -240,6 +243,13 @@ require("lze").load {
         vim.keymap.set({ 'n', 'v' }, '<leader>ca', '<CMD>lua vim.lsp.buf.code_action()<CR>', opts('Lsp: Code Actions'))
       end
 
+      local default_servers = { "r_language_server", "cssls", "html", "jsonls", "nushell" }
+      for _, lsp in ipairs(default_servers) do
+        lspconfig[lsp].setup({
+          on_attach = on_attach,
+          capabilities = capabilities,
+        })
+      end
 
       lspconfig["lua_ls"].setup({
         on_attach = on_attach,
@@ -506,3 +516,14 @@ map('n', '<Tab>', '<CMD>bnext<CR>', defaults("Cycle next buffer"))
 map('n', '<S-Tab>', '<CMD>bprevious<CR>', defaults("Cycle prev buffer"))
 map('n', '<leader>x', '<CMD>bdelete<CR>', defaults("Delete current buffer"))
 map('n', '<leader>X', '<CMD>bdelete!<CR>', defaults("Force delete current buffer"))
+
+-- extra filetypes
+vim.filetype.add {
+  -- extension = { rasi = 'rasi' },
+  pattern = {
+    -- ['.*/waybar/config'] = 'jsonc',
+    -- ['.*/mako/config'] = 'dosini',
+    -- ['.*/kitty/*.conf'] = 'bash',
+    ['.*/hyprland/.*%.conf'] = 'hyprlang',
+  },
+}

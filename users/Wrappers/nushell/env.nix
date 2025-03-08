@@ -1,7 +1,7 @@
 {
   pkgs,
   lib,
-  poshconfig ? null,
+  poshconfig,
 }:
 /*
 nu

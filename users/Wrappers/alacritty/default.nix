@@ -18,6 +18,6 @@ in
 
     postBuild = ''
       wrapProgram $out/bin/alacritty \
-      --append-flags '--config-file ${config_file}'
+      --add-flags '--config-file ${config_file}'
     '';
   }

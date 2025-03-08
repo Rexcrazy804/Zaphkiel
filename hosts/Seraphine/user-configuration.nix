@@ -6,14 +6,11 @@
     pkgs.rconc
     pkgs.filelight
     pkgs.plasma-panel-colorizer
+    pkgs.wrappedPkgs.wezterm
+    pkgs.cbonsai
+    pkgs.cowsay
   ];
   special = builtins.attrValues {
-    alacritty = pkgs.wrappedPkgs.alacritty.override {
-      extra-config = {
-        font.size = 13.0;
-      };
-    };
-
     mpv = pkgs.wrappedPkgs.mpv;
 
     discord = pkgs.discord.override {
@@ -26,5 +23,8 @@
     };
   };
 in {
-  users.users."rexies".packages = special ++ generic;
+  users.users."rexies" = {
+    packages = special ++ generic;
+    extraGroups = ["video" "input"];
+  };
 }

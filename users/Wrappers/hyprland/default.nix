@@ -38,6 +38,8 @@ pkgs.symlinkJoin {
     pkgs.wrappedPkgs.fuzzel
     pkgs.wrappedPkgs.swaync
     pkgs.wrappedPkgs.eww
+    pkgs.rose-pine-cursor
+    pkgs.rose-pine-hyprcursor
     (pkgs.flameshot.override {enableWlrSupport = true;})
   ];
 

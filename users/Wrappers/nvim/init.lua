@@ -303,7 +303,7 @@ require("lze").load {
       local file = io.open('/etc/hostname', 'r')
       local hostname = file:read("*line")
       -- only really works if I am the owner, should figure something out later
-      local expr = string.format('(builtins.getFlake "/home/rexies/nixos").nixosConfigurations.%s.options', hostname)
+      local expr = string.format('(builtins.getFlake "git+file:///home/rexies/nixos").nixosConfigurations.%s.options', hostname)
 
       lspconfig["nixd"].setup({
         on_attach = on_attach,

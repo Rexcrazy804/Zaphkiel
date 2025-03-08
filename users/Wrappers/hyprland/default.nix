@@ -21,8 +21,6 @@ pkgs.symlinkJoin {
     ''
       wrapProgram $out/bin/Hyprland \
         --add-flags '--config ${confdir}/hyprland.conf'
-      # wrapProgram $out/bin/hyprland \
-      #   --add-flags '--config ${confdir}/hyprland.conf'
       wrapProgram $out/bin/hyprpaper \
         --add-flags '--config ${confdir}/hyprpaper.conf'
     '';

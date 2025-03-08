@@ -33,12 +33,12 @@ pkgs.symlinkJoin {
     pkgs.grim
     pkgs.slurp
     pkgs.brightnessctl
-    pkgs.swaynotificationcenter
     pkgs.hyprsunset
     pkgs.yazi
 
     # wrapped
     pkgs.wrappedPkgs.fuzzel
+    pkgs.wrappedPkgs.swaync
     pkgs.wrappedPkgs.eww
     (pkgs.flameshot.override {enableWlrSupport = true;})
   ];

@@ -18,6 +18,7 @@
         hyprlock = final.callPackage ./hyprland/hyprlock.nix {};
         hypridle = final.callPackage ./hyprland/hypridle.nix {};
         eww = final.callPackage ./eww {};
+        swaync = final.callPackage ./swaync {};
 
         # TODO
         # mangohud

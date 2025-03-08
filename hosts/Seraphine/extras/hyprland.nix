@@ -37,4 +37,11 @@
       Persistent = true;
     };
   };
+
+  services.displayManager.sddm = {
+    package = pkgs.kdePackages.sddm;
+    extraPackages = [
+      pkgs.kdePackages.qtmultimedia
+    ];
+  };
 }

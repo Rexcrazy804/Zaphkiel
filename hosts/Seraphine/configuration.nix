@@ -7,7 +7,6 @@
   imports = [
     ./hardware-configuration.nix
     ./user-configuration.nix
-    ./extras/hyprland.nix
   ];
 
   networking.hostName = "Seraphine";
@@ -36,6 +35,7 @@
     };
     direnv.enable = true;
     obs-studio.enable = true;
+    hyprland.enable = true;
   };
 
   # forward dns onto the tailnet

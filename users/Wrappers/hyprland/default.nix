@@ -37,6 +37,7 @@ pkgs.symlinkJoin {
     pkgs.slurp
     pkgs.brightnessctl
     pkgs.hyprsunset
+    pkgs.trashy
 
     # wrapped
     pkgs.wrappedPkgs.fuzzel

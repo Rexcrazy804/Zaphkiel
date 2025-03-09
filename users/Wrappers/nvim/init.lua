@@ -243,7 +243,7 @@ require("lze").load {
         vim.keymap.set({ 'n', 'v' }, '<leader>ca', '<CMD>lua vim.lsp.buf.code_action()<CR>', opts('Lsp: Code Actions'))
       end
 
-      local default_servers = { "r_language_server", "cssls", "html", "jsonls", "nushell" }
+      local default_servers = { "r_language_server", "cssls", "html", "jsonls", "nushell" , "taplo" }
       for _, lsp in ipairs(default_servers) do
         lspconfig[lsp].setup({
           on_attach = on_attach,

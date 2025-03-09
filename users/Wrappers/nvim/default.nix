@@ -15,6 +15,7 @@
     pkgs.fd
     pkgs.alejandra
     pkgs.vscode-langservers-extracted
+    pkgs.taplo-lsp
   ];
 
   nvimWrapped = pkgs.symlinkJoin {

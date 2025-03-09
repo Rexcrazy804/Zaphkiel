@@ -264,6 +264,8 @@ keymap = [
 
   # ripdrag
   { on = [ "<C-n>" ], run = "shell 'ripdrag \"$@\" -x 2>/dev/null &' --confirm "},
+  # kde connect share
+  { on = [ "<A-n>" ], run = "shell 'kde-send \"$@\"' --block --confirm"},
 
   # Help
   { on = "~", run = "help", desc = "Open help" },

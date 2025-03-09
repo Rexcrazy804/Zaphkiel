@@ -117,6 +117,14 @@
           # A minimal rust template by Rexiel Scarlet (Rexcrazy804)
         '';
       };
+
+      nix-minimal = {
+        path = ./Templates/Nix/minimal;
+        description = "A minimal nix flake template with the lambda for ease of use";
+        welcomeText = ''
+          # A minimal nix flake template by Rexiel Scarlet (Rexcrazy804)
+        '';
+      };
     };
   };
 }

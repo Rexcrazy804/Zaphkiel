@@ -8,6 +8,7 @@
     ./hardware-configuration.nix
     ../../nixosModules/server
     ../../nixosModules/nix
+    ../../nixosModules/programs/direnv.nix
     ../../nixosModules/programs/age.nix
     ../../nixosModules/system/networking/dnsproxy2.nix
   ];

@@ -36,14 +36,10 @@
       );
   in {
     packages = forAllSystems (pkgs: let
-      nvimPkgs = import ./users/Wrappers/nvim/default.nix {
-        pkgs = pkgs;
-        lib = pkgs.lib;
-      };
-    in {
-      nvim-no-lsp = nvimPkgs.nvim-no-lsp;
-      nvim-wrapped = nvimPkgs.nvim-wrapped;
-      default = nvimPkgs.nvim-wrapped; # use nvim-no-lsp for a minimal setup
+      nvimPkgs = pkgs.callPackage ./users/Wrappers/nvim/default.nix {};
+    in rec {
+      inherit (nvimPkgs) nvim-no-lsp nvim-wrapped;
+      default = nvim-wrapped;
     });
 
     formatter = forAllSystems (pkgs: pkgs.alejandra);

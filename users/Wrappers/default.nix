@@ -20,6 +20,7 @@
         eww = final.callPackage ./eww {};
         swaync = final.callPackage ./swaync {};
         yazi = final.callPackage ./yazi {};
+        fzf = final.callPackage ./fzf {};
 
         # TODO
         # mangohud

@@ -10,7 +10,7 @@
         "--prefix"
         "PATH"
         ":"
-        "${lib.makeBinPath [pkgs.fzf]}"
+        "${lib.makeBinPath [pkgs.wrappedPkgs.fzf]}"
       ];
     }
     /*
@@ -37,6 +37,6 @@ in
 
     postBuild = ''
       wrapProgram $out/bin/yazi \
-        --set-default YAZI_CONFIG_HOME ${./config} \
+        --set-default YAZI_CONFIG_HOME ${./config}
     '';
   }

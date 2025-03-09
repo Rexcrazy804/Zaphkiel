@@ -9,7 +9,7 @@
     pkgs.nixd
     pkgs.lua-language-server
     pkgs.rust-analyzer
-    pkgs.fzf
+    pkgs.wrappedPkgs.fzf
     pkgs.ripgrep
     pkgs.wl-clipboard
     pkgs.fd

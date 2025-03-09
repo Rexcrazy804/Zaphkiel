@@ -3,6 +3,7 @@ local config = wezterm.config_builder()
 local cat_mocha = wezterm.color.get_builtin_schemes()['Catppuccin Mocha']
 cat_mocha.background = '#181818'
 
+config.automatically_reload_config = false
 config.window_background_opacity = 0.79
 config.color_schemes = {
   ['my_cat'] = cat_mocha

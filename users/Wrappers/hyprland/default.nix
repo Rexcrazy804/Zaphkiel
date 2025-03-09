@@ -26,9 +26,11 @@ pkgs.symlinkJoin {
     '';
 
   passthru.dependencies = [
-    # cursor
+    # Theme
     pkgs.rose-pine-cursor
     pkgs.rose-pine-hyprcursor
+    pkgs.rose-pine-icon-theme
+    pkgs.rose-pine-gtk-theme
 
     # utility
     pkgs.wl-clipboard

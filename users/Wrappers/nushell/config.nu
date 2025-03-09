@@ -1,5 +1,6 @@
 load-env {
   "EDITOR": "/run/current-system/sw/bin/nvim"
+  "WEZTERM_SHELL_SKIP_ALL": 1
 }
 
 # nushell configuration

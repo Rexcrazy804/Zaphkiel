@@ -19,6 +19,7 @@
         hypridle = final.callPackage ./hyprland/hypridle.nix {};
         eww = final.callPackage ./eww {};
         swaync = final.callPackage ./swaync {};
+        yazi = final.callPackage ./yazi {};
 
         # TODO
         # mangohud

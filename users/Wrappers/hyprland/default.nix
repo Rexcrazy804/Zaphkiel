@@ -26,20 +26,23 @@ pkgs.symlinkJoin {
     '';
 
   passthru.dependencies = [
+    # cursor
+    pkgs.rose-pine-cursor
+    pkgs.rose-pine-hyprcursor
+
+    # utility
     pkgs.wl-clipboard
     pkgs.cliphist
     pkgs.grim
     pkgs.slurp
     pkgs.brightnessctl
     pkgs.hyprsunset
-    pkgs.yazi
 
     # wrapped
     pkgs.wrappedPkgs.fuzzel
     pkgs.wrappedPkgs.swaync
     pkgs.wrappedPkgs.eww
-    pkgs.rose-pine-cursor
-    pkgs.rose-pine-hyprcursor
+    pkgs.wrappedPkgs.yazi
     (pkgs.flameshot.override {enableWlrSupport = true;})
   ];
 

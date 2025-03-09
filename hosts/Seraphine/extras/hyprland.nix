@@ -43,4 +43,6 @@
       pkgs.kdePackages.qtmultimedia
     ];
   };
+
+  services.power-profiles-daemon.enable = true;
 }

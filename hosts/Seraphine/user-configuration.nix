@@ -4,7 +4,7 @@
     pkgs.bottles
     pkgs.winetricks
     pkgs.rconc
-    pkgs.wrappedPkgs.wezterm
+    pkgs.wrappedPkgs.foot
     pkgs.cbonsai
     pkgs.cowsay
   ];

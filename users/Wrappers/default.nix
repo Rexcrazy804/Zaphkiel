@@ -21,6 +21,7 @@
         swaync = final.callPackage ./swaync {};
         yazi = final.callPackage ./yazi {};
         fzf = final.callPackage ./fzf {};
+        foot = final.callPackage ./foot {};
 
         # TODO
         # mangohud

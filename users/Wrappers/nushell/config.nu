@@ -1,8 +1,3 @@
-load-env {
-  "EDITOR": "/run/current-system/sw/bin/nvim"
-  "WEZTERM_SHELL_SKIP_ALL": 1
-}
-
 # nushell configuration
 $env.config.show_banner = false
 $env.config.edit_mode = "vi"
@@ -49,9 +44,8 @@ source ~/.cache/carapace/init.nu
 $env.config = {
   hooks: {
     pre_prompt: [{ ||
-      if (which direnv | is-empty) {
-        return
-      }
+      # foot integration
+      printf '\e]133;A\e\\'
 
       direnv export json | from json | default {} | load-env
       if 'ENV_CONVERSIONS' in $env and 'PATH' in $env.ENV_CONVERSIONS {

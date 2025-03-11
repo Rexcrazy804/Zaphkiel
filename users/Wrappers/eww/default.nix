@@ -3,7 +3,7 @@ pkgs.symlinkJoin {
   name = "eww-wrapper";
   # pulse audio requried for the scripts .w.
   # did not waste time rewriting it in wpctl
-  # only to realize that it doesn't support as 
+  # only to realize that it doesn't support as
   # many features :D
   paths = [pkgs.eww pkgs.pulseaudio];
 

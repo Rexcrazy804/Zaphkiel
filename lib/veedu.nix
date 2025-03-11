@@ -1,4 +1,5 @@
 {
+  pkgs,
   mode ? "L+",
   source ? throw "source required",
   user ? throw "user required",
@@ -14,4 +15,13 @@ in {
   systemd.user.tmpfiles.users.${user}.rules = [
     "${mode} '${target}' - - - - ${source}"
   ];
+
+  systemd.user.services.veedu-reload = {
+    enable = true;
+    description = "Force systemd tmpfiles to reload";
+    wants = [ "systemd-tmpfiles-setup.service"];
+    wantedBy = [ "graphical-session-pre.target" ];
+    serviceConfig.Type = "oneshot";
+    script = "echo 'veedu re-loaded'";
+  };
 }

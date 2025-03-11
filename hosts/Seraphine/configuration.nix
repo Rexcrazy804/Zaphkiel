@@ -74,6 +74,7 @@
   programs.adb.enable = true;
   users.users.rexies.extraGroups = ["adbusers" "kvm"];
   services.displayManager.autoLogin.user = "rexies";
+  services.displayManager.defaultSession = "hyprland-uwsm";
   services.fstrim.enable = true;
 
   # disabled autosuspend

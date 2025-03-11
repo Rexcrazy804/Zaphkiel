@@ -6,10 +6,10 @@
   nvimConfig = pkgs.callPackage ./nvimConfig.nix {};
   nvim = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped nvimConfig;
   packages = [
-    pkgs.nixd
+    pkgs.nil
     pkgs.lua-language-server
     pkgs.rust-analyzer
-    pkgs.wrappedPkgs.fzf
+    pkgs.fzf
     pkgs.ripgrep
     pkgs.wl-clipboard
     pkgs.fd

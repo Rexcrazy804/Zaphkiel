@@ -305,22 +305,14 @@ require("lze").load {
       -- only really works if I am the owner, should figure something out later
       local expr = string.format('(builtins.getFlake "git+file:///home/rexies/nixos").nixosConfigurations.%s.options', hostname)
 
-      lspconfig["nixd"].setup({
+      lspconfig["nil_ls"].setup({
         on_attach = on_attach,
         capabilities = capabilities,
 
         settings = {
-          nixd = {
-            nixpkgs = {
-              expr = "import <nixpkgs> {}",
-            },
+          ["nil"] = {
             formatting = {
               command = { "alejandra" },
-            },
-            options = {
-              nixos = {
-                expr = expr,
-              },
             },
           },
         },

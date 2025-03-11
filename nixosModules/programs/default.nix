@@ -6,7 +6,7 @@
     ./age.nix
     ./direnv.nix
     ./obs.nix
-    ./hyprland.nix
+    ./hyprland
   ];
 
   # global

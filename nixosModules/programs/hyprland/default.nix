@@ -71,7 +71,6 @@
         description = "starts hyprsunset for blue light filtering";
         after = ["graphical.target"];
         serviceConfig = {
-          conflicts = "hypersunrise.service";
           ExecStart = "${pkgs.hyprsunset}/bin/hyprsunset -t 3000";
         };
       };

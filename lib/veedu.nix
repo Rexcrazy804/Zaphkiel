@@ -8,8 +8,9 @@
   target = home + "/" + destination;
 in {
   # this is simply a function that creates symlinks to the home of the given user
-  # for a usage example checkout nixosModules/hyprland/default.nix
+  # for a usage example checkout nixosModules/programs/hyprland/default.nix
   # Heavily inspired by feel-co/hjem
+  # Veedu is the term for "home" in malayalam (sounds a lot like a certain something ik)
   systemd.user.tmpfiles.users.${user}.rules = [
     "${mode} '${target}' - - - - ${source}"
   ];

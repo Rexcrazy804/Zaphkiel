@@ -1,8 +1,4 @@
-pkgs: let
-  activationScript = ''
-    ${pkgs.hyprland}/bin/hyprctl reload
-  '';
-in {
+pkgs: {
   programs.hyprland = {
     enable = true;
     withUWSM = true;

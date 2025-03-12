@@ -33,7 +33,7 @@ in {
 
       settings = {
         umask = "007";
-        rpc-bind-address = "0.0.0.0";
+        rpc-bind-address = "127.0.0.1";
         anti-brute-force-enabled = true;
         rpc-authentication-required = true;
         # rpc-port = 8090:

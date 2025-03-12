@@ -14,6 +14,7 @@
         git = final.callPackage ./git {};
         mpv = final.callPackage ./mpv {};
         fuzzel = final.callPackage ./fuzzel {};
+        hyprland = final.callPackage ./hyprland {};
         eww = final.callPackage ./eww {};
         swaync = final.callPackage ./swaync {};
         yazi = final.callPackage ./yazi {};

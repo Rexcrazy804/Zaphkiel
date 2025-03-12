@@ -1,43 +1,21 @@
 pkgs: {
   programs.hyprland = {
+    package = pkgs.wrappedPkgs.hyprland;
     enable = true;
     withUWSM = true;
   };
 
   programs.hyprlock = {
+    package = pkgs.wrappedPkgs.hyprland;
     enable = true;
   };
 
   # give packages to hypridle lol
-  systemd.user.services.hypridle.path = [
-    pkgs.brightnessctl
-  ];
+  services.hypridle.package = pkgs.wrappedPkgs.hyprland;
+  systemd.user.services.hypridle.path = [pkgs.brightnessctl];
 
   # dependencies .w.
-  environment.systemPackages = [
-    pkgs.hyprpaper
-    # Theme
-    pkgs.rose-pine-cursor
-    pkgs.rose-pine-hyprcursor
-    pkgs.rose-pine-icon-theme
-    pkgs.rose-pine-gtk-theme
-
-    # utility
-    pkgs.wl-clipboard
-    pkgs.cliphist
-    pkgs.grim
-    pkgs.slurp
-    pkgs.brightnessctl
-    pkgs.hyprsunset
-    pkgs.trashy
-
-    # wrapped
-    pkgs.wrappedPkgs.fuzzel
-    pkgs.wrappedPkgs.swaync
-    pkgs.wrappedPkgs.eww
-    pkgs.wrappedPkgs.yazi
-    (pkgs.flameshot.override {enableWlrSupport = true;})
-  ];
+  environment.systemPackages = pkgs.wrappedPkgs.hyprland.dependencies;
 
   # required when kde plasma is not installed .w.
   # ask me how I knew

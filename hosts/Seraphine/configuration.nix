@@ -35,10 +35,7 @@
     };
     direnv.enable = true;
     obs-studio.enable = true;
-    hyprland = {
-      enable = true;
-      users = ["rexies"];
-    };
+    hyprland.enable = true;
   };
 
   # forward dns onto the tailnet

@@ -15,8 +15,11 @@
     nixvim = pkgs.wrappedPkgs.nvim-wrapped;
   };
   environment.variables.EDITOR = "nvim";
+  # remove nano
+  programs.nano.enable = false;
 
   # wayland on electron and chromium based apps
   # disable if  slow startup time for the same
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
 }

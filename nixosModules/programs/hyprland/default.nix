@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   lib,
   config,
   ...
@@ -10,7 +11,11 @@
     };
   };
 
-  config = let 
+  config = let
     cfg = config.progModule.hyprland;
-  in lib.mkIf cfg.enable (import ./moduleconf.nix pkgs);
+  in
+    lib.mkIf cfg.enable (lib.mkMerge [
+      (import ./moduleconf.nix pkgs)
+      {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
+    ]);
 }

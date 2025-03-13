@@ -1,5 +1,6 @@
 {pkgs, ...}: let
   dependencies = [
+    pkgs.hyprpanel
     # Theme
     pkgs.rose-pine-cursor
     pkgs.rose-pine-hyprcursor
@@ -17,8 +18,6 @@
 
     # wrapped
     pkgs.wrappedPkgs.fuzzel
-    pkgs.wrappedPkgs.swaync
-    pkgs.wrappedPkgs.eww
     pkgs.wrappedPkgs.yazi
     (pkgs.flameshot.override {enableWlrSupport = true;})
   ];
@@ -30,7 +29,8 @@ in
       pkgs.hyprland
       pkgs.hyprlock
       pkgs.hypridle
-      pkgs.hyprpaper
+      # let sww from hyprpanel handle it
+      # pkgs.hyprpaper
     ];
 
     buildInputs = [
@@ -47,8 +47,8 @@ in
       ''
         wrapProgram $out/bin/Hyprland \
           --add-flags '--config ${confdir}/hyprland.conf'
-        wrapProgram $out/bin/hyprpaper \
-          --add-flags '--config ${confdir}/hyprpaper.conf'
+        # wrapProgram $out/bin/hyprpaper \
+        #   --add-flags '--config ${confdir}/hyprpaper.conf'
         wrapProgram $out/bin/hypridle \
           --add-flags '--config ${confdir}/hypridle.conf'
         wrapProgram $out/bin/hyprlock \

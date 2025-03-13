@@ -5,14 +5,8 @@ pkgs: {
     withUWSM = true;
   };
 
-  programs.hyprlock = {
-    package = pkgs.wrappedPkgs.hyprland;
-    enable = true;
-  };
-
-  # give packages to hypridle lol
-  services.hypridle.package = pkgs.wrappedPkgs.hyprland;
-  systemd.user.services.hypridle.path = [pkgs.brightnessctl];
+  # hypridle
+  security.pam.services.hyprlock = { };
 
   # dependencies .w.
   environment.systemPackages = pkgs.wrappedPkgs.hyprland.dependencies;

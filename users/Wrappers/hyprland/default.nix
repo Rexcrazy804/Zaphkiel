@@ -6,6 +6,7 @@
     pkgs.rose-pine-hyprcursor
     pkgs.rose-pine-icon-theme
     pkgs.rose-pine-gtk-theme
+    pkgs.wrappedPkgs.matugen
 
     # utility
     pkgs.wl-clipboard
@@ -15,8 +16,6 @@
     pkgs.brightnessctl
     pkgs.hyprsunset
     pkgs.trashy
-
-    # wrapped
     pkgs.wrappedPkgs.fuzzel
     pkgs.wrappedPkgs.yazi
     (pkgs.flameshot.override {enableWlrSupport = true;})

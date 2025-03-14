@@ -20,6 +20,7 @@
         yazi = final.callPackage ./yazi {};
         fzf = final.callPackage ./fzf {};
         foot = final.callPackage ./foot {};
+        matugen = final.callPackage ./matugen {};
 
         # TODO
         # mangohud

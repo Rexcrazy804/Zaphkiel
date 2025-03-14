@@ -13,7 +13,7 @@ pkgs.symlinkJoin {
   buildInputs = [pkgs.makeWrapper];
 
   postBuild = let
-    config = lib.recursiveUpdate (import ./config.nix {}) extra-config;
+    config = lib.recursiveUpdate (import ./config.nix) extra-config;
     configfile = pkgs.writers.writeTOML "matugen.toml" config;
   in ''
     wrapProgram $out/bin/matugen \

@@ -22,16 +22,16 @@ tertiary_fg = '{{colors.on_tertiary.default.hex}}'
 format = "[ 󰉋 ](bg:primary_bg fg:primary_fg)[ $path ](fg:primary_bg bg:primary_fg)"
 
 [git_branch]
-format = "[  ](bg:tertiary_bg fg:tertiary_fg)[ $branch ](fg:tertiary_bg bg:tertiary_fg)"
+format = "[  ](bg:secondary_bg fg:secondary_fg)[ $branch ](fg:secondary_bg bg:secondary_fg)"
 
 [git_status]
-ahead = '[  ](fg:tertiary_bg bg:tertiary_fg)'
-behind = '[  ](fg:tertiary_bg bg:tertiary_fg)'
-up_to_date = '[ 󰔓 ](fg:tertiary_bg bg:tertiary_fg)'
-untracked = '[  $count ](fg:tertiary_bg bg:tertiary_fg)'
-modified = '[  $count ](fg:tertiary_bg bg:tertiary_fg)'
-staged = '[  $count ](fg:tertiary_bg bg:tertiary_fg)'
-stashed = '[ 󰆓 $count ](fg:tertiary_bg bg:tertiary_fg)'
+ahead = '[  ](fg:secondary_bg bg:secondary_fg)'
+behind = '[  ](fg:secondary_bg bg:secondary_fg)'
+up_to_date = '[ 󰔓 ](fg:secondary_bg bg:secondary_fg)'
+untracked = '[  $count ](fg:secondary_bg bg:secondary_fg)'
+modified = '[  $count ](fg:secondary_bg bg:secondary_fg)'
+staged = '[  $count ](fg:secondary_bg bg:secondary_fg)'
+stashed = '[ 󰆓 $count ](fg:secondary_bg bg:secondary_fg)'
 format = "$ahead_behind$modified$staged$untracked$stashed"
 
 [git_state]
@@ -43,10 +43,10 @@ impure_msg = "impure"
 format = "[ nix ](bg:secondary_bg fg:secondary_fg)[ $state ](fg:secondary_bg bg:secondary_fg)"
 
 [username]
-format = "[ $user ](fg:secondary_fg bg:secondary_bg)"
+format = "[ $user ](fg:tertiary_fg bg:tertiary_bg)"
 show_always = true
 aliases = { "rexies" = "Rexies" }
 
 [hostname]
 ssh_only = false
-format = "[ @$hostname ](fg:secondary_bg bg:secondary_fg)"
+format = "[ @$hostname ](fg:tertiary_bg bg:tertiary_fg)"

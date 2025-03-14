@@ -90,6 +90,7 @@ require("lze").load {
       "css",
       "scss",
       "html",
+      "ini",
     },
     after = function()
       require("colorizer").setup()

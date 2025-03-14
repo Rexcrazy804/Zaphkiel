@@ -22,7 +22,7 @@ tertiary_fg = '{{colors.on_tertiary.default.hex}}'
 format = "[ 󰉋 ](bg:primary_bg fg:primary_fg)[ $path ](fg:primary_bg bg:primary_fg)"
 
 [git_branch]
-format = "[  ](bg:secondary_bg fg:secondary_fg)[ $branch ](fg:secondary_bg bg:secondary_fg)"
+format = "[  ](bg:secondary_bg fg:secondary_fg)[ $branch](fg:secondary_bg bg:secondary_fg)"
 
 [git_status]
 ahead = '[  ](fg:secondary_bg bg:secondary_fg)'

@@ -19,7 +19,7 @@ in
       pkgs.nushell
       pkgs.zoxide
       pkgs.carapace
-      pkgs.oh-my-posh
+      pkgs.starship
     ];
 
     buildInputs = [
@@ -28,6 +28,7 @@ in
 
     postBuild = ''
       wrapProgram $out/bin/nu \
+      --set-default STARSHIP_CONFIG ${./starship.toml} \
       --add-flags '--config ${config} --env-config ${env-config}'
     '';
   })

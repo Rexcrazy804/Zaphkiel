@@ -91,6 +91,7 @@ require("lze").load {
       "scss",
       "html",
       "ini",
+      "toml",
     },
     after = function()
       require("colorizer").setup()

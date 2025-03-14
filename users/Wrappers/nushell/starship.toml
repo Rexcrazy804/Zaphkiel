@@ -11,12 +11,12 @@ add_newline = false
 palette = 'colors'
 
 [palettes.colors]
-primary_bg = '{{colors.primary_fixed_dim.default.hex}}'
-primary_fg = '{{colors.on_primary.default.hex}}'
-secondary_bg = '{{colors.secondary.default.hex}}'
-secondary_fg = '{{colors.on_secondary.default.hex}}'
-tertiary_bg = '{{colors.tertiary.default.hex}}'
-tertiary_fg = '{{colors.on_tertiary.default.hex}}'
+primary_bg = '#ffb4ab'
+primary_fg = '#561e1a'
+secondary_bg = '#e7bdb8'
+secondary_fg = '#442926'
+tertiary_bg = '#e0c38c'
+tertiary_fg = '#3f2e04'
 
 [directory]
 format = "[ 󰉋 ](bg:primary_bg fg:primary_fg)[ $path ](fg:primary_bg bg:primary_fg)"

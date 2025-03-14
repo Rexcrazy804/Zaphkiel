@@ -19,9 +19,6 @@ nu
   | sed 's/($env | default false __zoxide_hooked | get __zoxide_hooked/\0 | into bool/'
   | save --force $"($zoxide_cache)/init.nu"
 
-  ${lib.getExe pkgs.oh-my-posh} init nu ${lib.optionalString (poshconfig != null) "--config ${poshconfig}"} --print
-  | save --force $"($oh_my_posh_cache)/init.nu"
-
   ${lib.getExe pkgs.carapace} _carapace nushell
   | save -f $"($carapace_cache)/init.nu"
 ''

@@ -1,10 +1,23 @@
 {
   config = {};
 
+  # WARN
+  # this currently has a HUUUGE pitfal when it comes to
+  # setting colors for different pit falls currently however
+  # I am not really using more than 1 laptop for hyprland
+  # so I will delegate this to my future self good luck :D
+  # I think the easiest solution might just be to use the
+  # matugen module .w.
+
   templates.hyprland = {
     input_path = "${./templates/hyprland-colors.conf}";
     output_path = "~/nixos/users/Wrappers/hyprland/conf/hyprcolors.conf";
     post_hook = "hyprctl reload";
+  };
+
+  templates.starship = {
+    input_path = "${./templates/starship-colors.toml}";
+    output_path = "~/nixos/users/Wrappers/nushell/starship.toml";
   };
 
   templates.midnight-discord = {

@@ -26,4 +26,9 @@
     input_path = "${./templates/yazi-theme.toml}";
     output_path = "~/nixos/users/Wrappers/yazi/config/theme.toml";
   };
+
+  templates.fuzzel = {
+    input_path = "${./templates/fuzzel.ini}";
+    output_path = "~/nixos/users/Wrappers/fuzzel/colors.ini";
+  };
 }

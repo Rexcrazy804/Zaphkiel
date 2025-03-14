@@ -1,5 +1,7 @@
 {pkgs}: let
-  config_file = ./fuzzel.ini;
+  base = builtins.readFile ./fuzzel.ini;
+  colors = builtins.readFile ./colors.ini;
+  config_file = pkgs.writeText "config.ini" (base + colors);
 in
   pkgs.symlinkJoin {
     name = "fuzzel";

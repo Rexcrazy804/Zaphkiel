@@ -7,9 +7,9 @@
     post_hook = "hyprctl reload";
   };
 
-  templates.discord = {
+  templates.midnight-discord = {
     input_path = "${./templates/midnight-discord.css}";
-    output_path = "~/.config/Vencord/themes/discord.css";
+    output_path = "~/.config/Vencord/themes/midnight.css";
   };
 
   templates.gtk3 = {
@@ -20,5 +20,10 @@
   templates.gtk4 = {
     input_path = "${./templates/gtk-colors.css}";
     output_path = "~/.config/gtk-4.0/colors.css";
+  };
+
+  templates.yazi = {
+    input_path = "${./templates/yazi-theme.toml}";
+    output_path = "~/nixos/users/Wrappers/yazi/config/theme.toml";
   };
 }

@@ -52,8 +52,18 @@ in {
       pkgs.carapace
     ];
 
-    files = {
+    files = let 
+      matugentheme = config.programs.matugen.theme.files;
+    in {
+      # shell
       ".config/nushell/config.nu".source = ./Configs/nushell/config.nu;
+      ".config/starship.toml".source = "${matugentheme}/starship.toml";
+
+      # hyprland
+      ".config/hypr/hypridle.conf".source = ./Configs/hyprland/hypridle.conf;
+      ".config/hypr/hyprland.conf".source = ./Configs/hyprland/hyprland.conf;
+      ".config/hypr/hyprlock.conf".source = ./Configs/hyprland/hyprlock.conf;
+      ".config/hypr/hyprcolors.conf".source = "${matugentheme}/hyprcolors.conf";
     };
   };
 }

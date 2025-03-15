@@ -13,18 +13,11 @@
         git = final.callPackage ./git {};
         mpv = final.callPackage ./mpv {};
         fuzzel = final.callPackage ./fuzzel {};
-        hyprland = final.callPackage ./hyprland {};
         eww = final.callPackage ./eww {};
         swaync = final.callPackage ./swaync {};
         yazi = final.callPackage ./yazi {};
         fzf = final.callPackage ./fzf {};
         foot = final.callPackage ./foot {};
-        matugen = final.callPackage ./matugen {};
-
-        # TODO
-        # mangohud
-        # sway
-        # obs
       }
       // nvim;
   };

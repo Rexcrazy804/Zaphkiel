@@ -33,8 +33,4 @@ in {
     enable = true;
     wallpaper = ./kokomi_116824847_p0_cropped.jpg;
   };
-
-  hjem.users."rexies".files = {
-    ".config/starship.toml".source = "${config.programs.matugen.theme.files}/starship.toml";
-  };
 }

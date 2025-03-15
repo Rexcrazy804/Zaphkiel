@@ -1,15 +1,31 @@
 pkgs: {
   programs.hyprland = {
-    package = pkgs.wrappedPkgs.hyprland;
     enable = true;
     withUWSM = true;
   };
-
-  # hypridle
-  security.pam.services.hyprlock = { };
+  programs.hyprlock.enable = true;
 
   # dependencies .w.
-  environment.systemPackages = pkgs.wrappedPkgs.hyprland.dependencies;
+  environment.systemPackages = [
+    pkgs.hyprpanel
+    # Theme
+    pkgs.rose-pine-cursor
+    pkgs.rose-pine-hyprcursor
+    pkgs.rose-pine-icon-theme
+    pkgs.rose-pine-gtk-theme
+
+    # utility
+    pkgs.wl-clipboard
+    pkgs.cliphist
+    pkgs.grim
+    pkgs.slurp
+    pkgs.brightnessctl
+    pkgs.hyprsunset
+    pkgs.trashy
+    pkgs.wrappedPkgs.fuzzel
+    pkgs.wrappedPkgs.yazi
+    (pkgs.flameshot.override {enableWlrSupport = true;})
+  ];
 
   # required when kde plasma is not installed .w.
   # ask me how I knew

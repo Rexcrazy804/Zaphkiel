@@ -42,9 +42,6 @@ def cowask [question] {
   cowsay $"($question)? \n (if (random bool) { 'yes lol' } else {'no fuck you' })"
 }
 
-source ~/.cache/zoxide/init.nu
-source ~/.cache/carapace/init.nu
-
 $env.config = {
   hooks: {
     pre_prompt: [{ ||

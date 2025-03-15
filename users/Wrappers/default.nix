@@ -12,10 +12,8 @@
         alacritty = final.callPackage ./alacritty {};
         git = final.callPackage ./git {};
         mpv = final.callPackage ./mpv {};
-        fuzzel = final.callPackage ./fuzzel {};
         eww = final.callPackage ./eww {};
         swaync = final.callPackage ./swaync {};
-        yazi = final.callPackage ./yazi {};
         fzf = final.callPackage ./fzf {};
         foot = final.callPackage ./foot {};
       }

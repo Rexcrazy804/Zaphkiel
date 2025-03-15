@@ -55,9 +55,18 @@ in {
     files = let
       matugen = config.programs.matugen;
       matugentheme = matugen.theme.files;
-      from = ["/home/rexies/Pictures/kokomi_116824847_p0_cropped.jpg"];
-      to = ["${matugen.wallpaper}"];
-      hyprpanel = builtins.replaceStrings from to (builtins.readFile ./Configs/hyprpanel/config.json);
+
+      hyprpanel = let
+        from = ["/home/rexies/Pictures/kokomi_116824847_p0_cropped.jpg"];
+        to = ["${matugen.wallpaper}"];
+      in
+        builtins.replaceStrings from to (builtins.readFile ./Configs/hyprpanel/config.json);
+
+      fuzzel = let
+        base = builtins.readFile ./Configs/fuzzel/fuzzel.ini;
+        colors = builtins.readFile "${matugentheme}/fuzzel-colors.ini";
+      in
+        base + colors;
     in {
       # shell
       ".config/nushell/config.nu".source = ./Configs/nushell/config.nu;
@@ -68,7 +77,13 @@ in {
       ".config/hypr/hyprland.conf".source = ./Configs/hyprland/hyprland.conf;
       ".config/hypr/hyprlock.conf".source = ./Configs/hyprland/hyprlock.conf;
       ".config/hypr/hyprcolors.conf".source = "${matugentheme}/hyprcolors.conf";
+      ".config/Vencord/themes/midnight.css".source = "${matugentheme}/discord-midnight.css";
+      ".config/yazi/yazi.toml".source = ./Configs/yazi/yazi.toml;
+      ".config/yazi/keymap.toml".source = ./Configs/yazi/keymap.toml;
+      ".config/yazi/theme.toml".source = "${matugentheme}/yazi-theme.toml";
+
       ".config/hyprpanel/config.json".text = hyprpanel;
+      ".config/fuzzel/fuzzel.ini".text = fuzzel;
     };
   };
 }

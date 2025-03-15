@@ -22,8 +22,8 @@ pkgs: {
     pkgs.brightnessctl
     pkgs.hyprsunset
     pkgs.trashy
-    pkgs.wrappedPkgs.fuzzel
-    pkgs.wrappedPkgs.yazi
+    pkgs.fuzzel
+    pkgs.yazi
     (pkgs.flameshot.override {enableWlrSupport = true;})
   ];
 

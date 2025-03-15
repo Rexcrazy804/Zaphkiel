@@ -31,8 +31,8 @@
     };
 
     fuzzel = {
-      input_path = "${./templates/fuzzel.ini}";
-      output_path = "~/fuzzel.ini";
+      input_path = "${./templates/fuzzel-colors.ini}";
+      output_path = "~/fuzzel-colors.ini";
     };
   };
 }

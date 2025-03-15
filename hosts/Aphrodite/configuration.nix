@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
+    ./user-configuration.nix
     ../../nixosModules/server
     ../../nixosModules/nix
     ../../nixosModules/programs/direnv.nix

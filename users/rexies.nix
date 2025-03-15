@@ -39,10 +39,10 @@ in {
   };
 
   # hjem
-  hjem.users."rexies" = {
+  hjem.users.${username} = {
     enable = true;
-    user = "rexies";
-    directory = config.users.users."rexies".home;
+    user = username;
+    directory = config.users.users.${username}.home;
     clobberFiles = lib.mkForce true;
 
     packages = [

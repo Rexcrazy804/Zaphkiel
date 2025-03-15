@@ -30,6 +30,6 @@ in {
   };
   programs.matugen = {
     enable = true;
-    wallpaper = ./kokomi_116824847_p0_cropped.jpg;
+    wallpaper = ./linsha_123071255_cropped.png;
   };
 }

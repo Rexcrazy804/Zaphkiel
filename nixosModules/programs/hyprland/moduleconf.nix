@@ -2,7 +2,7 @@ pkgs: let
   # small script to send files over kde connect on yazi
   kde-send = pkgs.writers.writeNuBin "kde-send" ''
     def main [...files] {
-      let device = kdeconnect-cli -a --name-only | ${pkgs.wrappedPkgs.fzf}
+      let device = kdeconnect-cli -a --name-only | fzf
 
       for $file in $files {
         kdeconnect-cli -n $"($device)" --share $"($file)"
@@ -38,6 +38,7 @@ in {
     pkgs.hyprsunset
     pkgs.trashy
     pkgs.fuzzel
+    pkgs.wrappedPkgs.fzf
     flameshot
 
     # yazi + deps

@@ -39,4 +39,6 @@ All code in this repository is under the MIT license unless wherever
 an explicit licensing is included.
 
 #### Wallpaper Sources
-- Seraphine + Aphrodite: [kokomi by Shaovie](https://www.pixiv.net/en/artworks/116824847)
+
+- Seraphine: [linsha by ATDAN-](https://www.pixiv.net/en/artworks/123071255)
+- Aphrodite: [kokomi by Shaovie](https://www.pixiv.net/en/artworks/116824847)

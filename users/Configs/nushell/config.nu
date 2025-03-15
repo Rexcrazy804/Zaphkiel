@@ -3,9 +3,11 @@ $env.config.edit_mode = "vi"
 $env.PROMPT_INDICATOR_VI_INSERT = ""
 $env.PROMPT_INDICATOR_VI_NORMAL = ""
 
-# starship
+# Shell integrations
 mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+carapace _carapace nushell | save -f ($nu.data-dir | path join "vendor/autoload/carapace.nu")
+zoxide init nushell --cmd cd | save -f ($nu.data-dir | path join "vendor/autoload/zoxide.nu")
 
 # custom definitions
 def envinit [] { 'use flake' | save .envrc }

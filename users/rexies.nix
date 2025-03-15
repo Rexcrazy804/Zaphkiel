@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: let
   username = "rexies";
@@ -9,7 +10,7 @@ in {
   users.users.${username} = {
     inherit description;
 
-    shell = pkgs.wrappedPkgs.nushell;
+    shell = pkgs.nushell;
     isNormalUser = true;
     extraGroups = ["networkmanager" "wheel" "multimedia"];
     hashedPasswordFile = config.age.secrets.rexiesPass.path;
@@ -35,5 +36,24 @@ in {
   age.secrets.rexiesPass = {
     file = ../secrets/secret1.age;
     owner = username;
+  };
+
+  # hjem
+  hjem.users."rexies" = {
+    enable = true;
+    user = "rexies";
+    directory = config.users.users."rexies".home;
+    clobberFiles = lib.mkForce true;
+
+    packages = [
+      pkgs.starship
+      pkgs.zoxide
+      pkgs.carapace
+    ];
+
+    files = {
+      ".config/nushell/config.nu".source = ./Configs/nushell/config.nu;
+      ".config/starship.toml".source = ./Configs/starship/starship.toml;
+    };
   };
 }

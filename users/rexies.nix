@@ -46,6 +46,7 @@ in {
     clobberFiles = lib.mkForce true;
 
     packages = [
+      # nushell dependencies
       pkgs.starship
       pkgs.zoxide
       pkgs.carapace
@@ -53,7 +54,6 @@ in {
 
     files = {
       ".config/nushell/config.nu".source = ./Configs/nushell/config.nu;
-      ".config/starship.toml".source = ./Configs/starship/starship.toml;
     };
   };
 }

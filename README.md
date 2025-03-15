@@ -2,8 +2,9 @@
 ![wall](https://github.com/Rexcrazy804/Zaphkiel/blob/master/nixosModules/programs/sddm-wall.png?raw=true)
 
 #### What have you done?
-I have killed home manager, and then I've killed nixvim. All in the favour of
-wrapping stuff myself, you can look into `users/Wrappers` for the config of each of
+TODO explain the switch to hjem
+I have killed home manager, and then I've killed nixvim. ~All in the favour of
+wrapping stuff myself~, you can look into `users/Wrappers` for the config of each of
 the programs I have tinkered with most notably **mpv** featuring support for
 anime4k shadders and a custom **neovim** configuration with
 [lze](https://github.com/BirdeeHub/lze) lazy loading.
@@ -37,5 +38,5 @@ resources throughout my early adventure through nix
 All code in this repository is under the MIT license unless wherever
 an explicit licensing is included.
 
-#### Where is that cute anime girl from?
-Its ai generated (using cetusmix whalefal2), so feel free to grab it /
+#### Wallpaper Sources
+- Seraphine: [kokomi by Shaovie](https://www.pixiv.net/en/artworks/116824847)

@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  config,
+  ...
+}: let
   generic = [
     pkgs.wineWowPackages.stable
     pkgs.bottles
@@ -17,8 +21,20 @@
     };
   };
 in {
+  imports = [
+    ../../nixosModules/external/matugen
+    ../../nixosModules/external/matugen/config.nix
+  ];
   users.users."rexies" = {
     packages = special ++ generic;
     extraGroups = ["video" "input"];
+  };
+  programs.matugen = {
+    enable = true;
+    wallpaper = ./kokomi_116824847_p0_cropped.jpg;
+  };
+
+  hjem.users."rexies".files = {
+    ".config/starship.toml".source = "${config.programs.matugen.theme.files}/starship.toml";
   };
 }

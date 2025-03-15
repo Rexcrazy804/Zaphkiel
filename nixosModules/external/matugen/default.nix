@@ -5,8 +5,9 @@
   lib,
   config,
   ...
-}: let
+} @ args: let
   cfg = config.programs.matugen;
+  osCfg = args.osConfig.programs.matugen or {};
 
   hexColorRegex = ''#([0-9a-fA-F]{3}){1,2}'';
   hexStrippedColorRegex = ''([0-9a-fA-F]{3}){1,2}'';
@@ -14,7 +15,7 @@
   rgbaColorRegex = ''rgba\([0-9]{1,3}, ?[0-9]{1,3}, ?[0-9]{1,3}, ?[0-9]{1,3}\)'';
   hslColorRegex = ''hsl\([0-9]{1,3}(\.[0-9]*)?, ?[0-9]{1,3}(\.[0-9]*)?%, ?[0-9]{1,3}(\.[0-9]*)?%\)'';
   hslaColorRegex = ''hsla\([0-9]{1,3}(\.[0-9]*)?, ?[0-9]{1,3}(\.[0-9]*)?%, ?[0-9]{1,3}(\.[0-9]*)?%, ?[0,1](\.[0-9]*)?\)'';
-
+  
   hexColor = lib.types.strMatching hexColorRegex;
   hexStrippedColor = lib.types.strMatching hexStrippedColorRegex;
   rgbColor = lib.types.strMatching rgbColorRegex;
@@ -44,40 +45,26 @@
     cfg.templates;
 
   matugenConfig = configFormat.generate "matugen-config.toml" {
-    config =
-      {
-        custom_colors = cfg.custom_colors;
-      }
-      // cfg.config;
+    config = {
+      custom_colors = cfg.custom_colors;
+    } // cfg.config;
     templates = sanitizedTemplates;
   };
 
   # get matugen package
   pkg = pkgs.matugen;
 
-  # takes in a source color string and returns the subcommand needed to
-  # generate a color scheme using that color type.
-  sourceColorTypeMatcher = color:
-    (lib.lists.findSingle (p: null != builtins.match p.regex color) {} {} [
-      {
-        regex = hexColorRegex;
-        code = "hex";
-      }
-      {
-        regex = rgbColorRegex;
-        code = "rgb";
-      }
-      {
-        regex = hslColorRegex;
-        code = "hsl";
-      }
-    ])
-    .code;
+  # takes in a source color string and returns the subcommand needed to generate
+  # a color scheme using that color type.
+  sourceColorTypeMatcher = color: (lib.lists.findSingle (p: null != builtins.match p.regex color) {} {} [
+    { regex = hexColorRegex; code = "hex"; }
+    { regex = rgbColorRegex; code = "rgb"; }
+    { regex = hslColorRegex; code = "hsl"; }
+  ]).code;
 
-  command =
-    if (builtins.isNull cfg.source_color)
-    then "image ${cfg.wallpaper}"
-    else "color ${sourceColorTypeMatcher cfg.source_color} \"${cfg.source_color}\"";
+  command = if (builtins.isNull cfg.source_color) then
+    "image ${cfg.wallpaper}" else
+    "color ${sourceColorTypeMatcher cfg.source_color} \"${cfg.source_color}\"";
 
   themePackage = builtins.trace command (pkgs.runCommandLocal "matugen-themes-${cfg.variant}" {} ''
     mkdir -p $out
@@ -108,14 +95,14 @@ in {
     source_color = lib.mkOption {
       description = "Hex color to generate the colorschemes from. If this and wallpaper are defined, will use this.";
       type = lib.types.nullOr sourceColorType;
-      default = cfg.source_color or null;
+      default = osCfg.source_color or null;
       example = "#ff1243";
     };
 
     wallpaper = lib.mkOption {
       description = "Path to `wallpaper` that matugen will generate the colorschemes from";
       type = lib.types.path;
-      default = cfg.wallpaper or "${pkgs.nixos-artwork.wallpapers.simple-blue}/share/backgrounds/nixos/nix-wallpaper-simple-blue.png";
+      default = osCfg.wallpaper or "${pkgs.nixos-artwork.wallpapers.simple-blue}/share/backgrounds/nixos/nix-wallpaper-simple-blue.png";
       defaultText = lib.literalExample ''
         "${pkgs.nixos-artwork.wallpapers.simple-blue}/share/backgrounds/nixos/nix-wallpaper-simple-blue.png"
       '';
@@ -137,7 +124,7 @@ in {
             };
           };
         });
-      default = cfg.templates or {};
+      default = osCfg.templates or {};
       description = ''
         Templates that have `@{placeholders}` which will be replaced by the respective colors.
         See <https://github.com/InioX/matugen/wiki/Configuration#example-of-all-the-color-keywords> for a list of colors.
@@ -161,7 +148,7 @@ in {
             };
           };
         });
-      default = cfg.custom_colors or {};
+      default = osCfg.custom_colors or {};
       example = ''
         {
           light-red.color = "#d03e3e";
@@ -179,21 +166,21 @@ in {
     type = lib.mkOption {
       description = "Palette used when generating the colorschemes.";
       type = lib.types.enum ["scheme-content" "scheme-expressive" "scheme-fidelity" "scheme-fruit-salad" "scheme-monochrome" "scheme-neutral" "scheme-rainbow" "scheme-tonal-spot"];
-      default = cfg.palette or "scheme-tonal-spot";
+      default = osCfg.palette or "scheme-tonal-spot";
       example = "scheme-content";
     };
 
     jsonFormat = lib.mkOption {
       description = "Color format of the colorschemes.";
       type = lib.types.enum ["rgb" "rgba" "hsl" "hsla" "hex" "strip"];
-      default = cfg.jsonFormat or "strip";
+      default = osCfg.jsonFormat or "strip";
       example = "rgba";
     };
 
     variant = lib.mkOption {
       description = "Colorscheme variant.";
       type = lib.types.enum ["light" "dark" "amoled"];
-      default = cfg.variant or "dark";
+      default = osCfg.variant or "dark";
       example = "light";
     };
 
@@ -201,13 +188,13 @@ in {
       description = "Value from -1 to 1. -1 represents minimum contrast, 0 represents standard (i.e. the design as spec'd), and 1 represents maximum contrast.";
       type = lib.types.numbers.between (-1) 1;
       default = 0;
-      example = "0.2";
+      example = "0.2";   
     };
 
     config = lib.mkOption {
       description = "Add things to the config not covered by other options.";
       type = lib.types.attrs;
-      default = cfg.config or {};
+      default = osCfg.config or {};
       example = ''
         {
           custom_keywords.font1 = "Google Sans";
@@ -218,14 +205,26 @@ in {
     theme.files = lib.mkOption {
       type = lib.types.package;
       readOnly = true;
-      default = themePackage;
+      default =
+        if builtins.hasAttr "templates" osCfg
+        then
+          if cfg.templates != osCfg.templates
+          then themePackage
+          else osCfg.theme.files
+        else themePackage;
       description = "Generated theme files. Including only the variant chosen.";
     };
 
     theme.colors = lib.mkOption {
       inherit (pkgs.formats.json {}) type;
       readOnly = true;
-      default = colors;
+      default =
+        if builtins.hasAttr "templates" osCfg
+        then
+          if cfg.templates != osCfg.templates
+          then colors
+          else osCfg.theme.colors
+        else colors;
       description = "Generated theme colors. Includes all variants.";
     };
   };

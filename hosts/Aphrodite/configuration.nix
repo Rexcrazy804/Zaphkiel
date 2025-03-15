@@ -63,6 +63,9 @@
     fail2ban.enable = false;
   };
 
+  age.secrets.tailAuth.file = ../../secrets/secret8.age;
+  services.tailscale.authKeyFile = config.age.secrets.tailAuth.path;
+
   services.openssh = {
     openFirewall = lib.mkForce false;
     startWhenNeeded = lib.mkForce false;

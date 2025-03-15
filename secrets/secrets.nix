@@ -26,15 +26,11 @@ in {
   "secret1.age".publicKeys = users.rexies;
   "secret2.age".publicKeys = hosts.Zaphkiel;
   "secret3.age".publicKeys = hosts.Raphael;
-  "secret4.age".publicKeys = users.rexies;
   "secret5.age".publicKeys = hosts.Seraphine;
   "secret6.age".publicKeys = users.rexies;
-  "secret7.age".publicKeys = hosts.Seraphine;
   "secret8.age".publicKeys = hosts.Aphrodite;
 
-  "media_kok.age".publicKeys = users.rexies;
   "media_robin.age".publicKeys = hosts.Zaphkiel ++ hosts.Raphael ++ users.rexies;
-  "media_kok_exquisite.age".publicKeys = users.rexies;
 
   "bak_sak.age".publicKeys = users.rexies;
   "mc_rcon.age".publicKeys = users.rexies ++ hosts.Seraphine;

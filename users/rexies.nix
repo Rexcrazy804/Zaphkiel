@@ -52,8 +52,12 @@ in {
       pkgs.carapace
     ];
 
-    files = let 
-      matugentheme = config.programs.matugen.theme.files;
+    files = let
+      matugen = config.programs.matugen;
+      matugentheme = matugen.theme.files;
+      from = ["/home/rexies/Pictures/kokomi_116824847_p0_cropped.jpg"];
+      to = ["${matugen.wallpaper}"];
+      hyprpanel = builtins.replaceStrings from to (builtins.readFile ./Configs/hyprpanel/config.json);
     in {
       # shell
       ".config/nushell/config.nu".source = ./Configs/nushell/config.nu;
@@ -64,6 +68,7 @@ in {
       ".config/hypr/hyprland.conf".source = ./Configs/hyprland/hyprland.conf;
       ".config/hypr/hyprlock.conf".source = ./Configs/hyprland/hyprlock.conf;
       ".config/hypr/hyprcolors.conf".source = "${matugentheme}/hyprcolors.conf";
+      ".config/hyprpanel/config.json".text = hyprpanel;
     };
   };
 }

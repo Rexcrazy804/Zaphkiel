@@ -39,6 +39,84 @@ require("lze").load {
         transparent_background = true,
         term_colors = false,
       })
+      require("lualine").setup({ options = { theme = "catppuccin" } })
+    end
+  },
+
+  {
+    "rose-pine",
+    colorscheme = {
+      "rose-pine",
+    },
+    after = function()
+      require("rose-pine").setup({
+        variant = "auto",      -- auto, main, moon, or dawn
+        dark_variant = "main", -- main, moon, or dawn
+        dim_inactive_windows = false,
+        extend_background_behind_borders = true,
+
+        enable = {
+          terminal = true,
+          legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+          migrations = true,        -- Handle deprecated options automatically
+        },
+
+        styles = {
+          bold = true,
+          italic = true,
+          transparency = true,
+        },
+
+        groups = {
+          border = "muted",
+          link = "iris",
+          panel = "surface",
+
+          error = "love",
+          hint = "iris",
+          info = "foam",
+          note = "pine",
+          todo = "rose",
+          warn = "gold",
+
+          git_add = "foam",
+          git_change = "rose",
+          git_delete = "love",
+          git_dirty = "rose",
+          git_ignore = "muted",
+          git_merge = "iris",
+          git_rename = "pine",
+          git_stage = "iris",
+          git_text = "rose",
+          git_untracked = "subtle",
+
+          h1 = "iris",
+          h2 = "foam",
+          h3 = "rose",
+          h4 = "gold",
+          h5 = "pine",
+          h6 = "foam",
+        },
+
+        highlight_groups = {
+          -- borderless telescope + transparent telescope
+          TelescopeNormal = { bg = "none" },
+          TelescopePromptNormal = { bg = "base" },
+          TelescopeResultsNormal = { fg = "subtle", bg = "none" },
+          TelescopeSelection = { fg = "text", bg = "base" },
+          TelescopeSelectionCaret = { fg = "rose", bg = "rose" },
+          TelescopeMultiSelection = { fg = "text", bg = "highlight_high" },
+          TelescopeTitle = { fg = "base", bg = "love" },
+          TelescopePromptTitle = { fg = "base", bg = "pine" },
+          TelescopePreviewTitle = { fg = "base", bg = "iris" },
+
+          -- leafy search
+          CurSearch = { fg = "base", bg = "leaf", inherit = false },
+          Search = { fg = "text", bg = "leaf", blend = 20, inherit = false },
+        },
+      })
+      -- sync lualine theme
+      require("lualine").setup({ options = { theme = "rose-pine" } })
     end
   },
 
@@ -70,13 +148,8 @@ require("lze").load {
     after = function()
       require("toggleterm").setup({
         autochdir = true,
-        highlights = {
-          FloatBorder = {
-            -- guibg = "#b4befe",
-            guifg = "#b4befe",
-          },
-        },
-        shade_terminals = false,
+        highlights = require("rose-pine.plugins.toggleterm"),
+        shade_terminals = true,
         direction = 'float',
         open_mapping = [[<A-i>]],
       })
@@ -112,29 +185,8 @@ require("lze").load {
           globalstatus = true,
           component_separators = { left = '', right = '' },
           section_separators = { left = '', right = '' },
-          theme = {
-            normal = {
-              a = { bg = "#b4befe", fg = "#282828", gui = "bold", },
-              b = { bg = "#313244", fg = "#b4befe", },
-              c = { bg = "", fg = "#cdd6f4", },
-            },
-            insert = {
-              a = { bg = "#89b4fa", fg = "#282828", gui = "bold", },
-              b = { bg = "#313244", fg = "#89b4fa", },
-              c = { bg = "", fg = "#cdd6f4", },
-            },
-            visual = {
-              a = { bg = "#f38ba8", fg = "#282828", gui = "bold", },
-              b = { bg = "#313244", fg = "#f38ba8", },
-              c = { bg = "", fg = "#cdd6f4", },
-            },
-            replace = {
-              a = { bg = "#fe8019", fg = "#282828", gui = "bold", },
-              b = { bg = "#313244", fg = "#fe8019", },
-              c = { bg = "", fg = "#cdd6f4", },
-            },
-          },
-        },
+          theme = "auto",
+        }
       })
     end,
   },
@@ -245,7 +297,7 @@ require("lze").load {
         vim.keymap.set({ 'n', 'v' }, '<leader>ca', '<CMD>lua vim.lsp.buf.code_action()<CR>', opts('Lsp: Code Actions'))
       end
 
-      local default_servers = { "r_language_server", "cssls", "html", "jsonls", "nushell" , "taplo" }
+      local default_servers = { "r_language_server", "cssls", "html", "jsonls", "nushell", "taplo" }
       for _, lsp in ipairs(default_servers) do
         lspconfig[lsp].setup({
           on_attach = on_attach,
@@ -305,7 +357,8 @@ require("lze").load {
       local file = io.open('/etc/hostname', 'r')
       local hostname = file:read("*line")
       -- only really works if I am the owner, should figure something out later
-      local expr = string.format('(builtins.getFlake "git+file:///home/rexies/nixos").nixosConfigurations.%s.options', hostname)
+      local expr = string.format('(builtins.getFlake "git+file:///home/rexies/nixos").nixosConfigurations.%s.options',
+        hostname)
 
       lspconfig["nil_ls"].setup({
         on_attach = on_attach,
@@ -500,7 +553,7 @@ require("lze").load {
 }
 
 -- color scheme
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme "rose-pine"
 
 -- keybinds
 local map = vim.keymap.set

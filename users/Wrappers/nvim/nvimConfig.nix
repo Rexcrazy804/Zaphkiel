@@ -16,6 +16,7 @@ neovimUtils.makeNeovimConfig {
       (vimPlugins)
       lze
       catppuccin-nvim
+      rose-pine
       neo-tree-nvim
       nvim-web-devicons
       which-key-nvim

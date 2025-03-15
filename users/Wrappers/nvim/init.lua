@@ -90,6 +90,8 @@ require("lze").load {
       "css",
       "scss",
       "html",
+      "ini",
+      "toml",
     },
     after = function()
       require("colorizer").setup()

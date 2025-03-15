@@ -1,0 +1,115 @@
+{
+  "bar.customModules.updates.pollingInterval": 1440000,
+  "theme.font.size": "1.1rem",
+  "terminal": "footclient",
+  "theme.osd.location": "bottom",
+  "theme.osd.orientation": "horizontal",
+  "theme.osd.monitor": 0,
+  "theme.osd.radius": "0.4em",
+  "bar.launcher.icon": " ",
+  "bar.launcher.autoDetectIcon": false,
+  "theme.bar.buttons.dashboard.enableBorder": false,
+  "bar.workspaces.show_icons": false,
+  "bar.workspaces.show_numbered": false,
+  "bar.workspaces.showApplicationIcons": false,
+  "bar.workspaces.showWsIcons": false,
+  "bar.workspaces.applicationIconFallback": "󰣆",
+  "bar.workspaces.monitorSpecific": false,
+  "bar.workspaces.workspaces": 3,
+  "theme.bar.buttons.windowtitle.spacing": "1em",
+  "bar.volume.label": true,
+  "bar.network.showWifiInfo": true,
+  "bar.bluetooth.label": false,
+  "bar.network.label": false,
+  "bar.battery.label": false,
+  "bar.clock.format": "%I:%M:%S %p",
+  "theme.bar.buttons.clock.spacing": "1em",
+  "bar.notifications.show_total": true,
+  "bar.notifications.hideCountWhenZero": true,
+  "menus.media.displayTimeTooltip": true,
+  "menus.clock.weather.enabled": false,
+  "wallpaper.enable": true,
+  "wallpaper.image": "/home/rexies/Pictures/kokomi_116824847_p0_cropped.jpg",
+  "theme.bar.menus.opacity": 100,
+  "theme.matugen": true,
+  "theme.matugen_settings.scheme_type": "tonal-spot",
+  "theme.matugen_settings.variation": "standard_1",
+  "bar.layouts": {
+    "0": {
+      "left": [
+        "dashboard",
+        "workspaces",
+        "windowtitle"
+      ],
+      "middle": [
+        "clock"
+      ],
+      "right": [
+        "systray",
+        "volume",
+        "network",
+        "bluetooth",
+        "media",
+        "notifications"
+      ]
+    },
+    "1": {
+      "left": [
+        "dashboard",
+        "workspaces",
+        "windowtitle"
+      ],
+      "middle": [
+        "media"
+      ],
+      "right": [
+        "volume",
+        "clock",
+        "notifications"
+      ]
+    },
+    "2": {
+      "left": [
+        "dashboard",
+        "workspaces",
+        "windowtitle"
+      ],
+      "middle": [
+        "media"
+      ],
+      "right": [
+        "volume",
+        "clock",
+        "notifications"
+      ]
+    }
+  },
+  "theme.bar.floating": false,
+  "bar.autoHide": "never",
+  "theme.bar.shadowMargins": "0px 0px 4px 0px",
+  "theme.bar.outer_spacing": "1em",
+  "theme.bar.buttons.padding_x": "0.7rem",
+  "theme.bar.layer": "top",
+  "menus.dashboard.powermenu.avatar.name": "Rexiel Scarlet",
+  "menus.dashboard.shortcuts.enabled": true,
+  "menus.dashboard.directories.enabled": false,
+  "menus.media.hideAuthor": false,
+  "menus.media.hideAlbum": false,
+  "menus.media.displayTime": false,
+  "theme.bar.menus.background": "#11111b",
+  "theme.bar.location": "top",
+  "bar.media.show_label": false,
+  "bar.media.format": "{title}",
+  "bar.media.truncation_size": 10,
+  "theme.bar.buttons.media.spacing": "1em",
+  "theme.bar.buttons.media.enableBorder": false,
+  "theme.bar.transparent": true,
+  "menus.dashboard.shortcuts.left.shortcut1.icon": "",
+  "menus.dashboard.shortcuts.left.shortcut1.command": "firefox",
+  "menus.dashboard.shortcuts.left.shortcut1.tooltip": "Fire Fox",
+  "menus.dashboard.shortcuts.left.shortcut2.command": "footclient -e yazi",
+  "menus.dashboard.shortcuts.left.shortcut2.tooltip": "Files",
+  "menus.dashboard.shortcuts.right.shortcut3.command": "sleep 0.2 && flameshot gui --raw | wl-copy",
+  "menus.dashboard.shortcuts.left.shortcut2.icon": "",
+  "menus.dashboard.shortcuts.left.shortcut4.command": "fuzzel"
+}

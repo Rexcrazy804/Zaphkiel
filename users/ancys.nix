@@ -10,7 +10,6 @@ in {
   users.users.${username} = {
     inherit description;
 
-    shell = pkgs.wrappedPkgs.nushell;
     isNormalUser = true;
     extraGroups = ["networkmanager" "wheel"];
   };

@@ -1,15 +1,50 @@
-pkgs: {
+pkgs: let
+  # small script to send files over kde connect on yazi
+  kde-send = pkgs.writers.writeNuBin "kde-send" ''
+    def main [...files] {
+      let device = kdeconnect-cli -a --name-only | ${pkgs.wrappedPkgs.fzf}
+
+      for $file in $files {
+        kdeconnect-cli -n $"($device)" --share $"($file)"
+      }
+    }
+  '';
+  flameshot = pkgs.flameshot.override {enableWlrSupport = true;};
+in {
   programs.hyprland = {
-    package = pkgs.wrappedPkgs.hyprland;
     enable = true;
     withUWSM = true;
   };
-
-  # hypridle
-  security.pam.services.hyprlock = { };
+  programs.hyprlock.enable = true;
+  systemd.user.services.hypridle.path = [
+    pkgs.brightnessctl
+  ];
 
   # dependencies .w.
-  environment.systemPackages = pkgs.wrappedPkgs.hyprland.dependencies;
+  environment.systemPackages = [
+    pkgs.hyprpanel
+    # Theme
+    pkgs.rose-pine-cursor
+    pkgs.rose-pine-hyprcursor
+    pkgs.rose-pine-icon-theme
+    pkgs.rose-pine-gtk-theme
+
+    # utility
+    pkgs.wl-clipboard
+    pkgs.cliphist
+    pkgs.grim
+    pkgs.slurp
+    pkgs.brightnessctl
+    pkgs.hyprsunset
+    pkgs.trashy
+    pkgs.fuzzel
+    flameshot
+
+    # yazi + deps
+    pkgs.yazi
+    pkgs.ripdrag
+    kde-send
+  ];
 
   # required when kde plasma is not installed .w.
   # ask me how I knew

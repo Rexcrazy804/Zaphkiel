@@ -1,8 +1,13 @@
-# nushell configuration
 $env.config.show_banner = false
 $env.config.edit_mode = "vi"
 $env.PROMPT_INDICATOR_VI_INSERT = ""
 $env.PROMPT_INDICATOR_VI_NORMAL = ""
+
+# Shell integrations
+mkdir ($nu.data-dir | path join "vendor/autoload")
+starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+carapace _carapace nushell | save -f ($nu.data-dir | path join "vendor/autoload/carapace.nu")
+zoxide init nushell --cmd cd | save -f ($nu.data-dir | path join "vendor/autoload/zoxide.nu")
 
 # custom definitions
 def envinit [] { 'use flake' | save .envrc }
@@ -38,7 +43,6 @@ def cowask [question] {
 }
 
 source ~/.cache/zoxide/init.nu
-source ~/.cache/oh-my-posh/init.nu
 source ~/.cache/carapace/init.nu
 
 $env.config = {

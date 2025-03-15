@@ -16,6 +16,9 @@ in {
     withUWSM = true;
   };
   programs.hyprlock.enable = true;
+  systemd.user.services.hypridle.path = [
+    pkgs.brightnessctl
+  ];
 
   # dependencies .w.
   environment.systemPackages = [

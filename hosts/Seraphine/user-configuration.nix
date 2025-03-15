@@ -23,7 +23,6 @@
 in {
   imports = [
     ../../nixosModules/external/matugen
-    ../../nixosModules/external/matugen/config.nix
   ];
   users.users."rexies" = {
     packages = special ++ generic;

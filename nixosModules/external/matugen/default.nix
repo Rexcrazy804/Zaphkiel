@@ -83,6 +83,7 @@
   '');
   colors = (builtins.fromJSON (builtins.readFile "${themePackage}/theme.json")).colors;
 in {
+  imports = [./config.nix];
   options.programs.matugen = {
     enable = lib.mkEnableOption "Matugen declarative theming";
 

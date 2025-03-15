@@ -77,13 +77,15 @@ in {
       ".config/hypr/hyprland.conf".source = ./Configs/hyprland/hyprland.conf;
       ".config/hypr/hyprlock.conf".source = ./Configs/hyprland/hyprlock.conf;
       ".config/hypr/hyprcolors.conf".source = "${matugentheme}/hyprcolors.conf";
-      ".config/Vencord/themes/midnight.css".source = "${matugentheme}/discord-midnight.css";
       ".config/yazi/yazi.toml".source = ./Configs/yazi/yazi.toml;
       ".config/yazi/keymap.toml".source = ./Configs/yazi/keymap.toml;
       ".config/yazi/theme.toml".source = "${matugentheme}/yazi-theme.toml";
-
       ".config/hyprpanel/config.json".text = hyprpanel;
       ".config/fuzzel/fuzzel.ini".text = fuzzel;
+      ".config/background".source = matugen.wallpaper;
+
+      # discord
+      ".config/Vencord/themes/midnight.css".source = "${matugentheme}/discord-midnight.css";
     };
   };
 }

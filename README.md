@@ -2,14 +2,31 @@
 ![wall](https://github.com/Rexcrazy804/Zaphkiel/blob/master/nixosModules/programs/sddm-wall.png?raw=true)
 
 #### What have you done?
-TODO explain the switch to hjem
-I have killed home manager, and then I've killed nixvim. ~All in the favour of
-wrapping stuff myself~, you can look into `users/Wrappers` for the config of each of
-the programs I have tinkered with most notably **mpv** featuring support for
-anime4k shadders and a custom **neovim** configuration with
+Initially I had ditched home-manager for wrapping programs myself
+this worked quite well in my favour except for the following grievances:
+- Nushell was bugging the heck out inconsistently for remote sessions (ssh)
+- I had to log out and back to have hyprland reload its config
+- And the last and finally straw that pushed me to [hjem](https://github.com/feel-co/hjem) was [matugen](https://github.com/InioX/matugen)
+
+It was a pain to integrate matugen seamlessly into this, so I decided to just
+switch over the parts of my config that required matugen to use Hjem. I may or
+may not soon translate all the wrappers that I am using currently into plain ol
+hjem configs but that's for later. 
+
+At its current the hjem + matugen configuration is only able to work with a
+single wallpaper therefor it is locked to a single user configuration. I am
+sure I can extend it to support multiple users but as of now I don't yet have
+the need to do so.
+
+You can look into `users/Wrappers` for the config of each of the programs I
+have tinkered with most notably **mpv** featuring support for anime4k shaders
+and a custom **neovim** configuration with
 [lze](https://github.com/BirdeeHub/lze) lazy loading.
 
-I have exposed neovim in the flake for the convenience of running it with
+And as of 15th march 2025, newer configs will live in `users/Configs` with their
+supporting matugen templates in `nixosModules/external/matugen/templates`
+
+I have also exposed neovim in the flake for the convenience of running it with
 ```bash
 nix run github:Rexcrazy804/Zaphkiel
 ```
@@ -24,7 +41,8 @@ wrappers before but if it weren't for him I wouldn't have heard of
 `pkgs.symlinkJoin` :D
 
 I also extend my gratitude to [notAShelf](https://github.com/NotAShelf) for
-being the inspiration for this readme
+being the inspiration for this readme and for the developing the hjem nixos
+module
 
 I have the thank both the AnAnimeGameLauncher and Hyprland discord communities
 for all the help I've received and continue to receive.
@@ -35,10 +53,9 @@ Lastly, I have to to thank the nix community for their efforts in
 resources throughout my early adventure through nix
 
 #### Licensing
-All code in this repository is under the MIT license unless wherever
-an explicit licensing is included.
+All code in this repository is under the MIT license unless wherever an
+explicit licensing is included.
 
 #### Wallpaper Sources
-
 - Seraphine: [linsha by ATDAN-](https://www.pixiv.net/en/artworks/123071255)
 - Aphrodite: [kokomi by Shaovie](https://www.pixiv.net/en/artworks/116824847)

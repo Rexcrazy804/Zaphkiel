@@ -57,12 +57,19 @@ in {
       matugenTheme = matugen.theme.files;
       matugenColors = matugen.theme.colors;
 
+      # replacing hardcoded paths
       hyprpanel = let
         from = ["/home/rexies/Pictures/kokomi_116824847_p0_cropped.jpg"];
         to = ["${matugen.wallpaper}"];
       in
         builtins.replaceStrings from to (builtins.readFile ./Configs/hyprpanel/config.json);
+      qt6ct = let
+        from = ["/home/rexies"];
+        to = ["${config.users.users.${username}.home}"];
+      in
+        builtins.replaceStrings from to (builtins.readFile ./Configs/qt6ct/qt6ct.conf);
 
+      # injecting colors
       fuzzel = let
         base = builtins.readFile ./Configs/fuzzel/fuzzel.ini;
         colors = builtins.readFile "${matugenTheme}/fuzzel-colors.ini";
@@ -81,7 +88,8 @@ in {
       };
 
       # qt6ct
-      # ".config/qt6ct/qt6ct.conf".source = "${matugentheme}/";
+      ".config/qt6ct/qt6ct.conf".text = qt6ct;
+      ".config/qt6ct/colors/matugen.conf".source = "${matugenTheme}/qtct-colors.conf";
 
       # hyprland
       ".config/hypr/hypridle.conf".source = ./Configs/hyprland/hypridle.conf;

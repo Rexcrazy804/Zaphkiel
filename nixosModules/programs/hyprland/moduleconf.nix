@@ -20,8 +20,16 @@ in {
     pkgs.brightnessctl
   ];
 
+  qt.enable = true;
+  environment.variables = {
+    QT_QPA_PLATFORM = "wayland";
+    QT_QPA_PLATFORMTHEME = pkgs.lib.mkForce "qt6ct";
+  };
+
   # dependencies .w.
   environment.systemPackages = [
+    # QT dep
+    pkgs.kdePackages.qt6ct
     pkgs.hyprpanel
     # Theme
     pkgs.rose-pine-cursor

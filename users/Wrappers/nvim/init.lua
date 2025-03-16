@@ -165,6 +165,7 @@ require("lze").load {
       "html",
       "ini",
       "toml",
+      "json",
     },
     after = function()
       require("colorizer").setup()

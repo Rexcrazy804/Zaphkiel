@@ -9,6 +9,30 @@ pkgs: let
       }
     }
   '';
+  gpurecording = pkgs.writers.writeNuBin "gpurecording" ''
+    def "main start" [] {
+      notify-send -t 2000 -i nix-snowflake-white "Recording started" "Gpu screen recording has begun"
+      gpu-screen-recorder -w eDP-1 -f 60 -a default_output -o $"($env.HOME)/Videos/recording-(^date +%d%h%m_%H%M%S).mp4";
+      notify-send -t 2000 -i nix-snowflake-white "Recording stopped" "Gpu screen recording has concluded"
+    }
+
+    def "main stop" [] {
+      ps
+      | where name =~ gpu-screen-reco
+      | kill -s 2 $in.0.pid
+    }
+
+    def main [] {
+      print "Available subcommands:"
+      print "start                 - Start gpu recording"
+      print "stop                  - Stop gpu recording"
+    }
+  '';
+  cowask = pkgs.writers.writeNuBin "cowask" ''
+    def main [question] {
+      cowsay $"($question)? \n (if (random bool) { 'yes lol' } else {'no fuck you' })"
+    }
+  '';
   flameshot = pkgs.flameshot.override {enableWlrSupport = true;};
 in {
   programs.hyprland = {
@@ -52,7 +76,11 @@ in {
     # yazi + deps
     pkgs.yazi
     pkgs.ripdrag
+
+    # nushell scripts
     kde-send
+    gpurecording
+    cowask
   ];
 
   # required when kde plasma is not installed .w.

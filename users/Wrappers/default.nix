@@ -15,7 +15,6 @@
         eww = final.callPackage ./eww {};
         swaync = final.callPackage ./swaync {};
         fzf = final.callPackage ./fzf {};
-        foot = final.callPackage ./foot {};
       }
       // nvim;
   };

@@ -54,7 +54,8 @@ in {
 
     files = let
       matugen = config.programs.matugen;
-      matugentheme = matugen.theme.files;
+      matugenTheme = matugen.theme.files;
+      matugenColors = matugen.theme.colors;
 
       hyprpanel = let
         from = ["/home/rexies/Pictures/kokomi_116824847_p0_cropped.jpg"];
@@ -64,28 +65,38 @@ in {
 
       fuzzel = let
         base = builtins.readFile ./Configs/fuzzel/fuzzel.ini;
-        colors = builtins.readFile "${matugentheme}/fuzzel-colors.ini";
+        colors = builtins.readFile "${matugenTheme}/fuzzel-colors.ini";
       in
         base + colors;
     in {
       # shell
       ".config/nushell/config.nu".source = ./Configs/nushell/config.nu;
-      ".config/starship.toml".source = "${matugentheme}/starship.toml";
+      ".config/starship.toml".source = "${matugenTheme}/starship.toml";
+
+      # foot terminal
+      ".config/foot/foot.ini".source = ./Configs/foot/foot.ini;
+      ".config/foot/rose-pine.ini".source = ./Configs/foot/rose-pine.ini;
+      ".config/foot/matugen-colors.ini".text = import ./Configs/foot/matugen.nix {
+        inherit lib matugenColors;
+      };
+
+      # qt6ct
+      # ".config/qt6ct/qt6ct.conf".source = "${matugentheme}/";
 
       # hyprland
       ".config/hypr/hypridle.conf".source = ./Configs/hyprland/hypridle.conf;
       ".config/hypr/hyprland.conf".source = ./Configs/hyprland/hyprland.conf;
       ".config/hypr/hyprlock.conf".source = ./Configs/hyprland/hyprlock.conf;
-      ".config/hypr/hyprcolors.conf".source = "${matugentheme}/hyprcolors.conf";
+      ".config/hypr/hyprcolors.conf".source = "${matugenTheme}/hyprcolors.conf";
       ".config/yazi/yazi.toml".source = ./Configs/yazi/yazi.toml;
       ".config/yazi/keymap.toml".source = ./Configs/yazi/keymap.toml;
-      ".config/yazi/theme.toml".source = "${matugentheme}/yazi-theme.toml";
+      ".config/yazi/theme.toml".source = "${matugenTheme}/yazi-theme.toml";
       ".config/hyprpanel/config.json".text = hyprpanel;
       ".config/fuzzel/fuzzel.ini".text = fuzzel;
       ".config/background".source = matugen.wallpaper;
 
       # discord
-      ".config/Vencord/themes/midnight.css".source = "${matugentheme}/discord-midnight.css";
+      ".config/Vencord/themes/midnight.css".source = "${matugenTheme}/discord-midnight.css";
     };
   };
 }

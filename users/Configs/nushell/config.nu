@@ -6,6 +6,7 @@ $env.PROMPT_INDICATOR_VI_NORMAL = ""
 # Shell integrations
 mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+$env.TRANSIENT_PROMPT_COMMAND = $"(^starship module directory)(^starship module character)"
 carapace _carapace nushell | save -f ($nu.data-dir | path join "vendor/autoload/carapace.nu")
 zoxide init nushell --cmd cd | save -f ($nu.data-dir | path join "vendor/autoload/zoxide.nu")
 

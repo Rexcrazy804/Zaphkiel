@@ -75,10 +75,15 @@ in {
         colors = builtins.readFile "${matugenTheme}/fuzzel-colors.ini";
       in
         base + colors;
+      starship = let
+        base = lib.importTOML ./Configs/starship/starship.toml;
+        colors = lib.importTOML "${matugenTheme}/starship.toml";
+      in
+        pkgs.writers.writeTOML "starship.toml" (lib.recursiveUpdate base colors);
     in {
       # shell
       ".config/nushell/config.nu".source = ./Configs/nushell/config.nu;
-      ".config/starship.toml".source = "${matugenTheme}/starship.toml";
+      ".config/starship.toml".source = starship;
 
       # foot terminal
       ".config/foot/foot.ini".source = ./Configs/foot/foot.ini;

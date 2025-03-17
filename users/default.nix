@@ -1,4 +1,8 @@
-{inputs, users, ...}: {
+{
+  inputs,
+  users,
+  ...
+}: {
   # refer ExtraSpecialArgs.users in flake.nix
   imports =
     [

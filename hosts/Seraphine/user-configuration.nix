@@ -35,4 +35,7 @@ in {
     # wallpaper = inputs.booru-flake.packages.${pkgs.system}."7fbb92e87a168f102576ff9621319cbf".image;
      wallpaper = ./linsha_123071255_cropped.png;
   };
+
+  # for my viewing pleasure
+  hjem.users."rexies".files."Pictures/booru".source = inputs.booru-flake.packages.${pkgs.system}.default;
 }

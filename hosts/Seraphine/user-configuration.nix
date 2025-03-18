@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   config,
   ...
 }: let
@@ -30,6 +31,8 @@ in {
   };
   programs.matugen = {
     enable = true;
-    wallpaper = ./linsha_123071255_cropped.png;
+    # just wanted to test if this worked alright .w.
+    # wallpaper = inputs.booru-flake.packages.${pkgs.system}."7fbb92e87a168f102576ff9621319cbf".image;
+     wallpaper = ./linsha_123071255_cropped.png;
   };
 }

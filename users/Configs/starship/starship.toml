@@ -30,15 +30,17 @@ error_symbol = "[ ](fg:tertiary_bg bg:primary_fg bold)"
 format = "[  ](bg:secondary_bg fg:secondary_fg)[ $branch](fg:secondary_bg bg:secondary_fg)"
 
 [git_status]
-ahead = '  '
-behind = '  '
+ahead = '  $count'
+behind = '  $count'
 up_to_date = ' 󰔓 '
-untracked = '  $count '
-modified = '  $count '
-staged = '  $count '
-stashed = ' 󰆓 $count '
+untracked = '  $count'
+deleted = '  $count'
+renamed = '  $count'
+modified = '  $count'
+staged = '  $count'
+stashed = ' 󰆓 $count'
 style = 'fg:secondary_bg bg:secondary_fg'
-format = '[$ahead_behind$modified$staged$untracked$stashed]($style)'
+format = '[$ahead_behind$modified$staged$untracked$stashed ]($style)'
 
 [git_state]
 format = '[\($state( $progress_current of $progress_total)\)](fg:tertiary_bg bg:tertiary_fg)'

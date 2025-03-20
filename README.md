@@ -1,6 +1,6 @@
 # My NixOS Configuration
 ![screenshot-16-3-25](https://github.com/user-attachments/assets/bd237307-2e6a-495d-a7dc-fa6e4b824599)
-- wallpaper: [linsha by ATDAN-](https://www.pixiv.net/en/artworks/123071255)
+- wallpaper: [lingsha by ATDAN-](https://www.pixiv.net/en/artworks/123071255)
 
 #### What have you done?
 Initially I had ditched home-manager for wrapping programs myself
@@ -42,10 +42,10 @@ wrappers before but if it weren't for him I wouldn't have heard of
 `pkgs.symlinkJoin` :D
 
 I also extend my gratitude to [notAShelf](https://github.com/NotAShelf) for
-being the inspiration for this readme and for the developing the hjem nixos
+being the inspiration for this readme and for developing the hjem nixos
 module
 
-I have the thank both the AnAnimeGameLauncher and Hyprland discord communities
+I have to thank both the AnAnimeGameLauncher and Hyprland discord communities
 for all the help I've received and continue to receive.
 
 Lastly, I have to to thank the nix community for their efforts in
@@ -58,5 +58,5 @@ All code in this repository is under the MIT license unless wherever an
 explicit licensing is included.
 
 #### Wallpaper Sources
-- Seraphine: [linsha by ATDAN-](https://www.pixiv.net/en/artworks/123071255)
+- Seraphine: [lingsha by ATDAN-](https://www.pixiv.net/en/artworks/123071255)
 - Aphrodite: [kokomi by Shaovie](https://www.pixiv.net/en/artworks/116824847)

@@ -136,6 +136,14 @@
           # A minimal nix flake template by Rexiel Scarlet (Rexcrazy804)
         '';
       };
+
+      java = {
+        path = ./Templates/Java;
+        description = "I wish java was minimal";
+        welcomeText = ''
+          # A java template by Rexiel Scarlet (Rexcrazy804)
+        '';
+      };
     };
   };
 }

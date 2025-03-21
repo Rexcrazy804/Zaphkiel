@@ -15,7 +15,7 @@
     };
 
     hyprpanel = {
-      url = "github:Jas-SinghFSU/HyprPanel?ref=b9aa6854f6687bf97349482b0fa35c00eec04fdf";
+      url = "github:Jas-SinghFSU/HyprPanel";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -24,6 +24,7 @@
 in {
   imports = [
     ../../nixosModules/external/matugen
+    ./extras/filebrowser.nix
   ];
   users.users."rexies" = {
     packages = special ++ generic;

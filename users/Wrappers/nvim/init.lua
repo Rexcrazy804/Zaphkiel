@@ -39,7 +39,6 @@ require("lze").load {
         transparent_background = true,
         term_colors = false,
       })
-      require("lualine").setup({ options = { theme = "catppuccin" } })
     end
   },
 
@@ -47,6 +46,9 @@ require("lze").load {
     "rose-pine",
     colorscheme = {
       "rose-pine",
+      "rose-pine-dawn",
+      "rose-pine-main",
+      "rose-pine-moon",
     },
     after = function()
       require("rose-pine").setup({
@@ -99,24 +101,11 @@ require("lze").load {
         },
 
         highlight_groups = {
-          -- borderless telescope + transparent telescope
-          TelescopeNormal = { bg = "none" },
-          TelescopePromptNormal = { bg = "base" },
-          TelescopeResultsNormal = { fg = "subtle", bg = "none" },
-          TelescopeSelection = { fg = "text", bg = "base" },
-          TelescopeSelectionCaret = { fg = "rose", bg = "rose" },
-          TelescopeMultiSelection = { fg = "text", bg = "highlight_high" },
-          TelescopeTitle = { fg = "base", bg = "love" },
-          TelescopePromptTitle = { fg = "base", bg = "pine" },
-          TelescopePreviewTitle = { fg = "base", bg = "iris" },
-
           -- leafy search
           CurSearch = { fg = "base", bg = "leaf", inherit = false },
           Search = { fg = "text", bg = "leaf", blend = 20, inherit = false },
         },
       })
-      -- sync lualine theme
-      require("lualine").setup({ options = { theme = "rose-pine" } })
     end
   },
 

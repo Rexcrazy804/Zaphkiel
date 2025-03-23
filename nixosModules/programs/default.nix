@@ -7,6 +7,7 @@
     ./direnv.nix
     ./obs.nix
     ./hyprland
+    ./keyd.nix
   ];
 
   # global

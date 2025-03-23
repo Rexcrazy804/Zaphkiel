@@ -95,11 +95,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1742550033,
-        "narHash": "sha256-ivvJaN+H5D2IB0/vEdsG/cQ4amp+Cz3mnOeMMds4V7g=",
+        "lastModified": 1742737343,
+        "narHash": "sha256-YH1cYMs3lKHwUHeQShYAiXTThBFq/WnMlpf167MowHA=",
         "owner": "Rexcrazy804",
         "repo": "booru-flake",
-        "rev": "be3c775677142877c0886ddcc2613390414db4eb",
+        "rev": "37e5f9f603eb4a81d2f51c8ea82348f2d936c169",
         "type": "github"
       },
       "original": {

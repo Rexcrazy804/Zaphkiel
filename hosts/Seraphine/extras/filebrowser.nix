@@ -16,6 +16,7 @@ in {
     services."filebrowser" = {
       enable = true;
       description = "User filebrowser service exposing ~/Pictures folder";
+      wantedBy = ["default.target"];
       after = ["network.target"];
       serviceConfig = {
         Type = "exec";

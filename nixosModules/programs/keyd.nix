@@ -13,7 +13,7 @@
       keyboards.default = {
         ids = ["*"];
         settings.main = {
-          capslock = "overload(alt, esc)";
+          capslock = "overloadi(esc, overload(alt, esc), 200)";
           esc = "capslock";
         };
       };

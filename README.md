@@ -58,5 +58,5 @@ All code in this repository is under the MIT license unless wherever an
 explicit licensing is included.
 
 #### Wallpaper Sources
-- Seraphine: [lingsha by ATDAN-](https://www.pixiv.net/en/artworks/123071255)
+- Seraphine: [kiss-shot_acerola-orion_heart-under-blade by solipsist](https://cdn.donmai.us/original/13/b5/13b535bca2ae23fe7f30c7e5c136abf6.jpg)
 - Aphrodite: [kokomi by Shaovie](https://www.pixiv.net/en/artworks/116824847)

@@ -32,9 +32,7 @@ in {
   };
   programs.matugen = {
     enable = true;
-    # just wanted to test if this worked alright .w.
-    # wallpaper = inputs.booru-flake.packages.${pkgs.system}."7fbb92e87a168f102576ff9621319cbf".image;
-     wallpaper = ./linsha_123071255_cropped.png;
+    wallpaper = inputs.booru-flake.packages.${pkgs.system}."7655511";
   };
 
   # for my viewing pleasure

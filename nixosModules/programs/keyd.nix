@@ -12,9 +12,17 @@
       enable = true;
       keyboards.default = {
         ids = ["*"];
-        settings.main = {
-          capslock = "overloadi(esc, overload(alt, esc), 200)";
-          esc = "capslock";
+        settings = {
+          main = {
+            capslock = "overloadi(esc, overload(alt_motion, esc), 240)";
+            esc = "capslock";
+          };
+          "alt_motion:A" = {
+            h = "left";
+            j = "down";
+            k = "up";
+            l = "right";
+          };
         };
       };
     };

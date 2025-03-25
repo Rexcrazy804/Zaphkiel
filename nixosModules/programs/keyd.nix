@@ -14,7 +14,7 @@
         ids = ["*"];
         settings = {
           main = {
-            capslock = "overloadi(esc, overload(alt_motion, esc), 240)";
+            capslock = "overload(alt_motion, esc)";
             esc = "capslock";
           };
           "alt_motion:A" = {
@@ -22,6 +22,7 @@
             j = "down";
             k = "up";
             l = "right";
+            ";" = "backspace";
           };
         };
       };

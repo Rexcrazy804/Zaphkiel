@@ -16,6 +16,7 @@
           main = {
             capslock = "overload(alt_motion, esc)";
             esc = "capslock";
+            compose = "overload(menu_layer, compose)";
           };
           "alt_motion:A" = {
             h = "left";
@@ -23,6 +24,18 @@
             k = "up";
             l = "right";
             ";" = "backspace";
+          };
+          "menu_layer" = {
+            "1" = "1";
+            "2" = "2";
+            "3" = "3";
+            q = "4";
+            w = "5";
+            e = "6";
+            a = "7";
+            s = "8";
+            d = "9";
+            c = "0";
           };
         };
       };

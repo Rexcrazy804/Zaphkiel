@@ -16,7 +16,8 @@
           main = {
             capslock = "overload(alt_motion, esc)";
             esc = "capslock";
-            compose = "overload(menu_layer, compose)";
+            # compose = "overload(menu_layer, compose)";
+            leftalt = "layer(menu_layer)";
           };
           "alt_motion:A" = {
             h = "left";
@@ -25,7 +26,7 @@
             l = "right";
             ";" = "backspace";
           };
-          "menu_layer" = {
+          "menu_layer:A" = {
             "1" = "1";
             "2" = "2";
             "3" = "3";

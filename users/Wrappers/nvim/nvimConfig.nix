@@ -14,7 +14,7 @@ neovimUtils.makeNeovimConfig {
   plugins = builtins.attrValues {
     inherit
       (vimPlugins)
-      lze
+      lz-n
       catppuccin-nvim
       rose-pine
       neo-tree-nvim

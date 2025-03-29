@@ -22,6 +22,8 @@ vim.o.scrolloff = 5
 
 vim.g.mapleader = " ";
 
+-- inline hints .w.
+vim.diagnostic.config({ virtual_text = true })
 -- plugins
 require("lze").load {
   {

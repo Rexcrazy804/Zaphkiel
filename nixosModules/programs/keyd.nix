@@ -25,6 +25,10 @@
             k = "up";
             l = "right";
             ";" = "backspace";
+
+            # ensures that capslock + enter/backspace doesn't become A+enter/backspace
+            enter = "enter";
+            backspace = "backspace";
           };
           "menu_layer:A" = {
             "1" = "1";

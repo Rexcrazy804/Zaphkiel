@@ -24,6 +24,7 @@
             j = "down";
             k = "up";
             l = "right";
+            b = "C-left";
             ";" = "backspace";
 
             # ensures that capslock + enter/backspace doesn't become A+enter/backspace

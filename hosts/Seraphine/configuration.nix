@@ -34,7 +34,8 @@
       wallpaper = config.age.secrets.wallpaper.path;
     };
     direnv.enable = true;
-    obs-studio.enable = true;
+    obs-studio.enable = false;
+    steam.enable = true;
     hyprland.enable = true;
     keyd.enable = true;
   };

@@ -2,7 +2,7 @@
 ![screenshot-16-3-25](https://github.com/user-attachments/assets/bd237307-2e6a-495d-a7dc-fa6e4b824599)
 - wallpaper: [lingsha by ATDAN-](https://www.pixiv.net/en/artworks/123071255)
 
-#### What have you done?
+## What have you done?
 Initially I had ditched home-manager for wrapping programs myself
 this worked quite well in my favour except for the following grievances:
 - Nushell was bugging the heck out inconsistently for remote sessions (ssh)
@@ -27,15 +27,17 @@ and a custom **neovim** configuration with
 And as of 15th march 2025, newer configs will live in `users/Configs` with their
 supporting matugen templates in `nixosModules/external/matugen/templates`
 
+## Nvim configuration
 I have also exposed neovim in the flake for the convenience of running it with
 ```bash
 nix run github:Rexcrazy804/Zaphkiel
 ```
 
-> NOTE: nix running `#nvim-no-lsp` yields the config without downloading any LSPS
+> NOTE: nix running `#nvim-no-lsp` yields the config without downloading any
+LSPS (and some other extra packages)
 the default is `#nvim-wrapped`
 
-#### Credits & Thanks
+## Credits & Thanks
 Firstly I have to thank [sioodmy](https://github.com/sioodmy) for being the
 inspiration to ditch home manager and writing wrappers myself I had known of
 wrappers before but if it weren't for him I wouldn't have heard of
@@ -43,7 +45,7 @@ wrappers before but if it weren't for him I wouldn't have heard of
 
 I also extend my gratitude to [notAShelf](https://github.com/NotAShelf) for
 being the inspiration for this readme and for developing the hjem nixos
-module
+module 
 
 I have to thank both the AnAnimeGameLauncher and Hyprland discord communities
 for all the help I've received and continue to receive.
@@ -53,10 +55,10 @@ Lastly, I have to to thank the nix community for their efforts in
 [nixvim](https://github.com/nix-community/nixvim) both of which have been great
 resources throughout my early adventure through nix
 
-#### Licensing
+## Licensing
 All code in this repository is under the MIT license unless wherever an
 explicit licensing is included.
 
-#### Wallpaper Sources
+## Wallpaper Sources
 - Seraphine: [kiss-shot_acerola-orion_heart-under-blade by solipsist](https://cdn.donmai.us/original/13/b5/13b535bca2ae23fe7f30c7e5c136abf6.jpg)
 - Aphrodite: [kokomi by Shaovie](https://www.pixiv.net/en/artworks/116824847)

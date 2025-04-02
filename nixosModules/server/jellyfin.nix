@@ -52,7 +52,7 @@ in {
         alt-speed-time-enabled = true;
         alt-speed-time-begin = 420;
         alt-speed-time-end = 0;
-        alt-speed-up = 80;
+        alt-speed-up = 200;
         alt-speed-down = 100000;
         upload-slots-per-torrent = 10;
       };

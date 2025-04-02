@@ -22,7 +22,7 @@ the need to do so.
 You can look into `users/Wrappers` for the config of each of the programs I
 have tinkered with most notably **mpv** featuring support for anime4k shaders
 and a custom **neovim** configuration with
-[lze](https://github.com/BirdeeHub/lze) lazy loading.
+[lz.n](https://github.com/nvim-neorocks/lz.n) lazy loading.
 
 And as of 15th march 2025, newer configs will live in `users/Configs` with their
 supporting matugen templates in `nixosModules/external/matugen/templates`

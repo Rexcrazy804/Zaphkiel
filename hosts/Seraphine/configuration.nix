@@ -97,4 +97,7 @@
       pkgs.firefoxpwa
     ];
   };
+
+  # temporarily setting it for Seraphine only
+  networking.networkmanager.wifi.backend = "iwd";
 }

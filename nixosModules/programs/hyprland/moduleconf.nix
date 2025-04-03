@@ -10,15 +10,19 @@ pkgs: let
     }
   '';
   gpurecording = pkgs.writers.writeNuBin "gpurecording" ''
-    def "main start" [] {
+    def "main start" [geometry?: bool = false] {
       notify-send -t 2000 -i nix-snowflake-white "Recording started" "Gpu screen recording has begun"
-      gpu-screen-recorder -w eDP-1 -f 60 -a default_output -o $"($env.HOME)/Videos/recording-(^date +%d%h%m_%H%M%S).mp4";
+      if $geometry {
+        wl-screenrec -g $"(slurp)" --audio --audio-device "alsa_output.pci-0000_00_1f.3.analog-stereo.monitor" -f $"($env.HOME)/Videos/recording-(^date +%d%h%m_%H%M%S).mp4"
+      } else {
+        wl-screenrec --audio --audio-device "alsa_output.pci-0000_00_1f.3.analog-stereo.monitor" -f $"($env.HOME)/Videos/recording-(^date +%d%h%m_%H%M%S).mp4"
+      }
       notify-send -t 2000 -i nix-snowflake-white "Recording stopped" "Gpu screen recording has concluded"
     }
 
     def "main stop" [] {
       ps
-      | where name =~ gpu-screen-reco
+      | where name =~ wl-screenrec
       | kill -s 2 $in.0.pid
     }
 
@@ -71,6 +75,7 @@ in {
     pkgs.trashy
     pkgs.fuzzel
     pkgs.wrappedPkgs.fzf
+    pkgs.wl-screenrec
     flameshot
 
     # yazi + deps

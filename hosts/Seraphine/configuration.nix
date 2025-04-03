@@ -68,7 +68,6 @@
       enable = true;
       package = pkgs.kdePackages.kdeconnect-kde;
     };
-    gpu-screen-recorder.enable = true;
   };
   programs.adb.enable = true;
   users.users.rexies.extraGroups = ["adbusers" "kvm"];
@@ -90,7 +89,7 @@
   system.stateVersion = "24.05";
 
   # maybe move this into its own module idk
-  environment.systemPackages = [pkgs.firefoxpwa pkgs.gpu-screen-recorder]; # gpu sc recorder added temporarily
+  environment.systemPackages = [pkgs.firefoxpwa];
   programs.firefox = {
     enable = true;
     nativeMessagingHosts.packages = [

@@ -16,6 +16,7 @@
     nixvim = pkgs.wrappedPkgs.nvim-wrapped;
   };
   environment.variables.EDITOR = "nvim";
+  environment.variables.MANPAGER = "nvim +Man!";
   # remove nano
   programs.nano.enable = false;
 

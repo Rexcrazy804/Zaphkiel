@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  script = pkgs.writers.writeNuBin "activate" /*nu*/ ''
+  script = pkgs.writers.writeNuBin "activate" ''
     def main [systemConfig: string] {
       let diff_closure = ${pkgs.nix}/bin/nix store diff-closures /run/current-system $systemConfig;
       if $diff_closure != "" {
@@ -15,8 +15,10 @@
           | into filesize
         }
         | reject DiffBin
-        | sort-by -r Diff; print $table; $table
-        | math sum
+        | sort-by -r Diff;
+
+        print $table;
+        $table | math sum
       }
     }
   '';

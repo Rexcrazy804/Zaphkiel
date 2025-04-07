@@ -11,6 +11,11 @@ pkgs: let
   '';
   gpurecording = pkgs.writers.writeNuBin "gpurecording" ''
     def "main start" [geometry?: bool = false] {
+      let recording_count = ps | where name =~ wl-screenrec | length
+      if $recording_count > 0 {
+        notify-send -t 2000 -i nix-snowflake-white "Failed to start Recording" "Recording in Progress"
+        return
+      }
       notify-send -t 2000 -i nix-snowflake-white "Recording started" "Gpu screen recording has begun"
       if $geometry {
         wl-screenrec -g $"(slurp)" --audio --audio-device "alsa_output.pci-0000_00_1f.3.analog-stereo.monitor" -f $"($env.HOME)/Videos/recording-(^date +%d%h%m_%H%M%S).mp4"
@@ -21,9 +26,13 @@ pkgs: let
     }
 
     def "main stop" [] {
-      ps
-      | where name =~ wl-screenrec
-      | kill -s 2 $in.0.pid
+      try {
+        ps
+        | where name =~ wl-screenrec
+        | kill -s 2 $in.0.pid
+      } catch {
+        notify-send -t 2000 -i nix-snowflake-white "Failed to stop Recording" "No active recording to be stopped"
+      }
     }
 
     def main [] {

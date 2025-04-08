@@ -50,7 +50,6 @@ alias "servarrStart" = systemctl start jellyfin.service sonarr.service transmiss
 alias "servarrStatus" = systemctl status jellyfin.service sonarr.service transmission.service
 alias "servarrStop" = systemctl stop jellyfin.service sonarr.service transmission.service
 
-let host = cat /etc/hostname;
-alias "snowboot" = sudo nixos-rebuild boot --flake ~/nixos/#($host)
-alias "snowfall" = sudo nixos-rebuild switch --flake ~/nixos/#($host)
-alias "snowtest" = sudo nixos-rebuild test --flake ~/nixos/#($host)
+alias "snowboot" = sudo nixos-rebuild boot --flake ~/nixos
+alias "snowfall" = sudo nixos-rebuild switch --flake ~/nixos
+alias "snowtest" = sudo nixos-rebuild test --flake ~/nixos

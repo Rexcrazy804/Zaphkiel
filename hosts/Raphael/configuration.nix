@@ -4,10 +4,9 @@
   config,
   ...
 }: {
-  imports = let
-    CONFIGURATION = throw "USER NOT CONFIGURED";
-  in [
+  imports = [
     ./hardware-configuration.nix
+    ./user-configuration.nix
   ];
 
   networking.hostName = "Raphael"; # Define your hostname.
@@ -20,14 +19,7 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
-  # Sway
-  programs.sway.enable = true;
-  security.polkit.enable = true;
-  xdg.portal = {
-    # enable = true; enabled by flatpak
-    wlr.enable = true;
-    xdgOpenUsePortal = true;
-  };
+  progModule.direnv.enable = true;
 
   # flatpak
   services.flatpak.enable = true;
@@ -67,19 +59,19 @@
   system.stateVersion = "24.05"; # Did you read the comment?
 
   # conservation mode to preserve battery life on AC power
-  systemd.tmpfiles.settings = {
-    "ideapad-set-conservation-mode" = {
-      "/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode" = {
-        "f+" = {
-          group = "root";
-          user = "root";
-          mode = "0644";
-          argument = "1";
-        };
-      };
-    };
-  };
+  # systemd.tmpfiles.settings = {
+  #   "ideapad-set-conservation-mode" = {
+  #     "/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode" = {
+  #       "f+" = {
+  #         group = "root";
+  #         user = "root";
+  #         mode = "0644";
+  #         argument = "1";
+  #       };
+  #     };
+  #   };
+  # };
 
   # disable suspend on lid close on external power
-  services.logind.lidSwitchExternalPower = "ignore";
+  # services.logind.lidSwitchExternalPower = "ignore";
 }

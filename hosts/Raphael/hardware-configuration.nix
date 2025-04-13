@@ -15,8 +15,8 @@
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
     initrd.availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "sd_mod"];
-    initrd.kernelModules = [];
     kernelModules = ["kvm-intel"];
+    initrd.kernelModules = ["i915"];
     extraModulePackages = [];
     kernelParams = [
       "i915.enable_guc=2"

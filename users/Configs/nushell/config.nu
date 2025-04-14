@@ -30,6 +30,9 @@ def freemem [] {
 
 $env.config = {
   hooks: {
+    env_change: {
+      PWD: [{|before, after| $env.TRANSIENT_PROMPT_COMMAND = $"(^starship module directory)(^starship module character)" }]
+    }
     pre_prompt: [{ ||
       # foot integration
       printf '\e]133;A\e\\'

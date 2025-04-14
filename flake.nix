@@ -35,11 +35,17 @@
       inputs.darwin.follows = "";
       inputs.home-manager.follows = "";
     };
+
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0-3.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
+    lix-module,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -99,9 +105,9 @@
         modules = [
           ./hosts/Seraphine/configuration.nix
           ./nixosModules
-
           # responsible for importing home manager modules & users
           ./users
+          lix-module.nixosModules.default
         ];
       };
 

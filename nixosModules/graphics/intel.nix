@@ -13,12 +13,8 @@
   config = lib.mkIf config.graphicsModule.intel.enable {
     # WARN too lazy to futher modularize this maybe re use nixos-hardware's module
     hardware.graphics.extraPackages = with pkgs; [
-      # LIBVA_DRIVER_NAME=iHD
       intel-media-driver
-      # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-      (intel-vaapi-driver.override {
-        enableHybridCodec = true;
-      })
+      intel-vaapi-driver
       libvdpau-va-gl
       intel-ocl
     ];

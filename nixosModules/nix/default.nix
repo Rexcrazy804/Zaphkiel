@@ -13,6 +13,7 @@
 
   environment.etc."nix/inputs/nixpkgs".source = "${inputs.nixpkgs}";
   nix = {
+    package = pkgs.lix;
     # remove nix-channel related tools & configs, we use flakes instead.
     channel.enable = false;
     registry.nixpkgs.flake = inputs.nixpkgs;

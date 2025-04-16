@@ -34,7 +34,4 @@ in {
     enable = true;
     wallpaper = inputs.booru-flake.packages.${pkgs.system}."7655511";
   };
-
-  # for my viewing pleasure
-  hjem.users."rexies".files."Pictures/booru".source = inputs.booru-flake.packages.${pkgs.system}.default;
 }

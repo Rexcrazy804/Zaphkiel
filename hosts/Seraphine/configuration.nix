@@ -99,4 +99,13 @@
 
   # temporarily setting it for Seraphine only
   networking.networkmanager.wifi.backend = "iwd";
+
+  services.flatpak.enable = true;
+  systemd.services.flatpak-repo = {
+    wantedBy = ["multi-user.target"];
+    path = [pkgs.flatpak];
+    script = ''
+      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    '';
+  };
 }

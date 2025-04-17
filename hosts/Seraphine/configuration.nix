@@ -10,7 +10,7 @@
   ];
 
   networking.hostName = "Seraphine";
-  time.timeZone = "Asia/Kolkata";
+  time.timeZone = "Asia/Dubai";
 
   graphicsModule = {
     intel.enable = true;

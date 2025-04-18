@@ -104,6 +104,21 @@
         ];
       };
 
+      Persephone = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs outputs;
+
+          # every user in this list must have a username.nix under users/
+          # and another homeManagerModules/Users/
+          users = ["rexies"];
+        };
+        modules = [
+          ./hosts/Persephone/configuration.nix
+          ./nixosModules
+          ./users
+        ];
+      };
+
       Aphrodite = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs outputs;

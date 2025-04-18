@@ -5,6 +5,7 @@ let
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHZTLQQzgCvdaAPdxUkpytDHgwd8K1N1IWtriY4tWSvn"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICZvsZTvR5wQedjnuSoz9p7vK7vLxCdfOdRFmbfQ7GUd rexies@Seraphine"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHhkSRUQLV7JpjtPdbFR8vXnJhLhSfbh3vL+j9v/5Bv/ rexies@Aphrodite"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH8XCGfozlovdRKSzI8mRL7Bkexk+GoK+WCTWxVmBmDA rexies@Persephone"
     ];
   };
 

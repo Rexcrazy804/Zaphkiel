@@ -10,18 +10,11 @@ let
   };
 
   hosts = {
-    Zaphkiel = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINZAm8+KGrsCGT7dJbz/Rcm18NslDLrYzzcgHZ4334aa"
-    ];
-    Raphael = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILJFWrIy+ZoppWlZIG6qHrCfM9yChsKdW39iP5yPeBdl"
-    ];
-    Seraphine = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID2iNLNXkHv5CXeKy7zhR/bbJ/3SKjp/g/i6l09rjFdZ"
-    ];
-    Aphrodite = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILfTXG9nFMbm3Gwkx+RT4ift402Q6sQiQrAKdl3lN3C5"
-    ];
+    Zaphkiel = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINZAm8+KGrsCGT7dJbz/Rcm18NslDLrYzzcgHZ4334aa" ];
+    Raphael = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILJFWrIy+ZoppWlZIG6qHrCfM9yChsKdW39iP5yPeBdl" ];
+    Seraphine = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID2iNLNXkHv5CXeKy7zhR/bbJ/3SKjp/g/i6l09rjFdZ" ];
+    Aphrodite = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILfTXG9nFMbm3Gwkx+RT4ift402Q6sQiQrAKdl3lN3C5" ];
+    Persephone = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDva+u9uWAZJzU31JCGfV+uPCRbgGV+vsXUsHdk4lWkr"];
   };
 in {
   "secret1.age".publicKeys = users.rexies;
@@ -30,6 +23,7 @@ in {
   "secret5.age".publicKeys = hosts.Seraphine;
   "secret6.age".publicKeys = users.rexies;
   "secret8.age".publicKeys = hosts.Aphrodite;
+  "secret9.age".publicKeys = hosts.Persephone;
 
   "media_robin.age".publicKeys = hosts.Zaphkiel ++ hosts.Raphael ++ users.rexies;
 

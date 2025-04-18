@@ -13,6 +13,7 @@
   config = lib.mkIf config.graphicsModule.intel.enable {
     # WARN too lazy to futher modularize this maybe re use nixos-hardware's module
     hardware.graphics.extraPackages = with pkgs; [
+      intel-media-driver
       vpl-gpu-rt
       intel-vaapi-driver
       libvdpau-va-gl

@@ -26,11 +26,11 @@
   servModule = {
     enable = true;
     tailscale = {
-      enable = false;
+      enable = true;
       exitNode.enable = true;
-      exitNode.networkDevice = "wlp1s0";
+      exitNode.networkDevice = "wlp0s20f3";
     };
-    openssh.enable = false;
+    openssh.enable = true;
     jellyfin.enable = false;
     minecraft.enable = false;
   };
@@ -48,21 +48,20 @@
   };
 
   # forward dns onto the tailnet
-  # TODO correct this after setting up tailscale
-  # networking.firewall.allowedTCPPorts = [53];
-  # networking.firewall.allowedUDPPorts = [53];
-  # services.dnscrypt-proxy2.settings = {
-  #   listen_addresses = [
-  #     "100.112.116.17:53"
-  #     "[fd7a:115c:a1e0::eb01:7412]:53"
-  #     "127.0.0.1:53"
-  #     "[::1]:53"
-  #   ];
-  # };
+  networking.firewall.allowedTCPPorts = [53];
+  networking.firewall.allowedUDPPorts = [53];
+  services.dnscrypt-proxy2.settings = {
+    listen_addresses = [
+      "100.110.70.18:53"
+      "[fd7a:115c:a1e0::6a01:4614]:53"
+      "127.0.0.1:53"
+      "[::1]:53"
+    ];
+  };
 
   # tailscale
-  # age.secrets.tailAuth.file = ../../secrets/secret5.age;
-  # services.tailscale.authKeyFile = config.age.secrets.tailAuth.path;
+  age.secrets.tailAuth.file = ../../secrets/secret9.age;
+  services.tailscale.authKeyFile = config.age.secrets.tailAuth.path;
 
   # sddm
   age.secrets.wallpaper = {
@@ -79,8 +78,6 @@
     };
   };
 
-  # services.displayManager.autoLogin.user = "rexies";
-  # services.displayManager.defaultSession = "hyprland-uwsm";
   services.fstrim.enable = true;
 
   # disabled autosuspend

@@ -1,6 +1,5 @@
 {...}: {
   # uncategorized
-  services.xserver.enable = true;
   services.thermald.enable = true;
   services.fwupd.enable = true;
 

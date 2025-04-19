@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   imports = [
@@ -11,13 +12,6 @@
   system.stateVersion = "24.11"; # Did you read the comment?
   networking.hostName = "Persephone"; # Define your hostname.
   time.timeZone = "Asia/Dubai";
-
-  services.xserver.enable = true;
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
 
   graphicsModule = {
     intel.enable = true;
@@ -100,4 +94,6 @@
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     '';
   };
+
+  hardware.bluetooth.powerOnBoot = lib.mkForce false;
 }

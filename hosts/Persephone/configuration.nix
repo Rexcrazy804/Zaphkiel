@@ -87,13 +87,17 @@
   };
 
   services.flatpak.enable = true;
-  systemd.services.flatpak-repo = {
-    wantedBy = ["multi-user.target"];
-    path = [pkgs.flatpak];
-    script = ''
-      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    '';
-  };
-
   hardware.bluetooth.powerOnBoot = lib.mkForce false;
+
+  # finger print
+  systemd.services.fprintd = {
+    wantedBy = ["multi-user.target"];
+    serviceConfig.Type = "simple";
+  };
+  services.fprintd = {
+    enable = true;
+    tod.enable = true;
+    tod.driver = pkgs.libfprint-2-tod1-elan;
+  };
+  security.pam.services.login.fprintAuth = false;
 }

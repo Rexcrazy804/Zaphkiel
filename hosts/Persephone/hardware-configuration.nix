@@ -9,7 +9,7 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelParams = ["i915.enable_guc=3" "nmi_watchdog=0"];
+    kernelParams = ["i915.force_probe=!9a49" "xe.force_probe=9a49" "nmi_watchdog=0"];
     initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "ahci" "nvme" "usb_storage" "sd_mod" "sdhci_pci"];
     kernelModules = ["kvm-intel"];
     extraModulePackages = [];

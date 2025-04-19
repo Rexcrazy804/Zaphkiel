@@ -81,6 +81,11 @@ in {
         colors = lib.importTOML "${matugenTheme}/starship.toml";
       in
         pkgs.writers.writeTOML "starship.toml" (lib.recursiveUpdate base colors);
+
+      hyprlockInjected = let 
+        from = ["%%WALLPAPER%%"];
+        to = ["${matugen.wallpaper}"];
+      in builtins.replaceStrings from to (builtins.readFile ./Configs/hyprland/hyprlock.conf);
     in {
       # shell
       ".config/nushell/config.nu".source = ./Configs/nushell/config.nu;
@@ -100,7 +105,7 @@ in {
       # hyprland
       ".config/hypr/hypridle.conf".source = ./Configs/hyprland/hypridle.conf;
       ".config/hypr/hyprland.conf".source = ./Configs/hyprland/hyprland.conf;
-      ".config/hypr/hyprlock.conf".source = ./Configs/hyprland/hyprlock.conf;
+      ".config/hypr/hyprlock.conf".text = hyprlockInjected;
       ".config/hypr/hyprcolors.conf".source = "${matugenTheme}/hyprcolors.conf";
       ".config/yazi/yazi.toml".source = ./Configs/yazi/yazi.toml;
       ".config/yazi/keymap.toml".source = ./Configs/yazi/keymap.toml;

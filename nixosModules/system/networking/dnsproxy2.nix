@@ -34,6 +34,7 @@
         aphrodite fd7a:115c:a1e0::6e01:5604
         zaphkiel fd7a:115c:a1e0::5d01:ae12
         raphael fd7a:115c:a1e0::5801:e445
+        persephone fd7a:115c:a1e0::6a01:4614
 
         bread fd7a:115c:a1e0::2d01:be72
         erza fd7a:115c:a1e0::b101:2875

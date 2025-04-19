@@ -50,6 +50,7 @@
         "network",
         "bluetooth",
         "media",
+        "battery",
         "notifications"
       ]
     },
@@ -111,5 +112,6 @@
   "menus.dashboard.shortcuts.left.shortcut2.tooltip": "Files",
   "menus.dashboard.shortcuts.right.shortcut3.command": "sleep 0.2 && flameshot gui --raw | wl-copy",
   "menus.dashboard.shortcuts.left.shortcut2.icon": "",
-  "menus.dashboard.shortcuts.left.shortcut4.command": "fuzzel"
+  "menus.dashboard.shortcuts.left.shortcut4.command": "fuzzel",
+  "scalingPriority": "hyprland"
 }

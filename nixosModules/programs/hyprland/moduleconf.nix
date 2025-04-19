@@ -126,4 +126,7 @@ in {
       ExecStart = "${pkgs.hyprsunset}/bin/hyprsunset -t 3000";
     };
   };
+
+  # Pokit agent
+  security.soteria.enable = true;
 }

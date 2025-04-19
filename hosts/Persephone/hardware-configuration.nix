@@ -13,8 +13,9 @@
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = ["i915.enable_guc=3"];
   boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "ahci" "nvme" "usb_storage" "sd_mod" "sdhci_pci"];
-  boot.initrd.kernelModules = ["xe"];
+  boot.initrd.kernelModules = ["i915"];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 

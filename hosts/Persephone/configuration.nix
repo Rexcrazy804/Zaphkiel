@@ -100,4 +100,5 @@
     tod.driver = pkgs.libfprint-2-tod1-elan;
   };
   security.pam.services.login.fprintAuth = false;
+  security.pam.services.hyprlock.fprintAuth = false;
 }

@@ -29,6 +29,17 @@
     minecraft.enable = false;
   };
 
+  # tailscale
+  age.secrets.tailAuth.file = ../../secrets/secret9.age;
+  services.tailscale = {
+    authKeyFile = config.age.secrets.tailAuth.path;
+    # don't use Persephone as exit node
+    extraSetFlags = lib.mkForce [
+      "--webclient"
+      "--accept-dns=false"
+    ];
+  };
+
   progModule = {
     sddm-custom-theme = {
       enable = true;
@@ -53,9 +64,6 @@
     ];
   };
 
-  # tailscale
-  age.secrets.tailAuth.file = ../../secrets/secret9.age;
-  services.tailscale.authKeyFile = config.age.secrets.tailAuth.path;
 
   # sddm
   age.secrets.wallpaper = {
@@ -73,9 +81,6 @@
   };
 
   services.fstrim.enable = true;
-
-  # disabled autosuspend
-  services.logind.lidSwitchExternalPower = "ignore";
 
   # maybe move this into its own module idk
   environment.systemPackages = [pkgs.firefoxpwa];
@@ -99,6 +104,6 @@
     tod.enable = true;
     tod.driver = pkgs.libfprint-2-tod1-elan;
   };
-  security.pam.services.login.fprintAuth = false;
-  security.pam.services.hyprlock.fprintAuth = false;
+  # security.pam.services.login.fprintAuth = false;
+  # security.pam.services.hyprlock.fprintAuth = false;
 }

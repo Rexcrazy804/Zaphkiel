@@ -130,6 +130,7 @@
         modules = [
           ./hosts/Aphrodite/configuration.nix
           ./users
+          ./nixosModules/server-default.nix
         ];
       };
     };

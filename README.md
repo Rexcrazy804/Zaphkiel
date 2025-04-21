@@ -62,3 +62,4 @@ explicit licensing is included.
 ## Wallpaper Sources
 - Seraphine: [kiss-shot_acerola-orion_heart-under-blade by solipsist](https://cdn.donmai.us/original/13/b5/13b535bca2ae23fe7f30c7e5c136abf6.jpg)
 - Aphrodite: [kokomi by Shaovie](https://www.pixiv.net/en/artworks/116824847)
+- Persephone: [asuna by htt](https://danbooru.donmai.us/posts/8726475)

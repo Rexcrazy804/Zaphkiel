@@ -32,6 +32,14 @@ in {
 
   programs.matugen = {
     enable = true;
-    wallpaper = ../Aphrodite/kokomi_116824847_p0_cropped.jpg;
+    wallpaper = let
+      image = inputs.booru-flake.packages.${pkgs.system}."8726475";
+    in
+      pkgs.runCommandWith {
+        name = "croped-${image.name}";
+        derivationArgs.nativeBuildInputs = [pkgs.imagemagick];
+      } ''
+        magick ${image} -crop 1253x705+0+100 - > $out
+      '';
   };
 }

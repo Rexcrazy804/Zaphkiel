@@ -336,6 +336,12 @@ require("lz.n").load {
         settings = { Lua = {} }
       })
 
+      lspconfig["qmlls"].setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        cmd = {"qmlls", "-E"},
+      })
+
       lspconfig["rust_analyzer"].setup({
         on_attach = on_attach,
         capabilities = capabilities,

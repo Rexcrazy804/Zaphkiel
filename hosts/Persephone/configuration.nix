@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  users,
   ...
 }: {
   imports = [
@@ -42,10 +43,7 @@
   };
 
   progModule = {
-    sddm-custom-theme = {
-      enable = true;
-      wallpaper = config.age.secrets.wallpaper.path;
-    };
+    gdm.enable = true;
     direnv.enable = true;
     obs-studio.enable = false;
     steam.enable = true;
@@ -105,6 +103,4 @@
     tod.enable = true;
     tod.driver = pkgs.libfprint-2-tod1-elan;
   };
-  # security.pam.services.login.fprintAuth = false;
-  # security.pam.services.hyprlock.fprintAuth = false;
 }

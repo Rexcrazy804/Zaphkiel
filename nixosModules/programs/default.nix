@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./gdm.nix
     ./steam.nix
     ./sddm.nix
     ./aagl.nix
@@ -15,6 +16,12 @@
     inherit (pkgs) git p7zip unrar;
     nixvim = pkgs.wrappedPkgs.nvim-wrapped;
   };
+
+  # requried by gdm leaving it here since all my systems do use nushell
+  environment.shells = [
+    "/run/current-system/sw/bin/nu"
+  ];
+
   environment.variables.EDITOR = "nvim";
   environment.variables.MANPAGER = "nvim +Man!";
   # remove nano

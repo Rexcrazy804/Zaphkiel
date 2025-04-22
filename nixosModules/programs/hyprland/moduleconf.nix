@@ -1,6 +1,5 @@
 pkgs: let
   scripts = import ./scripts.nix {inherit pkgs;};
-  flameshot = pkgs.flameshot.override {enableWlrSupport = true;};
 in {
   programs.hyprland = {
     enable = true;
@@ -40,7 +39,7 @@ in {
     pkgs.wrappedPkgs.fzf
     pkgs.wl-screenrec
     pkgs.libnotify
-    flameshot
+    pkgs.swappy
 
     # yazi + deps
     pkgs.yazi

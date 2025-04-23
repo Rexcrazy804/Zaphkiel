@@ -59,11 +59,6 @@ in {
       matugenColors = matugen.theme.colors;
 
       # replacing hardcoded paths
-      hyprpanel = let
-        from = ["/home/rexies/Pictures/kokomi_116824847_p0_cropped.jpg"];
-        to = ["${matugen.wallpaper}"];
-      in
-        builtins.replaceStrings from to (builtins.readFile ./Configs/hyprpanel/config.json);
       qt6ct = let
         from = ["/home/rexies"];
         to = ["${config.users.users.${username}.home}"];
@@ -110,7 +105,6 @@ in {
       ".config/yazi/yazi.toml".source = ./Configs/yazi/yazi.toml;
       ".config/yazi/keymap.toml".source = ./Configs/yazi/keymap.toml;
       ".config/yazi/theme.toml".source = "${matugenTheme}/yazi-theme.toml";
-      ".config/hyprpanel/config.json".text = hyprpanel;
       ".config/fuzzel/fuzzel.ini".text = fuzzel;
       ".config/background".source = matugen.wallpaper;
 

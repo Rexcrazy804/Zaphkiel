@@ -41,16 +41,4 @@ in {
         magick ${image} -crop 1253x705+0+100 - > $out
       '';
   };
-
-  hjem.users."rexies".files = {
-    ".face.icon".source = let
-      image = inputs.booru-flake.packages.${pkgs.system}."8726475";
-    in
-      pkgs.runCommandWith {
-        name = "croped-${image.name}";
-        derivationArgs.nativeBuildInputs = [pkgs.imagemagick];
-      } ''
-        magick ${image} -crop 500x500+398+100 - >  $out
-      '';
-  };
 }

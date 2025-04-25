@@ -39,5 +39,10 @@
       input_path = "${./templates/qtct-colors.conf}";
       output_path = "~/qtct-colors.conf";
     };
+
+    quickshell = {
+      input_path = "${./templates/quickshell-colors.qml}";
+      output_path = "~/quickshell-colors.qml";
+    };
   };
 }

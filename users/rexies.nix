@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  inputs,
   lib,
   ...
 }: let
@@ -81,7 +82,31 @@ in {
         from = ["%%WALLPAPER%%"];
         to = ["${matugen.wallpaper}"];
       in builtins.replaceStrings from to (builtins.readFile ./Configs/hyprland/hyprlock.conf);
+
+      faceIcon = let
+        image = inputs.booru-flake.packages.${pkgs.system}."8726475";
+      in
+        pkgs.runCommandWith {
+          name = "croped-${image.name}";
+          derivationArgs.nativeBuildInputs = [pkgs.imagemagick];
+        } ''
+        magick ${image} -crop 500x500+398+100 - >  $out
+      '';
+
+      quickshellConfig = pkgs.runCommandLocal "quick" {} ''
+        mkdir $out
+        cd $out
+        cp -r ${./Configs/quickshell}/* .
+        mkdir Assets
+        cd Assets
+
+        cp ${faceIcon} ./.face.icon
+        cp ${matugenTheme}/quickshell-colors.qml ./Colors.qml
+      '';
+
     in {
+      # face Icon
+      ".face.icon".source = faceIcon;
       # shell
       ".config/nushell/config.nu".source = ./Configs/nushell/config.nu;
       ".config/starship.toml".source = starship;
@@ -107,6 +132,9 @@ in {
       ".config/yazi/theme.toml".source = "${matugenTheme}/yazi-theme.toml";
       ".config/fuzzel/fuzzel.ini".text = fuzzel;
       ".config/background".source = matugen.wallpaper;
+
+      # quickshell
+      ".config/quickshell".source = quickshellConfig;
 
       # discord
       ".config/Vencord/themes/midnight.css".source = "${matugenTheme}/discord-midnight.css";

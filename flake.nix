@@ -30,6 +30,11 @@
       inputs.darwin.follows = "";
       inputs.home-manager.follows = "";
     };
+
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

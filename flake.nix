@@ -160,5 +160,37 @@
         '';
       };
     };
+
+    devShells = forAllSystems (pkgs: {
+      quickshell = let
+        qs = inputs.quickshell.packages.${pkgs.system}.default.override {
+          withJemalloc = true;
+          withQtSvg = true;
+          withWayland = true;
+          withX11 = false;
+          withPipewire = true;
+          withPam = true;
+          withHyprland = true;
+          withI3 = false;
+        };
+        qtDeps = [
+          qs
+          pkgs.kdePackages.qtbase
+          pkgs.kdePackages.qtdeclarative
+        ];
+      in
+        pkgs.mkShell {
+          shellHook = let
+            qmlPath = pkgs.lib.pipe qtDeps [
+              (builtins.map (lib: "${lib}/lib/qt-6/qml"))
+              (builtins.concatStringsSep ":")
+            ];
+          in ''
+            export QML2_IMPORT_PATH="$QML2_IMPORT_PATH:${qmlPath}"
+            exec nu # not using direnv for these shells
+          '';
+          buildInputs = qtDeps;
+        };
+    });
   };
 }

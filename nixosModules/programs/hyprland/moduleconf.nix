@@ -40,6 +40,7 @@ in {
     pkgs.wl-screenrec
     pkgs.libnotify
     pkgs.swappy
+    pkgs.wayfreeze
 
     # yazi + deps
     pkgs.yazi

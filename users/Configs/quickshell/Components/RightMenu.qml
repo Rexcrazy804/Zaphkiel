@@ -136,7 +136,7 @@ PopupWindow {
       Layout.fillWidth: true
       Layout.minimumHeight: 0
       Layout.preferredHeight: childrenRect.height
-      Layout.maximumHeight: Screen.height - this.y
+      Layout.maximumHeight: Screen.height * 0.95 - this.y
       clip: true
       model: ListModel {
         id: data

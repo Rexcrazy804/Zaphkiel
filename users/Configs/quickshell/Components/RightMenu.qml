@@ -12,7 +12,7 @@ import "../Assets"
 
 PopupWindow {
   id: panel
-  property bool debug: true
+  property bool debug: false
   required property PanelWindow bar
   signal popupVisible(visbile: bool)
   color: "transparent"

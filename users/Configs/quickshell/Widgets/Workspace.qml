@@ -1,12 +1,17 @@
 import QtQuick
+import Quickshell
 import Quickshell.Hyprland
 import "../Data"
 import "../Assets"
+import "../Components"
 
 Rectangle {
   id: root
+  required property PanelWindow bar
   readonly property HyprlandWorkspace mon: Hyprland.focusedWorkspace
-  color: Colors.primary
+  property bool active: false
+
+  color: root.active? Colors.on_primary : Colors.primary
   implicitHeight: parent.height
   implicitWidth: text.implicitWidth + 18
 
@@ -16,7 +21,7 @@ Rectangle {
     text: "Workspace " + root.mon?.id
     font.pointSize: 11
     font.bold: true
-    color: Colors.primary_container
+    color: root.active? Colors.primary : Colors.on_primary
   }
 
   MouseArea {
@@ -29,5 +34,19 @@ Rectangle {
          Hyprland.dispatch("workspace 10")
       }
     }
+    onClicked: event => {
+      menu.toggleVisibility()
+    }
+  }
+
+  WorkspaceMenu {
+    id: menu
+    bar: root.bar
+  }
+
+  Component.onCompleted: () => {
+    menu.popupVisible.connect(vis => {
+      root.active = vis
+    })
   }
 }

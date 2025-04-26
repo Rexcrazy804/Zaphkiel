@@ -72,7 +72,7 @@ Scope {
             anchors.top: parent.top
             anchors.bottom: parent.bottom
 
-            Workspace {}
+            Workspace { bar: bar }
             ActiveWindow {}
           }
 

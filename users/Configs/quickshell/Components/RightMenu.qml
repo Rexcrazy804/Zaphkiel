@@ -131,6 +131,54 @@ PopupWindow {
       }
     }
 
+    RowLayout { // notif bar
+      Layout.fillWidth: true
+      Layout.preferredHeight: 30
+      spacing: 0
+
+      Rectangle {
+        Layout.fillHeight: true
+        Layout.preferredWidth: notifText.width + 10
+        color: Colors.secondary
+        Text {
+          anchors.centerIn: parent
+          id: notifText
+          color: Colors.on_secondary
+          text: "Notifications"
+        }
+      }
+
+      Rectangle {
+        color: Colors.withAlpha(Colors.background, 0.79)
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+      }
+
+      Rectangle {
+        Layout.fillHeight: true
+        Layout.preferredWidth: clearText.width + 16
+        color: Colors.secondary
+        Text {
+          anchors.centerIn: parent
+          id: clearText
+          color: Colors.on_secondary
+          text: "󰎟"
+          font.pointSize: 16
+
+        }
+
+        MouseArea {
+          anchors.fill: parent
+          onClicked: () => { // dismiss all notifications and clear the listModel
+            for (let i = 0; i < data.count; i++) {
+                data.get(i).notif.dismiss()
+            }
+            data.clear()
+          }
+        }
+      }
+    }
+
     ListView { // Notification Inbox
       id: listView
       Layout.fillWidth: true

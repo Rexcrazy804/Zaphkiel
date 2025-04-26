@@ -6,13 +6,23 @@ import "../Assets"
 
 Rectangle {
   id: micSlider
+  property bool borderEnabled: false
+
   Layout.fillWidth: true
   Layout.fillHeight: true
   color: Colors.secondary_container
+  border {
+    color: (micSlider.borderEnabled)? Colors.secondary : "transparent"
+    width: 3
+  }
 
   MouseArea {
     anchors.fill: parent
     acceptedButtons: Qt.MiddleButton | Qt.LeftButton
+    hoverEnabled: true
+
+    onEntered: () => micSlider.borderEnabled = true
+    onExited: () => micSlider.borderEnabled = false
     onClicked: mouse => {switch (mouse.button) {
       case Qt.LeftButton: break; // TODO audio menu
       case Qt.MiddleButton: Audio.source.audio.muted = !Audio.micMuted;  break;

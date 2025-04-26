@@ -6,11 +6,12 @@ import Quickshell.Io
 
 Singleton{
   id: root
-  property var weatherData: ""
+  property var data: ""
   property string weatherJson: ""
 
   Process {
     id: proc
+    running: true
     command: ["curl", "https://wttr.in/shj?format=j1"] // replace shj with relevant airport code
     stdout: SplitParser {
       onRead: data => {
@@ -19,7 +20,7 @@ Singleton{
     }
 
     onExited: (code, stat) => {
-      root.weatherData = JSON.parse(root.weatherJson)
+      root.data = JSON.parse(root.weatherJson)
     }
   }
 

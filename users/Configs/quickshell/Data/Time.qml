@@ -6,41 +6,24 @@ import Quickshell.Io
 
 Singleton {
   id: root
-  property string time
-  property string date
-  property string month
+  property var data 
 
   Process {
-    id: timeProc
-    command: ["date", "+%r"]
+    id: proc
+    command: ["date", '+{"dayName": "%A", "dayNumber": "%d", "monthName": "%B", "time": {"hours": "%H", "minutes": "%M", "seconds": "%S"}}' ]
 
     running: true
     stdout: SplitParser {
-      onRead: data => root.time = data
+      onRead: data => {
+        root.data = JSON.parse(data)
+      }
     }
   }
 
-  Process {
-    id: monthProc
-    command: ["date", "+%B %d"]
-
-    running: true
-    stdout: SplitParser {
-      onRead: data => root.month = data
-    }
-  }
   Timer {
     interval: 1000 // time ine ms 1000ms => 1s
     running: true
     repeat: true
-    onTriggered: timeProc.running = true
-  }
-
-  Timer {
-    // runs once every hour
-    interval: 3600
-    running: true
-    repeat: true
-    onTriggered: monthProc.running = true
+    onTriggered: proc.running = true
   }
 }

@@ -78,45 +78,34 @@ PopupWindow {
             debug: panel.debug
           }
 
-          RowLayout {
+          GridLayout { // Toggles
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.verticalStretchFactor: 2
-            spacing: 10
 
-            WeatherWidget {
+
+            Rectangle {
               Layout.fillHeight: true
               Layout.fillWidth: true
+              color: Colors.primary
+
+              Text {
+                anchors.centerIn: parent
+                text: "󰖩"
+                font.pointSize: 26
+              }
             }
 
-            ColumnLayout { // TOGGLE SQUARES
+            Rectangle {
               Layout.fillHeight: true
-              Layout.maximumWidth: 60
-              spacing: 10
+              Layout.fillWidth: true
+              color: Colors.tertiary
 
-              Rectangle {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-                color: Colors.primary
-
-                Text {
-                  anchors.centerIn: parent
-                  text: "󰖩"
-                  font.pointSize: 26
-                }
-              }
-
-              Rectangle {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-                color: Colors.tertiary
-
-                Text {
-                  anchors.centerIn: parent
-                  color: Colors.on_tertiary
-                  text: "󰂯"
-                  font.pointSize: 26
-                }
+              Text {
+                anchors.centerIn: parent
+                color: Colors.on_tertiary
+                text: "󰂯"
+                font.pointSize: 26
               }
             }
           }
@@ -199,7 +188,7 @@ PopupWindow {
           anchors.fill: parent
           onClicked: () => { // dismiss all notifications and clear the listModel
             for (let i = 0; i < data.count; i++) {
-                data.get(i).notif.dismiss()
+              data.get(i).notif.dismiss()
             }
             data.clear()
           }

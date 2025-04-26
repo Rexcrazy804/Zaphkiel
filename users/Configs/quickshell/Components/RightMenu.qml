@@ -50,13 +50,13 @@ PopupWindow {
     anchors.right: parent.right
     spacing: 8
 
-    Rectangle {
+    Rectangle { // FIRST CARD
       color: Colors.withAlpha(Colors.background, 0.79)
       Layout.fillWidth: true
       Layout.alignment: Qt.AlignTop
-      implicitHeight: 200
-      RowLayout {
-        spacing: 0
+      Layout.preferredHeight: 205
+      RowLayout { 
+        spacing: 10
         anchors.fill: parent
         Layout.alignment: Qt.AlignCenter
 
@@ -66,31 +66,58 @@ PopupWindow {
           Layout.fillWidth: true
           Layout.horizontalStretchFactor: 2
           Layout.margins: 10
+          Layout.rightMargin: 0
+          spacing: 10
 
           SliderWidgets { 
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.preferredHeight: 25
             Layout.verticalStretchFactor: 1
+            spacing: 10
             debug: panel.debug
           }
 
-          Rectangle { // MPRIS + Settings
+          RowLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.verticalStretchFactor: 3
-            color: "#aa303030"
-            border {
-              color: (debug)? Colors.tertiary : "transparent"
-              width: 3
+            Layout.verticalStretchFactor: 2
+            spacing: 10
+
+            WeatherWidget {
+              Layout.fillHeight: true
+              Layout.fillWidth: true
             }
 
-            Text {
-              wrapMode: Text.WordWrap
-              anchors.centerIn: parent
-              color: Colors.primary
-              text: "There is nothing here"
-              font.pointSize: 16
+            ColumnLayout { // TOGGLE SQUARES
+              Layout.fillHeight: true
+              Layout.maximumWidth: 60
+              spacing: 10
+
+              Rectangle {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                color: Colors.primary
+
+                Text {
+                  anchors.centerIn: parent
+                  text: "󰖩"
+                  font.pointSize: 26
+                }
+              }
+
+              Rectangle {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                color: Colors.tertiary
+
+                Text {
+                  anchors.centerIn: parent
+                  color: Colors.on_tertiary
+                  text: "󰂯"
+                  font.pointSize: 26
+                }
+              }
             }
           }
         }
@@ -100,6 +127,7 @@ PopupWindow {
           Layout.fillHeight: true
           Layout.horizontalStretchFactor: 1
           Layout.margins: 10
+          Layout.leftMargin: 0
           spacing: 5
 
           Rectangle { // profile

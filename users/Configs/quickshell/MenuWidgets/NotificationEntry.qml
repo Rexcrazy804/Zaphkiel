@@ -130,7 +130,7 @@ Item {
           id: text2
           anchors.centerIn: parent
           color: Colors.on_tertiary
-          text: actionRect?.modelData?.text ?? ""
+          text: actionRect?.modelData?.text ?? "Activate"
           MouseArea {
             anchors.fill: parent
             onClicked: event => {

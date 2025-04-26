@@ -107,10 +107,10 @@ PopupWindow {
             Layout.preferredWidth: 150
             Layout.fillHeight: true
             Layout.topMargin: 0
-            color: Colors.secondary
+            color: Colors.primary
             Text {
               anchors.centerIn: parent
-              color: Colors.on_secondary
+              color: Colors.on_primary
               text: "Rexiel Scarlet"
               font.italic: true
               font.bold: true
@@ -124,6 +124,7 @@ PopupWindow {
     RowLayout { // notif bar
       Layout.fillWidth: true
       Layout.preferredHeight: 30
+      Layout.topMargin: -10
       spacing: 0
 
       Rectangle {

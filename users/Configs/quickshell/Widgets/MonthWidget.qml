@@ -10,13 +10,21 @@ Rectangle {
   property bool active: false
 
   implicitHeight: parent.height
-  implicitWidth: dayText.implicitWidth + 20
+  implicitWidth: monthText.implicitWidth + 20
   color: (root.active)? Colors.on_tertiary : Colors.tertiary
   Text {
+    visible: !root.active
     anchors.centerIn: parent
-    id: dayText
-    color: (root.active)? Colors.tertiary : Colors.on_tertiary
-    text: ((root.active)? Time.data?.dayName : Time.data?.monthName + " " + Time.data?.dayNumber) + " 󰧱"
+    id: monthText
+    color:  Colors.on_tertiary
+    text: Time.data?.monthName + " " + Time.data?.dayNumber + " 󰧱"
+  }
+
+  Text {
+    visible: root.active
+    anchors.centerIn: parent
+    color: Colors.tertiary
+    text: "" + Time.data?.dayName
   }
 
   MouseArea {

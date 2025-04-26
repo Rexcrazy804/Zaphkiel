@@ -16,7 +16,7 @@ Rectangle {
     anchors.centerIn: parent
     id: dayText
     color: (root.active)? Colors.tertiary : Colors.on_tertiary
-    text: ((root.active)? Time.data.dayName : Time.data.monthName + " " + Time.data.dayNumber) + " 󰧱"
+    text: ((root.active)? Time.data?.dayName : Time.data?.monthName + " " + Time.data?.dayNumber) + " 󰧱"
   }
 
   MouseArea {

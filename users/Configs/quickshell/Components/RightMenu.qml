@@ -12,7 +12,7 @@ import "../Assets"
 
 PopupWindow {
   id: panel
-  property bool debug: false
+  property bool debug: true
   required property PanelWindow bar
   signal popupVisible(visbile: bool)
   color: "transparent"
@@ -61,10 +61,9 @@ PopupWindow {
         Layout.alignment: Qt.AlignCenter
 
         ColumnLayout { // slider and mpris
-          Layout.preferredWidth: 200
+          Layout.preferredWidth: 3
           Layout.fillHeight: true
           Layout.fillWidth: true
-          Layout.horizontalStretchFactor: 2
           Layout.margins: 10
           Layout.rightMargin: 0
           spacing: 10
@@ -72,49 +71,23 @@ PopupWindow {
           SliderWidgets { 
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.preferredHeight: 25
-            Layout.verticalStretchFactor: 1
+            Layout.preferredHeight: 1
             spacing: 10
             debug: panel.debug
           }
 
-          GridLayout { // Toggles
+          RowLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.verticalStretchFactor: 2
-
-
-            Rectangle {
-              Layout.fillHeight: true
-              Layout.fillWidth: true
-              color: Colors.primary
-
-              Text {
-                anchors.centerIn: parent
-                text: "󰖩"
-                font.pointSize: 26
-              }
-            }
-
-            Rectangle {
-              Layout.fillHeight: true
-              Layout.fillWidth: true
-              color: Colors.tertiary
-
-              Text {
-                anchors.centerIn: parent
-                color: Colors.on_tertiary
-                text: "󰂯"
-                font.pointSize: 26
-              }
-            }
+            Layout.preferredHeight: 3
+            spacing: 10
           }
         }
 
         ColumnLayout { // profile and Name
           Layout.fillWidth: true
           Layout.fillHeight: true
-          Layout.horizontalStretchFactor: 1
+          Layout.preferredWidth: 1
           Layout.margins: 10
           Layout.leftMargin: 0
           spacing: 5

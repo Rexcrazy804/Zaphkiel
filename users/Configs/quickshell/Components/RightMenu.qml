@@ -122,9 +122,9 @@ PopupWindow {
     }
 
     RowLayout { // notif bar
+      visible: data.count > 0 // only reveal if the listmodel has data
       Layout.fillWidth: true
       Layout.preferredHeight: 30
-      Layout.topMargin: -10
       spacing: 0
 
       Rectangle {

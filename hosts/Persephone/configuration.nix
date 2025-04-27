@@ -51,6 +51,7 @@
     steam.enable = true;
     hyprland.enable = true;
     keyd.enable = true;
+    firefox.enable = true;
   };
 
   # forward dns onto the tailnet
@@ -81,17 +82,7 @@
     };
   };
 
-  services.fstrim.enable = true;
-
-  # maybe move this into its own module idk
-  environment.systemPackages = [pkgs.firefoxpwa];
-  programs.firefox = {
-    enable = true;
-    nativeMessagingHosts.packages = [
-      pkgs.firefoxpwa
-    ];
-  };
-
+  # boblox :')
   services.flatpak.enable = true;
   hardware.bluetooth.powerOnBoot = lib.mkForce false;
 

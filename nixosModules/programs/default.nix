@@ -9,6 +9,7 @@
     ./obs.nix
     ./hyprland
     ./keyd.nix
+    ./firefox.nix
   ];
 
   # global

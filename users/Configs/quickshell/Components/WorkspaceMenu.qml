@@ -1,3 +1,4 @@
+pragma ComponentBehavior: Bound
 import Quickshell
 import Quickshell.Hyprland
 import QtQuick
@@ -15,8 +16,8 @@ PopupWindow {
   anchor.window: bar
   anchor.rect.x: 10
   anchor.rect.y: bar.height + 10
-  width: 140
-  height: 140
+  width: 120
+  height: 120
 
   HyprlandFocusGrab {
     id: grab
@@ -61,12 +62,14 @@ PopupWindow {
         Layout.fillWidth: true
         color: (square.index + 1 == mon?.id)? Colors.on_primary : Colors.primary
 
-        MouseArea {
+        MouseArea { // yeah don't wanna over complicate this
           anchors.fill: parent
           hoverEnabled: true
-
-          onClicked: {
+          onEntered: {
             Hyprland.dispatch("workspace " + (square.index + 1))
+          }
+          onClicked: {
+            panel.toggleVisibility()
           }
         }
       }

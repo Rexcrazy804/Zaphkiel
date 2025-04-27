@@ -15,7 +15,7 @@ Rectangle {
     font.pointSize: 11
     font.family: "CaskaydiaMono Nerd font"
     font.bold: true
-    text: (this.time?.hours % 12) + ":" + this.time?.minutes + ":" + this.time?.seconds + ((this.time?.hours / 12 > 1)? " PM" : " AM")
+    text: ((this.time?.hours % 12 == 0)? 12 : this.time?.hours % 12) + ":" + this.time?.minutes + ":" + this.time?.seconds + ((this.time?.hours / 12 > 1)? " PM" : " AM")
     color: Colors.secondary
   }
 }

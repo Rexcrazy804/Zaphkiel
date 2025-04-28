@@ -1,21 +1,53 @@
 import QtQuick
+import QtQuick.Layouts
 import "../Data"
 import "../Assets"
 
-Rectangle {
+RowLayout {
   id: container
-  color: "transparent"
   implicitHeight: parent.height
   implicitWidth: dateText.implicitWidth + 20
+  spacing: 10
+
+  IdleWidget {
+    id: lock
+    visible: false
+
+    onInhibitedChanged: {
+      rehidelock.start()
+    }
+  }
 
   Text {
     property var time: Time.data?.time
     id: dateText
-    anchors.centerIn: parent
     font.pointSize: 11
     font.family: "CaskaydiaMono Nerd font"
     font.bold: true
     text: ((this.time?.hours % 12 == 0)? 12 : this.time?.hours % 12) + ":" + this.time?.minutes + ":" + this.time?.seconds + ((this.time?.hours / 12 > 1)? " PM" : " AM")
     color: Colors.secondary
+
+    MouseArea {
+      anchors.fill: parent
+      hoverEnabled: true
+
+      onEntered: {
+        lock.visible = true
+      }
+
+      onExited: {
+        rehidelock.start()
+      }
+    }
+  }
+
+  Timer {
+    // rehides the lock if we haven't inhibited
+    id: rehidelock
+    interval: 1000
+
+    onTriggered: {
+      lock.visible = lock.inhibited
+    }
   }
 }

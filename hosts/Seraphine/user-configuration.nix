@@ -42,7 +42,6 @@ in {
       from = ["monitor = eDP-1, preferred, auto, 1.25"];
       to = ["monitor = eDP-1, preferred, auto, auto"];
     in
-      builtins.replaceStrings from to (builtins.readFile ../../users/Configs/hyprland/hyprland.conf);
-    ".config/hypr/hyprland.conf".source = lib.mkForce null;
+      lib.mkForce (builtins.replaceStrings from to (builtins.readFile ../../users/Configs/hyprland/hyprland.conf));
   };
 }

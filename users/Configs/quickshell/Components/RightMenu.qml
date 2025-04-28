@@ -203,7 +203,7 @@ PopupWindow {
         notif: modelData
 
         Component.onCompleted: () => {
-          notif.closed.connect(() => {
+          notif?.closed.connect(() => {
             if (!toast || toast.index < 0) return;
             listView.model.remove(toast.index, 1);
           })
@@ -212,7 +212,7 @@ PopupWindow {
         onDismissed: () => {
           if (!toast || toast.index < 0) return;
           listView.model.remove(toast.index, 1);
-          toast.notif.dismiss()
+          toast.notif?.dismiss()
         }
       }
     }

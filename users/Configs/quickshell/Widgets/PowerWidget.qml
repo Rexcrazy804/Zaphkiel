@@ -57,7 +57,7 @@ RowLayout {
       anchors.right: parent.right
       anchors.bottom: parent.bottom
       anchors.bottomMargin: 1
-      color: Colors.on_tertiary_fixed_dim
+      color: Colors.on_tertiary_fixed
       text: root.chargeIcon
       font.pointSize: 7
     }

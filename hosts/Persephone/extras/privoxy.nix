@@ -10,6 +10,7 @@
           ".donmai.us"
           "nyaa.si"
           "rule34.xxx"
+          ".yande.re"
         ];
         proxy = "100.121.86.4:8888";
       in builtins.map (domain: "${domain} ${proxy}") forwarding_domains;

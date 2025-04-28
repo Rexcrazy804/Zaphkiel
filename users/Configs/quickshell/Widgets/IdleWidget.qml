@@ -10,6 +10,7 @@ Text {
   color: Colors.secondary
   text: (inhibited)? "󰌾" : "󰍁"
   font.pointSize: 11
+  font.bold: true
 
   MouseArea {
     anchors.fill: parent

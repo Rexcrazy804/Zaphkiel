@@ -4,6 +4,7 @@ import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
 import "../Assets"
+import "../Data"
 
 PopupWindow {
   id: panel
@@ -15,7 +16,7 @@ PopupWindow {
   anchor.window: bar
   anchor.rect.x: 10
   anchor.rect.y: bar.height + 10
-  width: 120
+  width: 160
   height: 120
 
   HyprlandFocusGrab {
@@ -34,38 +35,90 @@ PopupWindow {
     }
   }
 
-  GridLayout {
+  RowLayout {
     width: parent.width - 20
     height: parent.height - 20
     anchors.centerIn: parent
 
-    uniformCellWidths: true
-    uniformCellHeights: true
-    rowSpacing: 5
-    columnSpacing: this.rowSpacing
-    rows: 3
-    columns: this.rows
+    GridLayout {
+      Layout.fillWidth: true
+      Layout.fillHeight: true
+      Layout.preferredWidth: 3
 
-    Repeater {
-      model: 9
+      uniformCellWidths: true
+      uniformCellHeights: true
+      rowSpacing: 5
+      columnSpacing: this.rowSpacing
+      rows: 3
+      columns: this.rows
 
-      delegate: Rectangle {
-        id: square
-        required property var modelData
-        required property int index
+      Repeater {
+        model: 9
 
-        Layout.fillHeight: true
-        Layout.fillWidth: true
-        color: (square.index + 1 == mon?.id)? Colors.on_primary : Colors.primary
+        delegate: Rectangle {
+          id: square
+          required property var modelData
+          required property int index
 
-        MouseArea { // yeah don't wanna over complicate this
-          anchors.fill: parent
-          hoverEnabled: true
-          onEntered: {
-            Hyprland.dispatch("workspace " + (square.index + 1))
+          Layout.fillHeight: true
+          Layout.fillWidth: true
+          color: (square.index + 1 == mon?.id)? Colors.on_primary : Colors.primary
+
+          MouseArea { // yeah don't wanna over complicate this
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: {
+              Hyprland.dispatch("workspace " + (square.index + 1))
+            }
+            onClicked: {
+              panel.visible = false
+            }
           }
-          onClicked: {
-            panel.visible = false
+        }
+      }
+    }
+
+    GridLayout {
+      Layout.fillWidth: true
+      Layout.fillHeight: true
+      Layout.preferredWidth: 1
+
+      uniformCellWidths: true
+      uniformCellHeights: true
+      rowSpacing: 5
+      columnSpacing: this.rowSpacing
+      rows: 3
+      columns: 1
+
+      Repeater {
+        model: [
+          {text: "󰐥", action: (event) => { SessionActions.poweroff()} },
+          {text: "󰜉", action: (event) => { SessionActions.reboot()} },
+          {text: "󰤄", action: (event) => { SessionActions.suspend() } },
+        ]
+
+        delegate: Rectangle {
+          id: sessionSquare
+          required property var modelData
+
+          Layout.fillHeight: true
+          Layout.fillWidth: true
+          color: Colors.tertiary
+
+          Text {
+            color: Colors.on_tertiary
+            anchors.centerIn: parent
+            text: sessionSquare.modelData.text
+            font.pointSize: 14
+            font.bold: true
+          }
+
+          MouseArea {
+            anchors.fill: parent
+            onClicked: (mevent) => {
+              sessionSquare.modelData.action(mevent)
+              panel.visible = false
+            }
           }
         }
       }

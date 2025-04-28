@@ -1,5 +1,5 @@
 ## high prio
-- [ ] Suspend/Shutdown/Reboot menu (add it to workspace widgets will be nice)
+- [x] Suspend/Shutdown/Reboot menu (add it to workspace widgets will be nice)
 - [x] Recording indicator => ipc
 - [ ] OSD for volume and brightness (and profile?)
 - [ ] popup for power profiles

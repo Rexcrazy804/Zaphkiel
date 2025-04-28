@@ -30,13 +30,13 @@ Rectangle {
   MouseArea {
     anchors.fill: parent
     onClicked: {
-      rightMenu.toggleVisibility()
+      root.rightMenu.visible = !root.rightMenu.visible
     }
   }
 
   Component.onCompleted: () => {
-    rightMenu.popupVisible.connect(visible => {
-      root.active = visible
+    root.rightMenu.onVisibleChanged.connect(() => {
+      root.active = root.rightMenu.visible
     })
   }
 }

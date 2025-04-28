@@ -35,7 +35,7 @@ Rectangle {
       }
     }
     onClicked: event => {
-      menu.toggleVisibility()
+      menu.visible = !menu.visible
     }
   }
 
@@ -45,8 +45,8 @@ Rectangle {
   }
 
   Component.onCompleted: () => {
-    menu.popupVisible.connect(vis => {
-      root.active = vis
+    menu.onVisibleChanged.connect(() => {
+      root.active = menu.visible
     })
   }
 }

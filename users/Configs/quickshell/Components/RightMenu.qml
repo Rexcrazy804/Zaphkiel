@@ -14,7 +14,6 @@ PopupWindow {
   id: panel
   property bool debug: false
   required property PanelWindow bar
-  signal popupVisible(visbile: bool)
   color: "transparent"
   visible: debug
   anchor.window: bar
@@ -28,18 +27,15 @@ PopupWindow {
     windows: [ panel ]
 
     onActiveChanged: { 
-      panel.visible = this.active
-      panel.popupVisible(panel.visible)
+      if (!grab.active) {
+        panel.visible = false
+      }
     }
   }
 
-  function toggleVisibility() {
-    if (panel.visible) { // uhh don't ask me why its like this I tried
-      grab.active = false
-      panel.visible = false
-    } else {
+  onVisibleChanged: {
+    if (visible) {
       grab.active = true
-      panel.visible = true
     }
   }
 

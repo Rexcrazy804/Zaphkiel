@@ -8,8 +8,8 @@ import "../Assets"
 
 PopupWindow {
   id: root
-  required property var bar
-  required property var rightMenu
+  required property PanelWindow bar
+  required property PopupWindow rightMenu
 
   visible: false
   anchor.window: bar
@@ -33,8 +33,8 @@ PopupWindow {
       timer.start()
     });
 
-    rightMenu.popupVisible.connect(visible => {
-      root.visible = !visible && timer.running
+    root.rightMenu.onVisibleChanged.connect(() => {
+      root.visible = !root.rightMenu.visible && timer.running
     })
 
     popup.dismissed.connect(() => {

@@ -9,7 +9,6 @@ PopupWindow {
   id: panel
   readonly property HyprlandWorkspace mon: Hyprland.focusedWorkspace
   required property PanelWindow bar
-  signal popupVisible(visible: bool)
 
   color: Colors.withAlpha(Colors.surface, 0.79)
   visible: false
@@ -22,19 +21,16 @@ PopupWindow {
   HyprlandFocusGrab {
     id: grab
     windows: [panel]
-    onActiveChanged: { 
-      panel.visible = grab.active
-      panel.popupVisible(panel.visible)
+    onActiveChanged: {
+      if (!grab.active) {
+        panel.visible = false
+      }
     }
   }
 
-  function toggleVisibility() {
-    if (panel.visible) { // uhh don't ask me why its like this I tried
-      grab.active = false
-      panel.visible = false
-    } else {
-      grab.active = true
-      panel.visible = true
+  onVisibleChanged: {
+    if (panel.visible) {
+      grab.active = visible
     }
   }
 
@@ -69,7 +65,7 @@ PopupWindow {
             Hyprland.dispatch("workspace " + (square.index + 1))
           }
           onClicked: {
-            panel.toggleVisibility()
+            panel.visible = false
           }
         }
       }

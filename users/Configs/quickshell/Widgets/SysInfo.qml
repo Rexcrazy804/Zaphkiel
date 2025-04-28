@@ -15,7 +15,7 @@ Rectangle {
     layoutDirection: Qt.RightToLeft
     spacing: 15
     PowerWidget {}
-    SoundWidget {}
+    SoundWidget {bar: root.bar}
     BrightnessWidget { bar: root.bar }
   }
 }

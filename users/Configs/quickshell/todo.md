@@ -3,8 +3,10 @@
 - [x] Recording indicator => ipc
 - [x] inhibiter switch for pausing screen lock
 - [ ] OSD for volume and brightness (and profile?)
+- - [ ] volume slider
+- - [ ] brightness slider
 - [ ] popup for power profiles
 
 ## Low prio
-- recording toggle? idk if I need it
-- Calender widget
+- [ ] recording toggle? idk if I need it
+- [ ] Calender widget

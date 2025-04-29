@@ -12,13 +12,13 @@ PopupWindow {
   id: panel
   required property PanelWindow bar
 
-  visible: true
+  visible: false
   color: "transparent"
   anchor.window: bar
   anchor.rect.x: bar.width - width - 10
   anchor.rect.y: bar.height + 10
   width: 400
-  height: 300
+  height: 200
 
   HyprlandFocusGrab {
     id: grab
@@ -48,6 +48,7 @@ PopupWindow {
     }
 
     ListView {
+      id: list
       anchors.fill: parent
       anchors.margins: 10
       anchors.topMargin: 30
@@ -55,22 +56,8 @@ PopupWindow {
       clip: true
       spacing: 14
 
-      model: ListModel {
-        property var pipe: Pipewire
-        property list<PwNode> nodes: Pipewire.nodes.values
-        id: data
-
-        function update() {
-            for (var i = 0; i < nodes.length; i++) {
-              if (nodes[i].audio != null) {
-                data.insert(0, {data: data.nodes[i]})
-              }
-            }
-        }
-        Component.onCompleted: {
-          pipe.onReadyChanged.connect(() => update())
-          if (pipe.ready) { update() }
-        }
+      model: ScriptModel {
+        values: Pipewire.nodes.values.filter(node => node.audio != null && !node.description.startsWith("Tiger"))
       }
       delegate: Slider {
         required property PwNode modelData
@@ -78,7 +65,7 @@ PopupWindow {
         id: slider
         width: parent.width
         height: 30
-        snapMode: Slider.noSnap
+        snapMode: Slider.NoSnap
 
         PwObjectTracker { objects: [ modelData ] }
 
@@ -91,17 +78,22 @@ PopupWindow {
           Layout.alignment: Qt.AlignTop
           clip: true
 
+
           Rectangle {
             color: Colors.secondary
             width: slider.visualPosition * slider.availableWidth
             height: slider.height
+          }
 
-            Text {
-              anchors.centerIn: parent
-              color: Colors.on_secondary
-              text: slider.modelData?.properties["application.process.binary"]
-              font.bold: true
-            }
+          Text {
+            id: text
+            property string icon: (!modelData?.isSink)? "󰕾 " : "󰍬 "
+            anchors.leftMargin: 10
+            verticalAlignment: Text.AlignVCenter
+            anchors.fill: parent
+            color: Colors.on_secondary
+            font.bold: true
+            text: text.icon + ((slider.modelData?.description == "")? slider.modelData?.name : slider.modelData?.description)
           }
         }
 
@@ -112,8 +104,8 @@ PopupWindow {
         from: 0
         to: 100
 
-        Component.onCompleted: {
-          console.log(slider.modelData.name)
+        onValueChanged: {
+          slider.modelData.audio.volume = (slider.value / 100)
         }
       }
     }

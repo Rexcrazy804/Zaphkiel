@@ -49,12 +49,10 @@ PopupWindow {
     Rectangle { // FIRST CARD
       color: Colors.withAlpha(Colors.background, 0.79)
       Layout.fillWidth: true
-      Layout.alignment: Qt.AlignTop
       Layout.preferredHeight: 205
       RowLayout {
-        spacing: 10
+        spacing: 5
         anchors.fill: parent
-        Layout.alignment: Qt.AlignCenter
 
         ColumnLayout { // slider and mpris
           Layout.preferredWidth: 3
@@ -62,7 +60,8 @@ PopupWindow {
           Layout.fillWidth: true
           Layout.margins: 10
           Layout.rightMargin: 0
-          spacing: 20
+          Layout.leftMargin: 5 // see, forwhatever reason after visual inspection 5 here likes to act like 10?
+          spacing: 10
 
           RowLayout {
             Layout.fillWidth: true
@@ -101,7 +100,7 @@ PopupWindow {
             id: cal
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.preferredHeight: 3
+            Layout.preferredHeight: 4
 
             delegate: Rectangle {
               id: calRect
@@ -115,7 +114,7 @@ PopupWindow {
                 opacity: model.month === cal.month ? 1 : 0.6
                 text: calRect.model.day
                 font: cal.font
-                color: (model.month === cal.month && calRect.model.day == Time.data.dayNumber)? Colors.tertiary : Colors.primary
+                color: (model.month === cal.month && calRect.model.day == Time.data?.dayNumber)? Colors.tertiary : Colors.primary
               }
             }
           }

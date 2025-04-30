@@ -38,7 +38,7 @@ PopupWindow {
     })
 
     rightMenu.visibleChanged.connect(() => {
-      popup.visible = !rightMenu.visible && timer.running
+      root.visible = !rightMenu.visible && timer.running
     })
   }
 

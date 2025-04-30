@@ -43,6 +43,8 @@ Slider {
   to: 100
 
   onValueChanged: {
-    slider.node.audio.volume = slider.value / 100
+    if (slider.node?.audio) {
+      slider.node.audio.volume = slider.value / 100
+    }
   }
 }

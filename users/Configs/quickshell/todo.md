@@ -9,8 +9,14 @@
 - [ ] OSD for volume and brightness (and profile?)
 - - [ ] volume slider
 - - [ ] brightness slider
+- [ ] Network Selection Menus
+- - [ ] Wifi selection
+- - [ ] Bluetooth selection
 
 ## Low prio
+- [ ] addition of a pin icon on the top right of menus to inhibit Hyprgrab
 - [ ] recording toggle? idk if I need it
 - [ ] Calender widget
 - [ ] make a custom Structure for the styled stuff
+- [ ] make wl-logout kinda screen for session button
+- [ ] fix issues with workspace menu

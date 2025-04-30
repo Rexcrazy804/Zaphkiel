@@ -1,8 +1,8 @@
 ## high prio
-- [x] Suspend/Shutdown/Reboot menu (add it to workspace widgets will be nice)
-- [x] Recording indicator => ipc
-- [x] inhibiter switch for pausing screen lock
-- [ ] Audio channels menu
+- [X] Suspend/Shutdown/Reboot menu (add it to workspace widgets will be nice)
+- [X] Recording indicator => ipc
+- [X] inhibiter switch for pausing screen lock
+- [X] Audio channels menu
 - [ ] Cleanup Notifications
 - [ ] OSD for volume and brightness (and profile?)
 - - [ ] volume slider

@@ -47,6 +47,7 @@ PopupWindow {
       width: 2
     }
 
+
     ListView {
       id: list
       anchors.fill: parent
@@ -57,8 +58,10 @@ PopupWindow {
       spacing: 14
 
       model: ScriptModel {
+        id: script
         values: Pipewire.nodes.values.filter(node => node.audio != null && !node.description.startsWith("Tiger"))
       }
+
       delegate: Slider {
         required property PwNode modelData
         required property int index
@@ -125,6 +128,14 @@ PopupWindow {
         text: "Audio"
         color: Colors.on_secondary
       }
+    }
+
+    Text {
+      visible: script.values.length == 0
+      anchors.centerIn: parent
+      text: "No Active Audio Channels"
+      color: Colors.secondary
+      font.pointSize: 16
     }
   }
 

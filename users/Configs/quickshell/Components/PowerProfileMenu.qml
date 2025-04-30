@@ -139,14 +139,23 @@ PopupWindow {
           Layout.preferredWidth: 2
           color: "transparent"
           Text {
+            id: text
+            property list<int> timeToFull: standardizedTime(info.bat.timeToFull)
+            property list<int> timeToEmpty: standardizedTime(info.bat.timeToEmpty)
+            function standardizedTime(seconds: int): list<int> {
+              const hours  = Math.floor(seconds / 3600)
+              const minutes = Math.floor((seconds - (hours * 3600)) / 60)
+              return [ hours, minutes ]
+            }
+
             anchors.centerIn: parent
             color: Colors.tertiary
             text: switch (info.bat.state) {
               case UPowerDeviceState.Charging:
-                "  " + Math.floor(info.bat.timeToFull / 60) + " minutes";
+                "  " + ((text.timeToFull[0] > 0)? text.timeToFull[0] + " hours" :  + text.timeToFull[1] + " minutes");
                 break;
               case UPowerDeviceState.Discharging:
-                "󰥕  " + Math.floor(info.bat.timeToEmpty / 60) + " minutes";
+                "󰥕  " + ((text.timeToEmpty[0] > 0)? text.timeToEmpty[0] + " hours" :  + text.timeToEmpty[1] + " minutes");
                 break;
               default: 
                 " idle"; 

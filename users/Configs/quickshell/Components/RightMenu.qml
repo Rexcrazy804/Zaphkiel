@@ -62,7 +62,7 @@ PopupWindow {
           Layout.fillWidth: true
           Layout.margins: 10
           Layout.rightMargin: 0
-          spacing: 10
+          spacing: 20
 
           RowLayout {
             Layout.fillWidth: true
@@ -97,11 +97,27 @@ PopupWindow {
             }
           }
 
-          RowLayout {
+          MonthGrid {
+            id: cal
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.preferredHeight: 3
-            spacing: 10
+
+            delegate: Rectangle {
+              id: calRect
+              required property var model
+              color: "transparent"
+
+              Text {
+                anchors.centerIn: parent
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignVCenter
+                opacity: model.month === cal.month ? 1 : 0.6
+                text: calRect.model.day
+                font: cal.font
+                color: (model.month === cal.month && calRect.model.day == Time.data.dayNumber)? Colors.tertiary : Colors.primary
+              }
+            }
           }
         }
 

@@ -101,7 +101,8 @@ PopupWindow {
           }
         }
 
-        value: PowerProfiles.profile
+        // set to 1 by default to avoid a nasty loop that sometimes happens .w.
+        value: 1
         from: 0
         to: 2
         stepSize: 1

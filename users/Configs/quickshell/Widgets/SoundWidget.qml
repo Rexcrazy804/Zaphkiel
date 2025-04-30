@@ -15,7 +15,7 @@ Text {
 
   MouseArea {
     anchors.fill: parent
-    acceptedButtons: Qt.LeftButton | Qt.MiddleButton
+    acceptedButtons: Qt.LeftButton | Qt.MiddleButton | Qt.RightButton
     onClicked: mouse => { 
       switch (mouse.button) {
         case Qt.LeftButton:
@@ -23,6 +23,9 @@ Text {
           break;
         case Qt.MiddleButton:
           Audio.sink.audio.muted = !Audio.muted
+          break;
+        case Qt.RightButton:
+          Audio.source.audio.muted = !Audio.source.audio.muted
           break;
       }
     }

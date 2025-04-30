@@ -12,7 +12,7 @@ import "../Assets"
 
 PopupWindow {
   id: panel
-  property bool debug: false
+  property bool debug: true
   required property PanelWindow bar
   color: "transparent"
   visible: debug
@@ -26,7 +26,7 @@ PopupWindow {
     id: grab
     windows: [ panel ]
 
-    onActiveChanged: { 
+    onActiveChanged: {
       if (!grab.active) {
         panel.visible = false
       }
@@ -51,7 +51,7 @@ PopupWindow {
       Layout.fillWidth: true
       Layout.alignment: Qt.AlignTop
       Layout.preferredHeight: 205
-      RowLayout { 
+      RowLayout {
         spacing: 10
         anchors.fill: parent
         Layout.alignment: Qt.AlignCenter
@@ -64,12 +64,37 @@ PopupWindow {
           Layout.rightMargin: 0
           spacing: 10
 
-          SliderWidgets { 
+          RowLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.preferredHeight: 1
-            spacing: 10
-            debug: panel.debug
+            spacing: -2
+
+            Repeater {
+              model: [
+                {
+                  node: Audio.sink,
+                  colors: [Colors.on_tertiary_container, Colors.tertiary_container],
+                  icon: Audio.volIcon
+                },
+                {
+                  node: Audio.source,
+                  colors: [Colors.on_secondary_container, Colors.secondary_container],
+                  icon: Audio.micIcon
+                },
+              ]
+
+              GenericAudioSlider {
+                required property var modelData
+                node: modelData.node
+                foregroundColor: modelData.colors[0]
+                backgroundColor: modelData.colors[1]
+                icon: modelData.icon
+
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+              }
+            }
           }
 
           RowLayout {
@@ -90,7 +115,7 @@ PopupWindow {
 
           Rectangle { // profile
             color: "transparent"
-            Layout.alignment: Qt.AlignCenter 
+            Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: 150
             Layout.preferredHeight: 150
             IconImage {

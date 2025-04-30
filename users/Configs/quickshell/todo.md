@@ -4,7 +4,8 @@
 - [X] inhibiter switch for pausing screen lock
 - [X] Audio channels menu
 - [X] Cleanup Notifications
-- [x] popup for power profiles
+- [X] popup for power profiles
+- [X] cleanup Rightmenu sliders
 - [ ] OSD for volume and brightness (and profile?)
 - - [ ] volume slider
 - - [ ] brightness slider

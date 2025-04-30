@@ -52,7 +52,7 @@ PopupWindow {
       id: list
       anchors.fill: parent
       anchors.margins: 10
-      anchors.topMargin: 30
+      anchors.topMargin: 26
       anchors.bottomMargin: 10
       clip: true
       spacing: 14

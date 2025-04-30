@@ -4,11 +4,12 @@
 - [X] inhibiter switch for pausing screen lock
 - [X] Audio channels menu
 - [X] Cleanup Notifications
+- [x] popup for power profiles
 - [ ] OSD for volume and brightness (and profile?)
 - - [ ] volume slider
 - - [ ] brightness slider
-- [ ] popup for power profiles
 
 ## Low prio
 - [ ] recording toggle? idk if I need it
 - [ ] Calender widget
+- [ ] make a custom Structure for the styled stuff

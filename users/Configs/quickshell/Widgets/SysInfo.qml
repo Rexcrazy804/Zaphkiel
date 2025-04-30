@@ -14,7 +14,7 @@ Rectangle {
     id: sysinfo
     layoutDirection: Qt.RightToLeft
     spacing: 15
-    PowerWidget {}
+    PowerWidget {bar: root.bar}
     SoundWidget {bar: root.bar}
     BrightnessWidget { bar: root.bar }
   }

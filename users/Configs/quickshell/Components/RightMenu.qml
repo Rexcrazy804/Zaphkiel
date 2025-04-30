@@ -118,7 +118,7 @@ PopupWindow {
     }
 
     RowLayout { // notif bar
-      visible: data.count > 0 // only reveal if the listmodel has data
+      visible: NotifServer.notifCount
       Layout.fillWidth: true
       Layout.preferredHeight: 30
       spacing: 0
@@ -156,11 +156,8 @@ PopupWindow {
 
         MouseArea {
           anchors.fill: parent
-          onClicked: () => { // dismiss all notifications and clear the listModel
-            for (let i = 0; i < data.count; i++) {
-              data.get(i).notif.dismiss()
-            }
-            data.clear()
+          onClicked: () => {
+            NotifServer.clearNotifs()
           }
         }
       }
@@ -173,43 +170,12 @@ PopupWindow {
       Layout.preferredHeight: childrenRect.height
       Layout.maximumHeight: Screen.height * 0.95 - this.y
       clip: true
-      model: ListModel {
-        id: data
-        Component.onCompleted: () => {
-          NotifServer.incomingAdded.connect(n => {
-            data.insert(0, { notif: n });
-          });
-
-          // I wasted way too much tiem on this crap bro
-          NotifServer.incomingRemoved.connect(id => {
-            for (let i = 0; i < data.count; i++) {
-              if (data.get(i).notif.id == id) {
-                data.get(i).notif.dismiss()
-                data.remove(i, 1)
-              }
-            }
-          })
-        }
-      }
+      model: NotifServer.notifications
       delegate: NotificationEntry {
         id: toast
         width: parent?.width
         required property Notification modelData
-        required property int index
         notif: modelData
-
-        Component.onCompleted: () => {
-          notif?.closed.connect(() => {
-            if (!toast || toast.index < 0) return;
-            listView.model.remove(toast.index, 1);
-          })
-        }
-
-        onDismissed: () => {
-          if (!toast || toast.index < 0) return;
-          listView.model.remove(toast.index, 1);
-          toast.notif?.dismiss()
-        }
       }
     }
   }

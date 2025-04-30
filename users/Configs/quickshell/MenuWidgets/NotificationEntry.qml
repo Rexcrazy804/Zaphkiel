@@ -8,27 +8,11 @@ import "../Data"
 import "../Assets"
 Item {
   id: root
-  signal dismissed()
-
   required property var notif
-  property var body
-  property var appName
-  property var summary
-  property var actions
-
-  // doing this to make a copy of all the data so that we don't panic when shit dies
-  // robbed from nych
-  function updateNotif() {
-    if (notif == null) { dismissed() }
-    body = notif?.body ?? "";
-    appName = notif?.appName ?? "";
-    summary = notif?.summary ?? "";
-    actions = notif?.actions ?? [];
-  }
-
-  Component.onCompleted: {
-    updateNotif()
-  }
+  property string body: notif?.body ?? ""
+  property string appName: notif?.appName ?? ""
+  property string summary: notif?.summary ?? ""
+  property list<NotificationAction> actions: notif?.actions ?? []
 
   height: field.height + 10 // unholy I know, maybe I'll clean it up later, but yk if it works, don't break it .w.
 
@@ -48,6 +32,8 @@ Item {
       spacing: 0
       id: content
       anchors.fill: parent
+      anchors.topMargin: 25
+      anchors.bottomMargin: 15
       anchors.margins: 20
 
       Text {
@@ -104,17 +90,16 @@ Item {
 
     MouseArea {
       anchors.fill: parent
-      onClicked: root.dismissed()
+      onClicked: root.notif.dismiss()
     }
   }
 
-  RowLayout {
+  RowLayout { // actions
     anchors.right: parent.right
     anchors.bottom: parent.bottom
     anchors.rightMargin: 15
 
     height: header.height
-    width: childrenRect.width
     spacing: 15
 
     Repeater {
@@ -133,10 +118,7 @@ Item {
           text: actionRect?.modelData?.text ?? "Activate"
           MouseArea {
             anchors.fill: parent
-            onClicked: event => {
-              actionRect.modelData.invoke()
-              root.dismissed()
-            }
+            onClicked: event => { actionRect.modelData.invoke() }
           }
         }
       }

@@ -23,24 +23,18 @@ PopupWindow {
     id: popup
     width: parent.width
     notif: null
+
+    onNotifChanged: {
+      if (!notif) { root.visible = false }
+      timer.restart()
+    }
   }
 
   Component.onCompleted: () => {
-    NotifServer.incomingAdded.connect(n => {
+    NotifServer.notifServer.onNotification.connect(n => {
       popup.notif = n
-      popup.updateNotif()
-      root.visible = true && !rightMenu.visible
+      root.visible = true
       timer.start()
-    });
-
-    root.rightMenu.onVisibleChanged.connect(() => {
-      root.visible = !root.rightMenu.visible && timer.running
-    })
-
-    popup.dismissed.connect(() => {
-      root.visible = false
-      timer.running = false
-      NotifServer.remove(popup.notif?.id)
     })
   }
 

@@ -9,8 +9,11 @@ import Quickshell.Services.Notifications
 
 Singleton {
   id: notif
+  property NotificationServer notifServer: server
+  property ScriptModel notifications: sList
+  property int notifCount: server.trackedNotifications.values.length
 
-  property var notifServer: NotificationServer {
+  NotificationServer {
     id: server
     actionIconsSupported: true
     actionsSupported: true
@@ -23,17 +26,18 @@ Singleton {
 
     onNotification: n => {
       n.tracked = true;
-      notif.incomingAdded(n);
     }
   }
 
-  property alias list: server.trackedNotifications
-  signal incomingAdded(id: Notification)
-  signal incomingRemoved(id: int)
-
-  function remove(id: int) {
-    notif.incomingRemoved(id)
+  ScriptModel {
+    id: sList
+    values: [...server.trackedNotifications.values]
   }
 
-  signal clear()
+  function clearNotifs() {
+    for (var i = 0; i < server.trackedNotifications.values.length; i++) {
+      // TODO this is still a bit wonky idk why
+      server.trackedNotifications.values[i].dismiss()
+    }
+  }
 }

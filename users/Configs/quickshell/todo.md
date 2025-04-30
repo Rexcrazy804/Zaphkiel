@@ -3,7 +3,7 @@
 - [X] Recording indicator => ipc
 - [X] inhibiter switch for pausing screen lock
 - [X] Audio channels menu
-- [ ] Cleanup Notifications
+- [X] Cleanup Notifications
 - [ ] OSD for volume and brightness (and profile?)
 - - [ ] volume slider
 - - [ ] brightness slider

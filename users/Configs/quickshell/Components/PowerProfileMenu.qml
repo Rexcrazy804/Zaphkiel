@@ -119,39 +119,53 @@ PopupWindow {
         Layout.fillWidth: true
         Layout.fillHeight: true
 
-        Text {
-          Layout.fillWidth: true
-          Layout.fillHeight: true
-          horizontalAlignment: Text.AlignLeft
-          verticalAlignment: Text.AlignVCenter
-          color: Colors.tertiary
-          text: "󰂏 " + info.bat.energyCapacity
-        }
 
-        Text {
+        Rectangle {
           Layout.fillWidth: true
           Layout.fillHeight: true
-          horizontalAlignment: Text.AlignHCenter
-          verticalAlignment: Text.AlignVCenter
-          color: Colors.tertiary
-          text: switch (info.bat.state) {
-            case UPowerDeviceState.Charging:
-              "  " + Math.floor(info.bat.timeToFull / 60) + " minutes";
-              break;
-            case UPowerDeviceState.Dischargin:
-              "󰥕  " + Math.floor(info.bat.timeToEmpty / 60) + " minutes";
-              break;
-            default: ""
+          color: "transparent"
+          Text {
+            anchors.fill: parent
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignLeft
+            color: Colors.tertiary
+            text: "󰂏 " + info.bat.energyCapacity
           }
         }
 
-        Text {
+        Rectangle {
           Layout.fillWidth: true
           Layout.fillHeight: true
-          horizontalAlignment: Text.AlignRight
-          verticalAlignment: Text.AlignVCenter
-          color: Colors.tertiary
-          text: "󱐋 " + info.bat.changeRate
+          Layout.preferredWidth: 2
+          color: "transparent"
+          Text {
+            anchors.centerIn: parent
+            color: Colors.tertiary
+            text: switch (info.bat.state) {
+              case UPowerDeviceState.Charging:
+                "  " + Math.floor(info.bat.timeToFull / 60) + " minutes";
+                break;
+              case UPowerDeviceState.Discharging:
+                "󰥕  " + Math.floor(info.bat.timeToEmpty / 60) + " minutes";
+                break;
+              default: 
+                " idle"; 
+                break;
+            }
+          }
+        }
+
+        Rectangle {
+          Layout.fillWidth: true
+          Layout.fillHeight: true
+          color: "transparent"
+          Text {
+            anchors.fill: parent
+            color: Colors.tertiary
+            horizontalAlignment: Text.AlignRight
+            verticalAlignment: Text.AlignVCenter
+            text: "󱐋 " + info.bat.changeRate
+          }
         }
       }
     }

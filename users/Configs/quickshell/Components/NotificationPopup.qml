@@ -66,7 +66,7 @@ PopupWindow {
     NotifServer.notifServer.onNotification.connect(n => {
       popup.notif = n
       popup.state = "HasNotif"
-      root.visible = true
+      root.visible = !rightMenu.visible && true
       timer.start()
     })
 

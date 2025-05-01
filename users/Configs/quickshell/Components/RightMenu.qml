@@ -20,7 +20,7 @@ PopupWindow {
   anchor.rect.x: bar.width - width - 10
   anchor.rect.y: bar.height + 10
   width: 480
-  height: (panel.visible)? cardbox.height : 1
+  height: cardbox.height
 
   HyprlandFocusGrab {
     id: grab
@@ -157,57 +157,11 @@ PopupWindow {
       }
     }
 
-    RowLayout { // notif bar
-      visible: NotifServer.notifCount
-      Layout.fillWidth: true
-      Layout.preferredHeight: 30
-      spacing: 0
-
-      Rectangle {
-        Layout.fillHeight: true
-        Layout.preferredWidth: notifText.width + 10
-        color: Colors.secondary
-        Text {
-          anchors.centerIn: parent
-          id: notifText
-          color: Colors.on_secondary
-          text: "Notifications"
-        }
-      }
-
-      Rectangle {
-        color: Colors.withAlpha(Colors.background, 0.79)
-        Layout.fillWidth: true
-        Layout.fillHeight: true
-      }
-
-      Rectangle {
-        Layout.fillHeight: true
-        Layout.preferredWidth: clearText.width + 16
-        color: Colors.secondary
-        Text {
-          anchors.centerIn: parent
-          id: clearText
-          color: Colors.on_secondary
-          text: "󰎟"
-          font.pointSize: 16
-
-        }
-
-        MouseArea {
-          anchors.fill: parent
-          onClicked: () => {
-            NotifServer.clearNotifs()
-          }
-        }
-      }
-    }
-
     ListView { // Notification Inbox
       id: listView
       Layout.fillWidth: true
       Layout.minimumHeight: 0
-      Layout.preferredHeight: childrenRect.height
+      Layout.preferredHeight: childrenRect.height + 20
       Layout.maximumHeight: Screen.height * 0.95 - this.y
       clip: true
       model: NotifServer.notifications
@@ -216,6 +170,13 @@ PopupWindow {
         width: parent?.width
         required property Notification modelData
         notif: modelData
+
+        // no destruction animation for now
+        NumberAnimation on opacity {
+          from: 0
+          to: 1
+          duration: 320
+        }
       }
     }
   }

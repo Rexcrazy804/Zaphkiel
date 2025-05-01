@@ -101,13 +101,12 @@ PopupWindow {
           }
         }
 
-        // set to 1 by default to avoid a nasty loop that sometimes happens .w.
-        value: 1
+        value: PowerProfiles.profile
         from: 0
         to: 2
         stepSize: 1
 
-        onValueChanged: {
+        onMoved: {
           PowerProfiles.profile = slider.value
         }
       }

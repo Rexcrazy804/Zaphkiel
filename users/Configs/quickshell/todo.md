@@ -9,17 +9,18 @@
 - [X] Calender widget
 
 ## high prio
-- [ ] Mpris stuff
-- [ ] OSD for volume and brightness (and profile?)
-- - [ ] volume slider
-- - [ ] brightness slider
 - [ ] Network Selection Menus
-- - [ ] Wifi selection
+- - [x] Wifi selection `hacky workaround using nm-applet for the time being`
 - - [ ] Bluetooth selection
+- [ ] Animations
 
 ## Low prio
+- [ ] Mpris stuff
 - [ ] addition of a pin icon on the top right of menus to inhibit Hyprgrab
-- [ ] recording toggle? idk if I need it
-- [ ] make a custom Structure for the styled stuff
 - [ ] make wl-logout kinda screen for session button
 - [ ] fix issues with workspace menu
+- [ ] make a custom Structure for the styled stuff
+
+## discarded
+- [ ] OSD for volume and brightness (and profile?)  `I can always see the brightness and hear the audio`
+- [ ] recording toggle? idk if I need it `def don't think I need it`

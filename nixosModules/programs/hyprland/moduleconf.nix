@@ -41,6 +41,7 @@ in {
     pkgs.libnotify
     pkgs.swappy
     pkgs.wayfreeze
+    pkgs.networkmanagerapplet
 
     # yazi + deps
     pkgs.yazi

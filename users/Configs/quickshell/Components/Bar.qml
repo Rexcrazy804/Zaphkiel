@@ -48,18 +48,11 @@ Scope {
             }
           ]
 
-          transitions: [
-            Transition {
-              from: "Opaque"
-              to: "Translucent"
-              ColorAnimation { duration: 150 }
-            },
-            Transition {
-              from: "Translucent"
-              to: "Opaque"
-              ColorAnimation { duration: 150 }
+          Behavior on color {
+            ColorAnimation {
+              duration: 150
             }
-          ]
+          }
 
           color: bar.dynamicBarColor
           anchors.centerIn: parent

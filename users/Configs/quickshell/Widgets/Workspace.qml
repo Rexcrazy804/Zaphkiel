@@ -65,4 +65,8 @@ Rectangle {
       root.active = menu.visible
     })
   }
+
+  Behavior on color {
+    ColorAnimation { duration: 150 }
+  }
 }

@@ -9,10 +9,10 @@
 - [X] Calender widget
 
 ## high prio
+- [ ] Animations
 - [ ] Network Selection Menus
 - - [x] Wifi selection `hacky workaround using nm-applet for the time being`
 - - [ ] Bluetooth selection
-- [ ] Animations
 
 ## Low prio
 - [ ] Mpris stuff

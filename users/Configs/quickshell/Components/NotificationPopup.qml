@@ -25,14 +25,47 @@ PopupWindow {
     notif: null
 
     onNotifChanged: {
-      if (!notif) { root.visible = false }
+      if (popup.notif == null) { root.visible = false }
       timer.restart()
+    }
+
+    // Animations
+    state: "Empty"
+
+    states: [
+      State {
+        name: "HasNotif"
+        PropertyChanges {
+          popup.opacity: 1
+        }
+      },
+      State {
+        name: "Empty"
+        PropertyChanges {
+          popup.opacity: 0
+        }
+      }
+    ]
+
+    Behavior on opacity {
+      NumberAnimation {
+        duration: 320
+      }
+    }
+  }
+
+  Timer {
+    id: timer
+    interval: 3000
+    onTriggered: {
+      popup.state = "Empty"
     }
   }
 
   Component.onCompleted: () => {
     NotifServer.notifServer.onNotification.connect(n => {
       popup.notif = n
+      popup.state = "HasNotif"
       root.visible = true
       timer.start()
     })
@@ -40,13 +73,11 @@ PopupWindow {
     rightMenu.visibleChanged.connect(() => {
       root.visible = !rightMenu.visible && timer.running && popup.notif
     })
-  }
 
-  Timer {
-    id: timer
-    interval: 3000
-    onTriggered: {
-      root.visible = false
-    }
+    popup.opacityChanged.connect(() => {
+      if (popup.opacity == 0) {
+        root.visible = false
+      }
+    })
   }
 }

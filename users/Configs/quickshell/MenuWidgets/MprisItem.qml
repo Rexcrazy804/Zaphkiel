@@ -1,15 +1,15 @@
+pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Effects
 import QtQuick.Controls
-import Quickshell
-import Quickshell.Widgets
 import Quickshell.Services.Mpris
 import "../Assets"
 
 Rectangle {
   id: rect
   required property MprisPlayer player
+  required property ListView view
   color: "transparent"
 
   Image {
@@ -36,8 +36,8 @@ Rectangle {
     ColumnLayout {
       Layout.fillWidth: true
       Layout.fillHeight: true
-      Layout.preferredHeight: 1
-      spacing: 2
+      Layout.preferredHeight: 2
+      spacing: 0
 
       Flickable {
         Layout.fillWidth: true
@@ -45,14 +45,14 @@ Rectangle {
         Layout.preferredHeight: 2
         // lets me centre short shit (and yes cent're', br'ish moment)
         contentWidth: (text.contentWidth > this.width)? text.contentWidth : this.width
-        contentX: (text.contentWidth > this.width)? contentWidth / 2 : 0
+        contentX: (text.contentWidth > this.width)? (text.contentWidth / 2) : 0
 
         Text {
           id: text
           anchors.fill: parent
           wrapMode: Text.NoWrap
           horizontalAlignment: Text.AlignHCenter
-          verticalAlignment: Text.AlignVCenter
+          verticalAlignment: Text.AlignBottom
           color: "white"
           text: player.trackTitle
           font.pointSize: 16
@@ -65,31 +65,108 @@ Rectangle {
         Layout.preferredHeight: 1
         color: "white"
         horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
+        verticalAlignment: Text.AlignTop
         text: player.trackArtist
         font.pointSize: 9
       }
     }
 
-    ColumnLayout {
+    RowLayout {
       Layout.fillHeight: true
       Layout.fillWidth: true
       Layout.preferredHeight: 1
+      Layout.leftMargin: 80
+      Layout.rightMargin: this.Layout.leftMargin
+      spacing: 10
 
-      Rectangle { 
+      Rectangle {  // Left
         Layout.fillHeight: true
         Layout.fillWidth: true
         color: "transparent"
-      }
 
+        Text {
+          color: Colors.primary
+          anchors.centerIn: parent
+          text: "󰒮"
+          font.pointSize: 20
+          font.bold: true
+
+          MouseArea {
+            anchors.fill: parent
+            onClicked: {
+              player.previous()
+            }
+          }
+        }
+      }
+      Rectangle {  // REsume/ Puase
+        Layout.fillHeight: true
+        Layout.fillWidth: true
+        color: "transparent"
+
+        Text {
+          color: Colors.primary
+          anchors.centerIn: parent
+          text: !(player.playbackState == MprisPlaybackState.Playing)? "󰐊" : "󰏤"
+          font.pointSize: 20
+          font.bold: true
+
+          MouseArea {
+            anchors.fill: parent
+            onClicked: {
+              player.togglePlaying()
+            }
+          }
+        }
+      }
+      Rectangle {  // Right NExt
+        Layout.fillHeight: true
+        Layout.fillWidth: true
+        color: "transparent"
+
+        Text {
+          color: Colors.primary
+          anchors.centerIn: parent
+          text: "󰒭"
+          font.pointSize: 20
+          font.bold: true
+
+          MouseArea {
+            anchors.fill: parent
+            onClicked: {
+              player.next()
+            }
+          }
+        }
+      }
     }
 
     RowLayout { // bottom buttons for switching players
-      Layout.preferredHeight: 0.2
+      visible: rect.view.count > 1
+      Layout.preferredHeight: 1
+      Layout.bottomMargin: 2
       Layout.fillHeight: true
       Layout.fillWidth: true
-      // border.color: "White"
-      // color: "transparent"
+      Layout.alignment: Qt.AlignCenter
+
+      Repeater {
+        model: rect.view.count
+        Rectangle {
+          id: playRect
+          required property int index
+          implicitWidth: (this.index == rect.index)? 8 : 6
+          implicitHeight: this.implicitWidth
+
+          color: (this.index == rect.index)? Colors.primary : Colors.withAlpha(Colors.primary, 0.79)
+
+          MouseArea {
+            anchors.fill: parent
+            onClicked: () => {
+              rect.view.positionViewAtIndex(playRect.index, ListView.Contain)
+            }
+          }
+        }
+      }
     }
   }
   Slider { 
@@ -122,19 +199,19 @@ Rectangle {
     }
     handle: Rectangle {visible: false}
 
-    value: player.position
+    value: rect.player.position
     from: 0
-    to: player.length
+    to: rect.player.length
 
     FrameAnimation {
-      running: player.playbackState == MprisPlaybackState.Playing
-      onTriggered: player.positionChanged()
+      running: rect.player.playbackState == MprisPlaybackState.Playing
+      onTriggered: rect.player.positionChanged()
     }
 
-    onMoved: { player.position = slider.value }
+    onMoved: { rect.player.position = slider.value }
 
     Component.onCompleted: {
-      player.positionChanged.connect(() => {
+      rect.player.positionChanged.connect(() => {
         slider.value = player.position
       })
     }

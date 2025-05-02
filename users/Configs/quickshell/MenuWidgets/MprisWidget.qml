@@ -30,47 +30,10 @@ Rectangle {
       property int increaseOrDecrease: 0
       property bool readyToShow: false
       player: modelData
+      view: list
 
       width: root.width
       height: root.height
-
-      state: "Hidden"
-      states: [
-        State {
-          name: "Hidden"
-          PropertyChanges { rect.opacity: 0 }
-        },
-        State {
-          name: "Shown"
-          PropertyChanges { rect.opacity: 1 }
-        }
-      ]
-
-      Behavior on opacity {
-        NumberAnimation {
-          duration: 300;
-          easing.type: Easing.InOutQuart
-        }
-      }
-
-      Component.onCompleted: {
-        ListView.currentItemChanged.connect(() => {
-          if (ListView.isCurrentItem) { rect.state = "Shown" }
-        })
-      }
-
-      onOpacityChanged: {
-        if (opacity != 0) { return; }
-        switch (increaseOrDecrease) {
-          case 1:
-            list.incrementCurrentIndex();
-            break;
-          case -1:
-            list.decrementCurrentIndex();
-            break;
-        }
-        rect.increaseOrDecrease = 0;
-      }
     }
   }
 }

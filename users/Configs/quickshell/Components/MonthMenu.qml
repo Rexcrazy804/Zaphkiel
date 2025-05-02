@@ -37,7 +37,7 @@ PopupWindow {
 
   Rectangle {
     id: baseRect
-    color: Colors.withAlpha(Colors.surface, 0.79)
+    color: Colors.withAlpha(Colors.secondary_container, 0.79)
     anchors.centerIn: parent
     width: parent.width
     height: parent.height
@@ -63,6 +63,7 @@ PopupWindow {
 
     RowLayout {
       anchors.fill: parent
+      spacing:0
 
       Rectangle {
         implicitWidth: 30
@@ -83,8 +84,7 @@ PopupWindow {
         id: cal
         Layout.fillWidth: true
         Layout.fillHeight: true
-        Layout.margins: 5
-        Layout.leftMargin: 0
+        Layout.margins: 10
         spacing: 5
 
         delegate: Rectangle {

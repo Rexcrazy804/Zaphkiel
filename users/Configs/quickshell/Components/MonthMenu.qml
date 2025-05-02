@@ -74,7 +74,7 @@ PopupWindow {
           rotation: -90
           anchors.centerIn: parent
           color: Colors.on_secondary
-          text: Time.data.dayName + ", " + Time.data.monthName + " " + Time.data.year
+          text: Time.data?.dayName + ", " + Time.data?.monthName + " " + Time.data?.year
           font.pointSize: 13
           font.italic: true
         }

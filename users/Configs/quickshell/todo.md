@@ -9,7 +9,10 @@
 - [X] Calender widget
 
 ## high prio
+- [ ] Mpris
+- - [ ] move calender into its own menu
 - [ ] Animations
+- - [X] Basic animations 
 - [ ] Network Selection Menus
 - - [x] Wifi selection `hacky workaround using nm-applet for the time being`
 - - [ ] Bluetooth selection
@@ -20,6 +23,7 @@
 - [ ] make wl-logout kinda screen for session button
 - [ ] fix issues with workspace menu
 - [ ] make a custom Structure for the styled stuff
+- [ ] use persisten popup
 
 ## discarded
 - [ ] OSD for volume and brightness (and profile?)  `I can always see the brightness and hear the audio`

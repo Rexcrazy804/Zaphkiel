@@ -12,7 +12,7 @@ import "../Assets"
 
 PopupWindow {
   id: panel
-  property bool debug: false
+  property bool debug: true
   required property PanelWindow bar
   color: "transparent"
   visible: debug
@@ -52,7 +52,7 @@ PopupWindow {
     anchors.right: parent.right
     spacing: 8
 
-    state: "Closed"
+    state: (panel.debug)? "Open" : "Closed"
     states: [
       State {
         name: "Open"
@@ -89,7 +89,6 @@ PopupWindow {
           Layout.fillWidth: true
           Layout.margins: 10
           Layout.rightMargin: 0
-          Layout.leftMargin: 5 // see, forwhatever reason after visual inspection 5 here likes to act like 10?
           spacing: 10
 
           RowLayout {
@@ -113,34 +112,23 @@ PopupWindow {
               ]
 
               GenericAudioSlider {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+
                 required property var modelData
                 node: modelData.node
                 foregroundColor: modelData.colors[0]
                 backgroundColor: modelData.colors[1]
                 icon: modelData.icon
-
-                Layout.fillWidth: true
-                Layout.fillHeight: true
               }
             }
           }
 
-          Rectangle {
+          MprisWidget {
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.preferredHeight: 4
-            color: "transparent"
-            border {
-              color: Colors.primary
-              width: 3
-            }
-
-            Text {
-              anchors.centerIn: parent
-              color: Colors.primary
-              text: "Place holder for MPRIS"
-              font.bold: true
-            }
+            Layout.rightMargin: 5
           }
         }
 

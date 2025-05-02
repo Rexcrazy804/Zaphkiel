@@ -19,32 +19,34 @@ Rectangle {
     highlightMoveVelocity: -1
     keyNavigationWraps: true
 
-    model: 3
+    model: ScriptModel {
+      values: [...Mpris.players.values]
+    }
 
-    delegate: Rectangle {
+    delegate: MprisItem {
       id: rect
-      required property var modelData
+      required property MprisPlayer modelData
       required property int index
       property int increaseOrDecrease: 0
       property bool readyToShow: false
+      player: modelData
+
+      width: root.width
+      height: root.height
 
       state: "Hidden"
       states: [
         State {
           name: "Hidden"
-          PropertyChanges {
-            rect.opacity: 0
-          }
+          PropertyChanges { rect.opacity: 0 }
         },
         State {
           name: "Shown"
-          PropertyChanges {
-            rect.opacity: 1
-          }
+          PropertyChanges { rect.opacity: 1 }
         }
       ]
 
-      Behvaior on opacity {
+      Behavior on opacity {
         NumberAnimation {
           duration: 300;
           easing.type: Easing.InOutQuart
@@ -68,30 +70,6 @@ Rectangle {
             break;
         }
         rect.increaseOrDecrease = 0;
-      }
-
-
-      color: (index)? Colors.primary_container : Colors.on_primary
-      width: root.width
-      height: root.height
-      Text {
-        anchors.centerIn: parent
-        color: Colors.primary
-        text: "Place holder " + rect.index + " for MPRIS"
-        font.bold: true
-
-        MouseArea {
-          anchors.fill: parent
-          acceptedButtons: Qt.RightButton | Qt.LeftButton
-
-          onClicked: (mouse) => {
-            if (list.count > 1) { rect.state = "Hidden" }
-            switch (mouse.button) {
-              case Qt.LeftButton: rect.increaseOrDecrease = -1; break;
-              case Qt.RightButton: rect.increaseOrDecrease = 1; break;
-            }
-          }
-        }
       }
     }
   }

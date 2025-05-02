@@ -88,14 +88,14 @@ PopupWindow {
           Layout.fillHeight: true
           Layout.fillWidth: true
           Layout.margins: 10
-          Layout.rightMargin: 0
+          Layout.rightMargin: 5
           spacing: 10
 
           RowLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.preferredHeight: 1
-            spacing: -2
+            spacing: 10
 
             Repeater {
               model: [
@@ -128,7 +128,6 @@ PopupWindow {
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.preferredHeight: 4
-            Layout.rightMargin: 5
           }
         }
 

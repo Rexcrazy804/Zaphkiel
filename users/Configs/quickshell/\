@@ -1,0 +1,53 @@
+import QtQuick
+import QtQuick.Effects
+import Quickshell
+import Quickshell.Widgets
+import Quickshell.Services.Mpris
+import "../Assets"
+
+Rectangle {
+  id: rect
+  required property MprisPlayer player
+  color: "transparent"
+  border {
+    color: Colors.primary_container
+    width: 2
+  }
+
+  Image {
+    anchors.fill: parent
+    source: rect.player.trackArtUrl
+    fillMode: Image.PreserveAspectFit
+    retainWhileLoading: true
+
+    MultiEffect {
+      source: parent
+      anchors.fill: parent
+      blurEnabled: true
+      blur: 0.4
+      // blurMultiplier: 2
+    }
+  }
+
+  // Text {
+  //   anchors.left: parent.left
+  //   anchors.top: parent.top
+  //
+  //   color: Colors.primary
+  //   text: modelData.identity
+  //   font.bold: true
+  //
+  //   MouseArea {
+  //     anchors.fill: parent
+  //     acceptedButtons: Qt.RightButton | Qt.LeftButton
+  //
+  //     onClicked: (mouse) => {
+  //       if (rect.view.count > 1) { rect.state = "Hidden" }
+  //       switch (mouse.button) {
+  //         case Qt.LeftButton: rect.increaseOrDecrease = -1; break;
+  //         case Qt.RightButton: rect.increaseOrDecrease = 1; break;
+  //       }
+  //     }
+  //   }
+  // }
+}

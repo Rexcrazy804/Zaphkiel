@@ -8,6 +8,11 @@ Slider {
   required property color foregroundColor
   required property color backgroundColor
   required property string icon
+  padding: 0
+  topInset: 0
+  bottomInset: 0
+  rightInset: 0
+  leftInset: 0
 
   id: slider
   snapMode: Slider.NoSnap

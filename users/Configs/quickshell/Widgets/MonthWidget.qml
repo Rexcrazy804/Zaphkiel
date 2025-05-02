@@ -30,7 +30,7 @@ Rectangle {
   MouseArea {
     anchors.fill: parent
     onClicked: {
-      root.rightMenu.visible = !root.rightMenu.visible
+      root.rightMenu.toggleVisibility()
     }
   }
 
@@ -43,5 +43,4 @@ Rectangle {
   Behavior on color {
     ColorAnimation { duration: 150 }
   }
-
 }

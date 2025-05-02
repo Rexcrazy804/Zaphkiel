@@ -51,7 +51,7 @@ Rectangle {
       }
     }
     onClicked: event => {
-      menu.visible = !menu.visible
+      menu.toggleVisibility()
     }
   }
 

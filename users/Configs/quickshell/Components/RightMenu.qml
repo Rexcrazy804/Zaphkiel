@@ -16,11 +16,22 @@ PopupWindow {
   required property PanelWindow bar
   color: "transparent"
   visible: debug
+
   anchor.window: bar
   anchor.rect.x: bar.width - width - 10
   anchor.rect.y: bar.height + 10
   width: 480
   height: cardbox.height
+
+  function toggleVisibility() {
+    if (panel.visible) {
+      cardbox.state = "Closed"
+    } else {
+      panel.visible = true
+      grab.active = true
+      cardbox.state = "Open"
+    }
+  }
 
   HyprlandFocusGrab {
     id: grab
@@ -28,16 +39,11 @@ PopupWindow {
 
     onActiveChanged: {
       if (!grab.active) {
-        panel.visible = false
+        cardbox.state = "Closed"
       }
     }
   }
 
-  onVisibleChanged: {
-    if (visible) {
-      grab.active = true
-    }
-  }
 
   ColumnLayout {
     id: cardbox
@@ -45,6 +51,29 @@ PopupWindow {
     anchors.left: parent.left
     anchors.right: parent.right
     spacing: 8
+
+    state: "Closed"
+    states: [
+      State {
+        name: "Open"
+        PropertyChanges { cardbox.opacity: 1 }
+      },
+      State {
+        name: "Closed"
+        PropertyChanges { cardbox.opacity: 0 }
+      }
+    ]
+
+    onOpacityChanged: {
+      if (opacity == 0) {
+        panel.visible = false
+        grab.active = false
+      }
+    }
+
+    Behavior on opacity { 
+      NumberAnimation { duration: 160 }
+    }
 
     Rectangle { // FIRST CARD
       color: Colors.withAlpha(Colors.background, 0.79)

@@ -19,26 +19,54 @@ PopupWindow {
   width: 160
   height: 120
 
+  function toggleVisibility() {
+    if (panel.visible) {
+      rowie.state = "Closed"
+    } else {
+      panel.visible = true
+      grab.active = true
+      rowie.state = "Open"
+    }
+  }
+
   HyprlandFocusGrab {
     id: grab
     windows: [panel]
     onActiveChanged: {
       if (!grab.active) {
-        panel.visible = false
+        rowie.state = "Closed"
       }
     }
   }
 
-  onVisibleChanged: {
-    if (panel.visible) {
-      grab.active = visible
-    }
-  }
-
   RowLayout {
+    id: rowie
     width: parent.width - 20
     height: parent.height - 20
     anchors.centerIn: parent
+
+    state: "Closed"
+    states: [
+      State {
+        name: "Open"
+        PropertyChanges { rowie.opacity: 1 }
+      },
+      State {
+        name: "Closed"
+        PropertyChanges { rowie.opacity: 0 }
+      }
+    ]
+
+    onOpacityChanged: {
+      if (opacity == 0) {
+        panel.visible = false
+        grab.active = false
+      }
+    }
+
+    Behavior on opacity { 
+      NumberAnimation { duration: 160 }
+    }
 
     GridLayout {
       Layout.fillWidth: true
@@ -71,7 +99,7 @@ PopupWindow {
               Hyprland.dispatch("workspace " + (square.index + 1))
             }
             onClicked: {
-              panel.visible = false
+              rowie.state = "Closed"
             }
           }
         }

@@ -74,7 +74,7 @@ Scope {
             anchors.centerIn: parent
             height:parent.height
 
-            ClockWidget {}
+            ClockWidget {bar: bar}
           }
 
           RowLayout { // Right

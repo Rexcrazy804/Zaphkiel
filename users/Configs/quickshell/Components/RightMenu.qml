@@ -125,26 +125,21 @@ PopupWindow {
             }
           }
 
-          MonthGrid {
-            id: cal
+          Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.preferredHeight: 4
+            color: "transparent"
+            border {
+              color: Colors.primary
+              width: 3
+            }
 
-            delegate: Rectangle {
-              id: calRect
-              required property var model
-              color: "transparent"
-
-              Text {
-                anchors.centerIn: parent
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignVCenter
-                opacity: model.month === cal.month ? 1 : 0.6
-                text: calRect.model.day
-                font: cal.font
-                color: (model.month === cal.month && calRect.model.day == Time.data?.dayNumber)? Colors.tertiary : Colors.primary
-              }
+            Text {
+              anchors.centerIn: parent
+              color: Colors.primary
+              text: "Place holder for MPRIS"
+              font.bold: true
             }
           }
         }

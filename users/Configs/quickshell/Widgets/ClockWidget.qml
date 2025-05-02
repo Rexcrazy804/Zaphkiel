@@ -1,9 +1,12 @@
 import QtQuick
 import QtQuick.Layouts
+import Quickshell
 import "../Data"
 import "../Assets"
+import "../Components"
 
 RowLayout {
+  required property PanelWindow bar
   id: container
   implicitHeight: parent.height
   implicitWidth: dateText.implicitWidth + 20
@@ -38,6 +41,10 @@ RowLayout {
       onExited: {
         rehidelock.start()
       }
+
+      onClicked: {
+        moMenu.toggleVisibility()
+      }
     }
   }
 
@@ -49,5 +56,10 @@ RowLayout {
     onTriggered: {
       lock.visible = lock.inhibited
     }
+  }
+
+  MonthMenu {
+    id: moMenu
+    bar: container.bar
   }
 }

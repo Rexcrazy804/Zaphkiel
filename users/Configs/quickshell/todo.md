@@ -10,7 +10,7 @@
 
 ## high prio
 - [ ] Mpris
-- - [ ] move calender into its own menu
+- - [X] move calender into its own menu
 - [ ] Animations
 - - [X] Basic animations 
 - [ ] Network Selection Menus

@@ -10,7 +10,7 @@ Singleton {
 
   Process {
     id: proc
-    command: ["date", '+{"dayName": "%A", "dayNumber": "%d", "monthName": "%B", "time": {"hours": "%H", "minutes": "%M", "seconds": "%S"}}' ]
+    command: ["date", '+{"year": "%Y", "dayName": "%A", "dayNumber": "%d", "monthName": "%B", "time": {"hours": "%H", "minutes": "%M", "seconds": "%S"}}' ]
 
     running: true
     stdout: SplitParser {

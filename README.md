@@ -8,13 +8,13 @@ programs the colors are injected either directly from matugen or by nix using
 the generated matugen theme.json
 
 - Compositor: [Hyprland](https://hyprland.org/) [config](users/Configs/hyprland/)
-- App Launcher: [Fuzzel](https://codeberg.org/dnkl/fuzzel) (planned reimplementation in quickshell) [config](users/Configs/fuzzel/fuzzel.ini)
+- App Launcher: [Fuzzel](https://codeberg.org/dnkl/fuzzel) [config](users/Configs/fuzzel/fuzzel.ini) (planned reimplementation in quickshell)
 - Graphical Shell + Bar: [Quickshell](https://quickshell.outfoxxed.me/) [config](users/Configs/quickshell/)
 - Prompt: [Starship](https://starship.rs/) [config](users/Configs/starship/starship.toml)
 - Colors: [Matugen](https://github.com/InioX/matugen) [templates](nixosModules/external/matugen/templates/)
 - Terminal: [Foot](https://codeberg.org/dnkl/foot) [config](users/Configs/foot/foot.ini)
 
-> For nix users new to (hjem)[https://github.com/feel-co/hjem],
+> For nix users new to [hjem](https://github.com/feel-co/hjem),
 [this](users/rexies.nix) is the entry point for planting my dotfiles in place.
 
 ## What have you done?

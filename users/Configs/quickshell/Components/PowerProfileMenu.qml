@@ -42,7 +42,7 @@ PopupWindow {
     width: parent.width - 10
     height: parent.height - 10
     border {
-      color: Colors.tertiary
+      color: Colors.secondary
       width: 2
     }
 
@@ -65,14 +65,14 @@ PopupWindow {
 
         background: Rectangle {
           anchors.centerIn: parent
-          color: Colors.on_tertiary
+          color: Colors.on_secondary
           height: slider.height
           width: slider.availableWidth
           Layout.alignment: Qt.AlignTop
           clip: true
 
           Rectangle {
-            color: Colors.tertiary
+            color: Colors.secondary
             width: slider.visualPosition * slider.availableWidth
             height: slider.height
           }
@@ -86,13 +86,13 @@ PopupWindow {
           visible: true
           color: Colors.surface
           border {
-            color: Colors.tertiary
+            color: Colors.secondary
             width: 4
           }
 
           Text {
             anchors.centerIn: parent
-            color: Colors.tertiary
+            color: Colors.secondary
             text: switch (PowerProfiles.profile) {
               case 0: ""; break;
               case 1: ""; break;
@@ -128,7 +128,7 @@ PopupWindow {
             anchors.fill: parent
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignLeft
-            color: Colors.tertiary
+            color: Colors.secondary
             text: "󰂏 " + info.bat.energyCapacity
           }
         }
@@ -149,7 +149,7 @@ PopupWindow {
             }
 
             anchors.centerIn: parent
-            color: Colors.tertiary
+            color: Colors.secondary
             text: switch (info.bat.state) {
               case UPowerDeviceState.Charging:
                 "  " + ((text.timeToFull[0] > 0)? text.timeToFull[0] + " hours" :  + text.timeToFull[1] + " minutes");
@@ -170,7 +170,7 @@ PopupWindow {
           color: "transparent"
           Text {
             anchors.fill: parent
-            color: Colors.tertiary
+            color: Colors.secondary
             horizontalAlignment: Text.AlignRight
             verticalAlignment: Text.AlignVCenter
             text: "󱐋 " + info.bat.changeRate
@@ -186,13 +186,13 @@ PopupWindow {
       anchors.leftMargin: -5
       height: headerText.height + 5
       width: headerText.width + 10
-      color: Colors.tertiary
+      color: Colors.secondary
 
       Text {
         anchors.centerIn: parent
         id: headerText
         text: "Power"
-        color: Colors.on_tertiary
+        color: Colors.on_secondary
       }
     }
   }

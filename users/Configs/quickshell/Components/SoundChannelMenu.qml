@@ -43,7 +43,7 @@ PopupWindow {
     width: parent.width - 10
     height: parent.height - 10
     border {
-      color: Colors.secondary
+      color: Colors.primary
       width: 2
     }
 
@@ -75,7 +75,7 @@ PopupWindow {
         background: Rectangle {
           id: sliderback
           anchors.centerIn: parent
-          color: Colors.on_secondary
+          color: Colors.on_primary
           height: slider.height
           width: slider.availableWidth
           Layout.alignment: Qt.AlignTop
@@ -83,7 +83,7 @@ PopupWindow {
 
 
           Rectangle {
-            color: Colors.secondary
+            color: Colors.primary
             width: slider.visualPosition * slider.availableWidth
             height: slider.height
           }
@@ -94,7 +94,7 @@ PopupWindow {
             anchors.leftMargin: 10
             verticalAlignment: Text.AlignVCenter
             anchors.fill: parent
-            color: Colors.on_secondary
+            color: Colors.on_primary
             font.bold: true
             text: text.icon + ((slider.modelData?.description == "")? slider.modelData?.name : slider.modelData?.description)
           }
@@ -120,13 +120,13 @@ PopupWindow {
       anchors.leftMargin: -5
       height: headerText.height + 5
       width: headerText.width + 10
-      color: Colors.secondary
+      color: Colors.primary
 
       Text {
         anchors.centerIn: parent
         id: headerText
         text: "Audio"
-        color: Colors.on_secondary
+        color: Colors.on_primary
       }
     }
 
@@ -134,7 +134,7 @@ PopupWindow {
       visible: script.values.length == 0
       anchors.centerIn: parent
       text: "No Active Audio Channels"
-      color: Colors.secondary
+      color: Colors.primary
       font.pointSize: 16
     }
   }

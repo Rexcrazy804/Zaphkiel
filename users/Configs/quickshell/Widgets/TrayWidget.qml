@@ -8,8 +8,7 @@ Rectangle {
   required property PanelWindow bar
   implicitHeight: parent.height
   implicitWidth: rowL.implicitWidth + 20
-  color: Colors.tertiary_container
-  // color: "Transparent"
+  color: Colors.withAlpha(Colors.secondary_container, 0.8)
 
 
   RowLayout {

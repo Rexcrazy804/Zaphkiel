@@ -7,7 +7,7 @@ import "../Data"
 
 Text {
   readonly property bool inhibited: SessionActions.idleInhibited
-  color: Colors.secondary
+  color: Colors.tertiary
   text: (inhibited)? "󰌾" : "󰍁"
   font.pointSize: 11
   font.bold: true

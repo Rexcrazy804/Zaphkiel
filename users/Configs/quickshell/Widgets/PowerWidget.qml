@@ -34,7 +34,7 @@ RowLayout {
   Text {
     id: percentText
     text: Math.round(root.batPercentage * 100) + "%"
-    color: Colors.tertiary_fixed_dim
+    color: Colors.secondary_fixed_dim
     font.pointSize: 11
     font.bold: true
 
@@ -48,7 +48,7 @@ RowLayout {
   Text {
     id: batText
     text: root.pwrProf
-    color: Colors.tertiary_fixed_dim
+    color: Colors.secondary_fixed_dim
     font.pointSize: 11
     font.bold: true
 

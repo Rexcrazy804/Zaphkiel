@@ -11,19 +11,19 @@ Rectangle {
 
   implicitHeight: parent.height
   implicitWidth: monthText.implicitWidth + 20
-  color: (root.active)? Colors.on_tertiary : Colors.tertiary
+  color: (root.active)? Colors.on_secondary : Colors.secondary
   Text {
     visible: !root.active
     anchors.centerIn: parent
     id: monthText
-    color:  Colors.on_tertiary
+    color:  Colors.on_secondary
     text: Time.data?.monthName + " " + Time.data?.dayNumber + " 󰧱"
   }
 
   Text {
     visible: root.active
     anchors.centerIn: parent
-    color: Colors.tertiary
+    color: Colors.secondary
     text: "" + Time.data?.dayName
   }
 

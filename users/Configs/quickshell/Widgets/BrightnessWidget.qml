@@ -8,7 +8,7 @@ Text {
   required property PanelWindow bar
 
   text: (Weather.data.current_condition?.[0].temp_C ?? "NaN") + "°C " + "󰃠"
-  color: Colors.primary_fixed_dim
+  color: Colors.tertiary_fixed_dim
   font.pointSize: 11
   font.bold: true
 

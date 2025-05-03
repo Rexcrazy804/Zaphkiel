@@ -9,7 +9,7 @@ Text {
   id: root
   required property PanelWindow bar
   text: Math.round(Audio.volume * 100) + "%" + " " + Audio.volIcon
-  color: Colors.secondary_fixed_dim
+  color: Colors.primary_fixed_dim
   font.pointSize: 11
   font.bold: true
 

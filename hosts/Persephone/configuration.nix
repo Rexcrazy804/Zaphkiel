@@ -66,7 +66,6 @@
     ];
   };
 
-
   # sddm
   age.secrets.wallpaper = {
     file = ../../secrets/media_robin.age;

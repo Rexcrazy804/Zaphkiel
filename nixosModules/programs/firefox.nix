@@ -1,8 +1,8 @@
 {
-lib,
-config,
-pkgs,
-...
+  lib,
+  config,
+  pkgs,
+  ...
 }: {
   options = {
     progModule.firefox.enable = lib.mkEnableOption "Enable Firefox";

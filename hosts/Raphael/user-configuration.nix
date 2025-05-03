@@ -3,7 +3,7 @@
   inputs,
   config,
   ...
-}: let 
+}: let
   packages = [
     pkgs.wineWowPackages.stable
     pkgs.foot

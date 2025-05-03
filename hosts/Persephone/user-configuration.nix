@@ -48,9 +48,9 @@ in {
     image = inputs.booru-flake.packages.${pkgs.system}."2031742";
   in
     lib.mkForce (pkgs.runCommandWith {
-      name = "croped-${image.name}";
-      derivationArgs.nativeBuildInputs = [pkgs.imagemagick];
-    } ''
-      magick ${image} -crop 420x420+880+100 - > $out
-    '');
+        name = "croped-${image.name}";
+        derivationArgs.nativeBuildInputs = [pkgs.imagemagick];
+      } ''
+        magick ${image} -crop 420x420+880+100 - > $out
+      '');
 }

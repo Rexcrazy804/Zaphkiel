@@ -78,10 +78,11 @@ in {
       in
         pkgs.writers.writeTOML "starship.toml" (lib.recursiveUpdate base colors);
 
-      hyprlockInjected = let 
+      hyprlockInjected = let
         from = ["%%WALLPAPER%%"];
         to = ["${matugen.wallpaper}"];
-      in builtins.replaceStrings from to (builtins.readFile ./Configs/hyprland/hyprlock.conf);
+      in
+        builtins.replaceStrings from to (builtins.readFile ./Configs/hyprland/hyprlock.conf);
 
       faceIcon = let
         image = inputs.booru-flake.packages.${pkgs.system}."8726475";
@@ -90,8 +91,8 @@ in {
           name = "croped-${image.name}";
           derivationArgs.nativeBuildInputs = [pkgs.imagemagick];
         } ''
-        magick ${image} -crop 500x500+398+100 - >  $out
-      '';
+          magick ${image} -crop 500x500+398+100 - >  $out
+        '';
 
       quickshellConfig = pkgs.runCommandLocal "quick" {} ''
         mkdir $out
@@ -104,7 +105,6 @@ in {
         cp ${config.hjem.users.${username}.files.".face.icon".source} ./.face.icon
         cp ${matugenTheme}/quickshell-colors.qml ./Colors.qml
       '';
-
     in {
       # face Icon
       ".face.icon".source = faceIcon;

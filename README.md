@@ -17,13 +17,6 @@ the generated matugen theme.json
 > For nix users new to [hjem](https://github.com/feel-co/hjem),
 [this](users/rexies.nix) is the entry point for planting my dotfiles in place.
 
-### References and Thanks for Quickshell config
-- [nydragon/nysh](https://github.com/nydragon/nysh)
-- [end-4/dots-hyprland](https://github.com/end-4/dots-hyprland/tree/ii-qs/.config/quickshell)
-- [pikabar](https://git.pika-os.com/wm-packages/pikabar/src/branch/main/pikabar/usr/share/pikabar)
-- one unmentioned individual that did not return
-- and other homies at #rice-discussion at Hyprland discord
-
 ## What have you done?
 Initially I had ditched home-manager for wrapping programs myself
 this worked quite well in my favour except for the following grievances:
@@ -76,6 +69,13 @@ Lastly, I have to to thank the nix community for their efforts in
 [home-manager](https://github.com/nix-community/home-manager) and
 [nixvim](https://github.com/nix-community/nixvim) both of which have been great
 resources throughout my early adventure through nix
+
+### References and Thanks for Quickshell config
+- [nydragon/nysh](https://github.com/nydragon/nysh)
+- [end-4/dots-hyprland](https://github.com/end-4/dots-hyprland/tree/ii-qs/.config/quickshell)
+- [pikabar](https://git.pika-os.com/wm-packages/pikabar/src/branch/main/pikabar/usr/share/pikabar)
+- one unmentioned individual that did not return
+- and other homies in #rice-discussion at Hyprland discord
 
 ## Licensing
 All code in this repository is under the MIT license unless wherever an

@@ -1,6 +1,21 @@
 # My NixOS Configuration
-![screenshot-16-3-25](https://github.com/user-attachments/assets/bd237307-2e6a-495d-a7dc-fa6e4b824599)
-- wallpaper: [lingsha by ATDAN-](https://www.pixiv.net/en/artworks/123071255)
+![image](https://github.com/user-attachments/assets/4a336b77-1f99-4f48-8111-8dc10dec96fd)
+- wallpaper: [tokisaki_kurumi by chocoan](https://twitter.com/SpiritCrisisDAL/status/1585472858385395713)
+
+## Overview
+The entry point for *most* of the dots are [here](users/Configs). For certain
+programs the colors are injected either directly from matugen or by nix using
+the generated matugen theme.json
+
+- Compositor: [Hyprland](https://hyprland.org/) [config](users/Configs/hyprland/)
+- App Launcher: [Fuzzel](https://codeberg.org/dnkl/fuzzel) [config](users/Configs/fuzzel/fuzzel.ini) (planned reimplementation in quickshell)
+- Graphical Shell + Bar: [Quickshell](https://quickshell.outfoxxed.me/) [config](users/Configs/quickshell/)
+- Prompt: [Starship](https://starship.rs/) [config](users/Configs/starship/starship.toml)
+- Colors: [Matugen](https://github.com/InioX/matugen) [templates](nixosModules/external/matugen/templates/)
+- Terminal: [Foot](https://codeberg.org/dnkl/foot) [config](users/Configs/foot/foot.ini)
+
+> For nix users new to [hjem](https://github.com/feel-co/hjem),
+[this](users/rexies.nix) is the entry point for planting my dotfiles in place.
 
 ## What have you done?
 Initially I had ditched home-manager for wrapping programs myself
@@ -54,6 +69,13 @@ Lastly, I have to to thank the nix community for their efforts in
 [home-manager](https://github.com/nix-community/home-manager) and
 [nixvim](https://github.com/nix-community/nixvim) both of which have been great
 resources throughout my early adventure through nix
+
+### References and Thanks for Quickshell config
+- [nydragon/nysh](https://github.com/nydragon/nysh)
+- [end-4/dots-hyprland](https://github.com/end-4/dots-hyprland/tree/ii-qs/.config/quickshell)
+- [pikabar](https://git.pika-os.com/wm-packages/pikabar/src/branch/main/pikabar/usr/share/pikabar)
+- one unmentioned individual that did not return
+- and other homies in #rice-discussion at Hyprland discord
 
 ## Licensing
 All code in this repository is under the MIT license unless wherever an

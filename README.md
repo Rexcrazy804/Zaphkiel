@@ -1,6 +1,6 @@
 # My NixOS Configuration
-![screenshot-16-3-25](https://github.com/user-attachments/assets/bd237307-2e6a-495d-a7dc-fa6e4b824599)
-- wallpaper: [lingsha by ATDAN-](https://www.pixiv.net/en/artworks/123071255)
+![image](https://github.com/user-attachments/assets/4a336b77-1f99-4f48-8111-8dc10dec96fd)
+- wallpaper: [tokisaki_kurumi by chocoan](https://twitter.com/SpiritCrisisDAL/status/1585472858385395713)
 
 ## What have you done?
 Initially I had ditched home-manager for wrapping programs myself

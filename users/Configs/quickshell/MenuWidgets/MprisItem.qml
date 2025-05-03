@@ -45,7 +45,7 @@ Rectangle {
         Layout.preferredHeight: 2
         // lets me centre short shit (and yes cent're', br'ish moment)
         contentWidth: (text.contentWidth > this.width)? text.contentWidth : this.width
-        contentX: (text.contentWidth > this.width)? (text.contentWidth / 2) : 0
+        // contentX: (text.contentWidth > this.width)? (text.contentWidth / 2) : 0
 
         Text {
           id: text
@@ -186,6 +186,9 @@ Rectangle {
     Component.onCompleted: {
       rect.player.positionChanged.connect(() => {
         slider.value = player.position
+      })
+      rect.player.trackChanged.connect(() => {
+        rect.player.positionChanged()
       })
     }
   }

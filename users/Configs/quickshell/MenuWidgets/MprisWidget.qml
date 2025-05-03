@@ -10,6 +10,14 @@ Rectangle {
   id: root
   color: "transparent"
   clip: true
+
+  Text {
+    visible: list.count == 0
+    anchors.centerIn: parent
+    color: Colors.primary
+    text: "Play some music"
+  }
+
   SwipeView {
     id: list
     anchors.fill: parent

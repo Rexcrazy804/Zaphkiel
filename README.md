@@ -2,6 +2,21 @@
 ![image](https://github.com/user-attachments/assets/4a336b77-1f99-4f48-8111-8dc10dec96fd)
 - wallpaper: [tokisaki_kurumi by chocoan](https://twitter.com/SpiritCrisisDAL/status/1585472858385395713)
 
+## Overview
+The entry point for *most* of the dots are [here](users/Configs). For certain
+programs the colors are injected either directly from matugen or by nix using
+the generated matugen theme.json
+
+- Compositor: [Hyprland](https://hyprland.org/) [config](users/Configs/hyprland/)
+- App Launcher: [Fuzzel](https://codeberg.org/dnkl/fuzzel) (planned reimplementation in quickshell) [config](users/Configs/fuzzel/fuzzel.ini)
+- Graphical Shell + Bar: [Quickshell](https://quickshell.outfoxxed.me/) [config](users/Configs/quickshell/)
+- Prompt: [Starship](https://starship.rs/) [config](users/Configs/starship/starship.toml)
+- Colors: [Matugen](https://github.com/InioX/matugen) [templates](nixosModules/external/matugen/templates/)
+- Terminal: [Foot](https://codeberg.org/dnkl/foot) [config](users/Configs/foot/foot.ini)
+
+> For nix users new to (hjem)[https://github.com/feel-co/hjem],
+[this](users/rexies.nix) is the entry point for planting my dotfiles in place.
+
 ## What have you done?
 Initially I had ditched home-manager for wrapping programs myself
 this worked quite well in my favour except for the following grievances:

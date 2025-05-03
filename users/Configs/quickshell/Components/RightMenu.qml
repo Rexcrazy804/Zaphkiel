@@ -144,8 +144,10 @@ PopupWindow {
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: 150
             Layout.preferredHeight: 150
-            IconImage {
-              implicitSize: parent.width
+            Image {
+              fillMode: Image.PreserveAspectCrop
+              width: parent.width
+              height: this.width
               source: "root:Assets/.face.icon"
             }
           }

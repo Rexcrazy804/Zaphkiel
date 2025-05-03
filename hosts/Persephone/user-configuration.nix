@@ -32,7 +32,7 @@ in {
 
   programs.matugen = {
     enable = true;
-    wallpaper = inputs.booru-flake.packages.${pkgs.system}."2332312";
+    wallpaper = inputs.booru-flake.packages.${pkgs.system}."7089622";
     # wallpaper = let
     #   image = inputs.booru-flake.packages.${pkgs.system}."8726475";
     # in

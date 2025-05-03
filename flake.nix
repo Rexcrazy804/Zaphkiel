@@ -14,11 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprpanel = {
-      url = "github:Jas-SinghFSU/HyprPanel";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     hjem = {
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,6 +29,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
       inputs.home-manager.follows = "";
+    };
+
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -160,5 +160,37 @@
         '';
       };
     };
+
+    devShells = forAllSystems (pkgs: {
+      quickshell = let
+        qs = inputs.quickshell.packages.${pkgs.system}.default.override {
+          withJemalloc = true;
+          withQtSvg = true;
+          withWayland = true;
+          withX11 = false;
+          withPipewire = true;
+          withPam = true;
+          withHyprland = true;
+          withI3 = false;
+        };
+        qtDeps = [
+          qs
+          pkgs.kdePackages.qtbase
+          pkgs.kdePackages.qtdeclarative
+        ];
+      in
+        pkgs.mkShell {
+          shellHook = let
+            qmlPath = pkgs.lib.pipe qtDeps [
+              (builtins.map (lib: "${lib}/lib/qt-6/qml"))
+              (builtins.concatStringsSep ":")
+            ];
+          in ''
+            export QML2_IMPORT_PATH="$QML2_IMPORT_PATH:${qmlPath}"
+            SHELL=nu exec nu # not using direnv for these shells
+          '';
+          buildInputs = qtDeps;
+        };
+    });
   };
 }

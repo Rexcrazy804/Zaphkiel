@@ -20,7 +20,6 @@ in {
   environment.systemPackages = [
     # QT dep
     pkgs.kdePackages.qt6ct
-    pkgs.hyprpanel
     # Theme
     pkgs.rose-pine-cursor
     pkgs.rose-pine-hyprcursor
@@ -28,6 +27,7 @@ in {
     pkgs.rose-pine-gtk-theme
 
     # utility
+    pkgs.swww
     pkgs.wl-clipboard
     pkgs.cliphist
     pkgs.grim
@@ -40,6 +40,8 @@ in {
     pkgs.wl-screenrec
     pkgs.libnotify
     pkgs.swappy
+    pkgs.wayfreeze
+    pkgs.networkmanagerapplet
 
     # yazi + deps
     pkgs.yazi
@@ -54,6 +56,11 @@ in {
   # required when kde plasma is not installed .w.
   # ask me how I knew
   services.power-profiles-daemon.enable = true;
+  services.upower = {
+    enable = true;
+    usePercentageForPolicy = true;
+    criticalPowerAction = "PowerOff";
+  };
   services.displayManager.sddm = {
     package = pkgs.kdePackages.sddm;
     extraPackages = [

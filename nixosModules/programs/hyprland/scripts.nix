@@ -10,17 +10,17 @@
     }
   '';
   gpurecording = pkgs.writers.writeNuBin "gpurecording" ''
-    def "main start" [geometry?: bool = false] {
+    def "main start" [geometry?: string = ""] {
       let recording_count = ps | where name =~ wl-screenrec | length
       if $recording_count > 0 {
         notify-send -t 2000 -i nix-snowflake-white "Failed to start Recording" "Recording in Progress"
         return
       }
       notify-send -t 2000 -i nix-snowflake-white "Recording started" "Gpu screen recording has begun"
-      if $geometry {
-        wl-screenrec -g $"(slurp)" --audio --audio-device "alsa_output.pci-0000_00_1f.3.analog-stereo.monitor" -f $"($env.HOME)/Videos/recording-(^date +%d%h%m_%H%M%S).mp4"
-      } else {
+      if ($geometry | is-empty) {
         wl-screenrec --audio --audio-device "alsa_output.pci-0000_00_1f.3.analog-stereo.monitor" -f $"($env.HOME)/Videos/recording-(^date +%d%h%m_%H%M%S).mp4"
+      } else {
+        wl-screenrec $"-g($geometry | str trim)" --audio --audio-device "alsa_output.pci-0000_00_1f.3.analog-stereo.monitor" -f $"($env.HOME)/Videos/recording-(^date +%d%h%m_%H%M%S).mp4"
       }
       notify-send -t 2000 -i nix-snowflake-white "Recording stopped" "Gpu screen recording has concluded"
     }

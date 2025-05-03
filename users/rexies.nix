@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  inputs,
   lib,
   ...
 }: let
@@ -59,11 +60,6 @@ in {
       matugenColors = matugen.theme.colors;
 
       # replacing hardcoded paths
-      hyprpanel = let
-        from = ["/home/rexies/Pictures/kokomi_116824847_p0_cropped.jpg"];
-        to = ["${matugen.wallpaper}"];
-      in
-        builtins.replaceStrings from to (builtins.readFile ./Configs/hyprpanel/config.json);
       qt6ct = let
         from = ["/home/rexies"];
         to = ["${config.users.users.${username}.home}"];
@@ -86,7 +82,32 @@ in {
         from = ["%%WALLPAPER%%"];
         to = ["${matugen.wallpaper}"];
       in builtins.replaceStrings from to (builtins.readFile ./Configs/hyprland/hyprlock.conf);
+
+      faceIcon = let
+        image = inputs.booru-flake.packages.${pkgs.system}."8726475";
+      in
+        pkgs.runCommandWith {
+          name = "croped-${image.name}";
+          derivationArgs.nativeBuildInputs = [pkgs.imagemagick];
+        } ''
+        magick ${image} -crop 500x500+398+100 - >  $out
+      '';
+
+      quickshellConfig = pkgs.runCommandLocal "quick" {} ''
+        mkdir $out
+        cd $out
+        cp -r ${./Configs/quickshell}/* .
+        mkdir Assets
+        cd Assets
+
+        # don't depend on faceIcon, can be overwritten
+        cp ${config.hjem.users.${username}.files.".face.icon".source} ./.face.icon
+        cp ${matugenTheme}/quickshell-colors.qml ./Colors.qml
+      '';
+
     in {
+      # face Icon
+      ".face.icon".source = faceIcon;
       # shell
       ".config/nushell/config.nu".source = ./Configs/nushell/config.nu;
       ".config/starship.toml".source = starship;
@@ -110,12 +131,17 @@ in {
       ".config/yazi/yazi.toml".source = ./Configs/yazi/yazi.toml;
       ".config/yazi/keymap.toml".source = ./Configs/yazi/keymap.toml;
       ".config/yazi/theme.toml".source = "${matugenTheme}/yazi-theme.toml";
-      ".config/hyprpanel/config.json".text = hyprpanel;
       ".config/fuzzel/fuzzel.ini".text = fuzzel;
       ".config/background".source = matugen.wallpaper;
 
+      # quickshell
+      ".config/quickshell".source = quickshellConfig;
+
       # discord
       ".config/Vencord/themes/midnight.css".source = "${matugenTheme}/discord-midnight.css";
+
+      # profile sync daemon
+      ".config/psd/psd.conf".source = ./Configs/psd/psd.conf;
     };
   };
 }

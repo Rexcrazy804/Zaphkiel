@@ -9,8 +9,8 @@ import "../Assets"
 Rectangle {
   id: rect
   required property MprisPlayer player
-  required property ListView view
   color: "transparent"
+  clip: true
 
   Image {
     id: albumArt
@@ -75,6 +75,7 @@ Rectangle {
       Layout.fillHeight: true
       Layout.fillWidth: true
       Layout.preferredHeight: 1
+      // Layout.bottomMargin: 3
       Layout.leftMargin: 80
       Layout.rightMargin: this.Layout.leftMargin
       spacing: 10
@@ -135,34 +136,6 @@ Rectangle {
             anchors.fill: parent
             onClicked: {
               player.next()
-            }
-          }
-        }
-      }
-    }
-
-    RowLayout { // bottom buttons for switching players
-      visible: rect.view.count > 1
-      Layout.preferredHeight: 1
-      Layout.bottomMargin: 2
-      Layout.fillHeight: true
-      Layout.fillWidth: true
-      Layout.alignment: Qt.AlignCenter
-
-      Repeater {
-        model: rect.view.count
-        Rectangle {
-          id: playRect
-          required property int index
-          implicitWidth: (this.index == rect.index)? 8 : 6
-          implicitHeight: this.implicitWidth
-
-          color: (this.index == rect.index)? Colors.primary : Colors.withAlpha(Colors.primary, 0.79)
-
-          MouseArea {
-            anchors.fill: parent
-            onClicked: () => {
-              rect.view.positionViewAtIndex(playRect.index, ListView.Contain)
             }
           }
         }

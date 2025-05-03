@@ -7,17 +7,18 @@
 - [X] popup for power profiles
 - [X] cleanup Rightmenu sliders
 - [X] Calender widget
+- [X] Mpris
+- - [X] move calender into its own menu
+- [X] Animations
+- - [X] Basic animations 
 
 ## high prio
-- [ ] Mpris
-- - [X] move calender into its own menu
-- [ ] Animations
-- - [X] Basic animations 
 - [ ] Network Selection Menus
 - - [x] Wifi selection `hacky workaround using nm-applet for the time being`
 - - [ ] Bluetooth selection
 
 ## Low prio
+- [ ] more animations
 - [ ] Mpris stuff
 - [ ] addition of a pin icon on the top right of menus to inhibit Hyprgrab
 - [ ] make wl-logout kinda screen for session button

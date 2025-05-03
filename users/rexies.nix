@@ -100,7 +100,8 @@ in {
         mkdir Assets
         cd Assets
 
-        cp ${faceIcon} ./.face.icon
+        # don't depend on faceIcon, can be overwritten
+        cp ${config.hjem.users.${username}.files.".face.icon".source} ./.face.icon
         cp ${matugenTheme}/quickshell-colors.qml ./Colors.qml
       '';
 

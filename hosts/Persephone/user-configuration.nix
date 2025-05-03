@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }: let
   generic = [
@@ -42,4 +43,14 @@ in {
     #     magick ${image} -crop 1253x705+0+100 - > $out
     #   '';
   };
+
+  hjem.users."rexies".files.".face.icon".source = let
+    image = inputs.booru-flake.packages.${pkgs.system}."2031742";
+  in
+    lib.mkForce (pkgs.runCommandWith {
+      name = "croped-${image.name}";
+      derivationArgs.nativeBuildInputs = [pkgs.imagemagick];
+    } ''
+      magick ${image} -crop 420x420+880+100 - > $out
+    '');
 }

@@ -16,6 +16,7 @@
 - [ ] Network Selection Menus
 - - [x] Wifi selection `hacky workaround using nm-applet for the time being`
 - - [ ] Bluetooth selection
+- [ ] Battery Graph for showing battery percentage over time
 
 ## Low prio
 - [ ] more animations

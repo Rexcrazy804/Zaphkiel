@@ -17,9 +17,9 @@
       ];
     };
 
-    services.psd.enable = true;
-    security.sudo.extraConfig = ''
-      rexies ALL=(ALL) NOPASSWD: ${pkgs.profile-sync-daemon}/bin/psd-overlay-helper
-    '';
+    # services.psd.enable = true;
+    # security.sudo.extraConfig = ''
+    #   rexies ALL=(ALL) NOPASSWD: ${pkgs.profile-sync-daemon}/bin/psd-overlay-helper
+    # '';
   };
 }

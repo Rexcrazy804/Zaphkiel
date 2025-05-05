@@ -139,9 +139,6 @@ in {
 
       # discord
       ".config/Vencord/themes/midnight.css".source = "${matugenTheme}/discord-midnight.css";
-
-      # profile sync daemon
-      ".config/psd/psd.conf".source = ./Configs/psd/psd.conf;
     };
   };
 }

@@ -7,9 +7,11 @@
     ./age.nix
     ./direnv.nix
     ./obs.nix
-    ./hyprland
     ./keyd.nix
     ./firefox.nix
+
+    ./hyprland
+    ./booru-flake
   ];
 
   # global

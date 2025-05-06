@@ -33,7 +33,7 @@ in {
   };
   programs.matugen = {
     enable = true;
-    wallpaper = inputs.booru-flake.packages.${pkgs.system}."7655511";
+    wallpaper = config.programs.booru-flake.images."7655511";
   };
 
   hjem.users."rexies".files = {

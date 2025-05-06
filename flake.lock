@@ -46,16 +46,17 @@
     },
     "booru-flake": {
       "inputs": {
+        "generators": [],
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1746275849,
-        "narHash": "sha256-9FkI9aDrS99mrI3jmSfKuyzNog8OfsTo5POKyct3gpw=",
+        "lastModified": 1746541793,
+        "narHash": "sha256-xShjVAdS17HtwgJIrypcgMIs1seSdSHc/sqMNf4CNss=",
         "owner": "Rexcrazy804",
         "repo": "booru-flake",
-        "rev": "58f4397749c9f855566be5c6001ca1c3feca6296",
+        "rev": "a465adad1db53002238981faa25c46358e2e0b01",
         "type": "github"
       },
       "original": {

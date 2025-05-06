@@ -7,6 +7,7 @@
     booru-flake = {
       url = "github:Rexcrazy804/booru-flake";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.generators.follows = "";
     };
 
     aagl = {

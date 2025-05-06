@@ -1,7 +1,7 @@
 {
   pkgs,
-  inputs,
   lib,
+  config,
   ...
 }: let
   generic = [
@@ -32,9 +32,9 @@ in {
 
   programs.matugen = {
     enable = true;
-    wallpaper = inputs.booru-flake.packages.${pkgs.system}."7089622";
+    wallpaper = config.programs.booru-flake.images."7089622";
     # wallpaper = let
-    #   image = inputs.booru-flake.packages.${pkgs.system}."8726475";
+    #   image = config.programs.booru-flake.images."8726475";
     # in
     #   pkgs.runCommandWith {
     #     name = "croped-${image.name}";
@@ -44,13 +44,16 @@ in {
     #   '';
   };
 
-  hjem.users."rexies".files.".face.icon".source = let
-    image = inputs.booru-flake.packages.${pkgs.system}."2031742";
-  in
-    lib.mkForce (pkgs.runCommandWith {
-        name = "croped-${image.name}";
-        derivationArgs.nativeBuildInputs = [pkgs.imagemagick];
-      } ''
-        magick ${image} -crop 420x420+880+100 - > $out
-      '');
+  hjem.users."rexies".files = {
+    ".face.icon".source = let
+      image = config.programs.booru-flake.images."2031742";
+    in
+      lib.mkForce (pkgs.runCommandWith {
+          name = "croped-${image.name}";
+          derivationArgs.nativeBuildInputs = [pkgs.imagemagick];
+        } ''
+          magick ${image} -crop 420x420+880+100 - > $out
+        '');
+    "Pictures/booru".source = config.programs.booru-flake.imageFolder;
+  };
 }

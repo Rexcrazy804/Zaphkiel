@@ -1,7 +1,4 @@
-{
-  inputs,
-  ...
-}: {
+{inputs, ...}: {
   imports = [inputs.booru-flake.nixosModules.default];
 
   programs.booru-flake = {

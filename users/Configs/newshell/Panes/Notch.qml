@@ -36,7 +36,7 @@ Scope {
         property int baseHeight: 2
         property int expandedWidth: 400
         property int expandedHeight: 28
-        property int fullHeight: 140
+        property int fullHeight: 200
         property bool revealed: false
 
         width: notchRect.baseWidth
@@ -52,7 +52,7 @@ Scope {
           easing: Easing.InOutCubic
         }
         Anim.SmoothIncreaseBehaviour on height {
-          duration: 150
+          duration: 180
           easing: Easing.Linear
         }
 
@@ -117,26 +117,32 @@ Scope {
           }
 
           ColumnLayout {
-            anchors.fill:parent
+            anchors.fill: parent
             anchors.centerIn: parent
+            spacing: 0
             RowLayout {
+              opacity: notchRect.height / notchRect.expandedHeight
               visible: notchRect.height > notchRect.baseHeight
               Layout.minimumHeight: notchRect.expandedHeight - 10
-              Layout.maximumHeight: notchRect.expandedHeight - 10
-              Layout.alignment: Qt.AlignHCenter
+              Layout.maximumHeight: notchRect.expandedHeight
+              Layout.fillWidth: true
+
               Rectangle {
-                color: Ass.Colors.primary
-                Layout.minimumWidth: timeText.contentWidth + 20
+                id: timeText
                 Layout.fillHeight: true
-                radius: 5
-                Text {
+                Layout.fillWidth: true
+                color: "transparent"
+
+                Text{
                   anchors.centerIn: parent
-                  id: timeText
-                  color: Ass.Colors.on_primary
-                  text: Qt.formatDateTime(Dat.Clock.date, "h:mm:ss AP")
+                  color: Ass.Colors.primary
+                  text: Qt.formatDateTime(Dat.Clock?.date, "h:mm:ss AP")
+                  Anim.SmoothIncreaseBehaviour on opacity {
+                    duration: 100
+                    easing: Easing.InOutQuad
+                  }
+                  Gen.MouseArea {}
                 }
-                Anim.SmoothIncreaseBehaviour on opacity { duration: 100; easing: Easing.InOutQuad }
-                Gen.MouseArea {}
               }
             }
 
@@ -144,15 +150,20 @@ Scope {
               visible: notchRect.height > notchRect.expandedHeight
               Layout.fillWidth: true
               Layout.fillHeight: true
-              color: "transparent"
+              radius: 20
+              color: Ass.Colors.surface
               opacity: ((notchRect.height - notchRect.expandedHeight) / (notchRect.fullHeight - notchRect.expandedHeight))
-              Rectangle {
+              RowLayout {
                 anchors.fill: parent
-                color: "transparent"
-                Text {
-                  color: Ass.Colors.primary
-                  anchors.centerIn: parent
-                  text: "Kuru Kuru Kuru Kuru"
+                Rectangle {
+                  Layout.fillWidth: true
+                  Layout.fillHeight: true
+                  color: "transparent"
+                  Text {
+                    color: Ass.Colors.primary
+                    anchors.centerIn: parent
+                    text: "Kuru Kuru Kuru Kuru"
+                  }
                 }
               }
             }

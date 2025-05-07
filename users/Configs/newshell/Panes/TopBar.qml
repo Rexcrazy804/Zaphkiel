@@ -49,7 +49,7 @@ RowLayout {
         Layout.fillHeight: true
         verticalAlignment: Text.AlignVCenter
         color: Ass.Colors.primary
-        text: activeWindow?.activated ? activeWindow?.appId : "desktop"
+        text: Dat.Globals.actWinName
       }
     }
   }

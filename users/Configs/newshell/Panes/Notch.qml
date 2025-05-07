@@ -3,7 +3,6 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
 import "../Assets/" as Ass
-import "../Animations/" as Anim
 import "../Data/" as Dat
 
 Scope {
@@ -126,13 +125,14 @@ Scope {
           anchors.fill: parent
           hoverEnabled: true
 
-          onEntered: {
-            if (Dat.Globals.notchState == "FULLY_EXPANDED") { return; }
-            Dat.Globals.notchState = "EXPANDED"
-          }
-          onExited: {
-            if (Dat.Globals.notchState == "FULLY_EXPANDED") { return; }
-            Dat.Globals.notchState = "COLLAPSED"
+          onContainsMouseChanged: {
+            Dat.Globals.notchHovered = notchArea.containsMouse
+            if (Dat.Globals.notchState == "FULLY_EXPANDED" || Dat.Globals.actWinName == "desktop") { return; }
+            if (notchArea.containsMouse) {
+              Dat.Globals.notchState = "EXPANDED"
+            } else {
+              Dat.Globals.notchState = "COLLAPSED"
+            }
           }
 
           onPressed: mevent => {
@@ -162,6 +162,7 @@ Scope {
               notchArea.velocity = 0;
             }
           }
+
           onReleased: mevent => {
             notchArea.tracing = false;
             notchArea.velocity = 0;
@@ -180,7 +181,7 @@ Scope {
               Layout.fillWidth: true
             }
 
-            Rectangle { // Full Expand Contents
+            Rectangle { // Full Expand Card
               visible: notchRect.height > notchRect.expandedHeight
               opacity: ((notchRect.height - notchRect.expandedHeight) / (notchRect.fullHeight - notchRect.expandedHeight))
               Layout.fillWidth: true

@@ -32,7 +32,7 @@ Scope {
         id: notchRect
         clip: true
         readonly property int baseWidth: 200
-        readonly property int baseHeight: 2
+        readonly property int baseHeight: 1
         readonly property int expandedWidth: 600
         readonly property int expandedHeight: 28
         readonly property int fullHeight: 170
@@ -187,57 +187,11 @@ Scope {
               Layout.fillWidth: true
             }
 
-            ClippingRectangle {
-              // Full Expand Card
+            ExpandedPane {
               visible: notchRect.height > notchRect.expandedHeight
               opacity: ((notchRect.height - notchRect.expandedHeight) / (notchRect.fullHeight - notchRect.expandedHeight))
               Layout.fillWidth: true
               Layout.fillHeight: true
-              clip: true
-              radius: 20
-              color: "transparent"
-
-              RowLayout {
-                anchors.fill: parent
-                Rectangle {
-                  Layout.fillWidth: true
-                  Layout.fillHeight: true
-                  Layout.preferredWidth: 2
-                  color: "transparent"
-                }
-                Rectangle {
-                  Layout.fillWidth: true
-                  Layout.fillHeight: true
-                  Layout.preferredWidth: 3
-                  radius: 20
-
-                  color: Ass.Colors.withAlpha(Ass.Colors.surface, 0.8)
-                  RowLayout {
-                    anchors.fill: parent
-                    Rectangle {
-                      Layout.fillWidth: true
-                      Layout.fillHeight: true
-                      Layout.preferredWidth: 1.45
-                      color: "transparent"
-                      Text {
-                        color: Ass.Colors.secondary
-                        anchors.centerIn: parent
-                        text: " Kuru Kuru Kuru Kuru"
-                      }
-                    }
-                    AnimatedImage {
-                      playing: parent.visible
-                      Layout.fillWidth: true
-                      Layout.fillHeight: true
-                      Layout.preferredWidth: 1
-
-                      fillMode: Image.PreserveAspectCrop
-                      horizontalAlignment: Image.AlignRight
-                      source: "https://duiqt.github.io/herta_kuru/static/img/hertaa1.gif"
-                    }
-                  }
-                }
-              }
             }
           }
         }

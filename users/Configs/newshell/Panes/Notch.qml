@@ -90,6 +90,24 @@ Scope {
                 easing.type: Easing.Linear
               }
             }
+          },
+          Transition {
+            reversible: true
+            from: "COLLAPSED"
+            to: "FULLY_EXPANDED"
+
+            ParallelAnimation {
+              NumberAnimation {
+                property: "width"
+                duration: 150
+                easing.type: Easing.InOutCubic
+              }
+              NumberAnimation {
+                property: "height"
+                duration: 200
+                easing.type: Easing.Linear
+              }
+            }
           }
         ]
 

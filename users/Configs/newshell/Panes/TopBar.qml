@@ -87,12 +87,19 @@ RowLayout {
         Layout.fillWidth: false
         verticalAlignment: Text.AlignVCenter
         color: Ass.Colors.primary
-        // text: ""
-        text: ""
+        text: (Dat.Globals.notchState == "FULLY_EXPANDED")? "" : ""
 
-        Gen.MouseArea {}
-        // TODO send a signal the parent can listen to
-        // to expand the notch
+        MouseArea {
+          anchors.fill: parent
+          onClicked: mevent => {
+            if (Dat.Globals.notchState == "EXPANDED") {
+              Dat.Globals.notchState = "FULLY_EXPANDED"
+              return;
+            }
+
+            Dat.Globals.notchState = "EXPANDED"
+          }
+        }
       }
 
       Rectangle {

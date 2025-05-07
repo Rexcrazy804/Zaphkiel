@@ -16,9 +16,13 @@ RowLayout {
     Layout.fillWidth: true
     Layout.preferredWidth: 1
     color: "transparent"
+    clip: true
 
     RowLayout {
-      anchors.fill: parent
+      // TODO animations for text change?
+      anchors.left: parent.left
+      anchors.top: parent.top
+      anchors.bottom: parent.bottom
       spacing: 0
       Rectangle {
         // workspace number
@@ -43,7 +47,6 @@ RowLayout {
         readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
         Layout.leftMargin: 8
         Layout.fillHeight: true
-        Layout.fillWidth: true
         verticalAlignment: Text.AlignVCenter
         color: Ass.Colors.primary
         text: activeWindow?.activated ? activeWindow?.appId : "desktop"
@@ -99,6 +102,11 @@ RowLayout {
         radius: 20
         color: Ass.Colors.primary
 
+        Behavior on Layout.minimumWidth { NumberAnimation {
+          duration: 150
+          easing.type: Easing.Linear
+        } }
+
         Text { // Battery Text
           id: batText
           readonly property real batPercentage: UPower.displayDevice.percentage
@@ -106,13 +114,13 @@ RowLayout {
           readonly property string chargeIcon: batIcons[10 - chargeIconIndex]
           property int chargeIconIndex: 0
           readonly property list<string> batIcons: ["󰁹", "󰂂", "󰂁", "󰂀", "󰁿", "󰁾", "󰁽", "󰁼", "󰁻", "󰁺", "󰂃"]
-          readonly property string balancedIcon: {
+          readonly property string batIcon: {
             (batPercentage > 0.98) ? batIcons[0] : (batPercentage > 0.90) ? batIcons[1] : (batPercentage > 0.80) ? batIcons[2] : (batPercentage > 0.70) ? batIcons[3] : (batPercentage > 0.60) ? batIcons[4] : (batPercentage > 0.50) ? batIcons[5] : (batPercentage > 0.40) ? batIcons[6] : (batPercentage > 0.30) ? batIcons[7] : (batPercentage > 0.20) ? batIcons[8] : (batPercentage > 0.10) ? batIcons[9] : batIcons[10];
           }
 
           anchors.centerIn: parent
           color: Ass.Colors.on_primary
-          text: Math.round(batPercentage * 100) + "% " + ((batCharging) ? chargeIcon : balancedIcon)
+          text: Math.round(batPercentage * 100) + "% " + ((batCharging) ? chargeIcon : batIcon)
           font.pointSize: 11
         }
 
@@ -134,6 +142,11 @@ RowLayout {
         radius: 20
         color: Ass.Colors.secondary
 
+        Behavior on Layout.minimumWidth { NumberAnimation {
+          duration: 150
+          easing.type: Easing.Linear
+        } }
+
         Text {
           anchors.centerIn: parent
           id: soundText
@@ -146,7 +159,6 @@ RowLayout {
             acceptedButtons: Qt.LeftButton | Qt.MiddleButton | Qt.RightButton
             onClicked: mouse => {
               switch (mouse.button) {
-                case Qt.LeftButton: break;
                 case Qt.MiddleButton: Dat.Audio.sink.audio.muted = !Dat.Audio.muted; break;
                 case Qt.RightButton: Dat.Audio.source.audio.muted = !Dat.Audio.source.audio.muted; break;
               }

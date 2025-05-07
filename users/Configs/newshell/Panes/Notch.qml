@@ -32,7 +32,7 @@ Scope {
         clip: true
         property int baseWidth: 200
         property int baseHeight: 2
-        property int expandedWidth: 500
+        property int expandedWidth: 600
         property int expandedHeight: 28
         property int fullHeight: 200
         property bool revealed: false
@@ -120,7 +120,7 @@ Scope {
             spacing: 0
 
             TopBar {
-              opacity: notchRect.height / notchRect.expandedHeight
+              opacity: (notchRect.width - notchRect.baseWidth) / (notchRect.expandedWidth - notchRect.baseWidth)
               visible: notchRect.height > notchRect.baseHeight
               Layout.minimumHeight: notchRect.expandedHeight - 10
               Layout.maximumHeight: notchRect.expandedHeight
@@ -134,7 +134,7 @@ Scope {
               Layout.fillHeight: true
               clip:true
               radius: 20
-              color: Ass.Colors.surface
+              color: Ass.Colors.withAlpha(Ass.Colors.surface, 0.8)
 
               RowLayout {
                 anchors.fill: parent

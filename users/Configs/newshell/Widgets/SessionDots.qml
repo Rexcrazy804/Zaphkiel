@@ -21,7 +21,7 @@ Repeater {
   ]
 
   delegate: ClippingRectangle {
-    id: pill
+    id: dot
     required property var modelData
     radius: 20
     implicitWidth: 20
@@ -32,12 +32,12 @@ Repeater {
       hoverOpacity: 0.3
       clickOpacity: 0.5
       layerColor: Ass.Colors.on_surface
-      onClicked: mevent => pill.modelData.action(mevent)
+      onClicked: mevent => dot.modelData.action(mevent)
     }
 
     Text {
       anchors.centerIn: parent
-      text: pill.modelData.text
+      text: dot.modelData.text
       color: Ass.Colors.on_surface
       font.bold: true
     }

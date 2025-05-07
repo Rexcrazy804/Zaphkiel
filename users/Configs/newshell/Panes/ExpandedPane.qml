@@ -26,6 +26,9 @@ ClippingRectangle {
       Layout.rightMargin: -5
 
       Wid.SessionDots {}
+      Wid.PowerProfDots {
+        Layout.bottomMargin: 10
+      }
     }
     Rectangle { // Left Side Card Stuff (not kuru kuru)
       Layout.fillWidth: true

@@ -150,14 +150,25 @@ Scope {
               visible: notchRect.height > notchRect.expandedHeight
               Layout.fillWidth: true
               Layout.fillHeight: true
+              clip:true
               radius: 20
               color: Ass.Colors.surface
               opacity: ((notchRect.height - notchRect.expandedHeight) / (notchRect.fullHeight - notchRect.expandedHeight))
               RowLayout {
                 anchors.fill: parent
+                AnimatedImage {
+                  Layout.fillWidth: true
+                  Layout.fillHeight: true
+                  Layout.preferredWidth: 1
+
+                  fillMode: Image.PreserveAspectCrop
+                  horizontalAlignment: Image.AlignRight
+                  source: "https://duiqt.github.io/herta_kuru/static/img/hertaa1.gif"
+                }
                 Rectangle {
                   Layout.fillWidth: true
                   Layout.fillHeight: true
+                  Layout.preferredWidth: 1.6
                   color: "transparent"
                   Text {
                     color: Ass.Colors.primary

@@ -4,6 +4,7 @@ import Quickshell
 import Quickshell.Wayland
 import "../Assets/" as Ass
 import "../Animations/" as Anim
+import "../Data/" as Dat
 
 Scope {
   Variants {
@@ -30,29 +31,72 @@ Scope {
       Rectangle {
         id: notchRect
         clip: true
-        property int baseWidth: 200
-        property int baseHeight: 2
-        property int expandedWidth: 600
-        property int expandedHeight: 28
-        property int fullHeight: 200
-        property bool revealed: false
+        readonly property int baseWidth: 200
+        readonly property int baseHeight: 2
+        readonly property int expandedWidth: 600
+        readonly property int expandedHeight: 28
+        readonly property int fullHeight: 200
+        readonly property int fullWidth: 600
 
-        width: notchRect.baseWidth
-        height: notchRect.baseHeight
+        state: Dat.Globals.notchState
+        states: [
+          State {
+            name: "COLLAPSED"
+            PropertyChanges { notchRect.width: notchRect.baseWidth; notchRect.height: notchRect.baseHeight }
+          },
+          State {
+            name: "EXPANDED"
+            PropertyChanges { notchRect.width: notchRect.expandedWidth; notchRect.height: notchRect.expandedHeight }
+          },
+          State {
+            name: "FULLY_EXPANDED"
+            PropertyChanges { notchRect.width: notchRect.fullWidth; notchRect.height: notchRect.fullHeight }
+          }
+        ]
+
+        transitions: [
+          Transition {
+            reversible: true
+            from: "COLLAPSED"
+            to: "EXPANDED"
+
+            ParallelAnimation {
+              NumberAnimation {
+                property: "width"
+                duration: 150
+                easing.type: Easing.InOutCubic
+              }
+              NumberAnimation {
+                property: "height"
+                duration: 180
+                easing.type: Easing.Linear
+              }
+            }
+          },
+          Transition {
+            reversible: true
+            from: "EXPANDED"
+            to: "FULLY_EXPANDED"
+
+            ParallelAnimation {
+              NumberAnimation {
+                property: "width"
+                duration: 150
+                easing.type: Easing.InOutCubic
+              }
+              NumberAnimation {
+                property: "height"
+                duration: 100
+                easing.type: Easing.Linear
+              }
+            }
+          }
+        ]
 
         anchors.horizontalCenter: parent.horizontalCenter
         color: Ass.Colors.withAlpha(Ass.Colors.background, 0.89)
         bottomLeftRadius: 20
         bottomRightRadius: 20
-
-        Anim.SmoothIncreaseBehaviour on width {
-          duration: 150
-          easing: Easing.InOutCubic
-        }
-        Anim.SmoothIncreaseBehaviour on height {
-          duration: 180
-          easing: Easing.Linear
-        }
 
         MouseArea {
           id: notchArea
@@ -65,18 +109,12 @@ Scope {
           hoverEnabled: true
 
           onEntered: {
-            if (notchRect.revealed) {
-              return;
-            }
-            notchRect.width = notchRect.expandedWidth;
-            notchRect.height = notchRect.expandedHeight;
+            if (Dat.Globals.notchState == "FULLY_EXPANDED") { return; }
+            Dat.Globals.notchState = "EXPANDED"
           }
           onExited: {
-            if (notchRect.revealed) {
-              return;
-            }
-            notchRect.width = notchRect.baseWidth;
-            notchRect.height = notchRect.baseHeight;
+            if (Dat.Globals.notchState == "FULLY_EXPANDED") { return; }
+            Dat.Globals.notchState = "COLLAPSED"
           }
 
           onPressed: mevent => {
@@ -94,18 +132,15 @@ Scope {
 
             // swipe down behaviour
             if (velocity < -notchArea.sensitivity) {
-              notchRect.width = notchRect.expandedWidth;
-              notchRect.height = notchRect.fullHeight;
-              notchRect.revealed = true;
+              Dat.Globals.notchState = "FULLY_EXPANDED";
               notchArea.tracing = false;
               notchArea.velocity = 0;
             }
 
             // swipe up behaviour
             if (velocity > notchArea.sensitivity) {
-              notchRect.height = notchRect.expandedHeight;
+              Dat.Globals.notchState = "EXPANDED";
               notchArea.tracing = false;
-              notchRect.revealed = false;
               notchArea.velocity = 0;
             }
           }

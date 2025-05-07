@@ -4,8 +4,11 @@ import QtQuick
 import QtQuick.Layouts
 
 import "../Assets/" as Ass
-ClippingRectangle {
+import "../Data/" as Dat
+import "../Generics/" as Gen
+import "../Widgets/" as Wid
 
+ClippingRectangle {
   clip: true
   radius: 20
   color: Ass.Colors.withAlpha(Ass.Colors.surface, 0.9)
@@ -22,16 +25,7 @@ ClippingRectangle {
       Layout.leftMargin: 5
       Layout.rightMargin: -5
 
-      Repeater {
-        model: 3
-
-        delegate: Rectangle {
-          radius: 20
-          implicitWidth: 20
-          implicitHeight: this.implicitWidth
-          color: Ass.Colors.surface_container_high
-        }
-      }
+      Wid.SessionDots {}
     }
     Rectangle { // Left Side Card Stuff (not kuru kuru)
       Layout.fillWidth: true

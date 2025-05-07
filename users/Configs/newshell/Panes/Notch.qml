@@ -4,8 +4,6 @@ import Quickshell
 import Quickshell.Wayland
 import "../Assets/" as Ass
 import "../Animations/" as Anim
-import "../Data/" as Dat
-import "../Generics/" as Gen
 
 Scope {
   Variants {
@@ -34,7 +32,7 @@ Scope {
         clip: true
         property int baseWidth: 200
         property int baseHeight: 2
-        property int expandedWidth: 400
+        property int expandedWidth: 500
         property int expandedHeight: 28
         property int fullHeight: 200
         property bool revealed: false
@@ -120,43 +118,28 @@ Scope {
             anchors.fill: parent
             anchors.centerIn: parent
             spacing: 0
-            RowLayout {
+
+            TopBar {
               opacity: notchRect.height / notchRect.expandedHeight
               visible: notchRect.height > notchRect.baseHeight
               Layout.minimumHeight: notchRect.expandedHeight - 10
               Layout.maximumHeight: notchRect.expandedHeight
               Layout.fillWidth: true
-
-              Rectangle {
-                id: timeText
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-                color: "transparent"
-
-                Text{
-                  anchors.centerIn: parent
-                  color: Ass.Colors.primary
-                  text: Qt.formatDateTime(Dat.Clock?.date, "h:mm:ss AP")
-                  Anim.SmoothIncreaseBehaviour on opacity {
-                    duration: 100
-                    easing: Easing.InOutQuad
-                  }
-                  Gen.MouseArea {}
-                }
-              }
             }
 
-            Rectangle {
+            Rectangle { // Full Expand Contents
               visible: notchRect.height > notchRect.expandedHeight
+              opacity: ((notchRect.height - notchRect.expandedHeight) / (notchRect.fullHeight - notchRect.expandedHeight))
               Layout.fillWidth: true
               Layout.fillHeight: true
               clip:true
               radius: 20
               color: Ass.Colors.surface
-              opacity: ((notchRect.height - notchRect.expandedHeight) / (notchRect.fullHeight - notchRect.expandedHeight))
+
               RowLayout {
                 anchors.fill: parent
                 AnimatedImage {
+                  playing: parent.visible
                   Layout.fillWidth: true
                   Layout.fillHeight: true
                   Layout.preferredWidth: 1

@@ -65,57 +65,51 @@ Scope {
 
         transitions: [
           Transition {
-            reversible: true
             from: "COLLAPSED"
             to: "EXPANDED"
-
-            ParallelAnimation {
-              NumberAnimation {
-                property: "width"
-                duration: 150
-                easing.type: Easing.InOutCubic
-              }
-              NumberAnimation {
-                property: "height"
-                duration: 180
-                easing.type: Easing.Linear
-              }
+            NumberAnimation {
+              properties: "width, height"
+              duration: Dat.MaterialEasing.standardDecelTime
+              easing.bezierCurve: Dat.MaterialEasing.standardDecel
+            }
+          },
+          Transition {
+            from: "EXPANDED"
+            to: "COLLAPSED"
+            NumberAnimation {
+              properties: "width, height"
+              duration: Dat.MaterialEasing.standardAccelTime
+              easing.bezierCurve: Dat.MaterialEasing.standardAccel
             }
           },
           Transition {
             reversible: true
             from: "EXPANDED"
             to: "FULLY_EXPANDED"
-
-            ParallelAnimation {
-              NumberAnimation {
-                property: "width"
-                duration: 150
-                easing.type: Easing.InOutCubic
-              }
-              NumberAnimation {
-                property: "height"
-                duration: 100
-                easing.type: Easing.Linear
-              }
+            NumberAnimation {
+              properties: "width, height"
+              duration: Dat.MaterialEasing.standardTime
+              easing.bezierCurve: Dat.MaterialEasing.standard
             }
           },
           Transition {
-            reversible: true
             from: "COLLAPSED"
             to: "FULLY_EXPANDED"
 
-            ParallelAnimation {
-              NumberAnimation {
-                property: "width"
-                duration: 150
-                easing.type: Easing.InOutCubic
-              }
-              NumberAnimation {
-                property: "height"
-                duration: 200
-                easing.type: Easing.Linear
-              }
+            NumberAnimation {
+              properties: "width, height"
+              duration: Dat.MaterialEasing.standardAccelTime
+              easing.bezierCurve: Dat.MaterialEasing.standardAccel
+            }
+          },
+          Transition {
+            from: "COLLAPSED"
+            to: "FULLY_EXPANDED"
+
+            NumberAnimation {
+              properties: "width, height"
+              duration: Dat.MaterialEasing.standardDecelTime
+              easing.bezierCurve: Dat.MaterialEasing.standardDecel
             }
           }
         ]

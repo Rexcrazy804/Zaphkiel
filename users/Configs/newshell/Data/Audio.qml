@@ -18,6 +18,7 @@ Singleton {
     (volume > 0.5)? "󰕾" :
     (volume > 0.01)? "󰖀" : "󰕿"
   }
+
   PwObjectTracker { objects: [ root.sink, root.source ] }
 
   function wheelAction(event: WheelEvent) {

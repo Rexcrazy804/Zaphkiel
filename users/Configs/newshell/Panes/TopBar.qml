@@ -77,14 +77,15 @@ RowLayout {
       anchors.top: parent.top
       anchors.bottom: parent.bottom
       layoutDirection: Qt.RightToLeft
-      spacing: 10
+      spacing: 8
 
       Text {
-        Layout.rightMargin: 5
+        Layout.rightMargin: 8
         Layout.fillWidth: false
         verticalAlignment: Text.AlignVCenter
         color: Ass.Colors.primary
-        text: ""
+        // text: ""
+        text: ""
 
         Gen.MouseArea {}
         // TODO send a signal the parent can listen to
@@ -111,7 +112,47 @@ RowLayout {
 
           anchors.centerIn: parent
           color: Ass.Colors.on_primary
-          text: batPercentage * 100 + "% " + ((batCharging) ? chargeIcon : balancedIcon)
+          text: Math.round(batPercentage * 100) + "% " + ((batCharging) ? chargeIcon : balancedIcon)
+          font.pointSize: 11
+        }
+
+        Timer {
+          interval: 600
+          running: batText.batCharging
+          repeat: true
+          onTriggered: () => {
+            batText.chargeIconIndex = batText.chargeIconIndex % 10
+            batText.chargeIconIndex += 1
+          }
+        }
+      }
+
+      Rectangle {
+        Layout.minimumWidth: soundText.width + 20
+        Layout.minimumHeight: 20
+        Layout.maximumHeight: 20
+        radius: 20
+        color: Ass.Colors.secondary
+
+        Text {
+          anchors.centerIn: parent
+          id: soundText
+          text: Math.round(Dat.Audio.volume * 100) + "%" + " " + Dat.Audio.volIcon
+          color: Ass.Colors.on_secondary
+          font.pointSize: 11
+
+          MouseArea {
+            anchors.fill: parent
+            acceptedButtons: Qt.LeftButton | Qt.MiddleButton | Qt.RightButton
+            onClicked: mouse => {
+              switch (mouse.button) {
+                case Qt.LeftButton: break;
+                case Qt.MiddleButton: Dat.Audio.sink.audio.muted = !Dat.Audio.muted; break;
+                case Qt.RightButton: Dat.Audio.source.audio.muted = !Dat.Audio.source.audio.muted; break;
+              }
+            }
+            onWheel: event => Dat.Audio.wheelAction(event)
+          }
         }
       }
     }

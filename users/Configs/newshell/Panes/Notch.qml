@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
+import Quickshell.Widgets
 import "../Assets/" as Ass
 import "../Data/" as Dat
 
@@ -34,22 +35,31 @@ Scope {
         readonly property int baseHeight: 2
         readonly property int expandedWidth: 600
         readonly property int expandedHeight: 28
-        readonly property int fullHeight: 200
+        readonly property int fullHeight: 170
         readonly property int fullWidth: 600
 
         state: Dat.Globals.notchState
         states: [
           State {
             name: "COLLAPSED"
-            PropertyChanges { notchRect.width: notchRect.baseWidth; notchRect.height: notchRect.baseHeight }
+            PropertyChanges {
+              notchRect.width: notchRect.baseWidth
+              notchRect.height: notchRect.baseHeight
+            }
           },
           State {
             name: "EXPANDED"
-            PropertyChanges { notchRect.width: notchRect.expandedWidth; notchRect.height: notchRect.expandedHeight }
+            PropertyChanges {
+              notchRect.width: notchRect.expandedWidth
+              notchRect.height: notchRect.expandedHeight
+            }
           },
           State {
             name: "FULLY_EXPANDED"
-            PropertyChanges { notchRect.width: notchRect.fullWidth; notchRect.height: notchRect.fullHeight }
+            PropertyChanges {
+              notchRect.width: notchRect.fullWidth
+              notchRect.height: notchRect.fullHeight
+            }
           }
         ]
 
@@ -126,12 +136,14 @@ Scope {
           hoverEnabled: true
 
           onContainsMouseChanged: {
-            Dat.Globals.notchHovered = notchArea.containsMouse
-            if (Dat.Globals.notchState == "FULLY_EXPANDED" || Dat.Globals.actWinName == "desktop") { return; }
+            Dat.Globals.notchHovered = notchArea.containsMouse;
+            if (Dat.Globals.notchState == "FULLY_EXPANDED" || Dat.Globals.actWinName == "desktop") {
+              return;
+            }
             if (notchArea.containsMouse) {
-              Dat.Globals.notchState = "EXPANDED"
+              Dat.Globals.notchState = "EXPANDED";
             } else {
-              Dat.Globals.notchState = "COLLAPSED"
+              Dat.Globals.notchState = "COLLAPSED";
             }
           }
 
@@ -181,36 +193,54 @@ Scope {
               Layout.fillWidth: true
             }
 
-            Rectangle { // Full Expand Card
+            ClippingRectangle {
+              // Full Expand Card
               visible: notchRect.height > notchRect.expandedHeight
               opacity: ((notchRect.height - notchRect.expandedHeight) / (notchRect.fullHeight - notchRect.expandedHeight))
               Layout.fillWidth: true
               Layout.fillHeight: true
-              clip:true
+              clip: true
               radius: 20
-              color: Ass.Colors.withAlpha(Ass.Colors.surface, 0.8)
+              color: "transparent"
 
               RowLayout {
                 anchors.fill: parent
-                AnimatedImage {
-                  playing: parent.visible
+                Rectangle {
                   Layout.fillWidth: true
                   Layout.fillHeight: true
-                  Layout.preferredWidth: 1
-
-                  fillMode: Image.PreserveAspectCrop
-                  horizontalAlignment: Image.AlignRight
-                  source: "https://duiqt.github.io/herta_kuru/static/img/hertaa1.gif"
+                  Layout.preferredWidth: 2
+                  color: "transparent"
                 }
                 Rectangle {
                   Layout.fillWidth: true
                   Layout.fillHeight: true
-                  Layout.preferredWidth: 1.6
-                  color: "transparent"
-                  Text {
-                    color: Ass.Colors.primary
-                    anchors.centerIn: parent
-                    text: "Kuru Kuru Kuru Kuru"
+                  Layout.preferredWidth: 3
+                  radius: 20
+
+                  color: Ass.Colors.withAlpha(Ass.Colors.surface, 0.8)
+                  RowLayout {
+                    anchors.fill: parent
+                    Rectangle {
+                      Layout.fillWidth: true
+                      Layout.fillHeight: true
+                      Layout.preferredWidth: 1.45
+                      color: "transparent"
+                      Text {
+                        color: Ass.Colors.secondary
+                        anchors.centerIn: parent
+                        text: " Kuru Kuru Kuru Kuru"
+                      }
+                    }
+                    AnimatedImage {
+                      playing: parent.visible
+                      Layout.fillWidth: true
+                      Layout.fillHeight: true
+                      Layout.preferredWidth: 1
+
+                      fillMode: Image.PreserveAspectCrop
+                      horizontalAlignment: Image.AlignRight
+                      source: "https://duiqt.github.io/herta_kuru/static/img/hertaa1.gif"
+                    }
                   }
                 }
               }

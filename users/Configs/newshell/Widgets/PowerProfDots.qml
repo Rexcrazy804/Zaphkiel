@@ -66,10 +66,7 @@ Repeater {
       hoverOpacity: 0.3
       clickOpacity: 0.5
       layerColor: dot.fgColor
-      onClicked: mevent => {
-        dot.modelData.action(mevent);
-        console.log(dot.state);
-      }
+      onClicked: mevent => dot.modelData.action(mevent)
     }
 
     Text {

@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import Quickshell.Services.UPower
 
 import "../Assets/" as Ass
+import "../Data/" as Dat
 
 Rectangle {
   Layout.minimumWidth: batText.width + 20
@@ -34,7 +35,7 @@ Rectangle {
 
   Timer {
     interval: 600
-    running: batText.batCharging
+    running: batText.batCharging && (Dat.Globals.notchState != "COLLAPSED")
     repeat: true
     onTriggered: () => {
       batText.chargeIconIndex = batText.chargeIconIndex % 10;

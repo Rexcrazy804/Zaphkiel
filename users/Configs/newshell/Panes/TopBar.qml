@@ -148,6 +148,7 @@ RowLayout {
       Wid.AudioSwiper {
         Layout.minimumHeight: 20
         Layout.maximumHeight: 20
+        radius: 20
       }
     }
   }

@@ -9,7 +9,6 @@ import "../Generics/" as Gen
 
 ClippingRectangle {
   id: audRect
-  radius: 20
   color: Ass.Colors.secondary
   Layout.minimumWidth: swiper.currentItem?.contentWidth + 20
 
@@ -37,7 +36,6 @@ ClippingRectangle {
       Gen.MouseArea {
         clickOpacity: 0.2
         layerColor: Ass.Colors.on_secondary
-        acceptedButtons: Qt.MiddleButton
         onWheel: event => Dat.Audio.wheelAction(event, Dat.Audio.sink)
         onClicked: mouse => Dat.Audio.toggleMute(Dat.Audio.sink)
       }
@@ -55,7 +53,6 @@ ClippingRectangle {
       Gen.MouseArea {
         clickOpacity: 0.2
         layerColor: Ass.Colors.on_secondary
-        acceptedButtons: Qt.MiddleButton
         onWheel: event => Dat.Audio.wheelAction(event, Dat.Audio.source)
         onClicked: mouse => Dat.Audio.toggleMute(Dat.Audio.source)
       }

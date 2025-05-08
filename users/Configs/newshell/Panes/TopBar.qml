@@ -1,5 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
+import Quickshell.Widgets
 import Quickshell.Hyprland
 import Quickshell.Wayland
 import Quickshell.Services.UPower
@@ -7,6 +9,7 @@ import Quickshell.Services.UPower
 import "../Assets/" as Ass
 import "../Data/" as Dat
 import "../Generics/" as Gen
+import "../Widgets/" as Wid
 
 RowLayout {
   // TOP BAR
@@ -142,37 +145,9 @@ RowLayout {
         }
       }
 
-      Rectangle {
-        Layout.minimumWidth: soundText.width + 20
+      Wid.AudioSwiper {
         Layout.minimumHeight: 20
         Layout.maximumHeight: 20
-        radius: 20
-        color: Ass.Colors.secondary
-
-        Behavior on Layout.minimumWidth { NumberAnimation {
-          duration: 150
-          easing.type: Easing.Linear
-        } }
-
-        Text {
-          anchors.centerIn: parent
-          id: soundText
-          text: Math.round(Dat.Audio.volume * 100) + "%" + " " + Dat.Audio.volIcon
-          color: Ass.Colors.on_secondary
-          font.pointSize: 11
-
-          MouseArea {
-            anchors.fill: parent
-            acceptedButtons: Qt.LeftButton | Qt.MiddleButton | Qt.RightButton
-            onClicked: mouse => {
-              switch (mouse.button) {
-                case Qt.MiddleButton: Dat.Audio.sink.audio.muted = !Dat.Audio.muted; break;
-                case Qt.RightButton: Dat.Audio.source.audio.muted = !Dat.Audio.source.audio.muted; break;
-              }
-            }
-            onWheel: event => Dat.Audio.wheelAction(event)
-          }
-        }
       }
     }
   }

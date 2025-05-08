@@ -10,44 +10,35 @@ Singleton {
   readonly property var volume: sink?.audio.volume
   readonly property var muted: sink?.audio.muted
 
-  readonly property var micMuted: source?.audio.muted
-  readonly property var micVolume: source?.audio.volume
-  readonly property string micIcon: (this.micMuted)? "󰍭" : "󰍬"
-  readonly property string volIcon: { 
-    (muted)? "󰝟" :
-    (volume > 0.5)? "󰕾" :
-    (volume > 0.01)? "󰖀" : "󰕿"
+  readonly property var sinkMuted: sink?.audio.muted
+  readonly property var sinkVolume: sink?.audio.volume
+
+  readonly property var sourceMuted: source?.audio.muted
+  readonly property var sourceVolume: source?.audio.volume
+
+  readonly property string sinkIcon: {
+    (muted) ? "󰝟" : (volume > 0.5) ? "󰕾" : (volume > 0.01) ? "󰖀" : "󰕿";
+  }
+  readonly property string sourceIcon: (this.sourceMuted) ? "󰍭" : "󰍬"
+
+  PwObjectTracker {
+    objects: [root.sink, root.source]
   }
 
-  PwObjectTracker { objects: [ root.sink, root.source ] }
-
-  function wheelAction(event: WheelEvent) {
+  function wheelAction(event: WheelEvent, node: PwNode) {
     if (event.angleDelta.y < 0) {
-      root.sink.audio.volume = root.volume - 0.01
+      node.audio.volume -= 0.01;
     } else {
-      root.sink.audio.volume = root.volume + 0.01
+      node.audio.volume += 0.01;
     }
 
-    if (root.sink.audio.volume > 1.3) {
-      root.sink.audio.volume = 1.3
+    if (node.audio.volume > 1.3) {
+      node.audio.volume = 1.3;
     }
     if (root.sink.audio.volume < 0) {
-      root.sink.audio.volume = 0.0
+      node.audio.volume = 0.0;
     }
   }
 
-  function micWheelAction(event: WheelEvent) {
-    if (event.angleDelta.y < 0) {
-      root.source.audio.volume = root.micVolume - 0.01
-    } else {
-      root.source.audio.volume = root.micVolume + 0.01
-    }
-
-    if (root.source.audio.volume > 1) {
-      root.source.audio.volume = 1
-    }
-    if (root.source.audio.volume < 0) {
-      root.source.audio.volume = 0.0
-    }
-  }
+  function toggleMute(node: PwNode) { node.audio.muted = !node.audio.muted }
 }

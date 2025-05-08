@@ -33,10 +33,10 @@ Scope {
         clip: true
         readonly property int baseWidth: 200
         readonly property int baseHeight: 1
-        readonly property int expandedWidth: 600
+        readonly property int expandedWidth: 700
         readonly property int expandedHeight: 28
-        readonly property int fullHeight: 170
-        readonly property int fullWidth: 600
+        readonly property int fullHeight: 190
+        readonly property int fullWidth: this.expandedWidth
 
         state: Dat.Globals.notchState
         states: [
@@ -119,6 +119,7 @@ Scope {
         bottomLeftRadius: 20
         bottomRightRadius: 20
 
+        // prolly make this a generic later
         MouseArea {
           id: notchArea
           readonly property real sensitivity: 5

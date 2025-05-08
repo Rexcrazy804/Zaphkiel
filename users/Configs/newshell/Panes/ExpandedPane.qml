@@ -15,25 +15,21 @@ ClippingRectangle {
 
   RowLayout {
     anchors.fill: parent
-    spacing: 2
-    ColumnLayout {
+    spacing: 0
+    ColumnLayout { // left dots (TODO: make the fonts look better??)
       Layout.fillWidth: true
       Layout.fillHeight: true
       Layout.minimumWidth: 28
       Layout.maximumWidth: 28
-      Layout.alignment: Qt.AlignCenter
-      Layout.leftMargin: 5
-      Layout.rightMargin: -5
 
       Wid.SessionDots {}
       Wid.PowerProfDots {
         Layout.bottomMargin: 10
       }
     }
-    Rectangle { // Left Side Card Stuff (not kuru kuru)
+    Rectangle { // Central Card
       Layout.fillWidth: true
       Layout.fillHeight: true
-      Layout.preferredWidth: 1
       radius: 20
       color: Ass.Colors.surface_container
       RowLayout {
@@ -50,7 +46,6 @@ ClippingRectangle {
     Rectangle {
       Layout.fillWidth: true
       Layout.fillHeight: true
-      Layout.preferredWidth: 1
       radius: 20
       color: "transparent"
 

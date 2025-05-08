@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Layouts
 import Quickshell.Widgets
 import "../Data/" as Dat
 import "../Generics/" as Gen
@@ -23,6 +24,8 @@ Repeater {
   delegate: ClippingRectangle {
     id: dot
     required property var modelData
+    Layout.alignment: Qt.AlignCenter
+
     radius: 20
     implicitWidth: 20
     implicitHeight: this.implicitWidth

@@ -115,6 +115,31 @@ RowLayout {
         implicitHeight: 20
         radius: 20
       }
+
+      Rectangle {
+        implicitHeight: 20
+        implicitWidth: 20
+        radius: 20
+
+        color: Ass.Colors.surface_container_high
+
+        Text {
+          anchors.centerIn: parent
+          color: Ass.Colors.on_surface
+          text: "󰃠"
+        }
+
+        MouseArea {
+          anchors.fill: parent
+          onWheel: event => {
+            if (event.angleDelta.y > 0) {
+              Dat.Brightness.increase();
+            } else {
+              Dat.Brightness.decrease();
+            }
+          }
+        }
+      }
     }
   }
 }

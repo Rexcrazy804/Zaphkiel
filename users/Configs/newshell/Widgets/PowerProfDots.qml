@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Layouts
 import Quickshell.Widgets
 import Quickshell.Services.UPower
 import "../Data/" as Dat
@@ -24,6 +25,7 @@ Repeater {
     required property var modelData
     property color bgColor
     property color fgColor
+    Layout.alignment: Qt.AlignCenter
 
     // Component.onCompleted { }
     state: (modelData.profile == PowerProfiles?.profile) ? "ACTIVE" : "INACTIVE"

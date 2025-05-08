@@ -14,20 +14,44 @@ Rectangle {
     anchors.fill: parent
     anchors.margins: 10
     anchors.rightMargin: 5
-    Rectangle {
-      radius: 10
+    ColumnLayout { // Month display
       Layout.fillHeight: true
-      implicitWidth: 30
-      color: Ass.Colors.secondary
+      Layout.minimumWidth: 30
+      spacing: 0
 
-      Text {
-        id: monthText
-        rotation: -90
-        anchors.centerIn: parent
-        text: Qt.formatDateTime(Dat.Clock?.date, "MMM")
-        color: Ass.Colors.on_secondary
+      Rectangle { // Day display
+        implicitHeight: 18
+        Layout.fillWidth: true
+        radius: 20
+        bottomLeftRadius: 0
+        bottomRightRadius: 0
+        color: Ass.Colors.secondary_container
+        Text {
+          id: weekDayText
+          anchors.centerIn: parent
+          text: Qt.formatDateTime(Dat.Clock?.date, "ddd")
+          color: Ass.Colors.on_secondary_container
+          font.pointSize: 8
+        }
+      }
+
+      Rectangle {
+        Layout.fillHeight: true
+        Layout.fillWidth: true
+        color: Ass.Colors.secondary
+        topLeftRadius: 0
+        topRightRadius: 0
+        radius: 10
+
+        Text {
+          rotation: -90
+          anchors.centerIn: parent
+          text: Qt.formatDateTime(Dat.Clock?.date, "MMM")
+          color: Ass.Colors.on_secondary
+        }
       }
     }
+
     MonthGrid {
       id: monthGrid
       property int currMonth: parseInt(Qt.formatDateTime(Dat.Clock?.date, "M")) - 1

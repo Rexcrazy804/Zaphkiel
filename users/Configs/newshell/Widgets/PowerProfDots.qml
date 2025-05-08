@@ -20,7 +20,7 @@ Repeater {
     },
   ]
 
-  delegate: ClippingRectangle {
+  delegate: Rectangle {
     id: dot
     required property var modelData
     property color bgColor

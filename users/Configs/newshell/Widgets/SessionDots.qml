@@ -21,7 +21,8 @@ Repeater {
     },
   ]
 
-  delegate: ClippingRectangle {
+  delegate: Rectangle {
+    clip: true
     id: dot
     required property var modelData
     Layout.alignment: Qt.AlignCenter

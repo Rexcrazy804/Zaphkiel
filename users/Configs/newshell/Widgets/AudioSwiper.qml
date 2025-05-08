@@ -7,7 +7,8 @@ import "../Assets/" as Ass
 import "../Data/" as Dat
 import "../Generics/" as Gen
 
-ClippingRectangle {
+Rectangle {
+  clip: true
   id: audRect
   color: Ass.Colors.secondary
   Layout.minimumWidth: swiper.currentItem?.contentWidth + 20

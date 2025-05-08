@@ -8,6 +8,7 @@ MouseArea {
   property real hoverOpacity: 0.08
   property real clickOpacity: 0.10
   property color layerColor: "white"
+  property int layerRadius: parent?.radius ?? 0
   property NumberAnimation layerOpacityAnimation: NumberAnimation {
     duration: Dat.MaterialEasing.standardTime
     easing.bezierCurve: Dat.MaterialEasing.standard
@@ -15,6 +16,7 @@ MouseArea {
 
   Rectangle {
     id: layer
+    radius: area.layerRadius
     opacity: 0
     anchors.fill: parent
     color: area.layerColor

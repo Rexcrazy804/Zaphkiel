@@ -8,7 +8,7 @@ import "../Data/" as Dat
 import "../Generics/" as Gen
 import "../Widgets/" as Wid
 
-ClippingRectangle {
+Rectangle {
   clip: true
   radius: 20
   color: Ass.Colors.withAlpha(Ass.Colors.surface, 0.9)

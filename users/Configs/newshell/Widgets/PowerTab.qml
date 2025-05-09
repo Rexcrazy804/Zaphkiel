@@ -1,77 +1,130 @@
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
+import Quickshell.Services.UPower
 
 import "../Assets/" as Ass
 
 Rectangle {
-    radius: 20
-    color: Ass.Colors.surface_container_high
+  radius: 20
+  color: Ass.Colors.surface_container_high
 
-    RowLayout {
-      anchors.margins: 10
-      anchors.fill: parent
-      spacing: 10
+  RowLayout {
+    // anchors.margins: 10
+    anchors.fill: parent
+    spacing: 0
+
+    Rectangle {
+      Layout.fillHeight: true
+      Layout.fillWidth: true
+      radius: 10
+      color: Ass.Colors.surface_container_highest
+
       Rectangle {
-        id: powerSliderRect
-        radius: 40
-        Layout.fillHeight: true
-        implicitWidth: 40
-        color: Ass.Colors.surface_container_low
+        anchors.fill: graphDesc
+        radius: 10
+        color: Ass.Colors.surface_container
+      }
 
+      ColumnLayout {
+        id: graphDesc
+        anchors.fill: parent
+        anchors.margins: 5
+        spacing: 0
         Rectangle {
-          anchors.horizontalCenter: parent.horizontalCenter
-          width: 34
-          height: this.width
-          radius: this.width
-          color: Ass.Colors.primary
+          // TODO battery graph
+          Layout.fillHeight: true
+          Layout.fillWidth: true
+          radius: 0
+          color: "transparent"
 
-          Drag.active: dragArea.drag.active
-
-          MouseArea {
-            id: dragArea
-            anchors.fill: parent
-            drag.target: parent
-            drag.smoothed: false
-            drag.minimumY: 0
-            drag.maximumY: powerSliderRect.height - parent.height
+          Text {
+            anchors.centerIn: parent
+            color: Ass.Colors.on_surface
+            text: "cool graph here soon"
           }
         }
+        Rectangle {
+          Layout.fillWidth: true
+          implicitHeight: 28
+          radius: 10
+          color: Ass.Colors.surface_container_high
+        }
+      }
+    }
 
-        ColumnLayout {
-          id: slider
+    Rectangle {
+      Layout.margins: 3
+      id: powerSliderRect
+      radius: 40
+      implicitWidth: 40
+      implicitHeight: parent.height - 14
+      // color: Ass.Colors.surface_container_low
+      color: "transparent"
+
+      Slider {
+        id: slider
+        anchors.fill: parent
+
+        orientation: Qt.Vertical
+        value: PowerProfiles.profile
+        from: 0
+        to: 2
+        stepSize: 1
+        snapMode: Slider.SnapOnRelease
+
+        onMoved: {
+          PowerProfiles.profile = slider.value;
+        }
+
+        background: ColumnLayout {
           anchors.fill: parent
 
           Repeater {
-            model: [ "", "", ""]
-            DropArea {
-              id: powerDrop
+            model: ["", "", ""]
+            Rectangle {
               required property string modelData
               Layout.alignment: Qt.AlignCenter
               implicitWidth: 34
               implicitHeight: this.implicitWidth
+              radius: this.implicitWidth
+              color: "transparent"
 
-              Rectangle {
-                anchors.fill: parent
-                radius: this.implicitWidth
-                color: "transparent"
-
-                Text {
-                  anchors.centerIn: parent
-                  text: powerDrop.modelData
-                  color: Ass.Colors.on_surface
-                }
+              Text {
+                anchors.centerIn: parent
+                text: parent.modelData
+                color: Ass.Colors.on_surface
               }
             }
           }
         }
-      }
 
-      Rectangle { // TODO battery graph
-        Layout.fillHeight: true
-        Layout.fillWidth: true
-        radius: 10
+        handle: Rectangle {
+          y: slider.visualPosition * (slider.availableHeight - height)
+          width: 34
+          height: this.width
+          radius: this.width
+          visible: true
+          anchors.horizontalCenter: parent.horizontalCenter
 
-        color: Ass.Colors.surface_container_highest
+          color: Ass.Colors.secondary
+          Text {
+            anchors.centerIn: parent
+            color: Ass.Colors.on_secondary
+            text: switch (PowerProfiles.profile) {
+              case 0:
+              "";
+              break;
+              case 1:
+              "";
+              break;
+              case 2:
+              "";
+              break;
+            }
+          }
+        }
       }
     }
+  }
 }

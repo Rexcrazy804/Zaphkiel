@@ -19,4 +19,7 @@ Singleton {
       root.notchState = "COLLAPSED"
     }
   }
+
+  // Central Panel SwipeView stuff
+  property int swipeIndex: 0
 }

@@ -34,11 +34,24 @@ Rectangle {
         anchors.fill: parent
         orientation: Qt.Horizontal
 
-        // for debugging
-        Component.onCompleted: () => {
-          swipeArea.currentIndex = 1;
-          Dat.Globals.notchState = "FULLY_EXPANDED";
+        onCurrentIndexChanged: () => {
+          if (swipeArea.currentIndex != Dat.Globals.swipeIndex) {
+            Dat.Globals.swipeIndex = swipeArea.currentIndex
+          }
         }
+
+        Component.onCompleted: () => {
+          Dat.Globals.swipeIndexChanged.connect(() => {
+            if (swipeArea.currentIndex != Dat.Globals.swipeIndex) {
+              swipeArea.currentIndex = Dat.Globals.swipeIndex
+            }
+          })
+          // both are zero at the beginning sooo dk if I need this
+          swipeArea.currentIndex = Dat.Globals.swipeIndex;
+          // DEBUGGING
+          // Dat.Globals.notchState = "FULLY_EXPANDED";
+        }
+
 
         Rectangle {
           // HOME PANE ??? WHAT TO DO HERE?

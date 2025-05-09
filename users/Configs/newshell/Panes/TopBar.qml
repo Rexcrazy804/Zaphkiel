@@ -58,17 +58,13 @@ RowLayout {
   }
 
   Rectangle {
-    // Time Center
+    // Center
     Layout.fillHeight: true
     Layout.fillWidth: true
     Layout.preferredWidth: 2
     color: "transparent"
 
-    Text {
-      anchors.centerIn: parent
-      color: Ass.Colors.secondary
-      text: Qt.formatDateTime(Dat.Clock?.date, "h:mm:ss AP")
-    }
+    Wid.TimePill {}
   }
 
   Rectangle {

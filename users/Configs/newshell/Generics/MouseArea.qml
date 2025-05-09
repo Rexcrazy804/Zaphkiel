@@ -13,6 +13,7 @@ MouseArea {
     duration: Dat.MaterialEasing.standardTime
     easing.bezierCurve: Dat.MaterialEasing.standard
   }
+  property alias layerRect: layer
 
   Rectangle {
     id: layer

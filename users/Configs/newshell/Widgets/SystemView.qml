@@ -28,18 +28,23 @@ Rectangle {
 
       Image {
         id: nixLogo
-        // y: this.x
         x: -(this.width / 2.5)
-        rotation: 10
+        rotation: 0
         opacity: 0.15
         width: parent.height
         height: this.width
         fillMode: Image.PreserveAspectCrop
         source: "https://raw.githubusercontent.com/NixOS/nixos-artwork/4ad062cee62116f6055e2876e9638e7bb399d219/logo/nix-snowflake-white.svg"
 
+        Component.onCompleted: {
+          // silly hack to not have a 500ms delay before animation starts
+          Dat.Globals.notchStateChanged.connect(() => { nixLogo.rotation += 3 })
+          root.isCurrentChanged.connect(() => { nixLogo.rotation += 3 })
+        }
+
         Timer {
           interval: 500
-          running: Dat.Globals.notchState == "FULLY_EXPANDED"
+          running: Dat.Globals.notchState == "FULLY_EXPANDED" && root.isCurrent
           repeat: true
           onTriggered:  parent.rotation = (parent.rotation + 3) % 360
         }

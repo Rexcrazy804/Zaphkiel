@@ -21,5 +21,10 @@ Singleton {
   }
 
   // Central Panel SwipeView stuff
+  // 0 => Home
+  // 1 => Calendar
+  // 2 => System
+  // 3 => Mpris
+  // 4 => Toggles & Sliders
   property int swipeIndex: 0
 }

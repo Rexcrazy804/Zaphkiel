@@ -27,8 +27,8 @@ Repeater {
     required property var modelData
     Layout.alignment: Qt.AlignCenter
 
-    radius: 20
-    implicitWidth: 20
+    radius: 28
+    implicitWidth: 28
     implicitHeight: this.implicitWidth
     color: Ass.Colors.surface_container_high
 

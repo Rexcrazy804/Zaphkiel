@@ -48,8 +48,10 @@ Rectangle {
           })
           // both are zero at the beginning sooo dk if I need this
           swipeArea.currentIndex = Dat.Globals.swipeIndex;
-          // DEBUGGING
-          // Dat.Globals.notchState = "FULLY_EXPANDED";
+
+          // FOR DEBUGGING
+          swipeArea.currentIndex = 2;
+          Dat.Globals.notchState = "FULLY_EXPANDED";
         }
 
 
@@ -75,8 +77,14 @@ Rectangle {
           radius: swipeRect.radius
         }
 
+        Wid.SystemView {
+          width: swipeRect.width
+          height: swipeRect.height
+          radius: swipeRect.radius
+        }
+
         Repeater {
-          model: 3
+          model: 2
           Rectangle {
             // HOME PANE ??? WHAT TO DO HERE?
             property int index: SwipeView.index

@@ -1,6 +1,7 @@
 pragma Singleton
 import QtQuick
 import Quickshell
+import Quickshell.Io
 import Quickshell.Wayland
 
 Singleton {
@@ -11,7 +12,6 @@ Singleton {
   property string notchState: "COLLAPSED";
   property bool notchHovered: false;
   property string actWinName: activeWindow?.activated ? activeWindow?.appId : "desktop"
-
   onActWinNameChanged: {
     if (root.actWinName == "desktop" && root.notchState == "COLLAPSED") {
       root.notchState = "EXPANDED"
@@ -27,4 +27,13 @@ Singleton {
   // 3 => Mpris
   // 4 => Toggles & Sliders
   property int swipeIndex: 0
+
+  property string hostName: "KuruMi"
+  Process {
+    running: true
+    command: ["hostname"]
+    stdout: SplitParser {
+      onRead: data => root.hostName = data
+    }
+  }
 }

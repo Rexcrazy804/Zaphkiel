@@ -33,8 +33,8 @@ Repeater {
     color: Ass.Colors.surface_container_high
 
     Gen.MouseArea {
-      hoverOpacity: 0.3
-      clickOpacity: 0.5
+      hoverOpacity: 0.1
+      clickOpacity: 0.2
       layerColor: Ass.Colors.on_surface
       onClicked: mevent => dot.modelData.action(mevent)
     }

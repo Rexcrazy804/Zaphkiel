@@ -8,8 +8,6 @@ import "../Generics/" as Gen
 import "../Data/" as Dat
 import "../Widgets/" as Wid
 
-import QtQuick
-
 Rectangle {
   id: root
 
@@ -50,23 +48,20 @@ Rectangle {
           swipeArea.currentIndex = Dat.Globals.swipeIndex;
 
           // FOR DEBUGGING
-          swipeArea.currentIndex = 2;
+          swipeArea.currentIndex = 4;
           Dat.Globals.notchState = "FULLY_EXPANDED";
         }
 
 
         Rectangle {
-          // HOME PANE ??? WHAT TO DO HERE?
-          property int index: SwipeView.index
           width: swipeRect.width
           height: swipeRect.height
           radius: swipeRect.radius
-          // color: Ass.Colors.surface_container
           color: "transparent"
 
           Text {
             anchors.centerIn: parent
-            text: "Pane " + (parent.index + 1) + " Home"
+            text: "Home pane"
             color: Ass.Colors.on_surface
           }
         }
@@ -83,28 +78,24 @@ Rectangle {
           radius: swipeRect.radius
         }
 
-        Repeater {
-          model: 2
-          Rectangle {
-            // HOME PANE ??? WHAT TO DO HERE?
-            property int index: SwipeView.index
-            width: swipeRect.width
-            height: swipeRect.height
-            radius: swipeRect.radius
-            // color: Ass.Colors.surface_container
-            color: "transparent"
+        Rectangle {
+          width: swipeRect.width
+          height: swipeRect.height
+          radius: swipeRect.radius
+          color: "transparent"
 
-            Text {
-              anchors.centerIn: parent
-              text: "Pane " + (parent.index + 1)
-              color: Ass.Colors.on_surface
-            }
+          Text {
+            anchors.centerIn: parent
+            text: "Music Pane"
+            color: Ass.Colors.on_surface
           }
         }
-        // TODO PANES:
-        // nix pane (sys info and shit maybe???)
-        // mpris pane
-        // toggles pane
+
+        Wid.SettingsView {
+          width: swipeRect.width
+          height: swipeRect.height
+          radius: swipeRect.radius
+        }
       }
     }
 

@@ -127,11 +127,20 @@ RowLayout {
 
         MouseArea {
           anchors.fill: parent
+          acceptedButtons: Qt.LeftButton | Qt.RightButton
+
           onWheel: event => {
             if (event.angleDelta.y > 0) {
               Dat.Brightness.increase();
             } else {
               Dat.Brightness.decrease();
+            }
+          }
+
+          onClicked: mevent => {
+            switch (mevent.button) {
+              case Qt.RightButton: Dat.Brightness.increase(); break;
+              case Qt.LeftButton: Dat.Brightness.decrease(); break;
             }
           }
         }

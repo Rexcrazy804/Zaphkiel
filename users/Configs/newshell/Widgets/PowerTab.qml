@@ -17,12 +17,12 @@ Rectangle {
     Rectangle {
       Layout.fillHeight: true
       Layout.fillWidth: true
-      radius: 10
+      radius: 20
       color: Ass.Colors.surface_container_highest
 
       Rectangle {
         anchors.fill: graphDesc
-        radius: 10
+        radius: 20
         color: Ass.Colors.surface_container
       }
 
@@ -47,8 +47,14 @@ Rectangle {
         Rectangle {
           Layout.fillWidth: true
           implicitHeight: 28
-          radius: 10
+          radius: 20
           color: Ass.Colors.surface_container_high
+
+          PowerInfo {
+            anchors.fill: parent
+            anchors.leftMargin: 10
+            anchors.rightMargin: 10
+          }
         }
       }
     }

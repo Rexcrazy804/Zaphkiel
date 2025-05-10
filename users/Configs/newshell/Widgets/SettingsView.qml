@@ -4,7 +4,6 @@ import QtQuick.Layouts
 
 import "../Assets/" as Ass
 import "../Data/" as Dat
-import "../Widgets/" as Wid
 
 Rectangle {
   color: "transparent"
@@ -77,11 +76,10 @@ Rectangle {
 
             Rectangle {
               id: bgRect
-              anchors.bottom: parent.bottom
-              anchors.left: parent.left
-              anchors.right: parent.right
+              anchors.centerIn: parent
               radius: 10
               height: tabRect.height
+              width: tabText.contentWidth + 20
 
               color: Ass.Colors.surface_container_high
             }
@@ -122,7 +120,7 @@ Rectangle {
       Layout.fillHeight: true
       currentIndex: tabLay.activeIndex
 
-      Wid.PowerTab {}
+      PowerTab {}
 
       Repeater {
         // TODO: props for volume sliders and network (veeeery unlikely i'll be doing network impl here)

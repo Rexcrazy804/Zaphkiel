@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
 
-import "../Assets/" as Ass
 import "../Data/" as Dat
 
 Rectangle {
@@ -15,7 +14,7 @@ Rectangle {
       Layout.preferredWidth: 1.45
       color: "transparent"
       Text {
-        color: Ass.Colors.secondary
+        color: Dat.Colors.secondary
         anchors.centerIn: parent
         text: " Kuru Kuru Kuru"
       }

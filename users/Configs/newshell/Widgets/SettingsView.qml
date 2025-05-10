@@ -2,7 +2,6 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 
-import "../Assets/" as Ass
 import "../Data/" as Dat
 
 Rectangle {
@@ -81,7 +80,7 @@ Rectangle {
               height: tabRect.height
               width: tabText.contentWidth + 20
 
-              color: Ass.Colors.surface_container_high
+              color: Dat.Colors.surface_container_high
             }
 
             Text {
@@ -96,7 +95,7 @@ Rectangle {
 
               anchors.centerIn: parent
               text: parent.modelData
-              color: Ass.Colors.on_surface
+              color: Dat.Colors.on_surface
               horizontalAlignment: Text.AlignHCenter
               verticalAlignment: Text.AlignVCenter
 
@@ -129,12 +128,12 @@ Rectangle {
         Rectangle {
           required property int index
           radius: 20
-          color: Ass.Colors.surface_container_high
+          color: Dat.Colors.surface_container_high
 
           Text {
             anchors.centerIn: parent
             text: "tab " + index
-            color: Ass.Colors.on_surface
+            color: Dat.Colors.on_surface
           }
         }
       }

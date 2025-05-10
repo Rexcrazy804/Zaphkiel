@@ -3,7 +3,6 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
-import "../Assets/" as Ass
 import "../Generics/" as Gen
 import "../Data/" as Dat
 import "../Widgets/" as Wid
@@ -24,7 +23,7 @@ Rectangle {
       Layout.fillWidth: true
       Layout.fillHeight: true
 
-      color: Ass.Colors.surface_container_low
+      color: Dat.Colors.surface_container_low
       radius: root.radius
 
       SwipeView {
@@ -62,7 +61,7 @@ Rectangle {
           Text {
             anchors.centerIn: parent
             text: "Home pane"
-            color: Ass.Colors.on_surface
+            color: Dat.Colors.on_surface
           }
         }
 
@@ -87,7 +86,7 @@ Rectangle {
           Text {
             anchors.centerIn: parent
             text: "Music Pane"
-            color: Ass.Colors.on_surface
+            color: Dat.Colors.on_surface
           }
         }
 
@@ -105,7 +104,7 @@ Rectangle {
       radius: 20
       implicitHeight: tabCols.height + 10
       implicitWidth: 28
-      color: Ass.Colors.surface_container_low
+      color: Dat.Colors.surface_container_low
 
       ColumnLayout {
         id: tabCols
@@ -127,7 +126,7 @@ Rectangle {
             color: "transparent"
             Text {
               id: dotText
-              color: Ass.Colors.on_surface
+              color: Dat.Colors.on_surface
               anchors.centerIn: parent
               text: tabDot.modelData
               font.pointSize: 11

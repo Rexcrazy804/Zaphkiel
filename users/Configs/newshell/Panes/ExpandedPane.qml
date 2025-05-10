@@ -1,14 +1,13 @@
 import QtQuick
 import QtQuick.Layouts
 
-import "../Assets/" as Ass
-import "../Widgets/" as Wid
+import "../Data/" as Dat
 
 Rectangle {
   id: root
   clip: true
   radius: 20
-  color: Ass.Colors.withAlpha(Ass.Colors.surface, 0.9)
+  color: Dat.Colors.withAlpha(Dat.Colors.surface, 0.9)
 
   RowLayout {
     anchors.fill: parent

@@ -3,7 +3,6 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Widgets
-import "../Assets/" as Ass
 import "../Data/" as Dat
 
 Scope {
@@ -115,7 +114,7 @@ Scope {
         ]
 
         anchors.horizontalCenter: parent.horizontalCenter
-        color: Ass.Colors.withAlpha(Ass.Colors.background, 0.89)
+        color: Dat.Colors.withAlpha(Dat.Colors.background, 0.89)
         bottomLeftRadius: 20
         bottomRightRadius: 20
 

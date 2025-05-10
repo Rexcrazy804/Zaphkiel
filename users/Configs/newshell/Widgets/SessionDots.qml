@@ -3,7 +3,6 @@ import QtQuick.Layouts
 import Quickshell.Widgets
 import "../Data/" as Dat
 import "../Generics/" as Gen
-import "../Assets/" as Ass
 
 Repeater {
   model: [
@@ -30,19 +29,19 @@ Repeater {
     radius: 28
     implicitWidth: 28
     implicitHeight: this.implicitWidth
-    color: Ass.Colors.surface_container_high
+    color: Dat.Colors.surface_container_high
 
     Gen.MouseArea {
       hoverOpacity: 0.1
       clickOpacity: 0.2
-      layerColor: Ass.Colors.on_surface
+      layerColor: Dat.Colors.on_surface
       onClicked: mevent => dot.modelData.action(mevent)
     }
 
     Text {
       anchors.centerIn: parent
       text: dot.modelData.text
-      color: Ass.Colors.on_surface
+      color: Dat.Colors.on_surface
       font.bold: true
     }
   }

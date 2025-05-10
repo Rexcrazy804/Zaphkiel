@@ -2,12 +2,11 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell.Services.UPower
 
-import "../Assets/" as Ass
 import "../Data/" as Dat
 
 Rectangle {
   Layout.minimumWidth: batText.width + 20
-  color: Ass.Colors.primary
+  color: Dat.Colors.primary
 
   Behavior on Layout.minimumWidth {
     NumberAnimation {
@@ -28,7 +27,7 @@ Rectangle {
     }
 
     anchors.centerIn: parent
-    color: Ass.Colors.on_primary
+    color: Dat.Colors.on_primary
     text: Math.round(batPercentage * 100) + "% " + ((batCharging) ? chargeIcon : batIcon)
     font.pointSize: 11
   }

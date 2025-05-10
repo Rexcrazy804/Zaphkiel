@@ -3,11 +3,11 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import Quickshell.Services.UPower
 
-import "../Assets/" as Ass
+import "../Data/" as Dat
 
 Rectangle {
   radius: 20
-  color: Ass.Colors.surface_container_high
+  color: Dat.Colors.surface_container_high
 
   RowLayout {
     // anchors.margins: 10
@@ -18,12 +18,12 @@ Rectangle {
       Layout.fillHeight: true
       Layout.fillWidth: true
       radius: 20
-      color: Ass.Colors.surface_container_highest
+      color: Dat.Colors.surface_container_highest
 
       Rectangle {
         anchors.fill: graphDesc
         radius: 20
-        color: Ass.Colors.surface_container
+        color: Dat.Colors.surface_container
       }
 
       ColumnLayout {
@@ -40,7 +40,7 @@ Rectangle {
 
           Text {
             anchors.centerIn: parent
-            color: Ass.Colors.on_surface
+            color: Dat.Colors.on_surface
             text: "cool graph here soon"
           }
         }
@@ -48,7 +48,7 @@ Rectangle {
           Layout.fillWidth: true
           implicitHeight: 28
           radius: 20
-          color: Ass.Colors.surface_container_high
+          color: Dat.Colors.surface_container_high
 
           PowerInfo {
             anchors.fill: parent
@@ -65,7 +65,7 @@ Rectangle {
       radius: 40
       implicitWidth: 40
       implicitHeight: parent.height - 14
-      // color: Ass.Colors.surface_container_low
+      // color: Dat.Colors.surface_container_low
       color: "transparent"
 
       Slider {
@@ -99,7 +99,7 @@ Rectangle {
               Text {
                 anchors.centerIn: parent
                 text: parent.modelData
-                color: Ass.Colors.on_surface
+                color: Dat.Colors.on_surface
               }
             }
           }
@@ -113,10 +113,10 @@ Rectangle {
           visible: true
           anchors.horizontalCenter: parent.horizontalCenter
 
-          color: Ass.Colors.secondary
+          color: Dat.Colors.secondary
           Text {
             anchors.centerIn: parent
-            color: Ass.Colors.on_secondary
+            color: Dat.Colors.on_secondary
             text: switch (PowerProfiles.profile) {
               case 0:
               "";

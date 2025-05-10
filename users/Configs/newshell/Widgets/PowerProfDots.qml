@@ -4,7 +4,6 @@ import Quickshell.Widgets
 import Quickshell.Services.UPower
 import "../Data/" as Dat
 import "../Generics/" as Gen
-import "../Assets/" as Ass
 
 Repeater {
   model: [
@@ -33,15 +32,15 @@ Repeater {
       State {
         name: "ACTIVE"
         PropertyChanges {
-          dot.bgColor: Ass.Colors.primary
-          dot.fgColor: Ass.Colors.on_primary
+          dot.bgColor: Dat.Colors.primary
+          dot.fgColor: Dat.Colors.on_primary
         }
       },
       State {
         name: "INACTIVE"
         PropertyChanges {
-          dot.bgColor: Ass.Colors.surface_container
-          dot.fgColor: Ass.Colors.on_surface
+          dot.bgColor: Dat.Colors.surface_container
+          dot.fgColor: Dat.Colors.on_surface
         }
       }
     ]

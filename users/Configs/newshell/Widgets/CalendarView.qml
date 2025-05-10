@@ -3,7 +3,6 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
-import "../Assets/" as Ass
 import "../Data/" as Dat
 
 Rectangle {
@@ -25,12 +24,12 @@ Rectangle {
         radius: 20
         bottomLeftRadius: 0
         bottomRightRadius: 0
-        color: Ass.Colors.secondary_container
+        color: Dat.Colors.secondary_container
         Text {
           id: weekDayText
           anchors.centerIn: parent
           text: Qt.formatDateTime(Dat.Clock?.date, "ddd")
-          color: Ass.Colors.on_secondary_container
+          color: Dat.Colors.on_secondary_container
           font.pointSize: 8
         }
       }
@@ -38,7 +37,7 @@ Rectangle {
       Rectangle {
         Layout.fillHeight: true
         Layout.fillWidth: true
-        color: Ass.Colors.secondary
+        color: Dat.Colors.secondary
         topLeftRadius: 0
         topRightRadius: 0
         radius: 10
@@ -47,7 +46,7 @@ Rectangle {
           rotation: -90
           anchors.centerIn: parent
           text: Qt.formatDateTime(Dat.Clock?.date, "MMM")
-          color: Ass.Colors.on_secondary
+          color: Dat.Colors.on_secondary
         }
       }
     }
@@ -62,19 +61,19 @@ Rectangle {
       spacing: 0
       // Layout.leftMargin: 50
       // Layout.rightMargin: this.Layout.leftMargin
-      // color: Ass.Colors.surface_container
+      // color: Dat.Colors.surface_container
       // color: "transparent"
 
       delegate: Rectangle {
         required property var model
-        color: (monthGrid.currDay == model.day)? Ass.Colors.secondary : "transparent"
+        color: (monthGrid.currDay == model.day)? Dat.Colors.secondary : "transparent"
         radius: 10
         Text {
           anchors.centerIn: parent
           verticalAlignment: Text.AlignVCenter
           horizontalAlignment: Text.AlignVCenter
           text: parent.model.day
-          color: (parent.model.month == monthGrid.currMonth)? (parent.model.day == monthGrid.currDay)? Ass.Colors.on_secondary : Ass.Colors.on_surface : Ass.Colors.withAlpha(Ass.Colors.on_surface_variant, 0.70)
+          color: (parent.model.month == monthGrid.currMonth)? (parent.model.day == monthGrid.currDay)? Dat.Colors.on_secondary : Dat.Colors.on_surface : Dat.Colors.withAlpha(Dat.Colors.on_surface_variant, 0.70)
         }
       }
     }

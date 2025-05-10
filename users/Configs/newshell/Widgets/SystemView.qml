@@ -4,7 +4,6 @@ import QtQuick.Effects
 import QtQuick.Layouts
 import QtQuick.Controls
 
-import "../Assets/" as Ass
 import "../Data/" as Dat
 import "../Widgets/" as Wid
 
@@ -25,7 +24,7 @@ Rectangle {
       Layout.fillHeight: true
       Layout.preferredWidth: 5
       radius: 10
-      color: Ass.Colors.surface_container_high
+      color: Dat.Colors.surface_container_high
 
       Image {
         id: nixLogo
@@ -78,7 +77,7 @@ Rectangle {
           Layout.fillWidth: true
           Layout.fillHeight: true
           radius: 10
-          color: Ass.Colors.surface_container
+          color: Dat.Colors.surface_container
         }
 
         Rectangle {
@@ -88,7 +87,7 @@ Rectangle {
           implicitHeight: 10
           radius: 10
           // color: "transparent"
-          color: Ass.Colors.outline
+          color: Dat.Colors.outline
           antialiasing: true
         }
       }
@@ -99,7 +98,7 @@ Rectangle {
       Layout.fillWidth: true
       Layout.fillHeight: true
       Layout.preferredWidth: 1
-      // color: Ass.Colors.surface_container_high
+      // color: Dat.Colors.surface_container_high
 
       Wid.SessionDots {}
     }

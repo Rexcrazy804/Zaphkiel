@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell.Services.UPower
 
-import "../Assets/" as Ass
+import "../Data/" as Dat
 
 RowLayout {
   id: info
@@ -15,7 +15,7 @@ RowLayout {
       anchors.fill: parent
       verticalAlignment: Text.AlignVCenter
       horizontalAlignment: Text.AlignLeft
-      color: Ass.Colors.on_surface
+      color: Dat.Colors.on_surface
       text: "󰂏 " + info.bat.energyCapacity
       font.pointSize: 10
     }
@@ -37,7 +37,7 @@ RowLayout {
       }
 
       anchors.centerIn: parent
-      color: Ass.Colors.on_surface
+      color: Dat.Colors.on_surface
       text: switch (info.bat.state) {
         case UPowerDeviceState.Charging:
         "  " + ((text.timeToFull[0] > 0) ? text.timeToFull[0] + " hours" : +text.timeToFull[1] + " minutes");
@@ -59,7 +59,7 @@ RowLayout {
     color: "transparent"
     Text {
       anchors.fill: parent
-      color: Ass.Colors.on_surface
+      color: Dat.Colors.on_surface
       horizontalAlignment: Text.AlignRight
       verticalAlignment: Text.AlignVCenter
       text: "󱐋 " + info.bat.changeRate

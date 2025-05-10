@@ -6,7 +6,6 @@ import Quickshell.Hyprland
 import Quickshell.Wayland
 import Quickshell.Services.UPower
 
-import "../Assets/" as Ass
 import "../Data/" as Dat
 import "../Generics/" as Gen
 import "../Widgets/" as Wid
@@ -35,11 +34,11 @@ RowLayout {
         Layout.minimumHeight: 20
         Layout.maximumWidth: 20
         Layout.minimumWidth: 20
-        color: Ass.Colors.primary
+        color: Dat.Colors.primary
 
         Text {
           anchors.centerIn: parent
-          color: Ass.Colors.on_primary
+          color: Dat.Colors.on_primary
           text: Hyprland.focusedWorkspace?.id ?? "0"
           font.pointSize: 10
           font.bold: true
@@ -51,7 +50,7 @@ RowLayout {
         Layout.leftMargin: 8
         Layout.fillHeight: true
         verticalAlignment: Text.AlignVCenter
-        color: Ass.Colors.primary
+        color: Dat.Colors.primary
         text: Dat.Globals.actWinName
       }
     }
@@ -86,7 +85,7 @@ RowLayout {
         Layout.rightMargin: 8
         Layout.fillWidth: false
         verticalAlignment: Text.AlignVCenter
-        color: Ass.Colors.primary
+        color: Dat.Colors.primary
         text: (Dat.Globals.notchState == "FULLY_EXPANDED") ? "" : ""
 
         MouseArea {
@@ -117,11 +116,11 @@ RowLayout {
         implicitWidth: 20
         radius: 20
 
-        color: Ass.Colors.surface_container_high
+        color: Dat.Colors.surface_container_high
 
         Text {
           anchors.centerIn: parent
-          color: Ass.Colors.on_surface
+          color: Dat.Colors.on_surface
           text: "󰃠"
         }
 

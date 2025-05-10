@@ -1,20 +1,18 @@
 import QtQuick
-import QtQuick.Layouts
 
-import "../Assets/" as Ass
 import "../Data/" as Dat
 import "../Generics/" as Gen
 
 Text {
   id: timeText
   anchors.centerIn: parent
-  color: Ass.Colors.secondary
+  color: Dat.Colors.secondary
   text: Qt.formatDateTime(Dat.Clock?.date, "h:mm:ss AP")
 
   Gen.MouseArea {
     anchors.fill: null
     anchors.centerIn: parent
-    layerColor: Ass.Colors.secondary
+    layerColor: Dat.Colors.secondary
     layerRadius: 20
 
     width: timeText.contentWidth + 12

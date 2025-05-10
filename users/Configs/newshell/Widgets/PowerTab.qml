@@ -1,4 +1,5 @@
 import QtQuick
+import QtGraphs
 import QtQuick.Layouts
 import QtQuick.Controls
 import Quickshell.Services.UPower
@@ -10,7 +11,6 @@ Rectangle {
   color: Dat.Colors.surface_container_high
 
   RowLayout {
-    // anchors.margins: 10
     anchors.fill: parent
     spacing: 0
 
@@ -18,7 +18,7 @@ Rectangle {
       Layout.fillHeight: true
       Layout.fillWidth: true
       radius: 20
-      color: Dat.Colors.surface_container_highest
+      color: "transparent"
 
       Rectangle {
         anchors.fill: graphDesc
@@ -30,25 +30,72 @@ Rectangle {
         id: graphDesc
         anchors.fill: parent
         anchors.margins: 5
+        anchors.rightMargin: 0
         spacing: 0
         Rectangle {
-          // TODO battery graph
+          clip: true
           Layout.fillHeight: true
           Layout.fillWidth: true
           radius: 0
           color: "transparent"
+          GraphsView {
+            // TODO complete this and make it segsy
+            visible: false
+            marginTop: 0
+            marginLeft: 0
+            marginRight: 0
+            marginBottom: 0
+            panStyle: GraphsView.PanStyle.Drag
+            anchors.fill: parent
+            // anchors.margins: -40
+            theme: GraphsTheme {
+              colorScheme: GraphsTheme.ColorScheme.Dark
+              backgroundColor: "transparent"
+              plotAreaBackgroundColor: "transparent"
+              seriesColors: ["#E0D080", "#B0A060"]
+              borderColors: ["#807040", "#706030"]
 
-          Text {
-            anchors.centerIn: parent
-            color: Dat.Colors.on_surface
-            text: "cool graph here soon"
+              grid.mainColor: "transparent"
+              grid.subColor: "transparent"
+
+              axisY.mainColor: "transparent"
+              axisY.subColor: "transparent"
+              axisX.mainColor: "transparent"
+              axisX.subColor: "transparent"
+              axisX.labelTextColor: Dat.Colors.on_surface
+              axisY.labelTextColor: Dat.Colors.on_surface
+              axisYLabelFont.pointSize: 8
+              axisXLabelFont.pointSize: 8
+            }
+            axisX: ValueAxis {
+              max: 4
+              subTickCount: 0
+              tickInterval: 1
+            }
+            axisY: ValueAxis {
+              max: 4
+              subTickCount: 0
+              tickInterval: 1
+            }
+
+            LineSeries {
+              XYPoint { x: 0; y: 0 }
+              XYPoint { x: 1.1; y: 2.1 }
+              XYPoint { x: 1.9; y: 3.3 }
+              XYPoint { x: 2.1; y: 2.1 }
+              XYPoint { x: 2.9; y: 4.9 }
+              XYPoint { x: 3.4; y: 3.0 }
+              XYPoint { x: 4.1; y: 3.3 }
+            }
           }
         }
-        Rectangle {
+        Rectangle { // BATTERY information
           Layout.fillWidth: true
           implicitHeight: 28
           radius: 20
-          color: Dat.Colors.surface_container_high
+          topLeftRadius: 0
+          topRightRadius: 0
+          color: Dat.Colors.surface_container_highest
 
           PowerInfo {
             anchors.fill: parent
@@ -65,7 +112,6 @@ Rectangle {
       radius: 40
       implicitWidth: 40
       implicitHeight: parent.height - 14
-      // color: Dat.Colors.surface_container_low
       color: "transparent"
 
       Slider {

@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import Quickshell.Services.UPower
 
 import "../Data/" as Dat
+import "../Generics/" as Gen
 
 Rectangle {
   Layout.minimumWidth: batText.width + 20
@@ -39,6 +40,18 @@ Rectangle {
     onTriggered: () => {
       batText.chargeIconIndex = batText.chargeIconIndex % 10;
       batText.chargeIconIndex += 1;
+    }
+  }
+
+  Gen.MouseArea {
+    hoverOpacity: 0.1
+    clickOpacity: 0.2
+    layerColor: Dat.Colors.on_primary
+
+    onClicked: {
+      Dat.Globals.notchState = "FULLY_EXPANDED"
+      Dat.Globals.swipeIndex = 4
+      Dat.Globals.settingsTabIndex = 0
     }
   }
 }

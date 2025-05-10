@@ -20,7 +20,7 @@ Rectangle {
 
       RowLayout {
         id: tabLay
-        property int activeIndex: 0
+        property int activeIndex: Dat.Globals.settingsTabIndex
         anchors.fill: parent
         Repeater {
           model: ["Power", "Audio", "Network"]
@@ -105,7 +105,7 @@ Rectangle {
                 // TODO hover animation
                 // onContainsMouseChanged: parent.opacity += (containsMouse)? 0.2 : -0.2
                 onClicked: mevent => {
-                  tabLay.activeIndex = tabRect.index;
+                  Dat.Globals.settingsTabIndex = tabRect.index;
                 }
               }
             }

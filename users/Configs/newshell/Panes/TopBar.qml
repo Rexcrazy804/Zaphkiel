@@ -43,6 +43,15 @@ RowLayout {
           font.pointSize: 10
           font.bold: true
         }
+
+        Gen.MouseArea {
+          hoverOpacity: 0.1
+          clickOpacity: 0.2
+          onClicked: {
+            Dat.Globals.notchState = "FULLY_EXPANDED"
+            Dat.Globals.swipeIndex = 2
+          }
+        }
       }
       Text {
         // Active Window name

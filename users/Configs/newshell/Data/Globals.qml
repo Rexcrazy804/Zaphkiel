@@ -25,8 +25,14 @@ Singleton {
   // 1 => Calendar
   // 2 => System
   // 3 => Mpris
-  // 4 => Toggles & Sliders
+  // 4 => SettingsView
   property int swipeIndex: 0
+
+  // SettingsView State
+  // 0 => Power
+  // 1 => Audio
+  // 2 => Network
+  property int settingsTabIndex: 0
 
   property string hostName: "KuruMi"
   Process {

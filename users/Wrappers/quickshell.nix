@@ -17,6 +17,7 @@ in
       kdePackages.qtbase
       kdePackages.qtgraphs
       kdePackages.qtdeclarative
+      kdePackages.qtmultimedia
     ];
 
     qmlPath = lib.pipe qtDeps [

@@ -1,4 +1,5 @@
 import QtQuick
+import QtMultimedia
 import QtQuick.Layouts
 
 import "../Data/" as Dat
@@ -13,13 +14,37 @@ Rectangle {
       Layout.fillHeight: true
       Layout.preferredWidth: 1.45
       color: "transparent"
-      Text {
-        color: Dat.Colors.secondary
-        anchors.centerIn: parent
-        text: " Kuru Kuru Kuru"
+      RowLayout {
+        anchors.fill: parent
+        spacing: 10
+        Text {
+          id: muteIcon
+          Layout.leftMargin: 10
+          property bool muted: false
+          Layout.fillWidth: true
+          Layout.fillHeight: true
+          horizontalAlignment: Text.AlignRight
+          verticalAlignment: Text.AlignVCenter
+
+          color: Dat.Colors.on_surface
+          text: (muted) ? "󰖁" : "󰕾"
+
+          MouseArea {
+            anchors.fill: parent
+            onClicked: parent.muted = !parent.muted
+          }
+        }
+        Text {
+          id: kuruText
+          Layout.fillWidth: true
+          Layout.fillHeight: true
+          horizontalAlignment: Text.AlignLeft
+          verticalAlignment: Text.AlignVCenter
+          color: Dat.Colors.on_surface
+          text: "くるくる～――っと。"
+        }
       }
     }
-
     ColumnLayout {
       Layout.fillWidth: true
       Layout.fillHeight: true
@@ -106,18 +131,43 @@ Rectangle {
         }
 
         Timer {
+          running: squishRect.state != "SQUISH" && parent.speed > 0.8
+          interval: 50
+          repeat: true
+          onTriggered: parent.speed -= 0.05
+        }
+
+        Timer {
           id: stoptheKuruKuru
           running: squishRect.state != "SQUISH" && parent.speed > 0.8
           interval: 50
           repeat: true
-          onTriggered:parent.speed -= 0.05
+          onTriggered: parent.speed -= 0.05
+        }
+
+        Video {
+          id: kururin
+          source: "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e4/VO_JA_Herta_Talent_02.ogg/revision/latest?cb=20230616201845"
+          muted: muteIcon.muted
+        }
+        Video {
+          id: kurukuru
+          source: "https://static.wikia.nocookie.net/houkai-star-rail/images/1/11/VO_JA_Herta_Talent_01.ogg/revision/latest?cb=20230616201843"
+          muted: muteIcon.muted
         }
 
         MouseArea {
           anchors.fill: parent
           acceptedButtons: Qt.LeftButton
           onPressedChanged: {
-            squishRect.state = (squishRect.state == "SQUISH")? "NOSQUISH" : "SQUISH"
+            squishRect.state = (squishRect.state == "SQUISH") ? "NOSQUISH" : "SQUISH";
+            if (Math.round((Math.random() * 10)) % 2 == 0) {
+              kurukuru.play();
+              kuruText.text = "くるくる～――っと。";
+            } else {
+              kururin.play();
+              kuruText.text = "くるりん～っと。";
+            }
           }
         }
       }

@@ -1,10 +1,11 @@
 pragma ComponentBehavior: Bound
 import QtQuick
-import QtQuick.Effects
+import Quickshell.Hyprland
 import QtQuick.Layouts
 import QtQuick.Controls
 
 import "../Data/" as Dat
+import "../Generics/" as Gen
 import "../Widgets/" as Wid
 
 Rectangle {
@@ -72,12 +73,55 @@ Rectangle {
         width: 150
 
         Rectangle {
+          id: monitorRect
           // TODO fill this with resource monitor data
           clip: true
           Layout.fillWidth: true
           Layout.fillHeight: true
           radius: 10
           color: Dat.Colors.surface_container
+
+          RowLayout {
+            anchors.fill: parent
+            anchors.margins: 10
+
+            Text {
+              id: hyprIcon
+              Layout.fillHeight: true
+              Layout.fillWidth: true
+              Layout.topMargin: 20
+              Layout.bottomMargin: this.Layout.topMargin
+
+              horizontalAlignment: Text.AlignHCenter
+              verticalAlignment: Text.AlignVCenter
+              text: ""
+              font.pointSize: 32
+              color: Dat.Colors.secondary
+            }
+            GridLayout {
+              implicitWidth: 60
+              implicitHeight: 60
+              rows: 3
+              columns: 3
+
+              Repeater {
+                model: 9
+                Rectangle {
+                  required property int index
+                  radius: 18
+                  width: this.radius
+                  height: this.radius
+                  color: (Hyprland.focusedWorkspace?.id == this.index + 1)? Dat.Colors.primary : Dat.Colors.surface_container_high
+
+                  Gen.MouseArea {
+                    hoverOpacity: 0.1
+                    layerColor: Dat.Colors.primary
+                    onClicked: Hyprland.dispatch("workspace " + (parent.index + 1))
+                  }
+                }
+              }
+            }
+          }
         }
 
         Rectangle {

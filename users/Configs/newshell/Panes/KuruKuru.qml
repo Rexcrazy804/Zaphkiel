@@ -136,7 +136,7 @@ Rectangle {
           running: squishRect.state != "SQUISH" && parent.speed > 0.8
           interval: 50
           repeat: true
-          onTriggered: parent.speed -= 0.04
+          onTriggered: parent.speed -= 0.05
         }
 
         // Video {

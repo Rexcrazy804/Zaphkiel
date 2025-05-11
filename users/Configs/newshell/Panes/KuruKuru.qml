@@ -131,18 +131,11 @@ Rectangle {
         }
 
         Timer {
-          running: squishRect.state != "SQUISH" && parent.speed > 0.8
-          interval: 50
-          repeat: true
-          onTriggered: parent.speed -= 0.05
-        }
-
-        Timer {
           id: stoptheKuruKuru
           running: squishRect.state != "SQUISH" && parent.speed > 0.8
           interval: 50
           repeat: true
-          onTriggered: parent.speed -= 0.05
+          onTriggered: parent.speed -= 0.04
         }
 
         Video {

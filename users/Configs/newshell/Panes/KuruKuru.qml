@@ -1,5 +1,5 @@
 import QtQuick
-import QtMultimedia
+// import QtMultimedia
 import QtQuick.Layouts
 
 import "../Data/" as Dat
@@ -19,8 +19,9 @@ Rectangle {
         spacing: 10
         Text {
           id: muteIcon
-          Layout.leftMargin: 10
           property bool muted: false
+
+          Layout.leftMargin: 10
           Layout.fillWidth: true
           Layout.fillHeight: true
           horizontalAlignment: Text.AlignRight
@@ -138,27 +139,29 @@ Rectangle {
           onTriggered: parent.speed -= 0.04
         }
 
-        Video {
-          id: kururin
-          source: "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e4/VO_JA_Herta_Talent_02.ogg/revision/latest?cb=20230616201845"
-          muted: muteIcon.muted
-        }
-        Video {
-          id: kurukuru
-          source: "https://static.wikia.nocookie.net/houkai-star-rail/images/1/11/VO_JA_Herta_Talent_01.ogg/revision/latest?cb=20230616201843"
-          muted: muteIcon.muted
-        }
+        // Video {
+        //   id: kururin
+        //   source: "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e4/VO_JA_Herta_Talent_02.ogg/revision/latest?cb=20230616201845"
+        //   muted: muteIcon.muted
+        // }
+        // Video {
+        //   id: kurukuru
+        //   source: "https://static.wikia.nocookie.net/houkai-star-rail/images/1/11/VO_JA_Herta_Talent_01.ogg/revision/latest?cb=20230616201843"
+        //   muted: muteIcon.muted
+        // }
 
         MouseArea {
           anchors.fill: parent
           acceptedButtons: Qt.LeftButton
           onPressedChanged: {
             squishRect.state = (squishRect.state == "SQUISH") ? "NOSQUISH" : "SQUISH";
+
+            if (muteIcon.muted) { return }
             if (Math.round((Math.random() * 10)) % 2 == 0) {
-              kurukuru.play();
+              // kurukuru.play();
               kuruText.text = "くるくる～――っと。";
             } else {
-              kururin.play();
+              // kururin.play();
               kuruText.text = "くるりん～っと。";
             }
           }

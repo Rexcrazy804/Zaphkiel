@@ -5,7 +5,7 @@
   kdePackages,
   lib,
 }: let
-  qsConfig = ../Configs/newshell;
+  qsConfig = ../Configs/quickshell/kurukurubar;
 in
   symlinkJoin rec {
     name = "qs-wrapper";

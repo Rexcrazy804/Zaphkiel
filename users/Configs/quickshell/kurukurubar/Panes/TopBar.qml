@@ -17,49 +17,55 @@ RowLayout {
     clip: true
     color: "transparent"
 
-    RowLayout {
-      anchors.bottom: parent.bottom
-      // TODO animations for text change?
+    Rectangle {
       anchors.left: parent.left
-      anchors.top: parent.top
-      spacing: 0
+      anchors.leftMargin: 8
+      anchors.verticalCenter: parent.verticalCenter
+      color: Dat.Colors.primary_container
+      height: 20
+      radius: 20
+      width: workRow.width + 8
 
-      Rectangle {
-        Layout.leftMargin: 4
-        Layout.maximumHeight: 20
-        Layout.maximumWidth: 20
-        Layout.minimumHeight: 20
-        Layout.minimumWidth: 20
-        color: Dat.Colors.primary
-        // workspace number
-        radius: 20
+      RowLayout {
+        id: workRow
 
-        Text {
-          anchors.centerIn: parent
-          color: Dat.Colors.on_primary
-          font.bold: true
-          font.pointSize: 10
-          text: Hyprland.focusedWorkspace?.id ?? "0"
-        }
-        Gen.MouseArea {
-          clickOpacity: 0.2
-          hoverOpacity: 0.1
+        anchors.left: parent.left
+        spacing: 5
 
-          onClicked: {
-            Dat.Globals.notchState = "FULLY_EXPANDED";
-            Dat.Globals.swipeIndex = 2;
+        Rectangle {
+          Layout.fillHeight: true
+          // Active Window name
+          color: Dat.Colors.primary
+          implicitWidth: windowNameText.contentWidth + 10
+          radius: 20
+
+          Text {
+            id: windowNameText
+
+            readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
+
+            anchors.centerIn: parent
+            color: Dat.Colors.on_primary
+            text: Dat.Globals.actWinName
           }
         }
+        Text {
+          Layout.fillHeight: true
+          color: Dat.Colors.on_primary_container
+          text: Hyprland.focusedWorkspace?.id ?? "0"
+          verticalAlignment: Text.AlignVCenter
+        }
       }
-      Text {
-        // Active Window name
-        readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
+      Gen.MouseArea {
+        clickOpacity: 0.2
+        hoverOpacity: 0.08
+        layerColor: Dat.Colors.on_primary_container
+        layerRadius: 20
 
-        Layout.fillHeight: true
-        Layout.leftMargin: 8
-        color: Dat.Colors.primary
-        text: Dat.Globals.actWinName
-        verticalAlignment: Text.AlignVCenter
+        onClicked: {
+          Dat.Globals.notchState = "FULLY_EXPANDED";
+          Dat.Globals.swipeIndex = 2;
+        }
       }
     }
   }

@@ -1,5 +1,4 @@
-import QtQuick
-// import QtMultimedia
+import QtQuick // import QtMultimedia
 import QtQuick.Layouts
 
 import "../Data/" as Dat
@@ -106,6 +105,7 @@ Rectangle {
       AnimatedImage {
         Layout.fillHeight: true
         Layout.fillWidth: true
+        Layout.rightMargin: 8
         fillMode: Image.PreserveAspectCrop
         horizontalAlignment: Image.AlignRight
         playing: true

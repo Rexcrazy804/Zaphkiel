@@ -24,12 +24,12 @@ Rectangle {
         radius: 20
         bottomLeftRadius: 0
         bottomRightRadius: 0
-        color: Dat.Colors.secondary_container
+        color: Dat.Colors.primary_container
         Text {
           id: weekDayText
           anchors.centerIn: parent
           text: Qt.formatDateTime(Dat.Clock?.date, "ddd")
-          color: Dat.Colors.on_secondary_container
+          color: Dat.Colors.on_primary_container
           font.pointSize: 8
         }
       }
@@ -37,7 +37,7 @@ Rectangle {
       Rectangle {
         Layout.fillHeight: true
         Layout.fillWidth: true
-        color: Dat.Colors.secondary
+        color: Dat.Colors.primary
         topLeftRadius: 0
         topRightRadius: 0
         radius: 10
@@ -46,7 +46,7 @@ Rectangle {
           rotation: -90
           anchors.centerIn: parent
           text: Qt.formatDateTime(Dat.Clock?.date, "MMM")
-          color: Dat.Colors.on_secondary
+          color: Dat.Colors.on_primary
         }
       }
     }
@@ -66,14 +66,14 @@ Rectangle {
 
       delegate: Rectangle {
         required property var model
-        color: (monthGrid.currDay == model.day)? Dat.Colors.secondary : "transparent"
+        color: (monthGrid.currDay == model.day)? Dat.Colors.primary : "transparent"
         radius: 10
         Text {
           anchors.centerIn: parent
           verticalAlignment: Text.AlignVCenter
           horizontalAlignment: Text.AlignVCenter
           text: parent.model.day
-          color: (parent.model.month == monthGrid.currMonth)? (parent.model.day == monthGrid.currDay)? Dat.Colors.on_secondary : Dat.Colors.on_surface : Dat.Colors.withAlpha(Dat.Colors.on_surface_variant, 0.70)
+          color: (parent.model.month == monthGrid.currMonth)? (parent.model.day == monthGrid.currDay)? Dat.Colors.on_primary : Dat.Colors.on_surface : Dat.Colors.withAlpha(Dat.Colors.on_surface_variant, 0.70)
         }
       }
     }

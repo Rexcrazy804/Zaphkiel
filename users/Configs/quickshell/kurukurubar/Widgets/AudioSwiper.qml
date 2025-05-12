@@ -9,7 +9,7 @@ import "../Generics/" as Gen
 Rectangle {
   clip: true
   id: audRect
-  color: Dat.Colors.secondary
+  color: Dat.Colors.primary_container
   Layout.minimumWidth: swiper.currentItem?.contentWidth + 20
 
   Behavior on Layout.minimumWidth {
@@ -29,14 +29,15 @@ Rectangle {
       height: audRect.height
       horizontalAlignment: Text.AlignHCenter
       verticalAlignment: Text.AlignVCenter
-      color: Dat.Colors.on_secondary
+      color: Dat.Colors.on_primary_container
       font.pointSize: 11
       text: Math.round(Dat.Audio.sinkVolume * 100) + "%" + " " + Dat.Audio.sinkIcon
 
       Gen.MouseArea {
+        layerRadius: audRect.radius
         clickOpacity: 0.2
         acceptedButtons: Qt.LeftButton | Qt.MiddleButton
-        layerColor: Dat.Colors.on_secondary
+        layerColor: Dat.Colors.on_primary_container
         onWheel: event => Dat.Audio.wheelAction(event, Dat.Audio.sink)
         onClicked: mouse => {
           switch (mouse.button)  {
@@ -58,13 +59,14 @@ Rectangle {
       height: audRect.height
       horizontalAlignment: Text.AlignHCenter
       verticalAlignment: Text.AlignVCenter
-      color: Dat.Colors.on_secondary
+      color: Dat.Colors.on_primary_container
       font.pointSize: 11
       text: Math.round(Dat.Audio.sourceVolume * 100) + "%" + " " + Dat.Audio.sourceIcon
 
       Gen.MouseArea {
+        layerRadius: audRect.radius
         clickOpacity: 0.2
-        layerColor: Dat.Colors.on_secondary
+        layerColor: Dat.Colors.on_primary_container
         acceptedButtons: Qt.LeftButton | Qt.MiddleButton
 
         onWheel: event => Dat.Audio.wheelAction(event, Dat.Audio.source)

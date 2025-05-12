@@ -29,19 +29,19 @@ Repeater {
     radius: 28
     implicitWidth: 28
     implicitHeight: this.implicitWidth
-    color: Dat.Colors.surface_container_high
+    color: Dat.Colors.primary
 
     Gen.MouseArea {
       hoverOpacity: 0.1
       clickOpacity: 0.2
-      layerColor: Dat.Colors.on_surface
+      layerColor: Dat.Colors.on_primary
       onClicked: mevent => dot.modelData.action(mevent)
     }
 
     Text {
       anchors.centerIn: parent
       text: dot.modelData.text
-      color: Dat.Colors.on_surface
+      color: Dat.Colors.on_primary
       font.bold: true
     }
   }

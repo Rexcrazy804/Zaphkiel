@@ -96,7 +96,7 @@ Rectangle {
               verticalAlignment: Text.AlignVCenter
               text: ""
               font.pointSize: 32
-              color: Dat.Colors.secondary
+              color: Dat.Colors.primary
             }
             GridLayout {
               implicitWidth: 60

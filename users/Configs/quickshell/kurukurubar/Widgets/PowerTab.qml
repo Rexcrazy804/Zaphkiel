@@ -159,10 +159,10 @@ Rectangle {
           visible: true
           anchors.horizontalCenter: parent.horizontalCenter
 
-          color: Dat.Colors.secondary
+          color: Dat.Colors.primary
           Text {
             anchors.centerIn: parent
-            color: Dat.Colors.on_secondary
+            color: Dat.Colors.on_primary
             text: switch (PowerProfiles.profile) {
               case 0:
               "";

@@ -9,12 +9,21 @@ import Quickshell.Services.Notifications
 
 Singleton {
   id: notif
+
+  property int notifCount: server.trackedNotifications.values.length
   property NotificationServer notifServer: server
   property ScriptModel notifications: sList
-  property int notifCount: server.trackedNotifications.values.length
+
+  function clearNotifs() {
+    for (var i = 0; i < server.trackedNotifications.values.length; i++) {
+      // TODO this is still a bit wonky idk why
+      server.trackedNotifications.values[i].dismiss();
+    }
+  }
 
   NotificationServer {
     id: server
+
     actionIconsSupported: true
     actionsSupported: true
     bodyHyperlinksSupported: true
@@ -28,16 +37,9 @@ Singleton {
       n.tracked = true;
     }
   }
-
   ScriptModel {
     id: sList
-    values: [...server.trackedNotifications.values]
-  }
 
-  function clearNotifs() {
-    for (var i = 0; i < server.trackedNotifications.values.length; i++) {
-      // TODO this is still a bit wonky idk why
-      server.trackedNotifications.values[i].dismiss()
-    }
+    values: [...server.trackedNotifications.values]
   }
 }

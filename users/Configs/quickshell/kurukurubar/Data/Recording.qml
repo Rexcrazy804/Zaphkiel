@@ -6,39 +6,46 @@ import Quickshell.Io
 
 Singleton {
   id: root
+
   property bool running: false
 
   Process {
     id: fullRecording
-    command: ["gpurecording", "start"]
-    onStarted: root.running = true
-    onExited: (ec, estatus) => root.running = false
-  }
 
+    command: ["gpurecording", "start"]
+
+    onExited: (ec, estatus) => root.running = false
+    onStarted: root.running = true
+  }
   Process {
-    property string area: ""
     id: areaRecording
+
+    property string area: ""
+
     command: ["gpurecording", "start", area]
     stdinEnabled: true
-    onStarted: root.running = true
-    onExited: (ec, estatus) => root.running = false
-  }
 
+    onExited: (ec, estatus) => root.running = false
+    onStarted: root.running = true
+  }
   Process {
     // redundant can be called directly and will have the same effect
     id: stoper
-    command: ["gpurecording",  "stop"]
+
+    command: ["gpurecording", "stop"]
   }
-
   IpcHandler {
-    target: "record"
-
-    function start() { fullRecording.running = true }
+    function start() {
+      fullRecording.running = true;
+    }
     function startArea(area: string) {
-      areaRecording.area = area
-      areaRecording.running = true
+      areaRecording.area = area;
+      areaRecording.running = true;
+    }
+    function stop() {
+      stoper.running = true;
     }
 
-    function stop() { stoper.running = true }
+    target: "record"
   }
 }

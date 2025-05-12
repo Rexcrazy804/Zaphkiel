@@ -9,79 +9,86 @@ Rectangle {
 
   RowLayout {
     anchors.fill: parent
+
     Rectangle {
-      Layout.fillWidth: true
       Layout.fillHeight: true
+      Layout.fillWidth: true
       Layout.preferredWidth: 1.45
       color: "transparent"
+
       RowLayout {
         anchors.fill: parent
         spacing: 10
+
         Text {
           id: muteIcon
+
           property bool muted: false
 
-          Layout.leftMargin: 10
-          Layout.fillWidth: true
           Layout.fillHeight: true
-          horizontalAlignment: Text.AlignRight
-          verticalAlignment: Text.AlignVCenter
-
+          Layout.fillWidth: true
+          Layout.leftMargin: 10
           color: Dat.Colors.on_surface
+          horizontalAlignment: Text.AlignRight
           text: (muted) ? "󰖁" : "󰕾"
+          verticalAlignment: Text.AlignVCenter
 
           MouseArea {
             anchors.fill: parent
+
             onClicked: parent.muted = !parent.muted
           }
         }
         Text {
           id: kuruText
-          Layout.fillWidth: true
+
           Layout.fillHeight: true
-          horizontalAlignment: Text.AlignLeft
-          verticalAlignment: Text.AlignVCenter
+          Layout.fillWidth: true
           color: Dat.Colors.on_surface
+          horizontalAlignment: Text.AlignLeft
           text: "くるくる～――っと。"
+          verticalAlignment: Text.AlignVCenter
         }
       }
     }
     ColumnLayout {
-      Layout.fillWidth: true
       Layout.fillHeight: true
+      Layout.fillWidth: true
       Layout.preferredWidth: 1
+
       Rectangle { // the hando that squishes the kuru kuru
         id: squishRect
-        Layout.fillWidth: true
-        implicitHeight: 0
-        color: "transparent"
 
+        Layout.fillWidth: true
+        color: "transparent"
+        implicitHeight: 0
         state: "NOSQUISH"
 
         states: [
           State {
             name: "NOSQUISH"
+
             PropertyChanges {
               squishRect.implicitHeight: 0
             }
           },
           State {
             name: "SQUISH"
+
             PropertyChanges {
               squishRect.implicitHeight: 40
             }
           }
         ]
-
         transitions: [
           Transition {
             from: "NOSQUISH"
             to: "SQUISH"
 
             NumberAnimation {
-              property: "implicitHeight"
               duration: 100
               easing.bezierCurve: Dat.MaterialEasing.standardAccel
+              property: "implicitHeight"
             }
           },
           Transition {
@@ -89,23 +96,21 @@ Rectangle {
             to: "NOSQUISH"
 
             NumberAnimation {
-              property: "implicitHeight"
               duration: Dat.MaterialEasing.standardDecelTime
               easing.bezierCurve: Dat.MaterialEasing.standardDecel
+              property: "implicitHeight"
             }
           }
         ]
       }
-
       AnimatedImage {
-        Layout.fillWidth: true
         Layout.fillHeight: true
-        playing: true
-        speed: 0.8
-
+        Layout.fillWidth: true
         fillMode: Image.PreserveAspectCrop
         horizontalAlignment: Image.AlignRight
+        playing: true
         source: "https://duiqt.github.io/herta_kuru/static/img/hertaa1.gif"
+        speed: 0.8
 
         Component.onCompleted: {
           Dat.Globals.notchStateChanged.connect(() => {
@@ -116,26 +121,29 @@ Rectangle {
         }
 
         Timer {
-          running: Dat.Globals.notchState != "FULLY_EXPANDED" && parent.playing == true
           interval: 500
+          running: Dat.Globals.notchState != "FULLY_EXPANDED" && parent.playing == true
+
           onTriggered: {
             parent.playing = false;
           }
         }
-
         Timer {
           id: squisher
-          running: squishRect.state == "SQUISH"
+
           interval: 50
           repeat: true
+          running: squishRect.state == "SQUISH"
+
           onTriggered: parent.speed += 0.1
         }
-
         Timer {
           id: stoptheKuruKuru
-          running: squishRect.state != "SQUISH" && parent.speed > 0.8
+
           interval: 50
           repeat: true
+          running: squishRect.state != "SQUISH" && parent.speed > 0.8
+
           onTriggered: parent.speed -= 0.05
         }
 
@@ -151,12 +159,15 @@ Rectangle {
         // }
 
         MouseArea {
-          anchors.fill: parent
           acceptedButtons: Qt.LeftButton
+          anchors.fill: parent
+
           onPressedChanged: {
             squishRect.state = (squishRect.state == "SQUISH") ? "NOSQUISH" : "SQUISH";
 
-            if (muteIcon.muted) { return }
+            if (muteIcon.muted) {
+              return;
+            }
             if (Math.round((Math.random() * 10)) % 2 == 0) {
               // kurukuru.play();
               kuruText.text = "くるくる～――っと。";

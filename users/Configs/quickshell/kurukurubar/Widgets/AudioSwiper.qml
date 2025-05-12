@@ -7,10 +7,11 @@ import "../Data/" as Dat
 import "../Generics/" as Gen
 
 Rectangle {
-  clip: true
   id: audRect
-  color: Dat.Colors.primary_container
+
   Layout.minimumWidth: swiper.currentItem?.contentWidth + 20
+  clip: true
+  color: Dat.Colors.primary_container
 
   Behavior on Layout.minimumWidth {
     NumberAnimation {
@@ -21,67 +22,68 @@ Rectangle {
 
   SwipeView {
     id: swiper
+
     anchors.fill: parent
     orientation: Qt.Horizontal
 
     Text {
-      width: audRect.width
-      height: audRect.height
-      horizontalAlignment: Text.AlignHCenter
-      verticalAlignment: Text.AlignVCenter
       color: Dat.Colors.on_primary_container
       font.pointSize: 11
+      height: audRect.height
+      horizontalAlignment: Text.AlignHCenter
       text: Math.round(Dat.Audio.sinkVolume * 100) + "%" + " " + Dat.Audio.sinkIcon
+      verticalAlignment: Text.AlignVCenter
+      width: audRect.width
 
       Gen.MouseArea {
-        layerRadius: audRect.radius
-        clickOpacity: 0.2
         acceptedButtons: Qt.LeftButton | Qt.MiddleButton
+        clickOpacity: 0.2
         layerColor: Dat.Colors.on_primary_container
-        onWheel: event => Dat.Audio.wheelAction(event, Dat.Audio.sink)
+        layerRadius: audRect.radius
+
         onClicked: mouse => {
-          switch (mouse.button)  {
-            case Qt.MiddleButton: 
-              Dat.Audio.toggleMute(Dat.Audio.sink); 
-              break;
-            case Qt.LeftButton:
-              Dat.Globals.notchState = "FULLY_EXPANDED"
-              Dat.Globals.swipeIndex = 4
-              Dat.Globals.settingsTabIndex = 1
-              break;
+          switch (mouse.button) {
+          case Qt.MiddleButton:
+            Dat.Audio.toggleMute(Dat.Audio.sink);
+            break;
+          case Qt.LeftButton:
+            Dat.Globals.notchState = "FULLY_EXPANDED";
+            Dat.Globals.swipeIndex = 4;
+            Dat.Globals.settingsTabIndex = 1;
+            break;
           }
         }
+        onWheel: event => Dat.Audio.wheelAction(event, Dat.Audio.sink)
       }
     }
-
     Text {
-      width: audRect.width
-      height: audRect.height
-      horizontalAlignment: Text.AlignHCenter
-      verticalAlignment: Text.AlignVCenter
       color: Dat.Colors.on_primary_container
       font.pointSize: 11
+      height: audRect.height
+      horizontalAlignment: Text.AlignHCenter
       text: Math.round(Dat.Audio.sourceVolume * 100) + "%" + " " + Dat.Audio.sourceIcon
+      verticalAlignment: Text.AlignVCenter
+      width: audRect.width
 
       Gen.MouseArea {
-        layerRadius: audRect.radius
+        acceptedButtons: Qt.LeftButton | Qt.MiddleButton
         clickOpacity: 0.2
         layerColor: Dat.Colors.on_primary_container
-        acceptedButtons: Qt.LeftButton | Qt.MiddleButton
+        layerRadius: audRect.radius
 
-        onWheel: event => Dat.Audio.wheelAction(event, Dat.Audio.source)
         onClicked: mouse => {
-          switch (mouse.button)  {
-            case Qt.MiddleButton: 
-              Dat.Audio.toggleMute(Dat.Audio.source); 
-              break;
-            case Qt.LeftButton:
-              Dat.Globals.notchState = "FULLY_EXPANDED"
-              Dat.Globals.swipeIndex = 4
-              Dat.Globals.settingsTabIndex = 1
-              break;
+          switch (mouse.button) {
+          case Qt.MiddleButton:
+            Dat.Audio.toggleMute(Dat.Audio.source);
+            break;
+          case Qt.LeftButton:
+            Dat.Globals.notchState = "FULLY_EXPANDED";
+            Dat.Globals.swipeIndex = 4;
+            Dat.Globals.settingsTabIndex = 1;
+            break;
           }
         }
+        onWheel: event => Dat.Audio.wheelAction(event, Dat.Audio.source)
       }
     }
   }

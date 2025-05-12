@@ -11,38 +11,34 @@ Rectangle {
   id: root
 
   color: "transparent"
+
   RowLayout {
     anchors.fill: parent
-    spacing: 8
     layoutDirection: Qt.RightToLeft
+    spacing: 8
 
     Rectangle {
       id: swipeRect
+
+      Layout.fillHeight: true
+      Layout.fillWidth: true
       // Pages
       clip: true
-      Layout.fillWidth: true
-      Layout.fillHeight: true
-
       color: Dat.Colors.surface_container_low
       radius: root.radius
 
       SwipeView {
         id: swipeArea
+
         anchors.fill: parent
         orientation: Qt.Horizontal
-
-        onCurrentIndexChanged: () => {
-          if (swipeArea.currentIndex != Dat.Globals.swipeIndex) {
-            Dat.Globals.swipeIndex = swipeArea.currentIndex
-          }
-        }
 
         Component.onCompleted: () => {
           Dat.Globals.swipeIndexChanged.connect(() => {
             if (swipeArea.currentIndex != Dat.Globals.swipeIndex) {
-              swipeArea.currentIndex = Dat.Globals.swipeIndex
+              swipeArea.currentIndex = Dat.Globals.swipeIndex;
             }
-          })
+          });
           // both are zero at the beginning sooo dk if I need this
           swipeArea.currentIndex = Dat.Globals.swipeIndex;
 
@@ -50,125 +46,131 @@ Rectangle {
           swipeArea.currentIndex = 1;
           Dat.Globals.notchState = "FULLY_EXPANDED";
         }
-
+        onCurrentIndexChanged: () => {
+          if (swipeArea.currentIndex != Dat.Globals.swipeIndex) {
+            Dat.Globals.swipeIndex = swipeArea.currentIndex;
+          }
+        }
 
         Rectangle {
-          width: swipeRect.width
+          color: "transparent"
           height: swipeRect.height
           radius: swipeRect.radius
-          color: "transparent"
+          width: swipeRect.width
 
           Text {
             anchors.centerIn: parent
+            color: Dat.Colors.on_surface
             text: "Home pane"
-            color: Dat.Colors.on_surface
           }
         }
-
         Wid.CalendarView {
-          width: swipeRect.width
           height: swipeRect.height
           radius: swipeRect.radius
+          width: swipeRect.width
         }
-
         Wid.SystemView {
-          width: swipeRect.width
           height: swipeRect.height
           radius: swipeRect.radius
+          width: swipeRect.width
         }
-
         Rectangle {
-          width: swipeRect.width
+          color: "transparent"
           height: swipeRect.height
           radius: swipeRect.radius
-          color: "transparent"
+          width: swipeRect.width
 
           Text {
             anchors.centerIn: parent
-            text: "Music Pane"
             color: Dat.Colors.on_surface
+            text: "Music Pane"
           }
         }
-
         Wid.SettingsView {
-          width: swipeRect.width
           height: swipeRect.height
           radius: swipeRect.radius
+          width: swipeRect.width
         }
       }
     }
-
     Rectangle {
       // the page indicator
       Layout.leftMargin: 8
-      radius: 20
+      color: Dat.Colors.surface_container_low
       implicitHeight: tabCols.height + 10
       implicitWidth: 28
-      color: Dat.Colors.surface_container_low
+      radius: 20
 
       ColumnLayout {
         id: tabCols
-        width: parent.width
+
         anchors.verticalCenter: parent.verticalCenter
         spacing: 10
+        width: parent.width
 
         Repeater {
           model: ["󰋜", "󰃭", "󱄅", "󰎇", "󰒓"]
+
           Rectangle {
             id: tabDot
-            required property string modelData
+
             required property int index
+            required property string modelData
 
             Layout.alignment: Qt.AlignCenter
-            radius: 20
-            implicitWidth: 20
-            implicitHeight: this.implicitWidth
             color: "transparent"
+            implicitHeight: this.implicitWidth
+            implicitWidth: 20
+            radius: 20
+
             Text {
               id: dotText
-              color: Dat.Colors.on_surface
-              anchors.centerIn: parent
-              text: tabDot.modelData
-              font.pointSize: 11
 
+              anchors.centerIn: parent
+              color: Dat.Colors.on_surface
+              font.pointSize: 11
               state: (swipeArea.currentIndex == tabDot.index) ? "ACTIVE" : "INACTIVE"
+              text: tabDot.modelData
+
               states: [
                 State {
                   name: "ACTIVE"
+
                   PropertyChanges {
                     dotText.scale: 1.6
                   }
                 },
                 State {
                   name: "INACTIVE"
+
                   PropertyChanges {
                     dotText.scale: 1
                   }
                 }
               ]
-
               transitions: [
                 Transition {
                   from: "INACTIVE"
                   to: "ACTIVE"
+
                   NumberAnimation {
-                    property: "scale"
                     duration: Dat.MaterialEasing.standardAccelTime
                     easing.bezierCurve: Dat.MaterialEasing.standardAccel
+                    property: "scale"
                   }
                 },
                 Transition {
                   from: "ACTIVE"
                   to: "INACTIVE"
+
                   NumberAnimation {
-                    property: "scale"
                     duration: Dat.MaterialEasing.standardDecelTime
                     easing.bezierCurve: Dat.MaterialEasing.standardDecel
+                    property: "scale"
                   }
                 }
               ]
             }
-
             Gen.MouseArea {
               onClicked: swipeArea.setCurrentIndex(tabDot.index)
             }

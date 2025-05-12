@@ -10,32 +10,43 @@ import "../Widgets/" as Wid
 
 Rectangle {
   id: root
+
   property int index: SwipeView.index
   property bool isCurrent: SwipeView.isCurrentItem
+
   color: "transparent"
 
   RowLayout {
+    anchors.fill: parent
     anchors.margins: 10
     anchors.rightMargin: 5
-    anchors.fill: parent
     spacing: 5
+
     Rectangle {
-      clip: true
-      Layout.fillWidth: true
       Layout.fillHeight: true
+      Layout.fillWidth: true
       Layout.preferredWidth: 5
-      radius: 10
+      clip: true
       color: Dat.Colors.surface_container_high
+      radius: 10
 
       Image {
         id: nixLogo
-        x: -(this.width / 2.5)
-        rotation: 0
-        opacity: 0.15
-        width: parent.height
-        height: this.width
+
         fillMode: Image.PreserveAspectCrop
+        height: this.width
+        opacity: 0.15
+        rotation: 0
         source: "https://raw.githubusercontent.com/NixOS/nixos-artwork/4ad062cee62116f6055e2876e9638e7bb399d219/logo/nix-snowflake-white.svg"
+        width: parent.height
+        x: -(this.width / 2.5)
+
+        Behavior on rotation {
+          NumberAnimation {
+            duration: 500
+            easing.type: Easing.Linear
+          }
+        }
 
         Component.onCompleted: {
           // silly hack to not have a 500ms delay before animation starts
@@ -49,37 +60,32 @@ Rectangle {
 
         Timer {
           interval: 500
-          running: Dat.Globals.notchState == "FULLY_EXPANDED" && root.isCurrent
           repeat: true
+          running: Dat.Globals.notchState == "FULLY_EXPANDED" && root.isCurrent
+
           onTriggered: parent.rotation = (parent.rotation + 3) % 360
         }
-
-        Behavior on rotation {
-          NumberAnimation {
-            duration: 500
-            easing.type: Easing.Linear
-          }
-        }
       }
-
       ColumnLayout { // area to the right of the image
         id: rightArea
+
+        anchors.bottom: parent.bottom
         // radius: 10
         anchors.margins: 10
-        anchors.rightMargin: 11
         anchors.right: parent.right
+        anchors.rightMargin: 11
         anchors.top: parent.top
-        anchors.bottom: parent.bottom
         width: 150
 
         Rectangle {
           id: monitorRect
+
+          Layout.fillHeight: true
+          Layout.fillWidth: true
           // TODO fill this with resource monitor data
           clip: true
-          Layout.fillWidth: true
-          Layout.fillHeight: true
-          radius: 10
           color: Dat.Colors.surface_container
+          radius: 10
 
           RowLayout {
             anchors.fill: parent
@@ -87,35 +93,38 @@ Rectangle {
 
             Text {
               id: hyprIcon
+
+              Layout.bottomMargin: this.Layout.topMargin
               Layout.fillHeight: true
               Layout.fillWidth: true
               Layout.topMargin: 20
-              Layout.bottomMargin: this.Layout.topMargin
-
-              horizontalAlignment: Text.AlignHCenter
-              verticalAlignment: Text.AlignVCenter
-              text: ""
-              font.pointSize: 32
               color: Dat.Colors.primary
+              font.pointSize: 32
+              horizontalAlignment: Text.AlignHCenter
+              text: ""
+              verticalAlignment: Text.AlignVCenter
             }
             GridLayout {
-              implicitWidth: 60
-              implicitHeight: 60
-              rows: 3
               columns: 3
+              implicitHeight: 60
+              implicitWidth: 60
+              rows: 3
 
               Repeater {
                 model: 9
+
                 Rectangle {
                   required property int index
+
+                  color: (Hyprland.focusedWorkspace?.id == this.index + 1) ? Dat.Colors.primary : Dat.Colors.surface_container_high
+                  height: this.radius
                   radius: 18
                   width: this.radius
-                  height: this.radius
-                  color: (Hyprland.focusedWorkspace?.id == this.index + 1)? Dat.Colors.primary : Dat.Colors.surface_container_high
 
                   Gen.MouseArea {
                     hoverOpacity: 0.1
                     layerColor: Dat.Colors.primary
+
                     onClicked: Hyprland.dispatch("workspace " + (parent.index + 1))
                   }
                 }
@@ -123,28 +132,28 @@ Rectangle {
             }
           }
         }
-
         Rectangle {
           // no longer system tray, its gonna be the base of a monitor
           Layout.alignment: Qt.AlignCenter
-          implicitWidth: 80
-          implicitHeight: 10
-          radius: 10
+          antialiasing: true
           // color: "transparent"
           color: Dat.Colors.outline
-          antialiasing: true
+          implicitHeight: 10
+          implicitWidth: 80
+          radius: 10
         }
       }
     }
-
     ColumnLayout {
+      Layout.fillHeight: true
       // radius: 10
       Layout.fillWidth: true
-      Layout.fillHeight: true
       Layout.preferredWidth: 1
+
       // color: Dat.Colors.surface_container_high
 
-      Wid.SessionDots {}
+      Wid.SessionDots {
+      }
     }
   }
 }

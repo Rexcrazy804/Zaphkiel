@@ -6,59 +6,67 @@ import "../Data/" as Dat
 
 Rectangle {
   color: "transparent"
+
   ColumnLayout {
     anchors.fill: parent
-    spacing: 3
     anchors.topMargin: this.spacing
+    spacing: 3
 
     Rectangle {
       Layout.fillWidth: true
       Layout.leftMargin: 20
       Layout.rightMargin: 20
-      implicitHeight: 20
       color: "transparent"
+      implicitHeight: 20
 
       RowLayout {
         id: tabLay
+
         property int activeIndex: Dat.Globals.settingsTabIndex
+
         anchors.fill: parent
+
         Repeater {
           model: ["Power", "Audio", "Network"]
+
           Rectangle {
             id: tabRect
-            required property string modelData
-            required property int index
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            color: "transparent"
 
+            required property int index
+            required property string modelData
+
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            color: "transparent"
             state: (index == tabLay.activeIndex) ? "ACTIVE" : "INACTIVE"
+
             states: [
               State {
                 name: "ACTIVE"
+
                 PropertyChanges {
-                  tabText.opacity: 1
                   bgRect.opacity: 1
+                  tabText.opacity: 1
                 }
               },
               State {
                 name: "INACTIVE"
+
                 PropertyChanges {
-                  tabText.opacity: 0.8
                   bgRect.opacity: 0
+                  tabText.opacity: 0.8
                 }
               }
             ]
-
             transitions: [
               Transition {
                 from: "INACTIVE"
                 to: "ACTIVE"
 
                 NumberAnimation {
-                  properties: "bgRect.opacity,tabText.opacity"
                   duration: Dat.MaterialEasing.emphasizedAccelTime
                   easing.bezierCurve: Dat.MaterialEasing.emphasizedAccel
+                  properties: "bgRect.opacity,tabText.opacity"
                 }
               },
               Transition {
@@ -66,25 +74,30 @@ Rectangle {
                 to: "INACTIVE"
 
                 NumberAnimation {
-                  properties: "bgRect.opacity,tabText.opacity"
                   duration: Dat.MaterialEasing.emphasizedDecelTime
                   easing.bezierCurve: Dat.MaterialEasing.emphasizedDecel
+                  properties: "bgRect.opacity,tabText.opacity"
                 }
               }
             ]
 
             Rectangle {
               id: bgRect
+
               anchors.centerIn: parent
-              radius: 10
-              height: tabRect.height
-              width: tabText.contentWidth + 20
-
               color: Dat.Colors.surface_container_high
+              height: tabRect.height
+              radius: 10
+              width: tabText.contentWidth + 20
             }
-
             Text {
               id: tabText
+
+              anchors.centerIn: parent
+              color: Dat.Colors.on_surface
+              horizontalAlignment: Text.AlignHCenter
+              text: parent.modelData
+              verticalAlignment: Text.AlignVCenter
 
               Behavior on opacity {
                 NumberAnimation {
@@ -93,15 +106,10 @@ Rectangle {
                 }
               }
 
-              anchors.centerIn: parent
-              text: parent.modelData
-              color: Dat.Colors.on_surface
-              horizontalAlignment: Text.AlignHCenter
-              verticalAlignment: Text.AlignVCenter
-
               MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true
+
                 // TODO hover animation
                 // onContainsMouseChanged: parent.opacity += (containsMouse)? 0.2 : -0.2
                 onClicked: mevent => {
@@ -113,27 +121,27 @@ Rectangle {
         }
       }
     }
-
     StackLayout {
-      Layout.fillWidth: true
       Layout.fillHeight: true
+      Layout.fillWidth: true
       currentIndex: tabLay.activeIndex
 
-      PowerTab {}
-
+      PowerTab {
+      }
       Repeater {
         // TODO: props for volume sliders and network (veeeery unlikely i'll be doing network impl here)
         model: 2
 
         Rectangle {
           required property int index
-          radius: 20
+
           color: Dat.Colors.surface_container_high
+          radius: 20
 
           Text {
             anchors.centerIn: parent
-            text: "tab " + index
             color: Dat.Colors.on_surface
+            text: "tab " + index
           }
         }
       }

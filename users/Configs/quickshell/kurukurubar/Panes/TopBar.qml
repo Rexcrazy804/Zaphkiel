@@ -17,54 +17,55 @@ RowLayout {
     Layout.fillHeight: true
     Layout.fillWidth: true
     Layout.preferredWidth: 1
-    color: "transparent"
     clip: true
+    color: "transparent"
 
     RowLayout {
+      anchors.bottom: parent.bottom
       // TODO animations for text change?
       anchors.left: parent.left
       anchors.top: parent.top
-      anchors.bottom: parent.bottom
       spacing: 0
+
       Rectangle {
-        // workspace number
-        radius: 20
         Layout.leftMargin: 4
         Layout.maximumHeight: 20
-        Layout.minimumHeight: 20
         Layout.maximumWidth: 20
+        Layout.minimumHeight: 20
         Layout.minimumWidth: 20
         color: Dat.Colors.primary
+        // workspace number
+        radius: 20
 
         Text {
           anchors.centerIn: parent
           color: Dat.Colors.on_primary
-          text: Hyprland.focusedWorkspace?.id ?? "0"
-          font.pointSize: 10
           font.bold: true
+          font.pointSize: 10
+          text: Hyprland.focusedWorkspace?.id ?? "0"
         }
-
         Gen.MouseArea {
-          hoverOpacity: 0.1
           clickOpacity: 0.2
+          hoverOpacity: 0.1
+
           onClicked: {
-            Dat.Globals.notchState = "FULLY_EXPANDED"
-            Dat.Globals.swipeIndex = 2
+            Dat.Globals.notchState = "FULLY_EXPANDED";
+            Dat.Globals.swipeIndex = 2;
           }
         }
       }
       Text {
         // Active Window name
         readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
-        Layout.leftMargin: 8
+
         Layout.fillHeight: true
-        verticalAlignment: Text.AlignVCenter
+        Layout.leftMargin: 8
         color: Dat.Colors.primary
         text: Dat.Globals.actWinName
+        verticalAlignment: Text.AlignVCenter
       }
     }
   }
-
   Rectangle {
     // Center
     Layout.fillHeight: true
@@ -72,9 +73,9 @@ RowLayout {
     Layout.preferredWidth: 2
     color: "transparent"
 
-    Wid.TimePill {}
+    Wid.TimePill {
+    }
   }
-
   Rectangle {
     // Right
     Layout.fillHeight: true
@@ -83,22 +84,23 @@ RowLayout {
     color: "transparent"
 
     RowLayout {
+      anchors.bottom: parent.bottom
       anchors.right: parent.right
       anchors.top: parent.top
-      anchors.bottom: parent.bottom
       layoutDirection: Qt.RightToLeft
       spacing: 8
 
       Text {
+        Layout.fillWidth: false
         // little arrow to toggle notch expand states
         Layout.rightMargin: 8
-        Layout.fillWidth: false
-        verticalAlignment: Text.AlignVCenter
         color: Dat.Colors.primary
         text: (Dat.Globals.notchState == "FULLY_EXPANDED") ? "" : ""
+        verticalAlignment: Text.AlignVCenter
 
         MouseArea {
           anchors.fill: parent
+
           onClicked: mevent => {
             if (Dat.Globals.notchState == "EXPANDED") {
               Dat.Globals.notchState = "FULLY_EXPANDED";
@@ -109,46 +111,44 @@ RowLayout {
           }
         }
       }
-
       Wid.BatteryPill {
         implicitHeight: 20
         radius: 20
       }
-
       Wid.AudioSwiper {
         implicitHeight: 20
         radius: 20
       }
-
       Rectangle {
+        color: Dat.Colors.surface_container_high
         implicitHeight: 20
         implicitWidth: 20
         radius: 20
-
-        color: Dat.Colors.surface_container_high
 
         Text {
           anchors.centerIn: parent
           color: Dat.Colors.on_surface
           text: "󰃠"
         }
-
         MouseArea {
-          anchors.fill: parent
           acceptedButtons: Qt.LeftButton | Qt.RightButton
+          anchors.fill: parent
 
+          onClicked: mevent => {
+            switch (mevent.button) {
+            case Qt.RightButton:
+              Dat.Brightness.increase();
+              break;
+            case Qt.LeftButton:
+              Dat.Brightness.decrease();
+              break;
+            }
+          }
           onWheel: event => {
             if (event.angleDelta.y > 0) {
               Dat.Brightness.increase();
             } else {
               Dat.Brightness.decrease();
-            }
-          }
-
-          onClicked: mevent => {
-            switch (mevent.button) {
-              case Qt.RightButton: Dat.Brightness.increase(); break;
-              case Qt.LeftButton: Dat.Brightness.decrease(); break;
             }
           }
         }

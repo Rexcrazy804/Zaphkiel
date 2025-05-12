@@ -8,87 +8,101 @@ import "../Data/" as Dat
 Scope {
   Variants {
     model: Quickshell.screens
+
     delegate: WlrLayershell {
       id: notch
+
       required property ShellScreen modelData
 
-      screen: modelData
-      layer: WlrLayer.Top
-      namespace: "rexies.notch.quickshell"
-      anchors.top: true
       anchors.left: true
       anchors.right: true
-      height: screen.height * 0.65
+      anchors.top: true
+      color: "transparent"
       exclusionMode: ExclusionMode.Ignore
       focusable: false
+      height: screen.height * 0.65
+      layer: WlrLayer.Top
+      namespace: "rexies.notch.quickshell"
+      screen: modelData
       surfaceFormat.opaque: false
-      color: "transparent"
+
       mask: Region {
         item: notchRect
       }
 
       Rectangle {
         id: notchRect
-        clip: true
-        readonly property int baseWidth: 200
+
         readonly property int baseHeight: 1
-        readonly property int expandedWidth: 700
+        readonly property int baseWidth: 200
         readonly property int expandedHeight: 28
+        readonly property int expandedWidth: 700
         readonly property int fullHeight: 190
         readonly property int fullWidth: this.expandedWidth
 
+        anchors.horizontalCenter: parent.horizontalCenter
+        bottomLeftRadius: 20
+        bottomRightRadius: 20
+        clip: true
+        color: Dat.Colors.withAlpha(Dat.Colors.background, 0.89)
         state: Dat.Globals.notchState
+
         states: [
           State {
             name: "COLLAPSED"
+
             PropertyChanges {
-              notchRect.width: notchRect.baseWidth
               notchRect.height: notchRect.baseHeight
+              notchRect.width: notchRect.baseWidth
             }
           },
           State {
             name: "EXPANDED"
+
             PropertyChanges {
-              notchRect.width: notchRect.expandedWidth
               notchRect.height: notchRect.expandedHeight
+              notchRect.width: notchRect.expandedWidth
             }
           },
           State {
             name: "FULLY_EXPANDED"
+
             PropertyChanges {
-              notchRect.width: notchRect.fullWidth
               notchRect.height: notchRect.fullHeight
+              notchRect.width: notchRect.fullWidth
             }
           }
         ]
-
         transitions: [
           Transition {
             from: "COLLAPSED"
             to: "EXPANDED"
+
             NumberAnimation {
-              properties: "width, height"
               duration: Dat.MaterialEasing.standardDecelTime
               easing.bezierCurve: Dat.MaterialEasing.standardDecel
+              properties: "width, height"
             }
           },
           Transition {
             from: "EXPANDED"
             to: "COLLAPSED"
+
             NumberAnimation {
-              properties: "width, height"
               duration: Dat.MaterialEasing.standardAccelTime
               easing.bezierCurve: Dat.MaterialEasing.standardAccel
+              properties: "width, height"
             }
           },
           Transition {
-            reversible: true
             from: "EXPANDED"
+            reversible: true
             to: "FULLY_EXPANDED"
+
             NumberAnimation {
-              properties: "width, height"
               duration: Dat.MaterialEasing.standardTime
               easing.bezierCurve: Dat.MaterialEasing.standard
+              properties: "width, height"
             }
           },
           Transition {
@@ -96,9 +110,9 @@ Scope {
             to: "FULLY_EXPANDED"
 
             NumberAnimation {
-              properties: "width, height"
               duration: Dat.MaterialEasing.standardAccelTime
               easing.bezierCurve: Dat.MaterialEasing.standardAccel
+              properties: "width, height"
             }
           },
           Transition {
@@ -106,25 +120,21 @@ Scope {
             to: "FULLY_EXPANDED"
 
             NumberAnimation {
-              properties: "width, height"
               duration: Dat.MaterialEasing.standardDecelTime
               easing.bezierCurve: Dat.MaterialEasing.standardDecel
+              properties: "width, height"
             }
           }
         ]
 
-        anchors.horizontalCenter: parent.horizontalCenter
-        color: Dat.Colors.withAlpha(Dat.Colors.background, 0.89)
-        bottomLeftRadius: 20
-        bottomRightRadius: 20
-
         // prolly make this a generic later
         MouseArea {
           id: notchArea
-          readonly property real sensitivity: 5
+
           property real prevY: 0
-          property real velocity: 0
+          readonly property real sensitivity: 5
           property bool tracing: false
+          property real velocity: 0
 
           anchors.fill: parent
           hoverEnabled: true
@@ -140,13 +150,6 @@ Scope {
               Dat.Globals.notchState = "COLLAPSED";
             }
           }
-
-          onPressed: mevent => {
-            notchArea.tracing = true;
-            notchArea.prevY = mevent.y;
-            notchArea.velocity = 0;
-          }
-
           onPositionChanged: mevent => {
             if (!tracing) {
               return;
@@ -168,30 +171,33 @@ Scope {
               notchArea.velocity = 0;
             }
           }
-
+          onPressed: mevent => {
+            notchArea.tracing = true;
+            notchArea.prevY = mevent.y;
+            notchArea.velocity = 0;
+          }
           onReleased: mevent => {
             notchArea.tracing = false;
             notchArea.velocity = 0;
           }
 
           ColumnLayout {
-            anchors.fill: parent
             anchors.centerIn: parent
+            anchors.fill: parent
             spacing: 0
 
             TopBar {
+              Layout.fillWidth: true
+              Layout.maximumHeight: notchRect.expandedHeight
+              Layout.minimumHeight: notchRect.expandedHeight - 10
               opacity: (notchRect.width - notchRect.baseWidth) / (notchRect.expandedWidth - notchRect.baseWidth)
               visible: notchRect.height > notchRect.baseHeight
-              Layout.minimumHeight: notchRect.expandedHeight - 10
-              Layout.maximumHeight: notchRect.expandedHeight
-              Layout.fillWidth: true
             }
-
             ExpandedPane {
-              visible: notchRect.height > notchRect.expandedHeight
-              opacity: ((notchRect.height - notchRect.expandedHeight) / (notchRect.fullHeight - notchRect.expandedHeight))
-              Layout.fillWidth: true
               Layout.fillHeight: true
+              Layout.fillWidth: true
+              opacity: ((notchRect.height - notchRect.expandedHeight) / (notchRect.fullHeight - notchRect.expandedHeight))
+              visible: notchRect.height > notchRect.expandedHeight
             }
           }
         }

@@ -5,13 +5,15 @@ import "../Data/" as Dat
 
 Rectangle {
   id: root
+
   clip: true
-  radius: 20
   color: Dat.Colors.withAlpha(Dat.Colors.surface, 0.9)
+  radius: 20
 
   RowLayout {
     anchors.fill: parent
     spacing: 0
+
     // ColumnLayout { // left dots (TODO: make the fonts look better??)
     //   Layout.fillWidth: true
     //   Layout.fillHeight: true
@@ -25,14 +27,13 @@ Rectangle {
     // }
 
     CentralPane {
-      Layout.fillWidth: true
       Layout.fillHeight: true
+      Layout.fillWidth: true
       radius: root.radius
     }
-
     KuruKuru {
-      Layout.fillWidth: true
       Layout.fillHeight: true
+      Layout.fillWidth: true
       radius: root.radius
     }
   }

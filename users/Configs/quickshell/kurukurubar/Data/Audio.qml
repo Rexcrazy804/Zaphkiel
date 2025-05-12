@@ -5,26 +5,23 @@ import Quickshell.Services.Pipewire
 
 Singleton {
   id: root
-  readonly property PwNode sink: Pipewire.defaultAudioSink
-  readonly property PwNode source: Pipewire.defaultAudioSource
-  readonly property var volume: sink?.audio.volume
+
   readonly property var muted: sink?.audio.muted
-
-  readonly property var sinkMuted: sink?.audio.muted
-  readonly property var sinkVolume: sink?.audio.volume
-
-  readonly property var sourceMuted: source?.audio.muted
-  readonly property var sourceVolume: source?.audio.volume
-
+  readonly property PwNode sink: Pipewire.defaultAudioSink
   readonly property string sinkIcon: {
     (muted) ? "󰝟" : (volume > 0.5) ? "󰕾" : (volume > 0.01) ? "󰖀" : "󰕿";
   }
+  readonly property var sinkMuted: sink?.audio.muted
+  readonly property var sinkVolume: sink?.audio.volume
+  readonly property PwNode source: Pipewire.defaultAudioSource
   readonly property string sourceIcon: (this.sourceMuted) ? "󰍭" : "󰍬"
+  readonly property var sourceMuted: source?.audio.muted
+  readonly property var sourceVolume: source?.audio.volume
+  readonly property var volume: sink?.audio.volume
 
-  PwObjectTracker {
-    objects: [root.sink, root.source]
+  function toggleMute(node: PwNode) {
+    node.audio.muted = !node.audio.muted;
   }
-
   function wheelAction(event: WheelEvent, node: PwNode) {
     if (event.angleDelta.y < 0) {
       node.audio.volume -= 0.01;
@@ -40,5 +37,7 @@ Singleton {
     }
   }
 
-  function toggleMute(node: PwNode) { node.audio.muted = !node.audio.muted }
+  PwObjectTracker {
+    objects: [root.sink, root.source]
+  }
 }

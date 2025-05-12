@@ -6,19 +6,20 @@ import Quickshell.Wayland
 
 Singleton {
   id: root
+
+  property string actWinName: activeWindow?.activated ? activeWindow?.appId : "desktop"
   readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
+  property string hostName: "KuruMi"
+  property bool notchHovered: false
 
   // one of "COLLAPSED", "EXPANDED", "FULLY_EXPANDED"
-  property string notchState: "COLLAPSED";
-  property bool notchHovered: false;
-  property string actWinName: activeWindow?.activated ? activeWindow?.appId : "desktop"
-  onActWinNameChanged: {
-    if (root.actWinName == "desktop" && root.notchState == "COLLAPSED") {
-      root.notchState = "EXPANDED"
-    } else if (root.notchState == "EXPANDED" && !root.notchHovered) {
-      root.notchState = "COLLAPSED"
-    }
-  }
+  property string notchState: "COLLAPSED"
+
+  // SettingsView State
+  // 0 => Power
+  // 1 => Audio
+  // 2 => Network
+  property int settingsTabIndex: 0
 
   // Central Panel SwipeView stuff
   // 0 => Home
@@ -28,16 +29,18 @@ Singleton {
   // 4 => SettingsView
   property int swipeIndex: 0
 
-  // SettingsView State
-  // 0 => Power
-  // 1 => Audio
-  // 2 => Network
-  property int settingsTabIndex: 0
+  onActWinNameChanged: {
+    if (root.actWinName == "desktop" && root.notchState == "COLLAPSED") {
+      root.notchState = "EXPANDED";
+    } else if (root.notchState == "EXPANDED" && !root.notchHovered) {
+      root.notchState = "COLLAPSED";
+    }
+  }
 
-  property string hostName: "KuruMi"
   Process {
-    running: true
     command: ["hostname"]
+    running: true
+
     stdout: SplitParser {
       onRead: data => root.hostName = data
     }

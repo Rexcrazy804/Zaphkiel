@@ -21,16 +21,24 @@ Repeater {
 
   delegate: Rectangle {
     id: dot
-    required property var modelData
+
     property color bgColor
     property color fgColor
+    required property var modelData
+
     Layout.alignment: Qt.AlignCenter
+    color: dot.bgColor
+    implicitHeight: this.implicitWidth
+    implicitWidth: 20
+    radius: 20
 
     // Component.onCompleted { }
     state: (modelData.profile == PowerProfiles?.profile) ? "ACTIVE" : "INACTIVE"
+
     states: [
       State {
         name: "ACTIVE"
+
         PropertyChanges {
           dot.bgColor: Dat.Colors.primary
           dot.fgColor: Dat.Colors.on_primary
@@ -38,17 +46,17 @@ Repeater {
       },
       State {
         name: "INACTIVE"
+
         PropertyChanges {
           dot.bgColor: Dat.Colors.surface_container
           dot.fgColor: Dat.Colors.on_surface
         }
       }
     ]
-
     transitions: [
       Transition {
-        reversible: true
         from: "ACTIVE"
+        reversible: true
         to: "INACTIVE"
 
         ColorAnimation {
@@ -58,24 +66,19 @@ Repeater {
       }
     ]
 
-    radius: 20
-    implicitWidth: 20
-    implicitHeight: this.implicitWidth
-    color: dot.bgColor
-
     Gen.MouseArea {
-      hoverOpacity: 0.3
       clickOpacity: 0.5
+      hoverOpacity: 0.3
       layerColor: dot.fgColor
+
       onClicked: mevent => dot.modelData.action(mevent)
     }
-
     Text {
       anchors.centerIn: parent
-      text: dot.modelData.icon
       color: dot.fgColor
       font.bold: true
       font.pointSize: 8
+      text: dot.modelData.icon
     }
   }
 }

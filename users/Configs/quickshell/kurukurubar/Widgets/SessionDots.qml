@@ -21,28 +21,29 @@ Repeater {
   ]
 
   delegate: Rectangle {
-    clip: true
     id: dot
-    required property var modelData
-    Layout.alignment: Qt.AlignCenter
 
-    radius: 28
-    implicitWidth: 28
-    implicitHeight: this.implicitWidth
+    required property var modelData
+
+    Layout.alignment: Qt.AlignCenter
+    clip: true
     color: Dat.Colors.primary
+    implicitHeight: this.implicitWidth
+    implicitWidth: 28
+    radius: 28
 
     Gen.MouseArea {
-      hoverOpacity: 0.1
       clickOpacity: 0.2
+      hoverOpacity: 0.1
       layerColor: Dat.Colors.on_primary
+
       onClicked: mevent => dot.modelData.action(mevent)
     }
-
     Text {
       anchors.centerIn: parent
-      text: dot.modelData.text
       color: Dat.Colors.on_primary
       font.bold: true
+      text: dot.modelData.text
     }
   }
 }

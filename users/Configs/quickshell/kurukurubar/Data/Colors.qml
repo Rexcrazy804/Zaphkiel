@@ -47,7 +47,6 @@ Singleton {
   readonly property color surface_container_lowest: "#140c0e"
   readonly property color surface_dim: "#191113"
   readonly property color surface_tint: "#ffb1c6"
-
   readonly property color surface_variant: "#514346"
   readonly property color tertiary: "#eebd93"
   readonly property color tertiary_container: "#613f1f"
@@ -55,6 +54,6 @@ Singleton {
   readonly property color tertiary_fixed_dim: "#eebd93"
 
   function withAlpha(color: color, alpha: real): color {
-    return Qt.rgba(color.r, color.g, color.b, alpha)
+    return Qt.rgba(color.r, color.g, color.b, alpha);
   }
 }

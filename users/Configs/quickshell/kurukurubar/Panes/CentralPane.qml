@@ -43,8 +43,8 @@ Rectangle {
           swipeArea.currentIndex = Dat.Globals.swipeIndex;
 
           // FOR DEBUGGING
-          swipeArea.currentIndex = 1;
-          Dat.Globals.notchState = "FULLY_EXPANDED";
+          // swipeArea.currentIndex = 1;
+          // Dat.Globals.notchState = "FULLY_EXPANDED";
         }
         onCurrentIndexChanged: () => {
           if (swipeArea.currentIndex != Dat.Globals.swipeIndex) {

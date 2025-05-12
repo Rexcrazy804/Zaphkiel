@@ -1,10 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
-import Quickshell.Widgets
 import Quickshell.Hyprland
 import Quickshell.Wayland
-import Quickshell.Services.UPower
 
 import "../Data/" as Dat
 import "../Generics/" as Gen
@@ -119,39 +116,10 @@ RowLayout {
         implicitHeight: 20
         radius: 20
       }
-      Rectangle {
-        color: Dat.Colors.surface_container_high
+      Wid.BrightnessDot {
         implicitHeight: 20
         implicitWidth: 20
         radius: 20
-
-        Text {
-          anchors.centerIn: parent
-          color: Dat.Colors.on_surface
-          text: "󰃠"
-        }
-        MouseArea {
-          acceptedButtons: Qt.LeftButton | Qt.RightButton
-          anchors.fill: parent
-
-          onClicked: mevent => {
-            switch (mevent.button) {
-            case Qt.RightButton:
-              Dat.Brightness.increase();
-              break;
-            case Qt.LeftButton:
-              Dat.Brightness.decrease();
-              break;
-            }
-          }
-          onWheel: event => {
-            if (event.angleDelta.y > 0) {
-              Dat.Brightness.increase();
-            } else {
-              Dat.Brightness.decrease();
-            }
-          }
-        }
       }
     }
   }

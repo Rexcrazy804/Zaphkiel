@@ -39,11 +39,9 @@ Rectangle {
               swipeArea.currentIndex = Dat.Globals.swipeIndex;
             }
           });
-          // both are zero at the beginning sooo dk if I need this
-          swipeArea.currentIndex = Dat.Globals.swipeIndex;
 
           // FOR DEBUGGING
-          // swipeArea.currentIndex = 1;
+          // swipeArea.currentIndex = 3;
           // Dat.Globals.notchState = "FULLY_EXPANDED";
         }
         onCurrentIndexChanged: () => {
@@ -74,17 +72,10 @@ Rectangle {
           radius: swipeRect.radius
           width: swipeRect.width
         }
-        Rectangle {
-          color: "transparent"
+        Wid.MusicView {
           height: swipeRect.height
           radius: swipeRect.radius
           width: swipeRect.width
-
-          Text {
-            anchors.centerIn: parent
-            color: Dat.Colors.on_surface
-            text: "Music Pane"
-          }
         }
         Wid.SettingsView {
           height: swipeRect.height

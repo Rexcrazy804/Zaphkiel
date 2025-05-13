@@ -44,8 +44,14 @@ Scope {
         bottomLeftRadius: 20
         bottomRightRadius: 20
         clip: true
-        color: Dat.Colors.withAlpha(Dat.Colors.background, 0.89)
+        color: Dat.Colors.withAlpha(Dat.Colors.background, (Dat.Globals.actWinName == "desktop" && Dat.Globals.notchState != "FULLY_EXPANDED") ? 0.79 : 0.89)
         state: Dat.Globals.notchState
+
+        Behavior on color {
+          ColorAnimation {
+            duration: Dat.MaterialEasing.standardTime
+          }
+        }
 
         states: [
           State {

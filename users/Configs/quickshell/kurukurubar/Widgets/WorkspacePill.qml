@@ -13,7 +13,7 @@ Rectangle {
   radius: 20
   implicitWidth: workRow.width + 8
 
-  Behavior on width {
+  Behavior on implicitWidth {
     NumberAnimation {
       duration: 100
       easing.bezierCurve: Dat.MaterialEasing.standard

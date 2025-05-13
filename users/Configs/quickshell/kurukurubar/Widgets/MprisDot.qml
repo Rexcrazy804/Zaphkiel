@@ -12,7 +12,7 @@ Rectangle {
     anchors.centerIn: parent
     color: Dat.Colors.tertiary
     font.pointSize: 11
-    text: "󰎇"
+    text: "󰽰"
     Behavior on  rotation {
       NumberAnimation {
         duration: 500

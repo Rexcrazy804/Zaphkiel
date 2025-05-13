@@ -34,13 +34,13 @@ in {
     enable = true;
     # wallpaper = config.programs.booru-flake.images."7089622";
     wallpaper = let
-      image = config.programs.booru-flake.images."7240127";
+      image = config.programs.booru-flake.images."6537693";
     in
       pkgs.runCommandWith {
         name = "croped-${image.name}";
         derivationArgs.nativeBuildInputs = [pkgs.imagemagick];
       } ''
-        magick ${image} -crop 2058x1152+0+0 - > $out
+        magick ${image} -crop 3038x5400+0+1000 -rotate 90 - > $out
       '';
   };
 

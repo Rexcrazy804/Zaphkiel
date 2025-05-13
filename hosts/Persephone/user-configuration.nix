@@ -32,16 +32,16 @@ in {
 
   programs.matugen = {
     enable = true;
-    # wallpaper = config.programs.booru-flake.images."7089622";
-    wallpaper = let
-      image = config.programs.booru-flake.images."6537693";
-    in
-      pkgs.runCommandWith {
-        name = "croped-${image.name}";
-        derivationArgs.nativeBuildInputs = [pkgs.imagemagick];
-      } ''
-        magick ${image} -crop 3038x5400+0+1000 -rotate 90 - > $out
-      '';
+    wallpaper = config.programs.booru-flake.images."6147541";
+    # wallpaper = let
+    #   image = config.programs.booru-flake.images."6537693";
+    # in
+    #   pkgs.runCommandWith {
+    #     name = "croped-${image.name}";
+    #     derivationArgs.nativeBuildInputs = [pkgs.imagemagick];
+    #   } ''
+    #     magick ${image} -crop 3038x5400+0+1000 -rotate 90 - > $out
+    #   '';
   };
 
   hjem.users."rexies".files = {

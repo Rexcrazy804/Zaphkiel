@@ -5,7 +5,6 @@ import Quickshell.Wayland
 
 import "../Data/" as Dat
 import "../Generics/" as Gen
-import "../Widgets/" as Wid
 
 Rectangle {
   id: root

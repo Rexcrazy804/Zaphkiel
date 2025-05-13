@@ -8,10 +8,11 @@ import "../Generics/" as Gen
 
 Rectangle {
   id: root
+
   color: Dat.Colors.primary_container
   height: 20
-  radius: 20
   implicitWidth: workRow.width + 8
+  radius: 20
 
   Behavior on implicitWidth {
     NumberAnimation {
@@ -28,25 +29,21 @@ Rectangle {
     anchors.top: parent.top
     spacing: 5
 
-
     Rectangle {
       Layout.fillHeight: true
-      // Active Window name
       color: Dat.Colors.primary
-      implicitWidth: workspaceNumText.contentWidth + 10
+      implicitWidth: 20
       radius: 20
-
 
       Text {
         id: workspaceNumText
 
         anchors.centerIn: parent
         color: Dat.Colors.on_primary
+        font.pointSize: 10
         text: Hyprland.focusedWorkspace?.id ?? "0"
-        verticalAlignment: Text.AlignVCenter
       }
     }
-
     Text {
       id: windowNameText
 

@@ -31,6 +31,8 @@ Rectangle {
     maskEnabled: true
     maskSource: mask
     source: sourceItem
+    maskThresholdMin: 0.5
+    maskSpreadAtMin: 1.0
   }
   Item {
     id: mask

@@ -8,13 +8,10 @@ import "../Generics/" as Gen
 
 Rectangle {
   id: root
-  anchors.left: parent.left
-  anchors.leftMargin: 8
-  anchors.verticalCenter: parent.verticalCenter
   color: Dat.Colors.primary_container
   height: 20
   radius: 20
-  width: workRow.width + 8
+  implicitWidth: workRow.width + 8
 
   Behavior on width {
     NumberAnimation {

@@ -12,7 +12,17 @@ RowLayout {
     clip: true
     color: "transparent"
 
-    Wid.WorkspacePill {}
+    RowLayout {
+      anchors.left: parent.left
+      anchors.leftMargin: 8
+      anchors.verticalCenter: parent.verticalCenter
+      Wid.WorkspacePill {}
+      Wid.MprisDot {
+        implicitHeight: 20
+        implicitWidth: 20
+        radius: 20
+      }
+    }
   }
 
   // Center

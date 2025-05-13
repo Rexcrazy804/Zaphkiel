@@ -14,9 +14,9 @@ Rectangle {
     color: Dat.Colors.on_surface
     text: "Play some music"
   }
-
   SwipeView {
     id: list
+
     anchors.fill: parent
     orientation: Qt.Vertical
 
@@ -24,37 +24,45 @@ Rectangle {
       model: ScriptModel {
         values: [...Mpris.players.values]
       }
+
       Wid.MprisItem {
         id: rect
-        required property MprisPlayer modelData
-        required property int index
+
         property int increaseOrDecrease: 0
+        required property int index
+        required property MprisPlayer modelData
         property bool readyToShow: false
+
         player: modelData
       }
     }
   }
-
   PageIndicator {
-    rotation: 90
-    visible: this.count > 1
     id: pageIndicator
-    interactive: false
-    count: list.count
-    currentIndex: list.currentIndex
 
     anchors.left: parent.left
     anchors.verticalCenter: parent.verticalCenter
+    count: list.count
+    currentIndex: list.currentIndex
+    interactive: false
+    rotation: 90
+    visible: this.count > 1
 
     delegate: Rectangle {
       id: smallrect
+
       required property int index
+
+      color: (index == list.currentIndex) ? "white" : Dat.Colors.withAlpha("white", 0.5)
+      height: this.width
       radius: 6
       width: 6
-      height: this.width
-      color: (index == list.currentIndex)? "white" : Dat.Colors.withAlpha("white", 0.5)
 
-      Behavior on color { ColorAnimation { duration: 500 } }
+      Behavior on color {
+        ColorAnimation {
+          duration: 500
+        }
+      }
     }
   }
 }

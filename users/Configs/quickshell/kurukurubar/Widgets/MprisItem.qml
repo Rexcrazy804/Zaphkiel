@@ -18,8 +18,8 @@ Rectangle {
   Image {
     id: sourceItem
 
-    fillMode: Image.PreserveAspectCrop
     anchors.fill: parent
+    fillMode: Image.PreserveAspectCrop
     height: 300
     source: player.trackArtUrl
     visible: false
@@ -27,13 +27,14 @@ Rectangle {
   }
   MultiEffect {
     anchors.fill: sourceItem
+    brightness: -0.25
     maskEnabled: true
     maskSource: mask
     source: sourceItem
-    brightness: -0.25
   }
   Item {
     id: mask
+
     height: sourceItem.height
     layer.enabled: true
     layer.smooth: true
@@ -46,7 +47,6 @@ Rectangle {
       width: sourceItem.width
     }
   }
-
   ColumnLayout {
     anchors.fill: parent
     anchors.margins: 5

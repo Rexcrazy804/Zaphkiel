@@ -52,7 +52,6 @@ Scope {
             duration: Dat.MaterialEasing.standardTime
           }
         }
-
         states: [
           State {
             name: "COLLAPSED"

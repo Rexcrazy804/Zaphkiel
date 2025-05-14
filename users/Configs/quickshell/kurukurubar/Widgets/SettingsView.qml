@@ -3,6 +3,7 @@ import QtQuick
 import QtQuick.Layouts
 
 import "../Data/" as Dat
+import "../Widgets/" as Wid
 
 Rectangle {
   color: "transparent"
@@ -17,7 +18,7 @@ Rectangle {
       Layout.leftMargin: 20
       Layout.rightMargin: 20
       color: "transparent"
-      implicitHeight: 20
+      implicitHeight: 18
 
       RowLayout {
         id: tabLay
@@ -126,7 +127,7 @@ Rectangle {
       Layout.fillWidth: true
       currentIndex: tabLay.activeIndex
 
-      PowerTab {
+      Wid.PowerTab {
         Layout.fillHeight: true
         Layout.fillWidth: true
         opacity: visible ? 1 : 0
@@ -138,29 +139,32 @@ Rectangle {
           }
         }
       }
-      Repeater {
-        // TODO: props for volume sliders and network (veeeery unlikely i'll be doing network impl here)
-        model: 2
 
-        Rectangle {
-          required property int index
-          opacity: visible ? 1 : 0
-
-          Behavior on opacity {
-            NumberAnimation {
-              duration: Dat.MaterialEasing.standardAccelTime
-              easing.bezierCurve: Dat.MaterialEasing.standardAccel
-            }
+      Wid.AudioTab {
+        Behavior on opacity {
+          NumberAnimation {
+            duration: Dat.MaterialEasing.emphasizedAccelTime
+            easing.bezierCurve: Dat.MaterialEasing.emphasizedAccel
           }
+        }
+      }
 
-          color: Dat.Colors.surface_container_high
-          radius: 20
+      Rectangle {
+        color: Dat.Colors.surface_container_high
+        opacity: visible ? 1 : 0
+        radius: 20
 
-          Text {
-            anchors.centerIn: parent
-            color: Dat.Colors.on_surface
-            text: "tab " + index
+        Behavior on opacity {
+          NumberAnimation {
+            duration: Dat.MaterialEasing.emphasizedAccelTime
+            easing.bezierCurve: Dat.MaterialEasing.emphasizedAccel
           }
+        }
+
+        Text {
+          anchors.centerIn: parent
+          color: Dat.Colors.on_surface
+          text: "Network Tab"
         }
       }
     }

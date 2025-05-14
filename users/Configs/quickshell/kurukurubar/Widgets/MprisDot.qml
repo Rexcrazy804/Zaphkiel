@@ -26,7 +26,7 @@ Rectangle {
     Component.onCompleted: {
       Dat.Globals.notchStateChanged.connect(() => {
         if (Dat.Globals.notchState != "COLLAPSED") {
-          rotation += 6;
+          icon.rotation += 6;
         }
       });
     }

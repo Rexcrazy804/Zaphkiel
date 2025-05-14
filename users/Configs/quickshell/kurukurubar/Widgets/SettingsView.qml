@@ -127,6 +127,16 @@ Rectangle {
       currentIndex: tabLay.activeIndex
 
       PowerTab {
+        Layout.fillHeight: true
+        Layout.fillWidth: true
+        opacity: visible ? 1 : 0
+
+        Behavior on opacity {
+          NumberAnimation {
+            duration: Dat.MaterialEasing.standardAccelTime
+            easing.bezierCurve: Dat.MaterialEasing.standardAccel
+          }
+        }
       }
       Repeater {
         // TODO: props for volume sliders and network (veeeery unlikely i'll be doing network impl here)
@@ -134,6 +144,14 @@ Rectangle {
 
         Rectangle {
           required property int index
+          opacity: visible ? 1 : 0
+
+          Behavior on opacity {
+            NumberAnimation {
+              duration: Dat.MaterialEasing.standardAccelTime
+              easing.bezierCurve: Dat.MaterialEasing.standardAccel
+            }
+          }
 
           color: Dat.Colors.surface_container_high
           radius: 20

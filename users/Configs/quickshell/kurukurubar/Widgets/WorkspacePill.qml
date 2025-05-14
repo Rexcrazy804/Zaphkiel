@@ -30,9 +30,9 @@ Rectangle {
     spacing: 5
 
     Rectangle {
-      Layout.fillHeight: true
       color: Dat.Colors.primary
       implicitWidth: 20
+      implicitHeight: 20
       radius: 20
 
       Text {

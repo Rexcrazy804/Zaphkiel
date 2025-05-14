@@ -46,7 +46,6 @@ Scope {
         clip: true
         color: Dat.Colors.withAlpha(Dat.Colors.background, (Dat.Globals.actWinName == "desktop" && Dat.Globals.notchState != "FULLY_EXPANDED") ? 0.79 : 0.89)
         state: Dat.Globals.notchState
-        opacity: this.width / expandedWidth
 
         Behavior on color {
           ColorAnimation {
@@ -58,6 +57,7 @@ Scope {
             name: "COLLAPSED"
 
             PropertyChanges {
+              notchRect.opacity: 0
               notchRect.height: notchRect.baseHeight
               notchRect.width: notchRect.baseWidth
             }
@@ -66,6 +66,7 @@ Scope {
             name: "EXPANDED"
 
             PropertyChanges {
+              notchRect.opacity: 1
               notchRect.height: notchRect.expandedHeight
               notchRect.width: notchRect.expandedWidth
             }
@@ -74,6 +75,7 @@ Scope {
             name: "FULLY_EXPANDED"
 
             PropertyChanges {
+              notchRect.opacity: 1
               notchRect.height: notchRect.fullHeight
               notchRect.width: notchRect.fullWidth
             }
@@ -87,7 +89,7 @@ Scope {
             NumberAnimation {
               duration: Dat.MaterialEasing.standardDecelTime
               easing.bezierCurve: Dat.MaterialEasing.standardDecel
-              properties: "width, height"
+              properties: "width, opacity, height"
             }
           },
           Transition {
@@ -97,7 +99,7 @@ Scope {
             NumberAnimation {
               duration: Dat.MaterialEasing.standardAccelTime
               easing.bezierCurve: Dat.MaterialEasing.standardAccel
-              properties: "width, height"
+              properties: "width, opacity, height"
             }
           },
           Transition {
@@ -108,7 +110,7 @@ Scope {
             NumberAnimation {
               duration: Dat.MaterialEasing.standardTime
               easing.bezierCurve: Dat.MaterialEasing.standard
-              properties: "width, height"
+              properties: "width, opacity, height"
             }
           },
           Transition {
@@ -118,7 +120,7 @@ Scope {
             NumberAnimation {
               duration: Dat.MaterialEasing.standardAccelTime
               easing.bezierCurve: Dat.MaterialEasing.standardAccel
-              properties: "width, height"
+              properties: "width, opacity, height"
             }
           },
           Transition {
@@ -128,7 +130,7 @@ Scope {
             NumberAnimation {
               duration: Dat.MaterialEasing.standardDecelTime
               easing.bezierCurve: Dat.MaterialEasing.standardDecel
-              properties: "width, height"
+              properties: "width, opacity, height"
             }
           }
         ]

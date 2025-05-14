@@ -44,8 +44,6 @@ Rectangle {
     }
   }
   Gen.MouseArea {
-    clickOpacity: 0.2
-    hoverOpacity: 0.1
     layerColor: Dat.Colors.on_primary
 
     onClicked: {

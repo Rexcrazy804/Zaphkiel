@@ -122,9 +122,7 @@ Rectangle {
                   width: this.radius
 
                   Gen.MouseArea {
-                    hoverOpacity: 0.1
                     layerColor: Dat.Colors.primary
-
                     onClicked: Hyprland.dispatch("workspace " + (parent.index + 1))
                   }
                 }

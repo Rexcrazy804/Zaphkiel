@@ -4,9 +4,7 @@ import "../Data/" as Dat
 MouseArea {
   id: area
 
-  property real clickOpacity: 0.10
-
-  // default Material values
+  property real clickOpacity: 0.2
   property real hoverOpacity: 0.08
   property color layerColor: "white"
   property NumberAnimation layerOpacityAnimation: NumberAnimation {

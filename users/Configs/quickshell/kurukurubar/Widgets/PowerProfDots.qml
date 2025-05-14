@@ -67,10 +67,7 @@ Repeater {
     ]
 
     Gen.MouseArea {
-      clickOpacity: 0.5
-      hoverOpacity: 0.3
       layerColor: dot.fgColor
-
       onClicked: mevent => dot.modelData.action(mevent)
     }
     Text {

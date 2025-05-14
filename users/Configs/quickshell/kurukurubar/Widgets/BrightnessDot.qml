@@ -1,6 +1,7 @@
 import QtQuick
 
 import "../Data/" as Dat
+import "../Generics/" as Gen
 
 Rectangle {
   color: Dat.Colors.surface_container_high
@@ -11,9 +12,9 @@ Rectangle {
     font.pointSize: 11
     text: "󰃠"
   }
-  MouseArea {
+  Gen.MouseArea {
+    layerColor: Dat.Colors.tertiary
     acceptedButtons: Qt.LeftButton | Qt.RightButton
-    anchors.fill: parent
 
     onClicked: mevent => {
       switch (mevent.button) {

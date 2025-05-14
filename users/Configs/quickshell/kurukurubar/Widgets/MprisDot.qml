@@ -2,6 +2,7 @@ import QtQuick
 import Quickshell.Services.Mpris
 
 import "../Data/" as Dat
+import "../Generics/" as Gen
 
 Rectangle {
   color: Dat.Colors.surface_container_high
@@ -25,27 +26,26 @@ Rectangle {
     Component.onCompleted: {
       Dat.Globals.notchStateChanged.connect(() => {
         if (Dat.Globals.notchState != "COLLAPSED") {
-          rotation += 10;
+          rotation += 6;
         }
       });
     }
   }
-  MouseArea {
-    acceptedButtons: Qt.LeftButton
-    anchors.fill: parent
 
+  Gen.MouseArea {
+    acceptedButtons: Qt.LeftButton
+    layerColor: Dat.Colors.tertiary
     onClicked: mevent => {
       Dat.Globals.notchState = "FULLY_EXPANDED";
       Dat.Globals.swipeIndex = 3;
     }
   }
+
   Timer {
     interval: 500
     repeat: true
     running: parent.visible && Dat.Globals.notchState != "COLLAPSED"
 
-    onTriggered: {
-      icon.rotation = icon.rotation + 10;
-    }
+    onTriggered: icon.rotation = icon.rotation + 6
   }
 }

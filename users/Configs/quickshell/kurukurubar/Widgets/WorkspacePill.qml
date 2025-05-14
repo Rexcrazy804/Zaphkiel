@@ -58,8 +58,12 @@ Rectangle {
     layerRadius: 20
 
     onClicked: {
-      Dat.Globals.notchState = "FULLY_EXPANDED";
-      Dat.Globals.swipeIndex = 2;
+      if (Dat.Globals.notchState == "FULLY_EXPANDED" && Dat.Globals.swipeIndex == 2) {
+        Dat.Globals.notchState = "EXPANDED";
+      } else {
+        Dat.Globals.notchState = "FULLY_EXPANDED";
+        Dat.Globals.swipeIndex = 2;
+      }
     }
   }
 }

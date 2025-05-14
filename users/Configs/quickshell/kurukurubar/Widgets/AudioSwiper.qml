@@ -47,9 +47,13 @@ Rectangle {
             Dat.Audio.toggleMute(Dat.Audio.sink);
             break;
           case Qt.LeftButton:
-            Dat.Globals.notchState = "FULLY_EXPANDED";
-            Dat.Globals.swipeIndex = 4;
-            Dat.Globals.settingsTabIndex = 1;
+            if (Dat.Globals.notchState == "FULLY_EXPANDED" && Dat.Globals.swipeIndex == 4 && Dat.Globals.settingsTabIndex == 1) {
+              Dat.Globals.notchState = "EXPANDED";
+            } else {
+              Dat.Globals.notchState = "FULLY_EXPANDED";
+              Dat.Globals.swipeIndex = 4;
+              Dat.Globals.settingsTabIndex = 1;
+            }
             break;
           }
         }
@@ -77,9 +81,13 @@ Rectangle {
             Dat.Audio.toggleMute(Dat.Audio.source);
             break;
           case Qt.LeftButton:
-            Dat.Globals.notchState = "FULLY_EXPANDED";
-            Dat.Globals.swipeIndex = 4;
-            Dat.Globals.settingsTabIndex = 1;
+            if (Dat.Globals.notchState == "FULLY_EXPANDED" && Dat.Globals.swipeIndex == 4 && Dat.Globals.settingsTabIndex == 1) {
+              Dat.Globals.notchState = "EXPANDED";
+            } else {
+              Dat.Globals.notchState = "FULLY_EXPANDED";
+              Dat.Globals.swipeIndex = 4;
+              Dat.Globals.settingsTabIndex = 1;
+            }
             break;
           }
         }

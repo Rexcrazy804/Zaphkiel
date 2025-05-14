@@ -31,16 +31,19 @@ Rectangle {
       });
     }
   }
-
   Gen.MouseArea {
     acceptedButtons: Qt.LeftButton
     layerColor: Dat.Colors.tertiary
+
     onClicked: mevent => {
-      Dat.Globals.notchState = "FULLY_EXPANDED";
-      Dat.Globals.swipeIndex = 3;
+      if (Dat.Globals.notchState == "FULLY_EXPANDED" && Dat.Globals.swipeIndex == 3) {
+        Dat.Globals.notchState = "EXPANDED";
+      } else {
+        Dat.Globals.notchState = "FULLY_EXPANDED";
+        Dat.Globals.swipeIndex = 3;
+      }
     }
   }
-
   Timer {
     interval: 500
     repeat: true

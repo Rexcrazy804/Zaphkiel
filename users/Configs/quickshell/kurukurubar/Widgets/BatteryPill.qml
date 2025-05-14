@@ -47,9 +47,13 @@ Rectangle {
     layerColor: Dat.Colors.on_primary
 
     onClicked: {
-      Dat.Globals.notchState = "FULLY_EXPANDED";
-      Dat.Globals.swipeIndex = 4;
-      Dat.Globals.settingsTabIndex = 0;
+      if (Dat.Globals.notchState == "FULLY_EXPANDED" && Dat.Globals.swipeIndex == 4 && Dat.Globals.settingsTabIndex == 0) {
+        Dat.Globals.notchState = "EXPANDED";
+      } else {
+        Dat.Globals.notchState = "FULLY_EXPANDED";
+        Dat.Globals.swipeIndex = 4;
+        Dat.Globals.settingsTabIndex = 0;
+      }
     }
   }
 }

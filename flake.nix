@@ -174,7 +174,6 @@
         qtDeps = [
           qs
           pkgs.kdePackages.qtbase
-          pkgs.kdePackages.qtgraphs
           pkgs.kdePackages.qtdeclarative
         ];
       in

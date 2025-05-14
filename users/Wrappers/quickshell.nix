@@ -15,7 +15,6 @@ in
 
     qtDeps = [
       kdePackages.qtbase
-      kdePackages.qtgraphs
       kdePackages.qtdeclarative
       kdePackages.qtmultimedia
     ];

@@ -34,6 +34,7 @@ Repeater {
 
     Gen.MouseArea {
       layerColor: Dat.Colors.on_primary
+
       onClicked: mevent => dot.modelData.action(mevent)
     }
     Text {

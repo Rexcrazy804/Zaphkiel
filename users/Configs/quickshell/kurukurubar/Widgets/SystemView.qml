@@ -123,6 +123,7 @@ Rectangle {
 
                   Gen.MouseArea {
                     layerColor: Dat.Colors.primary
+
                     onClicked: Hyprland.dispatch("workspace " + (parent.index + 1))
                   }
                 }

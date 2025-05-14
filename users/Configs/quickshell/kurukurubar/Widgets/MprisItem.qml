@@ -30,9 +30,9 @@ Rectangle {
     brightness: -0.25
     maskEnabled: true
     maskSource: mask
-    source: sourceItem
-    maskThresholdMin: 0.5
     maskSpreadAtMin: 1.0
+    maskThresholdMin: 0.5
+    source: sourceItem
   }
   Item {
     id: mask

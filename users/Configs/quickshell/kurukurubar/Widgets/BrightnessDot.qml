@@ -13,8 +13,8 @@ Rectangle {
     text: "󰃠"
   }
   Gen.MouseArea {
-    layerColor: Dat.Colors.tertiary
     acceptedButtons: Qt.LeftButton | Qt.RightButton
+    layerColor: Dat.Colors.tertiary
 
     onClicked: mevent => {
       switch (mevent.button) {

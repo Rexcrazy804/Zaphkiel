@@ -51,6 +51,7 @@ Rectangle {
 
       color: Dat.Colors.on_primary_container
       text: Dat.Globals.actWinName
+      font.pointSize: 11
     }
   }
   Gen.MouseArea {

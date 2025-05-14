@@ -48,15 +48,16 @@ Rectangle {
             spacing: 10
 
             Repeater {
+              id: resourceRepeater
+              readonly property real memUsage: (1 - (Dat.Resources.mem.free / Dat.Resources.mem.total))
+              readonly property real cpuUsage: (1 - (Dat.Resources.cpu.idleSec / Dat.Resources.cpu.totalSec))
               model: [
                 {
                   icon: "",
-                  val: (1 - (Dat.Resources.cpu.idleSec / Dat.Resources.cpu.totalSec)),
                   label: "Cpu"
                 },
                 {
                   icon: "",
-                  val: (1 - (Dat.Resources.mem.free / Dat.Resources.mem.total)),
                   label: "Mem"
                 }
               ]
@@ -65,6 +66,8 @@ Rectangle {
                 id: resourceItem
 
                 required property var modelData
+                required property int index
+
 
                 Layout.fillWidth: true
                 implicitHeight: 28
@@ -113,7 +116,16 @@ Rectangle {
                       anchors.top: parent.top
                       color: Dat.Colors.on_primary_container
                       radius: parent.radius
-                      width: parent.width * resourceItem.modelData.val
+                      // wonky hacky way of doing this cause otherwise the value will reset with each change
+                      // which is not nice
+                      width: parent.width * ((!index)? resourceRepeater.cpuUsage : resourceRepeater.memUsage)
+
+                      Behavior on width {
+                        NumberAnimation {
+                          duration: Dat.MaterialEasing.emphasizedTime
+                          easing.bezierCurve: Dat.MaterialEasing.emphasized
+                        }
+                      }
                     }
                   }
                 }

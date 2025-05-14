@@ -1,10 +1,10 @@
 import QtQuick
-import QtGraphs
 import QtQuick.Layouts
 import QtQuick.Controls
 import Quickshell.Services.UPower
 
 import "../Data/" as Dat
+import "../Generics/" as Gen
 
 Rectangle {
   color: Dat.Colors.surface_container_high
@@ -21,16 +21,15 @@ Rectangle {
       radius: 20
 
       Rectangle {
-        anchors.fill: graphDesc
+        anchors.fill: infoCol
         color: Dat.Colors.surface_container
         radius: 20
       }
       ColumnLayout {
-        id: graphDesc
+        id: infoCol
 
         anchors.fill: parent
-        anchors.margins: 5
-        anchors.rightMargin: 0
+        anchors.margins: 0
         spacing: 0
 
         Rectangle {
@@ -40,73 +39,84 @@ Rectangle {
           color: "transparent"
           radius: 0
 
-          GraphsView {
+          // text: ""
+          // text: ""
+
+          ColumnLayout {
             anchors.fill: parent
-            marginBottom: 0
-            marginLeft: 0
-            marginRight: 0
-            marginTop: 0
-            panStyle: GraphsView.PanStyle.Drag
-            // TODO complete this and make it segsy
-            visible: false
+            anchors.margins: 10
+            spacing: 10
 
-            axisX: ValueAxis {
-              max: 4
-              subTickCount: 0
-              tickInterval: 1
-            }
-            axisY: ValueAxis {
-              max: 4
-              subTickCount: 0
-              tickInterval: 1
-            }
-            // anchors.margins: -40
-            theme: GraphsTheme {
-              axisX.labelTextColor: Dat.Colors.on_surface
-              axisX.mainColor: "transparent"
-              axisX.subColor: "transparent"
-              axisXLabelFont.pointSize: 8
-              axisY.labelTextColor: Dat.Colors.on_surface
-              axisY.mainColor: "transparent"
-              axisY.subColor: "transparent"
-              axisYLabelFont.pointSize: 8
-              backgroundColor: "transparent"
-              borderColors: ["#807040", "#706030"]
-              colorScheme: GraphsTheme.ColorScheme.Dark
-              grid.mainColor: "transparent"
-              grid.subColor: "transparent"
-              plotAreaBackgroundColor: "transparent"
-              seriesColors: ["#E0D080", "#B0A060"]
-            }
+            Repeater {
+              model: [
+                {
+                  icon: "",
+                  val: (1 - (Dat.Resources.cpu.idleSec / Dat.Resources.cpu.totalSec)),
+                  label: "Cpu"
+                },
+                {
+                  icon: "",
+                  val: (1 - (Dat.Resources.mem.free / Dat.Resources.mem.total)),
+                  label: "Mem"
+                }
+              ]
 
-            LineSeries {
-              XYPoint {
-                x: 0
-                y: 0
-              }
-              XYPoint {
-                x: 1.1
-                y: 2.1
-              }
-              XYPoint {
-                x: 1.9
-                y: 3.3
-              }
-              XYPoint {
-                x: 2.1
-                y: 2.1
-              }
-              XYPoint {
-                x: 2.9
-                y: 4.9
-              }
-              XYPoint {
-                x: 3.4
-                y: 3.0
-              }
-              XYPoint {
-                x: 4.1
-                y: 3.3
+              RowLayout {
+                id: resourceItem
+
+                required property var modelData
+
+                Layout.fillWidth: true
+                implicitHeight: 28
+                spacing: 10
+
+                Rectangle {
+                  Layout.alignment: Qt.AlignCenter
+                  Layout.fillHeight: true
+                  implicitWidth: this.height
+                  color: Dat.Colors.primary_container
+                  radius: this.height
+
+                  Text {
+                    anchors.centerIn: parent
+                    color: Dat.Colors.on_primary_container
+                    font.pointSize: 11
+                    text: modelData.icon
+                  }
+                }
+                ColumnLayout {
+                  Layout.fillHeight: true
+                  Layout.fillWidth: true
+                  Layout.topMargin: 5
+                  Layout.bottomMargin: 5
+
+                  Text {
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 3
+                    color: Dat.Colors.on_surface
+                    text: resourceItem.modelData.label
+                    verticalAlignment: Text.AlignVCenter
+                  }
+                  Rectangle {
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 1
+                    color: Dat.Colors.primary_container
+                    // Layout.leftMargin: 20
+                    // Layout.rightMargin: this.Layout.leftMargin
+                    radius: 20
+
+                    Rectangle {
+                      anchors.bottom: parent.bottom
+                      anchors.left: parent.left
+                      anchors.top: parent.top
+                      color: Dat.Colors.on_primary_container
+                      radius: parent.radius
+                      width: parent.width * resourceItem.modelData.val
+                    }
+                  }
+                }
               }
             }
           }

@@ -1,4 +1,4 @@
-import QtQuick // import QtMultimedia
+import QtQuick
 import QtQuick.Layouts
 
 import "../Data/" as Dat

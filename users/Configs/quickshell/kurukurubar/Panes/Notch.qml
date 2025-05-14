@@ -46,6 +46,7 @@ Scope {
         clip: true
         color: Dat.Colors.withAlpha(Dat.Colors.background, (Dat.Globals.actWinName == "desktop" && Dat.Globals.notchState != "FULLY_EXPANDED") ? 0.79 : 0.89)
         state: Dat.Globals.notchState
+        opacity: this.width / expandedWidth
 
         Behavior on color {
           ColorAnimation {

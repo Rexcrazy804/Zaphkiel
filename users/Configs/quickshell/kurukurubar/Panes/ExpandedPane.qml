@@ -14,18 +14,6 @@ Rectangle {
     anchors.fill: parent
     spacing: 0
 
-    // ColumnLayout { // left dots (TODO: make the fonts look better??)
-    //   Layout.fillWidth: true
-    //   Layout.fillHeight: true
-    //   Layout.minimumWidth: 28
-    //   Layout.maximumWidth: 28
-    //
-    //   Wid.SessionDots {}
-    //   Wid.PowerProfDots {
-    //     Layout.bottomMargin: 10
-    //   }
-    // }
-
     CentralPane {
       Layout.fillHeight: true
       Layout.fillWidth: true

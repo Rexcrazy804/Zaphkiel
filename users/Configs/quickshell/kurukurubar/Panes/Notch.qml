@@ -196,6 +196,7 @@ Scope {
 
             TopBar {
               Layout.fillWidth: true
+              // setting implicit height produces a diffferent behaviour
               Layout.maximumHeight: notchRect.expandedHeight
               Layout.minimumHeight: notchRect.expandedHeight - 10
               opacity: (notchRect.width - notchRect.baseWidth) / (notchRect.expandedWidth - notchRect.baseWidth)

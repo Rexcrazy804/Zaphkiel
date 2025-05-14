@@ -31,8 +31,8 @@ Rectangle {
 
     Rectangle {
       color: Dat.Colors.primary
-      implicitWidth: 20
       implicitHeight: 20
+      implicitWidth: 20
       radius: 20
 
       Text {
@@ -50,8 +50,8 @@ Rectangle {
       readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
 
       color: Dat.Colors.on_primary_container
-      text: Dat.Globals.actWinName
       font.pointSize: 11
+      text: Dat.Globals.actWinName
     }
   }
   Gen.MouseArea {

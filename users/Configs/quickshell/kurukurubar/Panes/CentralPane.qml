@@ -164,6 +164,7 @@ Rectangle {
             }
             Gen.MouseArea {
               layerRect.scale: dotText.scale
+
               onClicked: swipeArea.setCurrentIndex(tabDot.index)
             }
           }

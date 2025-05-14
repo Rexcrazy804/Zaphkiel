@@ -49,8 +49,10 @@ Rectangle {
 
             Repeater {
               id: resourceRepeater
-              readonly property real memUsage: (1 - (Dat.Resources.mem.free / Dat.Resources.mem.total))
+
               readonly property real cpuUsage: (1 - (Dat.Resources.cpu.idleSec / Dat.Resources.cpu.totalSec))
+              readonly property real memUsage: (1 - (Dat.Resources.mem.free / Dat.Resources.mem.total))
+
               model: [
                 {
                   icon: "",
@@ -65,9 +67,8 @@ Rectangle {
               RowLayout {
                 id: resourceItem
 
-                required property var modelData
                 required property int index
-
+                required property var modelData
 
                 Layout.fillWidth: true
                 implicitHeight: 28
@@ -76,8 +77,8 @@ Rectangle {
                 Rectangle {
                   Layout.alignment: Qt.AlignCenter
                   Layout.fillHeight: true
-                  implicitWidth: this.height
                   color: Dat.Colors.primary_container
+                  implicitWidth: this.height
                   radius: this.height
 
                   Text {
@@ -88,10 +89,10 @@ Rectangle {
                   }
                 }
                 ColumnLayout {
+                  Layout.bottomMargin: 5
                   Layout.fillHeight: true
                   Layout.fillWidth: true
                   Layout.topMargin: 5
-                  Layout.bottomMargin: 5
 
                   Text {
                     Layout.fillHeight: true
@@ -118,7 +119,7 @@ Rectangle {
                       radius: parent.radius
                       // wonky hacky way of doing this cause otherwise the value will reset with each change
                       // which is not nice
-                      width: parent.width * ((!index)? resourceRepeater.cpuUsage : resourceRepeater.memUsage)
+                      width: parent.width * ((!index) ? resourceRepeater.cpuUsage : resourceRepeater.memUsage)
 
                       Behavior on width {
                         NumberAnimation {

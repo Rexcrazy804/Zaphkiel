@@ -42,8 +42,9 @@ Singleton {
   // also stolen https://github.com/FridayFaerie/quickshell/blob/main/io/External.qml
   FileView {
     id: memInfo
-    property int total
+
     property int free
+    property int total
 
     path: Qt.resolvedUrl("/proc/meminfo")
 

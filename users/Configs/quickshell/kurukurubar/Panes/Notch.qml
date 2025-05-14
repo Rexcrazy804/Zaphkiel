@@ -57,8 +57,8 @@ Scope {
             name: "COLLAPSED"
 
             PropertyChanges {
-              notchRect.opacity: 0
               notchRect.height: notchRect.baseHeight
+              notchRect.opacity: 0
               notchRect.width: notchRect.baseWidth
             }
           },
@@ -66,8 +66,8 @@ Scope {
             name: "EXPANDED"
 
             PropertyChanges {
-              notchRect.opacity: 1
               notchRect.height: notchRect.expandedHeight
+              notchRect.opacity: 1
               notchRect.width: notchRect.expandedWidth
             }
           },
@@ -75,8 +75,8 @@ Scope {
             name: "FULLY_EXPANDED"
 
             PropertyChanges {
-              notchRect.opacity: 1
               notchRect.height: notchRect.fullHeight
+              notchRect.opacity: 1
               notchRect.width: notchRect.fullWidth
             }
           }

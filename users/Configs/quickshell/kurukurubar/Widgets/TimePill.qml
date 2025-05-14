@@ -8,6 +8,7 @@ Text {
 
   anchors.centerIn: parent
   color: Dat.Colors.secondary
+  font.pointSize: 11
   text: Qt.formatDateTime(Dat.Clock?.date, "h:mm:ss AP")
 
   Gen.MouseArea {

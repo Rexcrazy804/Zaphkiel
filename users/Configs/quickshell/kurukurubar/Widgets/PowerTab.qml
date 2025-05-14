@@ -143,7 +143,7 @@ Rectangle {
         anchors.fill: parent
         from: 0
         orientation: Qt.Vertical
-        snapMode: Slider.SnapOnRelease
+        snapMode: Slider.SnapAlways
         stepSize: 1
         to: 2
         value: PowerProfiles.profile
@@ -179,6 +179,13 @@ Rectangle {
           visible: true
           width: 34
           y: slider.visualPosition * (slider.availableHeight - height)
+
+          Behavior on y {
+            NumberAnimation {
+              duration: Dat.MaterialEasing.emphasizedAccelTime
+              easing.bezierCurve: Dat.MaterialEasing.emphasizedAccel
+            }
+          }
 
           Text {
             anchors.centerIn: parent

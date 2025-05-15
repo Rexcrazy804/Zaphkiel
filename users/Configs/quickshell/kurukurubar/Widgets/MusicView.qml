@@ -14,6 +14,7 @@ Rectangle {
     color: Dat.Colors.on_surface
     text: "Play some music"
   }
+
   SwipeView {
     id: list
 
@@ -37,6 +38,7 @@ Rectangle {
       }
     }
   }
+
   PageIndicator {
     id: pageIndicator
 

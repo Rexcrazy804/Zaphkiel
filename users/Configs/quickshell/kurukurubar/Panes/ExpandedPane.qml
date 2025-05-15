@@ -19,6 +19,7 @@ Rectangle {
       Layout.fillWidth: true
       radius: root.radius
     }
+
     KuruKuru {
       Layout.fillHeight: true
       Layout.fillWidth: true

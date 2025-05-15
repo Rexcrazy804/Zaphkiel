@@ -39,6 +39,7 @@ Rectangle {
           text: Qt.formatDateTime(Dat.Clock?.date, "ddd")
         }
       }
+
       Rectangle {
         Layout.fillHeight: true
         Layout.fillWidth: true
@@ -55,6 +56,7 @@ Rectangle {
         }
       }
     }
+
     MonthGrid {
       id: monthGrid
 

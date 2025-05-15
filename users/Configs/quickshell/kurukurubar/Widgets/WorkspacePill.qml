@@ -44,6 +44,7 @@ Rectangle {
         text: Hyprland.focusedWorkspace?.id ?? "0"
       }
     }
+
     Text {
       id: windowNameText
 
@@ -54,6 +55,7 @@ Rectangle {
       text: Dat.Globals.actWinName
     }
   }
+
   Gen.MouseArea {
     layerColor: Dat.Colors.on_primary_container
     layerRadius: 20

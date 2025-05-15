@@ -17,6 +17,7 @@ Singleton {
     onExited: (ec, estatus) => root.running = false
     onStarted: root.running = true
   }
+
   Process {
     id: areaRecording
 
@@ -28,20 +29,24 @@ Singleton {
     onExited: (ec, estatus) => root.running = false
     onStarted: root.running = true
   }
+
   Process {
     // redundant can be called directly and will have the same effect
     id: stoper
 
     command: ["gpurecording", "stop"]
   }
+
   IpcHandler {
     function start() {
       fullRecording.running = true;
     }
+
     function startArea(area: string) {
       areaRecording.area = area;
       areaRecording.running = true;
     }
+
     function stop() {
       stoper.running = true;
     }

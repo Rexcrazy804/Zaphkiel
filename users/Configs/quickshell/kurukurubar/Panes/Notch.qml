@@ -202,6 +202,7 @@ Scope {
               opacity: (notchRect.width - notchRect.baseWidth) / (notchRect.expandedWidth - notchRect.baseWidth)
               visible: notchRect.height > notchRect.baseHeight
             }
+
             ExpandedPane {
               Layout.fillHeight: true
               Layout.fillWidth: true

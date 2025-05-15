@@ -71,6 +71,7 @@ Repeater {
 
       onClicked: mevent => dot.modelData.action(mevent)
     }
+
     Text {
       anchors.centerIn: parent
       color: dot.fgColor

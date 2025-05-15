@@ -66,6 +66,7 @@ Rectangle {
           onTriggered: parent.rotation = (parent.rotation + 3) % 360
         }
       }
+
       ColumnLayout { // area to the right of the image
         id: rightArea
 
@@ -104,6 +105,7 @@ Rectangle {
               text: ""
               verticalAlignment: Text.AlignVCenter
             }
+
             GridLayout {
               columns: 3
               implicitHeight: 60
@@ -131,6 +133,7 @@ Rectangle {
             }
           }
         }
+
         Rectangle {
           // no longer system tray, its gonna be the base of a monitor
           Layout.alignment: Qt.AlignCenter
@@ -143,6 +146,7 @@ Rectangle {
         }
       }
     }
+
     ColumnLayout {
       Layout.fillHeight: true
       // radius: 10

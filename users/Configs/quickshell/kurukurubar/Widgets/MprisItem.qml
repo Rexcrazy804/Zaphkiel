@@ -58,6 +58,7 @@ Rectangle {
       }
     }
   }
+
   MouseArea {
     id: diskMouseArea
 
@@ -79,6 +80,7 @@ Rectangle {
       imgDisk.scale = 1;
     }
   }
+
   Timer {
     id: rotateTimer
 
@@ -92,6 +94,7 @@ Rectangle {
     }
     onTriggered: imgDisk.rotation += 3
   }
+
   Timer {
     id: mprisDotRotateTimer
 
@@ -100,10 +103,11 @@ Rectangle {
     running: Dat.Globals.notchState != "COLLAPSED" && rect.player.isPlaying
 
     onRunningChanged: {
-      Dat.Globals.mprisDotRotation += (mprisDotRotateTimer.running)? 6 : 0;
+      Dat.Globals.mprisDotRotation += (mprisDotRotateTimer.running) ? 6 : 0;
     }
     onTriggered: Dat.Globals.mprisDotRotation += 6
   }
+
   ColumnLayout {
     anchors.bottom: imgDisk.top
     anchors.bottomMargin: 5
@@ -131,6 +135,7 @@ Rectangle {
         verticalAlignment: Text.AlignBottom
       }
     }
+
     Rectangle {
       Layout.fillHeight: true
       Layout.fillWidth: true
@@ -148,6 +153,7 @@ Rectangle {
       }
     }
   }
+
   Rectangle {
     anchors.left: rect.left
     anchors.leftMargin: 20
@@ -163,6 +169,7 @@ Rectangle {
       font.pointSize: 16
       text: "󰒮"
     }
+
     Gen.MouseArea {
       anchors.fill: parent
       layerRadius: parent.width
@@ -172,6 +179,7 @@ Rectangle {
       }
     }
   }
+
   Rectangle {
     anchors.right: rect.right
     anchors.rightMargin: 20
@@ -187,6 +195,7 @@ Rectangle {
       font.pointSize: 16
       text: "󰒭"
     }
+
     Gen.MouseArea {
       anchors.fill: parent
       layerRadius: parent.width

@@ -25,6 +25,7 @@ Rectangle {
         color: Dat.Colors.surface_container
         radius: 20
       }
+
       ColumnLayout {
         id: infoCol
 
@@ -88,6 +89,7 @@ Rectangle {
                     text: modelData.icon
                   }
                 }
+
                 ColumnLayout {
                   Layout.bottomMargin: 5
                   Layout.fillHeight: true
@@ -102,6 +104,7 @@ Rectangle {
                     text: resourceItem.modelData.label
                     verticalAlignment: Text.AlignVCenter
                   }
+
                   Rectangle {
                     Layout.fillHeight: true
                     Layout.fillWidth: true
@@ -134,6 +137,7 @@ Rectangle {
             }
           }
         }
+
         Rectangle {
           // BATTERY information
           Layout.fillWidth: true
@@ -151,6 +155,7 @@ Rectangle {
         }
       }
     }
+
     Rectangle {
       id: powerSliderRect
 

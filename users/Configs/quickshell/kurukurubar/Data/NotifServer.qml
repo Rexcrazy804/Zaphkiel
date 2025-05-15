@@ -37,6 +37,7 @@ Singleton {
       n.tracked = true;
     }
   }
+
   ScriptModel {
     id: sList
 

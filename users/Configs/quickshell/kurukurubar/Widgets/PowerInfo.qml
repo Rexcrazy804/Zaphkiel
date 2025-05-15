@@ -23,6 +23,7 @@ RowLayout {
       verticalAlignment: Text.AlignVCenter
     }
   }
+
   Rectangle {
     Layout.fillHeight: true
     Layout.fillWidth: true
@@ -57,6 +58,7 @@ RowLayout {
       }
     }
   }
+
   Rectangle {
     Layout.fillHeight: true
     Layout.fillWidth: true

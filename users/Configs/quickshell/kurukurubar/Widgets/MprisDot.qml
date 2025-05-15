@@ -25,6 +25,7 @@ Rectangle {
       }
     }
   }
+
   Gen.MouseArea {
     acceptedButtons: Qt.LeftButton
     layerColor: Dat.Colors.tertiary

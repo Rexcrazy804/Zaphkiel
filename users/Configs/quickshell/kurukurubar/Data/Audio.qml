@@ -22,6 +22,7 @@ Singleton {
   function toggleMute(node: PwNode) {
     node.audio.muted = !node.audio.muted;
   }
+
   function wheelAction(event: WheelEvent, node: PwNode) {
     if (event.angleDelta.y < 0) {
       node.audio.volume -= 0.01;

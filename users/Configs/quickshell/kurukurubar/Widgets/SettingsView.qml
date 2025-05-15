@@ -91,6 +91,7 @@ Rectangle {
               radius: 10
               width: tabText.contentWidth + 20
             }
+
             Text {
               id: tabText
 
@@ -122,6 +123,7 @@ Rectangle {
         }
       }
     }
+
     StackLayout {
       Layout.fillHeight: true
       Layout.fillWidth: true
@@ -139,6 +141,7 @@ Rectangle {
           }
         }
       }
+
       Wid.AudioTab {
         Layout.fillHeight: true
         Layout.fillWidth: true
@@ -151,6 +154,7 @@ Rectangle {
           }
         }
       }
+
       Rectangle {
         color: Dat.Colors.surface_container_high
         opacity: visible ? 1 : 0

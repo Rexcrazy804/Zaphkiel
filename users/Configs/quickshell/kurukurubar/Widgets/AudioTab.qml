@@ -18,8 +18,8 @@ Rectangle {
     delegate: Gen.AudioSlider {
       required property PwNode modelData
 
-      node: modelData
       implicitWidth: parent?.width ?? 0
+      node: modelData
     }
     model: ScriptModel {
       id: sModel

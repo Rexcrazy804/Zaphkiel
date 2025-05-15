@@ -38,6 +38,7 @@ Rectangle {
             onClicked: parent.muted = !parent.muted
           }
         }
+
         Text {
           id: kuruText
 
@@ -50,6 +51,7 @@ Rectangle {
         }
       }
     }
+
     ColumnLayout {
       Layout.fillHeight: true
       Layout.fillWidth: true
@@ -102,6 +104,7 @@ Rectangle {
           }
         ]
       }
+
       AnimatedImage {
         Layout.fillHeight: true
         Layout.fillWidth: true
@@ -128,6 +131,7 @@ Rectangle {
             parent.playing = false;
           }
         }
+
         Timer {
           id: squisher
 
@@ -137,6 +141,7 @@ Rectangle {
 
           onTriggered: parent.speed += 0.1
         }
+
         Timer {
           id: stoptheKuruKuru
 

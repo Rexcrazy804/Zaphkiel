@@ -16,6 +16,7 @@ Rectangle {
 
   color: "transparent"
   implicitHeight: 38
+
   ColumnLayout {
     anchors.fill: parent
 
@@ -33,6 +34,7 @@ Rectangle {
         verticalAlignment: Text.AlignVCenter
       }
     }
+
     Item {
       Layout.fillHeight: true
       Layout.fillWidth: true

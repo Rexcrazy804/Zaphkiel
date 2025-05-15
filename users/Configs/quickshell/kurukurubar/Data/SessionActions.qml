@@ -13,12 +13,15 @@ Singleton {
   function poweroff() {
     poweroff.running = true;
   }
+
   function reboot() {
     reboot.running = true;
   }
+
   function suspend() {
     suspend.running = true;
   }
+
   function toggleIdle() {
     if (root.idleInhibited) {
       thaw.running = true;
@@ -33,21 +36,25 @@ Singleton {
 
     command: ["systemctl", "suspend"]
   }
+
   Process {
     id: reboot
 
     command: ["reboot"]
   }
+
   Process {
     id: poweroff
 
     command: ["poweroff"]
   }
+
   Process {
     id: freeze
 
     command: ["systemctl", "--user", "freeze", "hypridle.service"]
   }
+
   Process {
     id: thaw
 

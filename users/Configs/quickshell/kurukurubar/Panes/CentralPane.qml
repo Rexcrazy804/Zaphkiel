@@ -62,21 +62,25 @@ Rectangle {
             text: "Home pane"
           }
         }
+
         Wid.CalendarView {
           height: swipeRect.height
           radius: swipeRect.radius
           width: swipeRect.width
         }
+
         Wid.SystemView {
           height: swipeRect.height
           radius: swipeRect.radius
           width: swipeRect.width
         }
+
         Wid.MusicView {
           height: swipeRect.height
           radius: swipeRect.radius
           width: swipeRect.width
         }
+
         Wid.SettingsView {
           height: swipeRect.height
           radius: swipeRect.radius
@@ -84,6 +88,7 @@ Rectangle {
         }
       }
     }
+
     Rectangle {
       // the page indicator
       Layout.leftMargin: 8
@@ -162,6 +167,7 @@ Rectangle {
                 }
               ]
             }
+
             Gen.MouseArea {
               layerRect.scale: dotText.scale
 

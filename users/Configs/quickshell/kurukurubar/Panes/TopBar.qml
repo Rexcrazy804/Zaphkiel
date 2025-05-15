@@ -19,6 +19,7 @@ RowLayout {
 
       Wid.WorkspacePill {
       }
+
       Wid.MprisDot {
         implicitHeight: 20
         implicitWidth: 20
@@ -72,14 +73,17 @@ RowLayout {
           }
         }
       }
+
       Wid.BatteryPill {
         implicitHeight: 20
         radius: 20
       }
+
       Wid.AudioSwiper {
         implicitHeight: 20
         radius: 20
       }
+
       Wid.BrightnessDot {
         implicitHeight: 20
         implicitWidth: 20

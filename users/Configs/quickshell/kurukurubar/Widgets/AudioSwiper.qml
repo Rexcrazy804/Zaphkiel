@@ -60,6 +60,7 @@ Rectangle {
         onWheel: event => Dat.Audio.wheelAction(event, Dat.Audio.sink)
       }
     }
+
     Text {
       color: Dat.Colors.on_primary_container
       font.pointSize: 11

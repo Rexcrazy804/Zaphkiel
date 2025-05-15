@@ -33,6 +33,7 @@ Rectangle {
     font.pointSize: 11
     text: Math.round(batPercentage * 100) + "% " + ((batCharging) ? chargeIcon : batIcon)
   }
+
   Timer {
     interval: 600
     repeat: true
@@ -43,6 +44,7 @@ Rectangle {
       batText.chargeIconIndex += 1;
     }
   }
+
   Gen.MouseArea {
     layerColor: Dat.Colors.on_primary
 

@@ -12,6 +12,7 @@ Rectangle {
     font.pointSize: 11
     text: "󰃠"
   }
+
   Gen.MouseArea {
     acceptedButtons: Qt.LeftButton | Qt.RightButton
     layerColor: Dat.Colors.tertiary

@@ -58,6 +58,7 @@ Singleton {
       memInfo.free = Number(text.match(/MemAvailable: *(\d+)/)[1] ?? 0);
     }
   }
+
   Timer {
     interval: 1000
     repeat: true

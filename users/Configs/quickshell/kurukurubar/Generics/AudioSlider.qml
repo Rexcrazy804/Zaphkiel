@@ -10,17 +10,12 @@ import "../Data/" as Dat
 Rectangle {
   id: root
 
-  property color bgColor: node.isStream ? Dat.Colors.tertiary_container : Dat.Colors.primary_container
-  property color fgColor: node.isStream ? Dat.Colors.tertiary : Dat.Colors.primary
+  property color bgColor: node?.isStream ? Dat.Colors.tertiary_container : Dat.Colors.primary_container
+  property color fgColor: node?.isStream ? Dat.Colors.tertiary : Dat.Colors.primary
   required property PwNode node
 
   color: "transparent"
   implicitHeight: 38
-  implicitWidth: parent.width
-
-  PwObjectTracker {
-    objects: root.node
-  }
   ColumnLayout {
     anchors.fill: parent
 
@@ -34,7 +29,7 @@ Rectangle {
         anchors.leftMargin: 10
         color: Dat.Colors.on_surface
         font.pointSize: 10
-        text: root.node?.isStream ? root.node?.name : root.node?.nickname
+        text: (root.node?.isStream ? root.node?.name : root.node?.nickname) ?? "Unidentified"
         verticalAlignment: Text.AlignVCenter
       }
     }
@@ -54,7 +49,7 @@ Rectangle {
         snapMode: Slider.NoSnap
         to: 1
         topInset: 0
-        value: root.node.audio.volume
+        value: root.node?.audio?.volume ?? 1
 
         background: ClippingRectangle {
           id: bgRect

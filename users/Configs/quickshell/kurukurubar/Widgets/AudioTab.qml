@@ -19,11 +19,16 @@ Rectangle {
       required property PwNode modelData
 
       node: modelData
+      implicitWidth: parent?.width ?? 0
     }
     model: ScriptModel {
       id: sModel
 
       values: Pipewire.nodes.values.filter(node => node.audio).sort()
     }
+  }
+
+  PwObjectTracker {
+    objects: sModel.values
   }
 }

@@ -87,12 +87,10 @@ Rectangle {
     running: Dat.Globals.notchState == "FULLY_EXPANDED" && Dat.Globals.swipeIndex == 3 && rect.player.isPlaying
 
     onRunningChanged: {
-      if (running) {
-        imgDisk.rotation += 0.5;
-      }
       // better hack to not wait for interval completion on quick state changes
+      imgDisk.rotation += (rotateTimer.running)? 0 : 3
     }
-    onTriggered: imgDisk.rotation += 0.5
+    onTriggered: imgDisk.rotation += 3
   }
   Timer {
     id: mprisDotRotateTimer

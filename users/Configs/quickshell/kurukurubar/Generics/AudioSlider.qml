@@ -18,6 +18,10 @@ Rectangle {
   implicitHeight: 38
   implicitWidth: parent.width
 
+  PwObjectTracker {
+    objects: root.node
+  }
+
   ColumnLayout {
     anchors.fill: parent
 

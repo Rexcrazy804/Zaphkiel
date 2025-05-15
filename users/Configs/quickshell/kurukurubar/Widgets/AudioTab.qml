@@ -6,25 +6,24 @@ import "../Generics/" as Gen
 import "../Data/" as Dat
 
 Rectangle {
+  clip: true
   color: Dat.Colors.surface_container_high
   radius: 20
-  clip: true
 
   ListView {
-    anchors.margins: 10
     anchors.fill: parent
-    model: ScriptModel {
-      id: sModel
-      values: Pipewire.nodes.values.filter(node => node.audio).sort()
-    }
+    anchors.margins: 10
     spacing: 8
+
     delegate: Gen.AudioSlider {
       required property PwNode modelData
+
       node: modelData
     }
+    model: ScriptModel {
+      id: sModel
 
-    PwObjectTracker {
-      objects: sModel.values
+      values: Pipewire.nodes.values.filter(node => node.audio).sort()
     }
   }
 }

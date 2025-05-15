@@ -11,7 +11,7 @@ Rectangle {
   id: root
 
   property color bgColor: node.isStream ? Dat.Colors.tertiary_container : Dat.Colors.primary_container
-  property color fgColor: node.isStream ? Dat.Colors.on_tertiary_container : Dat.Colors.on_primary_container
+  property color fgColor: node.isStream ? Dat.Colors.tertiary : Dat.Colors.primary
   required property PwNode node
 
   color: "transparent"

@@ -141,6 +141,10 @@ Rectangle {
       }
 
       Wid.AudioTab {
+        Layout.fillHeight: true
+        Layout.fillWidth: true
+        opacity: visible ? 1 : 0
+
         Behavior on opacity {
           NumberAnimation {
             duration: Dat.MaterialEasing.emphasizedAccelTime

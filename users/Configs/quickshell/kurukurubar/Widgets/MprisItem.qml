@@ -88,7 +88,7 @@ Rectangle {
 
     onRunningChanged: {
       // better hack to not wait for interval completion on quick state changes
-      imgDisk.rotation += (rotateTimer.running)? 0 : 3
+      imgDisk.rotation += (rotateTimer.running) ? 3 : 0;
     }
     onTriggered: imgDisk.rotation += 3
   }
@@ -100,9 +100,7 @@ Rectangle {
     running: Dat.Globals.notchState != "COLLAPSED" && rect.player.isPlaying
 
     onRunningChanged: {
-      if (running) {
-        Dat.Globals.mprisDotRotation += 6;
-      }
+      Dat.Globals.mprisDotRotation += (mprisDotRotateTimer.running)? 6 : 0;
     }
     onTriggered: Dat.Globals.mprisDotRotation += 6
   }

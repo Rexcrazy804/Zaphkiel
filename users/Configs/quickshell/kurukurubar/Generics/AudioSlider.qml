@@ -21,7 +21,6 @@ Rectangle {
   PwObjectTracker {
     objects: root.node
   }
-
   ColumnLayout {
     anchors.fill: parent
 

@@ -103,7 +103,7 @@ Rectangle {
 
     onRunningChanged: {
       if (running) {
-        Dat.Globals.mprisDotRotation += 0.5
+        Dat.Globals.mprisDotRotation += 0.5;
       }
     }
     onTriggered: Dat.Globals.mprisDotRotation += 0.5

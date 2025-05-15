@@ -10,6 +10,7 @@ Singleton {
   property string actWinName: activeWindow?.activated ? activeWindow?.appId : "desktop"
   readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
   property string hostName: "KuruMi"
+  property real mprisDotRotation: 0
   property bool notchHovered: false
 
   // one of "COLLAPSED", "EXPANDED", "FULLY_EXPANDED"
@@ -45,5 +46,4 @@ Singleton {
       onRead: data => root.hostName = data
     }
   }
-  property real mprisDotRotation: 0
 }

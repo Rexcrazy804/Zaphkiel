@@ -14,21 +14,15 @@ Rectangle {
     anchors.centerIn: parent
     color: Dat.Colors.tertiary
     font.pointSize: 11
+    rotation: Dat.Globals.mprisDotRotation
     text: "󰽰"
 
+    // MAKE SURE THIS IS THE SAME AS MPRIS ITEM's
     Behavior on rotation {
       NumberAnimation {
         duration: 500
         easing.type: Easing.Linear
       }
-    }
-
-    Component.onCompleted: {
-      Dat.Globals.notchStateChanged.connect(() => {
-        if (Dat.Globals.notchState != "COLLAPSED") {
-          icon.rotation += 6;
-        }
-      });
     }
   }
   Gen.MouseArea {
@@ -43,12 +37,5 @@ Rectangle {
         Dat.Globals.swipeIndex = 3;
       }
     }
-  }
-  Timer {
-    interval: 500
-    repeat: true
-    running: parent.visible && Dat.Globals.notchState != "COLLAPSED"
-
-    onTriggered: icon.rotation = icon.rotation + 6
   }
 }

@@ -84,7 +84,7 @@ Rectangle {
 
     interval: 500
     repeat: true
-    running: Dat.Globals.notchState == "FULLY_EXPANDED" && Dat.Globals.swipeIndex == 3 && player.isPlaying
+    running: Dat.Globals.notchState == "FULLY_EXPANDED" && Dat.Globals.swipeIndex == 3 && rect.player.isPlaying
 
     onRunningChanged: {
       if (running) {
@@ -93,6 +93,20 @@ Rectangle {
       // better hack to not wait for interval completion on quick state changes
     }
     onTriggered: imgDisk.rotation += 0.5
+  }
+  Timer {
+    id: mprisDotRotateTimer
+
+    interval: 500
+    repeat: true
+    running: Dat.Globals.notchState != "COLLAPSED" && rect.player.isPlaying
+
+    onRunningChanged: {
+      if (running) {
+        Dat.Globals.mprisDotRotation += 0.5
+      }
+    }
+    onTriggered: Dat.Globals.mprisDotRotation += 0.5
   }
   ColumnLayout {
     anchors.bottom: imgDisk.top
@@ -186,113 +200,4 @@ Rectangle {
       }
     }
   }
-
-  // ColumnLayout {
-  //   anchors.fill: parent
-  //   anchors.margins: 5
-  //   clip: true
-  //
-  //   ColumnLayout {
-  //     Layout.fillHeight: true
-  //     Layout.fillWidth: true
-  //     Layout.preferredHeight: 2
-  //     spacing: 0
-  //
-  //     Flickable {
-  //       Layout.fillHeight: true
-  //       Layout.fillWidth: true
-  //       Layout.preferredHeight: 2
-  //       // lets me centre short shit (and yes cent're', br'ish moment)
-  //       contentWidth: (text.contentWidth > this.width) ? text.contentWidth : this.width
-  //
-  //       // contentX: (text.contentWidth > this.width)? (text.contentWidth / 2) : 0
-  //
-  //       Text {
-  //         id: text
-  //
-  //         anchors.fill: parent
-  //         color: "white"
-  //         font.bold: true
-  //         font.pointSize: 16
-  //         horizontalAlignment: Text.AlignHCenter
-  //         text: player.trackTitle
-  //         verticalAlignment: Text.AlignBottom
-  //         wrapMode: Text.NoWrap
-  //       }
-  //     }
-  //     Text {
-  //       Layout.fillHeight: true
-  //       Layout.fillWidth: true
-  //       Layout.preferredHeight: 1
-  //       color: "white"
-  //       font.pointSize: 9
-  //       horizontalAlignment: Text.AlignHCenter
-  //       text: player.trackArtist
-  //       verticalAlignment: Text.AlignTop
-  //     }
-  //   }
-  //
-  //   // controlls
-  //   RowLayout {
-  //     Layout.fillHeight: true
-  //     Layout.fillWidth: true
-  //     // Layout.bottomMargin: 3
-  //     Layout.leftMargin: 80
-  //     Layout.preferredHeight: 1
-  //     Layout.rightMargin: this.Layout.leftMargin
-  //     spacing: 10
-  //
-  //     Rectangle {
-  //       // Left
-  //       Layout.fillHeight: true
-  //       Layout.fillWidth: true
-  //       color: "transparent"
-  //
-  //       Text {
-  //         anchors.centerIn: parent
-  //         color: "white"
-  //         font.bold: true
-  //         font.pointSize: 20
-  //         text: "󰒮"
-  //
-  //         MouseArea {
-  //           anchors.fill: parent
-  //
-  //           onClicked: {
-  //             player.previous();
-  //           }
-  //         }
-  //       }
-  //     }
-  //     Rectangle {
-  //       // REsume/ Puase
-  //       Layout.fillHeight: true
-  //       Layout.fillWidth: true
-  //       color: "transparent"
-  //
-  //       Text {
-  //         anchors.centerIn: parent
-  //         color: "white"
-  //         font.bold: true
-  //         font.pointSize: 20
-  //         text: !(player.playbackState == MprisPlaybackState.Playing) ? "󰐊" : "󰏤"
-  //
-  //         MouseArea {
-  //           anchors.fill: parent
-  //
-  //           onClicked: {
-  //             player.togglePlaying();
-  //           }
-  //         }
-  //       }
-  //     }
-  //     Rectangle {
-  //       // Right NExt
-  //       Layout.fillHeight: true
-  //       Layout.fillWidth: true
-  //       color: "transparent"
-  //
-  //     }
-  //   }
-  // }
 }

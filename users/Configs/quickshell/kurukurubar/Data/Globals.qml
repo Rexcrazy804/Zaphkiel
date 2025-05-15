@@ -45,4 +45,5 @@ Singleton {
       onRead: data => root.hostName = data
     }
   }
+  property real mprisDotRotation: 0
 }

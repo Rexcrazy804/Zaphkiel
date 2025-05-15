@@ -126,7 +126,7 @@ Rectangle {
 
       Text {
         anchors.fill: parent
-        color: Dat.Colors.on_surface
+        color: Dat.Colors.primary
         elide: Text.ElideRight
         font.bold: true
         font.pointSize: 16
@@ -142,7 +142,7 @@ Rectangle {
 
       Text {
         anchors.fill: parent
-        color: Dat.Colors.on_surface
+        color: Dat.Colors.secondary
         elide: Text.ElideRight
         font.bold: true
         font.pointSize: 9

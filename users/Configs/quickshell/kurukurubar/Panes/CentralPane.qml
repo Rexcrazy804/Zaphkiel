@@ -50,12 +50,12 @@ Rectangle {
           }
         }
 
-        Rectangle {
-          color: "transparent"
+        Wid.HomeView {
           height: swipeRect.height
           radius: swipeRect.radius
           width: swipeRect.width
         }
+
 
         Wid.CalendarView {
           height: swipeRect.height

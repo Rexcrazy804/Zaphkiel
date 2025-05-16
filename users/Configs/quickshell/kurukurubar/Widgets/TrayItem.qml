@@ -14,8 +14,9 @@ Rectangle {
 
   required property int index
   property var menu: Wid.TrayItemMenu {
-    anchors.fill: root.stack
+    height: root.stack.height
     trayMenu: trayMenu
+    width: root.stack.width
   }
   required property SystemTrayItem modelData
   required property var stack
@@ -45,15 +46,14 @@ Rectangle {
 
       onClicked: mevent => {
         // ez pz logic to show only whats needed
-        if (root.stack.depth > 1)  {
+        if (root.stack.depth > 1) {
           if (root.stack.currentItem == root.menu) {
-            root.stack.pop()
-          }
-          else {
-            root.stack.replace(root.menu)
+            root.stack.pop();
+          } else {
+            root.stack.replace(root.menu);
           }
         } else {
-          root.stack.push(root.menu)
+          root.stack.push(root.menu);
         }
       }
     }

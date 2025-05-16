@@ -32,7 +32,8 @@ Rectangle {
         anchors.fill: parent
 
         initialItem: Wid.GreeterWidget {
-          anchors.fill: parent
+          width: stack.width
+          height: stack.height
         }
       }
     }

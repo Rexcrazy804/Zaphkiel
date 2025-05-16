@@ -114,8 +114,8 @@ Scope {
             }
           },
           Transition {
-            from: "COLLAPSED"
-            to: "FULLY_EXPANDED"
+            from: "FULLY_EXPANDED"
+            to: "COLLAPSED"
 
             NumberAnimation {
               duration: Dat.MaterialEasing.standardAccelTime

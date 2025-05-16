@@ -55,12 +55,6 @@ Rectangle {
           height: swipeRect.height
           radius: swipeRect.radius
           width: swipeRect.width
-
-          Text {
-            anchors.centerIn: parent
-            color: Dat.Colors.on_surface
-            text: "Home pane"
-          }
         }
 
         Wid.CalendarView {

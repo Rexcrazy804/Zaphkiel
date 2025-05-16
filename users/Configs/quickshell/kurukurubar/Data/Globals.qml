@@ -37,13 +37,4 @@ Singleton {
       root.notchState = "COLLAPSED";
     }
   }
-
-  Process {
-    command: ["hostname"]
-    running: true
-
-    stdout: SplitParser {
-      onRead: data => root.hostName = data
-    }
-  }
 }

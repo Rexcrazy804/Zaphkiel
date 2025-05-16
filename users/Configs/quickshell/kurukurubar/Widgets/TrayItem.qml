@@ -45,9 +45,13 @@ Rectangle {
       anchors.fill: parent
 
       onClicked: mevent => {
-        // ez pz logic to show only whats needed
         if (root.stack.depth > 1) {
           if (root.stack.currentItem == root.menu) {
+            // unwind nesting
+            if (root.menu.trayMenu != trayMenu) {
+              root.menu.trayMenu = trayMenu;
+              return;
+            }
             root.stack.pop();
           } else {
             root.stack.replace(root.menu, StackView.PopTransition);

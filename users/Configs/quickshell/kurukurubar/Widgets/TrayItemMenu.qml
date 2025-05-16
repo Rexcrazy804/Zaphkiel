@@ -10,8 +10,10 @@ Rectangle {
   id: root
 
   required property QsMenuOpener trayMenu
+
   clip: true
   color: Dat.Colors.surface_container
+  radius: 20
 
   ListView {
     anchors.fill: parent
@@ -19,28 +21,77 @@ Rectangle {
     spacing: 3
 
     delegate: Rectangle {
+      id: entry
+
+      property var child: QsMenuOpener {
+        menu: entry.modelData
+      }
       required property QsMenuEntry modelData
 
       color: (modelData?.isSeparator) ? Dat.Colors.outline : "transparent"
       height: (modelData?.isSeparator) ? 2 : 28
-      width: root.width
       radius: 20
+      width: root.width
 
       Gen.MouseArea {
         layerColor: text.color
+
         onClicked: {
-          parent.modelData.triggered()
+          if (entry.modelData.hasChildren) {
+            root.trayMenu = entry.child;
+          } else {
+            entry.modelData.triggered();
+          }
         }
       }
 
-      Text {
-        id: text
-        verticalAlignment: Text.AlignVCenter
+      RowLayout {
         anchors.fill: parent
         anchors.leftMargin: 10
-        color: Dat.Colors.on_surface
-        text: parent.modelData?.text ?? ""
-        font.pointSize: 11
+        anchors.rightMargin: 10
+
+        Rectangle {
+          Layout.fillHeight: true
+          Layout.fillWidth: true
+          color: "transparent"
+
+          Text {
+            id: text
+
+            anchors.fill: parent
+            color: Dat.Colors.on_surface
+            font.pointSize: 11
+            text: entry.modelData?.text ?? ""
+            verticalAlignment: Text.AlignVCenter
+          }
+        }
+
+        Rectangle {
+          Layout.fillHeight: true
+          color: "transparent"
+          implicitWidth: this.height
+
+          Image {
+            anchors.fill: parent
+            anchors.margins: 3
+            fillMode: Image.PreserveAspectFit
+            source: entry.modelData.icon
+          }
+        }
+
+        Rectangle {
+          Layout.fillHeight: true
+          color: "transparent"
+          implicitWidth: this.height
+          visible: entry.modelData.hasChildren
+
+          Text {
+            anchors.centerIn: parent
+            color: Dat.Colors.on_surface
+            font.pointSize: 11
+            text: ""
+          }
+        }
       }
     }
   }

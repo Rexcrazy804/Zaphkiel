@@ -15,7 +15,6 @@
   ];
   special = builtins.attrValues {
     discord = pkgs.discord.override {
-      withOpenASAR = true;
       withVencord = true;
     };
   };

@@ -14,12 +14,13 @@ Rectangle {
   implicitWidth: workRow.width + 8
   radius: 20
 
-  Behavior on implicitWidth {
-    NumberAnimation {
-      duration: 100
-      easing.bezierCurve: Dat.MaterialEasing.standard
-    }
-  }
+  // TODO find a way to cleanly animate this
+  // Behavior on implicitWidth {
+  //   NumberAnimation {
+  //     duration: 100
+  //     easing.bezierCurve: Dat.MaterialEasing.standard
+  //   }
+  // }
 
   RowLayout {
     id: workRow

@@ -47,12 +47,14 @@ Rectangle {
 
     Text {
       id: windowNameText
+      Layout.maximumWidth: 100
 
       readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
 
       color: Dat.Colors.on_primary_container
       font.pointSize: 11
       text: Dat.Globals.actWinName
+      elide: Text.ElideRight
     }
   }
 

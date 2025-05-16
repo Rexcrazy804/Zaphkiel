@@ -20,7 +20,7 @@ Scope {
       color: "transparent"
       exclusionMode: ExclusionMode.Ignore
       focusable: false
-      height: screen.height * 0.65
+      implicitHeight: screen.height * 0.65
       layer: WlrLayer.Top
       namespace: "rexies.notch.quickshell"
       screen: modelData

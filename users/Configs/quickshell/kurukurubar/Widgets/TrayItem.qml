@@ -50,7 +50,7 @@ Rectangle {
           if (root.stack.currentItem == root.menu) {
             root.stack.pop();
           } else {
-            root.stack.replace(root.menu);
+            root.stack.replace(root.menu, StackView.PopTransition);
           }
         } else {
           root.stack.push(root.menu);

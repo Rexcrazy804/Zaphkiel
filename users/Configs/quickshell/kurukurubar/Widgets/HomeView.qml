@@ -32,8 +32,40 @@ Rectangle {
         anchors.fill: parent
 
         initialItem: Wid.GreeterWidget {
-          width: stack.width
           height: stack.height
+          width: stack.width
+        }
+        popEnter: Transition {
+          PropertyAnimation {
+            duration: Dat.MaterialEasing.emphasizedTime
+            from: 0
+            property: "opacity"
+            to: 1
+          }
+        }
+        popExit: Transition {
+          PropertyAnimation {
+            duration: Dat.MaterialEasing.emphasizedTime
+            from: 1
+            property: "opacity"
+            to: 0
+          }
+        }
+        pushEnter: Transition {
+          PropertyAnimation {
+            duration: Dat.MaterialEasing.emphasizedTime
+            from: 0
+            property: "opacity"
+            to: 1
+          }
+        }
+        pushExit: Transition {
+          PropertyAnimation {
+            duration: Dat.MaterialEasing.emphasizedTime
+            from: 1
+            property: "opacity"
+            to: 0
+          }
         }
       }
     }
@@ -41,14 +73,14 @@ Rectangle {
     Rectangle {
       Layout.alignment: Qt.AlignCenter
       color: Dat.Colors.surface_container
-      implicitHeight: (stack.depth > 1)? 5 : 28
+      implicitHeight: (stack.depth > 1) ? 5 : 28
       implicitWidth: trayItemRow.width + 20
       radius: 20
 
       Behavior on implicitHeight {
         NumberAnimation {
           duration: Dat.MaterialEasing.emphasizedTime
-          easing.bezierCurve:  Dat.MaterialEasing.emphasized
+          easing.bezierCurve: Dat.MaterialEasing.emphasized
         }
       }
 

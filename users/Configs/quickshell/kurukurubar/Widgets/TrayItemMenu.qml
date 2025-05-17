@@ -34,6 +34,7 @@ Rectangle {
       width: root.width
 
       Gen.MouseArea {
+        visible: entry.modelData.enabled && !entry.modelData.isSeparator
         layerColor: text.color
 
         onClicked: {
@@ -59,7 +60,7 @@ Rectangle {
             id: text
 
             anchors.fill: parent
-            color: Dat.Colors.on_surface
+            color: (entry.modelData?.enabled)? Dat.Colors.on_surface : Dat.Colors.primary
             font.pointSize: 11
             text: entry.modelData?.text ?? ""
             verticalAlignment: Text.AlignVCenter
@@ -75,7 +76,7 @@ Rectangle {
             anchors.fill: parent
             anchors.margins: 3
             fillMode: Image.PreserveAspectFit
-            source: entry.modelData.icon
+            source: entry.modelData?.icon
           }
         }
 

@@ -13,7 +13,7 @@
 
   environment.etc."nix/inputs/nixpkgs".source = "${inputs.nixpkgs}";
   nix = {
-    package = pkgs.lix;
+    package = pkgs.lixPackageSets.latest.lix;
     # remove nix-channel related tools & configs, we use flakes instead.
     channel.enable = false;
     registry.nixpkgs.flake = inputs.nixpkgs;
@@ -25,6 +25,7 @@
         "flakes"
       ];
       auto-optimise-store = true;
+      trusted-users = ["root" "@wheel"];
     };
 
     gc = {

@@ -16,8 +16,8 @@ Rectangle {
   radius: 20
 
   ListView {
+    id: view
     anchors.fill: parent
-    model: root.trayMenu.children
     spacing: 3
 
     delegate: Rectangle {
@@ -34,14 +34,15 @@ Rectangle {
       width: root.width
 
       Gen.MouseArea {
-        visible: entry.modelData.enabled && !entry.modelData.isSeparator
         layerColor: text.color
+        visible: (entry.modelData?.enabled && !entry.modelData?.isSeparator) ?? true
 
         onClicked: {
           if (entry.modelData.hasChildren) {
-            root.trayMenu = entry.child;
+            root.trayMenu = entry.child
+            view.positionViewAtBeginning()
           } else {
-            entry.modelData.triggered();
+            entry.modelData.triggered()
           }
         }
       }
@@ -60,7 +61,7 @@ Rectangle {
             id: text
 
             anchors.fill: parent
-            color: (entry.modelData?.enabled)? Dat.Colors.on_surface : Dat.Colors.primary
+            color: (entry.modelData?.enabled) ? Dat.Colors.on_surface : Dat.Colors.primary
             font.pointSize: 11
             text: entry.modelData?.text ?? ""
             verticalAlignment: Text.AlignVCenter
@@ -76,7 +77,7 @@ Rectangle {
             anchors.fill: parent
             anchors.margins: 3
             fillMode: Image.PreserveAspectFit
-            source: entry.modelData?.icon
+            source: entry.modelData?.icon ?? ""
           }
         }
 
@@ -84,7 +85,7 @@ Rectangle {
           Layout.fillHeight: true
           color: "transparent"
           implicitWidth: this.height
-          visible: entry.modelData.hasChildren
+          visible: entry.modelData?.hasChildren ?? false
 
           Text {
             anchors.centerIn: parent
@@ -94,6 +95,9 @@ Rectangle {
           }
         }
       }
+    }
+    model: ScriptModel {
+      values: [...root.trayMenu.children.values]
     }
   }
 }

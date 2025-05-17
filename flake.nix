@@ -56,6 +56,18 @@
     in rec {
       inherit (nvimPkgs) nvim-no-lsp nvim-wrapped;
       default = nvim-wrapped;
+      quickshell = pkgs.callPackage ./users/Wrappers/quickshell.nix {
+        quickshell = inputs.quickshell.packages.${pkgs.system}.default.override {
+          withJemalloc = true;
+          withQtSvg = true;
+          withWayland = true;
+          withX11 = false;
+          withPipewire = true;
+          withPam = true;
+          withHyprland = true;
+          withI3 = false;
+        };
+      };
     });
 
     formatter = forAllSystems (pkgs: pkgs.alejandra);

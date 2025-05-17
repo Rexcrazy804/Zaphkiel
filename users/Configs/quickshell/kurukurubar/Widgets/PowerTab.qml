@@ -5,6 +5,7 @@ import Quickshell.Services.UPower
 
 import "../Data/" as Dat
 import "../Generics/" as Gen
+import "../Widgets/" as Wid
 
 Rectangle {
   color: Dat.Colors.surface_container_high
@@ -147,7 +148,7 @@ Rectangle {
           topLeftRadius: 0
           topRightRadius: 0
 
-          PowerInfo {
+          Wid.PowerInfo {
             anchors.fill: parent
             anchors.leftMargin: 10
             anchors.rightMargin: 10

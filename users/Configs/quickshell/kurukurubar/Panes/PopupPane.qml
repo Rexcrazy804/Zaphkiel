@@ -51,4 +51,12 @@ Rectangle {
       }
     }
   }
+
+  MouseArea {
+    anchors.fill: parent
+    acceptedButtons: Qt.NoButton
+    hoverEnabled: true
+    onEntered: popupClose.stop()
+    onExited: popupClose.restart()
+  }
 }

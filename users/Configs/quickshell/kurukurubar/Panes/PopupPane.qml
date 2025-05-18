@@ -11,24 +11,28 @@ Rectangle {
 
   Component.onCompleted: {
     Dat.NotifServer.server.onNotification.connect(e => {
-      if (!e) {
-        return;
-      }
-      stack.push(Qt.createComponent("../Generics/Notification.qml"), {
+      if (!e) { return; }
+      var notification = Qt.createComponent("../Generics/Notification.qml")
+      stack.push(notification, {
         "notif": e,
         "width": stack.width,
         "height": stack.height,
-        "radius": "20"
+        "radius": "20",
+        "view": stack,
+        "popup": popupRect
       });
       if (Dat.Globals.notifState != "INBOX") {
         Dat.Globals.notifState = "POPUP";
-      }
-      if (stack.depth == 0) {
-        popupClose.start();
-      } else {
-        popupClose.restart();
+        popupClose.start()
       }
     });
+
+    stack.depthChanged.connect(() => {
+      if (stack.depth == 0) {
+        popupClose.running = false
+        Dat.Globals.notifState = "HIDDEN"
+      }
+    })
   }
 
   StackView {
@@ -41,22 +45,21 @@ Rectangle {
 
   Timer {
     id: popupClose
-
     interval: 3500
-
     onTriggered: {
       if (Dat.Globals.notifState != "INBOX") {
         Dat.Globals.notifState = "HIDDEN";
-        // stack.clear()
       }
     }
   }
 
-  MouseArea {
-    anchors.fill: parent
-    acceptedButtons: Qt.NoButton
-    hoverEnabled: true
-    onEntered: popupClose.stop()
-    onExited: popupClose.restart()
+  Timer {
+    id: stackClearTimer
+
+    interval: 500
+    running: Dat.Globals.notifState == "HIDDEN"
+
+    onTriggered: stack.clear()
   }
+
 }

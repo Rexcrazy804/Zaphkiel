@@ -11,6 +11,9 @@ ShellRoot {
     function onReloadCompleted() {
       Quickshell.inhibitReloadPopup();
     }
+    function onReloadFailed() {
+      Quickshell.inhibitReloadPopup();
+    }
 
     target: Quickshell
   }

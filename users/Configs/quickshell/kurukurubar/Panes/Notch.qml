@@ -379,7 +379,8 @@ Scope {
 
             ParallelAnimation {
               ColorAnimation {
-                duration: Dat.MaterialEasing.emphasizedTime
+                // take a lil bit longer to animate this to smoothen the overal effect
+                duration: Dat.MaterialEasing.emphasizedTime * 1.5
                 easing.bezierCurve: Dat.MaterialEasing.emphasized
                 property: "color"
                 target: notificationRect

@@ -234,7 +234,7 @@ Scope {
         anchors.topMargin: 10
         color: Dat.Colors.surface
         radius: 20
-        state: "HIDDEN"
+        state: Dat.Globals.notifState
 
         states: [
           State {
@@ -475,13 +475,13 @@ Scope {
           Dat.Globals.notchStateChanged.connect(() => {
             switch (Dat.Globals.notchState) {
             case "FULLY_EXPANDED":
-              notificationRect.state = "INBOX";
+              Dat.Globals.notifState = "INBOX";
               break;
             // case "EXPANDED":
             //   notificationRect.state = "POPUP";
             //   break;
             default:
-              notificationRect.state = "HIDDEN";
+              Dat.Globals.notifState = "HIDDEN";
               break;
             }
           });

@@ -15,6 +15,8 @@ Singleton {
 
   // one of "COLLAPSED", "EXPANDED", "FULLY_EXPANDED"
   property string notchState: "COLLAPSED"
+  // one of "HIDDEN", "POPUP", "INBOX"
+  property string notifState: "HIDDEN"
 
   // SettingsView State
   // 0 => Power

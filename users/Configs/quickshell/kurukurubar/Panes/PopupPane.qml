@@ -30,7 +30,7 @@ Rectangle {
     });
 
     stack.depthChanged.connect(() => {
-      if (stack.depth == 0) {
+      if (stack.depth == 0 && Dat.Globals.notifState == "POPUP") {
         popupClose.running = false
         Dat.Globals.notifState = "HIDDEN"
       }

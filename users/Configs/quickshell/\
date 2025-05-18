@@ -1,0 +1,39 @@
+pragma ComponentBehavior: Bound
+import QtQuick
+import QtQuick.Layouts
+import Quickshell.Services.Notifications
+
+import "../Data/" as Dat
+import "../Generics/" as Gen
+
+Rectangle {
+  id: inboxRect
+  property alias list: inbox
+
+  ColumnLayout {
+    anchors.fill: parent
+    Rectangle {
+      color: "transparent"
+      Layout.fillWidth: true
+      Layout.fillHeight: true
+      ListView {
+        clip: true
+        spacing: 10
+        id: inbox
+        width: parent.width
+        implicitHeight: 600
+        // anchors.fill: parent
+        model: Dat.NotifServer.notifications
+        delegate: Gen.Notification {
+          Layout.alignment: Qt.AlignTop
+          required property Notification modelData
+          notif: modelData
+          width: inbox.width
+          color: Dat.Colors.surface_container
+          radius: 20
+        }
+      }
+    }
+  }
+
+}

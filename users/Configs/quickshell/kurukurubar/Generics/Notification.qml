@@ -12,13 +12,14 @@ Rectangle {
   id: root
 
   required property Notification notif
-  required property Rectangle popup
-  required property StackView view
+  property Rectangle popup
+  property StackView view
 
   color: "transparent"
+  height: (bodyText.contentHeight > 120)? bodyText.contentHeight + 50: 120
 
   onNotifChanged: {
-    root.view.clear();
+    root.view?.clear();
   }
 
   MouseArea {
@@ -26,10 +27,10 @@ Rectangle {
     anchors.fill: parent
     hoverEnabled: true
 
-    onEntered: root.popup.closeTimer.stop()
+    onEntered: root.popup?.closeTimer.stop()
     onExited: {
-      if (root.view.depth > 0) {
-        root.popup.closeTimer.restart();
+      if (root.view?.depth > 0) {
+        root.popup?.closeTimer.restart();
       }
     }
 
@@ -48,6 +49,7 @@ Rectangle {
         Image {
           id: notifIcon
 
+          fillMode: Image.PreserveAspectCrop
           anchors.fill: parent
           source: (root.notif?.image) ? root.notif?.image : Quickshell.env("HOME") + "/.face.icon"
           visible: false

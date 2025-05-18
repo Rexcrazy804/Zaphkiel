@@ -224,7 +224,7 @@ Scope {
 
         readonly property int baseHeight: 0
         readonly property int baseWidth: 0
-        readonly property int fullHeight: 190
+        // readonly property int fullHeight: 300
         readonly property int fullWidth: notchRect.expandedWidth
         readonly property int popupHeight: 128
         readonly property int popupWidth: 430
@@ -271,8 +271,9 @@ Scope {
             PropertyChanges {
               inboxRect.opacity: 1
               inboxRect.visible: true
-              notificationRect.color: Dat.Colors.withAlpha(Dat.Colors.background, 0.45)
-              notificationRect.implicitHeight: notificationRect.fullHeight
+              // notificationRect.color: Dat.Colors.withAlpha(Dat.Colors.background, 0.79)
+              notificationRect.color: "transparent"
+              notificationRect.implicitHeight: inboxRect.list.height
               notificationRect.implicitWidth: notificationRect.fullWidth
               notificationRect.visible: true
               popupRect.opacity: 0

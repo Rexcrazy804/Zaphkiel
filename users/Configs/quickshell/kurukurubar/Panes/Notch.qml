@@ -302,8 +302,15 @@ Scope {
                 NumberAnimation {
                   duration: Dat.MaterialEasing.standardAccelTime
                   easing.bezierCurve: Dat.MaterialEasing.standardAccel
-                  properties: "implicitHeight, opacity"
+                  property: "implicitHeight"
                   target: notificationRect
+                }
+
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.standardAccelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standardAccel
+                  property: "opacity"
+                  target: inboxRect
                 }
               }
             }
@@ -324,8 +331,15 @@ Scope {
                 NumberAnimation {
                   duration: Dat.MaterialEasing.standardAccelTime
                   easing.bezierCurve: Dat.MaterialEasing.standardAccel
-                  properties: "implicitHeight, opacity"
+                  property: "implicitHeight"
                   target: notificationRect
+                }
+
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.standardAccelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standardAccel
+                  property: "opacity"
+                  target: inboxRect
                 }
               }
 
@@ -439,8 +453,15 @@ Scope {
                 NumberAnimation {
                   duration: Dat.MaterialEasing.standardAccelTime
                   easing.bezierCurve: Dat.MaterialEasing.standardAccel
-                  properties: "implicitWidth, implicitHeight, opacity"
+                  properties: "implicitWidth, implicitHeight"
                   target: notificationRect
+                }
+
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.standardAccelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standardAccel
+                  properties: "opacity"
+                  target: popupRect
                 }
               }
             }
@@ -452,17 +473,24 @@ Scope {
             SequentialAnimation {
               ParallelAnimation {
                 ColorAnimation {
-                  duration: Dat.MaterialEasing.standardDecelTime * 3
-                  easing.bezierCurve: Dat.MaterialEasing.standardDecel
+                  duration: Dat.MaterialEasing.standardAccelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standard
                   property: "color"
                   target: notificationRect
                 }
 
                 NumberAnimation {
-                  duration: 10000
-                  easing.bezierCurve: Dat.MaterialEasing.standardDecel
-                  properties: "implicitWidth, implicitHeight, opacity"
+                  duration: Dat.MaterialEasing.standardAccelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standardAccel
+                  properties: "implicitWidth, implicitHeight"
                   target: notificationRect
+                }
+
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.standardAccelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standardAccel
+                  properties: "opacity"
+                  target: popupRect
                 }
               }
 

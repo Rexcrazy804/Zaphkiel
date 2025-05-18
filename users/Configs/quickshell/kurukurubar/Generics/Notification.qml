@@ -16,7 +16,7 @@ Rectangle {
   property StackView view
 
   color: "transparent"
-  height: (bodyText.contentHeight > 120)? bodyText.contentHeight + 50: 120
+  height: (bodyText.contentHeight > 120) ? bodyText.contentHeight + 50 : 120
 
   onNotifChanged: {
     root.view?.clear();
@@ -49,8 +49,8 @@ Rectangle {
         Image {
           id: notifIcon
 
-          fillMode: Image.PreserveAspectCrop
           anchors.fill: parent
+          fillMode: Image.PreserveAspectCrop
           source: (root.notif?.image) ? root.notif?.image : Quickshell.env("HOME") + "/.face.icon"
           visible: false
         }

@@ -25,6 +25,7 @@ Rectangle {
         id: inbox
 
         anchors.top: parent.top
+        footerPositioning: ListView.OverlayFooter
         height: (contentHeight < 300) ? contentHeight : 300
         model: Dat.NotifServer.notifications
         spacing: 10
@@ -38,34 +39,35 @@ Rectangle {
           radius: 20
           width: inbox.width
         }
-        footerPositioning: ListView.OverlayFooter
         footer: Rectangle {
-          visible: Dat.NotifServer.notifCount >= 1
-          z: 2
-          width: inbox.width
-          height: 65
           color: "transparent"
+          height: 65
+          visible: Dat.NotifServer.notifCount >= 1
+          width: inbox.width
+          z: 2
+
           Rectangle {
-            width: 50
-            height: this.width
-            radius: this.width
-            anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 10
+            anchors.horizontalCenter: parent.horizontalCenter
             color: Dat.Colors.surface_container_highest
+            height: this.width
             layer.enabled: true
+            radius: this.width
+            width: 50
+
             layer.effect: MultiEffect {
               shadowEnabled: true
+              shadowHorizontalOffset: 1
               shadowOpacity: 0.5
               shadowVerticalOffset: 1
-              shadowHorizontalOffset: 1
             }
 
             Text {
               anchors.centerIn: parent
-              text: ""
               color: Dat.Colors.on_surface
               font.pointSize: 16
+              text: ""
             }
 
             Gen.MouseArea {

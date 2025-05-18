@@ -6,27 +6,36 @@ import "../Generics/" as Gen
 
 Rectangle {
   id: popupRect
+
   property alias closeTimer: popupClose
 
   Component.onCompleted: {
     Dat.NotifServer.server.onNotification.connect(e => {
-      if (!e) { return }
-      stack.push(Qt.createComponent("../Generics/Notification.qml"), {"notif": e, "width": stack.width, "height": stack.height, "radius": "20"})
+      if (!e) {
+        return;
+      }
+      stack.push(Qt.createComponent("../Generics/Notification.qml"), {
+        "notif": e,
+        "width": stack.width,
+        "height": stack.height,
+        "radius": "20"
+      });
       if (Dat.Globals.notifState != "INBOX") {
         Dat.Globals.notifState = "POPUP";
       }
       if (stack.depth == 0) {
-        popupClose.start()
+        popupClose.start();
       } else {
-        popupClose.restart()
+        popupClose.restart();
       }
     });
   }
 
   StackView {
-    clip: true
     id: stack
+
     anchors.fill: parent
+    clip: true
     initialItem: null
   }
 

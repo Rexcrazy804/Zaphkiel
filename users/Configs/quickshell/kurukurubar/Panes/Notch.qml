@@ -465,6 +465,7 @@ Scope {
                   target: notificationRect
                 }
               }
+
               PropertyAction {
                 property: "visible"
                 targets: [popupRect, notificationRect]
@@ -480,7 +481,7 @@ Scope {
               Dat.Globals.notifState = "INBOX";
               break;
             default:
-              Dat.Globals.notifState = (popupRect.closeTimer.running)? "POPUP" : "HIDDEN";
+              Dat.Globals.notifState = (popupRect.closeTimer.running) ? "POPUP" : "HIDDEN";
               break;
             }
           });
@@ -491,6 +492,7 @@ Scope {
 
           PopupPane {
             id: popupRect
+
             Layout.fillHeight: true
             Layout.fillWidth: true
             color: "transparent"
@@ -499,6 +501,7 @@ Scope {
 
           InboxPane {
             id: inboxRect
+
             Layout.fillHeight: true
             Layout.fillWidth: true
             color: "transparent"

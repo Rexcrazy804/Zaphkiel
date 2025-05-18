@@ -10,8 +10,8 @@ Singleton {
   id: notif
 
   property int notifCount: notifServer.trackedNotifications.values.length
-  property NotificationServer server: notifServer
   property ScriptModel notifications: serverNotifications
+  property NotificationServer server: notifServer
 
   function clearNotifs() {
     for (var i = 0; i < notifServer.trackedNotifications.values.length; i++) {
@@ -32,11 +32,12 @@ Singleton {
     imageSupported: true
     persistenceSupported: true
 
-    onNotification: n => n.tracked = true;
+    onNotification: n => n.tracked = true
   }
 
   ScriptModel {
     id: serverNotifications
+
     values: [...notifServer.trackedNotifications.values]
   }
 }

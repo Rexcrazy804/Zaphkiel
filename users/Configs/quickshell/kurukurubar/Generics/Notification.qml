@@ -88,14 +88,15 @@ Rectangle {
 
         Text {
           id: bodyText
-          width: parent.width
+
           color: Dat.Colors.on_surface
           elide: Text.ElideRight
           font.pointSize: 11
           text: root.notif.body
-          verticalAlignment: Text.AlignTop
-          wrapMode: Text.WrapAtWordBoundaryOrAnywhere
           textFormat: Text.MarkdownText
+          verticalAlignment: Text.AlignTop
+          width: parent.width
+          wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }
       }
     }

@@ -56,7 +56,6 @@ Rectangle {
           width: swipeRect.width
         }
 
-
         Wid.CalendarView {
           height: swipeRect.height
           radius: swipeRect.radius

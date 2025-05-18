@@ -246,6 +246,7 @@ Scope {
               notificationRect.color: "transparent"
               notificationRect.implicitHeight: 0
               notificationRect.implicitWidth: 0
+              notificationRect.visible: false
               popupRect.opacity: 0
               popupRect.visible: false
             }
@@ -259,6 +260,7 @@ Scope {
               notificationRect.color: Dat.Colors.surface_container
               notificationRect.implicitHeight: notificationRect.popupHeight
               notificationRect.implicitWidth: notificationRect.popupWidth
+              notificationRect.visible: true
               popupRect.opacity: 1
               popupRect.visible: true
             }
@@ -272,6 +274,7 @@ Scope {
               notificationRect.color: Dat.Colors.withAlpha(Dat.Colors.background, 0.45)
               notificationRect.implicitHeight: notificationRect.fullHeight
               notificationRect.implicitWidth: notificationRect.fullWidth
+              notificationRect.visible: true
               popupRect.opacity: 0
               popupRect.visible: false
             }
@@ -285,7 +288,7 @@ Scope {
             SequentialAnimation {
               PropertyAction {
                 properties: "visible, implicitWidth"
-                target: notificationRect
+                targets: [inboxRect, notificationRect]
               }
 
               ParallelAnimation {
@@ -328,7 +331,7 @@ Scope {
 
               PropertyAction {
                 properties: "visible, implicitWidth"
-                target: notificationRect
+                targets: [inboxRect, notificationRect]
               }
             }
           },
@@ -422,7 +425,7 @@ Scope {
             SequentialAnimation {
               PropertyAction {
                 property: "visible"
-                target: popupRect
+                targets: [popupRect, notificationRect]
               }
 
               ParallelAnimation {
@@ -456,16 +459,15 @@ Scope {
                 }
 
                 NumberAnimation {
-                  duration: Dat.MaterialEasing.standardDecelTime
+                  duration: 10000
                   easing.bezierCurve: Dat.MaterialEasing.standardDecel
                   properties: "implicitWidth, implicitHeight, opacity"
                   target: notificationRect
                 }
               }
-
               PropertyAction {
                 property: "visible"
-                target: popupRect
+                targets: [popupRect, notificationRect]
               }
             }
           }
@@ -477,11 +479,8 @@ Scope {
             case "FULLY_EXPANDED":
               Dat.Globals.notifState = "INBOX";
               break;
-            // case "EXPANDED":
-            //   notificationRect.state = "POPUP";
-            //   break;
             default:
-              Dat.Globals.notifState = "HIDDEN";
+              Dat.Globals.notifState = (popupRect.closeTimer.running)? "POPUP" : "HIDDEN";
               break;
             }
           });

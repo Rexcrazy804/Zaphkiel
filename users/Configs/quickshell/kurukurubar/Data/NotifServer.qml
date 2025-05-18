@@ -4,25 +4,24 @@
 pragma Singleton
 import QtQuick
 import Quickshell
-import Quickshell.Io
 import Quickshell.Services.Notifications
 
 Singleton {
   id: notif
 
-  property int notifCount: server.trackedNotifications.values.length
-  property NotificationServer notifServer: server
-  property ScriptModel notifications: sList
+  property int notifCount: notifServer.trackedNotifications.values.length
+  property NotificationServer server: notifServer
+  property ScriptModel notifications: serverNotifications
 
   function clearNotifs() {
-    for (var i = 0; i < server.trackedNotifications.values.length; i++) {
+    for (var i = 0; i < notifServer.trackedNotifications.values.length; i++) {
       // TODO this is still a bit wonky idk why
-      server.trackedNotifications.values[i].dismiss();
+      notifServer.trackedNotifications.values[i].dismiss();
     }
   }
 
   NotificationServer {
-    id: server
+    id: notifServer
 
     actionIconsSupported: true
     actionsSupported: true
@@ -31,16 +30,13 @@ Singleton {
     bodyMarkupSupported: true
     bodySupported: true
     imageSupported: true
-    persistenceSupported: false
+    persistenceSupported: true
 
-    onNotification: n => {
-      n.tracked = true;
-    }
+    onNotification: n => n.tracked = true;
   }
 
   ScriptModel {
-    id: sList
-
-    values: [...server.trackedNotifications.values]
+    id: serverNotifications
+    values: [...notifServer.trackedNotifications.values]
   }
 }

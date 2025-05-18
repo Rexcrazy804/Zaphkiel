@@ -27,7 +27,13 @@ Scope {
       surfaceFormat.opaque: false
 
       mask: Region {
-        item: notchRect
+        Region {
+          item: notchRect
+        }
+
+        Region {
+          item: notificationRect
+        }
       }
 
       Rectangle {
@@ -208,6 +214,326 @@ Scope {
               Layout.fillWidth: true
               opacity: ((notchRect.height - notchRect.expandedHeight) / (notchRect.fullHeight - notchRect.expandedHeight))
               visible: notchRect.height > notchRect.expandedHeight
+            }
+          }
+        }
+      }
+
+      Rectangle {
+        id: notificationRect
+
+        readonly property int baseHeight: 0
+        readonly property int baseWidth: 0
+        readonly property int fullHeight: 190
+        readonly property int fullWidth: notchRect.expandedWidth
+        readonly property int popupHeight: 100
+        readonly property int popupWidth: 430
+
+        anchors.horizontalCenter: notchRect.horizontalCenter
+        anchors.top: notchRect.bottom
+        anchors.topMargin: 10
+        color: Dat.Colors.surface
+        radius: 20
+        state: "HIDDEN"
+
+        states: [
+          State {
+            name: "HIDDEN"
+
+            PropertyChanges {
+              inboxRect.opacity: 0
+              inboxRect.visible: false
+              notificationRect.color: "transparent"
+              notificationRect.implicitHeight: 0
+              notificationRect.implicitWidth: 0
+              popupRect.opacity: 0
+              popupRect.visible: false
+            }
+          },
+          State {
+            name: "POPUP"
+
+            PropertyChanges {
+              inboxRect.opacity: 0
+              inboxRect.visible: false
+              notificationRect.color: Dat.Colors.surface_container
+              notificationRect.implicitHeight: notificationRect.popupHeight
+              notificationRect.implicitWidth: notificationRect.popupWidth
+              popupRect.opacity: 1
+              popupRect.visible: true
+            }
+          },
+          State {
+            name: "INBOX"
+
+            PropertyChanges {
+              inboxRect.opacity: 1
+              inboxRect.visible: true
+              notificationRect.color: Dat.Colors.withAlpha(Dat.Colors.background, 0.45)
+              notificationRect.implicitHeight: notificationRect.fullHeight
+              notificationRect.implicitWidth: notificationRect.fullWidth
+              popupRect.opacity: 0
+              popupRect.visible: false
+            }
+          }
+        ]
+        transitions: [
+          Transition {
+            from: "HIDDEN"
+            to: "INBOX"
+
+            SequentialAnimation {
+              PropertyAnimation {
+                duration: 0
+                property: "visible"
+                target: notificationRect
+              }
+
+              ParallelAnimation {
+                ColorAnimation {
+                  duration: Dat.MaterialEasing.standardAccelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standard
+                  property: "color"
+                  target: notificationRect
+                }
+
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.standardAccelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standardAccel
+                  properties: "implicitWidth, implicitHeight, opacity"
+                  target: notificationRect
+                }
+              }
+            }
+          },
+          Transition {
+            from: "INBOX"
+            to: "HIDDEN"
+
+            SequentialAnimation {
+              ParallelAnimation {
+                ColorAnimation {
+                  duration: Dat.MaterialEasing.standardAccelTime * 3
+                  easing.bezierCurve: Dat.MaterialEasing.standard
+                  property: "color"
+                  target: notificationRect
+                }
+
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.standardAccelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standardAccel
+                  properties: "implicitWidth, implicitHeight, opacity"
+                  target: notificationRect
+                }
+              }
+
+              PropertyAnimation {
+                duration: 0
+                property: "visible"
+                target: notificationRect
+              }
+            }
+          },
+          Transition {
+            from: "POPUP"
+            to: "INBOX"
+
+            ParallelAnimation {
+              ColorAnimation {
+                duration: Dat.MaterialEasing.emphasizedTime
+                easing.bezierCurve: Dat.MaterialEasing.emphasized
+                property: "color"
+                target: notificationRect
+              }
+
+              NumberAnimation {
+                duration: Dat.MaterialEasing.emphasizedTime
+                easing.bezierCurve: Dat.MaterialEasing.emphasized
+                properties: "implicitWidth, implicitHeight"
+                target: notificationRect
+              }
+
+              SequentialAnimation {
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.emphasizedTime / 2
+                  easing.bezierCurve: Dat.MaterialEasing.emphasized
+                  property: "opacity"
+                  target: popupRect
+                }
+
+                PropertyAnimation {
+                  duration: 0
+                  property: "visible"
+                  target: popupRect
+                }
+
+                PropertyAnimation {
+                  duration: 0
+                  property: "visible"
+                  target: inboxRect
+                }
+
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.emphasizedTime / 2
+                  easing.bezierCurve: Dat.MaterialEasing.emphasized
+                  property: "opacity"
+                  target: inboxRect
+                }
+              }
+            }
+          },
+          Transition {
+            from: "INBOX"
+            to: "POPUP"
+
+            ParallelAnimation {
+              ColorAnimation {
+                duration: Dat.MaterialEasing.emphasizedTime
+                easing.bezierCurve: Dat.MaterialEasing.emphasized
+                property: "color"
+                target: notificationRect
+              }
+
+              NumberAnimation {
+                duration: Dat.MaterialEasing.emphasizedTime
+                easing.bezierCurve: Dat.MaterialEasing.emphasized
+                properties: "implicitWidth, implicitHeight"
+                target: notificationRect
+              }
+
+              SequentialAnimation {
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.emphasizedTime / 2
+                  easing.bezierCurve: Dat.MaterialEasing.emphasized
+                  property: "opacity"
+                  target: inboxRect
+                }
+
+                PropertyAnimation {
+                  duration: 0
+                  property: "visible"
+                  target: inboxRect
+                }
+
+                PropertyAnimation {
+                  duration: 0
+                  property: "visible"
+                  target: popupRect
+                }
+
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.emphasizedTime / 2
+                  easing.bezierCurve: Dat.MaterialEasing.emphasized
+                  property: "opacity"
+                  target: popupRect
+                }
+              }
+            }
+          },
+          Transition {
+            from: "HIDDEN"
+            to: "POPUP"
+
+            SequentialAnimation {
+              PropertyAnimation {
+                duration: 0
+                property: "visible"
+                target: popupRect
+              }
+
+              ParallelAnimation {
+                ColorAnimation {
+                  duration: Dat.MaterialEasing.standardAccelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standard
+                  property: "color"
+                  target: notificationRect
+                }
+
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.standardAccelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standardAccel
+                  properties: "implicitWidth, implicitHeight, opacity"
+                  target: notificationRect
+                }
+              }
+            }
+          },
+          Transition {
+            from: "POPUP"
+            to: "HIDDEN"
+
+            SequentialAnimation {
+              ParallelAnimation {
+                ColorAnimation {
+                  duration: Dat.MaterialEasing.standardDecelTime * 3
+                  easing.bezierCurve: Dat.MaterialEasing.standardDecel
+                  property: "color"
+                  target: notificationRect
+                }
+
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.standardDecelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standardDecel
+                  properties: "implicitWidth, implicitHeight, opacity"
+                  target: notificationRect
+                }
+              }
+
+              PropertyAnimation {
+                duration: 0
+                property: "visible"
+                target: popupRect
+              }
+            }
+          }
+        ]
+
+        Component.onCompleted: {
+          Dat.Globals.notchStateChanged.connect(() => {
+            switch (Dat.Globals.notchState) {
+            case "FULLY_EXPANDED":
+              notificationRect.state = "INBOX";
+              break;
+            // case "EXPANDED":
+            //   notificationRect.state = "POPUP";
+            //   break;
+            default:
+              notificationRect.state = "HIDDEN";
+              break;
+            }
+          });
+        }
+
+        ColumnLayout {
+          anchors.fill: parent
+
+          Rectangle {
+            id: popupRect
+
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            color: "transparent"
+            radius: notificationRect.radius
+
+            Text {
+              anchors.centerIn: parent
+              color: Dat.Colors.on_surface
+              text: "popup"
+            }
+          }
+
+          Rectangle {
+            id: inboxRect
+
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            color: "transparent"
+            radius: notificationRect.radius
+
+            Text {
+              anchors.centerIn: parent
+              color: Dat.Colors.on_surface
+              text: "inbox"
             }
           }
         }

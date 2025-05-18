@@ -1,0 +1,2 @@
+- [ ] hide tray when no trayIcons to show (i.e. no tray items)
+- [ ] aa and smoothning on face.icon

@@ -21,9 +21,11 @@ Rectangle {
         "view": stack,
         "popup": popupRect
       });
-      if (Dat.Globals.notifState != "INBOX") {
+      if (Dat.Globals.notifState == "HIDDEN") {
         Dat.Globals.notifState = "POPUP";
         popupClose.start()
+      } else if (Dat.Globals.notifState == "POPUP") {
+        popupClose.restart()
       }
     });
 

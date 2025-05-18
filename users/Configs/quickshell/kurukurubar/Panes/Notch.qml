@@ -283,9 +283,8 @@ Scope {
             to: "INBOX"
 
             SequentialAnimation {
-              PropertyAnimation {
-                duration: 0
-                property: "visible"
+              PropertyAction {
+                properties: "visible, implicitWidth"
                 target: notificationRect
               }
 
@@ -300,7 +299,7 @@ Scope {
                 NumberAnimation {
                   duration: Dat.MaterialEasing.standardAccelTime
                   easing.bezierCurve: Dat.MaterialEasing.standardAccel
-                  properties: "implicitWidth, implicitHeight, opacity"
+                  properties: "implicitHeight, opacity"
                   target: notificationRect
                 }
               }
@@ -322,14 +321,13 @@ Scope {
                 NumberAnimation {
                   duration: Dat.MaterialEasing.standardAccelTime
                   easing.bezierCurve: Dat.MaterialEasing.standardAccel
-                  properties: "implicitWidth, implicitHeight, opacity"
+                  properties: "implicitHeight, opacity"
                   target: notificationRect
                 }
               }
 
-              PropertyAnimation {
-                duration: 0
-                property: "visible"
+              PropertyAction {
+                properties: "visible, implicitWidth"
                 target: notificationRect
               }
             }
@@ -361,16 +359,9 @@ Scope {
                   target: popupRect
                 }
 
-                PropertyAnimation {
-                  duration: 0
+                PropertyAction {
                   property: "visible"
-                  target: popupRect
-                }
-
-                PropertyAnimation {
-                  duration: 0
-                  property: "visible"
-                  target: inboxRect
+                  targets: [popupRect, inboxRect]
                 }
 
                 NumberAnimation {
@@ -409,16 +400,9 @@ Scope {
                   target: inboxRect
                 }
 
-                PropertyAnimation {
-                  duration: 0
+                PropertyAction {
                   property: "visible"
-                  target: inboxRect
-                }
-
-                PropertyAnimation {
-                  duration: 0
-                  property: "visible"
-                  target: popupRect
+                  targets: [popupRect, inboxRect]
                 }
 
                 NumberAnimation {
@@ -435,8 +419,7 @@ Scope {
             to: "POPUP"
 
             SequentialAnimation {
-              PropertyAnimation {
-                duration: 0
+              PropertyAction {
                 property: "visible"
                 target: popupRect
               }
@@ -479,8 +462,7 @@ Scope {
                 }
               }
 
-              PropertyAnimation {
-                duration: 0
+              PropertyAction {
                 property: "visible"
                 target: popupRect
               }
@@ -507,34 +489,20 @@ Scope {
         ColumnLayout {
           anchors.fill: parent
 
-          Rectangle {
+          PopupPane {
             id: popupRect
-
             Layout.fillHeight: true
             Layout.fillWidth: true
             color: "transparent"
             radius: notificationRect.radius
-
-            Text {
-              anchors.centerIn: parent
-              color: Dat.Colors.on_surface
-              text: "popup"
-            }
           }
 
-          Rectangle {
+          InboxPane {
             id: inboxRect
-
             Layout.fillHeight: true
             Layout.fillWidth: true
             color: "transparent"
             radius: notificationRect.radius
-
-            Text {
-              anchors.centerIn: parent
-              color: Dat.Colors.on_surface
-              text: "inbox"
-            }
           }
         }
       }

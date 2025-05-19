@@ -42,9 +42,18 @@ Rectangle {
     // }
 
     MouseArea {
+      acceptedButtons: Qt.LeftButton | Qt.RightButton
       anchors.fill: parent
 
       onClicked: mevent => {
+        if (mevent.button == Qt.LeftButton) {
+          root.modelData.activate();
+          return;
+        }
+        if (!root.modelData.hasMenu) {
+          return;
+        }
+
         if (root.stack.depth > 1) {
           if (root.stack.currentItem == root.menu) {
             // unwind nesting

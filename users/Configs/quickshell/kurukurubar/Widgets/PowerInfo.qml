@@ -13,6 +13,7 @@ RowLayout {
     Layout.fillHeight: true
     Layout.fillWidth: true
     color: "transparent"
+    visible: UPower.displayDevice.percentage > 0
 
     Text {
       anchors.fill: parent
@@ -29,6 +30,7 @@ RowLayout {
     Layout.fillWidth: true
     Layout.preferredWidth: 2
     color: "transparent"
+    visible: UPower.displayDevice.percentage > 0
 
     Text {
       id: text
@@ -63,6 +65,7 @@ RowLayout {
     Layout.fillHeight: true
     Layout.fillWidth: true
     color: "transparent"
+    visible: UPower.displayDevice.percentage > 0
 
     Text {
       anchors.fill: parent

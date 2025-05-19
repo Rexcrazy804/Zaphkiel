@@ -16,7 +16,7 @@ Rectangle {
       if (!e) {
         return;
       }
-      var notification = Qt.createComponent("../Generics/Notification.qml");
+      var notification = Qt.createComponent("../Generics/NotificationPopup.qml");
       stack.push(notification, {
         "notif": e,
         "width": stack.width,

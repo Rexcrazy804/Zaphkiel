@@ -12,109 +12,87 @@ Rectangle {
   id: root
 
   required property Notification notif
-  property var popup
-  property StackView view
-
   color: "transparent"
   height: bodyNActionCol.height
 
-  onNotifChanged: {
-    root.view?.clear();
-    if (root.popup) {
-      root.popup.closed = true;
-    }
-  }
+  ColumnLayout {
+    id: bodyNActionCol
 
-  MouseArea {
-    acceptedButtons: Qt.NoButton
-    anchors.fill: parent
-    hoverEnabled: true
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: parent.top
+    spacing: 0
 
-    onEntered: root.popup?.closeTimer.stop()
-    onExited: {
-      if (root.view?.depth > 0) {
-        root.popup?.closeTimer.restart();
+    Rectangle {
+      Layout.fillWidth: true
+      Layout.margins: 10
+      color: "transparent"
+      implicitHeight: sumText.contentHeight + bodText.contentHeight
+      topLeftRadius: 20
+      topRightRadius: 20
+
+      Text {
+        id: sumText
+
+        anchors.top: parent.top
+        color: Dat.Colors.primary
+        text: root.notif?.summary ?? "summary"
+      }
+
+      Text {
+        id: bodText
+
+        anchors.top: sumText.bottom
+        color: Dat.Colors.on_surface
+        font.pointSize: 11
+        text: root.notif?.body ?? "very cool body that is missing"
+        textFormat: Text.MarkdownText
+        width: parent.width
+        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
       }
     }
 
-    ColumnLayout {
-      id: bodyNActionCol
+    Flickable {
+      id: flick
+      Layout.alignment: Qt.AlignRight
+      Layout.bottomMargin: 10
+      Layout.rightMargin: 10
+      Layout.leftMargin: this.Layout.rightMargin
+      boundsBehavior: Flickable.StopAtBounds
+      clip: true
+      contentWidth: actionRow.width
+      implicitHeight: 23
+      implicitWidth: Math.min(bodyNActionCol.width - 20, actionRow.width)
 
-      anchors.left: parent.left
-      anchors.right: parent.right
-      anchors.top: parent.top
-      spacing: 0
+      RowLayout {
+        id: actionRow
 
-      Rectangle {
-        Layout.fillWidth: true
-        Layout.margins: 10
-        color: "transparent"
-        implicitHeight: sumText.contentHeight + bodText.contentHeight
-        topLeftRadius: 20
-        topRightRadius: 20
+        anchors.right: parent.right
+        height: parent.height
 
-        Text {
-          id: sumText
+        Repeater {
+          model: root.notif?.actions
 
-          anchors.top: parent.top
-          color: Dat.Colors.primary
-          text: root.notif?.summary ?? "summary"
-        }
+          Rectangle {
+            required property NotificationAction modelData
 
-        Text {
-          id: bodText
+            Layout.fillHeight: true
+            color: Dat.Colors.secondary
+            implicitWidth: actionText.contentWidth + 14
+            radius: 20
 
-          anchors.top: sumText.bottom
-          color: Dat.Colors.on_surface
-          font.pointSize: 10
-          text: root.notif?.body ?? "very cool body that is missing"
-          textFormat: Text.MarkdownText
-          width: parent.width
-          wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-        }
-      }
+            Text {
+              id: actionText
 
-      Flickable {
-        id: flick
-        Layout.alignment: Qt.AlignCenter
-        Layout.bottomMargin: 10
-        boundsBehavior: Flickable.StopAtBounds
-        clip: true
-        contentWidth: actionRow.width
-        implicitHeight: 23
-        implicitWidth: bodyNActionCol.width - 20
+              anchors.centerIn: parent
+              color: Dat.Colors.on_secondary
+              font.pointSize: 11
+              text: parent.modelData?.text ?? "activate"
+            }
 
-        RowLayout {
-          id: actionRow
-
-          anchors.right: parent.right
-          height: parent.height
-
-          Repeater {
-            model: root.notif?.actions
-
-            Rectangle {
-              required property NotificationAction modelData
-
-              Layout.fillHeight: true
-              color: Dat.Colors.secondary
-              implicitWidth: actionText.contentWidth + 14
-              radius: 20
-
-              Text {
-                id: actionText
-
-                anchors.centerIn: parent
-                color: Dat.Colors.on_secondary
-                font.pointSize: 11
-                text: parent.modelData?.text ?? "activate"
-              }
-
-              Gen.MouseArea {
-                layerColor: actionText.color
-
-                onClicked: parent.modelData.invoke()
-              }
+            Gen.MouseArea {
+              layerColor: actionText.color
+              onClicked: parent.modelData.invoke()
             }
           }
         }

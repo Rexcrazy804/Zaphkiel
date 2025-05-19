@@ -1,5 +1,6 @@
 pkgs: let
   scripts = import ./scripts.nix {inherit pkgs;};
+  kokCursor = pkgs.callPackage ../../../pkgs/kokCursor.nix {};
 in {
   programs.hyprland = {
     enable = true;
@@ -11,18 +12,15 @@ in {
   ];
 
   qt.enable = true;
-  environment.variables = {
-    QT_QPA_PLATFORM = "wayland";
-    QT_QPA_PLATFORMTHEME = pkgs.lib.mkForce "qt6ct";
-  };
 
   # dependencies .w.
   environment.systemPackages = [
+    kokCursor
     # QT dep
     pkgs.kdePackages.qt6ct
     # Theme
-    pkgs.rose-pine-cursor
-    pkgs.rose-pine-hyprcursor
+    # pkgs.rose-pine-cursor
+    # pkgs.rose-pine-hyprcursor
     pkgs.rose-pine-icon-theme
     pkgs.rose-pine-gtk-theme
 

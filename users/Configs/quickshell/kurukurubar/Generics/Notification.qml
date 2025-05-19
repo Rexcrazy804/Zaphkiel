@@ -12,14 +12,17 @@ Rectangle {
   id: root
 
   required property Notification notif
-  property Rectangle popup
+  property var popup
   property StackView view
 
   color: "transparent"
-  height: (bodyText.contentHeight > 120) ? bodyText.contentHeight + 50 : 120
+  height: bodyNActionCol.height
 
   onNotifChanged: {
     root.view?.clear();
+    if (root.popup) {
+      root.popup.closed = true;
+    }
   }
 
   MouseArea {
@@ -34,132 +37,83 @@ Rectangle {
       }
     }
 
-    RowLayout {
-      anchors.fill: parent
+    ColumnLayout {
+      id: bodyNActionCol
+
+      anchors.left: parent.left
+      anchors.right: parent.right
+      anchors.top: parent.top
+      spacing: 0
 
       Rectangle {
-        Layout.alignment: Qt.AlignTop
-        Layout.leftMargin: 10
-        Layout.topMargin: 10
-        color: Dat.Colors.surface_container_low
-        implicitHeight: 100
-        implicitWidth: this.height
-        radius: 20
+        Layout.fillWidth: true
+        Layout.margins: 10
+        color: "transparent"
+        implicitHeight: sumText.contentHeight + bodText.contentHeight
+        topLeftRadius: 20
+        topRightRadius: 20
 
-        Image {
-          id: notifIcon
+        Text {
+          id: sumText
 
-          anchors.fill: parent
-          fillMode: Image.PreserveAspectCrop
-          source: (root.notif?.image) ? root.notif?.image : Quickshell.env("HOME") + "/.face.icon"
-          visible: false
+          anchors.top: parent.top
+          color: Dat.Colors.primary
+          text: root.notif?.summary ?? "summary"
         }
 
-        MultiEffect {
-          anchors.fill: notifIcon
-          maskEnabled: true
-          maskSource: notifIconMask
-          maskSpreadAtMin: 1.0
-          maskThresholdMax: 1.0
-          maskThresholdMin: 0.5
-          source: notifIcon
-        }
+        Text {
+          id: bodText
 
-        Item {
-          id: notifIconMask
-
-          height: this.width
-          layer.enabled: true
-          visible: false
-          width: notifIcon.width
-
-          Rectangle {
-            height: this.width
-            radius: 20
-            width: notifIcon.width
-          }
+          anchors.top: sumText.bottom
+          color: Dat.Colors.on_surface
+          font.pointSize: 10
+          text: root.notif?.body ?? "very cool body that is missing"
+          textFormat: Text.MarkdownText
+          width: parent.width
+          wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }
       }
 
-      ColumnLayout {
-        Layout.fillHeight: true
-        Layout.fillWidth: true
-        Layout.margins: 10
-        spacing: 4
+      Flickable {
+        id: flick
+        Layout.alignment: Qt.AlignCenter
+        Layout.bottomMargin: 10
+        boundsBehavior: Flickable.StopAtBounds
+        clip: true
+        contentWidth: actionRow.width
+        implicitHeight: 23
+        implicitWidth: bodyNActionCol.width - 20
 
-        Rectangle {
-          Layout.fillWidth: true
-          color: "transparent"
-          implicitHeight: 15
+        RowLayout {
+          id: actionRow
 
-          Text {
-            id: sumText
+          anchors.right: parent.right
+          height: parent.height
 
-            anchors.fill: parent
-            color: Dat.Colors.primary
-            elide: Text.ElideRight
-            text: root.notif?.summary ?? "empty summary"
-          }
-        }
+          Repeater {
+            model: root.notif?.actions
 
-        Flickable {
-          Layout.fillHeight: true
-          Layout.fillWidth: true
-          clip: true
-          // flickableDirection: Qt.
-          // color: "transparent"
-          contentHeight: bodyText.implicitHeight
+            Rectangle {
+              required property NotificationAction modelData
 
-          Text {
-            id: bodyText
+              Layout.fillHeight: true
+              color: Dat.Colors.secondary
+              implicitWidth: actionText.contentWidth + 14
+              radius: 20
 
-            color: Dat.Colors.on_surface
-            elide: Text.ElideRight
-            font.pointSize: 11
-            text: root.notif?.body ?? "no body here"
-            textFormat: Text.MarkdownText
-            verticalAlignment: Text.AlignTop
-            width: parent.width
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-          }
-        }
+              Text {
+                id: actionText
 
-        Rectangle {
-          Layout.fillWidth: true
-          color: "transparent"
-          implicitHeight: 20
-          visible: root.notif?.actions.length ?? false
+                anchors.centerIn: parent
+                color: Dat.Colors.on_secondary
+                font.pointSize: 11
+                text: parent.modelData?.text ?? "activate"
+              }
 
-          RowLayout {
-            anchors.centerIn: parent
-            height: parent.height
+              Gen.MouseArea {
+                layerColor: actionText.color
 
-            Repeater {
-              model: root.notif?.actions ?? null
-
-              Rectangle {
-                id: actionButton
-
-                required property NotificationAction modelData
-
-                color: Dat.Colors.surface_container_high
-                height: 20
-                radius: 20
-                width: actionText.contentWidth + 10
-
-                Text {
-                  id: actionText
-
-                  anchors.centerIn: parent
-                  color: Dat.Colors.on_surface
-                  text: actionButton.modelData?.text
-                }
-
-                Gen.MouseArea {
-                  onClicked: {
-                    actionButton.modelData.invoke();
-                  }
-                }
+                onClicked: parent.modelData.invoke()
               }
             }
           }

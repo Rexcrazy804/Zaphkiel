@@ -9,6 +9,7 @@ Rectangle {
 
   property alias closeTimer: popupClose
   property bool closed: true
+  property var currentNotif: stack.currentItem
 
   Component.onCompleted: {
     Dat.NotifServer.server.onNotification.connect(e => {

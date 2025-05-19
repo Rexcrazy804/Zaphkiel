@@ -24,6 +24,7 @@ RowLayout {
       source: Quickshell.env("HOME") + "/.face.icon"
       visible: false
       width: root.height - 2 * parent.Layout.leftMargin
+      mipmap: true
     }
 
     MultiEffect {
@@ -34,6 +35,7 @@ RowLayout {
       maskThresholdMax: 1.0
       maskThresholdMin: 0.5
       source: faceIcon
+      antialiasing: true
     }
 
     Item {

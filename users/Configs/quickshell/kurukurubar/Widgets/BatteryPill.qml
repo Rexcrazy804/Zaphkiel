@@ -8,6 +8,7 @@ import "../Generics/" as Gen
 Rectangle {
   Layout.minimumWidth: batText.width + 20
   color: Dat.Colors.primary
+  visible: UPower.displayDevice.percentage > 0
 
   Behavior on Layout.minimumWidth {
     NumberAnimation {

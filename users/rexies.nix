@@ -124,6 +124,7 @@ in {
       ".config/qt6ct/colors/matugen.conf".source = "${matugenTheme}/qtct-colors.conf";
 
       # hyprland
+      ".config/uwsm/env".source = ./Configs/uwsm/env;
       ".config/hypr/hypridle.conf".source = ./Configs/hyprland/hypridle.conf;
       ".config/hypr/hyprland.conf".source = ./Configs/hyprland/hyprland.conf;
       ".config/hypr/hyprlock.conf".text = hyprlockInjected;

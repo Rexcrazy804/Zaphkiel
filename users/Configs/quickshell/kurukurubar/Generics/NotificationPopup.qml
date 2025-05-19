@@ -50,7 +50,6 @@ Rectangle {
 
         Component.onCompleted: {
           if (bodyNActionCol.height < 200) {
-            console.log("yes")
             bodyNActionCol.height = 128
           }
         }

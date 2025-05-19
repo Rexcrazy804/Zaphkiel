@@ -27,10 +27,10 @@ Rectangle {
       });
       if (Dat.Globals.notifState == "HIDDEN") {
         Dat.Globals.notifState = "POPUP";
-        popupRect.closed = false
+        popupRect.closed = false;
         popupClose.start();
       } else if (Dat.Globals.notifState == "POPUP") {
-        popupRect.closed = false
+        popupRect.closed = false;
         popupClose.restart();
       }
     });
@@ -49,6 +49,35 @@ Rectangle {
     anchors.fill: parent
     clip: true
     initialItem: null
+
+    pushEnter: Transition {
+      ParallelAnimation {
+        YAnimator {
+          duration: Dat.MaterialEasing.standardDecelTime
+          easing.bezierCurve: Dat.MaterialEasing.standardDecel
+          to: 0
+          from: 100
+        }
+      }
+    }
+    pushExit: Transition {
+      ParallelAnimation {
+        YAnimator {
+          duration: Dat.MaterialEasing.standardAccelTime
+          easing.bezierCurve: Dat.MaterialEasing.standardAccel
+          from: 0
+          to: -100
+        }
+
+        NumberAnimation {
+          duration: Dat.MaterialEasing.standardAccelTime
+          easing.bezierCurve: Dat.MaterialEasing.standardAccel
+          from: 1
+          property: "opacity"
+          to: 0
+        }
+      }
+    }
   }
 
   Timer {
@@ -57,7 +86,7 @@ Rectangle {
     interval: 3500
 
     onTriggered: {
-      popupRect.closed = true
+      popupRect.closed = true;
       if (Dat.Globals.notifState != "INBOX") {
         Dat.Globals.notifState = "HIDDEN";
       }

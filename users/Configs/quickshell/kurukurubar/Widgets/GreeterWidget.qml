@@ -7,11 +7,14 @@ import Quickshell
 import "../Data/" as Dat
 
 RowLayout {
+  id: root
   spacing: 10
 
   Rectangle {
-    implicitHeight: this.implicitHeight
+    Layout.leftMargin: 5
+    implicitHeight: this.implicitWidth
     implicitWidth: faceIcon.width
+    color: "transparent"
 
     Image {
       id: faceIcon
@@ -20,7 +23,7 @@ RowLayout {
       height: this.width
       source: Quickshell.env("HOME") + "/.face.icon"
       visible: false
-      width: 100
+      width: root.height - 2 * parent.Layout.leftMargin
     }
 
     MultiEffect {

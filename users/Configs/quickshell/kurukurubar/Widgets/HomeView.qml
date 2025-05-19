@@ -71,6 +71,7 @@ Rectangle {
     }
 
     Rectangle {
+      visible: SystemTray.items.values.length != 0
       Layout.alignment: Qt.AlignCenter
       color: Dat.Colors.surface_container
       implicitHeight: (stack.depth > 1) ? 8 : 28

@@ -9,10 +9,19 @@ import "../Widgets/" as Wid
 Rectangle {
   color: "transparent"
 
+  AnimatedImage {
+    playing: Mpris.players.values.length == 0
+    anchors.fill: parent
+    source: "https://media.tenor.com/JtofR661NDIAAAAi/honkai-star-rail-hsr.gif"
+    fillMode: Image.PreserveAspectFit
+  }
+
   Text {
-    anchors.centerIn: parent
-    color: Dat.Colors.on_surface
+    anchors.bottom: parent.bottom
     text: "Play some music"
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.bottomMargin: 5
+    color: Dat.Colors.on_surface
   }
 
   SwipeView {

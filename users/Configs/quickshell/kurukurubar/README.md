@@ -1,5 +1,5 @@
 # **This is still a work in progress**
-> Note: if you'd like to reserve space for the top bar see the comment in [Shell.qml](Shell.qml)
+> Note: if you'd like to reserve space for the top bar see the comment in [shell.qml](shell.qml)
 
 # Kuru Kuru bar Components outline
 ```

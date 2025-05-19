@@ -8,6 +8,7 @@ Rectangle {
   id: popupRect
 
   property alias closeTimer: popupClose
+  property bool closed: true
 
   Component.onCompleted: {
     Dat.NotifServer.server.onNotification.connect(e => {
@@ -25,8 +26,10 @@ Rectangle {
       });
       if (Dat.Globals.notifState == "HIDDEN") {
         Dat.Globals.notifState = "POPUP";
+        popupRect.closed = false
         popupClose.start();
       } else if (Dat.Globals.notifState == "POPUP") {
+        popupRect.closed = false
         popupClose.restart();
       }
     });
@@ -53,6 +56,7 @@ Rectangle {
     interval: 3500
 
     onTriggered: {
+      popupRect.closed = true
       if (Dat.Globals.notifState != "INBOX") {
         Dat.Globals.notifState = "HIDDEN";
       }

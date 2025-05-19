@@ -152,7 +152,7 @@ Rectangle {
 
                   anchors.centerIn: parent
                   color: Dat.Colors.on_surface
-                  text: actionButton.modelData.text
+                  text: actionButton.modelData?.text
                 }
 
                 Gen.MouseArea {

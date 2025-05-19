@@ -25,11 +25,15 @@ Rectangle {
         id: inbox
 
         anchors.top: parent.top
-        footerPositioning: ListView.OverlayFooter
+        anchors.left: parent.left
+        anchors.right: parent.right
+        // anchors.margins: 10
+        // // anchors.leftMargin: 25
+        // // anchors.rightMargin: this.anchors.leftMargin
+        footerPositioning: ListView.InlineFooter
         height: (contentHeight < 300) ? contentHeight : 300
         model: Dat.NotifServer.notifications
         spacing: 10
-        width: parent.width
 
         delegate: Gen.Notification {
           required property Notification modelData

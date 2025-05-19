@@ -27,4 +27,4 @@
 - - | KuruKuru
 ```
 
-# **This is stil a work in progress**
+# **This is still a work in progress**

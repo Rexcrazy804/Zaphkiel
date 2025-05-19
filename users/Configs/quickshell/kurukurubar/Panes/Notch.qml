@@ -155,7 +155,7 @@ Scope {
 
           onContainsMouseChanged: {
             Dat.Globals.notchHovered = notchArea.containsMouse;
-            if (Dat.Globals.notchState == "FULLY_EXPANDED" || Dat.Globals.actWinName == "desktop") {
+            if (Dat.Globals.notchState == "FULLY_EXPANDED" || Dat.Globals.actWinName == "desktop" || Dat.Globals.reservedShell) {
               return;
             }
             if (notchArea.containsMouse) {

@@ -8,7 +8,7 @@ import Quickshell.Services.Notifications
 import "../Data/" as Dat
 import "../Generics/" as Gen
 
-// basically a clone of notification popup but this comes with a flickable
+// basically a clone of Notification.qml but this comes with a flickable
 
 Rectangle {
   id: root
@@ -49,7 +49,7 @@ Rectangle {
         spacing: 0
 
         Component.onCompleted: {
-          if (bodyNActionCol.height < 200) {
+          if (bodyNActionCol.height < 128) {
             bodyNActionCol.height = 128
           }
         }
@@ -91,7 +91,7 @@ Rectangle {
 
         Flickable {
           id: flick
-
+          visible: root.notif?.actions.length != 0
           Layout.alignment: Qt.AlignRight
           Layout.bottomMargin: 10
           Layout.leftMargin: this.Layout.rightMargin

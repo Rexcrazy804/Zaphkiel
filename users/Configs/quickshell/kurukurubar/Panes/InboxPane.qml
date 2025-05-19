@@ -24,17 +24,46 @@ Rectangle {
       ListView {
         id: inbox
 
-        anchors.top: parent.top
         anchors.left: parent.left
-        anchors.right: parent.right
         // anchors.margins: 10
         anchors.leftMargin: 80
+        anchors.right: parent.right
         anchors.rightMargin: this.anchors.leftMargin
         footerPositioning: ListView.InlineFooter
         height: (contentHeight < 300) ? contentHeight : 300
         model: Dat.NotifServer.notifications
         spacing: 10
 
+        add: Transition {
+          ParallelAnimation {
+            NumberAnimation {
+              duration: Dat.MaterialEasing.standardTime
+              easing.bezierCurve: Dat.MaterialEasing.standard
+              property: "x"
+              from: 1000
+            }
+          }
+        }
+        addDisplaced: Transition {
+          NumberAnimation {
+            duration: Dat.MaterialEasing.standardTime
+            easing.bezierCurve: Dat.MaterialEasing.standard
+            properties: "x,y"
+          }
+        }
+
+        remove: Transition {
+          ParallelAnimation {
+            NumberAnimation {
+              duration: Dat.MaterialEasing.standardTime
+              easing.bezierCurve: Dat.MaterialEasing.standard
+              property: "opacity"
+              to: 0
+            }
+          }
+        }
+
+        removeDisplaced: this.addDisplaced
         delegate: Gen.Notification {
           required property Notification modelData
 

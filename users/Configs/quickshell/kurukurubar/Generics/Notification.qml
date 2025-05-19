@@ -14,6 +14,30 @@ Rectangle {
   required property Notification notif
   color: "transparent"
   height: bodyNActionCol.height
+  Behavior on x {
+    SmoothedAnimation {}
+  }
+  onXChanged: {
+    root.opacity = 1 - (Math.abs(root.x) / width)
+  }
+
+  MouseArea {
+    id: dragArea
+    anchors.fill: parent
+    drag {
+      target: parent
+      axis: Drag.XAxis
+
+      onActiveChanged: {
+        if (dragArea.drag.active) { return }
+          if ( Math.abs(root.x) > (root.width / 2)) {
+            root.notif.dismiss()
+          } else {
+            root.x = 0
+          }
+      }
+    }
+  }
 
   ColumnLayout {
     id: bodyNActionCol
@@ -31,18 +55,40 @@ Rectangle {
       topLeftRadius: 20
       topRightRadius: 20
 
-      Text {
-        id: sumText
-
+      RowLayout {
+        id: infoRow
         anchors.top: parent.top
-        color: Dat.Colors.primary
-        text: root.notif?.summary ?? "summary"
+        height: sumText.contentHeight
+        width: parent.width
+        Text {
+          id: sumText
+
+          color: Dat.Colors.primary
+          text: root.notif?.summary ?? "summary"
+        }
+
+        Rectangle {
+          Layout.alignment: Qt.AlignRight
+          implicitHeight: appText.contentHeight + 2
+          implicitWidth: appText.contentWidth + 10
+          radius: 20
+          color: "transparent"
+          Text {
+            anchors.centerIn: parent
+            id: appText
+            color: Dat.Colors.tertiary
+            text: root.notif?.appName ?? "idk"
+            font.pointSize: 8
+            font.bold: true
+          }
+        }
       }
+
 
       Text {
         id: bodText
 
-        anchors.top: sumText.bottom
+        anchors.top: infoRow.bottom
         color: Dat.Colors.on_surface
         font.pointSize: 11
         text: root.notif?.body ?? "very cool body that is missing"
@@ -53,6 +99,7 @@ Rectangle {
     }
 
     Flickable {
+      visible: root.notif?.actions.length != 0
       id: flick
       Layout.alignment: Qt.AlignRight
       Layout.bottomMargin: 10

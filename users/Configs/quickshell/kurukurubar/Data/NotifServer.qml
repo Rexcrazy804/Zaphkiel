@@ -38,6 +38,6 @@ Singleton {
   ScriptModel {
     id: serverNotifications
 
-    values: [...notifServer.trackedNotifications.values]
+    values: [...notifServer.trackedNotifications.values].reverse()
   }
 }

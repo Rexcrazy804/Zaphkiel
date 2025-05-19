@@ -140,6 +140,7 @@ Rectangle {
         }
 
         Rectangle {
+          visible: UPower.displayDevice.percentage > 0
           // BATTERY information
           Layout.fillWidth: true
           color: Dat.Colors.surface_container_highest

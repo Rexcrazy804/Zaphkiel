@@ -40,17 +40,19 @@ Rectangle {
 
     Flickable {
       anchors.fill: parent
+      boundsBehavior: Flickable.StopAtBounds
       contentHeight: bodyNActionCol.height
 
       ColumnLayout {
         id: bodyNActionCol
+
         anchors.top: parent.top
-        width: parent.width
         spacing: 0
+        width: parent.width
 
         Component.onCompleted: {
           if (bodyNActionCol.height < 128) {
-            bodyNActionCol.height = 128
+            bodyNActionCol.height = 128;
           }
         }
 
@@ -62,18 +64,43 @@ Rectangle {
           topLeftRadius: 20
           topRightRadius: 20
 
-          Text {
-            id: sumText
+          RowLayout {
+            id: infoRow
 
             anchors.top: parent.top
-            color: Dat.Colors.primary
-            text: root.notif?.summary ?? "summary"
+            height: sumText.contentHeight
+            width: parent.width
+
+            Text {
+              id: sumText
+
+              color: Dat.Colors.primary
+              text: root.notif?.summary ?? "summary"
+            }
+
+            Rectangle {
+              Layout.alignment: Qt.AlignRight
+              color: "transparent"
+              implicitHeight: appText.contentHeight + 2
+              implicitWidth: appText.contentWidth + 10
+              radius: 20
+
+              Text {
+                id: appText
+
+                anchors.centerIn: parent
+                color: Dat.Colors.tertiary
+                font.bold: true
+                font.pointSize: 8
+                text: root.notif?.appName ?? "idk"
+              }
+            }
           }
 
           Text {
             id: bodText
 
-            anchors.top: sumText.bottom
+            anchors.top: infoRow.bottom
             color: Dat.Colors.on_surface
             font.pointSize: 11
             text: root.notif?.body ?? "very cool body that is missing"
@@ -84,14 +111,14 @@ Rectangle {
         }
 
         Rectangle {
-          color: "transparent"
-          Layout.fillWidth: true
           Layout.fillHeight: true
+          Layout.fillWidth: true
+          color: "transparent"
         }
 
         Flickable {
           id: flick
-          visible: root.notif?.actions.length != 0
+
           Layout.alignment: Qt.AlignRight
           Layout.bottomMargin: 10
           Layout.leftMargin: this.Layout.rightMargin
@@ -101,6 +128,7 @@ Rectangle {
           contentWidth: actionRow.width
           implicitHeight: 23
           implicitWidth: Math.min(bodyNActionCol.width - 20, actionRow.width)
+          visible: root.notif?.actions.length != 0
 
           RowLayout {
             id: actionRow

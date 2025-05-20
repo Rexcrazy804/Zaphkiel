@@ -52,6 +52,9 @@ in {
       pkgs.starship
       pkgs.zoxide
       pkgs.carapace
+
+      # quickshell dep
+      pkgs.kdePackages.qtgraphs
     ];
 
     files = let
@@ -97,14 +100,11 @@ in {
       quickshellConfig = pkgs.runCommandLocal "quick" {} ''
         mkdir $out
         cd $out
-        cp -r ${./Configs/quickshell}/* .
-        mkdir Assets
-        cd Assets
-
-        # don't depend on faceIcon, can be overwritten
-        cp ${config.hjem.users.${username}.files.".face.icon".source} ./.face.icon
-        cp ${matugenTheme}/quickshell-colors.qml ./Colors.qml
+        cp -rp ${./Configs/quickshell/kurukurubar}/* .
+        chmod u+rw ./Data/Colors.qml
+        cp ${matugenTheme}/quickshell-colors.qml ./Data/Colors.qml
       '';
+
     in {
       # face Icon
       ".face.icon".source = faceIcon;
@@ -134,7 +134,6 @@ in {
       ".config/yazi/theme.toml".source = "${matugenTheme}/yazi-theme.toml";
       ".config/fuzzel/fuzzel.ini".text = fuzzel;
       ".config/background".source = matugen.wallpaper;
-
       # quickshell
       ".config/quickshell".source = quickshellConfig;
 

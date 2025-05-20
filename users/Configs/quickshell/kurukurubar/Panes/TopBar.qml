@@ -25,6 +25,7 @@ RowLayout {
         implicitWidth: 20
         radius: 20
       }
+
       Wid.RecordingDot {
         implicitHeight: 20
         implicitWidth: 20

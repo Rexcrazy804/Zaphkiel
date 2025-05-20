@@ -6,23 +6,26 @@ import "../Generics/" as Gen
 
 Rectangle {
   id: root
+
   color: "transparent"
   visible: Dat.Recording.running
 
   Rectangle {
     id: recordDot
+
     anchors.centerIn: parent
     color: Dat.Colors.tertiary
-    width: 10
     height: this.width
     radius: this.width
+    width: 10
   }
 
   Timer {
-    running: Dat.Globals.notifState != "COLLAPSED" && root.visible
-    repeat: true
     interval: 600
-    onTriggered: recordDot.visible = !recordDot.visible
+    repeat: true
+    running: Dat.Globals.notifState != "COLLAPSED" && root.visible
     triggeredOnStart: true
+
+    onTriggered: recordDot.visible = !recordDot.visible
   }
 }

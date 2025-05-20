@@ -98,8 +98,8 @@ Rectangle {
           NumberAnimation {
             duration: Dat.MaterialEasing.standardAccelTime
             easing.bezierCurve: Dat.MaterialEasing.standardAccel
-            to: 1000
             property: "x"
+            to: 1000
           }
         }
       }

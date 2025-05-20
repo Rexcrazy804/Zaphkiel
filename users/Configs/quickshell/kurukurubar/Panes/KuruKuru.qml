@@ -112,40 +112,33 @@ Rectangle {
         property real speed: 0.8
         property bool switchable: true
 
-        onSpeedChanged: {
-          if (gifRect.speed > 8) {
-            if (gifRect.switchable)  {
-              gifRect.state = (gifRect.state == "HERTA")? "THE_HERTA" : "HERTA"
-            }
-            gifRect.switchable = false
-          }
-          if (gifRect.speed < 7) {
-            gifRect.switchable = true
-          }
-        }
-
+        Layout.fillHeight: true
+        Layout.fillWidth: true
+        color: "transparent"
         state: "HERTA"
+
         states: [
           State {
             name: "HERTA"
+
             PropertyChanges {
-              smoll.opacity: 1
               big.opacity: 0
-              smoll.visible: true
               big.visible: false
+              smoll.opacity: 1
+              smoll.visible: true
             }
           },
           State {
             name: "THE_HERTA"
+
             PropertyChanges {
-              smoll.opacity: 0
               big.opacity: 1
-              smoll.visible: false
               big.visible: true
+              smoll.opacity: 0
+              smoll.visible: false
             }
           }
         ]
-
         transitions: [
           Transition {
             from: "HERTA"
@@ -153,47 +146,47 @@ Rectangle {
 
             SequentialAnimation {
               PropertyAction {
-                target: big
                 property: "visible"
+                target: big
               }
+
               NumberAnimation {
-                targets: [big, smoll]
-                property: "opacity"
                 duration: 500
                 easing.type: Easing.Linear
+                property: "opacity"
+                targets: [big, smoll]
               }
+
               PropertyAction {
-                target: smoll
                 property: "visible"
+                target: smoll
               }
             }
           },
           Transition {
-            to: "HERTA"
             from: "THE_HERTA"
+            to: "HERTA"
 
             SequentialAnimation {
               PropertyAction {
-                target: smoll
                 property: "visible"
+                target: smoll
               }
+
               NumberAnimation {
-                targets: [big, smoll]
-                property: "opacity"
                 duration: 500
                 easing.type: Easing.Linear
+                property: "opacity"
+                targets: [big, smoll]
               }
+
               PropertyAction {
-                target: big
                 property: "visible"
+                target: big
               }
             }
           }
         ]
-
-        Layout.fillHeight: true
-        Layout.fillWidth: true
-        color: "transparent"
 
         Component.onCompleted: {
           Dat.Globals.notchStateChanged.connect(() => {
@@ -201,6 +194,17 @@ Rectangle {
               gifRect.playing = true;
             }
           });
+        }
+        onSpeedChanged: {
+          if (gifRect.speed > 8) {
+            if (gifRect.switchable) {
+              gifRect.state = (gifRect.state == "HERTA") ? "THE_HERTA" : "HERTA";
+            }
+            gifRect.switchable = false;
+          }
+          if (gifRect.speed < 7) {
+            gifRect.switchable = true;
+          }
         }
 
         Timer {
@@ -246,8 +250,9 @@ Rectangle {
 
         AnimatedImage {
           id: big
-          anchors.fill: parent
+
           anchors.bottomMargin: -13
+          anchors.fill: parent
           fillMode: Image.PreserveAspectFit
           horizontalAlignment: Image.AlignRight
           playing: parent.playing && big.visible

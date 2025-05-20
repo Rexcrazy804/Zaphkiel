@@ -5,7 +5,7 @@
 ## Overview
 > The entry point for *most* of the dots are [here](users/Configs). For certain
 programs the colors are injected either directly from matugen or by nix using
-the generated matugen theme.json\
+the generated matugen theme.json
  
 > For nix users new to [hjem](https://github.com/feel-co/hjem),
 [this](users/rexies.nix) is the entry point for planting my dotfiles in place.
@@ -89,4 +89,4 @@ explicit licensing is included.
 ## Wallpaper Sources
 - Seraphine: [kiss-shot_acerola-orion_heart-under-blade by solipsist](https://cdn.donmai.us/original/13/b5/13b535bca2ae23fe7f30c7e5c136abf6.jpg)
 - Aphrodite: [kokomi by Shaovie](https://www.pixiv.net/en/artworks/116824847)
-- Persephone: [tokisaki_kurumi by chocoan](https://twitter.com/SpiritCrisisDAL/status/1585472858385395713)
+- Persephone: [the_herta by meirong](https://www.pixiv.net/artworks/126270092)

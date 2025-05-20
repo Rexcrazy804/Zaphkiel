@@ -37,4 +37,4 @@ AlbumCover svg by [Squirrel Modeller](https://github.com/SquirrelModeller)
 - - | Notification
 ```
 
--# with <3 by Rexiel Scarlet
+> with <3 by Rexiel Scarlet

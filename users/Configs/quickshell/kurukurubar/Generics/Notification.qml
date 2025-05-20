@@ -4,6 +4,8 @@ import QtQuick.Controls
 import QtQuick.Effects
 import Quickshell
 import Quickshell.Services.Notifications
+import Quickshell.Hyprland
+
 
 import "../Data/" as Dat
 import "../Generics/" as Gen
@@ -108,6 +110,18 @@ Rectangle {
         textFormat: Text.MarkdownText
         width: parent.width
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+
+        MouseArea {
+          id: bodMArea
+          anchors.fill: parent
+          acceptedButtons: Qt.LeftButton
+          // thanks end_4 for this <3
+          onClicked: {
+            const hovLink = bodText.hoveredLink
+            if (hovLink == "") { return; }
+            Hyprland.dispatch("exec xdg-open " + hovLink)
+          }
+        }
       }
     }
 

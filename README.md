@@ -3,7 +3,9 @@
 - wallpaper: [tokisaki_kurumi by chocoan](https://twitter.com/SpiritCrisisDAL/status/1585472858385395713)
 
 ## Overview
-The entry point for *most* of the dots are [here](users/Configs). For certain
+> Where is kuru kuru spin bar? WiP in `quickshell-2` branch
+
+> The entry point for *most* of the dots are [here](users/Configs). For certain
 programs the colors are injected either directly from matugen or by nix using
 the generated matugen theme.json
 

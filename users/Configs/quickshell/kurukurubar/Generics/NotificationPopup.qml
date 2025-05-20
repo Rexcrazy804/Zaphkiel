@@ -72,7 +72,9 @@ Rectangle {
             Text {
               id: sumText
 
+              Layout.maximumWidth: root.width * 0.8
               color: Dat.Colors.primary
+              elide: Text.ElideRight
               text: root.notif?.summary ?? "summary"
             }
 

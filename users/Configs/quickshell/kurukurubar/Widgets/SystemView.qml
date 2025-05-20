@@ -48,22 +48,13 @@ Rectangle {
           }
         }
 
-        Component.onCompleted: {
-          // silly hack to not have a 500ms delay before animation starts
-          Dat.Globals.notchStateChanged.connect(() => {
-            nixLogo.rotation += 3;
-          });
-          root.isCurrentChanged.connect(() => {
-            nixLogo.rotation += 3;
-          });
-        }
-
         Timer {
           interval: 500
           repeat: true
           running: Dat.Globals.notchState == "FULLY_EXPANDED" && root.isCurrent
-
           onTriggered: parent.rotation = (parent.rotation + 3) % 360
+          triggeredOnStart: true
+          triggeredOnStart: true
         }
       }
 

@@ -1,7 +1,10 @@
-# **This is still a work in progress**
+## **This is still a work in progress**
 > Note: if you'd like to reserve space for the top bar see the comment in [shell.qml](shell.qml)
 
-# Kuru Kuru bar Components outline
+## Acknowledgement
+AlbumCover svg by [Squirrel Modeller](https://github.com/SquirrelModeller)
+
+## Kuru Kuru bar Components outline
 ```
 | Notch
 - | TopBar
@@ -33,3 +36,5 @@
 - | InboxPane
 - - | Notification
 ```
+
+-# with <3 by Rexiel Scarlet

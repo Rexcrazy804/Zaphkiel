@@ -42,7 +42,7 @@ Rectangle {
         layer.smooth: true
         mipmap: true
         smooth: true
-        source: "../Assets/discogs-svgrepo-com.svg"
+        source: "../Assets/AlbumCover-by-Squirrel-Modeller.svg"
       }
     }
     Behavior on rotation {

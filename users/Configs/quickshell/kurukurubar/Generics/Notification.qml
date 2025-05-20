@@ -12,29 +12,37 @@ Rectangle {
   id: root
 
   required property Notification notif
+
   color: "transparent"
   height: bodyNActionCol.height
+
   Behavior on x {
-    SmoothedAnimation {}
+    SmoothedAnimation {
+    }
   }
+
   onXChanged: {
-    root.opacity = 1 - (Math.abs(root.x) / width)
+    root.opacity = 1 - (Math.abs(root.x) / width);
   }
 
   MouseArea {
     id: dragArea
+
     anchors.fill: parent
+
     drag {
-      target: parent
       axis: Drag.XAxis
+      target: parent
 
       onActiveChanged: {
-        if (dragArea.drag.active) { return }
-          if ( Math.abs(root.x) > (root.width / 2)) {
-            root.notif.dismiss()
-          } else {
-            root.x = 0
-          }
+        if (dragArea.drag.active) {
+          return;
+        }
+        if (Math.abs(root.x) > (root.width / 2)) {
+          root.notif.dismiss();
+        } else {
+          root.x = 0;
+        }
       }
     }
   }
@@ -57,36 +65,38 @@ Rectangle {
 
       RowLayout {
         id: infoRow
+
         anchors.top: parent.top
         height: sumText.contentHeight
         width: parent.width
+
         Text {
-          Layout.maximumWidth: root.width * 0.8
           id: sumText
 
-          elide: Text.ElideRight
-
+          Layout.maximumWidth: root.width * 0.8
           color: Dat.Colors.primary
+          elide: Text.ElideRight
           text: root.notif?.summary ?? "summary"
         }
 
         Rectangle {
           Layout.alignment: Qt.AlignRight
+          color: "transparent"
           implicitHeight: appText.contentHeight + 2
           implicitWidth: appText.contentWidth + 10
           radius: 20
-          color: "transparent"
+
           Text {
-            anchors.centerIn: parent
             id: appText
+
+            anchors.centerIn: parent
             color: Dat.Colors.tertiary
-            text: root.notif?.appName ?? "idk"
-            font.pointSize: 8
             font.bold: true
+            font.pointSize: 8
+            text: root.notif?.appName ?? "idk"
           }
         }
       }
-
 
       Text {
         id: bodText
@@ -102,18 +112,19 @@ Rectangle {
     }
 
     Flickable {
-      visible: root.notif?.actions.length != 0
       id: flick
+
       Layout.alignment: Qt.AlignRight
       Layout.bottomMargin: 10
-      Layout.rightMargin: 10
       Layout.leftMargin: this.Layout.rightMargin
+      Layout.rightMargin: 10
       boundsBehavior: Flickable.StopAtBounds
       clip: true
       contentWidth: actionRow.width
       implicitHeight: 23
       // thanks to Aureus :>
       implicitWidth: Math.min(bodyNActionCol.width - 20, actionRow.width)
+      visible: root.notif?.actions.length != 0
 
       RowLayout {
         id: actionRow
@@ -143,6 +154,7 @@ Rectangle {
 
             Gen.MouseArea {
               layerColor: actionText.color
+
               onClicked: parent.modelData.invoke()
             }
           }

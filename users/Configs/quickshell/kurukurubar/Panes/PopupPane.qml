@@ -55,8 +55,8 @@ Rectangle {
         YAnimator {
           duration: Dat.MaterialEasing.standardDecelTime
           easing.bezierCurve: Dat.MaterialEasing.standardDecel
-          to: 0
           from: 100
+          to: 0
         }
       }
     }

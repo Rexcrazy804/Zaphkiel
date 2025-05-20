@@ -7,8 +7,6 @@ import Quickshell.Wayland
 Singleton {
   id: root
 
-  property bool reservedShell: false
-
   property string actWinName: activeWindow?.activated ? activeWindow?.appId : "desktop"
   readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
   property string hostName: "KuruMi"
@@ -16,9 +14,10 @@ Singleton {
   property bool notchHovered: false
 
   // one of "COLLAPSED", "EXPANDED", "FULLY_EXPANDED"
-  property string notchState: (reservedShell)? "EXPANDED" : "COLLAPSED"
+  property string notchState: (reservedShell) ? "EXPANDED" : "COLLAPSED"
   // one of "HIDDEN", "POPUP", "INBOX"
   property string notifState: "HIDDEN"
+  property bool reservedShell: false
 
   // SettingsView State
   // 0 => Power
@@ -35,7 +34,9 @@ Singleton {
   property int swipeIndex: 0
 
   onActWinNameChanged: {
-    if (reservedShell) { return; }
+    if (reservedShell) {
+      return;
+    }
     if (root.actWinName == "desktop" && root.notchState == "COLLAPSED") {
       root.notchState = "EXPANDED";
     } else if (root.notchState == "EXPANDED" && !root.notchHovered) {

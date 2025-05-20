@@ -273,7 +273,7 @@ Scope {
               inboxRect.visible: true
               // notificationRect.color: Dat.Colors.withAlpha(Dat.Colors.background, 0.79)
               notificationRect.color: "transparent"
-              notificationRect.implicitHeight: (Dat.NotificationServer.notifCount == 0)? 0 : inboxRect.list.height
+              notificationRect.implicitHeight: (Dat.NotificationServer.notifCount == 0) ? 0 : inboxRect.list.height
               notificationRect.implicitWidth: notificationRect.fullWidth
               notificationRect.visible: true
               popupRect.opacity: 0

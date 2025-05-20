@@ -10,18 +10,18 @@ Rectangle {
   color: "transparent"
 
   AnimatedImage {
-    playing: Mpris.players.values.length == 0
     anchors.fill: parent
-    source: "https://media.tenor.com/JtofR661NDIAAAAi/honkai-star-rail-hsr.gif"
     fillMode: Image.PreserveAspectFit
+    playing: Mpris.players.values.length == 0
+    source: "https://media.tenor.com/JtofR661NDIAAAAi/honkai-star-rail-hsr.gif"
   }
 
   Text {
     anchors.bottom: parent.bottom
-    text: "Play some music"
-    anchors.horizontalCenter: parent.horizontalCenter
     anchors.bottomMargin: 5
+    anchors.horizontalCenter: parent.horizontalCenter
     color: Dat.Colors.on_surface
+    text: "Play some music"
   }
 
   SwipeView {

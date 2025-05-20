@@ -8,34 +8,35 @@ import "../Data/" as Dat
 
 RowLayout {
   id: root
+
   spacing: 10
 
   Rectangle {
     Layout.leftMargin: 5
+    color: "transparent"
     implicitHeight: this.implicitWidth
     implicitWidth: faceIcon.width
-    color: "transparent"
 
     Image {
       id: faceIcon
 
       anchors.centerIn: parent
       height: this.width
+      mipmap: true
       source: Quickshell.env("HOME") + "/.face.icon"
       visible: false
       width: root.height - 2 * parent.Layout.leftMargin
-      mipmap: true
     }
 
     MultiEffect {
       anchors.fill: faceIcon
+      antialiasing: true
       maskEnabled: true
       maskSource: faceIconMask
       maskSpreadAtMin: 1.0
       maskThresholdMax: 1.0
       maskThresholdMin: 0.5
       source: faceIcon
-      antialiasing: true
     }
 
     Item {

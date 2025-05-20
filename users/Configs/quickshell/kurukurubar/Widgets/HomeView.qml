@@ -71,12 +71,12 @@ Rectangle {
     }
 
     Rectangle {
-      visible: SystemTray.items.values.length != 0
       Layout.alignment: Qt.AlignCenter
       color: Dat.Colors.surface_container
       implicitHeight: (stack.depth > 1) ? 8 : 28
       implicitWidth: trayItemRow.width + 20
       radius: 20
+      visible: SystemTray.items.values.length != 0
 
       Behavior on implicitHeight {
         NumberAnimation {

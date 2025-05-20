@@ -32,6 +32,7 @@ Rectangle {
         footerPositioning: ListView.InlineFooter
         height: (contentHeight < 300) ? contentHeight : 300
         model: Dat.NotifServer.notifications
+        removeDisplaced: this.addDisplaced
         spacing: 10
 
         add: Transition {
@@ -39,8 +40,8 @@ Rectangle {
             NumberAnimation {
               duration: Dat.MaterialEasing.standardTime
               easing.bezierCurve: Dat.MaterialEasing.standard
-              property: "x"
               from: 1000
+              property: "x"
             }
           }
         }
@@ -51,19 +52,6 @@ Rectangle {
             properties: "x,y"
           }
         }
-
-        remove: Transition {
-          ParallelAnimation {
-            NumberAnimation {
-              duration: Dat.MaterialEasing.standardTime
-              easing.bezierCurve: Dat.MaterialEasing.standard
-              property: "opacity"
-              to: 0
-            }
-          }
-        }
-
-        removeDisplaced: this.addDisplaced
         delegate: Gen.Notification {
           required property Notification modelData
 
@@ -105,6 +93,16 @@ Rectangle {
 
             Gen.MouseArea {
               onClicked: Dat.NotifServer.clearNotifs()
+            }
+          }
+        }
+        remove: Transition {
+          ParallelAnimation {
+            NumberAnimation {
+              duration: Dat.MaterialEasing.standardTime
+              easing.bezierCurve: Dat.MaterialEasing.standard
+              property: "opacity"
+              to: 0
             }
           }
         }

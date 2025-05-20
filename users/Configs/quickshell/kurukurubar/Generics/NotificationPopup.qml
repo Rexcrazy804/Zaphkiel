@@ -42,6 +42,7 @@ Rectangle {
       anchors.fill: parent
       boundsBehavior: Flickable.StopAtBounds
       contentHeight: bodyNActionCol.height
+
       // height starts at 0 and I needa monitor it changing
       // also thanks to Aureus for this
       onHeightChanged: bodyNActionCol.implicitHeight = Math.max(bodyNActionCol.height, parent.height)

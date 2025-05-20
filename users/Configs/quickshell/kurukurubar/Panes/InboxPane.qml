@@ -33,16 +33,14 @@ Rectangle {
         height: (contentHeight < 300) ? contentHeight : 300
         model: Dat.NotifServer.notifications
         removeDisplaced: this.addDisplaced
-        spacing: 10
+        spacing: 5
 
         add: Transition {
-          ParallelAnimation {
-            NumberAnimation {
-              duration: Dat.MaterialEasing.standardTime
-              easing.bezierCurve: Dat.MaterialEasing.standard
-              from: 1000
-              property: "x"
-            }
+          NumberAnimation {
+            duration: Dat.MaterialEasing.standardDecelTime
+            easing.bezierCurve: Dat.MaterialEasing.standardDecel
+            from: 1000
+            property: "x"
           }
         }
         addDisplaced: Transition {
@@ -97,13 +95,11 @@ Rectangle {
           }
         }
         remove: Transition {
-          ParallelAnimation {
-            NumberAnimation {
-              duration: Dat.MaterialEasing.standardTime
-              easing.bezierCurve: Dat.MaterialEasing.standard
-              property: "opacity"
-              to: 0
-            }
+          NumberAnimation {
+            duration: Dat.MaterialEasing.standardAccelTime
+            easing.bezierCurve: Dat.MaterialEasing.standardAccel
+            to: 1000
+            property: "x"
           }
         }
       }

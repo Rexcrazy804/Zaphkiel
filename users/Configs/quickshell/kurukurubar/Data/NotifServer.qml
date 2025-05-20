@@ -14,10 +14,9 @@ Singleton {
   property NotificationServer server: notifServer
 
   function clearNotifs() {
-    for (var i = 0; i < notifServer.trackedNotifications.values.length; i++) {
-      // TODO this is still a bit wonky idk why
-      notifServer.trackedNotifications.values[i].dismiss();
-    }
+    [...notifServer.trackedNotifications.values].forEach(elem => {
+      elem.dismiss();
+    });
   }
 
   NotificationServer {

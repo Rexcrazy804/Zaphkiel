@@ -5,7 +5,7 @@
 - [x] find herta wallpaper
 - [x] kuru kuru transformation +++
 - [ ] improve animations on topbar+expandedpane
-
-- [ ] support widgets in the background (just clock with day and month for now?)
+- [ ] fix particle effect clipping 
+~~- [ ] support widgets in the background (just clock with day and month for now?)~~
 
 <!-- - [ ] support setting wallpapers via the shell -->

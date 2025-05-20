@@ -1,7 +1,9 @@
 import QtQuick
+import QtQuick.Particles
 import QtQuick.Layouts
 
 import "../Data/" as Dat
+import "../Widgets/" as Wid
 
 Rectangle {
   color: "transparent"
@@ -205,6 +207,14 @@ Rectangle {
           if (gifRect.speed < 7) {
             gifRect.switchable = true;
           }
+
+          if (gifRect.speed > 5) {
+            pSystem.running = true;
+          }
+
+          if (gifRect.speed < 1) {
+            pSystem.running = false;
+          }
         }
 
         Timer {
@@ -258,6 +268,16 @@ Rectangle {
           playing: parent.playing && big.visible
           source: "https://media.tenor.com/taxnt3zsc_4AAAAj/seseren-the-herta.gif"
           speed: parent.speed
+        }
+
+        Wid.KuruParticleSystem {
+          id: pSystem
+
+          anchors.bottom: parent.bottom
+          anchors.left: parent.left
+          anchors.right: parent.right
+          height: 50
+          rateMultiplier: gifRect.speed
         }
 
         MouseArea {

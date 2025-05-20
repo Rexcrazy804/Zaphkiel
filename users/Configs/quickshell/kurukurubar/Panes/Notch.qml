@@ -510,7 +510,7 @@ Scope {
               Dat.Globals.notifState = "INBOX";
               break;
             default:
-              Dat.Globals.notifState = (!popupRect?.closed) ? "POPUP" : "HIDDEN";
+              Dat.Globals.notifState = (!popupRect?.closed ?? false) ? "POPUP" : "HIDDEN";
               break;
             }
           });

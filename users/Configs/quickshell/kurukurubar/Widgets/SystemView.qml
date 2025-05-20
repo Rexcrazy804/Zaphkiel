@@ -54,7 +54,6 @@ Rectangle {
           running: Dat.Globals.notchState == "FULLY_EXPANDED" && root.isCurrent
           onTriggered: parent.rotation = (parent.rotation + 3) % 360
           triggeredOnStart: true
-          triggeredOnStart: true
         }
       }
 

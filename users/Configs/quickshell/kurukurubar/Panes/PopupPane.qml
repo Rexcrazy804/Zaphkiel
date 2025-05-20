@@ -20,7 +20,7 @@ Rectangle {
       stack.push(notification, {
         "notif": e,
         "width": stack.width,
-        "height": stack.height,
+        "implicitHeight": stack.height,
         "radius": "20",
         "view": stack,
         "popup": popupRect

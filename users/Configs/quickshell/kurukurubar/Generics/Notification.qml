@@ -112,6 +112,7 @@ Rectangle {
       clip: true
       contentWidth: actionRow.width
       implicitHeight: 23
+      // thanks to Aureus :>
       implicitWidth: Math.min(bodyNActionCol.width - 20, actionRow.width)
 
       RowLayout {

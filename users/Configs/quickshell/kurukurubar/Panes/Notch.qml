@@ -226,7 +226,7 @@ Scope {
         readonly property int baseWidth: 0
         // readonly property int fullHeight: 300
         readonly property int fullWidth: notchRect.expandedWidth
-        readonly property int popupHeight: 128
+        readonly property int popupHeight: 100
         readonly property int popupWidth: 430
 
         anchors.horizontalCenter: notchRect.horizontalCenter

@@ -42,6 +42,9 @@ Rectangle {
       anchors.fill: parent
       boundsBehavior: Flickable.StopAtBounds
       contentHeight: bodyNActionCol.height
+      // height starts at 0 and I needa monitor it changing
+      // also thanks to Aureus for this
+      onHeightChanged: bodyNActionCol.implicitHeight = Math.max(bodyNActionCol.height, parent.height)
 
       ColumnLayout {
         id: bodyNActionCol
@@ -49,12 +52,6 @@ Rectangle {
         anchors.top: parent.top
         spacing: 0
         width: parent.width
-
-        Component.onCompleted: {
-          if (bodyNActionCol.height < 128) {
-            bodyNActionCol.height = 128;
-          }
-        }
 
         Rectangle {
           Layout.fillWidth: true
@@ -127,6 +124,7 @@ Rectangle {
           clip: true
           contentWidth: actionRow.width
           implicitHeight: 23
+          // thanks to Aureus :>
           implicitWidth: Math.min(bodyNActionCol.width - 20, actionRow.width)
           visible: root.notif?.actions.length != 0
 

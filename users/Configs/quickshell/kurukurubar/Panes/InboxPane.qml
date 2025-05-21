@@ -29,7 +29,6 @@ Rectangle {
         anchors.leftMargin: 80
         anchors.right: parent.right
         anchors.rightMargin: this.anchors.leftMargin
-        footerPositioning: ListView.InlineFooter
         height: (contentHeight < 300) ? contentHeight : 300
         model: Dat.NotifServer.notifications
         removeDisplaced: this.addDisplaced
@@ -57,42 +56,6 @@ Rectangle {
           notif: modelData
           radius: 20
           width: inbox.width
-        }
-        footer: Rectangle {
-          color: "transparent"
-          height: 60
-          visible: Dat.NotifServer.notifCount >= 1
-          width: inbox.width
-          z: 2
-
-          Rectangle {
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 10
-            anchors.horizontalCenter: parent.horizontalCenter
-            color: Dat.Colors.surface_container
-            height: this.width
-            layer.enabled: true
-            radius: this.width
-            width: 45
-
-            layer.effect: MultiEffect {
-              shadowEnabled: true
-              shadowHorizontalOffset: 1
-              shadowOpacity: 0.5
-              shadowVerticalOffset: 1
-            }
-
-            Text {
-              anchors.centerIn: parent
-              color: Dat.Colors.on_surface
-              font.pointSize: 14
-              text: ""
-            }
-
-            Gen.MouseArea {
-              onClicked: Dat.NotifServer.clearNotifs()
-            }
-          }
         }
         remove: Transition {
           NumberAnimation {

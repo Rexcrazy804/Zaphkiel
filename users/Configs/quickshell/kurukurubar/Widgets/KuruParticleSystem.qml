@@ -22,7 +22,11 @@ ParticleSystem {
   }
 
   Emitter {
-    anchors.fill: parent
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    width: 100
+    height: 10
+    anchors.rightMargin: 30
     group: "kuru"
     emitRate: 120 * (Math.min(root.rateMultiplier - 5.5, 5))
     lifeSpan: 5000

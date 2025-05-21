@@ -13,6 +13,7 @@ Rectangle {
 
   Component.onCompleted: {
     Dat.NotifServer.server.onNotification.connect(e => {
+      if (Dat.NotifServer.dndEnabled) { return; }
       if (!e) {
         return;
       }

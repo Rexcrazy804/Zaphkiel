@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Particles
 import QtQuick.Layouts
+import QtQuick.Effects
 
 import "../Data/" as Dat
 import "../Widgets/" as Wid
@@ -51,6 +52,15 @@ Rectangle {
           text: "くるくる～――っと。"
           verticalAlignment: Text.AlignVCenter
         }
+      }
+
+      Wid.NotifDots {
+        color: Dat.Colors.surface_container
+        anchors.bottomMargin: 10
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        height: 35
+        radius: 20
       }
     }
 
@@ -270,15 +280,6 @@ Rectangle {
           speed: parent.speed
         }
 
-        Wid.KuruParticleSystem {
-          id: pSystem
-
-          anchors.bottom: parent.bottom
-          anchors.left: parent.left
-          anchors.right: parent.right
-          height: 50
-          rateMultiplier: gifRect.speed
-        }
 
         MouseArea {
           acceptedButtons: Qt.LeftButton
@@ -300,6 +301,41 @@ Rectangle {
           }
         }
       }
+    }
+  }
+
+  Wid.KuruParticleSystem {
+    anchors.top: parent.top
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    width: 700
+    id: pSystem
+    visible: false
+    rateMultiplier: gifRect.speed
+    layer.enabled: true
+  }
+
+  MultiEffect {
+    anchors.fill: pSystem
+    maskEnabled: true
+    maskSource: mask
+    maskSpreadAtMin: 1.0
+    maskThresholdMax: 1.0
+    maskThresholdMin: 0.5
+    source: pSystem
+  }
+
+  Item {
+    id: mask
+
+    visible: false
+    width: pSystem.width
+    height: pSystem.height
+    layer.enabled: true
+    Rectangle {
+      anchors.fill: parent
+      bottomLeftRadius: 20
+      bottomRightRadius: 20
     }
   }
 }

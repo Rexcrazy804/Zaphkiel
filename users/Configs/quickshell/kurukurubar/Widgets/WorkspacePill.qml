@@ -8,19 +8,19 @@ import "../Generics/" as Gen
 
 Rectangle {
   id: root
+  clip: true
 
   color: Dat.Colors.primary_container
   height: 20
   implicitWidth: workRow.width + 8
   radius: 20
 
-  // TODO find a way to cleanly animate this
-  // Behavior on implicitWidth {
-  //   NumberAnimation {
-  //     duration: 100
-  //     easing.bezierCurve: Dat.MaterialEasing.standard
-  //   }
-  // }
+  Behavior on implicitWidth {
+    NumberAnimation {
+      duration: Dat.MaterialEasing.standardDecelTime
+      easing.bezierCurve: Dat.MaterialEasing.standardDecel
+    }
+  }
 
   RowLayout {
     id: workRow

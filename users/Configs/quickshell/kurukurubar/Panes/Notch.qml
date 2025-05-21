@@ -66,6 +66,10 @@ Scope {
               notchRect.height: notchRect.baseHeight
               notchRect.opacity: 0
               notchRect.width: notchRect.baseWidth
+              topBar.visible: false
+              expandedPane.visible: false
+              topBar.opacity: 0
+              expandedPane.opacity: 0
             }
           },
           State {
@@ -75,6 +79,10 @@ Scope {
               notchRect.height: notchRect.expandedHeight
               notchRect.opacity: 1
               notchRect.width: notchRect.expandedWidth
+              topBar.visible: true
+              expandedPane.visible: false
+              topBar.opacity: 1
+              expandedPane.opacity: 0
             }
           },
           State {
@@ -84,6 +92,10 @@ Scope {
               notchRect.height: notchRect.fullHeight
               notchRect.opacity: 1
               notchRect.width: notchRect.fullWidth
+              topBar.visible: true
+              expandedPane.visible: true
+              topBar.opacity: 1
+              expandedPane.opacity: 1
             }
           }
         ]
@@ -92,51 +104,135 @@ Scope {
             from: "COLLAPSED"
             to: "EXPANDED"
 
-            NumberAnimation {
-              duration: Dat.MaterialEasing.standardDecelTime
-              easing.bezierCurve: Dat.MaterialEasing.standardDecel
-              properties: "width, opacity, height"
+            SequentialAnimation {
+              PropertyAction {
+                target: topBar
+                property: "visible"
+              }
+              PropertyAction {
+                property: "opacity"
+                target: notchRect
+              }
+              ParallelAnimation {
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.standardTime * 2
+                  easing.bezierCurve: Dat.MaterialEasing.standard
+                  property: "opacity"
+                  target: topBar
+                }
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.standardDecelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standardDecel
+                  properties: "width, opacity, height"
+                  target: notchRect
+                }
+              }
             }
           },
           Transition {
             from: "EXPANDED"
             to: "COLLAPSED"
 
-            NumberAnimation {
-              duration: Dat.MaterialEasing.standardAccelTime
-              easing.bezierCurve: Dat.MaterialEasing.standardAccel
-              properties: "width, opacity, height"
+            SequentialAnimation {
+              NumberAnimation {
+                duration: (notchRect.height > notchRect.expandedHeight)? (Dat.MaterialEasing.standardAccelTime / 2) : 0
+                easing.bezierCurve: Dat.MaterialEasing.standardAccel
+                property: "height"
+                target: notchRect
+                // whenever the workspace changes in quickshell from app1 to app2
+                // the global state changes like this: app1 -> desktop -> app2
+                // which would cause it to quickly change the stat to EXPANED and then instantly to COLLAPSED
+                // and if this condition isn't there, you get a short empty notch
+                // since its here you get a 1px tall notch when you you switch between windows workspaces
+                // if you manage to spot him, pat yourself in the back, you found the cutie that I hid from caesus
+                to: (notchRect.height > notchRect.expandedHeight)? notchRect.expandedHeight : notchRect.height
+              }
+              ParallelAnimation {
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.standardAccelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standardAccel
+                  properties: "width, height"
+                  target: notchRect
+                }
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.standardAccelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standardAccel
+                  property: "opacity"
+                  target: topBar
+                }
+              }
+              PropertyAction {
+                property: "visible"
+                target: topBar
+              }
+              PropertyAction {
+                property: "opacity"
+                target: notchRect
+              }
             }
           },
           Transition {
             from: "EXPANDED"
-            reversible: true
             to: "FULLY_EXPANDED"
 
-            NumberAnimation {
-              duration: Dat.MaterialEasing.standardTime
-              easing.bezierCurve: Dat.MaterialEasing.standard
-              properties: "width, opacity, height"
+            SequentialAnimation {
+              PropertyAction {
+                property: "visible"
+                target: expandedPane
+              }
+              ParallelAnimation {
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.standardDecelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standardDecel
+                  property: "height"
+                  target: notchRect
+                }
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.standardTime * 3
+                  easing.bezierCurve: Dat.MaterialEasing.standard
+                  property: "opacity"
+                  target: expandedPane
+                }
+              }
             }
           },
           Transition {
+            to: "EXPANDED"
             from: "FULLY_EXPANDED"
-            to: "COLLAPSED"
 
-            NumberAnimation {
-              duration: Dat.MaterialEasing.standardAccelTime
-              easing.bezierCurve: Dat.MaterialEasing.standardAccel
-              properties: "width, opacity, height"
+            SequentialAnimation {
+              ParallelAnimation {
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.standardAccelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standardAccel
+                  property: "height"
+                  target: notchRect
+                }
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.standardAccelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standardAccel
+                  property: "opacity"
+                  target: expandedPane
+                }
+              }
+              PropertyAction {
+                property: "visible"
+                target: expandedPane
+              }
             }
           },
+          // sometimes due to the will of kuru kuru this happens
+          // so just make sure it isn't very jagged
           Transition {
             from: "COLLAPSED"
             to: "FULLY_EXPANDED"
+            reversible: true
 
             NumberAnimation {
-              duration: Dat.MaterialEasing.standardDecelTime
-              easing.bezierCurve: Dat.MaterialEasing.standardDecel
-              properties: "width, opacity, height"
+              duration: Dat.MaterialEasing.emphasizedTime
+              easing.bezierCurve: Dat.MaterialEasing.emphasized
+              properties: "height, opacity, width"
+              target: notchRect
             }
           }
         ]
@@ -201,19 +297,18 @@ Scope {
             spacing: 0
 
             TopBar {
+              Layout.alignment: Qt.AlignTop
+              id: topBar
               Layout.fillWidth: true
-              // setting implicit height produces a diffferent behaviour
               Layout.maximumHeight: notchRect.expandedHeight
+              // makes collapse animation look a tiny bit neater
               Layout.minimumHeight: notchRect.expandedHeight - 10
-              opacity: (notchRect.width - notchRect.baseWidth) / (notchRect.expandedWidth - notchRect.baseWidth)
-              visible: notchRect.height > notchRect.baseHeight
             }
 
             ExpandedPane {
+              id: expandedPane
               Layout.fillHeight: true
               Layout.fillWidth: true
-              opacity: ((notchRect.height - notchRect.expandedHeight) / (notchRect.fullHeight - notchRect.expandedHeight))
-              visible: notchRect.height > notchRect.expandedHeight
             }
           }
         }

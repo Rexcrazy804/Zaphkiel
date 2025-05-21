@@ -4,7 +4,7 @@ import Quickshell
 Singleton {
   id: root
 
-  // thanks to Soramune :>
+  // thanks to Soramane :>
   readonly property list<real> emphasized: [0.05, 0, 2 / 15, 0.06, 1 / 6, 0.4, 5 / 24, 0.82, 0.25, 1, 1, 1]
   readonly property list<real> emphasizedAccel: [0.3, 0, 0.8, 0.15, 1, 1]
   readonly property int emphasizedAccelTime: 200

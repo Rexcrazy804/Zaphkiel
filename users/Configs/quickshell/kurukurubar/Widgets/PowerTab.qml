@@ -212,8 +212,8 @@ Rectangle {
 
           Behavior on y {
             NumberAnimation {
-              duration: Dat.MaterialEasing.emphasizedAccelTime
-              easing.bezierCurve: Dat.MaterialEasing.emphasizedAccel
+              duration: Dat.MaterialEasing.emphasizedTime
+              easing.bezierCurve: Dat.MaterialEasing.emphasized
             }
           }
 

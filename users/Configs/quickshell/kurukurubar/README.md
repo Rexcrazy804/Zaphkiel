@@ -1,8 +1,9 @@
 # Kuru Kuru Speen Speen Bar
+> **Warning Material Symbols is now a dependency**
+
 ![image](https://github.com/user-attachments/assets/696bb338-3037-47a0-8415-f67b8fdec103)
 - Wallpaper source: [The Herta by meirong](https://www.pixiv.net/artworks/126270092)
 
-> **Warning Material Symbols is now a dependency**
 A compat and adorable bar designed with the goal of speeening the kuru kuru.
 Designed in acordance to google's material 3 guidelines, you can generate
 colors from your wallpaper using [matugen](https://github.com/InioX/matugen)

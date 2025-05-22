@@ -2,11 +2,25 @@
 ![image](https://github.com/user-attachments/assets/696bb338-3037-47a0-8415-f67b8fdec103)
 - Wallpaper source: [The Herta by meirong](https://www.pixiv.net/artworks/126270092)
 
+> **Warning Material Symbols is now a dependency**
 A compat and adorable bar designed with the goal of speeening the kuru kuru.
 Designed in acordance to google's material 3 guidelines, you can generate
 colors from your wallpaper using [matugen](https://github.com/InioX/matugen)
 using [this template](../../../../nixosModules/external/matugen/templates/quickshell-colors.qml)
 > Note: if you'd like to reserve space for the top bar see the comment in [shell.qml](shell.qml)
+
+### Depencencies
+- quickshell
+- material-symbols
+- nerdfonts
+- qtmultimedia (prolly already installed on your system)
+
+### Live running on nix
+This rice is exposed as a package in the toplevel flake and can be used to run the rice as follows
+```
+nix run gitub:Rexcrazy804/Zaphkiel#quickshell
+```
+> Don't panic if its building `quickshell`, no binary cache for that yet
 
 ## Acknowledgement
 - AlbumCover svg by [Squirrel Modeller](https://github.com/SquirrelModeller)

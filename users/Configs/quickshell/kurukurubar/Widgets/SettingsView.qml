@@ -155,6 +155,10 @@ Rectangle {
         }
       }
 
+      // network tab incomplete
+      // waiting for foxxed to impl the network stuff in quickshell
+      // too lazy to write a script on my own
+      // TODO: maybe write a script of my own?
       Rectangle {
         color: Dat.Colors.surface_container_high
         opacity: visible ? 1 : 0
@@ -170,7 +174,7 @@ Rectangle {
         Text {
           anchors.centerIn: parent
           color: Dat.Colors.on_surface
-          text: "Network Tab"
+          text: "Network Tab (unimplemented)"
         }
       }
     }

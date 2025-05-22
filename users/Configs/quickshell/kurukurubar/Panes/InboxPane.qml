@@ -24,11 +24,9 @@ Rectangle {
       ListView {
         id: inbox
 
+        anchors.top: parent.top
         anchors.left: parent.left
-        // anchors.margins: 10
-        anchors.leftMargin: 80
         anchors.right: parent.right
-        anchors.rightMargin: this.anchors.leftMargin
         height: (contentHeight < 300) ? contentHeight : 300
         model: Dat.NotifServer.notifications
         removeDisplaced: this.addDisplaced

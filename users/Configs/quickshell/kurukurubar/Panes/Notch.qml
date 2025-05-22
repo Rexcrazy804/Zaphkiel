@@ -320,7 +320,7 @@ Scope {
         readonly property int baseHeight: 0
         readonly property int baseWidth: 0
         // readonly property int fullHeight: 300
-        readonly property int fullWidth: notchRect.expandedWidth
+        readonly property int fullWidth: 500
         readonly property int popupHeight: 100
         readonly property int popupWidth: 430
 
@@ -366,7 +366,6 @@ Scope {
             PropertyChanges {
               inboxRect.opacity: 1
               inboxRect.visible: true
-              // notificationRect.color: Dat.Colors.withAlpha(Dat.Colors.background, 0.79)
               notificationRect.color: "transparent"
               notificationRect.implicitHeight: (Dat.NotificationServer.notifCount == 0) ? 0 : inboxRect.list.height
               notificationRect.implicitWidth: notificationRect.fullWidth
@@ -464,26 +463,23 @@ Scope {
                 target: notificationRect
               }
 
-              SequentialAnimation {
-                NumberAnimation {
-                  duration: Dat.MaterialEasing.emphasizedTime / 2
-                  easing.bezierCurve: Dat.MaterialEasing.emphasized
-                  property: "opacity"
-                  target: popupRect
-                }
-
-                PropertyAction {
-                  property: "visible"
-                  targets: [popupRect, inboxRect]
-                }
-
-                NumberAnimation {
-                  duration: Dat.MaterialEasing.emphasizedTime / 2
-                  easing.bezierCurve: Dat.MaterialEasing.emphasized
-                  property: "opacity"
-                  target: inboxRect
-                }
+              PropertyAction {
+                property: "opacity"
+                target: popupRect
               }
+
+              NumberAnimation {
+                duration: Dat.MaterialEasing.emphasizedTime
+                easing.bezierCurve: Dat.MaterialEasing.emphasized
+                property: "opacity"
+                target: inboxRect
+              }
+
+              PropertyAction {
+                property: "visible"
+                targets: [popupRect, inboxRect]
+              }
+
             }
           },
           Transition {

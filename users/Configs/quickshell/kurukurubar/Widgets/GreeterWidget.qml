@@ -12,7 +12,7 @@ RowLayout {
   spacing: 10
 
   Rectangle {
-    Layout.leftMargin: 5
+    Layout.leftMargin: 10
     color: "transparent"
     implicitHeight: this.implicitWidth
     implicitWidth: faceIcon.width

@@ -15,6 +15,7 @@ using [this template](../../../../nixosModules/external/matugen/templates/quicks
 - material-symbols
 - nerdfonts
 - qtmultimedia (prolly already installed on your system)
+- powerprofilesdaemon (optional)
 
 ### Live running on nix
 This rice is exposed as a package in the toplevel flake and can be used to run the rice as follows
@@ -59,6 +60,7 @@ aureus, caesus, oyudays, lysec, friday and squirrel modeller
 - - - - - | AudioSlider
 - - | KuruKuru
 - - - | KuruParticleSystem
+- - - | NotifDots
 - | PopupPane
 - - | PopupNotification
 - | InboxPane

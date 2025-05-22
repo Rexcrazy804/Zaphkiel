@@ -12,6 +12,8 @@
         noto-fonts-emoji
         noto-fonts-cjk-sans
         noto-fonts-cjk-serif
+
+        material-symbols
       ];
     in
       caskydia ++ noto;

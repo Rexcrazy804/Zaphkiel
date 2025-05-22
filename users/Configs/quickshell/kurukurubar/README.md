@@ -14,7 +14,7 @@ using [this template](../../../../nixosModules/external/matugen/templates/quicks
 
 ## Many thanks to these homies :>
 end_4, sora, a certain individual that has not yet returned, foxxed, starch,
-aureus, caesus, oyudays, lysec and squirrel modeller
+aureus, caesus, oyudays, lysec, friday and squirrel modeller
 
 ## Components outline
 ```

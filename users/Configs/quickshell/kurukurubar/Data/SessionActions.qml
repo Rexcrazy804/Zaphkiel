@@ -7,7 +7,8 @@ import Quickshell.Io
 Singleton {
   id: root
 
-  // TODO stop assuming its false and figure out if it is running or not
+  // TODO: improve this
+  // assume it is not inhibited by default
   property bool idleInhibited: false
 
   function poweroff() {

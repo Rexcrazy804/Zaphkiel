@@ -4,8 +4,10 @@
 - [x] recording indicator + ipc
 - [x] find herta wallpaper
 - [x] kuru kuru transformation +++
-- [ ] improve animations on topbar+expandedpane
-- [ ] fix particle effect clipping 
+- [x] improve animations on topbar+expandedpane
+- [x] fix particle effect clipping 
+- [x] sleep inhibitter widget
+
 ~~- [ ] support widgets in the background (just clock with day and month for now?)~~
 
 <!-- - [ ] support setting wallpapers via the shell -->

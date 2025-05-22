@@ -3,6 +3,9 @@
   makeWrapper,
   quickshell,
   kdePackages,
+  material-symbols,
+  makeFontsConf,
+  nerd-fonts,
   lib,
 }: let
   qsConfig = ../Configs/quickshell/kurukurubar;
@@ -11,7 +14,7 @@ in
     name = "qs-wrapper";
     paths = [quickshell];
 
-    buildInputs = [ makeWrapper ];
+    buildInputs = [makeWrapper];
 
     qtDeps = [
       kdePackages.qtbase
@@ -24,8 +27,17 @@ in
       (builtins.concatStringsSep ":")
     ];
 
+    # requried when nix running directly
+    fontconfig = makeFontsConf {
+      fontDirectories = [
+        material-symbols
+        nerd-fonts.caskaydia-mono
+      ];
+    };
+
     postBuild = ''
       wrapProgram $out/bin/quickshell \
+        --set FONTCONFIG_FILE "${fontconfig}" \
         --set QML2_IMPORT_PATH "${qmlPath}" \
         --add-flags '-p ${qsConfig}'
     '';

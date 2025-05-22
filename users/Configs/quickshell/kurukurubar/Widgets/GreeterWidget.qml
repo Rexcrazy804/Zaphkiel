@@ -25,7 +25,7 @@ RowLayout {
       mipmap: true
       source: Quickshell.env("HOME") + "/.face.icon"
       visible: false
-      width: root.height - 2 * parent.Layout.leftMargin
+      width: 90
     }
 
     MultiEffect {

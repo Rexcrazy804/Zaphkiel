@@ -2,6 +2,7 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import Quickshell.Hyprland
 import QtQuick.Layouts
+import QtQuick.Effects
 import QtQuick.Controls
 
 import "../Data/" as Dat
@@ -35,11 +36,17 @@ Rectangle {
 
         fillMode: Image.PreserveAspectCrop
         height: this.width
-        opacity: 0.15
+        opacity: 0.9
         rotation: 0
         source: "https://raw.githubusercontent.com/NixOS/nixos-artwork/4ad062cee62116f6055e2876e9638e7bb399d219/logo/nix-snowflake-white.svg"
         width: parent.height
         x: -(this.width / 2.5)
+
+        layer.enabled: true
+        layer.effect: MultiEffect {
+          colorization: 1
+          colorizationColor: Dat.Colors.secondary
+        }
 
         Behavior on rotation {
           NumberAnimation {

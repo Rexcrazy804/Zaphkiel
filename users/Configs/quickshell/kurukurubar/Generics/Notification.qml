@@ -141,7 +141,6 @@ Rectangle {
       implicitHeight: 23
       // thanks to Aureus :>
       implicitWidth: Math.min(bodyNActionCol.width - 20, actionRow.width)
-      visible: root.notif?.actions.length != 0
 
       RowLayout {
         id: actionRow

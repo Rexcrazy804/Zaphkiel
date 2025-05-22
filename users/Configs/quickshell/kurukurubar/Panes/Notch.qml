@@ -203,14 +203,14 @@ Scope {
             SequentialAnimation {
               ParallelAnimation {
                 NumberAnimation {
-                  duration: Dat.MaterialEasing.standardAccelTime
-                  easing.bezierCurve: Dat.MaterialEasing.standardAccel
+                  duration: Dat.MaterialEasing.standardTime
+                  easing.bezierCurve: Dat.MaterialEasing.standard
                   property: "height"
                   target: notchRect
                 }
                 NumberAnimation {
-                  duration: Dat.MaterialEasing.standardAccelTime
-                  easing.bezierCurve: Dat.MaterialEasing.standardAccel
+                  duration: Dat.MaterialEasing.standardTime
+                  easing.bezierCurve: Dat.MaterialEasing.standard
                   property: "opacity"
                   target: expandedPane
                 }

@@ -36,35 +36,95 @@ Rectangle {
           width: stack.width
         }
         popEnter: Transition {
-          PropertyAnimation {
-            duration: Dat.MaterialEasing.emphasizedTime
-            from: 0
-            property: "opacity"
-            to: 1
+          ParallelAnimation {
+            NumberAnimation {
+              property: "opacity"
+              from: 0
+              to: 1
+              duration: Dat.MaterialEasing.emphasizedDecelTime
+              easing.bezierCurve: Dat.MaterialEasing.emphasizedDecel
+            }
+            NumberAnimation {
+              property: "y"
+              from: -100
+              duration: Dat.MaterialEasing.emphasizedDecelTime
+              easing.bezierCurve: Dat.MaterialEasing.emphasizedDecel
+            }
           }
         }
         popExit: Transition {
-          PropertyAnimation {
-            duration: Dat.MaterialEasing.emphasizedTime
-            from: 1
+          ParallelAnimation {
+            NumberAnimation {
+              property: "opacity"
+              from: 1
+              to: 0
+              duration: Dat.MaterialEasing.emphasizedTime
+              easing.bezierCurve: Dat.MaterialEasing.emphasized
+            }
+            NumberAnimation {
+              property: "y"
+              to: 100
+              duration: Dat.MaterialEasing.emphasizedAccelTime
+              easing.bezierCurve: Dat.MaterialEasing.emphasizedAccel
+            }
+          }
+        }        
+        replaceEnter: Transition {
+          ParallelAnimation {
+            PropertyAnimation {
+              property: "opacity"
+              to: 1
+              duration: 0
+            }
+            NumberAnimation {
+              property: "y"
+              from: 100
+              duration: Dat.MaterialEasing.emphasizedDecelTime
+              easing.bezierCurve: Dat.MaterialEasing.emphasizedDecel
+            }
+          }
+        }
+        replaceExit: Transition {
+          NumberAnimation {
             property: "opacity"
+            from: 1
             to: 0
+            duration: Dat.MaterialEasing.emphasizedAccelTime
+            easing.bezierCurve: Dat.MaterialEasing.emphasizedAccel
           }
         }
         pushEnter: Transition {
-          PropertyAnimation {
-            duration: Dat.MaterialEasing.emphasizedTime
-            from: 0
-            property: "opacity"
-            to: 1
+          ParallelAnimation {
+            NumberAnimation {
+              property: "opacity"
+              from: 0
+              to: 1
+              duration: Dat.MaterialEasing.emphasizedTime
+              easing.bezierCurve: Dat.MaterialEasing.emphasized
+            }
+            NumberAnimation {
+              property: "y"
+              from: 100
+              duration: Dat.MaterialEasing.emphasizedDecelTime
+              easing.bezierCurve: Dat.MaterialEasing.emphasizedDecel
+            }
           }
         }
         pushExit: Transition {
-          PropertyAnimation {
-            duration: Dat.MaterialEasing.emphasizedTime
-            from: 1
-            property: "opacity"
-            to: 0
+          ParallelAnimation {
+            NumberAnimation {
+              property: "opacity"
+              from: 1
+              to: 0
+              duration: Dat.MaterialEasing.emphasizedTime
+              easing.bezierCurve: Dat.MaterialEasing.emphasized
+            }
+          }
+          NumberAnimation {
+            property: "y"
+            to: -100
+            duration: Dat.MaterialEasing.emphasizedAccelTime
+            easing.bezierCurve: Dat.MaterialEasing.emphasizedAccel
           }
         }
       }

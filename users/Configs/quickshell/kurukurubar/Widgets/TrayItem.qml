@@ -50,6 +50,7 @@ Rectangle {
           root.modelData.activate();
           return;
         }
+
         if (!root.modelData.hasMenu) {
           return;
         }
@@ -63,7 +64,7 @@ Rectangle {
             }
             root.stack.pop();
           } else {
-            root.stack.replace(root.menu, StackView.PopTransition);
+            root.stack.replace(root.menu, StackView.ReplaceTransition);
           }
         } else {
           root.stack.push(root.menu);

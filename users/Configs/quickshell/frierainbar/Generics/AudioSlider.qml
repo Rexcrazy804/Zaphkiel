@@ -6,7 +6,6 @@ import Quickshell.Widgets
 import Quickshell.Services.Pipewire
 
 import "../Data/" as Dat
-import "../Generics/" as Gen
 
 Rectangle {
   id: root
@@ -16,68 +15,29 @@ Rectangle {
   required property PwNode node
 
   color: "transparent"
-  implicitHeight: 42
+  implicitHeight: 38
 
   ColumnLayout {
     anchors.fill: parent
 
-    RowLayout {
+    Rectangle {
       Layout.fillHeight: true
       Layout.fillWidth: true
+      color: "transparent"
 
-      Item {
-        Layout.fillHeight: true
-        Layout.fillWidth: true
-
-        Text {
-          anchors.fill: parent
-          color: Dat.Colors.on_surface
-          font.pointSize: 10
-          text: (root.node?.isStream ? root.node?.name : (nameArea.containsMouse)? root.node?.description :  root.node?.nickname) ?? "Unidentified"
-          verticalAlignment: Text.AlignVCenter
-          elide: Text.ElideRight
-
-          MouseArea {
-            id: nameArea
-            anchors.top: parent.top
-            anchors.left: parent.left
-            anchors.bottom: parent.bottom
-            width: Math.min(parent.contentWidth, parent.width)
-            hoverEnabled: true
-          }
-        }
-      }
-
-      Gen.ToggleButton {
-        id: icon
-
-        Layout.fillHeight: true
-        active: (root.node?.isSink) ? root.node == Pipewire.defaultAudioSink : root.node == Pipewire.defaultAudioSource
-        implicitWidth: this.height
-        radius: this.height
-        visible: !root.node?.isStream
-
-        icon {
-          color: Dat.Colors.primary
-          font.pointSize: 12
-          icon: (!root.node?.isSink) ? "mic" : "volume_up"
-        }
-
-        mArea {
-          onClicked: {
-            if (root.node?.isSink) {
-              Pipewire.preferredDefaultAudioSink = root.node;
-            } else {
-              Pipewire.preferredDefaultAudioSource = root.node;
-            }
-          }
-        }
+      Text {
+        anchors.fill: parent
+        anchors.leftMargin: 10
+        color: Dat.Colors.on_surface
+        font.pointSize: 10
+        text: (root.node?.isStream ? root.node?.name : root.node?.nickname) ?? "Unidentified"
+        verticalAlignment: Text.AlignVCenter
       }
     }
 
     Item {
+      Layout.fillHeight: true
       Layout.fillWidth: true
-      implicitHeight: 17
 
       Slider {
         id: slider
@@ -102,7 +62,7 @@ Rectangle {
           antialiasing: true
           color: root.bgColor
           layer.smooth: true
-          radius: 5
+          radius: 20
 
           Rectangle {
             id: progRect
@@ -134,9 +94,7 @@ Rectangle {
         }
 
         onMoved: {
-          if (root.node) {
-            root.node.audio.volume = slider.value;
-          }
+          root.node.audio.volume = slider.value;
         }
       }
     }

@@ -10,6 +10,11 @@ ShellRoot {
   //   Dat.Globals.reservedShell = true
   // }
 
+  // uncomment this if you like particle effects
+  // on background that follow your mouse when you move it
+  // Panes.BottomLayer {
+  // }
+
   Panes.Notch {
   }
 

@@ -1,23 +1,20 @@
 import QtQuick
-import QtQuick.Layouts
 
 import "../Data/" as Dat
-import "../Widgets/" as Wid
 import "../Generics/" as Gen
 
 Rectangle {
   id: root
 
+  color: "transparent"
   required property bool active
+  state: (root.active) ? "ACTIVE" : "PASSIVE"
+  property alias mArea: mouseArea
+  property alias icon: matIcon
   property color activeColor: Dat.Colors.primary
   property color activeIconColor: Dat.Colors.on_primary
-  property alias icon: matIcon
-  property alias mArea: mouseArea
   property color passiveColor: Dat.Colors.surface_container
   property color passiveIconColor: Dat.Colors.on_surface
-
-  color: "transparent"
-  state: (root.active) ? "ACTIVE" : "PASSIVE"
 
   states: [
     State {
@@ -107,15 +104,13 @@ Rectangle {
   }
 
   Gen.MatIcon {
-    id: matIcon
-
     anchors.centerIn: parent
+    id: matIcon
     icon: ""
   }
 
   Gen.MouseArea {
     id: mouseArea
-
     layerColor: matIcon.color
   }
 }

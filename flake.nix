@@ -188,7 +188,10 @@
             SHELL=nu exec nu # not using direnv for these shells
           '';
           buildInputs = qtDeps;
-          packages = [pkgs.material-symbols];
+            packages = [
+              pkgs.material-symbols
+              pkgs.google-fonts
+            ];
         };
     });
   };

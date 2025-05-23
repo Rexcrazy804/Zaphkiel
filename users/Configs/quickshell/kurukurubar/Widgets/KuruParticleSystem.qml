@@ -8,7 +8,9 @@ import "../Data/" as Dat
 // https://github.com/soramanew/rainingkuru
 ParticleSystem {
   id: root
+
   required property real rateMultiplier
+
   running: false
 
   ImageParticle {
@@ -24,16 +26,17 @@ ParticleSystem {
   Emitter {
     anchors.bottom: parent.bottom
     anchors.right: parent.right
-    width: 100
-    height: 10
     anchors.rightMargin: 30
-    group: "kuru"
     emitRate: 120 * (Math.min(root.rateMultiplier - 5.5, 5))
+    endSize: 0
+    group: "kuru"
+    height: 10
     lifeSpan: 5000
     lifeSpanVariation: 1000
     size: 20
     sizeVariation: 30
-    endSize: 0
+    width: 100
+
     velocity: AngleDirection {
       angleVariation: 360
       magnitude: 120

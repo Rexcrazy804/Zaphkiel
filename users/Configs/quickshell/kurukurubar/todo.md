@@ -7,10 +7,11 @@
 - [x] improve animations on topbar+expandedpane
 - [x] fix particle effect clipping 
 - [x] sleep inhibitter widget
-- [ ] default audio sink and source selection
+- [x] Material Symbols on MprisWidget
+- [x] default audio sink and source selection
+- [x] icons in notifications
 - [ ] improved time based greeting in GreeterWidget
-- [ ] Material Symbols on MprisWidget
-- [ ] icons in notifications
+- [ ] revamp notification popups / osd
 
 ~~- [ ] support widgets in the background (just clock with day and month for now?)~~
 

@@ -8,8 +8,8 @@ import "../Generics/" as Gen
 
 Rectangle {
   id: root
-  clip: true
 
+  clip: true
   color: Dat.Colors.primary_container
   height: 20
   implicitWidth: workRow.width + 8

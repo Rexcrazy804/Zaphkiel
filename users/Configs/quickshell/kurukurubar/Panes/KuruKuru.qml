@@ -55,10 +55,10 @@ Rectangle {
       }
 
       Wid.NotifDots {
-        color: Dat.Colors.surface_container
-        anchors.bottomMargin: 10
         anchors.bottom: parent.bottom
+        anchors.bottomMargin: 10
         anchors.horizontalCenter: parent.horizontalCenter
+        color: Dat.Colors.surface_container
         height: 35
         radius: 20
       }
@@ -280,7 +280,6 @@ Rectangle {
           speed: parent.speed
         }
 
-
         MouseArea {
           acceptedButtons: Qt.LeftButton
           anchors.fill: parent
@@ -305,14 +304,15 @@ Rectangle {
   }
 
   Wid.KuruParticleSystem {
-    anchors.top: parent.top
-    anchors.right: parent.right
-    anchors.bottom: parent.bottom
-    width: 700
     id: pSystem
-    visible: false
-    rateMultiplier: gifRect.speed
+
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    anchors.top: parent.top
     layer.enabled: true
+    rateMultiplier: gifRect.speed
+    visible: false
+    width: 700
   }
 
   MultiEffect {
@@ -328,10 +328,11 @@ Rectangle {
   Item {
     id: mask
 
-    visible: false
-    width: pSystem.width
     height: pSystem.height
     layer.enabled: true
+    visible: false
+    width: pSystem.width
+
     Rectangle {
       anchors.fill: parent
       bottomLeftRadius: 20

@@ -48,130 +48,176 @@ Rectangle {
     }
   }
 
-  ColumnLayout {
+  RowLayout {
     id: bodyNActionCol
 
     anchors.left: parent.left
+    anchors.margins: 10
     anchors.right: parent.right
     anchors.top: parent.top
-    spacing: 0
+    spacing: 10
 
-    Rectangle {
-      Layout.fillWidth: true
-      Layout.margins: 10
-      color: "transparent"
-      implicitHeight: sumText.contentHeight + bodText.contentHeight
-      topLeftRadius: 20
-      topRightRadius: 20
+    Item {
+      Layout.alignment: Qt.AlignTop
+      implicitHeight: 60
+      implicitWidth: this.implicitHeight
+      visible: root.notif?.image ?? false
 
-      RowLayout {
-        id: infoRow
+      Image {
+        id: notifIcon
 
-        anchors.top: parent.top
-        height: sumText.contentHeight
-        width: parent.width
-
-        Text {
-          id: sumText
-
-          Layout.maximumWidth: root.width * 0.8
-          color: Dat.Colors.primary
-          elide: Text.ElideRight
-          text: root.notif?.summary ?? "summary"
-        }
-
-        Rectangle {
-          Layout.alignment: Qt.AlignRight
-          color: "transparent"
-          implicitHeight: appText.contentHeight + 2
-          implicitWidth: appText.contentWidth + 10
-          radius: 20
-
-          Text {
-            id: appText
-
-            anchors.centerIn: parent
-            color: Dat.Colors.tertiary
-            font.bold: true
-            font.pointSize: 8
-            text: root.notif?.appName ?? "idk"
-          }
-        }
+        anchors.fill: parent
+        mipmap: true
+        source: root.notif?.image ?? ""
+        visible: false
       }
 
-      Text {
-        id: bodText
+      MultiEffect {
+        anchors.fill: notifIcon
+        antialiasing: true
+        maskEnabled: true
+        maskSource: notifIconMask
+        maskSpreadAtMin: 1.0
+        maskThresholdMax: 1.0
+        maskThresholdMin: 0.5
+        source: notifIcon
+      }
 
-        anchors.top: infoRow.bottom
-        color: Dat.Colors.on_surface
-        font.pointSize: 11
-        text: root.notif?.body ?? "very cool body that is missing"
-        textFormat: Text.MarkdownText
-        width: parent.width
-        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+      Item {
+        id: notifIconMask
 
-        MouseArea {
-          id: bodMArea
+        height: this.width
+        layer.enabled: true
+        visible: false
+        width: notifIcon.width
 
-          acceptedButtons: Qt.LeftButton
-          anchors.fill: parent
-
-          // thanks end_4 for this <3
-          onClicked: {
-            const hovLink = bodText.hoveredLink;
-            if (hovLink == "") {
-              return;
-            }
-            Hyprland.dispatch("exec xdg-open " + hovLink);
-          }
+        Rectangle {
+          height: this.width
+          radius: 10
+          width: notifIcon.width
         }
       }
     }
 
-    Flickable {
-      id: flick
+    ColumnLayout {
+      Layout.fillHeight: true
+      Layout.fillWidth: true
 
-      Layout.alignment: Qt.AlignRight
-      Layout.bottomMargin: 10
-      Layout.leftMargin: this.Layout.rightMargin
-      Layout.rightMargin: 10
-      boundsBehavior: Flickable.StopAtBounds
-      clip: true
-      contentWidth: actionRow.width
-      implicitHeight: 23
-      // thanks to Aureus :>
-      implicitWidth: Math.min(bodyNActionCol.width - 20, actionRow.width)
+      Rectangle {
+        Layout.fillWidth: true
+        color: "transparent"
+        implicitHeight: sumText.contentHeight + bodText.contentHeight
+        topLeftRadius: 20
+        topRightRadius: 20
 
-      RowLayout {
-        id: actionRow
+        RowLayout {
+          id: infoRow
 
-        anchors.right: parent.right
-        height: parent.height
+          anchors.top: parent.top
+          height: sumText.contentHeight
+          width: parent.width
 
-        Repeater {
-          model: root.notif?.actions
+          Text {
+            id: sumText
+
+            Layout.maximumWidth: ((root.width - notifIcon.width) * 0.75)
+            color: Dat.Colors.primary
+            elide: Text.ElideRight
+            text: root.notif?.summary ?? "Kokomi"
+          }
 
           Rectangle {
-            required property NotificationAction modelData
-
-            Layout.fillHeight: true
-            color: Dat.Colors.secondary
-            implicitWidth: actionText.contentWidth + 14
+            Layout.alignment: Qt.AlignRight
+            color: "transparent"
+            implicitHeight: appText.contentHeight + 2
+            implicitWidth: appText.contentWidth + 10
             radius: 20
 
             Text {
-              id: actionText
+              id: appText
 
               anchors.centerIn: parent
-              color: Dat.Colors.on_secondary
-              font.pointSize: 11
-              text: parent.modelData?.text ?? "activate"
+              color: Dat.Colors.tertiary
+              font.bold: true
+              font.pointSize: 8
+              text: root.notif?.appName ?? "idk"
             }
+          }
+        }
 
-            Gen.MouseArea {
-              layerColor: actionText.color
+        Text {
+          id: bodText
 
-              onClicked: parent.modelData.invoke()
+          anchors.top: infoRow.bottom
+          color: Dat.Colors.on_surface
+          font.pointSize: 11
+          text: root.notif?.body ?? "very cool body that is missing"
+          textFormat: Text.MarkdownText
+          width: parent.width
+          wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+
+          MouseArea {
+            id: bodMArea
+
+            acceptedButtons: Qt.LeftButton
+            anchors.fill: parent
+
+            // thanks end_4 for this <3
+            onClicked: {
+              const hovLink = bodText.hoveredLink;
+              if (hovLink == "") {
+                return;
+              }
+              Hyprland.dispatch("exec xdg-open " + hovLink);
+            }
+          }
+        }
+      }
+
+      Flickable {
+        id: flick
+
+        Layout.alignment: Qt.AlignRight
+        Layout.bottomMargin: 20
+        Layout.leftMargin: this.Layout.rightMargin
+        boundsBehavior: Flickable.StopAtBounds
+        clip: true
+        contentWidth: actionRow.width
+        implicitHeight: 23
+        // thanks to Aureus :>
+        implicitWidth: Math.min(bodyNActionCol.width - 20, actionRow.width)
+
+        RowLayout {
+          id: actionRow
+
+          anchors.right: parent.right
+          height: parent.height
+
+          Repeater {
+            model: root.notif?.actions
+
+            Rectangle {
+              required property NotificationAction modelData
+
+              Layout.fillHeight: true
+              color: Dat.Colors.secondary
+              implicitWidth: actionText.contentWidth + 14
+              radius: 20
+
+              Text {
+                id: actionText
+
+                anchors.centerIn: parent
+                color: Dat.Colors.on_secondary
+                font.pointSize: 11
+                text: parent.modelData?.text ?? "activate"
+              }
+
+              Gen.MouseArea {
+                layerColor: actionText.color
+
+                onClicked: parent.modelData.invoke()
+              }
             }
           }
         }

@@ -2,15 +2,14 @@
 // credit to end for leading me down the making me walk down this route
 import QtQuick
 import "../Data/" as Dat
-
 Text {
   id: root
-
+  required property string icon
   property real fill: 0
   property int grad: 0
-  required property string icon
-
+  text: root.icon
   font.family: "Material Symbols Rounded"
+  renderType: Text.NativeRendering
   font.hintingPreference: Font.PreferFullHinting
   font.variableAxes: {
     "FILL": root.fill,
@@ -18,8 +17,6 @@ Text {
     // "GRAD": root.grad,
     "wght": root.fontInfo.weight
   }
-  renderType: Text.NativeRendering
-  text: root.icon
 
   Behavior on fill {
     NumberAnimation {

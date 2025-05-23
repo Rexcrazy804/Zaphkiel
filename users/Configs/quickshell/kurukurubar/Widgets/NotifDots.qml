@@ -21,16 +21,18 @@ Rectangle {
 
       Gen.MatIcon {
         id: trashIcon
+
         property bool clearable: Dat.NotifServer.notifCount > 0
+
         anchors.centerIn: parent
-        color: (clearable)? Dat.Colors.on_surface : Dat.Colors.on_surface_variant
-        fill: (clearable)? 1 : 0
+        color: (clearable) ? Dat.Colors.on_surface : Dat.Colors.on_surface_variant
+        fill: (clearable) ? 1 : 0
         icon: "delete"
       }
 
       Gen.MouseArea {
-        visible: trashIcon.clearable
         layerColor: trashIcon.color
+        visible: trashIcon.clearable
 
         onClicked: Dat.NotifServer.clearNotifs()
       }
@@ -38,14 +40,14 @@ Rectangle {
 
     Gen.ToggleButton {
       active: !Dat.NotifServer.dndEnabled
+      activeColor: Dat.Colors.secondary
+      activeIconColor: Dat.Colors.on_secondary
       implicitHeight: this.implicitWidth
       implicitWidth: 28
       radius: this.implicitWidth
-      activeColor: Dat.Colors.secondary
-      activeIconColor: Dat.Colors.on_secondary
 
       icon {
-        icon: (this.active)? "notifications_active" : "notifications_off"
+        icon: (this.active) ? "notifications_active" : "notifications_off"
       }
 
       mArea {
@@ -55,12 +57,13 @@ Rectangle {
 
     Gen.ToggleButton {
       id: idleButton
-      implicitWidth: 28
-      implicitHeight: this.implicitWidth
-      radius: this.implicitWidth
+
       active: Dat.SessionActions.idleInhibited
       activeColor: Dat.Colors.secondary
       activeIconColor: Dat.Colors.on_secondary
+      implicitHeight: this.implicitWidth
+      implicitWidth: 28
+      radius: this.implicitWidth
 
       icon {
         icon: "coffee"

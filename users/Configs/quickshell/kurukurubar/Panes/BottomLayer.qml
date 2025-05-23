@@ -12,11 +12,10 @@ Scope {
 
       required property ShellScreen modelData
 
+      anchors.bottom: true
       anchors.left: true
       anchors.right: true
       anchors.top: true
-      anchors.bottom: true
-
       color: "transparent"
       exclusionMode: ExclusionMode.Ignore
       focusable: false
@@ -28,20 +27,24 @@ Scope {
 
       MouseArea {
         id: mArea
+
+        acceptedButtons: Qt.NoButton
         anchors.fill: parent
         hoverEnabled: true
-        acceptedButtons: Qt.NoButton
 
         onPositionChanged: {
-          pSys.running = true
-          pSys.active = true
-          emitStopTimer.restart()
+          pSys.running = true;
+          pSys.active = true;
+          emitStopTimer.restart();
         }
 
         ParticleSystem {
-          running: false
           id: pSys
+
           property bool active: false
+
+          running: false
+
           ImageParticle {
             autoRotation: true
             color: "#653BE0"
@@ -54,21 +57,23 @@ Scope {
 
           Emitter {
             id: emitter
-            enabled: pSys.active
-            anchors.top: parent.top
+
             anchors.left: parent.left
             anchors.leftMargin: mArea.mouseX
-            anchors.topMargin: mArea.mouseY
-            width: 10
-            height: 10
             anchors.rightMargin: 30
-            group: "kuru"
+            anchors.top: parent.top
+            anchors.topMargin: mArea.mouseY
             emitRate: 60
+            enabled: pSys.active
+            endSize: 0
+            group: "kuru"
+            height: 10
             lifeSpan: 1000
             lifeSpanVariation: 500
             size: 50
             sizeVariation: 30
-            endSize: 0
+            width: 10
+
             velocity: AngleDirection {
               angle: 90
               angleVariation: 0
@@ -81,13 +86,16 @@ Scope {
 
       Timer {
         id: emitStopTimer
+
         interval: 100
+
         onTriggered: pSys.active = false
       }
 
       Timer {
-        running: !pSys.active
         interval: emitter.lifeSpan + emitter.lifeSpanVariation
+        running: !pSys.active
+
         onTriggered: pSys.running = false
       }
     }

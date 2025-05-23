@@ -63,39 +63,39 @@ Scope {
             name: "COLLAPSED"
 
             PropertyChanges {
+              expandedPane.opacity: 0
+              expandedPane.visible: false
               notchRect.height: notchRect.baseHeight
               notchRect.opacity: 0
               notchRect.width: notchRect.baseWidth
-              topBar.visible: false
-              expandedPane.visible: false
               topBar.opacity: 0
-              expandedPane.opacity: 0
+              topBar.visible: false
             }
           },
           State {
             name: "EXPANDED"
 
             PropertyChanges {
+              expandedPane.opacity: 0
+              expandedPane.visible: false
               notchRect.height: notchRect.expandedHeight
               notchRect.opacity: 1
               notchRect.width: notchRect.expandedWidth
-              topBar.visible: true
-              expandedPane.visible: false
               topBar.opacity: 1
-              expandedPane.opacity: 0
+              topBar.visible: true
             }
           },
           State {
             name: "FULLY_EXPANDED"
 
             PropertyChanges {
+              expandedPane.opacity: 1
+              expandedPane.visible: true
               notchRect.height: notchRect.fullHeight
               notchRect.opacity: 1
               notchRect.width: notchRect.fullWidth
-              topBar.visible: true
-              expandedPane.visible: true
               topBar.opacity: 1
-              expandedPane.opacity: 1
+              topBar.visible: true
             }
           }
         ]
@@ -106,13 +106,15 @@ Scope {
 
             SequentialAnimation {
               PropertyAction {
-                target: topBar
                 property: "visible"
+                target: topBar
               }
+
               PropertyAction {
                 property: "opacity"
                 target: notchRect
               }
+
               ParallelAnimation {
                 NumberAnimation {
                   duration: Dat.MaterialEasing.standardTime * 2
@@ -120,6 +122,7 @@ Scope {
                   property: "opacity"
                   target: topBar
                 }
+
                 NumberAnimation {
                   duration: Dat.MaterialEasing.standardDecelTime
                   easing.bezierCurve: Dat.MaterialEasing.standardDecel
@@ -135,7 +138,7 @@ Scope {
 
             SequentialAnimation {
               NumberAnimation {
-                duration: (notchRect.height > notchRect.expandedHeight)? (Dat.MaterialEasing.standardAccelTime / 2) : 0
+                duration: (notchRect.height > notchRect.expandedHeight) ? (Dat.MaterialEasing.standardAccelTime / 2) : 0
                 easing.bezierCurve: Dat.MaterialEasing.standardAccel
                 property: "height"
                 target: notchRect
@@ -145,8 +148,9 @@ Scope {
                 // and if this condition isn't there, you get a short empty notch
                 // since its here you get a 1px tall notch when you you switch between windows workspaces
                 // if you manage to spot him, pat yourself in the back, you found the cutie that I hid from caesus
-                to: (notchRect.height > notchRect.expandedHeight)? notchRect.expandedHeight : notchRect.height
+                to: (notchRect.height > notchRect.expandedHeight) ? notchRect.expandedHeight : notchRect.height
               }
+
               ParallelAnimation {
                 NumberAnimation {
                   duration: Dat.MaterialEasing.standardAccelTime
@@ -154,6 +158,7 @@ Scope {
                   properties: "width, height"
                   target: notchRect
                 }
+
                 NumberAnimation {
                   duration: Dat.MaterialEasing.standardAccelTime
                   easing.bezierCurve: Dat.MaterialEasing.standardAccel
@@ -161,10 +166,12 @@ Scope {
                   target: topBar
                 }
               }
+
               PropertyAction {
                 property: "visible"
                 target: topBar
               }
+
               PropertyAction {
                 property: "opacity"
                 target: notchRect
@@ -180,6 +187,7 @@ Scope {
                 property: "visible"
                 target: expandedPane
               }
+
               ParallelAnimation {
                 NumberAnimation {
                   duration: Dat.MaterialEasing.standardDecelTime
@@ -187,6 +195,7 @@ Scope {
                   property: "height"
                   target: notchRect
                 }
+
                 NumberAnimation {
                   duration: Dat.MaterialEasing.standardTime * 3
                   easing.bezierCurve: Dat.MaterialEasing.standard
@@ -197,8 +206,8 @@ Scope {
             }
           },
           Transition {
-            to: "EXPANDED"
             from: "FULLY_EXPANDED"
+            to: "EXPANDED"
 
             SequentialAnimation {
               ParallelAnimation {
@@ -208,6 +217,7 @@ Scope {
                   property: "height"
                   target: notchRect
                 }
+
                 NumberAnimation {
                   duration: Dat.MaterialEasing.standardTime
                   easing.bezierCurve: Dat.MaterialEasing.standard
@@ -215,6 +225,7 @@ Scope {
                   target: expandedPane
                 }
               }
+
               PropertyAction {
                 property: "visible"
                 target: expandedPane
@@ -225,8 +236,8 @@ Scope {
           // so just make sure it isn't very jagged
           Transition {
             from: "COLLAPSED"
-            to: "FULLY_EXPANDED"
             reversible: true
+            to: "FULLY_EXPANDED"
 
             NumberAnimation {
               duration: Dat.MaterialEasing.emphasizedTime
@@ -297,8 +308,9 @@ Scope {
             spacing: 0
 
             TopBar {
-              Layout.alignment: Qt.AlignTop
               id: topBar
+
+              Layout.alignment: Qt.AlignTop
               Layout.fillWidth: true
               Layout.maximumHeight: notchRect.expandedHeight
               // makes collapse animation look a tiny bit neater
@@ -307,6 +319,7 @@ Scope {
 
             ExpandedPane {
               id: expandedPane
+
               Layout.fillHeight: true
               Layout.fillWidth: true
             }
@@ -479,7 +492,6 @@ Scope {
                 property: "visible"
                 targets: [popupRect, inboxRect]
               }
-
             }
           },
           Transition {

@@ -10,6 +10,7 @@
 - [ ] default audio sink and source selection
 - [ ] improved time based greeting in GreeterWidget
 - [ ] Material Symbols on MprisWidget
+- [ ] icons in notifications
 
 ~~- [ ] support widgets in the background (just clock with day and month for now?)~~
 

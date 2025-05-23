@@ -16,6 +16,7 @@ using [this template](../../../../nixosModules/external/matugen/templates/quicks
 - nerdfonts
 - qtmultimedia (prolly already installed on your system)
 - powerprofilesdaemon (optional)
+- brightnessctl (optional)
 
 ### Live running on nix
 This rice is exposed as a package in the toplevel flake and can be used to run the rice as follows

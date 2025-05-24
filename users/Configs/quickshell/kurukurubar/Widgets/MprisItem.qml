@@ -162,21 +162,25 @@ Rectangle {
     height: 30
     width: 30
 
-    Text {
+    Gen.MatIcon {
+      id: prevIcon
+
       anchors.centerIn: parent
       color: Dat.Colors.secondary
       font.bold: true
-      font.pointSize: 16
-      text: "󰒮"
+      font.pixelSize: 30
+      icon: "arrow_circle_left"
     }
 
-    Gen.MouseArea {
+    MouseArea {
       anchors.fill: parent
-      layerRadius: parent.width
+      hoverEnabled: true
 
       onClicked: {
-        player.previous();
+        rect.player.previous();
       }
+      onEntered: prevIcon.fill = 1
+      onExited: prevIcon.fill = 0
     }
   }
 
@@ -188,21 +192,25 @@ Rectangle {
     height: 30
     width: 30
 
-    Text {
+    Gen.MatIcon {
+      id: nextIcon
+
       anchors.centerIn: parent
       color: Dat.Colors.secondary
       font.bold: true
-      font.pointSize: 16
-      text: "󰒭"
+      font.pixelSize: 30
+      icon: "arrow_circle_right"
     }
 
-    Gen.MouseArea {
+    MouseArea {
       anchors.fill: parent
-      layerRadius: parent.width
+      hoverEnabled: true
 
       onClicked: {
-        player.next();
+        rect.player.next();
       }
+      onEntered: nextIcon.fill = 1
+      onExited: nextIcon.fill = 0
     }
   }
 }

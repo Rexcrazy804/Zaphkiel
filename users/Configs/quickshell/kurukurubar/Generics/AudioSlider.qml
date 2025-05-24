@@ -6,6 +6,7 @@ import Quickshell.Widgets
 import Quickshell.Services.Pipewire
 
 import "../Data/" as Dat
+import "../Generics/" as Gen
 
 Rectangle {
   id: root
@@ -15,29 +16,58 @@ Rectangle {
   required property PwNode node
 
   color: "transparent"
-  implicitHeight: 38
+  implicitHeight: 42
 
   ColumnLayout {
     anchors.fill: parent
 
-    Rectangle {
+    RowLayout {
       Layout.fillHeight: true
       Layout.fillWidth: true
-      color: "transparent"
 
-      Text {
-        anchors.fill: parent
-        anchors.leftMargin: 10
-        color: Dat.Colors.on_surface
-        font.pointSize: 10
-        text: (root.node?.isStream ? root.node?.name : root.node?.nickname) ?? "Unidentified"
-        verticalAlignment: Text.AlignVCenter
+      Item {
+        Layout.fillHeight: true
+        Layout.fillWidth: true
+
+        Text {
+          anchors.fill: parent
+          color: Dat.Colors.on_surface
+          font.pointSize: 10
+          text: (root.node?.isStream ? root.node?.name : root.node?.nickname) ?? "Unidentified"
+          verticalAlignment: Text.AlignVCenter
+        }
+      }
+
+      Gen.ToggleButton {
+        id: icon
+
+        Layout.fillHeight: true
+        active: (root.node.isSink) ? root.node == Pipewire.defaultAudioSink : root.node == Pipewire.defaultAudioSource
+        implicitWidth: this.height
+        radius: this.height
+        visible: !root.node.isStream
+
+        icon {
+          color: Dat.Colors.primary
+          font.pointSize: 12
+          icon: (!root.node.isSink) ? "mic" : "volume_up"
+        }
+
+        mArea {
+          onClicked: {
+            if (root.node.isSink) {
+              Pipewire.preferredDefaultAudioSink = root.node;
+            } else {
+              Pipewire.preferredDefaultAudioSource = root.node;
+            }
+          }
+        }
       }
     }
 
     Item {
-      Layout.fillHeight: true
       Layout.fillWidth: true
+      implicitHeight: 17
 
       Slider {
         id: slider
@@ -62,7 +92,7 @@ Rectangle {
           antialiasing: true
           color: root.bgColor
           layer.smooth: true
-          radius: 20
+          radius: 5
 
           Rectangle {
             id: progRect

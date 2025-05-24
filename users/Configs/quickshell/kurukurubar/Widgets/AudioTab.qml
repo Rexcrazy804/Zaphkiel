@@ -13,7 +13,7 @@ Rectangle {
   ListView {
     anchors.fill: parent
     anchors.margins: 10
-    spacing: 8
+    spacing: 12
 
     delegate: Gen.AudioSlider {
       required property PwNode modelData

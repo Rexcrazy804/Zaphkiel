@@ -52,20 +52,20 @@ Rectangle {
         id: icon
 
         Layout.fillHeight: true
-        active: (root.node.isSink) ? root.node == Pipewire.defaultAudioSink : root.node == Pipewire.defaultAudioSource
+        active: (root.node?.isSink) ? root.node == Pipewire.defaultAudioSink : root.node == Pipewire.defaultAudioSource
         implicitWidth: this.height
         radius: this.height
-        visible: !root.node.isStream
+        visible: !root.node?.isStream
 
         icon {
           color: Dat.Colors.primary
           font.pointSize: 12
-          icon: (!root.node.isSink) ? "mic" : "volume_up"
+          icon: (!root.node?.isSink) ? "mic" : "volume_up"
         }
 
         mArea {
           onClicked: {
-            if (root.node.isSink) {
+            if (root.node?.isSink) {
               Pipewire.preferredDefaultAudioSink = root.node;
             } else {
               Pipewire.preferredDefaultAudioSource = root.node;
@@ -134,7 +134,9 @@ Rectangle {
         }
 
         onMoved: {
-          root.node.audio.volume = slider.value;
+          if (root.node) {
+            root.node.audio.volume = slider.value;
+          }
         }
       }
     }

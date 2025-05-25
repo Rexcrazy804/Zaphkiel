@@ -9,8 +9,9 @@
 - [x] sleep inhibitter widget
 - [x] Material Symbols on MprisWidget
 - [x] default audio sink and source selection
+- [x] icons in notifications
 - [ ] improved time based greeting in GreeterWidget
-- [ ] icons in notifications
+- [ ] revamp notification popups / osd
 
 ~~- [ ] support widgets in the background (just clock with day and month for now?)~~
 

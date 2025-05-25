@@ -33,9 +33,18 @@ Rectangle {
           anchors.fill: parent
           color: Dat.Colors.on_surface
           font.pointSize: 10
-          text: (root.node?.isStream ? root.node?.name : root.node?.nickname) ?? "Unidentified"
+          text: (root.node?.isStream ? root.node?.name : (nameArea.containsMouse)? root.node?.description :  root.node?.nickname) ?? "Unidentified"
           verticalAlignment: Text.AlignVCenter
           elide: Text.ElideRight
+
+          MouseArea {
+            id: nameArea
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.bottom: parent.bottom
+            width: Math.min(parent.contentWidth, parent.width)
+            hoverEnabled: true
+          }
         }
       }
 

@@ -35,6 +35,7 @@ Rectangle {
           font.pointSize: 10
           text: (root.node?.isStream ? root.node?.name : root.node?.nickname) ?? "Unidentified"
           verticalAlignment: Text.AlignVCenter
+          elide: Text.ElideRight
         }
       }
 

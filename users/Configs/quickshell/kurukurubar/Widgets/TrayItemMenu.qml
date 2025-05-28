@@ -50,8 +50,38 @@ Rectangle {
 
       RowLayout {
         anchors.fill: parent
-        anchors.leftMargin: 10
+        anchors.leftMargin: (entry.modelData?.buttonType == QsMenuButtonType.None) ? 10 : 2
         anchors.rightMargin: 10
+
+        Item {
+          Layout.fillHeight: true
+          implicitWidth: this.height
+          visible: entry.modelData?.buttonType == QsMenuButtonType.CheckBox
+
+          Gen.MatIcon {
+            anchors.centerIn: parent
+            color: Dat.Colors.primary
+            fill: entry.modelData?.checkState == Qt.Checked
+            font.pixelSize: parent.width * 0.8
+            icon: (entry.modelData?.checkState != Qt.Checked) ? "check_box_outline_blank" : "check_box"
+          }
+        }
+
+        // untested cause nothing I use have radio buttons
+        // if you use this and find somethings wrong / "yes rexi everything is fine" lemme know by opening an issue
+        Item {
+          Layout.fillHeight: true
+          implicitWidth: this.height
+          visible: entry.modelData?.buttonType == QsMenuButtonType.RadioButton
+
+          Gen.MatIcon {
+            anchors.centerIn: parent
+            color: Dat.Colors.primary
+            fill: entry.modelData?.checkState == Qt.Checked
+            font.pixelSize: parent.width * 0.8
+            icon: (entry.modelData?.checkState != Qt.Checked) ? "radio_button_unchecked" : "radio_button_checked"
+          }
+        }
 
         Rectangle {
           Layout.fillHeight: true
@@ -69,10 +99,10 @@ Rectangle {
           }
         }
 
-        Rectangle {
+        Item {
           Layout.fillHeight: true
-          color: "transparent"
           implicitWidth: this.height
+          visible: entry.modelData?.icon
 
           Image {
             anchors.fill: parent
@@ -82,9 +112,8 @@ Rectangle {
           }
         }
 
-        Rectangle {
+        Item {
           Layout.fillHeight: true
-          color: "transparent"
           implicitWidth: this.height
           visible: entry.modelData?.hasChildren ?? false
 

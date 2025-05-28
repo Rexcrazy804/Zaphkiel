@@ -49,5 +49,9 @@
           };
         };
       };
+
+      # don't wait for this stupid thing to be done executing
+      # i.e. when no wifi, system doesn't hang 3 minutes for this crap
+      systemd.services.tailscaled-autoconnect.serviceConfig.Type = lib.mkForce "exec";
     };
 }

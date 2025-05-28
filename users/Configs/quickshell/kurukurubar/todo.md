@@ -10,8 +10,11 @@
 - [x] Material Symbols on MprisWidget
 - [x] default audio sink and source selection
 - [x] icons in notifications
+- [x] fix month grid current day highlighting
 - [ ] improved time based greeting in GreeterWidget
 - [ ] revamp notification popups / osd
+- [ ] reset homeView state when collappsed / tray item removed / onActivated
+- [ ] **figure out why shell doesn't load when no wifi**
 
 ~~- [ ] support widgets in the background (just clock with day and month for now?)~~
 

@@ -127,7 +127,7 @@ Rectangle {
       }
     }
     model: ScriptModel {
-      values: [...root.trayMenu.children.values]
+      values: [...root.trayMenu?.children.values]
     }
   }
 }

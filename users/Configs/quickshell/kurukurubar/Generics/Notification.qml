@@ -70,6 +70,7 @@ Rectangle {
         mipmap: true
         source: root.notif?.image ?? ""
         visible: false
+        fillMode: Image.PreserveAspectCrop
       }
 
       MultiEffect {

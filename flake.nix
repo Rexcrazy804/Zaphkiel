@@ -186,6 +186,7 @@
             ];
           in ''
             export QML2_IMPORT_PATH="$QML2_IMPORT_PATH:${qmlPath}"
+            SHELL=nu exec nu # not using direnv for these shells
           '';
           buildInputs = qtDeps;
             packages = [

@@ -20,7 +20,7 @@ Item {
 
     Text {
       anchors.centerIn: parent
-      text: (100 * UPower.displayDevice.percentage) + "%"
+      text: (100 * UPower.displayDevice.percentage).toFixed(2) + "%"
       font.family: Dat.Fonts.rye
       font.pointSize: 32
       color: Dat.Colors.tertiary

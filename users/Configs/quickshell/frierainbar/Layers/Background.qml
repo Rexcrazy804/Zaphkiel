@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Effects
 import Quickshell
 import Quickshell.Wayland
 
@@ -38,17 +37,18 @@ Scope {
         anchors.fill: parent
 
         Rectangle {
-          color: Dat.Colors.background
           anchors.left: parent.left
           anchors.right: parent.right
           anchors.top: parent.top
+          color: Dat.Colors.background
           height: layerShell.modelData.height * (1 - bgImg.shrunkMult) + container.anchors.bottomMargin
 
           // entry point to widgets
           Con.Primary {
             id: container
-            anchors.fill: parent
+
             anchors.bottomMargin: 60
+            anchors.fill: parent
           }
         }
 
@@ -61,18 +61,6 @@ Scope {
           shellWidth: layerShell.modelData.width
           shrunkMult: 0.56
           state: Dat.Globals.bgState
-
-          MouseArea {
-            anchors.fill: parent
-
-            onClicked: {
-              if (Dat.Globals.bgState == "SHRUNK") {
-                Dat.Globals.bgState = "FILLED";
-                return;
-              }
-              Dat.Globals.bgState = "SHRUNK";
-            }
-          }
         }
       }
     }

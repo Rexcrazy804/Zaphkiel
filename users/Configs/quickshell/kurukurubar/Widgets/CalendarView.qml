@@ -75,7 +75,7 @@ Rectangle {
       delegate: Rectangle {
         required property var model
 
-        color: (monthGrid.currDay == model.day) ? Dat.Colors.primary : "transparent"
+        color: (monthGrid.currDay == model.day && monthGrid.currMonth == model.month) ? Dat.Colors.primary : "transparent"
         radius: 10
 
         Text {

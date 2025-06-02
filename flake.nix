@@ -160,6 +160,7 @@
     };
 
     devShells = forAllSystems (pkgs: {
+      default = self.devShells.${pkgs.system}.quickshell;
       quickshell = let
         qs = inputs.quickshell.packages.${pkgs.system}.default.override {
           withJemalloc = true;
@@ -185,7 +186,6 @@
             ];
           in ''
             export QML2_IMPORT_PATH="$QML2_IMPORT_PATH:${qmlPath}"
-            SHELL=nu exec nu # not using direnv for these shells
           '';
           buildInputs = qtDeps;
             packages = [

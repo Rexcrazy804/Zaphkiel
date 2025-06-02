@@ -12,7 +12,7 @@
 
   system.stateVersion = "24.11"; # Did you read the comment?
   networking.hostName = "Persephone"; # Define your hostname.
-  time.timeZone = "Asia/Dubai";
+  time.timeZone = "Asia/Kolkata";
 
   graphicsModule = {
     intel.enable = true;

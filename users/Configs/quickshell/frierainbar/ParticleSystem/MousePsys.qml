@@ -5,10 +5,11 @@ import "../ParticleSystem/" as Par
 
 ParticleSystem {
   id: root
-  required property var velocity
+
   required property bool mouseIn
   required property real mouseX
   required property real mouseY
+  required property var velocity
 
   anchors.fill: parent
   running: true
@@ -18,14 +19,14 @@ ParticleSystem {
   }
 
   Par.BasicEmiter {
-    height: 10
-    width: 10
-    group: "mousetrail"
+    anchors.left: parent.left
+    anchors.leftMargin: root.mouseX
+    anchors.top: parent.top
+    anchors.topMargin: root.mouseY
     emitRate: 80 + Math.max(root.velocity.x, root.velocity.y) * 2
     enabled: root.mouseIn
-    anchors.left: parent.left
-    anchors.top: parent.top
-    anchors.leftMargin: root.mouseX
-    anchors.topMargin: root.mouseY
+    group: "mousetrail"
+    height: 10
+    width: 10
   }
 }

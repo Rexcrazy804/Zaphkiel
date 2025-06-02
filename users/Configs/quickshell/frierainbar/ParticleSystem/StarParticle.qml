@@ -5,8 +5,8 @@ import "../ParticleSystem/" as Psys
 
 ImageParticle {
   autoRotation: false
-  color: Dat.Colors.primary_container
-  colorVariation: 0.4
+  color: Dat.Colors.withAlpha(Dat.Colors.primary, 0.55)
+  colorVariation: 0.2
   entryEffect: ImageParticle.Fade
   rotationVariation: 0
   source: "qrc:///particleresources/star.png"

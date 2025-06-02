@@ -38,8 +38,8 @@ Item {
 
       ParallelAnimation {
         NumberAnimation {
-          duration: Dat.MaterialEasing.expressiveDefaultSpatialTime * 1.2
-          easing.bezierCurve: Dat.MaterialEasing.expressiveFastSpatial
+          duration: Dat.MaterialEasing.emphasizedTime * 2
+          easing.bezierCurve: Dat.MaterialEasing.emphasized
           properties: "height, width"
           target: bgIcon
         }
@@ -77,14 +77,14 @@ Item {
   Image {
     id: bgIcon
 
-    verticalAlignment: Image.AlignTop
     anchors.bottom: parent.bottom
     anchors.horizontalCenter: parent.horizontalCenter
     fillMode: Image.PreserveAspectCrop
     height: root.shellHeight * root.shrunkMult
     layer.enabled: true
     mipmap: true
-    source: "../Assets/6981315.jpg"
+    source: "../Assets/7372467.png"
+    verticalAlignment: Image.AlignTop
     visible: false
     width: root.shellWidth * root.shrunkMult
   }
@@ -116,6 +116,18 @@ Item {
       height: bgIcon.height
       topRightRadius: this.topLeftRadius
       width: bgIcon.width
+    }
+  }
+
+  MouseArea {
+    anchors.fill: bgIcon
+
+    onClicked: {
+      if (Dat.Globals.bgState == "SHRUNK") {
+        Dat.Globals.bgState = "FILLED";
+        return;
+      }
+      Dat.Globals.bgState = "SHRUNK";
     }
   }
 }

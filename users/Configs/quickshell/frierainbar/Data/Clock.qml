@@ -5,6 +5,6 @@ import QtQuick
 SystemClock {
   id: clock
 
-  enabled: Globals.notchState != "COLLAPSED"
+  enabled: Globals.bgState == "SHRUNK"
   precision: SystemClock.Seconds
 }

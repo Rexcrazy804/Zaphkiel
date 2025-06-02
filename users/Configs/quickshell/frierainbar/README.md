@@ -8,3 +8,5 @@ Many thanks to these lovely lads that ~~threatened~~ gracefully pushed me to con
 
 More to be written down here and more people to thank (mostly same as kuru kuru
 bar) but I am just so tired rn
+
+## THERE WILL BE A PESEUDO TOP THAT PUSHES STUFF WHEN BAR EXPANDS BUT I AM LAZY TO DO IT RN 

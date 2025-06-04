@@ -10,9 +10,9 @@
     ./extras/privoxy.nix
   ];
 
-  system.stateVersion = "24.11"; # Did you read the comment?
-  networking.hostName = "Persephone"; # Define your hostname.
-  time.timeZone = "Asia/Kolkata";
+  system.stateVersion = "24.11";
+  networking.hostName = "Persephone";
+  time.timeZone = "Asia/Dubai";
 
   graphicsModule = {
     intel.enable = true;
@@ -48,7 +48,7 @@
     };
     direnv.enable = true;
     obs-studio.enable = false;
-    steam.enable = true;
+    steam.enable = false;
     hyprland.enable = true;
     keyd.enable = true;
     firefox.enable = true;
@@ -81,8 +81,6 @@
     };
   };
 
-  # boblox :')
-  services.flatpak.enable = true;
   hardware.bluetooth.powerOnBoot = lib.mkForce false;
 
   # finger print

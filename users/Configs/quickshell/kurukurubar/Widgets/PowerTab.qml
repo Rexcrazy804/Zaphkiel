@@ -8,12 +8,15 @@ import "../Generics/" as Gen
 import "../Widgets/" as Wid
 
 Rectangle {
+  id: root
   color: Dat.Colors.surface_container_high
   radius: 20
 
+  property real scaleFactor: Dat.Globals.scaleFactor
+
   RowLayout {
     anchors.fill: parent
-    spacing: 0
+    spacing: 2 * scaleFactor
 
     Rectangle {
       Layout.fillHeight: true
@@ -29,25 +32,20 @@ Rectangle {
 
       ColumnLayout {
         id: infoCol
-
         anchors.fill: parent
-        anchors.margins: 0
-        spacing: 0
+        anchors.margins: 4 * scaleFactor
+        spacing: 6 * scaleFactor
 
         Rectangle {
           Layout.fillHeight: true
           Layout.fillWidth: true
           clip: true
           color: "transparent"
-          radius: 0
-
-          // text: ""
-          // text: ""
 
           ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 10
-            spacing: 10
+            anchors.margins: 8 * scaleFactor
+            spacing: 6 * scaleFactor
 
             Repeater {
               id: resourceRepeater
@@ -56,76 +54,57 @@ Rectangle {
               readonly property real memUsage: (1 - (Dat.Resources.mem.free / Dat.Resources.mem.total))
 
               model: [
-                {
-                  icon: "",
-                  label: "Cpu"
-                },
-                {
-                  icon: "",
-                  label: "Mem"
-                }
+                { icon: "", label: "Cpu" },
+                { icon: "", label: "Mem" }
               ]
 
               RowLayout {
-                id: resourceItem
-
                 required property int index
                 required property var modelData
 
                 Layout.fillWidth: true
-                implicitHeight: 28
-                spacing: 10
+                implicitHeight: 28 * scaleFactor
+                spacing: 8 * scaleFactor
 
                 Rectangle {
                   Layout.alignment: Qt.AlignCenter
                   Layout.fillHeight: true
                   color: Dat.Colors.primary_container
-                  implicitWidth: this.height
-                  radius: this.height
+                  implicitWidth: height
+                  radius: height
 
                   Text {
                     anchors.centerIn: parent
                     color: Dat.Colors.on_primary_container
-                    font.pointSize: 11
+                    font.pointSize: 10 * scaleFactor
                     text: modelData.icon
                   }
                 }
 
                 ColumnLayout {
-                  Layout.bottomMargin: 5
                   Layout.fillHeight: true
                   Layout.fillWidth: true
-                  Layout.topMargin: 5
+                  spacing: 4 * scaleFactor
 
                   Text {
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: 3
                     color: Dat.Colors.on_surface
-                    text: resourceItem.modelData.label
-                    verticalAlignment: Text.AlignVCenter
+                    font.pointSize: 9 * scaleFactor
+                    text: modelData.label
                   }
 
                   Rectangle {
-                    Layout.fillHeight: true
                     Layout.fillWidth: true
-                    Layout.preferredHeight: 1
+                    Layout.preferredHeight: 6 * scaleFactor
                     color: Dat.Colors.primary_container
-                    // Layout.leftMargin: 20
-                    // Layout.rightMargin: this.Layout.leftMargin
-                    radius: 20
+                    radius: 10 * scaleFactor
 
                     Rectangle {
-                      anchors.bottom: parent.bottom
-                      anchors.left: parent.left
-                      anchors.top: parent.top
+                      anchors.fill: parent
+                      anchors.rightMargin: parent.width * (1 - ((!index) ? resourceRepeater.cpuUsage : resourceRepeater.memUsage))
                       color: Dat.Colors.on_primary_container
                       radius: parent.radius
-                      // wonky hacky way of doing this cause otherwise the value will reset with each change
-                      // which is not nice
-                      width: parent.width * ((!index) ? resourceRepeater.cpuUsage : resourceRepeater.memUsage)
 
-                      Behavior on width {
+                      Behavior on anchors.rightMargin {
                         NumberAnimation {
                           duration: Dat.MaterialEasing.emphasizedTime
                           easing.bezierCurve: Dat.MaterialEasing.emphasized
@@ -140,19 +119,18 @@ Rectangle {
         }
 
         Rectangle {
-          // BATTERY information
           Layout.fillWidth: true
           color: Dat.Colors.surface_container_highest
-          implicitHeight: 28
-          radius: 20
+          implicitHeight: 28 * scaleFactor
+          radius: 20 * scaleFactor
           topLeftRadius: 0
           topRightRadius: 0
           visible: UPower.displayDevice.percentage > 0
 
           Wid.PowerInfo {
             anchors.fill: parent
-            anchors.leftMargin: 10
-            anchors.rightMargin: 10
+            anchors.leftMargin: 8 * scaleFactor
+            anchors.rightMargin: 8 * scaleFactor
           }
         }
       }
@@ -161,21 +139,21 @@ Rectangle {
     Rectangle {
       id: powerSliderRect
 
-      Layout.margins: 3
+      Layout.margins: 2 * scaleFactor
       color: "transparent"
-      implicitHeight: parent.height - 14
-      implicitWidth: 40
-      radius: 40
+      implicitHeight: parent.height - (6 * scaleFactor)
+      implicitWidth: 40 * scaleFactor
+      radius: 40 * scaleFactor
 
       Slider {
         id: slider
 
         anchors.fill: parent
         from: 0
+        to: 2
+        stepSize: 1
         orientation: Qt.Vertical
         snapMode: Slider.SnapAlways
-        stepSize: 1
-        to: 2
         value: PowerProfiles.profile
 
         background: ColumnLayout {
@@ -186,28 +164,28 @@ Rectangle {
 
             Rectangle {
               required property string modelData
-
               Layout.alignment: Qt.AlignCenter
               color: "transparent"
-              implicitHeight: this.implicitWidth
-              implicitWidth: 34
-              radius: this.implicitWidth
+              implicitHeight: 30 * scaleFactor
+              implicitWidth: 34 * scaleFactor
+              radius: width
 
               Text {
                 anchors.centerIn: parent
                 color: Dat.Colors.on_surface
-                text: parent.modelData
+                font.pointSize: 15 * scaleFactor
+                text: modelData
               }
             }
           }
         }
+
         handle: Rectangle {
-          anchors.horizontalCenter: parent.horizontalCenter
+          width: 34 * scaleFactor
+          height: width
           color: Dat.Colors.primary
-          height: this.width
-          radius: this.width
-          visible: true
-          width: 34
+          radius: width
+          anchors.horizontalCenter: parent.horizontalCenter
           y: slider.visualPosition * (slider.availableHeight - height)
 
           Behavior on y {
@@ -220,23 +198,16 @@ Rectangle {
           Text {
             anchors.centerIn: parent
             color: Dat.Colors.on_primary
+            font.pointSize: 15 * scaleFactor
             text: switch (PowerProfiles.profile) {
-            case 0:
-              "";
-              break;
-            case 1:
-              "";
-              break;
-            case 2:
-              "";
-              break;
+              case 0: ""; break;
+              case 1: ""; break;
+              case 2: ""; break;
             }
           }
         }
 
-        onMoved: {
-          PowerProfiles.profile = slider.value;
-        }
+        onMoved: PowerProfiles.profile = slider.value
       }
     }
   }

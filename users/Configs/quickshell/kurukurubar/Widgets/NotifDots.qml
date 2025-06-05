@@ -6,7 +6,9 @@ import "../Widgets/" as Wid
 import "../Generics/" as Gen
 
 Rectangle {
-  implicitWidth: dotContainer.implicitWidth + 10
+  property real scaleFactor: Dat.Globals.scaleFactor
+
+  implicitWidth: dotContainer.implicitWidth + 10 * scaleFactor
 
   RowLayout {
     id: dotContainer
@@ -15,9 +17,9 @@ Rectangle {
 
     Rectangle {
       color: "transparent"
-      implicitHeight: this.implicitWidth
-      implicitWidth: 28
-      radius: this.implicitWidth
+      implicitWidth: 28 * scaleFactor
+      implicitHeight: implicitWidth
+      radius: implicitWidth / 2
 
       Gen.MatIcon {
         id: trashIcon
@@ -25,8 +27,8 @@ Rectangle {
         property bool clearable: Dat.NotifServer.notifCount > 0
 
         anchors.centerIn: parent
-        color: (clearable) ? Dat.Colors.on_surface : Dat.Colors.on_surface_variant
-        fill: (clearable) ? 1 : 0
+        color: clearable ? Dat.Colors.on_surface : Dat.Colors.on_surface_variant
+        fill: clearable ? 1 : 0
         icon: "delete"
       }
 
@@ -39,15 +41,16 @@ Rectangle {
     }
 
     Gen.ToggleButton {
+      implicitWidth: 28 * scaleFactor
+      implicitHeight: implicitWidth
+      radius: implicitWidth / 2
+
       active: !Dat.NotifServer.dndEnabled
       activeColor: Dat.Colors.secondary
       activeIconColor: Dat.Colors.on_secondary
-      implicitHeight: this.implicitWidth
-      implicitWidth: 28
-      radius: this.implicitWidth
 
       icon {
-        icon: (this.active) ? "notifications_active" : "notifications_off"
+        icon: active ? "notifications_active" : "notifications_off"
       }
 
       mArea {
@@ -58,12 +61,13 @@ Rectangle {
     Gen.ToggleButton {
       id: idleButton
 
+      implicitWidth: 28 * scaleFactor
+      implicitHeight: implicitWidth
+      radius: implicitWidth / 2
+
       active: Dat.SessionActions.idleInhibited
       activeColor: Dat.Colors.secondary
       activeIconColor: Dat.Colors.on_secondary
-      implicitHeight: this.implicitWidth
-      implicitWidth: 28
-      radius: this.implicitWidth
 
       icon {
         icon: "coffee"

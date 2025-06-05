@@ -14,6 +14,9 @@ Scope {
 
       required property ShellScreen modelData
 
+      property real scaleFactor: Dat.Globals.scaleFactor
+
+
       anchors.left: true
       anchors.right: true
       anchors.top: true
@@ -39,12 +42,13 @@ Scope {
       Rectangle {
         id: notchRect
 
-        readonly property int baseHeight: 1
-        readonly property int baseWidth: 200
-        readonly property int expandedHeight: 28
-        readonly property int expandedWidth: 700
-        readonly property int fullHeight: 190
-        readonly property int fullWidth: this.expandedWidth
+        readonly property real baseHeight: screen.height * scaleFactor * 0.01
+        readonly property real baseWidth: screen.width * scaleFactor * 0.15
+        readonly property real expandedHeight: screen.height * scaleFactor * 0.025
+        readonly property real expandedWidth: screen.width * scaleFactor * 0.35
+        readonly property real fullHeight: screen.height * scaleFactor * 0.2
+        readonly property real fullWidth: expandedWidth
+
 
         anchors.horizontalCenter: parent.horizontalCenter
         bottomLeftRadius: 20
@@ -332,16 +336,17 @@ Scope {
 
         readonly property int baseHeight: 0
         readonly property int baseWidth: 0
-        // readonly property int fullHeight: 300
-        readonly property int fullWidth: 500
-        readonly property int popupHeight: 100
-        readonly property int popupWidth: 430
+        readonly property real fullWidth: screen.width * scaleFactor * 0.2
+        readonly property int fullHeight: screen.height * scaleFactor * 0.3
+        readonly property real popupHeight: screen.height * scaleFactor * 0.05
+        readonly property real popupWidth: screen.width * scaleFactor * 0.15
+
 
         anchors.horizontalCenter: notchRect.horizontalCenter
         anchors.top: notchRect.bottom
-        anchors.topMargin: 10
+        anchors.topMargin: 5 * scaleFactor
         color: Dat.Colors.surface
-        radius: 20
+        radius: 10 * scaleFactor
         state: Dat.Globals.notifState
 
         states: [

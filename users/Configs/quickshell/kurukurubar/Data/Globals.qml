@@ -19,6 +19,11 @@ Singleton {
   property string notifState: "HIDDEN"
   property bool reservedShell: false
 
+  // Respose to the reserved shell state change
+  property real scaleFactor: Math.min(Screen.width, Screen.height) / 750
+
+
+
   // SettingsView State
   // 0 => Power
   // 1 => Audio

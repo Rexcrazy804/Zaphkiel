@@ -8,17 +8,19 @@ import "../Widgets/" as Wid
 Rectangle {
   color: "transparent"
 
+  property real scaleFactor: Dat.Globals.scaleFactor
+
   ColumnLayout {
     anchors.fill: parent
-    anchors.topMargin: this.spacing
-    spacing: 3
+    anchors.topMargin: spacing * scaleFactor
+    spacing: 3 * scaleFactor
 
     Rectangle {
       Layout.fillWidth: true
-      Layout.leftMargin: 20
-      Layout.rightMargin: 20
+      Layout.leftMargin: 20 * scaleFactor
+      Layout.rightMargin: 20 * scaleFactor
       color: "transparent"
-      implicitHeight: 18
+      implicitHeight: 18 * scaleFactor
 
       RowLayout {
         id: tabLay
@@ -88,8 +90,8 @@ Rectangle {
               anchors.centerIn: parent
               color: Dat.Colors.surface_container_high
               height: tabRect.height
-              radius: 10
-              width: tabText.contentWidth + 20
+              radius: 10 * scaleFactor
+              width: tabText.contentWidth + (20 * scaleFactor)
             }
 
             Text {
@@ -100,6 +102,7 @@ Rectangle {
               horizontalAlignment: Text.AlignHCenter
               text: parent.modelData
               verticalAlignment: Text.AlignVCenter
+              font.pointSize: 10 * scaleFactor
 
               Behavior on opacity {
                 NumberAnimation {
@@ -112,8 +115,6 @@ Rectangle {
                 anchors.fill: parent
                 hoverEnabled: true
 
-                // TODO hover animation
-                // onContainsMouseChanged: parent.opacity += (containsMouse)? 0.2 : -0.2
                 onClicked: mevent => {
                   Dat.Globals.settingsTabIndex = tabRect.index;
                 }
@@ -155,14 +156,10 @@ Rectangle {
         }
       }
 
-      // network tab incomplete
-      // waiting for foxxed to impl the network stuff in quickshell
-      // too lazy to write a script on my own
-      // TODO: maybe write a script of my own?
       Rectangle {
         color: Dat.Colors.surface_container_high
         opacity: visible ? 1 : 0
-        radius: 20
+        radius: 20 * scaleFactor
 
         Behavior on opacity {
           NumberAnimation {
@@ -175,6 +172,7 @@ Rectangle {
           anchors.centerIn: parent
           color: Dat.Colors.on_surface
           text: "Network Tab (unimplemented)"
+          font.pointSize: 11 * scaleFactor
         }
       }
     }

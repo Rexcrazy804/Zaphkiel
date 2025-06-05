@@ -9,92 +9,89 @@ import "../Widgets/" as Wid
 
 Rectangle {
   id: root
-
   color: "transparent"
+
+  // 🔧 Responsive scaling factor
+  property real scaleFactor: Math.min(Screen.width, Screen.height) / 750
 
   RowLayout {
     anchors.fill: parent
     layoutDirection: Qt.RightToLeft
-    spacing: 8
+    spacing: 8 * scaleFactor
 
     Rectangle {
       id: swipeRect
 
       Layout.fillHeight: true
       Layout.fillWidth: true
-      // Pages
       clip: true
       color: Dat.Colors.surface_container_low
-      radius: root.radius
+      radius: 20 * scaleFactor
 
       SwipeView {
         id: swipeArea
-
         anchors.fill: parent
         orientation: Qt.Horizontal
 
         Component.onCompleted: () => {
           Dat.Globals.swipeIndexChanged.connect(() => {
-            if (swipeArea.currentIndex != Dat.Globals.swipeIndex) {
+            if (swipeArea.currentIndex !== Dat.Globals.swipeIndex) {
               swipeArea.currentIndex = Dat.Globals.swipeIndex;
             }
           });
-
-          // FOR DEBUGGING
-          // swipeArea.currentIndex = 3;
-          // Dat.Globals.notchState = "FULLY_EXPANDED";
         }
+
         onCurrentIndexChanged: () => {
-          if (swipeArea.currentIndex != Dat.Globals.swipeIndex) {
+          if (swipeArea.currentIndex !== Dat.Globals.swipeIndex) {
             Dat.Globals.swipeIndex = swipeArea.currentIndex;
           }
         }
 
+        // 📱 Views inside SwipeView
         Wid.HomeView {
+          width: swipeRect.width
           height: swipeRect.height
           radius: swipeRect.radius
-          width: swipeRect.width
         }
 
         Wid.CalendarView {
+          width: swipeRect.width
           height: swipeRect.height
           radius: swipeRect.radius
-          width: swipeRect.width
         }
 
         Wid.SystemView {
+          width: swipeRect.width
           height: swipeRect.height
           radius: swipeRect.radius
-          width: swipeRect.width
         }
 
         Wid.MusicView {
+          width: swipeRect.width
           height: swipeRect.height
           radius: swipeRect.radius
-          width: swipeRect.width
         }
 
         Wid.SettingsView {
+          width: swipeRect.width
           height: swipeRect.height
           radius: swipeRect.radius
-          width: swipeRect.width
         }
       }
     }
 
     Rectangle {
-      // the page indicator
-      Layout.leftMargin: 8
+      // ◉ Page Indicator
+      Layout.leftMargin: 8 * scaleFactor
       color: Dat.Colors.surface_container_low
-      implicitHeight: tabCols.height + 10
-      implicitWidth: 28
-      radius: 20
+      implicitWidth: 28 * scaleFactor
+      implicitHeight: tabCols.height + 0.1 * scaleFactor
+      radius: 20 * scaleFactor
 
       ColumnLayout {
         id: tabCols
-
         anchors.verticalCenter: parent.verticalCenter
-        spacing: 10
+        spacing: 10 * scaleFactor
         width: parent.width
 
         Repeater {
@@ -108,40 +105,34 @@ Rectangle {
 
             Layout.alignment: Qt.AlignCenter
             color: "transparent"
-            implicitHeight: this.implicitWidth
-            implicitWidth: 20
-            radius: 20
+            implicitWidth: 20 * scaleFactor
+            implicitHeight: 20 * scaleFactor
+            radius: 10 * scaleFactor
 
             Text {
               id: dotText
 
               anchors.centerIn: parent
               color: Dat.Colors.on_surface
-              font.pointSize: 11
-              state: (swipeArea.currentIndex == tabDot.index) ? "ACTIVE" : "INACTIVE"
+              font.pointSize: 11 * scaleFactor
               text: tabDot.modelData
+              state: (swipeArea.currentIndex === tabDot.index) ? "ACTIVE" : "INACTIVE"
 
               states: [
                 State {
                   name: "ACTIVE"
-
-                  PropertyChanges {
-                    dotText.scale: 1.6
-                  }
+                  PropertyChanges { dotText.scale: 1.6 }
                 },
                 State {
                   name: "INACTIVE"
-
-                  PropertyChanges {
-                    dotText.scale: 1
-                  }
+                  PropertyChanges { dotText.scale: 1 }
                 }
               ]
+
               transitions: [
                 Transition {
                   from: "INACTIVE"
                   to: "ACTIVE"
-
                   NumberAnimation {
                     duration: Dat.MaterialEasing.standardAccelTime
                     easing.bezierCurve: Dat.MaterialEasing.standardAccel
@@ -151,7 +142,6 @@ Rectangle {
                 Transition {
                   from: "ACTIVE"
                   to: "INACTIVE"
-
                   NumberAnimation {
                     duration: Dat.MaterialEasing.standardDecelTime
                     easing.bezierCurve: Dat.MaterialEasing.standardDecel
@@ -163,7 +153,6 @@ Rectangle {
 
             Gen.MouseArea {
               layerRect.scale: dotText.scale
-
               onClicked: swipeArea.setCurrentIndex(tabDot.index)
             }
           }

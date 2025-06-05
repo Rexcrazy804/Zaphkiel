@@ -8,49 +8,53 @@ import "../Data/" as Dat
 Rectangle {
   property int index: SwipeView.index
 
+  // Get screen and scaling
+  property real scaleFactor: Dat.Globals.scaleFactor
+
+
   color: "transparent"
 
   RowLayout {
     anchors.fill: parent
-    anchors.margins: 10
-    anchors.rightMargin: 5
+    anchors.margins: 10 * scaleFactor
+    anchors.rightMargin: 5 * scaleFactor
 
     ColumnLayout {
-      // Month display
       Layout.fillHeight: true
-      Layout.minimumWidth: 30
+      Layout.minimumWidth: 30 * scaleFactor
       spacing: 0
 
+      // Day rectangle
       Rectangle {
         Layout.fillWidth: true
+        implicitHeight: 18 * scaleFactor
+        radius: 20 * scaleFactor
         bottomLeftRadius: 0
         bottomRightRadius: 0
         color: Dat.Colors.primary_container
-        // Day display
-        implicitHeight: 18
-        radius: 20
 
         Text {
           id: weekDayText
-
           anchors.centerIn: parent
           color: Dat.Colors.on_primary_container
-          font.pointSize: 8
+          font.pointSize: 8 * scaleFactor
           text: Qt.formatDateTime(Dat.Clock?.date, "ddd")
         }
       }
 
+      // Month rectangle
       Rectangle {
         Layout.fillHeight: true
         Layout.fillWidth: true
-        color: Dat.Colors.primary
-        radius: 10
+        radius: 10 * scaleFactor
         topLeftRadius: 0
         topRightRadius: 0
+        color: Dat.Colors.primary
 
         Text {
           anchors.centerIn: parent
           color: Dat.Colors.on_primary
+          font.pointSize: 10 * scaleFactor
           rotation: -90
           text: Qt.formatDateTime(Dat.Clock?.date, "MMM")
         }
@@ -67,23 +71,24 @@ Rectangle {
       Layout.fillWidth: true
       spacing: 0
 
-      // Layout.leftMargin: 50
-      // Layout.rightMargin: this.Layout.leftMargin
-      // color: Dat.Colors.surface_container
-      // color: "transparent"
-
       delegate: Rectangle {
         required property var model
 
-        color: (monthGrid.currDay == model.day && monthGrid.currMonth == model.month) ? Dat.Colors.primary : "transparent"
-        radius: 10
+        radius: 10 * scaleFactor
+        color: (monthGrid.currDay == model.day && monthGrid.currMonth == model.month)
+               ? Dat.Colors.primary : "transparent"
 
         Text {
           anchors.centerIn: parent
-          color: (parent.model.month == monthGrid.currMonth) ? (parent.model.day == monthGrid.currDay) ? Dat.Colors.on_primary : Dat.Colors.on_surface : Dat.Colors.withAlpha(Dat.Colors.on_surface_variant, 0.70)
-          horizontalAlignment: Text.AlignVCenter
+          font.pointSize: 8 * scaleFactor
           text: parent.model.day
+          horizontalAlignment: Text.AlignHCenter
           verticalAlignment: Text.AlignVCenter
+          color: (parent.model.month == monthGrid.currMonth)
+                 ? (parent.model.day == monthGrid.currDay
+                    ? Dat.Colors.on_primary
+                    : Dat.Colors.on_surface)
+                 : Dat.Colors.withAlpha(Dat.Colors.on_surface_variant, 0.70)
         }
       }
     }

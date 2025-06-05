@@ -9,18 +9,22 @@ import "../Widgets/" as Wid
 Rectangle {
   color: "transparent"
 
+  // Add scaleFactor property here
+  property real scaleFactor: Dat.Globals.scaleFactor
+
   RowLayout {
     anchors.fill: parent
 
     Rectangle {
       Layout.fillHeight: true
       Layout.fillWidth: true
-      Layout.preferredWidth: 1.45
+
+      Layout.preferredWidth: 0.45 * scaleFactor
       color: "transparent"
 
       RowLayout {
         anchors.fill: parent
-        spacing: 10
+        spacing: 10 * scaleFactor  // scale spacing
 
         Text {
           id: muteIcon
@@ -29,7 +33,7 @@ Rectangle {
 
           Layout.fillHeight: true
           Layout.fillWidth: true
-          Layout.leftMargin: 10
+          Layout.leftMargin: 10 * scaleFactor  // scaled margin
           color: Dat.Colors.on_surface
           horizontalAlignment: Text.AlignRight
           text: (muted) ? "󰖁" : "󰕾"
@@ -56,25 +60,25 @@ Rectangle {
 
       Wid.NotifDots {
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 10
+        anchors.bottomMargin: 10 * scaleFactor  // scaled margin
         anchors.horizontalCenter: parent.horizontalCenter
         color: Dat.Colors.surface_container
-        height: 35
-        radius: 20
+        height: 35 * scaleFactor  // scaled height
+        radius: 20 * scaleFactor  // scaled radius
       }
     }
 
     ColumnLayout {
       Layout.fillHeight: true
       Layout.fillWidth: true
-      Layout.preferredWidth: 1
+      Layout.preferredWidth: 1 * scaleFactor  // scaled preferred width
 
       Rectangle { // the hando that squishes the kuru kuru
         id: squishRect
 
         Layout.fillWidth: true
         color: "transparent"
-        implicitHeight: 0
+        implicitHeight: 0 * scaleFactor  // scaled implicitHeight (initially 0)
         state: "NOSQUISH"
 
         states: [
@@ -82,14 +86,14 @@ Rectangle {
             name: "NOSQUISH"
 
             PropertyChanges {
-              squishRect.implicitHeight: 0
+              squishRect.implicitHeight: 0 * scaleFactor
             }
           },
           State {
             name: "SQUISH"
 
             PropertyChanges {
-              squishRect.implicitHeight: 40
+              squishRect.implicitHeight: 40 * scaleFactor
             }
           }
         ]
@@ -260,7 +264,7 @@ Rectangle {
           id: smoll
 
           anchors.fill: parent
-          anchors.rightMargin: 8
+          anchors.rightMargin: 8 * scaleFactor  // scaled margin
           fillMode: Image.PreserveAspectCrop
           horizontalAlignment: Image.AlignRight
           playing: parent.playing && smoll.visible
@@ -271,7 +275,7 @@ Rectangle {
         AnimatedImage {
           id: big
 
-          anchors.bottomMargin: -13
+          anchors.bottomMargin: -13 * scaleFactor  // scaled margin
           anchors.fill: parent
           fillMode: Image.PreserveAspectFit
           horizontalAlignment: Image.AlignRight
@@ -291,10 +295,8 @@ Rectangle {
               return;
             }
             if (Math.round((Math.random() * 10)) % 2 == 0) {
-              // kurukuru.play();
               kuruText.text = "くるくる～――っと。";
             } else {
-              // kururin.play();
               kuruText.text = "くるりん～っと。";
             }
           }
@@ -312,7 +314,7 @@ Rectangle {
     layer.enabled: true
     rateMultiplier: gifRect.speed
     visible: false
-    width: 700
+    width: 700 * scaleFactor  // scaled width
   }
 
   MultiEffect {
@@ -335,8 +337,8 @@ Rectangle {
 
     Rectangle {
       anchors.fill: parent
-      bottomLeftRadius: 20
-      bottomRightRadius: 20
+      bottomLeftRadius: 20 * scaleFactor  // scaled radius
+      bottomRightRadius: 20 * scaleFactor  // scaled radius
     }
   }
 }

@@ -31,6 +31,8 @@ Rectangle {
 
     anchors.fill: parent
 
+    acceptedButtons: Qt.LeftButton | Qt.RightButton
+
     drag {
       axis: Drag.XAxis
       target: parent
@@ -44,6 +46,13 @@ Rectangle {
         } else {
           root.x = 0;
         }
+      }
+    }
+
+    onPressed: (mouse) => {
+      if (mouse.button === Qt.RightButton) {
+        // Right-click or two-finger tap detected — delete the notification
+        root.notif.dismiss();
       }
     }
   }

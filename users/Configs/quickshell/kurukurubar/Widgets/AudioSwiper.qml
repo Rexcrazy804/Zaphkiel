@@ -9,9 +9,13 @@ import "../Generics/" as Gen
 Rectangle {
   id: audRect
 
-  Layout.minimumWidth: swiper.currentItem?.contentWidth + 20
+  // Responsive scaling
+  property real scaleFactor: Dat.Globals.scaleFactor
+
+  Layout.minimumWidth: swiper.currentItem?.contentWidth + scaleFactor * 20
   clip: true
   color: Dat.Colors.primary_container
+  radius: scaleFactor * 12
 
   Behavior on Layout.minimumWidth {
     NumberAnimation {
@@ -26,14 +30,15 @@ Rectangle {
     anchors.fill: parent
     orientation: Qt.Horizontal
 
+    // Output (Sink)
     Text {
       color: Dat.Colors.on_primary_container
-      font.pointSize: 11
+      font.pointSize: scaleFactor * 10
       height: audRect.height
       horizontalAlignment: Text.AlignHCenter
-      text: Math.round(Dat.Audio.sinkVolume * 100) + "%" + " " + Dat.Audio.sinkIcon
       verticalAlignment: Text.AlignVCenter
       width: audRect.width
+      text: Math.round(Dat.Audio.sinkVolume * 100) + "%" + " " + Dat.Audio.sinkIcon
 
       Gen.MouseArea {
         acceptedButtons: Qt.LeftButton | Qt.MiddleButton
@@ -61,14 +66,15 @@ Rectangle {
       }
     }
 
+    // Input (Source)
     Text {
       color: Dat.Colors.on_primary_container
-      font.pointSize: 11
+      font.pointSize: scaleFactor * 11
       height: audRect.height
       horizontalAlignment: Text.AlignHCenter
-      text: Math.round(Dat.Audio.sourceVolume * 100) + "%" + " " + Dat.Audio.sourceIcon
       verticalAlignment: Text.AlignVCenter
       width: audRect.width
+      text: Math.round(Dat.Audio.sourceVolume * 100) + "%" + " " + Dat.Audio.sourceIcon
 
       Gen.MouseArea {
         acceptedButtons: Qt.LeftButton | Qt.MiddleButton

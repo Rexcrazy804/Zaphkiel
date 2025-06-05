@@ -9,23 +9,25 @@ import "../Data/" as Dat
 RowLayout {
   id: root
 
-  spacing: 10
+  property real scaleFactor: Dat.Globals.scaleFactor
+
+  spacing: 10 * scaleFactor
 
   Rectangle {
-    Layout.leftMargin: 10
+    Layout.leftMargin: 10 * scaleFactor
     color: "transparent"
-    implicitHeight: this.implicitWidth
+    implicitHeight: implicitWidth
     implicitWidth: faceIcon.width
 
     Image {
       id: faceIcon
 
       anchors.centerIn: parent
-      height: this.width
+      width: 90 * scaleFactor
+      height: width
       mipmap: true
       source: Quickshell.env("HOME") + "/.face.icon"
       visible: false
-      width: 90
     }
 
     MultiEffect {
@@ -42,15 +44,15 @@ RowLayout {
     Item {
       id: faceIconMask
 
-      height: this.width
-      layer.enabled: true
-      visible: false
       width: faceIcon.width
+      height: width
+      visible: false
+      layer.enabled: true
 
       Rectangle {
-        height: this.width
-        radius: 20
         width: faceIcon.width
+        height: width
+        radius: 20 * scaleFactor
       }
     }
   }
@@ -58,16 +60,17 @@ RowLayout {
   Rectangle {
     id: informationREct
 
-    Layout.fillHeight: true
     Layout.fillWidth: true
+    Layout.fillHeight: true
+    radius: 20 * scaleFactor
     color: Dat.Colors.surface_container
-    radius: 20
 
     Text {
       anchors.centerIn: parent
       color: Dat.Colors.on_surface
-      font.pointSize: 14
+      font.pointSize: 14 * scaleFactor
       text: "Hello cutie"
+      wrapMode: Text.Wrap
     }
   }
 }

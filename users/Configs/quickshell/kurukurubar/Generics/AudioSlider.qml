@@ -33,7 +33,7 @@ Rectangle {
           anchors.fill: parent
           color: Dat.Colors.on_surface
           font.pointSize: 10
-          text: (root.node?.isStream ? root.node?.name : (nameArea.containsMouse)? root.node?.description :  root.node?.nickname) ?? "Unidentified"
+          text: (root.node?.isStream ? root.node?.name : (nameArea.containsMouse)? root.node?.description : (root.node?.nickname)? root.node?.nickname : root.node?.description)?? "Unidentified"
           verticalAlignment: Text.AlignVCenter
           elide: Text.ElideRight
 

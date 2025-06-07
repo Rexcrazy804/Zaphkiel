@@ -1,6 +1,6 @@
 # My NixOS Configuration
 ![image](https://github.com/user-attachments/assets/e5cedaf6-b2d1-42d6-9519-d05580424a83)
-- wallpaper: [The Herta by meirong](https://www.pixiv.net/artworks/126270092)
+- Wallpaper: [The Herta by meirong](https://www.pixiv.net/artworks/126270092)
 
 ## Overview
 > The entry point for *most* of the dots are [here](users/Configs). For certain

@@ -43,7 +43,7 @@ have tinkered with most notably **mpv** featuring support for anime4k shaders
 and a custom **neovim** configuration with
 [lz.n](https://github.com/nvim-neorocks/lz.n) lazy loading.
 
-And as of 15th march 2025, newer configs will live in `users/Configs` with their
+And as of 15th March 2025, newer configs will live in `users/Configs` with their
 supporting matugen templates in `nixosModules/external/matugen/templates`
 
 ## Nvim configuration

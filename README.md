@@ -62,7 +62,7 @@ inspiration to ditch home manager and writing wrappers myself I had known of
 wrappers before but if it weren't for him I wouldn't have heard of
 `pkgs.symlinkJoin` :D
 
-I also extend my gratitude to [notAShelf](https://github.com/NotAShelf) for
+I also extend my gratitude to [NotAShelf](https://github.com/NotAShelf) for
 being the inspiration for this readme and for developing the hjem nixos
 module 
 

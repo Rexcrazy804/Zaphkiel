@@ -78,7 +78,7 @@ resources throughout my early adventure through nix
 - [nydragon/nysh](https://github.com/nydragon/nysh)
 - [end-4/dots-hyprland](https://github.com/end-4/dots-hyprland/tree/ii-qs/.config/quickshell)
 - [pikabar](https://git.pika-os.com/wm-packages/pikabar/src/branch/main/pikabar/usr/share/pikabar)
-- [sormanew/rainingkurukuru](https://github.com/soramanew/rainingkuru)
+- [soramanew/rainingkurukuru](https://github.com/soramanew/rainingkuru)
 - [outfoxxed/nixnew](https://git.outfoxxed.me/outfoxxed/nixnew/src/branch/master/modules/user/modules/quickshell)
 - one unmentioned individual that did not return
 - and other homies in #rice-discussion at Hyprland discord

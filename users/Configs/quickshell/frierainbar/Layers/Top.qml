@@ -22,8 +22,8 @@ Scope {
 
       // THIS SHOULD MIRROR THE 1 - SHRINKMULTIPLIER in background
       implicitHeight: 0.44 * modelData.height
-      layer: WlrLayer.Bottom
-      namespace: "rexies.frierain.bg"
+      layer: WlrLayer.Top
+      namespace: "rexies.frierain.top"
       screen: modelData
       surfaceFormat.opaque: false
 

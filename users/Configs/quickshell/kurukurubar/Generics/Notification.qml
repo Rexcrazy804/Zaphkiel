@@ -28,6 +28,7 @@ Rectangle {
 
   MouseArea {
     id: dragArea
+    z: 1
 
     anchors.fill: parent
 
@@ -159,6 +160,7 @@ Rectangle {
 
           MouseArea {
             id: bodMArea
+            z: 1
 
             acceptedButtons: Qt.LeftButton
             anchors.fill: parent

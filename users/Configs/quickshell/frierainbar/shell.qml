@@ -5,11 +5,17 @@ import "Layers" as Lay
 import "Data" as Dat
 
 ShellRoot {
-  Lay.Background {}
+  Lay.Background {
+  }
 
   Loader {
     active: Dat.Globals.bgState == "SHRUNK"
-    sourceComponent: Lay.Top {}
+
+    sourceComponent: Lay.Top {
+    }
+  }
+
+  Lay.Overlay {
   }
 
   // Lay.Bottom {}
@@ -20,6 +26,7 @@ ShellRoot {
     function onReloadCompleted() {
       Quickshell.inhibitReloadPopup();
     }
+
     function onReloadFailed() {
       Quickshell.inhibitReloadPopup();
     }

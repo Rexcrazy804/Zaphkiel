@@ -19,7 +19,9 @@ Scope {
       color: "transparent"
       exclusionMode: ExclusionMode.Auto
       focusable: false
-      implicitHeight: 380
+
+      // THIS SHOULD MIRROR THE 1 - SHRINKMULTIPLIER in background
+      implicitHeight: 0.44 * modelData.height
       layer: WlrLayer.Bottom
       namespace: "rexies.frierain.bg"
       screen: modelData

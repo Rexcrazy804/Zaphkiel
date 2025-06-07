@@ -56,7 +56,15 @@ Item {
         hoverEnabled: true
 
         onEntered: controls.state = "REVEALED"
-        onExited: controls.state = "HIDDEN"
+        onClicked: controls.state = (controls.state == "REVEALED")? "HIDDEN" : "REVEALED"
+
+        Component.onCompleted: {
+          Dat.Globals.bgStateChanged.connect(() => {
+            if (Dat.Globals.bgState == "FILLED") {
+              controls.state = "HIDDEN"
+            }
+          })
+        }
 
         ColumnLayout {
           anchors.fill: parent

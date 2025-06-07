@@ -160,6 +160,7 @@
     };
 
     devShells = forAllSystems (pkgs: {
+      default = self.devShells.${pkgs.system}.quickshell;
       quickshell = let
         qs = inputs.quickshell.packages.${pkgs.system}.default.override {
           withJemalloc = true;
@@ -188,7 +189,10 @@
             SHELL=nu exec nu # not using direnv for these shells
           '';
           buildInputs = qtDeps;
-          packages = [pkgs.material-symbols];
+            packages = [
+              pkgs.material-symbols
+              pkgs.google-fonts
+            ];
         };
     });
   };

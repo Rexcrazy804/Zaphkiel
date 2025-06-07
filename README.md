@@ -34,7 +34,7 @@ may not soon translate all the wrappers that I am using currently into plain ol
 hjem configs but that's for later. 
 
 At its current the hjem + matugen configuration is only able to work with a
-single wallpaper therefor it is locked to a single user configuration. I am
+single wallpaper therefore it is locked to a single user configuration. I am
 sure I can extend it to support multiple users but as of now I don't yet have
 the need to do so.
 

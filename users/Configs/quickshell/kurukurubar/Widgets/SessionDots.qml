@@ -29,8 +29,8 @@ Repeater {
     clip: true
     color: Dat.Colors.primary
     implicitHeight: this.implicitWidth
-    implicitWidth: 28
-    radius: 28
+    implicitWidth: 28 * Dat.Globals.notchScale
+    radius: this.implicitWidth
 
     Gen.MouseArea {
       layerColor: Dat.Colors.on_primary
@@ -43,6 +43,7 @@ Repeater {
       color: Dat.Colors.on_primary
       font.bold: true
       text: dot.modelData.text
+      font.pointSize: 12 * Dat.Globals.notchScale
     }
   }
 }

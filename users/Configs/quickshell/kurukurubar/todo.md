@@ -17,9 +17,12 @@
 - - [ ] verify if radio buttons work (untested cause none of my trays have em)
 
 ### What I do not like to see
-- [ ] revamp notification popups / osd
 - [ ] workspace previews in systemView on Hover
-- [ ] find a way to locally store kuru kuru and friends (assets) on first run and reuse
+- [ ] Addition of loaders and kuru kuru settings tab
+- - [ ] option for enabling cursor effect
+- - [ ] option for enabling persistent shell
+- - [ ] locally store states of above options
+- - [ ] locally store kuru kuru and friends (assets) on first run and reuse
 - [ ] include popups when a persistent notification updates #30
 - [ ] reset homeView state when collappsed / tray item removed / onActivated
 - [ ] improved time based greeting in GreeterWidget
@@ -28,5 +31,10 @@
 - [ ] draggable notification body / imrprove dismiss #26
 - [ ] use font.family for specifying fonts
 - [ ] cleanup rectangle: color: "transparents" with Item {}
+- [ ] fix system tray icons
 
+- [ ] revamp notification popups / osd
 - [ ] support setting wallpapers via the shell
+- [ ] scaling support
+- - [x] scaling in systemView
+- - [ ] scaling in powerTab

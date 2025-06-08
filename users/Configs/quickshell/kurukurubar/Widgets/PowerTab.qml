@@ -1,3 +1,4 @@
+pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -34,20 +35,15 @@ Rectangle {
         anchors.margins: 0
         spacing: 0
 
-        Rectangle {
+        Item {
           Layout.fillHeight: true
           Layout.fillWidth: true
           clip: true
-          color: "transparent"
-          radius: 0
 
-          // text: ""
-          // text: ""
-
-          ColumnLayout {
+          RowLayout {
             anchors.fill: parent
-            anchors.margins: 10
-            spacing: 10
+            anchors.margins: 3
+            spacing: 0
 
             Repeater {
               id: resourceRepeater
@@ -66,72 +62,48 @@ Rectangle {
                 }
               ]
 
-              RowLayout {
-                id: resourceItem
+              delegate: Item {
+                id: itemRoot
 
                 required property int index
                 required property var modelData
+                property real usage: (index) ? resourceRepeater.memUsage : resourceRepeater.cpuUsage
 
-                Layout.fillWidth: true
-                implicitHeight: 28
-                spacing: 10
+                Layout.alignment: Qt.AlignCenter
+                Layout.fillHeight: true
+                implicitWidth: this.height
+
+                Gen.CircularProgress {
+                  anchors.centerIn: parent
+                  degreeLimit: 290
+                  lineWidth: 7
+                  rotation: -189
+                  size: parent.width
+                  value: itemRoot.usage
+                }
+
+                Text {
+                  anchors.centerIn: parent
+                  text: (parent.usage * 100).toFixed(0)
+                  color: Dat.Colors.primary
+                  font.pointSize: 24
+                }
 
                 Rectangle {
-                  Layout.alignment: Qt.AlignCenter
-                  Layout.fillHeight: true
-                  color: Dat.Colors.primary_container
-                  implicitWidth: this.height
-                  radius: this.height
+                  anchors.bottom: parent.bottom
+                  anchors.bottomMargin: this.anchors.rightMargin
+                  anchors.right: parent.right
+                  anchors.rightMargin: 5
+                  color: Dat.Colors.primary
+                  height: this.width
+                  radius: this.width
+                  width: 35
 
                   Text {
                     anchors.centerIn: parent
-                    color: Dat.Colors.on_primary_container
-                    font.pointSize: 11
-                    text: modelData.icon
-                  }
-                }
-
-                ColumnLayout {
-                  Layout.bottomMargin: 5
-                  Layout.fillHeight: true
-                  Layout.fillWidth: true
-                  Layout.topMargin: 5
-
-                  Text {
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: 3
-                    color: Dat.Colors.on_surface
-                    text: resourceItem.modelData.label
-                    verticalAlignment: Text.AlignVCenter
-                  }
-
-                  Rectangle {
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: 1
-                    color: Dat.Colors.primary_container
-                    // Layout.leftMargin: 20
-                    // Layout.rightMargin: this.Layout.leftMargin
-                    radius: 20
-
-                    Rectangle {
-                      anchors.bottom: parent.bottom
-                      anchors.left: parent.left
-                      anchors.top: parent.top
-                      color: Dat.Colors.on_primary_container
-                      radius: parent.radius
-                      // wonky hacky way of doing this cause otherwise the value will reset with each change
-                      // which is not nice
-                      width: parent.width * ((!index) ? resourceRepeater.cpuUsage : resourceRepeater.memUsage)
-
-                      Behavior on width {
-                        NumberAnimation {
-                          duration: Dat.MaterialEasing.emphasizedTime
-                          easing.bezierCurve: Dat.MaterialEasing.emphasized
-                        }
-                      }
-                    }
+                    color: Dat.Colors.on_primary
+                    font.pointSize: 16
+                    text: itemRoot.modelData.icon
                   }
                 }
               }
@@ -167,6 +139,7 @@ Rectangle {
       implicitWidth: 40
       radius: 40
 
+      // I should write my own generic slider
       Slider {
         id: slider
 
@@ -180,18 +153,18 @@ Rectangle {
 
         background: ColumnLayout {
           anchors.fill: parent
+          spacing: 0
 
           Repeater {
             model: ["", "", ""]
 
-            Rectangle {
+            Item {
               required property string modelData
+              required property int index
 
-              Layout.alignment: Qt.AlignCenter
-              color: "transparent"
+              Layout.alignment: Qt.AlignHCenter
               implicitHeight: this.implicitWidth
-              implicitWidth: 34
-              radius: this.implicitWidth
+              implicitWidth: slider.width
 
               Text {
                 anchors.centerIn: parent
@@ -207,7 +180,7 @@ Rectangle {
           height: this.width
           radius: this.width
           visible: true
-          width: 34
+          width: slider.width
           y: slider.visualPosition * (slider.availableHeight - height)
 
           Behavior on y {

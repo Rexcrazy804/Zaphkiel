@@ -26,7 +26,6 @@ Rectangle {
     Rectangle {
       Layout.fillHeight: true
       Layout.fillWidth: true
-      Layout.preferredWidth: 5
       clip: true
       color: Dat.Colors.surface_container_high
       radius: 10
@@ -68,19 +67,18 @@ Rectangle {
         id: rightArea
 
         anchors.bottom: parent.bottom
+        anchors.left: nixLogo.right
         // radius: 10
         anchors.margins: 10
         anchors.right: parent.right
         anchors.rightMargin: 11
         anchors.top: parent.top
-        width: 150
 
         Rectangle {
           id: monitorRect
 
           Layout.fillHeight: true
           Layout.fillWidth: true
-          // TODO fill this with resource monitor data
           clip: true
           color: Dat.Colors.surface_container
           radius: 10
@@ -89,41 +87,49 @@ Rectangle {
             anchors.fill: parent
             anchors.margins: 10
 
-            Text {
-              id: hyprIcon
-
+            Item {
               Layout.bottomMargin: this.Layout.topMargin
               Layout.fillHeight: true
               Layout.fillWidth: true
               Layout.topMargin: 20
-              color: Dat.Colors.primary
-              font.pointSize: 32
-              horizontalAlignment: Text.AlignHCenter
-              text: ""
-              verticalAlignment: Text.AlignVCenter
+
+              Text {
+                id: hyprIcon
+
+                anchors.fill: parent
+                color: Dat.Colors.primary
+                font.pointSize: 32 * Dat.Globals.notchScale
+                horizontalAlignment: Text.AlignHCenter
+                text: ""
+                verticalAlignment: Text.AlignVCenter
+              }
             }
 
-            GridLayout {
-              columns: 3
-              implicitHeight: 60
-              implicitWidth: 60
-              rows: 3
+            Item {
+              Layout.fillWidth: true
+              implicitHeight: this.width
 
-              Repeater {
-                model: 9
+              GridLayout {
+                anchors.fill: parent
+                columns: 3
+                rows: 3
 
-                Rectangle {
-                  required property int index
+                Repeater {
+                  model: 9
 
-                  color: (Hyprland.focusedWorkspace?.id == this.index + 1) ? Dat.Colors.primary : Dat.Colors.surface_container_high
-                  height: this.radius
-                  radius: 18
-                  width: this.radius
+                  Rectangle {
+                    required property int index
 
-                  Gen.MouseArea {
-                    layerColor: Dat.Colors.primary
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    color: (Hyprland.focusedWorkspace?.id == this.index + 1) ? Dat.Colors.primary : Dat.Colors.surface_container_high
+                    radius: this.width
 
-                    onClicked: Hyprland.dispatch("workspace " + (parent.index + 1))
+                    Gen.MouseArea {
+                      layerColor: Dat.Colors.primary
+
+                      onClicked: Hyprland.dispatch("workspace " + (parent.index + 1))
+                    }
                   }
                 }
               }
@@ -137,22 +143,23 @@ Rectangle {
           antialiasing: true
           // color: "transparent"
           color: Dat.Colors.outline
-          implicitHeight: 10
-          implicitWidth: 80
+          implicitHeight: 10 * Dat.Globals.notchScale
+          implicitWidth: 80 * Dat.Globals.notchScale
           radius: 10
         }
       }
     }
 
-    ColumnLayout {
+    Item {
       Layout.fillHeight: true
-      // radius: 10
-      Layout.fillWidth: true
-      Layout.preferredWidth: 1
+      implicitWidth: 30 * Dat.Globals.notchScale
 
-      // color: Dat.Colors.surface_container_high
+      ColumnLayout {
+        anchors.verticalCenter: parent.verticalCenter
+        width: parent.width
 
-      Wid.SessionDots {
+        Wid.SessionDots {
+        }
       }
     }
   }

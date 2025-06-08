@@ -13,6 +13,9 @@ Singleton {
   property real mprisDotRotation: 0
   property bool notchHovered: false
 
+  // experimental, not reallllyyy recommended
+  property real notchScale: 1
+
   // one of "COLLAPSED", "EXPANDED", "FULLY_EXPANDED"
   property string notchState: (reservedShell) ? "EXPANDED" : "COLLAPSED"
   // one of "HIDDEN", "POPUP", "INBOX"

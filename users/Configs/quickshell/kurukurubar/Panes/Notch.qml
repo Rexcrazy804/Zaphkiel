@@ -39,11 +39,13 @@ Scope {
       Rectangle {
         id: notchRect
 
+        property real notchScale: Dat.Globals.notchScale
         readonly property int baseHeight: 1
-        readonly property int baseWidth: 200
+        readonly property int baseWidth: 200 * notchScale
         readonly property int expandedHeight: 28
-        readonly property int expandedWidth: 700
-        readonly property int fullHeight: 190
+        readonly property int expandedWidth: 700 * notchScale
+        readonly property int fullHeight: 190 * notchScale
+
         readonly property int fullWidth: this.expandedWidth
 
         anchors.horizontalCenter: parent.horizontalCenter

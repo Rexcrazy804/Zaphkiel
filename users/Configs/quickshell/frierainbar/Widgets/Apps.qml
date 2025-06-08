@@ -7,7 +7,7 @@ import "../Generics/" as Gen
 Item {
   id: root
 
-  property int kills: 804
+  property int kills: 0
   property string name: "game"
   property bool killed: deathTimer.running
   property bool fired: false

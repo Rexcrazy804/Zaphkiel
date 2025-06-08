@@ -17,11 +17,16 @@
 - - [ ] verify if radio buttons work (untested cause none of my trays have em)
 
 ### What I do not like to see
-- [ ] improved time based greeting in GreeterWidget
 - [ ] revamp notification popups / osd
-- [ ] reset homeView state when collappsed / tray item removed / onActivated
+- [ ] workspace previews in systemView on Hover
 - [ ] find a way to locally store kuru kuru and friends (assets) on first run and reuse
+- [ ] include popups when a persistent notification updates #30
+- [ ] reset homeView state when collappsed / tray item removed / onActivated
+- [ ] improved time based greeting in GreeterWidget
+- [ ] cleanup battery pill and powerTab no battery code
+- [ ] power profile indicator inside battery pill
+- [ ] draggable notification body / imrprove dismiss #26
+- [ ] use font.family for specifying fonts
+- [ ] cleanup rectangle: color: "transparents" with Item {}
 
-~~- [ ] support widgets in the background (just clock with day and month for now?)~~
-
-<!-- - [ ] support setting wallpapers via the shell -->
+- [ ] support setting wallpapers via the shell

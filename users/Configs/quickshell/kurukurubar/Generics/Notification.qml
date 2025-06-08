@@ -30,6 +30,13 @@ Rectangle {
     id: dragArea
 
     anchors.fill: parent
+    acceptedButtons: Qt.MiddleButton | Qt.LeftButton
+
+    onClicked: mevent => {
+      if (mevent.button == Qt.MiddleButton) {
+        root.notif.dismiss()
+      }
+    }
 
     drag {
       axis: Drag.XAxis
@@ -39,7 +46,7 @@ Rectangle {
         if (dragArea.drag.active) {
           return;
         }
-        if (Math.abs(root.x) > (root.width / 2)) {
+        if (Math.abs(root.x) > (root.width * 0.45)) {
           root.notif.dismiss();
         } else {
           root.x = 0;
@@ -67,10 +74,10 @@ Rectangle {
         id: notifIcon
 
         anchors.fill: parent
+        fillMode: Image.PreserveAspectCrop
         mipmap: true
         source: root.notif?.image ?? ""
         visible: false
-        fillMode: Image.PreserveAspectCrop
       }
 
       MultiEffect {

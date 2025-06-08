@@ -52,7 +52,7 @@ Rectangle {
           anchors.centerIn: parent
           color: Dat.Colors.on_primary
           rotation: -90
-          text: Qt.formatDateTime(Dat.Clock?.date, "MMM")
+          text: Qt.formatDateTime(Dat.Clock?.date, "MMMM")
         }
       }
     }

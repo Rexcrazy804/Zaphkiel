@@ -27,10 +27,11 @@ Rectangle {
   }
 
   MouseArea {
-    acceptedButtons: Qt.NoButton
+    acceptedButtons: Qt.MiddleButton
     anchors.fill: parent
     hoverEnabled: true
 
+    onClicked: root.notif.dismiss()
     onEntered: root.popup?.closeTimer.stop()
     onExited: {
       if (root.view?.depth > 0) {

@@ -32,18 +32,19 @@ Rectangle {
         Text {
           anchors.fill: parent
           color: Dat.Colors.on_surface
-          font.pointSize: 10
-          text: (root.node?.isStream ? root.node?.name : (nameArea.containsMouse)? root.node?.description : (root.node?.nickname)? root.node?.nickname : root.node?.description)?? "Unidentified"
-          verticalAlignment: Text.AlignVCenter
           elide: Text.ElideRight
+          font.pointSize: 10
+          text: (root.node?.isStream ? root.node?.name : (nameArea.containsMouse) ? root.node?.description : (root.node?.nickname) ? root.node?.nickname : root.node?.description) ?? "Unidentified"
+          verticalAlignment: Text.AlignVCenter
 
           MouseArea {
             id: nameArea
-            anchors.top: parent.top
-            anchors.left: parent.left
+
             anchors.bottom: parent.bottom
-            width: Math.min(parent.contentWidth, parent.width)
+            anchors.left: parent.left
+            anchors.top: parent.top
             hoverEnabled: true
+            width: Math.min(parent.contentWidth, parent.width)
           }
         }
       }

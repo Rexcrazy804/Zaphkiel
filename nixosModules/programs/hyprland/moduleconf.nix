@@ -18,6 +18,7 @@ in {
     kokCursor
     # QT dep
     pkgs.kdePackages.qt6ct
+    pkgs.kdePackages.breeze
     # Theme
     # pkgs.rose-pine-cursor
     # pkgs.rose-pine-hyprcursor

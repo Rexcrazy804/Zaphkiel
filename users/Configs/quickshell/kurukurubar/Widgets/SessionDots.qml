@@ -42,8 +42,8 @@ Repeater {
       anchors.centerIn: parent
       color: Dat.Colors.on_primary
       font.bold: true
-      text: dot.modelData.text
       font.pointSize: 12 * Dat.Globals.notchScale
+      text: dot.modelData.text
     }
   }
 }

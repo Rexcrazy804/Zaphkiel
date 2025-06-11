@@ -84,9 +84,9 @@ Rectangle {
 
                 Text {
                   anchors.centerIn: parent
-                  text: (parent.usage * 100).toFixed(0)
                   color: Dat.Colors.primary
                   font.pointSize: 24
+                  text: (parent.usage * 100).toFixed(0)
                 }
 
                 Rectangle {
@@ -159,8 +159,8 @@ Rectangle {
             model: ["", "", ""]
 
             Item {
-              required property string modelData
               required property int index
+              required property string modelData
 
               Layout.alignment: Qt.AlignHCenter
               implicitHeight: this.implicitWidth

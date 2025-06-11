@@ -29,12 +29,12 @@ Rectangle {
   MouseArea {
     id: dragArea
 
-    anchors.fill: parent
     acceptedButtons: Qt.MiddleButton | Qt.LeftButton
+    anchors.fill: parent
 
     onClicked: mevent => {
       if (mevent.button == Qt.MiddleButton) {
-        root.notif.dismiss()
+        root.notif.dismiss();
       }
     }
 

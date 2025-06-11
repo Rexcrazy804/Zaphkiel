@@ -139,20 +139,6 @@ Scope {
             to: "COLLAPSED"
 
             SequentialAnimation {
-              NumberAnimation {
-                duration: (notchRect.height > notchRect.expandedHeight) ? (Dat.MaterialEasing.standardAccelTime / 2) : 0
-                easing.bezierCurve: Dat.MaterialEasing.standardAccel
-                property: "height"
-                target: notchRect
-                // whenever the workspace changes in quickshell from app1 to app2
-                // the global state changes like this: app1 -> desktop -> app2
-                // which would cause it to quickly change the stat to EXPANED and then instantly to COLLAPSED
-                // and if this condition isn't there, you get a short empty notch
-                // since its here you get a 1px tall notch when you you switch between windows workspaces
-                // if you manage to spot him, pat yourself in the back, you found the cutie that I hid from caesus
-                to: (notchRect.height > notchRect.expandedHeight) ? notchRect.expandedHeight : notchRect.height
-              }
-
               ParallelAnimation {
                 NumberAnimation {
                   duration: Dat.MaterialEasing.standardAccelTime
@@ -208,6 +194,7 @@ Scope {
             }
           },
           Transition {
+            id: fExpToExpTS
             from: "FULLY_EXPANDED"
             to: "EXPANDED"
 
@@ -262,11 +249,32 @@ Scope {
           anchors.fill: parent
           hoverEnabled: true
 
+          Component.onCompleted: {
+            fExpToExpTS.runningChanged.connect(() => {
+              if (!fExpToExpTS.running) {
+                Dat.Globals.notchHovered = notchArea.containsMouse;
+                if (Dat.Globals.notchState == "FULLY_EXPANDED" || Dat.Globals.actWinName == "desktop" || Dat.Globals.reservedShell) {
+                  return;
+                }
+
+                if (notchArea.containsMouse) {
+                  Dat.Globals.notchState = "EXPANDED";
+                } else {
+                  Dat.Globals.notchState = "COLLAPSED";
+                }
+              }
+            })
+          }
+
           onContainsMouseChanged: {
             Dat.Globals.notchHovered = notchArea.containsMouse;
             if (Dat.Globals.notchState == "FULLY_EXPANDED" || Dat.Globals.actWinName == "desktop" || Dat.Globals.reservedShell) {
               return;
             }
+
+            // crucial for issue #37
+            if (fExpToExpTS.running) { return; }
+
             if (notchArea.containsMouse) {
               Dat.Globals.notchState = "EXPANDED";
             } else {

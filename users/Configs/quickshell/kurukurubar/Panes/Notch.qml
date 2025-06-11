@@ -39,14 +39,13 @@ Scope {
       Rectangle {
         id: notchRect
 
-        property real notchScale: Dat.Globals.notchScale
         readonly property int baseHeight: 1
         readonly property int baseWidth: 200 * notchScale
         readonly property int expandedHeight: 28
         readonly property int expandedWidth: 700 * notchScale
         readonly property int fullHeight: 190 * notchScale
-
         readonly property int fullWidth: this.expandedWidth
+        property real notchScale: Dat.Globals.notchScale
 
         anchors.horizontalCenter: parent.horizontalCenter
         bottomLeftRadius: 20
@@ -195,6 +194,7 @@ Scope {
           },
           Transition {
             id: fExpToExpTS
+
             from: "FULLY_EXPANDED"
             to: "EXPANDED"
 
@@ -246,40 +246,34 @@ Scope {
           property bool tracing: false
           property real velocity: 0
 
-          anchors.fill: parent
-          hoverEnabled: true
-
-          Component.onCompleted: {
-            fExpToExpTS.runningChanged.connect(() => {
-              if (!fExpToExpTS.running) {
-                Dat.Globals.notchHovered = notchArea.containsMouse;
-                if (Dat.Globals.notchState == "FULLY_EXPANDED" || Dat.Globals.actWinName == "desktop" || Dat.Globals.reservedShell) {
-                  return;
-                }
-
-                if (notchArea.containsMouse) {
-                  Dat.Globals.notchState = "EXPANDED";
-                } else {
-                  Dat.Globals.notchState = "COLLAPSED";
-                }
-              }
-            })
-          }
-
-          onContainsMouseChanged: {
-            Dat.Globals.notchHovered = notchArea.containsMouse;
-            if (Dat.Globals.notchState == "FULLY_EXPANDED" || Dat.Globals.actWinName == "desktop" || Dat.Globals.reservedShell) {
+          function revealOrCollapse() {
+            // crucial for issue #37
+            // basically Do not attempt to change the notchState when the
+            // FULLY_EXPANDED to COLLAPSED transition is running this function
+            // is called both when containsMouse changes as well as when the
+            // aforementioned transition starts and stops running
+            if (fExpToExpTS.running) {
               return;
             }
 
-            // crucial for issue #37
-            if (fExpToExpTS.running) { return; }
+            if (Dat.Globals.notchState == "FULLY_EXPANDED" || Dat.Globals.actWinName == "desktop" || Dat.Globals.reservedShell) {
+              return;
+            }
 
             if (notchArea.containsMouse) {
               Dat.Globals.notchState = "EXPANDED";
             } else {
               Dat.Globals.notchState = "COLLAPSED";
             }
+          }
+
+          anchors.fill: parent
+          hoverEnabled: true
+
+          Component.onCompleted: fExpToExpTS.runningChanged.connect(notchArea.revealOrCollapse)
+          onContainsMouseChanged: {
+            Dat.Globals.notchHovered = notchArea.containsMouse;
+            notchArea.revealOrCollapse();
           }
           onPositionChanged: mevent => {
             if (!tracing) {

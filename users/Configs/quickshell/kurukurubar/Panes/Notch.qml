@@ -39,14 +39,13 @@ Scope {
       Rectangle {
         id: notchRect
 
-        property real notchScale: Dat.Globals.notchScale
         readonly property int baseHeight: 1
         readonly property int baseWidth: 200 * notchScale
         readonly property int expandedHeight: 28
         readonly property int expandedWidth: 700 * notchScale
         readonly property int fullHeight: 190 * notchScale
-
         readonly property int fullWidth: this.expandedWidth
+        property real notchScale: Dat.Globals.notchScale
 
         anchors.horizontalCenter: parent.horizontalCenter
         bottomLeftRadius: 20
@@ -139,20 +138,6 @@ Scope {
             to: "COLLAPSED"
 
             SequentialAnimation {
-              NumberAnimation {
-                duration: (notchRect.height > notchRect.expandedHeight) ? (Dat.MaterialEasing.standardAccelTime / 2) : 0
-                easing.bezierCurve: Dat.MaterialEasing.standardAccel
-                property: "height"
-                target: notchRect
-                // whenever the workspace changes in quickshell from app1 to app2
-                // the global state changes like this: app1 -> desktop -> app2
-                // which would cause it to quickly change the stat to EXPANED and then instantly to COLLAPSED
-                // and if this condition isn't there, you get a short empty notch
-                // since its here you get a 1px tall notch when you you switch between windows workspaces
-                // if you manage to spot him, pat yourself in the back, you found the cutie that I hid from caesus
-                to: (notchRect.height > notchRect.expandedHeight) ? notchRect.expandedHeight : notchRect.height
-              }
-
               ParallelAnimation {
                 NumberAnimation {
                   duration: Dat.MaterialEasing.standardAccelTime
@@ -208,6 +193,8 @@ Scope {
             }
           },
           Transition {
+            id: fExpToExpTS
+
             from: "FULLY_EXPANDED"
             to: "EXPANDED"
 
@@ -259,19 +246,34 @@ Scope {
           property bool tracing: false
           property real velocity: 0
 
-          anchors.fill: parent
-          hoverEnabled: true
+          function revealOrCollapse() {
+            // crucial for issue #37
+            // basically Do not attempt to change the notchState when the
+            // FULLY_EXPANDED to COLLAPSED transition is running this function
+            // is called both when containsMouse changes as well as when the
+            // aforementioned transition starts and stops running
+            if (fExpToExpTS.running) {
+              return;
+            }
 
-          onContainsMouseChanged: {
-            Dat.Globals.notchHovered = notchArea.containsMouse;
             if (Dat.Globals.notchState == "FULLY_EXPANDED" || Dat.Globals.actWinName == "desktop" || Dat.Globals.reservedShell) {
               return;
             }
+
             if (notchArea.containsMouse) {
               Dat.Globals.notchState = "EXPANDED";
             } else {
               Dat.Globals.notchState = "COLLAPSED";
             }
+          }
+
+          anchors.fill: parent
+          hoverEnabled: true
+
+          Component.onCompleted: fExpToExpTS.runningChanged.connect(notchArea.revealOrCollapse)
+          onContainsMouseChanged: {
+            Dat.Globals.notchHovered = notchArea.containsMouse;
+            notchArea.revealOrCollapse();
           }
           onPositionChanged: mevent => {
             if (!tracing) {

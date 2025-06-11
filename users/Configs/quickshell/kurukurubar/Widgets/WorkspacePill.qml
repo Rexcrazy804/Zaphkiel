@@ -71,5 +71,9 @@ Rectangle {
         Dat.Globals.swipeIndex = 2;
       }
     }
+    onWheel: event => {
+        if (event.angleDelta.y < 0 || Hyprland.focusedWorkspace?.id > 1)
+            Hyprland.dispatch(`workspace r${event.angleDelta.y > 0 ? "-" : "+"}1`);
+    }
   }
 }

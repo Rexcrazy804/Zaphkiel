@@ -21,7 +21,7 @@ Scope {
       focusable: false
       implicitHeight: 28
       layer: WlrLayer.Bottom
-      namespace: "rexies.notch.quickshell"
+      namespace: "rexies.notch.mouseParticles"
       screen: modelData
       surfaceFormat.opaque: false
 

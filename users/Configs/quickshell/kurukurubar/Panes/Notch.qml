@@ -256,7 +256,7 @@ Scope {
               return;
             }
 
-            if (Dat.Globals.notchState == "FULLY_EXPANDED" || Dat.Globals.actWinName == "desktop" || Dat.Globals.reservedShell) {
+            if (Dat.Globals.notchState == "FULLY_EXPANDED" || Dat.Globals.actWinName == "desktop" || Dat.Config.data.reservedShell) {
               return;
             }
 

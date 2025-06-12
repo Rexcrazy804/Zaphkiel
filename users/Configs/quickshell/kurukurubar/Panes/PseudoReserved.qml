@@ -18,8 +18,8 @@ Scope {
       exclusionMode: ExclusionMode.Auto
       focusable: false
       implicitHeight: 28
-      layer: WlrLayer.Top
-      namespace: "rexies.notch.quickshell"
+      layer: WlrLayer.Bottom
+      namespace: "rexies.notch.pseudotop"
       screen: modelData
       surfaceFormat.opaque: false
     }

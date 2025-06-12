@@ -41,7 +41,8 @@ Rectangle {
           });
 
           // FOR DEBUGGING
-          // swipeArea.currentIndex = 3;
+          // swipeArea.currentIndex = 4;
+          // Dat.Globals.settingsTabIndex = 2;
           // Dat.Globals.notchState = "FULLY_EXPANDED";
         }
         onCurrentIndexChanged: () => {

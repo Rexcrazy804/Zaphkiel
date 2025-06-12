@@ -4,16 +4,19 @@ import "Panes" as Panes
 import "Data" as Dat
 
 ShellRoot {
-  // uncomment this if you want to reserve space for the notch
-  // Panes.PseudoReserved {}
-  // Component.onCompleted: {
-  //   Dat.Globals.reservedShell = true
-  // }
+  Loader {
+    active: Dat.Config.data.reservedShell
 
-  // uncomment this if you like particle effects
-  // on background that follow your mouse when you move it
-  // Panes.BottomLayer {
-  // }
+    sourceComponent: Panes.PseudoReserved {
+    }
+  }
+
+  Loader {
+    active: Dat.Config.data.mousePsystem
+
+    sourceComponent: Panes.BottomLayer {
+    }
+  }
 
   Panes.Notch {
   }
@@ -23,6 +26,7 @@ ShellRoot {
     function onReloadCompleted() {
       Quickshell.inhibitReloadPopup();
     }
+
     function onReloadFailed() {
       Quickshell.inhibitReloadPopup();
     }

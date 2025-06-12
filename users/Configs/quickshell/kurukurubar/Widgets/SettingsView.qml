@@ -28,7 +28,7 @@ Rectangle {
         anchors.fill: parent
 
         Repeater {
-          model: ["Power", "Audio", "Network"]
+          model: ["Power", "Audio", "Kuru"]
 
           Rectangle {
             id: tabRect
@@ -159,22 +159,14 @@ Rectangle {
       // waiting for foxxed to impl the network stuff in quickshell
       // too lazy to write a script on my own
       // TODO: maybe write a script of my own?
-      Rectangle {
-        color: Dat.Colors.surface_container_high
+      Wid.KuruTweaksTab {
         opacity: visible ? 1 : 0
-        radius: 20
 
         Behavior on opacity {
           NumberAnimation {
             duration: Dat.MaterialEasing.emphasizedAccelTime
             easing.bezierCurve: Dat.MaterialEasing.emphasizedAccel
           }
-        }
-
-        Text {
-          anchors.centerIn: parent
-          color: Dat.Colors.on_surface
-          text: "Network Tab (unimplemented)"
         }
       }
     }

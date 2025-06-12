@@ -15,14 +15,14 @@
 - [x] **figure out why shell doesn't load when no wifi** marking as done cause can't reproduce it????
 - [x] checkmarks and radio button on tray
 - - [ ] verify if radio buttons work (untested cause none of my trays have em)
+- [x] KuruTweaks
+- - [x] option for enabling cursor effect
+- - [x] option for enabling persistent shell
+- - [x] locally store states of above options
 
 ### What I do not like to see
-- [ ] workspace previews in systemView on Hover
-- [ ] Addition of loaders and kuru kuru settings tab
-- - [ ] option for enabling cursor effect
-- - [ ] option for enabling persistent shell
-- - [ ] locally store states of above options
-- - [ ] locally store kuru kuru and friends (assets) on first run and reuse
+- [ ] locally store kuru kuru and friends (assets) on first run and reuse
+- [ ] Dynamically load and unload expandedPane
 - [ ] include popups when a persistent notification updates #30
 - [ ] reset homeView state when collappsed / tray item removed / onActivated
 - [ ] improved time based greeting in GreeterWidget
@@ -33,8 +33,12 @@
 - [ ] cleanup rectangle: color: "transparents" with Item {}
 - [ ] fix system tray icons
 
+### Later
 - [ ] revamp notification popups / osd
 - [ ] support setting wallpapers via the shell
 - [ ] scaling support
 - - [x] scaling in systemView
 - - [ ] scaling in powerTab
+
+### Dumpster
+- [ ] workspace previews in systemView on Hover

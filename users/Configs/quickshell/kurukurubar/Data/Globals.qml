@@ -4,6 +4,8 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
 
+import "../Data/" as Dat
+
 Singleton {
   id: root
 
@@ -17,10 +19,9 @@ Singleton {
   property real notchScale: 1
 
   // one of "COLLAPSED", "EXPANDED", "FULLY_EXPANDED"
-  property string notchState: (reservedShell) ? "EXPANDED" : "COLLAPSED"
+  property string notchState: (Dat.Config.data.reservedShell) ? "EXPANDED" : "COLLAPSED"
   // one of "HIDDEN", "POPUP", "INBOX"
   property string notifState: "HIDDEN"
-  property bool reservedShell: false
 
   // SettingsView State
   // 0 => Power
@@ -37,7 +38,7 @@ Singleton {
   property int swipeIndex: 0
 
   onActWinNameChanged: {
-    if (reservedShell) {
+    if (Dat.Config.data.reservedShell) {
       return;
     }
     if (root.actWinName == "desktop" && root.notchState == "COLLAPSED") {

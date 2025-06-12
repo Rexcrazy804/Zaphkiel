@@ -38,7 +38,7 @@ Rectangle {
         layer.enabled: true
         opacity: 0.9
         rotation: 0
-        source: "https://raw.githubusercontent.com/NixOS/nixos-artwork/4ad062cee62116f6055e2876e9638e7bb399d219/logo/nix-snowflake-white.svg"
+        source: Dat.Paths.getPath(this, "https://raw.githubusercontent.com/NixOS/nixos-artwork/4ad062cee62116f6055e2876e9638e7bb399d219/logo/nix-snowflake-white.svg")
         width: parent.height
         x: -(this.width / 2.5)
 

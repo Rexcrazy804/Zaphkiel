@@ -264,7 +264,7 @@ Rectangle {
           fillMode: Image.PreserveAspectCrop
           horizontalAlignment: Image.AlignRight
           playing: parent.playing && smoll.visible
-          source: "https://duiqt.github.io/herta_kuru/static/img/hertaa1.gif"
+          source: Dat.Paths.getPath(this, "https://duiqt.github.io/herta_kuru/static/img/hertaa1.gif")
           speed: parent.speed
         }
 
@@ -276,7 +276,7 @@ Rectangle {
           fillMode: Image.PreserveAspectFit
           horizontalAlignment: Image.AlignRight
           playing: parent.playing && big.visible
-          source: "https://media.tenor.com/taxnt3zsc_4AAAAj/seseren-the-herta.gif"
+          source: Dat.Paths.getPath(this, "https://media.tenor.com/taxnt3zsc_4AAAAj/seseren-the-herta.gif")
           speed: parent.speed
         }
 

@@ -13,7 +13,7 @@ Rectangle {
     anchors.fill: parent
     fillMode: Image.PreserveAspectFit
     playing: Mpris.players.values.length == 0
-    source: "https://media.tenor.com/JtofR661NDIAAAAi/honkai-star-rail-hsr.gif"
+    source: Dat.Paths.getPath(this, "https://media.tenor.com/JtofR661NDIAAAAi/honkai-star-rail-hsr.gif")
   }
 
   Text {

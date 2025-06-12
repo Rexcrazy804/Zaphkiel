@@ -19,9 +19,9 @@
 - - [x] option for enabling cursor effect
 - - [x] option for enabling persistent shell
 - - [x] locally store states of above options
+- [x] locally store kuru kuru and friends (assets) on first run and reuse
 
 ### What I do not like to see
-- [ ] locally store kuru kuru and friends (assets) on first run and reuse
 - [ ] Dynamically load and unload expandedPane
 - [ ] include popups when a persistent notification updates #30
 - [ ] reset homeView state when collappsed / tray item removed / onActivated

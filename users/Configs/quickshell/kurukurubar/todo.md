@@ -20,10 +20,9 @@
 - - [x] option for enabling persistent shell
 - - [x] locally store states of above options
 - [x] locally store kuru kuru and friends (assets) on first run and reuse
+- [x] include popups when a persistent notification updates #30
 
 ### What I do not like to see
-- [ ] Dynamically load and unload expandedPane
-- [ ] include popups when a persistent notification updates #30
 - [ ] reset homeView state when collappsed / tray item removed / onActivated
 - [ ] improved time based greeting in GreeterWidget
 - [ ] cleanup battery pill and powerTab no battery code
@@ -35,6 +34,7 @@
 
 ### Later
 - [ ] revamp notification popups / osd
+- [ ] Dynamically load and unload expandedPane
 - [ ] support setting wallpapers via the shell
 - [ ] scaling support
 - - [x] scaling in systemView

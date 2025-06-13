@@ -11,31 +11,39 @@ Rectangle {
   property bool closed: true
   property var currentNotif: stack.currentItem
 
+  function pushNotif(e) {
+    if (Dat.NotifServer.dndEnabled) {
+      return;
+    }
+    if (!e) {
+      return;
+    }
+    let notification = Qt.createComponent("../Generics/NotificationPopup.qml");
+    stack.push(notification, {
+      "notif": e,
+      "width": stack.width,
+      "implicitHeight": stack.height,
+      "radius": "20",
+      "view": stack,
+      "popup": popupRect
+    });
+    if (Dat.Globals.notifState == "HIDDEN") {
+      Dat.Globals.notifState = "POPUP";
+      popupRect.closed = false;
+      popupClose.start();
+    } else if (Dat.Globals.notifState == "POPUP") {
+      popupRect.closed = false;
+      popupClose.restart();
+    }
+  }
+
   Component.onCompleted: {
     Dat.NotifServer.server.onNotification.connect(e => {
-      if (Dat.NotifServer.dndEnabled) {
-        return;
-      }
-      if (!e) {
-        return;
-      }
-      var notification = Qt.createComponent("../Generics/NotificationPopup.qml");
-      stack.push(notification, {
-        "notif": e,
-        "width": stack.width,
-        "implicitHeight": stack.height,
-        "radius": "20",
-        "view": stack,
-        "popup": popupRect
-      });
-      if (Dat.Globals.notifState == "HIDDEN") {
-        Dat.Globals.notifState = "POPUP";
-        popupRect.closed = false;
-        popupClose.start();
-      } else if (Dat.Globals.notifState == "POPUP") {
-        popupRect.closed = false;
-        popupClose.restart();
-      }
+      pushNotif(e);
+
+      // issue #30 where spotify updates a notification
+      e.bodyChanged.connect(() => pushNotif(e));
+      e.summaryChanged.connect(() => pushNotif(e));
     });
 
     stack.depthChanged.connect(() => {

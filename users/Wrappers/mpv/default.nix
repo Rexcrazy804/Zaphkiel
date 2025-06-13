@@ -33,13 +33,9 @@
 in
   pkgs.symlinkJoin {
     name = "mpv";
-    paths = [
-      pkgs.mpv
-    ];
+    paths = [pkgs.mpv];
 
-    buildInputs = [
-      pkgs.makeWrapper
-    ];
+    buildInputs = [pkgs.makeWrapper];
 
     postBuild = ''
       wrapProgram $out/bin/mpv \

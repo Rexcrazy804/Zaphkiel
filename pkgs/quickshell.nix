@@ -8,14 +8,22 @@
   nerd-fonts,
   lib,
 }: let
-  qsConfig = ../Configs/quickshell/kurukurubar;
+  qsConfig = ../users/Configs/quickshell/kurukurubar;
+  qs = quickshell.override {
+    withJemalloc = true;
+    withQtSvg = true;
+    withWayland = true;
+    withX11 = false;
+    withPipewire = true;
+    withPam = true;
+    withHyprland = true;
+    withI3 = false;
+  };
 in
   symlinkJoin rec {
     name = "qs-wrapper";
-    paths = [quickshell];
-
+    paths = [qs];
     buildInputs = [makeWrapper];
-
     qtDeps = [
       kdePackages.qtbase
       kdePackages.qtdeclarative

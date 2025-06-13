@@ -51,23 +51,10 @@
         system: fn (import nixpkgs {system = system;})
       );
   in {
-    packages = forAllSystems (pkgs: let
-      nvimPkgs = pkgs.callPackage ./users/Wrappers/nvim/default.nix {};
-    in rec {
-      inherit (nvimPkgs) nvim-no-lsp nvim-wrapped;
-      default = nvim-wrapped;
-      quickshell = pkgs.callPackage ./users/Wrappers/quickshell.nix {
-        quickshell = inputs.quickshell.packages.${pkgs.system}.default.override {
-          withJemalloc = true;
-          withQtSvg = true;
-          withWayland = true;
-          withX11 = false;
-          withPipewire = true;
-          withPam = true;
-          withHyprland = true;
-          withI3 = false;
-        };
-      };
+    packages = forAllSystems (pkgs: rec {
+      nvim = pkgs.callPackage ./pkgs/nvim {};
+      default = nvim;
+      quickshell = pkgs.callPackage ./pkgs/quickshell.nix {quickshell = inputs.quickshell.packages.${pkgs.system}.default;};
     });
 
     formatter = forAllSystems (pkgs: pkgs.alejandra);

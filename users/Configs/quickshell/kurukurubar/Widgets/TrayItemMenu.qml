@@ -102,7 +102,7 @@ Rectangle {
         Item {
           Layout.fillHeight: true
           implicitWidth: this.height
-          visible: entry.modelData?.icon
+          visible: entry.modelData?.icon ?? false
 
           Image {
             anchors.fill: parent

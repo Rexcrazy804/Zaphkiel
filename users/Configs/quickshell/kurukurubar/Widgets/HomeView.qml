@@ -16,7 +16,7 @@ Rectangle {
 
   ColumnLayout {
     anchors.fill: parent
-    anchors.margins: 10
+    anchors.margins: 3
     spacing: 5
 
     Rectangle {
@@ -132,15 +132,21 @@ Rectangle {
             to: 0
           }
         }
+
+        Component.onCompleted: {
+          Dat.Globals.notchStateChanged.connect(() => {
+            if (Dat.Globals.notchState != "FULLY_EXPANDED") {
+              stack.pop();
+            }
+          });
+        }
       }
     }
 
-    Rectangle {
+    Item {
       Layout.alignment: Qt.AlignCenter
-      color: Dat.Colors.surface_container
-      implicitHeight: (stack.depth > 1) ? 8 : 28
+      implicitHeight: (stack.depth > 1) ? 10 : 28
       implicitWidth: trayItemRow.width + 20
-      radius: 20
       visible: SystemTray.items.values.length != 0
 
       Behavior on implicitHeight {
@@ -157,9 +163,9 @@ Rectangle {
         spacing: 10
 
         Repeater {
-          model: ScriptModel {
-            values: [...SystemTray.items.values]
-          }
+          model: SystemTray.items
+
+          onCountChanged: stack.pop()
 
           Wid.TrayItem {
             Layout.alignment: Qt.AlignCenter

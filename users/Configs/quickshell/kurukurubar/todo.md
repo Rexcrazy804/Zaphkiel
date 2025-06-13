@@ -21,9 +21,9 @@
 - - [x] locally store states of above options
 - [x] locally store kuru kuru and friends (assets) on first run and reuse
 - [x] include popups when a persistent notification updates #30
+- [x] reset homeView state when collappsed / tray item removed / ~~onActivated~~
 
 ### What I do not like to see
-- [ ] reset homeView state when collappsed / tray item removed / onActivated
 - [ ] improved time based greeting in GreeterWidget
 - [ ] cleanup battery pill and powerTab no battery code
 - [ ] power profile indicator inside battery pill
@@ -33,6 +33,7 @@
 - [ ] fix system tray icons
 
 ### Later
+- [ ] kdeConnect Integration
 - [ ] revamp notification popups / osd
 - [ ] Dynamically load and unload expandedPane
 - [ ] support setting wallpapers via the shell

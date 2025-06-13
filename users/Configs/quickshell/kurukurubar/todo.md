@@ -22,12 +22,10 @@
 - [x] locally store kuru kuru and friends (assets) on first run and reuse
 - [x] include popups when a persistent notification updates #30
 - [x] reset homeView state when collappsed / tray item removed / ~~onActivated~~
+- [x] cleanup battery pill and powerTab no battery code
+- [x] power profile indicator inside battery pill
 
 ### What I do not like to see
-- [ ] improved time based greeting in GreeterWidget
-- [ ] cleanup battery pill and powerTab no battery code
-- [ ] power profile indicator inside battery pill
-- [ ] draggable notification body / imrprove dismiss #26
 - [ ] use font.family for specifying fonts
 - [ ] cleanup rectangle: color: "transparents" with Item {}
 - [ ] fix system tray icons
@@ -40,6 +38,8 @@
 - [ ] scaling support
 - - [x] scaling in systemView
 - - [ ] scaling in powerTab
+- [ ] draggable notification body / improve dismiss #26
 
 ### Dumpster
 - [ ] workspace previews in systemView on Hover
+- [ ] improved time based greeting in GreeterWidget

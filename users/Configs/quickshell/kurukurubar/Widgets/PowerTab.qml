@@ -23,7 +23,7 @@ Rectangle {
       radius: 20
 
       Rectangle {
-        anchors.fill: infoCol
+        anchors.fill: parent
         color: Dat.Colors.surface_container
         radius: 20
       }
@@ -32,8 +32,7 @@ Rectangle {
         id: infoCol
 
         anchors.fill: parent
-        anchors.margins: 0
-        spacing: 0
+        anchors.margins: (informationRect.visible)? 0 : 10
 
         Item {
           Layout.fillHeight: true
@@ -112,6 +111,7 @@ Rectangle {
         }
 
         Rectangle {
+          id: informationRect
           // BATTERY information
           Layout.fillWidth: true
           color: Dat.Colors.surface_container_highest

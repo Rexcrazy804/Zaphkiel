@@ -17,7 +17,7 @@ Rectangle {
   ColumnLayout {
     anchors.fill: parent
     anchors.margins: 3
-    spacing: 5
+    spacing: 0
 
     Rectangle {
       Layout.fillHeight: true
@@ -144,9 +144,8 @@ Rectangle {
     }
 
     Item {
-      Layout.alignment: Qt.AlignCenter
-      implicitHeight: (stack.depth > 1) ? 10 : 28
-      implicitWidth: trayItemRow.width + 20
+      Layout.fillWidth: true
+      implicitHeight: 20
       visible: SystemTray.items.values.length != 0
 
       Behavior on implicitHeight {
@@ -157,19 +156,44 @@ Rectangle {
       }
 
       RowLayout {
-        id: trayItemRow
+        anchors.fill: parent
+        anchors.leftMargin: 10
+        anchors.rightMargin: 10
+        Item {
+          Layout.fillHeight: true
+          implicitWidth: trayItemRow.width
 
-        anchors.centerIn: parent
-        spacing: 10
+          RowLayout {
+            id: trayItemRow
 
-        Repeater {
-          model: SystemTray.items
+            anchors.centerIn: parent
+            spacing: 10
 
-          onCountChanged: stack.pop()
+            Repeater {
+              model: SystemTray.items
 
-          Wid.TrayItem {
-            Layout.alignment: Qt.AlignCenter
-            stack: stack
+              onCountChanged: stack.pop()
+
+              Wid.TrayItem {
+                Layout.alignment: Qt.AlignCenter
+                stack: stack
+              }
+            }
+          }
+        }
+        Item {
+          Layout.fillHeight: true
+          Layout.fillWidth: true
+        }
+        Item {
+          Layout.fillHeight: true
+          implicitWidth: uptimeText.contentWidth + 10
+          Text {
+            id: uptimeText
+            anchors.centerIn: parent
+            text: Dat.Resources.uptime
+            font.pointSize: 10
+            color: Dat.Colors.on_surface
           }
         }
       }

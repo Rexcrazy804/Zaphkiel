@@ -21,7 +21,8 @@ Singleton {
   // one of "COLLAPSED", "EXPANDED", "FULLY_EXPANDED"
   property string notchState: "COLLAPSED"
 
-  // fixes issues with reserved shell turned on where ther
+  // fixes issue where bar starts collapsed when reserved shell is turned on
+  // thanks syncqtc for noticing it :>
   Component.onCompleted: {
     Dat.Config.data.reservedShellChanged.connect(() => {
       if (notchState == "COLLAPSED" && Dat.Config.data.reservedShell) {

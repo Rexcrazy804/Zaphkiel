@@ -1,0 +1,113 @@
+# adapted from https://gist.githubusercontent.com/pksunkara/988716/raw/13f2fb121abb94f5a87eebb104821832d56e48d7/config
+[user]
+name = Rexiel Scarlet
+email = 37258415+Rexcrazy804@users.noreply.github.com
+github = Rexcrazy804
+
+[core]
+editor = nvim
+whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+pager = delta
+
+[column]
+ui = auto
+
+[branch]
+sort = -committerdate
+
+[tag]
+sort = version:refname
+
+[init]
+defaultBranch = master
+
+[rerere]
+enabled = 1
+autoupdate = 1
+
+[diff]
+algorithm = histogram
+colorMoved = plain
+renames = true
+
+[difftool]
+prompt = false
+
+[push]
+autoSetupRemote = true
+followTags = true
+
+[fetch]
+prune = true
+pruneTags = true
+all = true
+
+
+[rebase]
+autoSquash = true
+updateRefs = true
+
+[color]
+ui = auto
+
+[color "branch"]
+current = yellow bold
+local = green bold
+remote = cyan bold
+
+[color "diff"]
+meta = yellow bold
+frag = magenta bold
+old = red bold
+new = green bold
+whitespace = red reverse
+
+[color "status"]
+added = green bold
+changed = yellow bold
+untracked = red bold
+
+[delta]
+features = line-numbers decorations
+line-numbers = true
+dark = true
+
+[delta "decorations"]
+minus-style = red bold normal
+plus-style = green bold normal
+minus-emph-style = white bold red
+minus-non-emph-style = red bold normal
+plus-emph-style = white bold green
+plus-non-emph-style = green bold normal
+file-style = yellow bold none
+file-decoration-style = yellow box
+hunk-header-style = magenta bold
+hunk-header-decoration-style = magenta box
+minus-empty-line-marker-style = normal normal
+plus-empty-line-marker-style = normal normal
+line-numbers-right-format = "{np:^4}│ "
+
+[trim]
+bases = master,main
+protected = *production
+
+[sequence]
+editor = interactive-rebase-tool
+
+[filter "lfs"]
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+required = true
+
+[alias]
+a = add --all
+ai = add -i
+c = commit
+ca = commit -a
+cm = commit -m
+cam = commit -am
+cd = commit --amend
+cp = cherry-pick
+d = diff
+ds = diff --staged

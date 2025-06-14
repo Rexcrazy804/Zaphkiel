@@ -18,13 +18,9 @@ in {
 
     # only declare common packages here
     # others: hosts/<hostname>/user-configuration.nix
-    packages = [
-      pkgs.btop
-      (pkgs.wrappedPkgs.git.override {
-        username = description;
-        email = "37258415+Rexcrazy804@users.noreply.github.com";
-      })
-    ];
+    # if you declare something here that isn't common to literally every host I
+    # will personally show up under your bed whoever and wherever you are
+    packages = [pkgs.btop pkgs.git pkgs.delta];
 
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICELSL45m4ptWDZwQDi2AUmCgt4n93KsmZtt69fyb0vy rexies@Zaphkiel"
@@ -104,11 +100,12 @@ in {
         chmod u+rw ./Data/Colors.qml
         cp ${matugenTheme}/quickshell-colors.qml ./Data/Colors.qml
       '';
-
     in {
+      # git
+      ".config/git/config".source = ./Configs/git/config;
+
       # face Icon
       ".face.icon".source = faceIcon;
-
       # shell
       ".config/nushell/config.nu".source = ./Configs/nushell/config.nu;
       ".config/starship.toml".source = starship;
@@ -119,7 +116,6 @@ in {
       ".config/foot/matugen-colors.ini".text = import ./Configs/foot/matugen.nix {
         inherit lib matugenColors;
       };
-
 
       # hyprland
       ".config/uwsm/env".source = ./Configs/uwsm/env;

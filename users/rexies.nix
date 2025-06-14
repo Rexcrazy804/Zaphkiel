@@ -108,6 +108,7 @@ in {
     in {
       # face Icon
       ".face.icon".source = faceIcon;
+
       # shell
       ".config/nushell/config.nu".source = ./Configs/nushell/config.nu;
       ".config/starship.toml".source = starship;
@@ -119,9 +120,6 @@ in {
         inherit lib matugenColors;
       };
 
-      # qt6ct
-      ".config/qt6ct/qt6ct.conf".text = qt6ct;
-      ".config/qt6ct/colors/matugen.conf".source = "${matugenTheme}/qtct-colors.conf";
 
       # hyprland
       ".config/uwsm/env".source = ./Configs/uwsm/env;
@@ -136,6 +134,9 @@ in {
       ".config/background".source = matugen.wallpaper;
       # quickshell
       ".config/quickshell".source = quickshellConfig;
+      # qt6ct
+      ".config/qt6ct/qt6ct.conf".text = qt6ct;
+      ".config/qt6ct/colors/matugen.conf".source = "${matugenTheme}/qtct-colors.conf";
 
       # discord
       ".config/Vencord/themes/midnight.css".source = "${matugenTheme}/discord-midnight.css";

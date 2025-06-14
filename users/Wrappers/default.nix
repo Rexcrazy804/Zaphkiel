@@ -4,10 +4,7 @@
   ...
 }: let
   pkgsoverlay = final: _prev: {
-    wrappedPkgs = {
-      git = final.callPackage ./git {};
-      mpv = final.callPackage ./mpv {};
-    };
+    wrappedPkgs = {git = final.callPackage ./git {};};
   };
 in {
   nixpkgs.overlays = [pkgsoverlay];

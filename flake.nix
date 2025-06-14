@@ -56,8 +56,8 @@
       );
   in {
     formatter = forAllSystems (pkgs: pkgs.alejandra);
-    overlays.internal = final: prev: {
-      quickshell = inputs.quickshell.packages.${prev.system}.default.override {
+    overlays.internal = final: _prev: {
+      quickshell = inputs.quickshell.packages.${final.system}.default.override {
         withJemalloc = true;
         withQtSvg = true;
         withWayland = true;
@@ -67,16 +67,17 @@
         withHyprland = true;
         withI3 = false;
       };
-      fzf-wrapped = prev.callPackage ./pkgs/fzf.nix {};
-      kokCursor = prev.callPackage ./pkgs/kokCursor.nix {};
-      nixvim = prev.callPackage ./pkgs/nvim {};
+      fzf-wrapped = final.callPackage ./pkgs/fzf.nix {};
+      kokCursor = final.callPackage ./pkgs/kokCursor.nix {};
+      nixvim = final.callPackage ./pkgs/nvim {};
+      mpv-wrapped = final.callPackage ./pkgs/mpv {};
     };
-
     packages = forAllSystems (pkgs: {
       nixvim = pkgs.nixvim;
       default = pkgs.nixvim;
       quickshell = pkgs.callPackage ./pkgs/quickshell.nix {};
       kokCursor = pkgs.kokCursor;
+      mpv = pkgs.mpv-wrapped.override {anime = true;};
     });
 
     nixosConfigurations = {

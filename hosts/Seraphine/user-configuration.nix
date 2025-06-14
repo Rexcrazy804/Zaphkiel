@@ -13,10 +13,9 @@
     pkgs.foot
     pkgs.cbonsai
     pkgs.cowsay
+    pkgs.mpv-wrapped
   ];
   special = builtins.attrValues {
-    mpv = pkgs.wrappedPkgs.mpv;
-
     discord = pkgs.discord.override {
       withOpenASAR = true;
       withMoonlight = true;

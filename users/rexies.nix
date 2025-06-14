@@ -11,7 +11,8 @@ in {
   users.users.${username} = {
     inherit description;
 
-    shell = pkgs.nushell;
+    # its fish, but through bash
+    # shell = pkgs.nushell;
     isNormalUser = true;
     extraGroups = ["networkmanager" "wheel" "multimedia"];
     hashedPasswordFile = config.age.secrets.rexiesPass.path;
@@ -25,10 +26,6 @@ in {
       pkgs.git
       pkgs.bat
       pkgs.delta
-      # nushell dependencies
-      pkgs.starship
-      pkgs.zoxide
-      pkgs.carapace
     ];
 
     openssh.authorizedKeys.keys = [
@@ -106,7 +103,8 @@ in {
       # face Icon
       ".face.icon".source = faceIcon;
       # shell
-      ".config/nushell/config.nu".source = ./dots/nushell/config.nu;
+      # switched to fish, configured in nixosModules/programs/fish.nix
+      # ".config/nushell/config.nu".source = ./dots/nushell/config.nu;
       ".config/starship.toml".source = starship;
       # bat
       ".config/bat/config".source = ./dots/bat/config;

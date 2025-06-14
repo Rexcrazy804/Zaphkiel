@@ -12,6 +12,10 @@
 
     ./hyprland
     ./booru-flake
+
+    # this is not an option
+    # auto enables fish and overwrites bash
+    ./fish.nix
   ];
 
   # global

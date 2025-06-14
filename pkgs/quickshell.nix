@@ -8,7 +8,7 @@
   nerd-fonts,
   lib,
 }: let
-  qsConfig = ../users/Configs/quickshell/kurukurubar;
+  qsConfig = ../users/dots/quickshell/kurukurubar;
 in
   symlinkJoin rec {
     pname = "qs-wrapper";

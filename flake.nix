@@ -80,17 +80,18 @@
     });
 
     nixosConfigurations = {
-      Zaphkiel = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs;
-          users = ["rexies"];
-        };
-        modules = [
-          ./hosts/Zaphkiel/configuration.nix
-          ./nixosModules
-          ./users
-        ];
-      };
+      # Computer die :kokokries:
+      # Zaphkiel = nixpkgs.lib.nixosSystem {
+      #   specialArgs = {
+      #     inherit inputs outputs;
+      #     users = ["rexies"];
+      #   };
+      #   modules = [
+      #     ./hosts/Zaphkiel/configuration.nix
+      #     ./nixosModules
+      #     ./users
+      #   ];
+      # };
 
       Raphael = nixpkgs.lib.nixosSystem {
         specialArgs = {
@@ -143,7 +144,7 @@
 
     templates = {
       rust-minimal = {
-        path = ./Templates/Rust/minimal;
+        path = ./templates/Rust/minimal;
         description = "Rust flake with oxalica overlay + mold linker";
         welcomeText = ''
           # A minimal rust template by Rexiel Scarlet (Rexcrazy804)
@@ -151,7 +152,7 @@
       };
 
       nix-minimal = {
-        path = ./Templates/Nix/minimal;
+        path = ./templates/Nix/minimal;
         description = "A minimal nix flake template with the lambda for ease of use";
         welcomeText = ''
           # A minimal nix flake template by Rexiel Scarlet (Rexcrazy804)
@@ -159,7 +160,7 @@
       };
 
       java = {
-        path = ./Templates/Java;
+        path = ./templates/Java;
         description = "I wish java was minimal";
         welcomeText = ''
           # A java template by Rexiel Scarlet (Rexcrazy804)

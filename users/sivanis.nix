@@ -37,7 +37,7 @@ in {
       matugentheme = matugen.theme.files;
     in {
       # shell
-      ".config/nushell/config.nu".source = ./Configs/nushell/config.nu;
+      ".config/nushell/config.nu".source = ./dots/nushell/config.nu;
       ".config/starship.toml".source = "${matugentheme}/starship.toml";
     };
   };

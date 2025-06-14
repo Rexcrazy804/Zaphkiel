@@ -68,8 +68,8 @@ changed = yellow bold
 untracked = red bold
 
 [delta]
-features = line-numbers decorations
-line-numbers = true
+features = decorations
+line-numbers = false
 dark = true
 
 [delta "decorations"]
@@ -79,13 +79,12 @@ minus-emph-style = white bold red
 minus-non-emph-style = red bold normal
 plus-emph-style = white bold green
 plus-non-emph-style = green bold normal
-file-style = yellow bold none
-file-decoration-style = yellow box
-hunk-header-style = magenta bold
-hunk-header-decoration-style = magenta box
+file-style = magenta bold ul
+file-decoration-style = magenta
+hunk-header-style = omit
+hunk-header-decoration-style = none
 minus-empty-line-marker-style = normal normal
 plus-empty-line-marker-style = normal normal
-line-numbers-right-format = "{np:^4}│ "
 
 [trim]
 bases = master,main

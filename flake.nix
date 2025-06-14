@@ -56,6 +56,7 @@
       );
   in {
     formatter = forAllSystems (pkgs: pkgs.alejandra);
+
     overlays.internal = final: _prev: {
       quickshell = inputs.quickshell.packages.${final.system}.default.override {
         withJemalloc = true;
@@ -71,8 +72,11 @@
       kokCursor = final.callPackage ./pkgs/kokCursor.nix {};
       nixvim = final.callPackage ./pkgs/nvim {};
       mpv-wrapped = final.callPackage ./pkgs/mpv {};
+      catppuccin-bat = final.callPackage ./pkgs/catppuccin-bat.nix {};
     };
+
     packages = forAllSystems (pkgs: {
+      catppuccin-bat = pkgs.catppuccin-bat;
       nixvim = pkgs.nixvim;
       quickshell = pkgs.callPackage ./pkgs/quickshell.nix {};
       kokCursor = pkgs.kokCursor;

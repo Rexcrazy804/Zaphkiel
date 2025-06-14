@@ -565,7 +565,7 @@ require("lz.n").load {
 }
 
 -- color scheme
-vim.cmd.colorscheme "rose-pine"
+vim.cmd.colorscheme "catppuccin-mocha"
 
 -- keybinds
 local map = vim.keymap.set

@@ -20,7 +20,16 @@ in {
     # others: hosts/<hostname>/user-configuration.nix
     # if you declare something here that isn't common to literally every host I
     # will personally show up under your bed whoever and wherever you are
-    packages = [pkgs.btop pkgs.git pkgs.delta];
+    packages = [
+      pkgs.btop
+      pkgs.git
+      pkgs.bat
+      pkgs.delta
+      # nushell dependencies
+      pkgs.starship
+      pkgs.zoxide
+      pkgs.carapace
+    ];
 
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICELSL45m4ptWDZwQDi2AUmCgt4n93KsmZtt69fyb0vy rexies@Zaphkiel"
@@ -42,16 +51,6 @@ in {
     user = username;
     directory = config.users.users.${username}.home;
     clobberFiles = lib.mkForce true;
-
-    packages = [
-      # nushell dependencies
-      pkgs.starship
-      pkgs.zoxide
-      pkgs.carapace
-
-      # quickshell dep
-      pkgs.kdePackages.qtgraphs
-    ];
 
     files = let
       matugen = config.programs.matugen;
@@ -109,6 +108,9 @@ in {
       # shell
       ".config/nushell/config.nu".source = ./dots/nushell/config.nu;
       ".config/starship.toml".source = starship;
+      # bat
+      ".config/bat/config".source = ./dots/bat/config;
+      ".config/bat/themes".source = pkgs.catppuccin-bat;
 
       # foot terminal
       ".config/foot/foot.ini".source = ./dots/foot/foot.ini;
@@ -116,6 +118,7 @@ in {
       ".config/foot/matugen-colors.ini".text = import ./dots/foot/matugen.nix {
         inherit lib matugenColors;
       };
+
 
       # hyprland
       ".config/uwsm/env".source = ./dots/uwsm/env;

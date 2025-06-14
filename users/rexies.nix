@@ -117,7 +117,6 @@ in {
         inherit lib matugenColors;
       };
 
-
       # hyprland
       ".config/uwsm/env".source = ./dots/uwsm/env;
       ".config/hypr/hypridle.conf".source = ./dots/hyprland/hypridle.conf;

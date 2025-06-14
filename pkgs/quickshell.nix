@@ -12,7 +12,7 @@
 in
   symlinkJoin rec {
     pname = "qs-wrapper";
-    version  = quickshell.version;
+    version = quickshell.version;
 
     paths = [quickshell];
     buildInputs = [makeWrapper];

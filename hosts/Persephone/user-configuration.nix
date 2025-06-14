@@ -56,7 +56,6 @@ in {
     #   magick $image -crop $"($in.0)x($in.1 | math round)+0+50" - | save -f ./output
     #   swww img ./output
     # }
-
   };
 
   hjem.users."rexies".files = {

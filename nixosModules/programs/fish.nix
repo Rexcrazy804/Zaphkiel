@@ -14,12 +14,22 @@
       snowboot = "sudo nixos-rebuild boot --flake ~/nixos";
       snowfall = "sudo nixos-rebuild switch --flake ~/nixos";
       snowtest = "sudo nixos-rebuild test --flake ~/nixos";
+      ls = "eza --icons --group-directories-first -1";
     };
-    interactiveShellInit = ''
+
+    interactiveShellInit = let
+      lsColors =
+        pkgs.runCommandLocal "lscolors" {
+          nativeBuildInputs = [pkgs.vivid];
+        }
+        ''
+          vivid generate rose-pine-moon > $out
+        '';
+    in ''
       set sponge_purge_only_on_exit true
       set fish_greeting
       set fish_cursor_insert block blink
-
+      set -Ux LS_COLORS $(cat ${lsColors})
       fish_vi_key_bindings
 
       # segsy function to simply open whatever you've typed (in the prompt/) in
@@ -59,7 +69,7 @@
   programs.command-not-found.enable = false;
   programs.fzf.keybindings = true;
 
-  environment.systemPackages = [pkgs.fishPlugins.done pkgs.fishPlugins.sponge];
+  environment.systemPackages = [pkgs.fishPlugins.done pkgs.fishPlugins.sponge pkgs.eza];
 
   programs.bash = {
     # adapted from nixos wiki for using bash as login shell and then launching fish

@@ -1,12 +1,11 @@
 # Kuru Kuru Speen Speen Bar
-![image](https://github.com/user-attachments/assets/800ca5c7-426b-47e8-b80b-76b7d419b4aa)
+![image](https://github.com/user-attachments/assets/caec808f-7945-466f-807e-765d69804c76)
 - Wallpaper source: [The Herta by meirong](https://www.pixiv.net/artworks/126270092)
 
 A compat and adorable bar designed with the goal of speeening the kuru kuru.
 Designed in acordance to google's material 3 guidelines, you can generate
 colors from your wallpaper using [matugen](https://github.com/InioX/matugen)
 using [this template](../../../../nixosModules/external/matugen/templates/quickshell-colors.qml)
-> If you'd like to reserve space for the top bar OR cool particle effect on mousemovement see the comment(s) in [shell.qml](shell.qml)
 
 ### Depencencies
 - quickshell

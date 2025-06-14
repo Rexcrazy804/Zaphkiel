@@ -15,15 +15,15 @@
   ];
 
   # global
-  environment.systemPackages = builtins.attrValues {
-    inherit (pkgs) git p7zip unrar;
-    nixvim = pkgs.wrappedPkgs.nvim-wrapped;
-  };
+  environment.systemPackages = [
+    pkgs.git
+    pkgs.p7zip
+    pkgs.unrar
+    pkgs.nixvim
+  ];
 
   # requried by gdm leaving it here since all my systems do use nushell
-  environment.shells = [
-    "/run/current-system/sw/bin/nu"
-  ];
+  environment.shells = ["/run/current-system/sw/bin/nu"];
 
   environment.variables.EDITOR = "nvim";
   environment.variables.MANPAGER = "nvim +Man!";
@@ -31,6 +31,6 @@
   programs.nano.enable = false;
 
   # wayland on electron and chromium based apps
-  # disable if  slow startup time for the same
+  # disable if slow startup time for the same
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 }

@@ -18,13 +18,9 @@ in {
 
     # only declare common packages here
     # others: hosts/<hostname>/user-configuration.nix
-    packages = [
-      pkgs.btop
-      (pkgs.wrappedPkgs.git.override {
-        username = description;
-        email = "37258415+Rexcrazy804@users.noreply.github.com";
-      })
-    ];
+    # if you declare something here that isn't common to literally every host I
+    # will personally show up under your bed whoever and wherever you are
+    packages = [pkgs.btop pkgs.git pkgs.delta];
 
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICELSL45m4ptWDZwQDi2AUmCgt4n93KsmZtt69fyb0vy rexies@Zaphkiel"
@@ -67,16 +63,16 @@ in {
         from = ["/home/rexies"];
         to = ["${config.users.users.${username}.home}"];
       in
-        builtins.replaceStrings from to (builtins.readFile ./Configs/qt6ct/qt6ct.conf);
+        builtins.replaceStrings from to (builtins.readFile ./dots/qt6ct/qt6ct.conf);
 
       # injecting colors
       fuzzel = let
-        base = builtins.readFile ./Configs/fuzzel/fuzzel.ini;
+        base = builtins.readFile ./dots/fuzzel/fuzzel.ini;
         colors = builtins.readFile "${matugenTheme}/fuzzel-colors.ini";
       in
         base + colors;
       starship = let
-        base = lib.importTOML ./Configs/starship/starship.toml;
+        base = lib.importTOML ./dots/starship/starship.toml;
         colors = lib.importTOML "${matugenTheme}/starship.toml";
       in
         pkgs.writers.writeTOML "starship.toml" (lib.recursiveUpdate base colors);
@@ -85,7 +81,7 @@ in {
         from = ["%%WALLPAPER%%"];
         to = ["${matugen.wallpaper}"];
       in
-        builtins.replaceStrings from to (builtins.readFile ./Configs/hyprland/hyprlock.conf);
+        builtins.replaceStrings from to (builtins.readFile ./dots/hyprland/hyprlock.conf);
 
       faceIcon = let
         image = config.programs.booru-flake.images."8726475";
@@ -100,42 +96,43 @@ in {
       quickshellConfig = pkgs.runCommandLocal "quick" {} ''
         mkdir $out
         cd $out
-        cp -rp ${./Configs/quickshell/kurukurubar}/* .
+        cp -rp ${./dots/quickshell/kurukurubar}/* .
         chmod u+rw ./Data/Colors.qml
         cp ${matugenTheme}/quickshell-colors.qml ./Data/Colors.qml
       '';
-
     in {
+      # git
+      ".config/git/config".source = ./dots/git/config;
+
       # face Icon
       ".face.icon".source = faceIcon;
       # shell
-      ".config/nushell/config.nu".source = ./Configs/nushell/config.nu;
+      ".config/nushell/config.nu".source = ./dots/nushell/config.nu;
       ".config/starship.toml".source = starship;
 
       # foot terminal
-      ".config/foot/foot.ini".source = ./Configs/foot/foot.ini;
-      ".config/foot/rose-pine.ini".source = ./Configs/foot/rose-pine.ini;
-      ".config/foot/matugen-colors.ini".text = import ./Configs/foot/matugen.nix {
+      ".config/foot/foot.ini".source = ./dots/foot/foot.ini;
+      ".config/foot/rose-pine.ini".source = ./dots/foot/rose-pine.ini;
+      ".config/foot/matugen-colors.ini".text = import ./dots/foot/matugen.nix {
         inherit lib matugenColors;
       };
 
-      # qt6ct
-      ".config/qt6ct/qt6ct.conf".text = qt6ct;
-      ".config/qt6ct/colors/matugen.conf".source = "${matugenTheme}/qtct-colors.conf";
-
       # hyprland
-      ".config/uwsm/env".source = ./Configs/uwsm/env;
-      ".config/hypr/hypridle.conf".source = ./Configs/hyprland/hypridle.conf;
-      ".config/hypr/hyprland.conf".source = ./Configs/hyprland/hyprland.conf;
+      ".config/uwsm/env".source = ./dots/uwsm/env;
+      ".config/hypr/hypridle.conf".source = ./dots/hyprland/hypridle.conf;
+      ".config/hypr/hyprland.conf".source = ./dots/hyprland/hyprland.conf;
       ".config/hypr/hyprlock.conf".text = hyprlockInjected;
       ".config/hypr/hyprcolors.conf".source = "${matugenTheme}/hyprcolors.conf";
-      ".config/yazi/yazi.toml".source = ./Configs/yazi/yazi.toml;
-      ".config/yazi/keymap.toml".source = ./Configs/yazi/keymap.toml;
+      ".config/yazi/yazi.toml".source = ./dots/yazi/yazi.toml;
+      ".config/yazi/keymap.toml".source = ./dots/yazi/keymap.toml;
       ".config/yazi/theme.toml".source = "${matugenTheme}/yazi-theme.toml";
       ".config/fuzzel/fuzzel.ini".text = fuzzel;
       ".config/background".source = matugen.wallpaper;
       # quickshell
       ".config/quickshell".source = quickshellConfig;
+      # qt6ct
+      ".config/qt6ct/qt6ct.conf".text = qt6ct;
+      ".config/qt6ct/colors/matugen.conf".source = "${matugenTheme}/qtct-colors.conf";
 
       # discord
       ".config/Vencord/themes/midnight.css".source = "${matugenTheme}/discord-midnight.css";

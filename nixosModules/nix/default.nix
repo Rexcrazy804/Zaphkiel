@@ -1,14 +1,14 @@
 {
   inputs,
+  outputs,
   pkgs,
   ...
 }: {
-  imports = [
-    ./activation.nix
-  ];
+  imports = [./activation.nix];
 
-  nixpkgs.config = {
-    allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [outputs.overlays.internal];
   };
 
   environment.etc."nix/inputs/nixpkgs".source = "${inputs.nixpkgs}";

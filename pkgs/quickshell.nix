@@ -8,14 +8,14 @@
   nerd-fonts,
   lib,
 }: let
-  qsConfig = ../Configs/quickshell/kurukurubar;
+  qsConfig = ../users/dots/quickshell/kurukurubar;
 in
   symlinkJoin rec {
-    name = "qs-wrapper";
+    pname = "qs-wrapper";
+    version  = quickshell.version;
+
     paths = [quickshell];
-
     buildInputs = [makeWrapper];
-
     qtDeps = [
       kdePackages.qtbase
       kdePackages.qtdeclarative

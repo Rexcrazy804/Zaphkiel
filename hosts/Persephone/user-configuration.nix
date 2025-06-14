@@ -11,7 +11,7 @@
     pkgs.foot
     pkgs.cbonsai
     pkgs.cowsay
-    pkgs.wrappedPkgs.mpv
+    pkgs.mpv-wrapped
   ];
   special = builtins.attrValues {
     discord = pkgs.discord.override {

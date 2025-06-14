@@ -68,11 +68,7 @@
     startWhenNeeded = lib.mkForce false;
   };
 
-  environment.systemPackages = builtins.attrValues {
-    inherit (pkgs) git;
-    nixvim = pkgs.wrappedPkgs.nvim-wrapped;
-  };
-
+  environment.systemPackages = [pkgs.git pkgs.nixvim];
   progModule.direnv.enable = true;
 
   system.stateVersion = "23.11";

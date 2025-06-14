@@ -13,10 +13,9 @@
     pkgs.foot
     pkgs.cbonsai
     pkgs.cowsay
+    pkgs.mpv-wrapped
   ];
   special = builtins.attrValues {
-    mpv = pkgs.wrappedPkgs.mpv;
-
     discord = pkgs.discord.override {
       withOpenASAR = true;
       withMoonlight = true;
@@ -42,6 +41,6 @@ in {
       from = ["monitor = eDP-1, preferred, auto, 1.25"];
       to = ["monitor = eDP-1, preferred, auto, auto"];
     in
-      lib.mkForce (builtins.replaceStrings from to (builtins.readFile ../../users/Configs/hyprland/hyprland.conf));
+      lib.mkForce (builtins.replaceStrings from to (builtins.readFile ../../users/dots/hyprland/hyprland.conf));
   };
 }

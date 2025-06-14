@@ -48,41 +48,50 @@
     systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
     forAllSystems = fn:
       nixpkgs.lib.genAttrs systems (
-        system: fn (import nixpkgs {system = system;})
+        system:
+          fn (import nixpkgs {
+            system = system;
+            overlays = [outputs.overlays.internal];
+          })
       );
   in {
-    packages = forAllSystems (pkgs: let
-      nvimPkgs = pkgs.callPackage ./users/Wrappers/nvim/default.nix {};
-    in rec {
-      inherit (nvimPkgs) nvim-no-lsp nvim-wrapped;
-      default = nvim-wrapped;
-      quickshell = pkgs.callPackage ./users/Wrappers/quickshell.nix {
-        quickshell = inputs.quickshell.packages.${pkgs.system}.default.override {
-          withJemalloc = true;
-          withQtSvg = true;
-          withWayland = true;
-          withX11 = false;
-          withPipewire = true;
-          withPam = true;
-          withHyprland = true;
-          withI3 = false;
-        };
+    formatter = forAllSystems (pkgs: pkgs.alejandra);
+    overlays.internal = final: _prev: {
+      quickshell = inputs.quickshell.packages.${final.system}.default.override {
+        withJemalloc = true;
+        withQtSvg = true;
+        withWayland = true;
+        withX11 = false;
+        withPipewire = true;
+        withPam = true;
+        withHyprland = true;
+        withI3 = false;
       };
+      fzf-wrapped = final.callPackage ./pkgs/fzf.nix {};
+      kokCursor = final.callPackage ./pkgs/kokCursor.nix {};
+      nixvim = final.callPackage ./pkgs/nvim {};
+      mpv-wrapped = final.callPackage ./pkgs/mpv {};
+    };
+    packages = forAllSystems (pkgs: {
+      nixvim = pkgs.nixvim;
+      quickshell = pkgs.callPackage ./pkgs/quickshell.nix {};
+      kokCursor = pkgs.kokCursor;
+      mpv = pkgs.mpv-wrapped.override {anime = true;};
     });
 
-    formatter = forAllSystems (pkgs: pkgs.alejandra);
     nixosConfigurations = {
-      Zaphkiel = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs;
-          users = ["rexies"];
-        };
-        modules = [
-          ./hosts/Zaphkiel/configuration.nix
-          ./nixosModules
-          ./users
-        ];
-      };
+      # Computer die :kokokries:
+      # Zaphkiel = nixpkgs.lib.nixosSystem {
+      #   specialArgs = {
+      #     inherit inputs outputs;
+      #     users = ["rexies"];
+      #   };
+      #   modules = [
+      #     ./hosts/Zaphkiel/configuration.nix
+      #     ./nixosModules
+      #     ./users
+      #   ];
+      # };
 
       Raphael = nixpkgs.lib.nixosSystem {
         specialArgs = {
@@ -135,7 +144,7 @@
 
     templates = {
       rust-minimal = {
-        path = ./Templates/Rust/minimal;
+        path = ./templates/Rust/minimal;
         description = "Rust flake with oxalica overlay + mold linker";
         welcomeText = ''
           # A minimal rust template by Rexiel Scarlet (Rexcrazy804)
@@ -143,7 +152,7 @@
       };
 
       nix-minimal = {
-        path = ./Templates/Nix/minimal;
+        path = ./templates/Nix/minimal;
         description = "A minimal nix flake template with the lambda for ease of use";
         welcomeText = ''
           # A minimal nix flake template by Rexiel Scarlet (Rexcrazy804)
@@ -151,7 +160,7 @@
       };
 
       java = {
-        path = ./Templates/Java;
+        path = ./templates/Java;
         description = "I wish java was minimal";
         welcomeText = ''
           # A java template by Rexiel Scarlet (Rexcrazy804)
@@ -161,18 +170,10 @@
 
     devShells = forAllSystems (pkgs: {
       quickshell = let
-        qs = inputs.quickshell.packages.${pkgs.system}.default.override {
-          withJemalloc = true;
-          withQtSvg = true;
-          withWayland = true;
-          withX11 = false;
-          withPipewire = true;
-          withPam = true;
-          withHyprland = true;
-          withI3 = false;
-        };
         qtDeps = [
-          qs
+          # pkgs.quickshell depends on the internal overlay
+          # see the top of this flake's outputs
+          pkgs.quickshell
           pkgs.kdePackages.qtbase
           pkgs.kdePackages.qtdeclarative
         ];

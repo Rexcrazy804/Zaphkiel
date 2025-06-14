@@ -15,12 +15,28 @@
       snowfall = "sudo nixos-rebuild switch --flake ~/nixos";
       snowtest = "sudo nixos-rebuild test --flake ~/nixos";
     };
-
     interactiveShellInit = ''
       set sponge_purge_only_on_exit true
       set fish_greeting
       set fish_cursor_insert block blink
+
       fish_vi_key_bindings
+
+      # segsy function to simply open whatever you've typed (in the prompt/) in
+      # your $EDITOR so that you can edit there and replace your command line
+      # with the edited content
+      function open_in_editor
+        set current_command $(commandline)
+        set tmp_file $(mktemp)
+        echo $current_command > $tmp_file
+        $EDITOR $tmp_file
+        commandline $(cat $tmp_file)
+        rm $tmp_file
+      end
+
+      function fish_user_key_bindings
+        bind --mode insert ctrl-o open_in_editor
+      end
     '';
   };
 
@@ -41,12 +57,9 @@
     '';
   };
   programs.command-not-found.enable = false;
+  programs.fzf.keybindings = true;
 
-  environment.systemPackages = [
-    pkgs.fishPlugins.fzf
-    pkgs.fishPlugins.done
-    pkgs.fishPlugins.sponge
-  ];
+  environment.systemPackages = [pkgs.fishPlugins.done pkgs.fishPlugins.sponge];
 
   programs.bash = {
     # adapted from nixos wiki for using bash as login shell and then launching fish

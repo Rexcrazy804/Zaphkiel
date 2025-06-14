@@ -24,7 +24,10 @@ format = "[ 󰉋 ](bg:primary_bg fg:primary_fg)[ $path ](fg:primary_bg bg:primar
 [character]
 format = "$symbol "
 success_symbol = "[ ](fg:primary_bg bg:primary_fg bold)"
-vimcmd_symbol = "[ ](fg:secondary_bg bg:secondary_fg bold)"
+vimcmd_symbol = "[ ](fg:primary_bg bg:primary_fg bold)"
+vimcmd_replace_one_symbol = "[ ](fg:primary_bg bg:primary_fg bold)"
+vimcmd_replace_symbol = "[ ](fg:primary_bg bg:primary_fg bold)"
+vimcmd_visual_symbol = "[ ](fg:primary_bg bg:primary_fg bold)"
 error_symbol = "[ ](fg:tertiary_bg bg:primary_fg bold)"
 
 [git_branch]

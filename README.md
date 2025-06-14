@@ -38,23 +38,27 @@ single wallpaper therefore it is locked to a single user configuration. I am
 sure I can extend it to support multiple users but as of now I don't yet have
 the need to do so.
 
-You can look into `users/Wrappers` for the config of each of the programs I
-have tinkered with most notably **mpv** featuring support for anime4k shaders
-and a custom **neovim** configuration with
-[lz.n](https://github.com/nvim-neorocks/lz.n) lazy loading.
+> **15th March 2025**<br>
+> newer configs will live in `users/Configs` with their
+> supporting matugen templates in `nixosModules/external/matugen/templates`
 
-And as of 15th March 2025, newer configs will live in `users/Configs` with their
-supporting matugen templates in `nixosModules/external/matugen/templates`
+> **14th June 2025**<br>
+> Wrappers have been removed completely, packages that
+> continue to be wrapped can be found in [`pkgs/`](pkgs/)
 
-## Nvim configuration
-I have also exposed neovim in the flake for the convenience of running it with
+## Exported packages
+The following packages are exported by this flake
+
+- `nixvim` My custom neovim configuration wrapped using the builtin neovim-unstable wrapper, heavily inspired by [sioodmy](https://github.com/sioodmy) notably with the inclusion of lazy loading with [lz.n](https://github.com/nvim-neorocks/lz.n) lazy loading.
+- `quickshell` My quickshell configuration specifically kurukurubar
+- `kokCursor` A cute kokomi XCursor
+- `mpv` my mpv configuration with anime4k shadders baked in
+
 ```bash
-nix run github:Rexcrazy804/Zaphkiel
+# command for running any of the above 
+# hopefully this helps beginners
+nix run github:Rexcrazy804/Zaphkiel#nixvim # replace nixvim with desired package
 ```
-
-> NOTE: nix running `#nvim-no-lsp` yields the config without downloading any
-LSPS (and some other extra packages)
-the default is `#nvim-wrapped`
 
 ## Credits & Thanks
 Firstly I have to thank [sioodmy](https://github.com/sioodmy) for being the

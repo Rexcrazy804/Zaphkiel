@@ -74,7 +74,6 @@
     };
     packages = forAllSystems (pkgs: {
       nixvim = pkgs.nixvim;
-      default = pkgs.nixvim;
       quickshell = pkgs.callPackage ./pkgs/quickshell.nix {};
       kokCursor = pkgs.kokCursor;
       mpv = pkgs.mpv-wrapped.override {anime = true;};

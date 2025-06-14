@@ -48,16 +48,37 @@
     systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
     forAllSystems = fn:
       nixpkgs.lib.genAttrs systems (
-        system: fn (import nixpkgs {system = system;})
+        system:
+          fn (import nixpkgs {
+            system = system;
+            overlays = [outputs.overlays.internal];
+          })
       );
   in {
-    packages = forAllSystems (pkgs: rec {
-      nvim = pkgs.callPackage ./pkgs/nvim {};
-      default = nvim;
-      quickshell = pkgs.callPackage ./pkgs/quickshell.nix {quickshell = inputs.quickshell.packages.${pkgs.system}.default;};
+    formatter = forAllSystems (pkgs: pkgs.alejandra);
+    overlays.internal = final: prev: {
+      quickshell = inputs.quickshell.packages.${prev.system}.default.override {
+        withJemalloc = true;
+        withQtSvg = true;
+        withWayland = true;
+        withX11 = false;
+        withPipewire = true;
+        withPam = true;
+        withHyprland = true;
+        withI3 = false;
+      };
+      fzf-wrapped = prev.callPackage ./pkgs/fzf.nix {};
+      kokCursor = prev.callPackage ./pkgs/kokCursor.nix {};
+      nixvim = prev.callPackage ./pkgs/nvim {};
+    };
+
+    packages = forAllSystems (pkgs: {
+      nixvim = pkgs.nixvim;
+      default = pkgs.nixvim;
+      quickshell = pkgs.callPackage ./pkgs/quickshell.nix {};
+      kokCursor = pkgs.kokCursor;
     });
 
-    formatter = forAllSystems (pkgs: pkgs.alejandra);
     nixosConfigurations = {
       Zaphkiel = nixpkgs.lib.nixosSystem {
         specialArgs = {
@@ -148,18 +169,10 @@
 
     devShells = forAllSystems (pkgs: {
       quickshell = let
-        qs = inputs.quickshell.packages.${pkgs.system}.default.override {
-          withJemalloc = true;
-          withQtSvg = true;
-          withWayland = true;
-          withX11 = false;
-          withPipewire = true;
-          withPam = true;
-          withHyprland = true;
-          withI3 = false;
-        };
         qtDeps = [
-          qs
+          # pkgs.quickshell depends on the internal overlay
+          # see the top of this flake's outputs
+          pkgs.quickshell
           pkgs.kdePackages.qtbase
           pkgs.kdePackages.qtdeclarative
         ];

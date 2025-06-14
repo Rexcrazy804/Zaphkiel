@@ -1,9 +1,14 @@
 {
-  pkgs,
+  neovimUtils,
   lib,
+  vimPlugins,
+  wrapNeovimUnstable,
+  neovim-unwrapped,
+  pkgs,
+  fzf,
   ...
 }: let
-  nvimConfig = pkgs.neovimUtils.makeNeovimConfig {
+  nvimConfig = neovimUtils.makeNeovimConfig {
     withPython3 = false;
     withRuby = false;
     withNodejs = false;
@@ -14,7 +19,7 @@
 
     plugins = builtins.attrValues {
       inherit
-        (pkgs.vimPlugins)
+        (vimPlugins)
         lz-n
         catppuccin-nvim
         rose-pine
@@ -43,7 +48,7 @@
         lspkind-nvim
         ;
 
-      treesitter = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+      treesitter = vimPlugins.nvim-treesitter.withAllGrammars;
 
       # figure this out later by comparing this with nvim-treesitter.builtGrammars
       # treesitter = vimPlugins.nvim-treesitter.withPlugins (p: with p; [
@@ -64,7 +69,7 @@
     };
   };
 
-  nvim = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped nvimConfig;
+  nvim = wrapNeovimUnstable neovim-unwrapped nvimConfig;
   packages = [
     pkgs.nil
     pkgs.alejandra

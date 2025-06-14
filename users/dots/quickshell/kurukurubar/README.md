@@ -1,4 +1,4 @@
-# Kuru Kuru Speen Speen Bar
+# Kuru Kuru Bar
 ![image](https://github.com/user-attachments/assets/caec808f-7945-466f-807e-765d69804c76)
 - Wallpaper source: [The Herta by meirong](https://www.pixiv.net/artworks/126270092)
 

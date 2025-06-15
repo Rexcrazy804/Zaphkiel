@@ -85,18 +85,6 @@ smudge = git-lfs smudge -- %f
 process = git-lfs filter-process
 required = true
 
-[alias]
-a = add --all
-ai = add -i
-c = commit
-ca = commit -a
-cm = commit -m
-cam = commit -am
-cd = commit --amend
-cp = cherry-pick
-d = diff
-ds = diff --staged
-
 # the below code is from https://github.com/catppuccin/delta/blob/main/catppuccin.gitconfig
 # with the following MIT license https://github.com/catppuccin/delta/blob/main/LICENSE
 # with modifications to some header hunk style

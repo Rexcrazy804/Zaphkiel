@@ -11,10 +11,29 @@
       # alias "servarrStatus" = systemctl status jellyfin.service sonarr.service transmission.service
       # alias "servarrStop" = systemctl stop jellyfin.service sonarr.service transmission.service
 
+      # nix stuff
+      snwb = "sudo nixos-rebuild boot --flake ~/nixos";
+      snwt = "sudo nixos-rebuild test --flake ~/nixos";
+      snws = "sudo nixos-rebuild switch --flake ~/nixos";
+
+      # git stuff
+      ga = "git add --all";
+      gc = "git commit";
+      gcm = "git commit -m";
+      gca = "git commit --amend";
+      gcp = "git cherry-pick";
+      gd = "git diff";
+      gds = "git diff --staged";
+
+      # misc
+      qsp = "qs  --log-rules 'quickshell.dbus.properties.warning = false' -p ./kurukurubar/";
+      lse = "eza --icons --group-directories-first -1";
+    };
+    shellAliases = {
+      ls = "eza --icons --group-directories-first -1";
       snowboot = "sudo nixos-rebuild boot --flake ~/nixos";
       snowfall = "sudo nixos-rebuild switch --flake ~/nixos";
       snowtest = "sudo nixos-rebuild test --flake ~/nixos";
-      ls = "eza --icons --group-directories-first -1";
     };
 
     interactiveShellInit = let

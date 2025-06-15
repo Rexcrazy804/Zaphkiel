@@ -24,11 +24,11 @@
 - [x] reset homeView state when collappsed / tray item removed / ~~onActivated~~
 - [x] cleanup battery pill and powerTab no battery code
 - [x] power profile indicator inside battery pill
+- [x] fix system tray icons
 
 ### What I do not like to see
 - [ ] use font.family for specifying fonts
 - [ ] cleanup rectangle: color: "transparents" with Item {}
-- [ ] fix system tray icons
 
 ### Later
 - [ ] kdeConnect Integration

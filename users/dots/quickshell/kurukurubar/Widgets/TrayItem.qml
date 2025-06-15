@@ -22,15 +22,27 @@ Rectangle {
   required property var stack
 
   color: "transparent"
-  implicitHeight: trayItemIcon.implicitSize
+  implicitHeight: trayItemIcon.width
   implicitWidth: this.implicitHeight
 
-  IconImage {
+  Image {
     id: trayItemIcon
 
     anchors.centerIn: parent
-    implicitSize: 16
-    source: root.modelData.icon
+    antialiasing: true
+    height: this.width
+    mipmap: true
+    smooth: true
+    source: {
+      // adapted from soramanew
+      const icon = root.modelData.icon;
+      if (icon.includes("?path=")) {
+        const [name, path] = icon.split("?path=");
+        return `file://${path}/${name.slice(name.lastIndexOf("/") + 1)}`;
+      }
+      return root.modelData.icon;
+    }
+    width: 18
 
     // too blurry for now
     // layer.enabled: true

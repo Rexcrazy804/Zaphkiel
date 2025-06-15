@@ -37,24 +37,20 @@
     };
 
     interactiveShellInit = let
-      lsColors =
-        pkgs.runCommandLocal "lscolors" {
-          nativeBuildInputs = [pkgs.vivid];
-        }
-        ''
-          vivid generate rose-pine-moon > $out
-        '';
+      lsColors = pkgs.runCommandLocal "lscolors" {nativeBuildInputs = [pkgs.vivid];} ''
+        vivid generate rose-pine-moon > $out
+      '';
     in ''
       set sponge_purge_only_on_exit true
       set fish_greeting
-      set fish_cursor_insert block blink
+      set fish_cursor_insert line blink
       set -Ux LS_COLORS $(cat ${lsColors})
       fish_vi_key_bindings
 
       # segsy function to simply open whatever you've typed (in the prompt/) in
       # your $EDITOR so that you can edit there and replace your command line
       # with the edited content
-      function open_in_editor
+      function open_in_editor -d "opens current commandline in \$EDITOR"
         set current_command $(commandline)
         set tmp_file $(mktemp --suffix=.fish)
         echo $current_command > $tmp_file
@@ -64,7 +60,8 @@
       end
 
       function fish_user_key_bindings
-        bind --mode insert ctrl-o open_in_editor
+        bind --mode insert ctrl-o 'open_in_editor'
+        bind ctrl-o 'open_in_editor'
       end
     '';
   };
@@ -89,8 +86,8 @@
   programs.fzf.keybindings = true;
 
   environment.systemPackages = [
-    pkgs.fishPlugins.done 
-    pkgs.fishPlugins.sponge 
+    pkgs.fishPlugins.done
+    pkgs.fishPlugins.sponge
     pkgs.eza
     pkgs.fish-lsp
   ];

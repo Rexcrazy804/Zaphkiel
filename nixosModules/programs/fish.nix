@@ -56,7 +56,7 @@
       # with the edited content
       function open_in_editor
         set current_command $(commandline)
-        set tmp_file $(mktemp)
+        set tmp_file $(mktemp --suffix=.fish)
         echo $current_command > $tmp_file
         $EDITOR $tmp_file
         commandline $(cat $tmp_file)
@@ -88,7 +88,12 @@
   programs.command-not-found.enable = false;
   programs.fzf.keybindings = true;
 
-  environment.systemPackages = [pkgs.fishPlugins.done pkgs.fishPlugins.sponge pkgs.eza];
+  environment.systemPackages = [
+    pkgs.fishPlugins.done 
+    pkgs.fishPlugins.sponge 
+    pkgs.eza
+    pkgs.fish-lsp
+  ];
 
   programs.bash = {
     # adapted from nixos wiki for using bash as login shell and then launching fish

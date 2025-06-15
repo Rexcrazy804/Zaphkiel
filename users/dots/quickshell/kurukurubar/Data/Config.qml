@@ -13,6 +13,7 @@ Singleton {
 
     onAdapterUpdated: writeAdapter()
     onFileChanged: reload()
+    watchChanges: true
 
     JsonAdapter {
       id: jsonData

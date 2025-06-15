@@ -193,7 +193,7 @@
             SHELL=fish exec fish
           '';
           buildInputs = qtDeps;
-          packages = [pkgs.material-symbols];
+          packages = [pkgs.material-symbols pkgs.google-fonts];
         };
     });
   };

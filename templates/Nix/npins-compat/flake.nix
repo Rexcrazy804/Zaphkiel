@@ -1,17 +1,16 @@
 {
-  # don't ask me why
-  description = "npins bridging flake template";
+  description = "npins flake compat layer";
   inputs = {};
   outputs = {self, ...}: let
-    systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
     sources = import ./npins;
+    # npins add git https://git.lix.systems/lix-project/flake-compat --branch=main
+    compat = src: (import sources.flake-compat {inherit src;}).outputs;
+    nixpkgs = compat sources.nixpkgs;
 
-    # stolen from their original implimentations in nixpkg.lib
-    nameValuePair = name: value: {inherit name value;};
-    genAttrs = names: f: builtins.listToAttrs (map (n: nameValuePair n (f n)) names);
+    systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
     forAllSystems = f:
-      genAttrs systems (
-        system: f (import sources.nixpkgs {inherit system;})
+      nixpkgs.lib.genAttrs systems (
+        system: f (import nixpkgs {inherit system;})
       );
   in {
     packages = forAllSystems (pkgs: {

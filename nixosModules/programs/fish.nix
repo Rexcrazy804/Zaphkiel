@@ -15,6 +15,9 @@
       snwb = "sudo nixos-rebuild boot --flake ~/nixos";
       snwt = "sudo nixos-rebuild test --flake ~/nixos";
       snws = "sudo nixos-rebuild switch --flake ~/nixos";
+      nsh = "nix shell nixpkgs#";
+      nrn = "nix run nixpkgs#";
+      np = "env NIXPKGS_ALLOW_UNFREE=1 nix --impure";
 
       # git stuff
       ga = "git add --all";

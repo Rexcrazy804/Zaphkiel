@@ -163,6 +163,14 @@
         '';
       };
 
+      nix-npins = {
+        path = ./templates/Nix/minimal;
+        description = "A cursed npin-flake bridge template";
+        welcomeText = ''
+          # A cursed npin-flake bridge template by Rexiel Scarlet (Rexcrazy804)
+        '';
+      };
+
       java = {
         path = ./templates/Java;
         description = "I wish java was minimal";

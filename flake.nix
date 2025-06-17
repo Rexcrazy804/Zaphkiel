@@ -68,7 +68,6 @@
         withHyprland = true;
         withI3 = false;
       };
-      fzf-wrapped = final.callPackage ./pkgs/fzf.nix {};
       kokCursor = final.callPackage ./pkgs/kokCursor.nix {};
       nixvim = final.callPackage ./pkgs/nvim {};
       mpv-wrapped = final.callPackage ./pkgs/mpv {};

@@ -49,7 +49,6 @@
         pkgs.hyprsunset
         pkgs.trashy
         pkgs.fuzzel
-        pkgs.fzf-wrapped
         pkgs.wl-screenrec
         pkgs.libnotify
         pkgs.swappy

@@ -43,11 +43,20 @@
       lsColors = pkgs.runCommandLocal "lscolors" {nativeBuildInputs = [pkgs.vivid];} ''
         vivid generate rose-pine-moon > $out
       '';
+      catppucin-theme = [
+        "bg+:#313244,bg:-1,spinner:#f5e0dc,hl:#f38ba8"
+        "fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc"
+        "marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+        "selected-bg:#45475a"
+        "border:#313244,label:#cdd6f4"
+      ];
+      fzf-options = builtins.concatStringsSep " " (builtins.map (option: "--color=" + option) catppucin-theme);
     in ''
       set sponge_purge_only_on_exit true
       set fish_greeting
       set fish_cursor_insert line blink
       set -Ux LS_COLORS $(cat ${lsColors})
+      set -Ux FZF_DEFAULT_OPTS ${fzf-options}
       fish_vi_key_bindings
 
       # segsy function to simply open whatever you've typed (in the prompt/) in
@@ -64,6 +73,7 @@
 
       function fish_user_key_bindings
         bind --mode insert ctrl-o 'open_in_editor'
+        bind --mode insert alt-c 'cdi; commandline -f repaint'
         bind ctrl-o 'open_in_editor'
       end
     '';

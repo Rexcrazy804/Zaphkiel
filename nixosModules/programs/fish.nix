@@ -1,8 +1,4 @@
-{
-  pkgs,
-  outputs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.fish = {
     enable = true;
     shellAbbrs = {
@@ -19,7 +15,7 @@
       # git stuff
       ga = "git add --all";
       gc = "git commit";
-      gcm = "git commit -m";
+      "gcm --set-cursor" = "git commit -m \"%\"";
       gca = "git commit --amend";
       gcp = "git cherry-pick";
       gd = "git diff";
@@ -57,22 +53,11 @@
       set -Ux FZF_DEFAULT_OPTS ${fzf-options}
       fish_vi_key_bindings
 
-      # segsy function to simply open whatever you've typed (in the prompt/) in
-      # your $EDITOR so that you can edit there and replace your command line
-      # with the edited content
-      function open_in_editor -d "opens current commandline in \$EDITOR"
-        set current_command $(commandline)
-        set tmp_file $(mktemp --suffix=.fish)
-        echo $current_command > $tmp_file
-        $EDITOR $tmp_file
-        commandline $(cat $tmp_file)
-        rm $tmp_file
-      end
-
       function fish_user_key_bindings
-        bind --mode insert ctrl-o 'open_in_editor'
+        bind --mode insert alt-e 'edit_command_buffer'
+        bind alt-e 'edit_command_buffer'
         bind --mode insert alt-c 'cdi; commandline -f repaint'
-        bind ctrl-o 'open_in_editor'
+        bind --mode insert alt-f 'fzf-file-widget'
       end
 
       # hydro (prompt) stuff

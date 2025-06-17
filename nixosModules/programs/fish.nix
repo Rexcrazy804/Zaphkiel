@@ -6,22 +6,15 @@
   programs.fish = {
     enable = true;
     shellAbbrs = {
-      # old stuff not sure if I'll ever use em
-      # alias "mchollyjStart" = systemctl start minecraft-server-hollyj.service
-      # alias "mchollyjStatus" = systemctl status minecraft-server-hollyj.service
-      # alias "mchollyjStop" = systemctl stop minecraft-server-hollyj.service
-      # alias "nmpv" = nvidia-offload mpv
-      # alias "servarrStart" = systemctl start jellyfin.service sonarr.service transmission.service
-      # alias "servarrStatus" = systemctl status jellyfin.service sonarr.service transmission.service
-      # alias "servarrStop" = systemctl stop jellyfin.service sonarr.service transmission.service
-
       # nix stuff
       snwb = "sudo nixos-rebuild boot --flake ~/nixos";
       snwt = "sudo nixos-rebuild test --flake ~/nixos";
       snws = "sudo nixos-rebuild switch --flake ~/nixos";
-      nsh = "nix shell nixpkgs#";
-      nrn = "nix run nixpkgs#";
-      np = "env NIXPKGS_ALLOW_UNFREE=1 nix --impure";
+      # sometimes you just read source code ask yourself why and then come up
+      # with shit like this
+      "nsh --set-cursor" = "nix shell nixpkgs#%";
+      "nrn --set-cursor" = "nix run nixpkgs#%";
+      npu = "env NIXPKGS_ALLOW_UNFREE=1 nix --impure";
 
       # git stuff
       ga = "git add --all";
@@ -31,6 +24,7 @@
       gcp = "git cherry-pick";
       gd = "git diff";
       gds = "git diff --staged";
+      gdh = "git diff HEAD~1";
 
       # misc
       qsp = "qs  --log-rules 'quickshell.dbus.properties.warning = false' -p ./kurukurubar/";

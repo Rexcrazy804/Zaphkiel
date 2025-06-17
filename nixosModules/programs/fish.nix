@@ -37,14 +37,8 @@
       lsColors = pkgs.runCommandLocal "lscolors" {nativeBuildInputs = [pkgs.vivid];} ''
         vivid generate rose-pine > $out
       '';
-      catppucin-theme = [
-        "bg+:#313244,bg:-1,spinner:#f5e0dc,hl:#f38ba8"
-        "fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc"
-        "marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
-        "selected-bg:#45475a"
-        "border:#313244,label:#cdd6f4"
-      ];
-      fzf-options = builtins.concatStringsSep " " (builtins.map (option: "--color=" + option) catppucin-theme);
+      rosepine-fzf = ["fg:#908caa" "bg:-1" "hl:#ebbcba" "fg+:#e0def4" "bg+:#26233a" "hl+:#ebbcba" "border:#403d52" "header:#31748f" "gutter:#191724" "spinner:#f6c177" "info:#9ccfd8" "pointer:#c4a7e7" "marker:#eb6f92" "prompt:#908caa"];
+      fzf-options = builtins.concatStringsSep " " (builtins.map (option: "--color=" + option) rosepine-fzf);
     in ''
       set sponge_purge_only_on_exit true
       set fish_greeting

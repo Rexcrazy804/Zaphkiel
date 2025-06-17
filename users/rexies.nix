@@ -107,7 +107,7 @@ in {
       # ".config/starship.toml".source = starship;
       ".config/fish/themes".source = "${outputs.npins.fish}/themes";
       ".config/fish/config.fish".source = ./dots/fish/config.fish;
-      # bat 
+      # bat
       ".config/bat/config".source = ./dots/bat/config;
       # NOTE: required bat cache --build before theme can be used
       ".config/bat/themes".source = "${outputs.npins.bat}/themes";

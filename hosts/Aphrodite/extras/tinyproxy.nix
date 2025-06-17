@@ -11,5 +11,7 @@
       ];
     };
   };
+
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [8888];
+  systemd.services.tinyproxy.serviceConfig.RestartSec = 30;
 }

@@ -39,7 +39,7 @@
 
     interactiveShellInit = let
       lsColors = pkgs.runCommandLocal "lscolors" {nativeBuildInputs = [pkgs.vivid];} ''
-        vivid generate rose-pine-moon > $out
+        vivid generate rose-pine > $out
       '';
       catppucin-theme = [
         "bg+:#313244,bg:-1,spinner:#f5e0dc,hl:#f38ba8"

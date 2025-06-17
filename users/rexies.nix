@@ -2,6 +2,7 @@
   pkgs,
   config,
   inputs,
+  outputs,
   lib,
   ...
 }: let
@@ -103,12 +104,13 @@ in {
       # face Icon
       ".face.icon".source = faceIcon;
       # shell
-      # switched to fish, configured in nixosModules/programs/fish.nix
       # ".config/nushell/config.nu".source = ./dots/nushell/config.nu;
-      ".config/starship.toml".source = starship;
-      # bat
+      # ".config/starship.toml".source = starship;
+      ".config/fish/themes".source = "${outputs.npins.fish}/themes";
+      # bat 
       ".config/bat/config".source = ./dots/bat/config;
-      ".config/bat/themes".source = pkgs.catppuccin-bat;
+      # NOTE: required bat cache --build before theme can be used
+      ".config/bat/themes".source = "${outputs.npins.bat}/themes";
 
       # foot terminal
       ".config/foot/foot.ini".source = ./dots/foot/foot.ini;

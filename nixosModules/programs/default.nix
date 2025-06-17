@@ -24,6 +24,7 @@
     pkgs.p7zip
     pkgs.unrar
     pkgs.nixvim
+    pkgs.npins
   ];
 
   # requried by gdm leaving it here since all my systems do use nushell

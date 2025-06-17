@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, outputs, ...}: {
   programs.fish = {
     enable = true;
     shellAbbrs = {
@@ -51,13 +51,16 @@
         "border:#313244,label:#cdd6f4"
       ];
       fzf-options = builtins.concatStringsSep " " (builtins.map (option: "--color=" + option) catppucin-theme);
-    in ''
+    in /*fish*/ ''
       set sponge_purge_only_on_exit true
       set fish_greeting
       set fish_cursor_insert line blink
       set -Ux LS_COLORS $(cat ${lsColors})
       set -Ux FZF_DEFAULT_OPTS ${fzf-options}
       fish_vi_key_bindings
+
+      # the config for this in users/rexies.nix
+      fish_config theme choose "Rosé Pine"
 
       # segsy function to simply open whatever you've typed (in the prompt/) in
       # your $EDITOR so that you can edit there and replace your command line
@@ -76,6 +79,19 @@
         bind --mode insert alt-c 'cdi; commandline -f repaint'
         bind ctrl-o 'open_in_editor'
       end
+
+      set -g nix_shell_indicator (if test -n "$IN_NIX_SHELL"; echo -n "impure "; end)
+      function update_nshell_indicator --on-variable IN_NIX_SHELL
+        if test -n "$IN_NIX_SHELL";
+          set -g nix_shell_indicator "impure "
+        else
+          set -g nix_shell_indicator
+        end
+      end
+
+      function fish_prompt
+        echo -e "$_hydro_color_start$hydro_symbol_start$nix_shell_indicator$hydro_color_normal$_hydro_color_pwd$_hydro_pwd$hydro_color_normal $_hydro_color_git$$_hydro_git$hydro_color_normal$_hydro_color_duration$_hydro_cmd_duration$hydro_color_normal$_hydro_status$hydro_color_normal "
+      end
     '';
   };
 
@@ -86,7 +102,7 @@
   };
   programs.direnv.enableFishIntegration = true;
   programs.starship = {
-    enable = true;
+    enable = false;
     transientPrompt.enable = true;
     # I don't know why they thought not including starship in environment.systemPackages was
     # a genius idea
@@ -101,6 +117,7 @@
   environment.systemPackages = [
     pkgs.fishPlugins.done
     pkgs.fishPlugins.sponge
+    pkgs.fishPlugins.hydro
     pkgs.eza
     pkgs.fish-lsp
   ];

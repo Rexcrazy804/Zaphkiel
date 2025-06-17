@@ -1,0 +1,31 @@
+{
+  "pins": {
+    "bat": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "catppuccin",
+        "repo": "bat"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "699f60fc8ec434574ca7451b444b880430319941",
+      "url": "https://github.com/catppuccin/bat/archive/699f60fc8ec434574ca7451b444b880430319941.tar.gz",
+      "hash": "1lirgwgh2hnz6j60py19bbmhvgaqs7i6wf6702k6n83lgw4aixg9"
+    },
+    "fish": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "rose-pine",
+        "repo": "fish"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "b82982c55582cfaf6f220de1893c7c73dd0cb301",
+      "url": "https://github.com/rose-pine/fish/archive/b82982c55582cfaf6f220de1893c7c73dd0cb301.tar.gz",
+      "hash": "1qqxragn6hynxkf5lbfkbhvqy0w0rw2j9lq6a66lsffp9vbb1xhf"
+    }
+  },
+  "version": 5
+}

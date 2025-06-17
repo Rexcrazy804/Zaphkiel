@@ -56,7 +56,7 @@
       );
   in {
     formatter = forAllSystems (pkgs: pkgs.alejandra);
-
+    npins = import ./npins;
     overlays.internal = final: _prev: {
       quickshell = inputs.quickshell.packages.${final.system}.default.override {
         withJemalloc = true;

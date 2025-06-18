@@ -29,7 +29,7 @@ Rectangle {
     break;
   }
 
-  Layout.minimumWidth: contentRow.width? contentRow.width : 1
+  Layout.minimumWidth: contentRow.width ? contentRow.width : 1
   color: Dat.Colors.primary_container
 
   Behavior on Layout.minimumWidth {

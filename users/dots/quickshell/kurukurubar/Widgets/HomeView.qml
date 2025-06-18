@@ -159,6 +159,7 @@ Rectangle {
         anchors.fill: parent
         anchors.leftMargin: 10
         anchors.rightMargin: 10
+
         Item {
           Layout.fillHeight: true
           implicitWidth: trayItemRow.width
@@ -181,19 +182,23 @@ Rectangle {
             }
           }
         }
+
         Item {
           Layout.fillHeight: true
           Layout.fillWidth: true
         }
+
         Item {
           Layout.fillHeight: true
           implicitWidth: uptimeText.contentWidth + 10
+
           Text {
             id: uptimeText
+
             anchors.centerIn: parent
-            text: Dat.Resources.uptime
-            font.pointSize: 10
             color: Dat.Colors.on_surface
+            font.pointSize: 10
+            text: Dat.Resources.uptime
           }
         }
       }

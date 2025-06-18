@@ -73,13 +73,15 @@ Singleton {
 
   Process {
     id: uptime
+
     command: ["uptime"]
+
     stdout: StdioCollector {
       onStreamFinished: {
         // my regex skills are segs
-        const time = text.match(/((\d+:?)+?(?=,))/)[0]
-        const days = text.match(/(\d+) days /) ?? [""]
-        root.uptime = days[0] + time
+        const time = text.match(/((\d+:?)+?(?=,))/)[0];
+        const days = text.match(/(\d+) days /) ?? [""];
+        root.uptime = days[0] + time;
       }
     }
   }
@@ -87,11 +89,11 @@ Singleton {
   Timer {
     interval: 1000 * 60
     repeat: true
-    triggeredOnStart: true
     running: Globals.notchState == "FULLY_EXPANDED" && Globals.swipeIndex == 0
+    triggeredOnStart: true
 
     onTriggered: {
-      uptime.running = true
+      uptime.running = true;
     }
   }
 }

@@ -21,16 +21,6 @@ Singleton {
   // one of "COLLAPSED", "EXPANDED", "FULLY_EXPANDED"
   property string notchState: "COLLAPSED"
 
-  // fixes issue where bar starts collapsed when reserved shell is turned on
-  // thanks syncqtc for noticing it :>
-  Component.onCompleted: {
-    Dat.Config.data.reservedShellChanged.connect(() => {
-      if (notchState == "COLLAPSED" && Dat.Config.data.reservedShell) {
-        notchState = "EXPANDED"
-      }
-    })
-  }
-
   // one of "HIDDEN", "POPUP", "INBOX"
   property string notifState: "HIDDEN"
 
@@ -48,6 +38,15 @@ Singleton {
   // 4 => SettingsView
   property int swipeIndex: 0
 
+  // fixes issue where bar starts collapsed when reserved shell is turned on
+  // thanks syncqtc for noticing it :>
+  Component.onCompleted: {
+    Dat.Config.data.reservedShellChanged.connect(() => {
+      if (notchState == "COLLAPSED" && Dat.Config.data.reservedShell) {
+        notchState = "EXPANDED";
+      }
+    });
+  }
   onActWinNameChanged: {
     if (Dat.Config.data.reservedShell) {
       return;

@@ -10,15 +10,16 @@ Singleton {
 
   FileView {
     path: Dat.Paths.config + "/config.json"
+    watchChanges: true
 
     onAdapterUpdated: writeAdapter()
     onFileChanged: reload()
-    watchChanges: true
 
     JsonAdapter {
       id: jsonData
-      property bool reservedShell: false
+
       property bool mousePsystem: false
+      property bool reservedShell: false
     }
   }
 }

@@ -32,7 +32,7 @@ Rectangle {
         id: infoCol
 
         anchors.fill: parent
-        anchors.margins: (informationRect.visible)? 0 : 10
+        anchors.margins: (informationRect.visible) ? 0 : 10
 
         Item {
           Layout.fillHeight: true
@@ -112,6 +112,7 @@ Rectangle {
 
         Rectangle {
           id: informationRect
+
           // BATTERY information
           Layout.fillWidth: true
           color: Dat.Colors.surface_container_highest

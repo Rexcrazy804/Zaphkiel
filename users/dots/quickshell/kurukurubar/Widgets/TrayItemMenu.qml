@@ -11,6 +11,31 @@ Rectangle {
 
   required property QsMenuOpener trayMenu
 
+  Behavior on trayMenu {
+    SequentialAnimation {
+      NumberAnimation {
+        target: root
+        property: "opacity"
+        from: 1
+        to: 0
+        duration: Dat.MaterialEasing.standardTime
+        easing.bezierCurve: Dat.MaterialEasing.standard
+      }
+      PropertyAction {
+        target: root
+        property: "trayMenu"
+      }
+      NumberAnimation {
+        target: root
+        property: "opacity"
+        from: 0
+        to: 1
+        duration: Dat.MaterialEasing.standardDecelTime
+        easing.bezierCurve: Dat.MaterialEasing.standardDecel
+      }
+    }
+  }
+
   clip: true
   color: Dat.Colors.surface_container
   radius: 20

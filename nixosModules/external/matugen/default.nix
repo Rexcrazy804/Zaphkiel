@@ -75,7 +75,6 @@
     ])
     .code;
 
-
   # implies no color support
   # command =
   #   if (builtins.isNull cfg.source_color)
@@ -87,20 +86,24 @@
     src = cfg.wallpaper;
     nativeBuildInputs = [cfg.package];
     dontUnpack = true;
-    installPhase = /*bash*/ ''
-      mkdir -p $out
-      cd $out
+    installPhase =
+      /*
+      bash
+      */
+      ''
+        mkdir -p $out
+        cd $out
 
-      export HOME=$out
-      matugen image $src \
-        --config ${matugenConfig} \
-        --mode ${cfg.variant} \
-        --type ${cfg.type} \
-        --json ${cfg.jsonFormat} \
-        --contrast ${lib.strings.floatToString cfg.contrast} \
-        --quiet \
-        > $out/theme.json
-    '';
+        export HOME=$out
+        matugen image $src \
+          --config ${matugenConfig} \
+          --mode ${cfg.variant} \
+          --type ${cfg.type} \
+          --json ${cfg.jsonFormat} \
+          --contrast ${lib.strings.floatToString cfg.contrast} \
+          --quiet \
+          > $out/theme.json
+      '';
   };
   colors = (builtins.fromJSON (builtins.readFile "${themePackage}/theme.json")).colors;
 in {

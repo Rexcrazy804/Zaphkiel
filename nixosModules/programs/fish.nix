@@ -32,7 +32,7 @@
       gl = "git log";
 
       # misc
-      qsp = "qs  --log-rules 'quickshell.dbus.properties.warning = false' -p ./kurukurubar/";
+      qsp = "qs --log-rules 'quickshell.dbus.properties.warning = false' -p ./kurukurubar/";
       lse = "eza --icons --group-directories-first -1";
     };
     shellAliases = {

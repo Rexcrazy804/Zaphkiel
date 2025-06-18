@@ -75,26 +75,33 @@
     ])
     .code;
 
-  command =
-    if (builtins.isNull cfg.source_color)
-    then "image ${cfg.wallpaper}"
-    else "color ${sourceColorTypeMatcher cfg.source_color} \"${cfg.source_color}\"";
 
-  themePackage = builtins.trace command (pkgs.runCommandLocal "matugen-themes-${cfg.variant}" {} ''
-    mkdir -p $out
-    cd $out
-    export HOME=$(pwd)
+  # implies no color support
+  # command =
+  #   if (builtins.isNull cfg.source_color)
+  #   then "image ${cfg.wallpaper}"
+  #   else "color ${sourceColorTypeMatcher cfg.source_color} \"${cfg.source_color}\"";
 
-    ${cfg.package}/bin/matugen \
-      ${command} \
-      --config ${matugenConfig} \
-      --mode ${cfg.variant} \
-      --type ${cfg.type} \
-      --json ${cfg.jsonFormat} \
-      --contrast ${lib.strings.floatToString cfg.contrast} \
-      --quiet \
-      > $out/theme.json
-  '');
+  themePackage = pkgs.stdenvNoCC.mkDerivation {
+    name = "matugen-themes-${cfg.variant}";
+    src = cfg.wallpaper;
+    nativeBuildInputs = [cfg.package];
+    dontUnpack = true;
+    installPhase = /*bash*/ ''
+      mkdir -p $out
+      cd $out
+
+      export HOME=$out
+      matugen image $src \
+        --config ${matugenConfig} \
+        --mode ${cfg.variant} \
+        --type ${cfg.type} \
+        --json ${cfg.jsonFormat} \
+        --contrast ${lib.strings.floatToString cfg.contrast} \
+        --quiet \
+        > $out/theme.json
+    '';
+  };
   colors = (builtins.fromJSON (builtins.readFile "${themePackage}/theme.json")).colors;
 in {
   imports = [./config.nix];

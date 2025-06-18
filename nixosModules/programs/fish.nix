@@ -6,7 +6,7 @@
       snwb = "sudo nixos-rebuild boot --flake ~/nixos";
       snwt = "sudo nixos-rebuild test --flake ~/nixos";
       snws = "sudo nixos-rebuild switch --flake ~/nixos";
-      # sometimes you just read source code ask yourself why and then come up
+      # sometimes you just read source code, ask yourself why, and then come up
       # with shit like this
       "nsh --set-cursor" = "nix shell nixpkgs#%";
       "nrn --set-cursor" = "nix run nixpkgs#%";
@@ -18,9 +18,18 @@
       "gcm --set-cursor" = "git commit -m \"%\"";
       gca = "git commit --amend";
       gcp = "git cherry-pick";
+      grs = "git restore --staged";
+      grsa = "git restore --staged .";
+      gr = "git restore";
+      gra = "git restore .";
+      gs = "git status";
       gd = "git diff";
       gds = "git diff --staged";
       gdh = "git diff HEAD~1";
+      # I forgot where I stole this from
+      # prolly some stack exchange thread
+      glg = "git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all";
+      gl = "git log";
 
       # misc
       qsp = "qs  --log-rules 'quickshell.dbus.properties.warning = false' -p ./kurukurubar/";

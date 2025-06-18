@@ -19,7 +19,7 @@ RowLayout {
       color: Dat.Colors.on_surface
       font.pointSize: 10
       horizontalAlignment: Text.AlignLeft
-      text: "󰂏 " + info.bat.energyCapacity
+      text: "󰂏 " + info.bat.energyCapacity.toFixed(2)
       verticalAlignment: Text.AlignVCenter
     }
   }
@@ -33,13 +33,13 @@ RowLayout {
     Text {
       id: text
 
-      property list<int> timeToEmpty: standardizedTime(info.bat.timeToEmpty)
-      property list<int> timeToFull: standardizedTime(info.bat.timeToFull)
+      property string timeToEmpty: standardizedTime(info.bat.timeToEmpty)
+      property string timeToFull: standardizedTime(info.bat.timeToFull)
 
-      function standardizedTime(seconds: int): list<int> {
+      function standardizedTime(seconds: int): string {
         const hours = Math.floor(seconds / 3600);
         const minutes = Math.floor((seconds - (hours * 3600)) / 60);
-        return [hours, minutes];
+        return (hours > 0) ? (hours == 1) ? "1 hour" : `${hours} hours` : `${minutes} minutes`;
       }
 
       anchors.centerIn: parent
@@ -47,14 +47,11 @@ RowLayout {
       font.pointSize: 10
       text: switch (info.bat.state) {
       case UPowerDeviceState.Charging:
-        "  " + ((text.timeToFull[0] > 0) ? text.timeToFull[0] + " hours" : +text.timeToFull[1] + " minutes");
-        break;
+        return `  ${timeToFull}`;
       case UPowerDeviceState.Discharging:
-        "󰥕  " + ((text.timeToEmpty[0] > 0) ? text.timeToEmpty[0] + " hours" : +text.timeToEmpty[1] + " minutes");
-        break;
+        return `󰥕  ${timeToEmpty}`;
       default:
-        " idle";
-        break;
+        return " idle";
       }
     }
   }
@@ -69,7 +66,7 @@ RowLayout {
       color: Dat.Colors.on_surface
       font.pointSize: 10
       horizontalAlignment: Text.AlignRight
-      text: "󱐋 " + info.bat.changeRate
+      text: "󱐋 " + info.bat.changeRate.toFixed(2)
       verticalAlignment: Text.AlignVCenter
     }
   }

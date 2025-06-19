@@ -57,8 +57,6 @@
       fish_vi_key_bindings
 
       function fish_user_key_bindings
-        bind --mode insert alt-e 'edit_command_buffer'
-        bind alt-e 'edit_command_buffer'
         bind --mode insert alt-c 'cdi; commandline -f repaint'
         bind --mode insert alt-f 'fzf-file-widget'
       end

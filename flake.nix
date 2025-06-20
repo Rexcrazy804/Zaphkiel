@@ -170,6 +170,15 @@
         '';
       };
 
+      vm-basic = {
+        path = ./templates/Nix/basic-vm;
+        description = "Basic npins based virtual machine template";
+        welcomeText = ''
+          # Npins based nixos container
+          - simple config + script pair to get a working nixos virtual machine
+        '';
+      };
+
       java = {
         path = ./templates/Java;
         description = "I wish java was minimal";

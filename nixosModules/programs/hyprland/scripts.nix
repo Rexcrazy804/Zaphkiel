@@ -41,9 +41,14 @@
       print "stop                  - Stop gpu recording"
     }
   '';
-  cowask = pkgs.writers.writeNuBin "cowask" ''
-    def main [question] {
-      cowsay $"($question)? \n (if (random bool) { 'yes lol' } else {'no fuck you' })"
-    }
+  cowask = pkgs.writers.writeFishBin "cowask" ''
+    set message $argv[1]
+    if test "$message" = --help
+      echo "Usage: cowask <message>"
+      exit
+    end
+
+    set answer (random choice "yes lol" "no fuck you")
+    cowsay $message"?"\n $answer
   '';
 }

@@ -93,4 +93,9 @@
     tod.enable = true;
     tod.driver = pkgs.libfprint-2-tod1-elan;
   };
+
+  virtualisation.podman = {
+    enable = true;
+    defaultNetwork.settings.dns_enabled = true;
+  };
 }

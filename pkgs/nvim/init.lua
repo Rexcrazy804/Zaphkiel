@@ -216,14 +216,10 @@ require("lz.n").load {
   },
 
   {
-    "lspkind.nvim",
-    dep_of = "nvim-cmp",
-  },
-
-  {
     "nvim-cmp",
     event = "InsertEnter",
     after = function()
+      require('lz.n').trigger_load({ "lspkind.nvim" })
       local cmp = require("cmp")
       local lspkind = require("lspkind")
       cmp.setup({
@@ -289,7 +285,16 @@ require("lz.n").load {
         vim.keymap.set({ 'n', 'v' }, '<leader>ca', '<CMD>lua vim.lsp.buf.code_action()<CR>', opts('Lsp: Code Actions'))
       end
 
-      local default_servers = { "r_language_server", "cssls", "html", "jsonls", "nushell", "taplo", "jdtls", "texlab", "fish_lsp"}
+      local default_servers = { "r_language_server",
+        "cssls",
+        "html",
+        "jsonls",
+        "nushell",
+        "taplo",
+        "jdtls",
+        "texlab",
+        "fish_lsp",
+      }
       for _, lsp in ipairs(default_servers) do
         lspconfig[lsp].setup({
           on_attach = on_attach,
@@ -306,7 +311,7 @@ require("lz.n").load {
           -- don't waste time loading vim stuff if I am not in the nixos
           -- configuration directory
           if vim.fn.getcwd():find("nixos") then
-            library[#library+1] = vim.env.VIMRUNTIME
+            library[#library + 1] = vim.env.VIMRUNTIME
           end
 
           -- this is for getting LuaCats completions from devEnvs and is
@@ -316,7 +321,7 @@ require("lz.n").load {
           -- ':' and appends it to the library variable
           local catsLibs = os.getenv("LUACATS_LIB") or ""
           for lib in catsLibs:gmatch("([^:]+)") do
-            library[#library+1] = lib
+            library[#library + 1] = lib
           end
 
           if client.workspace_folders then
@@ -339,7 +344,30 @@ require("lz.n").load {
       lspconfig["qmlls"].setup({
         on_attach = on_attach,
         capabilities = capabilities,
-        cmd = {"qmlls", "-E"},
+        cmd = { "qmlls", "-E" },
+      })
+
+      lspconfig["sqls"].setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        settings = {
+          ['sqls'] = {
+            connections = {
+              {
+                driver = "oracle",
+                proto = "tcp",
+                user = "system",
+                passwd = "rexies",
+                host = "127.0.0.1",
+                port = 1521,
+                dbName = "FREEPDB1",
+                params = {
+                  tls = "skip-verify"
+                }
+              },
+            }
+          }
+        }
       })
 
       lspconfig["rust_analyzer"].setup({
@@ -560,7 +588,26 @@ require("lz.n").load {
 
   {
     "vim-startuptime",
-    commad = "StartupTime",
+    command = "StartupTime",
+  },
+
+  {
+    "nvim-dbee",
+    command = "Dbee",
+    after = function()
+      require('dbee').setup({
+        default_connection = "owocle",
+        sources = {
+          require('dbee.sources').MemorySource:new({
+            {
+              name = "owocle",
+              type = "oracle",
+              url = "oracle://system:rexies@0.0.0.0:1521/FREEPDB1"
+            },
+          })
+        }
+      })
+    end,
   },
 }
 

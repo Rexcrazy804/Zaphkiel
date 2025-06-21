@@ -1,11 +1,11 @@
 {
   neovimUtils,
+  vimUtils,
   lib,
   vimPlugins,
   wrapNeovimUnstable,
   neovim-unwrapped,
   pkgs,
-  fzf,
   ...
 }: let
   nvimConfig = neovimUtils.makeNeovimConfig {
@@ -46,7 +46,21 @@
         cmp-nvim-lsp-document-symbol
         cmp-nvim-lsp-signature-help
         lspkind-nvim
+        nvim-dbee
         ;
+
+      # dbee-cmp = vimUtils.buildVimPlugin rec {
+      #   pname = "cmp-dbee";
+      #   version = "unstable-${builtins.substring 0 6 src.rev}";
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "MattiasMTS";
+      #     repo = "cmp-dbee";
+      #     rev = "1650f67b9bf43c029fc37570665ca895a33cdf5a";
+      #     sha256 = "sha256-XxB4jQu9xAi/7XDcwsd0hGLSs74ysjg0N/uaTHjqByI=";
+      #   };
+      #   nvimSkipModules = ["cmp-dbee.source" "cmp-dbee.connection"];
+      #   meta.homepage = "https://github.com/hrsh7th/cmp-buffer/";
+      # };
 
       treesitter = vimPlugins.nvim-treesitter.withAllGrammars;
 
@@ -71,9 +85,13 @@
 
   nvim = wrapNeovimUnstable neovim-unwrapped nvimConfig;
   packages = [
+    # language servers
     pkgs.nil
-    pkgs.alejandra
     pkgs.lua-language-server
+    pkgs.vscode-langservers-extracted
+    pkgs.sqls
+    # formatter
+    pkgs.alejandra
 
     pkgs.fzf
     pkgs.ripgrep
@@ -90,7 +108,8 @@ in
 
     postBuild = ''
       wrapProgram $out/bin/nvim \
-      --prefix PATH : ${lib.makeBinPath packages}
+      --prefix PATH : ${lib.makeBinPath packages} \
+      --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [pkgs.oracle-instantclient]}
     '';
 
     meta.mainProgram = "nvim";

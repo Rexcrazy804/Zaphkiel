@@ -98,4 +98,5 @@
     enable = true;
     defaultNetwork.settings.dns_enabled = true;
   };
+  users.users.rexies.extraGroups = ["podman"];
 }

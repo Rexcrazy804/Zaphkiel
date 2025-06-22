@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  users,
   ...
 }: {
   options = {
@@ -42,5 +43,14 @@
         theme = sddm-theme.pname;
         settings.Theme.CursorSize = 24;
       };
+
+      systemd.tmpfiles.rules = lib.pipe users [
+        (builtins.filter (user: config.hjem.users.${user}.files.".face.icon".source != null))
+        (builtins.map (user: [
+          "f+ /var/lib/AccountsService/users/${user}  0600 root root -  [User]\\nIcon=/var/lib/AccountsService/icons/${user}\\n"
+          "L+ /var/lib/AccountsService/icons/${user}  -    -    -    -  ${config.hjem.users.${user}.files.".face.icon".source}"
+        ]))
+        (lib.flatten)
+      ];
     };
 }

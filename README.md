@@ -53,8 +53,8 @@ The following packages are exported by this flake:
 - `nixvim` My custom neovim configuration wrapped using the builtin neovim-unstable wrapper, heavily inspired by [sioodmy](https://github.com/sioodmy) (notably with the inclusion of lazy loading featuring [lz.n](https://github.com/nvim-neorocks/lz.n)).
 - `quickshell` My quickshell configuration, specifically kurukurubar
 - `kokCursor` A cute kokomi XCursor
-- `catppuccin-bat` Soothing pastel theme for bat from [catppuccin/bat](https://github.com/catppuccin/bat)
 - `mpv` My mpv configuration with anime4k shaders baked in
+- `sddm-silent` a simple derivation for [uiriansan/SilentSDDM](https://github.com/uiriansan/SilentSDDM)
 
 ```bash
 # command for running any of the above

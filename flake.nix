@@ -57,6 +57,7 @@
   in {
     formatter = forAllSystems (pkgs: pkgs.alejandra);
     npins = import ./npins;
+
     overlays.internal = final: _prev: {
       quickshell = inputs.quickshell.packages.${final.system}.default.override {
         withJemalloc = true;
@@ -72,6 +73,7 @@
       nixvim = final.callPackage ./pkgs/nvim {};
       mpv-wrapped = final.callPackage ./pkgs/mpv {};
       catppuccin-bat = final.callPackage ./pkgs/catppuccin-bat.nix {};
+      sddm-silent = final.callPackage ./pkgs/sddm-silent.nix {inherit (outputs) npins;};
     };
 
     packages = forAllSystems (pkgs: {
@@ -80,6 +82,14 @@
       quickshell = pkgs.callPackage ./pkgs/quickshell.nix {};
       kokCursor = pkgs.kokCursor;
       mpv = pkgs.mpv-wrapped.override {anime = true;};
+      sddm-theme = pkgs.sddm-silent.override {
+        theme = "rei";
+        theme-overrides = {
+          "LoginScreen.LoginArea.Avatar" = {
+            border-radius = 10;
+          };
+        };
+      };
     });
 
     nixosConfigurations = {

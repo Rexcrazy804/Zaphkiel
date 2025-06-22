@@ -22,7 +22,7 @@
 
 
 ## What have you done?
-Initially, I have ditched home-manager for wrapping programs myself.
+Initially, I had ditched home-manager for wrapping programs myself.
 
 This worked quite well in my favour, except for the following grievances:
 - Nushell was bugging the heck out inconsistently for remote sessions (ssh)
@@ -50,7 +50,7 @@ the need to do so yet.
 ## Exported packages
 The following packages are exported by this flake:
 
-- `nixvim` My custom neovim configuration wrapped using the builtin neovim-unstable wrapper, heavily inspired by [sioodmy](https://github.com/sioodmy) (notably with the inclusion of lazy loading with [lz.n](https://github.com/nvim-neorocks/lz.n)).
+- `nixvim` My custom neovim configuration wrapped using the builtin neovim-unstable wrapper, heavily inspired by [sioodmy](https://github.com/sioodmy) (notably with the inclusion of lazy loading featuring [lz.n](https://github.com/nvim-neorocks/lz.n)).
 - `quickshell` My quickshell configuration, specifically kurukurubar
 - `kokCursor` A cute kokomi XCursor
 - `catppuccin-bat` Soothing pastel theme for bat from [catppuccin/bat](https://github.com/catppuccin/bat)
@@ -87,7 +87,7 @@ resources throughout my early adventures in nix.
 - [soramanew/rainingkurukuru](https://github.com/soramanew/rainingkuru)
 - [outfoxxed/nixnew](https://git.outfoxxed.me/outfoxxed/nixnew/src/branch/master/modules/user/modules/quickshell)
 - one unmentioned individual that did not return
-- and other homies in `#rice-discussion` from Hyprland discord
+- and other homies in `#rice-discussion` of Hyprland discord
 
 ## Licensing
 All code in this repository is under the MIT license unless wherever an

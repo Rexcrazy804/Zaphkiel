@@ -82,14 +82,7 @@
       quickshell = pkgs.callPackage ./pkgs/quickshell.nix {};
       kokCursor = pkgs.kokCursor;
       mpv = pkgs.mpv-wrapped.override {anime = true;};
-      sddm-theme = pkgs.sddm-silent.override {
-        theme = "rei";
-        theme-overrides = {
-          "LoginScreen.LoginArea.Avatar" = {
-            border-radius = 10;
-          };
-        };
-      };
+      sddm-theme = pkgs.sddm-silent.override {theme = "rei";};
     });
 
     nixosConfigurations = {

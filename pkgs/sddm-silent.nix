@@ -5,6 +5,8 @@
   stdenvNoCC,
   kdePackages,
   theme ? "default",
+  # example for theme-override in `../nixosModules/programs/sddm.nix`
+  # see the same file for including user profiles icons
   theme-overrides ? {},
 }:
 stdenvNoCC.mkDerivation (final: {
@@ -29,7 +31,7 @@ stdenvNoCC.mkDerivation (final: {
     substituteInPlace ${basePath}/metadata.desktop \
       --replace-warn configs/default.conf configs/${theme}.conf
 
-    chmod +rw ${basePath}/configs/${theme}.conf
+    chmod +w ${basePath}/configs/${theme}.conf
     cp ${finalConfigFile} ${basePath}/configs/${theme}.conf
   '';
 })

@@ -4,11 +4,11 @@
 
 ## Overview
 > The entry point for *most* of the dots are [here](users/dots). For certain
-programs the colors are injected either directly from matugen or by nix using
-the generated matugen theme.json
- 
+> programs, the colors are injected either directly from matugen or by nix using
+> the generated matugen `theme.json`.
+
 > For nix users new to [hjem](https://github.com/feel-co/hjem),
-[this](users/rexies.nix) is the entry point for planting my dotfiles in place.
+> the entry point for planting my dotfiles in place is [here](users/rexies.nix).
 
 - Graphical Shell + Bar: [Quickshell](https://quickshell.outfoxxed.me/) [config](users/dots/quickshell/kurukurubar)
 - Compositor: [Hyprland](https://hyprland.org/) [config](users/dots/hyprland/)
@@ -22,62 +22,63 @@ the generated matugen theme.json
 
 
 ## What have you done?
-Initially I had ditched home-manager for wrapping programs myself
-this worked quite well in my favour except for the following grievances:
+Initially, I have ditched home-manager for wrapping programs myself.
+
+This worked quite well in my favour, except for the following grievances:
 - Nushell was bugging the heck out inconsistently for remote sessions (ssh)
-- I had to log out and back to have hyprland reload its config
-- And the last and finally straw that pushed me to [hjem](https://github.com/feel-co/hjem) was [matugen](https://github.com/InioX/matugen)
+- I had to log out and back in to have hyprland reload its config
+- And the last and final straw that pushed me to [hjem](https://github.com/feel-co/hjem) was [matugen](https://github.com/InioX/matugen)
 
 It was a pain to integrate matugen seamlessly into this, so I decided to just
-switch over the parts of my config that required matugen to use Hjem. I may or
-may not soon translate all the wrappers that I am using currently into plain ol
-hjem configs but that's for later. 
+switch over parts of my config that required matugen to use Hjem. I may or
+may not translate all the wrappers that I am using currently into plain ol'
+hjem configs, but that's for later.
 
-At its current the hjem + matugen configuration is only able to work with a
-single wallpaper therefore it is locked to a single user configuration. I am
-sure I can extend it to support multiple users but as of now I don't yet have
-the need to do so.
+At its current, the hjem + matugen configuration is only able to work with a
+single wallpaper; therefore, it is locked to a single user configuration. I am
+sure I can extend it to support multiple users, but as of now, I don't have
+the need to do so yet.
 
 > **15th March 2025**<br>
-> newer configs will live in `users/dots` with their
+> Newer configs will live in `users/dots` with their
 > supporting matugen templates in `nixosModules/external/matugen/templates`
 
 > **14th June 2025**<br>
-> Wrappers have been removed completely, packages that
+> Wrappers have been removed completely. Packages that
 > continue to be wrapped can be found in [`pkgs/`](pkgs/)
 
 ## Exported packages
-The following packages are exported by this flake
+The following packages are exported by this flake:
 
-- `nixvim` My custom neovim configuration wrapped using the builtin neovim-unstable wrapper, heavily inspired by [sioodmy](https://github.com/sioodmy) notably with the inclusion of lazy loading with [lz.n](https://github.com/nvim-neorocks/lz.n) lazy loading.
-- `quickshell` My quickshell configuration specifically kurukurubar
+- `nixvim` My custom neovim configuration wrapped using the builtin neovim-unstable wrapper, heavily inspired by [sioodmy](https://github.com/sioodmy) (notably with the inclusion of lazy loading with [lz.n](https://github.com/nvim-neorocks/lz.n)).
+- `quickshell` My quickshell configuration, specifically kurukurubar
 - `kokCursor` A cute kokomi XCursor
-- `catppuccin-bat` soothing pastel theme for bat from [catppuccin/bat](https://github.com/catppuccin/bat)
-- `mpv` my mpv configuration with anime4k shadders baked in
+- `catppuccin-bat` Soothing pastel theme for bat from [catppuccin/bat](https://github.com/catppuccin/bat)
+- `mpv` My mpv configuration with anime4k shaders baked in
 
 ```bash
-# command for running any of the above 
-# hopefully this helps beginners
-nix run github:Rexcrazy804/Zaphkiel#nixvim # replace nixvim with desired package
+# command for running any of the above
+# hopefully, this helps beginners
+nix run github:Rexcrazy804/Zaphkiel#nixvim # replace nixvim with your desired package
 ```
 
 ## Credits & Thanks
-Firstly I have to thank [sioodmy](https://github.com/sioodmy) for being the
-inspiration to ditch home manager and writing wrappers myself I had known of
-wrappers before but if it weren't for him I wouldn't have heard of
+Firstly, I have to thank [sioodmy](https://github.com/sioodmy) for being the
+inspiration to ditch home manager and writing wrappers myself. I had known of
+wrappers before, but if it weren't for him, I wouldn't have heard of
 `pkgs.symlinkJoin` :D
 
 I also extend my gratitude to [NotAShelf](https://github.com/NotAShelf) for
 being the inspiration for this readme and for developing the hjem nixos
-module 
+module.
 
 I have to thank both the AnAnimeGameLauncher and Hyprland discord communities
 for all the help I've received and continue to receive.
 
-Lastly, I have to to thank the nix community for their efforts in
+Lastly, I have to thank the nix community for their efforts in
 [home-manager](https://github.com/nix-community/home-manager) and
-[nixvim](https://github.com/nix-community/nixvim) both of which have been great
-resources throughout my early adventure through nix
+[nixvim](https://github.com/nix-community/nixvim). Both of which have been great
+resources throughout my early adventures in nix.
 
 ### References and Thanks for Quickshell config
 - [nydragon/nysh](https://github.com/nydragon/nysh)
@@ -86,7 +87,7 @@ resources throughout my early adventure through nix
 - [soramanew/rainingkurukuru](https://github.com/soramanew/rainingkuru)
 - [outfoxxed/nixnew](https://git.outfoxxed.me/outfoxxed/nixnew/src/branch/master/modules/user/modules/quickshell)
 - one unmentioned individual that did not return
-- and other homies in #rice-discussion at Hyprland discord
+- and other homies in `#rice-discussion` from Hyprland discord
 
 ## Licensing
 All code in this repository is under the MIT license unless wherever an

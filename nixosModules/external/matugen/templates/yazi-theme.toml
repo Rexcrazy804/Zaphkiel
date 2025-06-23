@@ -1,7 +1,7 @@
 # by simla33 https://github.com/InioX/matugen-themes/pull/24
 # : Manager [[[
 
-[manager]
+[mgr]
 cwd = { fg = "{{colors.on_surface.default.hex}}" }
 
 # Tab

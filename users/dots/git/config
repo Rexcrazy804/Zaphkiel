@@ -76,9 +76,6 @@ dark = true
 bases = master,main
 protected = *production
 
-[sequence]
-editor = interactive-rebase-tool
-
 [filter "lfs"]
 clean = git-lfs clean -- %f
 smudge = git-lfs smudge -- %f

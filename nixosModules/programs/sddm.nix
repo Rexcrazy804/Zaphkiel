@@ -27,21 +27,17 @@
     };
   in
     lib.mkIf cfg.enable {
-      environment.systemPackages = [
-        sddm-theme
-        pkgs.kdePackages.qtsvg
-        pkgs.kdePackages.qtmultimedia
-        pkgs.kdePackages.qtvirtualkeyboard
-      ];
-
+      # changes might require a restart to be reflected correctly without errors
+      environment.systemPackages = [sddm-theme];
       qt.enable = true;
-
       services.displayManager.sddm = {
+        package = pkgs.kdePackages.sddm;
         enable = lib.mkDefault true;
         enableHidpi = true;
         wayland.enable = true;
         theme = sddm-theme.pname;
         settings.Theme.CursorSize = 24;
+        extraPackages = sddm-theme.propagatedBuildInputs;
       };
 
       systemd.tmpfiles.rules = let

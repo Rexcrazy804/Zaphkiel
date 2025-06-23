@@ -74,12 +74,6 @@
         usePercentageForPolicy = true;
         criticalPowerAction = "PowerOff";
       };
-      services.displayManager.sddm = {
-        package = pkgs.kdePackages.sddm;
-        extraPackages = [
-          pkgs.kdePackages.qtmultimedia
-        ];
-      };
 
       # I could write a hypersunrise service to conflict but fuck it better to just
       # make a keybind to stop the service lol And I am less likely to forget to

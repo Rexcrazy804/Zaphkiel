@@ -29,10 +29,7 @@
   };
 
   progModule = {
-    sddm-custom-theme = {
-      enable = true;
-      wallpaper = config.age.secrets.wallpaper.path;
-    };
+    sddm-custom-theme.enable = true;
     direnv.enable = true;
     obs-studio.enable = false;
     steam.enable = true;
@@ -55,12 +52,6 @@
   # tailscale
   age.secrets.tailAuth.file = ../../secrets/secret5.age;
   services.tailscale.authKeyFile = config.age.secrets.tailAuth.path;
-  # sddm
-  age.secrets.wallpaper = {
-    file = ../../secrets/media_robin.age;
-    name = "wallpaper.jpg";
-    mode = "644";
-  };
 
   # generic
   programs = {

@@ -42,10 +42,7 @@
   };
 
   progModule = {
-    sddm-custom-theme = {
-      enable = true;
-      wallpaper = config.age.secrets.wallpaper.path;
-    };
+    sddm-custom-theme.enable = true;
     direnv.enable = true;
     obs-studio.enable = false;
     steam.enable = false;
@@ -64,13 +61,6 @@
       "127.0.0.1:53"
       "[::1]:53"
     ];
-  };
-
-  # sddm
-  age.secrets.wallpaper = {
-    file = ../../secrets/media_robin.age;
-    name = "wallpaper.jpg";
-    mode = "644";
   };
 
   # generic

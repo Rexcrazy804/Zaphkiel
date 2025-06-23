@@ -1,13 +1,13 @@
 {
-  inputs,
   config,
   pkgs,
   ...
 }: {
   imports = let
-    CONFIGURATION = throw "USER NOT CONFIGURED";
+    CONFIGURATION = throw "THIS FILE IS NO LONGER MAINTAINED";
   in [
     ./hardware-configuration.nix
+    CONFIGURATION
   ];
 
   networking.hostName = "Zaphkiel";

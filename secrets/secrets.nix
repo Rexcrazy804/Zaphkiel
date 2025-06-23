@@ -25,8 +25,6 @@ in {
   "secret8.age".publicKeys = hosts.Aphrodite;
   "secret9.age".publicKeys = hosts.Persephone;
 
-  "media_robin.age".publicKeys = hosts.Zaphkiel ++ hosts.Raphael ++ users.rexies;
-
   "bak_sak.age".publicKeys = users.rexies;
   "mc_rcon.age".publicKeys = users.rexies ++ hosts.Seraphine;
 }

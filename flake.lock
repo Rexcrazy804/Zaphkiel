@@ -202,7 +202,8 @@
         "hjem": "hjem",
         "nix-minecraft": "nix-minecraft",
         "nixpkgs": "nixpkgs",
-        "quickshell": "quickshell"
+        "quickshell": "quickshell",
+        "silent-sddm": "silent-sddm"
       }
     },
     "rust-overlay": {
@@ -224,6 +225,26 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "silent-sddm": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1750797394,
+        "narHash": "sha256-T8/cqnxggnj3WMuWmkzpvxfHbjGuYA8nRAhei8n+C4o=",
+        "owner": "uiriansan",
+        "repo": "SilentSDDM",
+        "rev": "c8267d137bc4fb8d4c87fe0043f2ba9143dae1d3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "uiriansan",
+        "repo": "SilentSDDM",
         "type": "github"
       }
     },

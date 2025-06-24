@@ -54,7 +54,6 @@ The following packages are exported by this flake:
 - `quickshell` My quickshell configuration, specifically kurukurubar
 - `kokCursor` A cute kokomi XCursor
 - `mpv` My mpv configuration with anime4k shaders baked in
-- `sddm-silent` a simple derivation for [uiriansan/SilentSDDM](https://github.com/uiriansan/SilentSDDM)
 
 ```bash
 # command for running any of the above

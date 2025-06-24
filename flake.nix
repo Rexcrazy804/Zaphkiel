@@ -36,6 +36,11 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    silent-sddm = {
+      url = "github:uiriansan/SilentSDDM";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -73,7 +78,7 @@
       nixvim = final.callPackage ./pkgs/nvim {};
       mpv-wrapped = final.callPackage ./pkgs/mpv {};
       catppuccin-bat = final.callPackage ./pkgs/catppuccin-bat.nix {};
-      sddm-silent = final.callPackage ./pkgs/sddm-silent.nix {inherit (outputs) npins;};
+      sddm-silent = inputs.silent-sddm.packages.${final.system}.default;
     };
 
     packages = forAllSystems (pkgs: {

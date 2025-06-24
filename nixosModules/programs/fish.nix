@@ -13,7 +13,8 @@
       npu = "env NIXPKGS_ALLOW_UNFREE=1 nix --impure";
 
       # git stuff
-      ga = "git add --all";
+      gaa = "git add --all";
+      ga = "git add";
       gc = "git commit";
       "gcm --set-cursor" = "git commit -m \"%\"";
       gca = "git commit --amend";

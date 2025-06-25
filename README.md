@@ -1,5 +1,7 @@
 # My NixOS Configuration
-![image](https://github.com/user-attachments/assets/e5cedaf6-b2d1-42d6-9519-d05580424a83)
+
+https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
+
 - Wallpaper: [The Herta by meirong](https://www.pixiv.net/artworks/126270092)
 
 ## Overview

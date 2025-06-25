@@ -97,5 +97,14 @@
 
       # Pokit agent
       security.soteria.enable = true;
+
+      # make firefox my image viewer with this extension
+      # https://addons.mozilla.org/en-US/firefox/addon/better-image-viewer/
+      # hmm about time I made my firefox declarative?
+      xdg.mime.defaultApplications = {
+        "image/gif" = ["firefox.desktop"];
+        "image/jpeg" = ["firefox.desktop"];
+        "image/png" = ["firefox.desktop"];
+      };
     };
 }

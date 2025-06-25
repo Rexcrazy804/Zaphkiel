@@ -7,6 +7,10 @@ Designed in acordance to google's material 3 guidelines, you can generate
 colors from your wallpaper using [matugen](https://github.com/InioX/matugen)
 using [this template](../../../../nixosModules/external/matugen/templates/quickshell-colors.qml)
 
+| [Kokomi by omochichi96](https://twitter.com/omochichi96/status/1758113643521245240) | [Shinobu by solipsist](https://www.pixiv.net/en/artworks/119108248) |
+|----------|----------|
+|![image](https://github.com/user-attachments/assets/7ed235f1-0a49-4546-be01-16197dc7940f) | ![image](https://github.com/user-attachments/assets/16cb7c57-92b2-4178-a5e6-d9023012f473) |
+
 ### Depencencies
 - quickshell
 - material-symbols

@@ -52,6 +52,7 @@
         pkgs.wl-screenrec
         pkgs.libnotify
         pkgs.swappy
+        pkgs.imv
         pkgs.wayfreeze
         pkgs.networkmanagerapplet
 
@@ -98,13 +99,11 @@
       # Pokit agent
       security.soteria.enable = true;
 
-      # make firefox my image viewer with this extension
-      # https://addons.mozilla.org/en-US/firefox/addon/better-image-viewer/
-      # hmm about time I made my firefox declarative?
+      # for whatever reason swappy likes to open images
+      # don't let that fucker open images
       xdg.mime.defaultApplications = {
-        "image/gif" = ["firefox.desktop"];
-        "image/jpeg" = ["firefox.desktop"];
-        "image/png" = ["firefox.desktop"];
+        "image/jpeg" = ["imv.desktop"];
+        "image/png" = ["imv.desktop"];
       };
     };
 }

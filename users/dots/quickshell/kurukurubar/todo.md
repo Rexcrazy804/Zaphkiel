@@ -27,6 +27,7 @@
 - [x] fix system tray icons
 
 ### What I do not like to see
+- [ ] use listView on trayItem instead of rowLayout (HomeView)
 - [ ] use font.family for specifying fonts
 - [ ] cleanup rectangle: color: "transparents" with Item {}
 

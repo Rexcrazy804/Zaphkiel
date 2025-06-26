@@ -25,12 +25,13 @@
 - [x] cleanup battery pill and powerTab no battery code
 - [x] power profile indicator inside battery pill
 - [x] fix system tray icons
+- [x] add a fallback image for ~/.face.icon in greeter
 
 ### What I do not like to see
-- [ ] use listView on trayItem instead of rowLayout (HomeView)
 - [ ] use font.family for specifying fonts
 - [ ] cleanup rectangle: color: "transparents" with Item {}
-- [ ] add a fallback image for ~/.face.icon in greeter
+- [ ] useExec detached in SessionActions.qml
+- [ ] use listView on trayItem instead of rowLayout (HomeView)
 
 ### Later
 - [ ] kdeConnect Integration

@@ -21,7 +21,7 @@ using [this template](../../../../nixosModules/external/matugen/templates/quicks
 
 ### Known Issues
 - `org.Hyprland.style is not installed`: see [#21](https://github.com/Rexcrazy804/Zaphkiel/issues/21#issuecomment-2906546939)
-- empty face icon in greeter: symlink an image (of any image type) to ~/.face.icon
+- Herta faceIcon: symlink an image (of any image type) to ~/.face.icon
 
 ### Live running on nix
 This rice is exposed as a package in the toplevel flake and can be used to run the rice as follows

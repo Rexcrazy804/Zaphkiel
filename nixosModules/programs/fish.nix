@@ -66,6 +66,7 @@
       set -g hydro_symbol_start
       set -U hydro_symbol_git_dirty "*"
       set -U fish_prompt_pwd_dir_length 0
+      function fish_mode_prompt; end;
       function update_nshell_indicator --on-variable IN_NIX_SHELL
         if test -n "$IN_NIX_SHELL";
           set -g hydro_symbol_start "impure "
@@ -74,8 +75,14 @@
         end
       end
       update_nshell_indicator
-      # inhibits the mode indicator
-      function fish_mode_prompt; end;
+
+      # smoll script to get the store path given an executable name
+      function store_path -a package_name
+        which $package_name 2> /dev/null | path resolve | read -l package_path
+        if test -n "$package_path"
+          echo (path dirname $package_path | path dirname)
+        end
+      end
     '';
   };
 

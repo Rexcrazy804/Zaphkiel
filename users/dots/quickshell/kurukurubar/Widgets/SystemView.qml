@@ -15,7 +15,6 @@ Item {
   property int index: SwipeView.index
   property bool isCurrent: SwipeView.isCurrentItem
 
-
   RowLayout {
     anchors.fill: parent
     anchors.margins: 10

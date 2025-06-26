@@ -7,7 +7,6 @@ import "../Data/" as Dat
 import "../Widgets/" as Wid
 
 Item {
-
   AnimatedImage {
     anchors.fill: parent
     fillMode: Image.PreserveAspectFit

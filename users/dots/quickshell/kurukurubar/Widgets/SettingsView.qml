@@ -6,7 +6,6 @@ import "../Data/" as Dat
 import "../Widgets/" as Wid
 
 Item {
-
   ColumnLayout {
     anchors.fill: parent
     anchors.topMargin: this.spacing

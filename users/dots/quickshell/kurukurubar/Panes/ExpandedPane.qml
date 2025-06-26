@@ -5,6 +5,7 @@ import "../Data/" as Dat
 
 Rectangle {
   id: root
+
   color: Dat.Colors.withAlpha(Dat.Colors.surface, 0.9)
   radius: 20
 

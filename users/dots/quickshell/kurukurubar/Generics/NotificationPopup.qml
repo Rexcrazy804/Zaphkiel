@@ -17,7 +17,6 @@ Item {
   required property var popup
   required property StackView view
 
-
   onNotifChanged: {
     root.view?.clear();
     if (root.popup) {

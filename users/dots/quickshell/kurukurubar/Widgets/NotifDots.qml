@@ -30,8 +30,8 @@ Rectangle {
 
       Gen.MouseArea {
         layerColor: trashIcon.color
-        visible: trashIcon.clearable
         layerRadius: parent.implicitWidth
+        visible: trashIcon.clearable
 
         onClicked: Dat.NotifServer.clearNotifs()
       }

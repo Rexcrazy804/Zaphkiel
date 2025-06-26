@@ -30,6 +30,7 @@
 - [ ] use listView on trayItem instead of rowLayout (HomeView)
 - [ ] use font.family for specifying fonts
 - [ ] cleanup rectangle: color: "transparents" with Item {}
+- [ ] add a fallback image for ~/.face.icon in greeter
 
 ### Later
 - [ ] kdeConnect Integration

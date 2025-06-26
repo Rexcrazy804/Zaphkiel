@@ -57,10 +57,10 @@ The following packages are exported by this flake:
 - `kokCursor` A cute kokomi XCursor
 - `mpv` My mpv configuration with anime4k shaders baked in
 
+you may run any of the above with the following command (ofc you can't run a
+cursor, `nix build` it instead) replacing `nixvim` with your desired package
 ```bash
-# command for running any of the above
-# hopefully, this helps beginners
-nix run github:Rexcrazy804/Zaphkiel#nixvim # replace nixvim with your desired package
+nix run github:Rexcrazy804/Zaphkiel#nixvim
 ```
 
 ## Credits & Thanks

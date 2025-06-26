@@ -9,13 +9,12 @@ import "../Data/" as Dat
 import "../Generics/" as Gen
 import "../Widgets/" as Wid
 
-Rectangle {
+Item {
   id: root
 
   property int index: SwipeView.index
   property bool isCurrent: SwipeView.isCurrentItem
 
-  color: "transparent"
 
   RowLayout {
     anchors.fill: parent
@@ -141,7 +140,6 @@ Rectangle {
           // no longer system tray, its gonna be the base of a monitor
           Layout.alignment: Qt.AlignCenter
           antialiasing: true
-          // color: "transparent"
           color: Dat.Colors.outline
           implicitHeight: 10 * Dat.Globals.notchScale
           implicitWidth: 80 * Dat.Globals.notchScale

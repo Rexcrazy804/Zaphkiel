@@ -8,14 +8,13 @@ import Quickshell.Services.Pipewire
 import "../Data/" as Dat
 import "../Generics/" as Gen
 
-Rectangle {
+Item {
   id: root
 
   property color bgColor: node?.isStream ? Dat.Colors.tertiary_container : Dat.Colors.primary_container
   property color fgColor: node?.isStream ? Dat.Colors.tertiary : Dat.Colors.primary
   required property PwNode node
 
-  color: "transparent"
   implicitHeight: 42
 
   ColumnLayout {

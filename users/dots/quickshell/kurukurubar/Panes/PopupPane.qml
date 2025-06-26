@@ -4,7 +4,7 @@ import QtQuick.Controls
 import "../Data/" as Dat
 import "../Generics/" as Gen
 
-Rectangle {
+Item {
   id: popupRect
 
   property alias closeTimer: popupClose
@@ -23,7 +23,6 @@ Rectangle {
       "notif": e,
       "width": stack.width,
       "implicitHeight": stack.height,
-      "radius": "20",
       "view": stack,
       "popup": popupRect
     });

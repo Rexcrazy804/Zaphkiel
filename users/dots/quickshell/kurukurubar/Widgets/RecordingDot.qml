@@ -4,10 +4,9 @@ import Quickshell.Services.Mpris
 import "../Data/" as Dat
 import "../Generics/" as Gen
 
-Rectangle {
+Item {
   id: root
 
-  color: "transparent"
   visible: Dat.Recording.running
 
   Rectangle {

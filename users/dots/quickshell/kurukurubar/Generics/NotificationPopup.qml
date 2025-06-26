@@ -10,14 +10,13 @@ import "../Generics/" as Gen
 
 // basically a clone of Notification.qml but this comes with a flickable
 
-Rectangle {
+Item {
   id: root
 
   required property Notification notif
   required property var popup
   required property StackView view
 
-  color: "transparent"
 
   onNotifChanged: {
     root.view?.clear();
@@ -55,13 +54,10 @@ Rectangle {
         spacing: 0
         width: parent.width
 
-        Rectangle {
+        Item {
           Layout.fillWidth: true
           Layout.margins: 10
-          color: "transparent"
           implicitHeight: sumText.contentHeight + bodText.contentHeight
-          topLeftRadius: 20
-          topRightRadius: 20
 
           RowLayout {
             id: infoRow
@@ -79,12 +75,10 @@ Rectangle {
               text: root.notif?.summary ?? "summary"
             }
 
-            Rectangle {
+            Item {
               Layout.alignment: Qt.AlignRight
-              color: "transparent"
               implicitHeight: appText.contentHeight + 2
               implicitWidth: appText.contentWidth + 10
-              radius: 20
 
               Text {
                 id: appText
@@ -111,10 +105,9 @@ Rectangle {
           }
         }
 
-        Rectangle {
+        Item {
           Layout.fillHeight: true
           Layout.fillWidth: true
-          color: "transparent"
         }
 
         Flickable {

@@ -28,14 +28,14 @@
 - [x] add a fallback image for ~/.face.icon in greeter
 - [x] use listView on trayItem instead of rowLayout (HomeView)
 - [x] trayItem animations
+- [x] cleanup rectangle: color: "transparents" with Item {}
 
 ### What I do not like to see
 - [ ] use font.family for specifying fonts
-- [ ] cleanup rectangle: color: "transparents" with Item {}
 - [ ] useExec detached in SessionActions.qml
+- [ ] adjust anchor magins in homeView
 
 ### Later
-- [ ] kdeConnect Integration
 - [ ] revamp notification popups / osd
 - [ ] Dynamically load and unload expandedPane
 - [ ] support setting wallpapers via the shell
@@ -45,5 +45,6 @@
 - [ ] draggable notification body / improve dismiss #26
 
 ### Dumpster
+- [ ] kdeConnect Integration
 - [ ] workspace previews in systemView on Hover
 - [ ] improved time based greeting in GreeterWidget

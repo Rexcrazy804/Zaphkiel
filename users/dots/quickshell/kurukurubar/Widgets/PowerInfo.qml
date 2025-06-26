@@ -9,10 +9,9 @@ RowLayout {
 
   property UPowerDevice bat: UPower.displayDevice
 
-  Rectangle {
+  Item {
     Layout.fillHeight: true
     Layout.fillWidth: true
-    color: "transparent"
 
     Text {
       anchors.fill: parent
@@ -24,11 +23,10 @@ RowLayout {
     }
   }
 
-  Rectangle {
+  Item {
     Layout.fillHeight: true
     Layout.fillWidth: true
     Layout.preferredWidth: 2
-    color: "transparent"
 
     Text {
       id: text
@@ -56,10 +54,9 @@ RowLayout {
     }
   }
 
-  Rectangle {
+  Item {
     Layout.fillHeight: true
     Layout.fillWidth: true
-    color: "transparent"
 
     Text {
       anchors.fill: parent

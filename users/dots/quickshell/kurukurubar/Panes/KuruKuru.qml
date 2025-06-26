@@ -6,9 +6,7 @@ import QtQuick.Effects
 import "../Data/" as Dat
 import "../Widgets/" as Wid
 
-Rectangle {
-  color: "transparent"
-
+Item {
   RowLayout {
     anchors.fill: parent
 

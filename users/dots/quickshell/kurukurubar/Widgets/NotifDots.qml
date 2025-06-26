@@ -13,11 +13,9 @@ Rectangle {
 
     anchors.centerIn: parent
 
-    Rectangle {
-      color: "transparent"
+    Item {
       implicitHeight: this.implicitWidth
       implicitWidth: 28
-      radius: this.implicitWidth
 
       Gen.MatIcon {
         id: trashIcon
@@ -33,6 +31,7 @@ Rectangle {
       Gen.MouseArea {
         layerColor: trashIcon.color
         visible: trashIcon.clearable
+        layerRadius: parent.implicitWidth
 
         onClicked: Dat.NotifServer.clearNotifs()
       }

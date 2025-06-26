@@ -5,10 +5,8 @@ import QtQuick.Controls
 
 import "../Data/" as Dat
 
-Rectangle {
+Item {
   property int index: SwipeView.index
-
-  color: "transparent"
 
   RowLayout {
     anchors.fill: parent

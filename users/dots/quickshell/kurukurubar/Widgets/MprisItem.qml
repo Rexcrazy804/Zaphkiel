@@ -118,11 +118,10 @@ Rectangle {
     anchors.topMargin: 0
     spacing: 0
 
-    Rectangle {
+    Item {
       Layout.fillHeight: true
       Layout.fillWidth: true
       Layout.preferredHeight: 2
-      color: "transparent"
 
       Text {
         anchors.fill: parent
@@ -136,10 +135,9 @@ Rectangle {
       }
     }
 
-    Rectangle {
+    Item {
       Layout.fillHeight: true
       Layout.fillWidth: true
-      color: "transparent"
 
       Text {
         anchors.fill: parent
@@ -154,11 +152,10 @@ Rectangle {
     }
   }
 
-  Rectangle {
+  Item {
     anchors.left: rect.left
     anchors.leftMargin: 20
     anchors.verticalCenter: rect.verticalCenter
-    color: "transparent"
     height: 30
     width: 30
 
@@ -184,11 +181,10 @@ Rectangle {
     }
   }
 
-  Rectangle {
+  Item {
     anchors.right: rect.right
     anchors.rightMargin: 20
     anchors.verticalCenter: rect.verticalCenter
-    color: "transparent"
     height: 30
     width: 30
 

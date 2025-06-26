@@ -631,8 +631,6 @@ Scope {
 
             Layout.fillHeight: true
             Layout.fillWidth: true
-            color: "transparent"
-            radius: notificationRect.radius
           }
 
           InboxPane {
@@ -640,8 +638,6 @@ Scope {
 
             Layout.fillHeight: true
             Layout.fillWidth: true
-            color: "transparent"
-            radius: notificationRect.radius
           }
         }
       }

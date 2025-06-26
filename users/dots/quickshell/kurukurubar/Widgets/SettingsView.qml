@@ -5,19 +5,17 @@ import QtQuick.Layouts
 import "../Data/" as Dat
 import "../Widgets/" as Wid
 
-Rectangle {
-  color: "transparent"
+Item {
 
   ColumnLayout {
     anchors.fill: parent
     anchors.topMargin: this.spacing
     spacing: 3
 
-    Rectangle {
+    Item {
       Layout.fillWidth: true
       Layout.leftMargin: 20
       Layout.rightMargin: 20
-      color: "transparent"
       implicitHeight: 18
 
       RowLayout {
@@ -30,7 +28,7 @@ Rectangle {
         Repeater {
           model: ["Power", "Audio", "Kuru"]
 
-          Rectangle {
+          Item {
             id: tabRect
 
             required property int index
@@ -38,7 +36,6 @@ Rectangle {
 
             Layout.fillHeight: true
             Layout.fillWidth: true
-            color: "transparent"
             state: (index == tabLay.activeIndex) ? "ACTIVE" : "INACTIVE"
 
             states: [

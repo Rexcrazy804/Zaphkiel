@@ -7,7 +7,7 @@ import Quickshell.Services.Notifications
 import "../Data/" as Dat
 import "../Generics/" as Gen
 
-Rectangle {
+Item {
   id: inboxRect
 
   property alias list: inbox

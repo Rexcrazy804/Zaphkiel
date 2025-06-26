@@ -7,11 +7,7 @@ import "../Generics/" as Gen
 import "../Data/" as Dat
 import "../Widgets/" as Wid
 
-Rectangle {
-  id: root
-
-  color: "transparent"
-
+Item {
   RowLayout {
     anchors.fill: parent
     layoutDirection: Qt.RightToLeft
@@ -25,7 +21,7 @@ Rectangle {
       // Pages
       clip: true
       color: Dat.Colors.surface_container_low
-      radius: root.radius
+      radius: 20
 
       SwipeView {
         id: swipeArea
@@ -53,31 +49,26 @@ Rectangle {
 
         Wid.HomeView {
           height: swipeRect.height
-          radius: swipeRect.radius
           width: swipeRect.width
         }
 
         Wid.CalendarView {
           height: swipeRect.height
-          radius: swipeRect.radius
           width: swipeRect.width
         }
 
         Wid.SystemView {
           height: swipeRect.height
-          radius: swipeRect.radius
           width: swipeRect.width
         }
 
         Wid.MusicView {
           height: swipeRect.height
-          radius: swipeRect.radius
           width: swipeRect.width
         }
 
         Wid.SettingsView {
           height: swipeRect.height
-          radius: swipeRect.radius
           width: swipeRect.width
         }
       }
@@ -101,17 +92,15 @@ Rectangle {
         Repeater {
           model: ["󰋜", "󰃭", "󱄅", "󰎇", "󰒓"]
 
-          Rectangle {
+          Item {
             id: tabDot
 
             required property int index
             required property string modelData
 
             Layout.alignment: Qt.AlignCenter
-            color: "transparent"
             implicitHeight: this.implicitWidth
             implicitWidth: 20
-            radius: 20
 
             Text {
               id: dotText
@@ -163,6 +152,7 @@ Rectangle {
             }
 
             Gen.MouseArea {
+              layerRadius: parent.width
               layerRect.scale: dotText.scale
 
               onClicked: swipeArea.setCurrentIndex(tabDot.index)

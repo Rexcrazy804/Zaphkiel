@@ -16,11 +16,9 @@ Rectangle {
     anchors.fill: parent
     spacing: 0
 
-    Rectangle {
+    Item {
       Layout.fillHeight: true
       Layout.fillWidth: true
-      color: "transparent"
-      radius: 20
 
       Rectangle {
         anchors.fill: parent
@@ -131,14 +129,12 @@ Rectangle {
       }
     }
 
-    Rectangle {
+    Item {
       id: powerSliderRect
 
       Layout.margins: 3
-      color: "transparent"
       implicitHeight: parent.height - 14
       implicitWidth: 40
-      radius: 40
 
       // I should write my own generic slider
       Slider {

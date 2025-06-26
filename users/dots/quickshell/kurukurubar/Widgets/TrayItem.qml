@@ -5,7 +5,7 @@ import Quickshell
 import Quickshell.Services.SystemTray
 import "../Widgets/" as Wid
 
-Rectangle {
+Item {
   id: root
 
   required property int index
@@ -17,7 +17,6 @@ Rectangle {
   required property SystemTrayItem modelData
   required property var stack
 
-  color: "transparent"
   implicitHeight: trayItemIcon.width
   implicitWidth: this.implicitHeight
 

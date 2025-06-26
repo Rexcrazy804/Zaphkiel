@@ -6,11 +6,10 @@ import "../Widgets/" as Wid
 
 RowLayout {
   // Left
-  Rectangle {
+  Item {
     Layout.fillHeight: true
     Layout.fillWidth: true
     clip: true
-    color: "transparent"
 
     RowLayout {
       anchors.left: parent.left
@@ -29,26 +28,23 @@ RowLayout {
       Wid.RecordingDot {
         implicitHeight: 20
         implicitWidth: 20
-        radius: 20
       }
     }
   }
 
   // Center
-  Rectangle {
+  Item {
     Layout.fillHeight: true
     Layout.fillWidth: true
-    color: "transparent"
 
     Wid.TimePill {
     }
   }
 
   // Right
-  Rectangle {
+  Item {
     Layout.fillHeight: true
     Layout.fillWidth: true
-    color: "transparent"
 
     RowLayout {
       anchors.bottom: parent.bottom

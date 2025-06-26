@@ -6,8 +6,7 @@ import Quickshell
 import "../Data/" as Dat
 import "../Widgets/" as Wid
 
-Rectangle {
-  color: "transparent"
+Item {
 
   AnimatedImage {
     anchors.fill: parent

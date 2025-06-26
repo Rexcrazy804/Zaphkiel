@@ -110,10 +110,9 @@ Rectangle {
           }
         }
 
-        Rectangle {
+        Item {
           Layout.fillHeight: true
           Layout.fillWidth: true
-          color: "transparent"
 
           Text {
             id: text

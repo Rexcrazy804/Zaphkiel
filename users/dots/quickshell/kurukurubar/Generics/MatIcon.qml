@@ -1,5 +1,6 @@
+// https://m3.material.io/styles/typography/editorial-treatments#a8196c1e-387e-4303-b0bf-b9bac44e4e72
 // a thin wrapper for placing using Material Symbols
-// credit to end for leading me down the making me walk down this route
+// credit to end for leading me down this route
 import QtQuick
 import "../Data/" as Dat
 
@@ -15,7 +16,7 @@ Text {
   font.variableAxes: {
     "FILL": root.fill,
     "opsz": root.fontInfo.pixelSize,
-    // "GRAD": root.grad,
+    "GRAD": root.grad,
     "wght": root.fontInfo.weight
   }
   renderType: Text.NativeRendering

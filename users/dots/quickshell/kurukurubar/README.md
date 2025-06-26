@@ -28,7 +28,6 @@ This rice is exposed as a package in the toplevel flake and can be used to run t
 ```
 nix run github:Rexcrazy804/Zaphkiel#quickshell
 ```
-> Don't panic if its building `quickshell`, no binary cache for that yet
 
 ## Acknowledgement
 - AlbumCover svg by [Squirrel Modeller](https://github.com/SquirrelModeller)

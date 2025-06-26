@@ -63,7 +63,7 @@
     formatter = forAllSystems (pkgs: pkgs.alejandra);
     npins = import ./npins;
 
-    overlays.internal = final: _prev: {
+    overlays.internal = final: prev: {
       quickshell = inputs.quickshell.packages.${final.system}.default.override {
         withJemalloc = true;
         withQtSvg = true;
@@ -74,6 +74,8 @@
         withHyprland = true;
         withI3 = false;
       };
+      # nixpkgs version of quickshell for liverunning only
+      quickshell-nix = prev.quickshell;
       kokCursor = final.callPackage ./pkgs/kokCursor.nix {};
       nixvim = final.callPackage ./pkgs/nvim {};
       mpv-wrapped = final.callPackage ./pkgs/mpv {};
@@ -84,7 +86,7 @@
     packages = forAllSystems (pkgs: {
       catppuccin-bat = pkgs.catppuccin-bat;
       nixvim = pkgs.nixvim;
-      quickshell = pkgs.callPackage ./pkgs/quickshell.nix {};
+      quickshell = pkgs.callPackage ./pkgs/quickshell.nix { quickshell = pkgs.quickshell-nix; };
       kokCursor = pkgs.kokCursor;
       mpv = pkgs.mpv-wrapped.override {anime = true;};
       sddm-theme = pkgs.sddm-silent.override {theme = "rei";};

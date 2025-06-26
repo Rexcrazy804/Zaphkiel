@@ -1,13 +1,10 @@
 pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Effects
 import QtQuick.Controls
-import Quickshell
 import Quickshell.Services.SystemTray
-import Quickshell.Widgets
+import Quickshell
 
-import "../Generics/" as Gen
 import "../Data/" as Dat
 import "../Widgets/" as Wid
 
@@ -162,30 +159,81 @@ Rectangle {
 
         Item {
           Layout.fillHeight: true
-          implicitWidth: trayItemRow.width
+          Layout.fillWidth: true
 
-          RowLayout {
+          ListView {
             id: trayItemRow
 
-            anchors.centerIn: parent
+            anchors.fill: parent
+            orientation: ListView.Horizontal
+            snapMode: ListView.SnapToItem
             spacing: 10
 
-            Repeater {
-              model: SystemTray.items
+            add: Transition {
+              SequentialAnimation {
+                NumberAnimation {
+                  duration: 0
+                  property: "opacity"
+                  to: 0
+                }
 
-              onCountChanged: stack.pop()
+                PauseAnimation {
+                  duration: addDisAni.duration / 2
+                }
 
-              Wid.TrayItem {
-                Layout.alignment: Qt.AlignCenter
-                stack: stack
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.emphasizedTime
+                  easing.bezierCurve: Dat.MaterialEasing.emphasized
+                  from: 0
+                  property: "opacity"
+                  to: 1
+                }
               }
             }
-          }
-        }
+            addDisplaced: Transition {
+              SequentialAnimation {
+                NumberAnimation {
+                  id: addDisAni
 
-        Item {
-          Layout.fillHeight: true
-          Layout.fillWidth: true
+                  duration: Dat.MaterialEasing.emphasizedDecelTime
+                  easing.bezierCurve: Dat.MaterialEasing.emphasizedDecel
+                  properties: "x"
+                }
+              }
+            }
+            delegate: Wid.TrayItem {
+              stack: stack
+            }
+            model: ScriptModel {
+              values: [...SystemTray.items.values]
+            }
+            remove: Transition {
+              NumberAnimation {
+                id: removeAni
+
+                duration: Dat.MaterialEasing.emphasizedTime
+                easing.bezierCurve: Dat.MaterialEasing.emphasized
+                from: 1
+                property: "opacity"
+                to: 0
+              }
+            }
+            removeDisplaced: Transition {
+              SequentialAnimation {
+                PauseAnimation {
+                  duration: removeAni.duration / 2
+                }
+
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.emphasizedDecelTime
+                  easing.bezierCurve: Dat.MaterialEasing.emphasizedDecel
+                  properties: "x"
+                }
+              }
+            }
+
+            onCountChanged: stack.pop()
+          }
         }
 
         Item {

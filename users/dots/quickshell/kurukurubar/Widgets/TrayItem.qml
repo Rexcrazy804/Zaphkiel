@@ -3,10 +3,6 @@ import QtQuick
 import QtQuick.Controls
 import Quickshell
 import Quickshell.Services.SystemTray
-import Quickshell.Widgets
-
-import "../Generics/" as Gen
-import "../Data/" as Dat
 import "../Widgets/" as Wid
 
 Rectangle {

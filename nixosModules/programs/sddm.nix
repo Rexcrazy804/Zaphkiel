@@ -23,12 +23,13 @@
         hash = "sha256-VkOAkmFrK9L00+CeYR7BKyij/R1b/WhWuYf0nWjsIkM=";
       };
 
-      zero-thumb = pkgs.runCommandWith {
-        name = "thumbnail.png";
-        derivationArgs.nativeBuildInputs = [pkgs.ffmpeg];
-      } ''
-        ffmpeg -i ${zero-bg} -vf "select=eq(n\,34)" -vframes 1 $out
-      '';
+      zero-thumb =
+        pkgs.runCommandWith {
+          name = "thumbnail.png";
+          derivationArgs.nativeBuildInputs = [pkgs.ffmpeg];
+        } ''
+          ffmpeg -i ${zero-bg} -vf "select=eq(n\,34)" -vframes 1 $out
+        '';
     in
       pkgs.sddm-silent.override {
         theme = "rei";

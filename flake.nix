@@ -86,7 +86,7 @@
     packages = forAllSystems (pkgs: {
       catppuccin-bat = pkgs.catppuccin-bat;
       nixvim = pkgs.nixvim;
-      quickshell = pkgs.callPackage ./pkgs/quickshell.nix { quickshell = pkgs.quickshell-nix; };
+      quickshell = pkgs.callPackage ./pkgs/quickshell.nix {quickshell = pkgs.quickshell-nix;};
       kokCursor = pkgs.kokCursor;
       mpv = pkgs.mpv-wrapped.override {anime = true;};
       sddm-theme = pkgs.sddm-silent.override {theme = "rei";};

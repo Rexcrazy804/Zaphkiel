@@ -6,17 +6,15 @@
       snwb = "sudo nixos-rebuild boot --flake ~/nixos";
       snwt = "sudo nixos-rebuild test --flake ~/nixos";
       snws = "sudo nixos-rebuild switch --flake ~/nixos";
-      # sometimes you just read source code, ask yourself why, and then come up
-      # with shit like this
-      "nsh --set-cursor" = "nix shell nixpkgs#%";
-      "nrn --set-cursor" = "nix run nixpkgs#%";
+      nsh = "nix shell nixpkgs";
+      nrn = "nix run nixpkgs#";
       npu = "env NIXPKGS_ALLOW_UNFREE=1 nix --impure";
 
       # git stuff
       gaa = "git add --all";
       ga = "git add";
       gc = "git commit";
-      "gcm --set-cursor" = "git commit -m \"%\"";
+      gcm = "git commit -m";
       gca = "git commit --amend";
       gcp = "git cherry-pick";
       grs = "git restore --staged";

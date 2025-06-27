@@ -1,16 +1,7 @@
 {
   description = "Rexiel Scarlet's NixOS Configuration";
 
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    # hard to remove this crap
-    # TODO write the overlay on my own
-    nix-minecraft = {
-      url = "github:Infinidoge/nix-minecraft";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
   outputs = {
     self,
@@ -28,13 +19,13 @@
             overlays = [outputs.overlays.internal];
           })
       );
-    npins = import ./npins;
+    sources = import ./npins;
   in {
     formatter = forAllSystems (pkgs: pkgs.alejandra);
 
     overlays.internal = final: prev: {
-      quickshell = final.callPackage npins.quickshell {
-        gitRev = npins.quickshell.revision;
+      quickshell = final.callPackage sources.quickshell {
+        gitRev = sources.quickshell.revision;
         withJemalloc = true;
         withQtSvg = true;
         withWayland = true;
@@ -50,7 +41,7 @@
       nixvim = final.callPackage ./pkgs/nvim {};
       mpv-wrapped = final.callPackage ./pkgs/mpv {};
       catppuccin-bat = final.callPackage ./pkgs/catppuccin-bat.nix {};
-      sddm-silent = final.callPackage npins.silent-sddm {gitRev = npins.silent-sddm.revision;};
+      sddm-silent = final.callPackage sources.silent-sddm {gitRev = sources.silent-sddm.revision;};
     };
 
     packages = forAllSystems (pkgs: {
@@ -66,7 +57,7 @@
       # Computer die :kokokries:
       # Zaphkiel = nixpkgs.lib.nixosSystem {
       #   specialArgs = {
-      #     inherit inputs outputs;
+      #     inherit inputs outputs sources;
       #     users = ["rexies"];
       #   };
       #   modules = [
@@ -78,9 +69,8 @@
 
       Raphael = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs outputs;
+          inherit inputs outputs sources;
           users = ["rexies" "ancys"];
-          sources = npins;
         };
         modules = [
           ./hosts/Raphael/configuration.nix
@@ -91,9 +81,8 @@
 
       Seraphine = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs outputs;
+          inherit inputs outputs sources;
           users = ["rexies"];
-          sources = npins;
         };
         modules = [
           ./hosts/Seraphine/configuration.nix
@@ -104,9 +93,8 @@
 
       Persephone = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs outputs;
+          inherit inputs outputs sources;
           users = ["rexies"];
-          sources = npins;
         };
         modules = [
           ./hosts/Persephone/configuration.nix
@@ -117,9 +105,8 @@
 
       Aphrodite = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs outputs;
+          inherit inputs outputs sources;
           users = ["rexies" "sivanis"];
-          sources = npins;
         };
         modules = [
           ./hosts/Aphrodite/configuration.nix

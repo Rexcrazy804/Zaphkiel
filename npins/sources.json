@@ -78,6 +78,19 @@
       "url": "https://github.com/feel-co/hjem/archive/26c5ebaad2b2cfeaf6cf360952f5fe8876326c80.tar.gz",
       "hash": "14dq688k19ybl5w0n8f9rl1xdc8i1s6cagsdrbyi45620izinaag"
     },
+    "nix-minecraft": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Rexcrazy804",
+        "repo": "nix-minecraft"
+      },
+      "branch": "non-flake-overlay",
+      "submodules": false,
+      "revision": "09ba53f12c274d9b0b9dd16daa76f677192c9227",
+      "url": "https://github.com/Rexcrazy804/nix-minecraft/archive/09ba53f12c274d9b0b9dd16daa76f677192c9227.tar.gz",
+      "hash": "0hkan50k5f6p6lpwha219ykjm3kqq9ldkc0vwq77njqz1ghcpb32"
+    },
     "quickshell": {
       "type": "Git",
       "repository": {

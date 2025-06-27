@@ -7,7 +7,7 @@
 
   nixpkgs = {
     config.allowUnfree = true;
-    overlays = [(import ../../overlay.nix {})];
+    overlays = [(import ../../overlay.nix {inherit sources;})];
   };
 
   nixpkgs.flake.source = sources.nixpkgs;

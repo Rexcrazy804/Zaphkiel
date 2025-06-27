@@ -22,7 +22,7 @@
     sources = import ./npins;
   in {
     formatter = forAllSystems (pkgs: pkgs.alejandra);
-    overlays.internal = import ./overlay.nix {};
+    overlays.internal = import ./overlay.nix {inherit sources;};
 
     packages = forAllSystems (pkgs: {
       catppuccin-bat = pkgs.catppuccin-bat;

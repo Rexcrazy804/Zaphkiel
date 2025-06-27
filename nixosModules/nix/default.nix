@@ -1,6 +1,5 @@
 {
   inputs,
-  outputs,
   pkgs,
   ...
 }: {
@@ -8,7 +7,7 @@
 
   nixpkgs = {
     config.allowUnfree = true;
-    overlays = [outputs.overlays.internal];
+    overlays = [(import ../../overlay.nix {})];
   };
 
   environment.etc."nix/inputs/nixpkgs".source = "${inputs.nixpkgs}";

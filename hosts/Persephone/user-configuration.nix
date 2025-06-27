@@ -12,6 +12,7 @@
     pkgs.cbonsai
     pkgs.cowsay
     pkgs.mpv-wrapped
+    pkgs.oracle-instantclient
   ];
   special = builtins.attrValues {
     discord = pkgs.discord.override {

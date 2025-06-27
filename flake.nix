@@ -22,9 +22,8 @@
     overlays.internal = import ./overlay.nix {inherit sources;};
 
     packages = forAllSystems (pkgs: {
-      nixvim = pkgs.nixvim;
+      inherit (pkgs) nixvim nixvim-minimal kokCursor;
       quickshell = pkgs.callPackage ./pkgs/quickshell.nix {quickshell = pkgs.quickshell-nix;};
-      kokCursor = pkgs.kokCursor;
       mpv = pkgs.mpv-wrapped.override {anime = true;};
       sddm-theme = pkgs.sddm-silent.override {theme = "rei";};
     });

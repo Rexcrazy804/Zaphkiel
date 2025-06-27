@@ -6,6 +6,7 @@
   wrapNeovimUnstable,
   neovim-unwrapped,
   pkgs,
+  extraPkgs ? [],
   ...
 }: let
   nvimConfig = neovimUtils.makeNeovimConfig {
@@ -84,20 +85,14 @@
   };
 
   nvim = wrapNeovimUnstable neovim-unwrapped nvimConfig;
-  packages = [
-    # language servers
-    pkgs.nil
-    pkgs.lua-language-server
-    pkgs.vscode-langservers-extracted
-    pkgs.sqls
-    # formatter
-    pkgs.alejandra
-
-    pkgs.fzf
-    pkgs.ripgrep
-    pkgs.wl-clipboard
-    pkgs.fd
-  ];
+  packages =
+    [
+      pkgs.fzf
+      pkgs.ripgrep
+      pkgs.wl-clipboard
+      pkgs.fd
+    ]
+    ++ extraPkgs;
 in
   pkgs.symlinkJoin {
     name = "nvim-wrapped-${nvim.version}";
@@ -108,8 +103,7 @@ in
 
     postBuild = ''
       wrapProgram $out/bin/nvim \
-      --prefix PATH : ${lib.makeBinPath packages} \
-      --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [pkgs.oracle-instantclient]}
+      --prefix PATH : ${lib.makeBinPath packages}
     '';
 
     meta.mainProgram = "nvim";

@@ -44,27 +44,6 @@
         "type": "github"
       }
     },
-    "booru-flake": {
-      "inputs": {
-        "generators": [],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1746626489,
-        "narHash": "sha256-R3WwX6a/M09GC66lPV7v6q0j28wp2+4xUUIQEFV6ic4=",
-        "owner": "Rexcrazy804",
-        "repo": "booru-flake",
-        "rev": "be9efed349ee79a05cf8abbee0e9ef171a970102",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Rexcrazy804",
-        "repo": "booru-flake",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -198,7 +177,6 @@
       "inputs": {
         "aagl": "aagl",
         "agenix": "agenix",
-        "booru-flake": "booru-flake",
         "hjem": "hjem",
         "nix-minecraft": "nix-minecraft",
         "nixpkgs": "nixpkgs",

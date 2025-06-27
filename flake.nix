@@ -4,12 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    booru-flake = {
-      url = "github:Rexcrazy804/booru-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.generators.follows = "";
-    };
-
     aagl = {
       url = "github:ezKEa/aagl-gtk-on-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -58,8 +52,6 @@
   in {
     formatter = forAllSystems (pkgs: pkgs.alejandra);
 
-    inherit npins;
-
     overlays.internal = final: prev: {
       quickshell = inputs.quickshell.packages.${final.system}.default.override {
         withJemalloc = true;
@@ -107,6 +99,7 @@
         specialArgs = {
           inherit inputs outputs;
           users = ["rexies" "ancys"];
+          sources = npins;
         };
         modules = [
           ./hosts/Raphael/configuration.nix
@@ -119,6 +112,7 @@
         specialArgs = {
           inherit inputs outputs;
           users = ["rexies"];
+          sources = npins;
         };
         modules = [
           ./hosts/Seraphine/configuration.nix
@@ -131,6 +125,7 @@
         specialArgs = {
           inherit inputs outputs;
           users = ["rexies"];
+          sources = npins;
         };
         modules = [
           ./hosts/Persephone/configuration.nix
@@ -143,6 +138,7 @@
         specialArgs = {
           inherit inputs outputs;
           users = ["rexies" "sivanis"];
+          sources = npins;
         };
         modules = [
           ./hosts/Aphrodite/configuration.nix

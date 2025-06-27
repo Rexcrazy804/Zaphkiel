@@ -1,7 +1,7 @@
 {
   pkgs,
   config,
-  outputs,
+  sources,
   lib,
   ...
 }: let
@@ -105,12 +105,12 @@ in {
       # shell
       # ".config/nushell/config.nu".source = ./dots/nushell/config.nu;
       # ".config/starship.toml".source = starship;
-      ".config/fish/themes".source = "${outputs.npins.fish}/themes";
+      ".config/fish/themes".source = "${sources.fish}/themes";
       ".config/fish/config.fish".source = ./dots/fish/config.fish;
       # bat
       ".config/bat/config".source = ./dots/bat/config;
       # NOTE: required bat cache --build before theme can be used
-      ".config/bat/themes".source = "${outputs.npins.bat}/themes";
+      ".config/bat/themes".source = "${sources.bat}/themes";
 
       # foot terminal
       ".config/foot/foot.ini".source = ./dots/foot/foot.ini;

@@ -1,5 +1,18 @@
 {
   "pins": {
+    "SilentSDDM": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "uiriansan",
+        "repo": "SilentSDDM"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "d22008bfb29f8b5c65369da876be3ba9cecabeab",
+      "url": "https://github.com/uiriansan/SilentSDDM/archive/d22008bfb29f8b5c65369da876be3ba9cecabeab.tar.gz",
+      "hash": "0rj7c8rf121s87yzy9fqn93w11ikcizar1j3xxixf3hs2vip958x"
+    },
     "bat": {
       "type": "Git",
       "repository": {

@@ -13,4 +13,4 @@ echo $nix_path
 
 # without --fast, nixos-rebuild will compile nix and use the compiled nix to
 # evaluate the config, wasting several seconds
-sudo env HOSTNAME=${HOSTNAME} nixos-rebuild -I nixpkgs=${nixpkgs_pin} -I nixos-config=${PWD}/default.nix "$cmd" --no-reexec "$@"
+sudo env HOSTNAME=${HOSTNAME} nixos-rebuild --log-format bar-with-logs -I nixpkgs=${nixpkgs_pin} -I nixos-config=${PWD}/default.nix "$cmd" --no-reexec "$@"

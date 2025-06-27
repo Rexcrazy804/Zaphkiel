@@ -91,6 +91,12 @@
       "url": "https://github.com/Rexcrazy804/nix-minecraft/archive/09ba53f12c274d9b0b9dd16daa76f677192c9227.tar.gz",
       "hash": "0hkan50k5f6p6lpwha219ykjm3kqq9ldkc0vwq77njqz1ghcpb32"
     },
+    "nixpkgs": {
+      "type": "Channel",
+      "name": "nixos-unstable",
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre820854.30a61f056ac4/nixexprs.tar.xz",
+      "hash": "1ws51n0m8xksrdh2crrivw3bgc3iznpwpyp5pixr3282zj04czhz"
+    },
     "quickshell": {
       "type": "Git",
       "repository": {

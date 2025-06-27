@@ -63,17 +63,17 @@
         ];
       };
 
-      Seraphine = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs sources;
-          users = ["rexies"];
-        };
-        modules = [
-          ./hosts/Seraphine/configuration.nix
-          ./nixosModules
-          ./users
-        ];
-      };
+      # Seraphine = nixpkgs.lib.nixosSystem {
+      #   specialArgs = {
+      #     inherit inputs outputs sources;
+      #     users = ["rexies"];
+      #   };
+      #   modules = [
+      #     ./hosts/Seraphine/configuration.nix
+      #     ./nixosModules
+      #     ./users
+      #   ];
+      # };
 
       Persephone = nixpkgs.lib.nixosSystem {
         specialArgs = {

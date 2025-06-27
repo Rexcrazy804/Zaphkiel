@@ -22,7 +22,7 @@
     sources = import ./npins;
   in {
     formatter = forAllSystems (pkgs: pkgs.alejandra);
-    overlays.internal = import ./overlay.nix {};
+    overlays.internal = import ./overlay.nix {inherit sources;};
 
     packages = forAllSystems (pkgs: {
       catppuccin-bat = pkgs.catppuccin-bat;
@@ -33,6 +33,10 @@
       sddm-theme = pkgs.sddm-silent.override {theme = "rei";};
     });
 
+    # WARNING
+    # after sayonara-flakes is merged `nnixosConfigurations` are just here for
+    # historical reasons or rather for people new to flakes to learn how
+    # things were done before I dropped flakes
     nixosConfigurations = {
       # Computer die :kokokries:
       # Zaphkiel = nixpkgs.lib.nixosSystem {
@@ -59,17 +63,17 @@
         ];
       };
 
-      Seraphine = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs sources;
-          users = ["rexies"];
-        };
-        modules = [
-          ./hosts/Seraphine/configuration.nix
-          ./nixosModules
-          ./users
-        ];
-      };
+      # Seraphine = nixpkgs.lib.nixosSystem {
+      #   specialArgs = {
+      #     inherit inputs outputs sources;
+      #     users = ["rexies"];
+      #   };
+      #   modules = [
+      #     ./hosts/Seraphine/configuration.nix
+      #     ./nixosModules
+      #     ./users
+      #   ];
+      # };
 
       Persephone = nixpkgs.lib.nixosSystem {
         specialArgs = {

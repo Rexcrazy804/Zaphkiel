@@ -5,11 +5,6 @@
       output_path = "~/hyprcolors.conf";
     };
 
-    starship = {
-      input_path = "${./templates/starship-colors.toml}";
-      output_path = "~/starship.toml";
-    };
-
     midnight-discord = {
       input_path = "${./templates/midnight-discord.css}";
       output_path = "~/discord-midnight.css";

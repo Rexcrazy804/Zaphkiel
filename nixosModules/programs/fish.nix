@@ -36,9 +36,9 @@
     };
     shellAliases = {
       ls = "eza --icons --group-directories-first -1";
-      snowboot = "sudo nixos-rebuild boot --flake ~/nixos";
-      snowfall = "sudo nixos-rebuild switch --flake ~/nixos";
-      snowtest = "sudo nixos-rebuild test --flake ~/nixos";
+      snowboot = "~/nixos/rebuild.sh boot";
+      snowfall = "~/nixos/rebuild.sh switch";
+      snowtest = "~/nixos/rebuild.sh test";
     };
 
     interactiveShellInit = let

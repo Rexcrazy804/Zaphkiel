@@ -1,8 +1,0 @@
-palette = 'colors'
-[palettes.colors]
-primary_bg = '{{colors.primary_fixed_dim.default.hex}}'
-primary_fg = '{{colors.on_primary.default.hex}}'
-secondary_bg = '{{colors.secondary.default.hex}}'
-secondary_fg = '{{colors.on_secondary.default.hex}}'
-tertiary_bg = '{{colors.tertiary.default.hex}}'
-tertiary_fg = '{{colors.on_tertiary.default.hex}}'

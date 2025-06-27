@@ -22,7 +22,6 @@
     overlays.internal = import ./overlay.nix {inherit sources;};
 
     packages = forAllSystems (pkgs: {
-      catppuccin-bat = pkgs.catppuccin-bat;
       nixvim = pkgs.nixvim;
       quickshell = pkgs.callPackage ./pkgs/quickshell.nix {quickshell = pkgs.quickshell-nix;};
       kokCursor = pkgs.kokCursor;
@@ -102,67 +101,67 @@
     # after sayonara-flakes is merged `nnixosConfigurations` are just here for
     # historical reasons or rather for people new to flakes to learn how
     # things were done before I dropped flakes
-    nixosConfigurations = {
-      # Computer die :kokokries:
-      # Zaphkiel = nixpkgs.lib.nixosSystem {
-      #   specialArgs = {
-      #     inherit inputs outputs sources;
-      #     users = ["rexies"];
-      #   };
-      #   modules = [
-      #     ./hosts/Zaphkiel/configuration.nix
-      #     ./nixosModules
-      #     ./users
-      #   ];
-      # };
-
-      # Raphael = nixpkgs.lib.nixosSystem {
-      #   specialArgs = {
-      #     inherit inputs outputs sources;
-      #     users = ["rexies" "ancys"];
-      #   };
-      #   modules = [
-      #     ./hosts/Raphael/configuration.nix
-      #     ./nixosModules
-      #     ./users
-      #   ];
-      # };
-
-      Seraphine = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs sources;
-          users = ["rexies"];
-        };
-        modules = [
-          ./hosts/Seraphine/configuration.nix
-          ./nixosModules
-          ./users
-        ];
-      };
-
-      Persephone = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs sources;
-          users = ["rexies"];
-        };
-        modules = [
-          ./hosts/Persephone/configuration.nix
-          ./nixosModules
-          ./users
-        ];
-      };
-
-      Aphrodite = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs sources;
-          users = ["rexies" "sivanis"];
-        };
-        modules = [
-          ./hosts/Aphrodite/configuration.nix
-          ./users
-          ./nixosModules/server-default.nix
-        ];
-      };
-    };
+    # nixosConfigurations' = {
+    #   # Computer die :kokokries:
+    #   Zaphkiel = nixpkgs.lib.nixosSystem {
+    #     specialArgs = {
+    #       inherit inputs outputs sources;
+    #       users = ["rexies"];
+    #     };
+    #     modules = [
+    #       ./hosts/Zaphkiel/configuration.nix
+    #       ./nixosModules
+    #       ./users
+    #     ];
+    #   };
+    #
+    #   Raphael = nixpkgs.lib.nixosSystem {
+    #     specialArgs = {
+    #       inherit inputs outputs sources;
+    #       users = ["rexies" "ancys"];
+    #     };
+    #     modules = [
+    #       ./hosts/Raphael/configuration.nix
+    #       ./nixosModules
+    #       ./users
+    #     ];
+    #   };
+    #
+    #   Seraphine = nixpkgs.lib.nixosSystem {
+    #     specialArgs = {
+    #       inherit inputs outputs sources;
+    #       users = ["rexies"];
+    #     };
+    #     modules = [
+    #       ./hosts/Seraphine/configuration.nix
+    #       ./nixosModules
+    #       ./users
+    #     ];
+    #   };
+    #
+    #   Persephone = nixpkgs.lib.nixosSystem {
+    #     specialArgs = {
+    #       inherit inputs outputs sources;
+    #       users = ["rexies"];
+    #     };
+    #     modules = [
+    #       ./hosts/Persephone/configuration.nix
+    #       ./nixosModules
+    #       ./users
+    #     ];
+    #   };
+    #
+    #   Aphrodite = nixpkgs.lib.nixosSystem {
+    #     specialArgs = {
+    #       inherit inputs outputs sources;
+    #       users = ["rexies" "sivanis"];
+    #     };
+    #     modules = [
+    #       ./hosts/Aphrodite/configuration.nix
+    #       ./users
+    #       ./nixosModules/server-default.nix
+    #     ];
+    #   };
+    # };
   };
 }

@@ -15,6 +15,5 @@
   kokCursor = final.callPackage ./pkgs/kokCursor.nix {};
   nixvim = final.callPackage ./pkgs/nvim {};
   mpv-wrapped = final.callPackage ./pkgs/mpv {};
-  catppuccin-bat = final.callPackage ./pkgs/catppuccin-bat.nix {};
   sddm-silent = final.callPackage sources.silent-sddm {gitRev = sources.silent-sddm.revision;};
 }

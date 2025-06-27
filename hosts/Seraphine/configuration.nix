@@ -4,9 +4,12 @@
   lib,
   ...
 }: {
+  _module.args.users = ["rexies"];
   imports = [
     ./hardware-configuration.nix
     ./user-configuration.nix
+    ../../nixosModules
+    ../../users/rexies.nix
   ];
 
   networking.hostName = "Seraphine";

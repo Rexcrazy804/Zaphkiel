@@ -33,6 +33,10 @@
       sddm-theme = pkgs.sddm-silent.override {theme = "rei";};
     });
 
+    # WARNING
+    # after sayonara-flakes is merged these are just here for
+    # historic reasons or rather for people new to flakes to
+    # learn how things were done before I dropped flakes
     nixosConfigurations = {
       # Computer die :kokokries:
       # Zaphkiel = nixpkgs.lib.nixosSystem {

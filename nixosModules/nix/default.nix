@@ -1,5 +1,5 @@
 {
-  inputs,
+  sources,
   pkgs,
   ...
 }: {
@@ -10,15 +10,12 @@
     overlays = [(import ../../overlay.nix {})];
   };
 
-  environment.etc."nix/inputs/nixpkgs".source = "${inputs.nixpkgs}";
+  nixpkgs.flake.source = sources.nixpkgs;
   nix = {
     package = pkgs.lixPackageSets.latest.lix;
-    # remove nix-channel related tools & configs, we use flakes instead.
     channel.enable = false;
-    registry.nixpkgs.flake = inputs.nixpkgs;
 
     settings = {
-      nix-path = pkgs.lib.mkForce "nixpkgs=/etc/nix/inputs/nixpkgs";
       experimental-features = [
         "nix-command"
         "flakes"

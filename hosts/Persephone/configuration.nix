@@ -4,10 +4,13 @@
   lib,
   ...
 }: {
+  _module.args.users = ["rexies"];
   imports = [
     ./hardware-configuration.nix
     ./user-configuration.nix
     ./extras/privoxy.nix
+    ../../nixosModules
+    ../../users/rexies.nix
   ];
 
   system.stateVersion = "24.11";

@@ -4,11 +4,8 @@
   config,
   pkgs,
   ...
-}: let
-  inherit (sources) nix-minecraft;
-in {
+}: {
   imports = [
-    "${nix-minecraft}/modules/minecraft-servers.nix"
     ./hollyj.nix
     ./backupservice.nix
   ];
@@ -21,7 +18,7 @@ in {
 
   config = lib.mkIf (config.servModule.minecraft.enable && config.servModule.enable) {
     users.users.minecraft.packages = [pkgs.rconc];
-    nixpkgs.overlays = [(import "${nix-minecraft}/overlay.nix")];
+    nixpkgs.overlays = [(import "${sources.nix-minecraft}/overlay.nix")];
 
     # allows geyser proxy for hollyj
     # WARN enable offline auth imperatively in the geyser config

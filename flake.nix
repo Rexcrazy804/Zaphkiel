@@ -1,16 +1,14 @@
 {
   description = "Rexiel Scarlet's NixOS Configuration";
+  # where is inputs.nixpkgs?
+  # I ate it nyom :P
 
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: let
+  outputs = {self, ...} @ inputs: let
     inherit (self) outputs;
-    # don't even know if darwin can generate the nvim but here we are
     systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
+    sources = import ./npins;
+    nixpkgs = (import sources.flake-compat {src = sources.nixpkgs;}).outputs;
+
     forAllSystems = fn:
       nixpkgs.lib.genAttrs systems (
         system:
@@ -19,7 +17,6 @@
             overlays = [outputs.overlays.internal];
           })
       );
-    sources = import ./npins;
   in {
     formatter = forAllSystems (pkgs: pkgs.alejandra);
     overlays.internal = import ./overlay.nix {inherit sources;};

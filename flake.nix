@@ -64,7 +64,7 @@
       nixvim = final.callPackage ./pkgs/nvim {};
       mpv-wrapped = final.callPackage ./pkgs/mpv {};
       catppuccin-bat = final.callPackage ./pkgs/catppuccin-bat.nix {};
-      sddm-silent = final.callPackage npins.SilentSDDM {gitRev = npins.SilentSDDM.revision;};
+      sddm-silent = final.callPackage npins.silent-sddm {gitRev = npins.silent-sddm.revision;};
     };
 
     packages = forAllSystems (pkgs: {

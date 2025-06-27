@@ -52,6 +52,18 @@
       "url": "https://github.com/rose-pine/fish/archive/b82982c55582cfaf6f220de1893c7c73dd0cb301.tar.gz",
       "hash": "1qqxragn6hynxkf5lbfkbhvqy0w0rw2j9lq6a66lsffp9vbb1xhf"
     },
+    "quickshell": {
+      "type": "Git",
+      "repository": {
+        "type": "Git",
+        "url": "https://git.outfoxxed.me/quickshell/quickshell.git"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "f842b84a5a215e7c8b9ee9c4a32d88bab4fb6f5e",
+      "url": null,
+      "hash": "0ic7kfrfk1a5qa1v3mhzgywb0a1nd7qnshil2br86g8i9bm2ppb8"
+    },
     "silent-sddm": {
       "type": "Git",
       "repository": {

@@ -20,11 +20,6 @@
       inputs.darwin.follows = "";
       inputs.home-manager.follows = "";
     };
-
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
@@ -48,7 +43,8 @@
     formatter = forAllSystems (pkgs: pkgs.alejandra);
 
     overlays.internal = final: prev: {
-      quickshell = inputs.quickshell.packages.${final.system}.default.override {
+      quickshell = final.callPackage npins.quickshell {
+        gitRev = npins.quickshell.revision;
         withJemalloc = true;
         withQtSvg = true;
         withWayland = true;

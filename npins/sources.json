@@ -52,6 +52,19 @@
       "url": "https://github.com/rose-pine/fish/archive/b82982c55582cfaf6f220de1893c7c73dd0cb301.tar.gz",
       "hash": "1qqxragn6hynxkf5lbfkbhvqy0w0rw2j9lq6a66lsffp9vbb1xhf"
     },
+    "hjem": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "feel-co",
+        "repo": "hjem"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "26c5ebaad2b2cfeaf6cf360952f5fe8876326c80",
+      "url": "https://github.com/feel-co/hjem/archive/26c5ebaad2b2cfeaf6cf360952f5fe8876326c80.tar.gz",
+      "hash": "14dq688k19ybl5w0n8f9rl1xdc8i1s6cagsdrbyi45620izinaag"
+    },
     "quickshell": {
       "type": "Git",
       "repository": {

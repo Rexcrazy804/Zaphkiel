@@ -1,16 +1,12 @@
 {
-  inputs,
+  sources,
   pkgs,
   users,
   ...
 }: {
-  imports = [
-    inputs.agenix.nixosModules.default
-  ];
+  imports = ["${sources.agenix}/modules/age.nix"];
 
-  environment.systemPackages = [
-    inputs.agenix.packages.${pkgs.system}.default
-  ];
+  environment.systemPackages = [(pkgs.callPackage "${sources.agenix}/pkgs/agenix.nix" {})];
 
   age.identityPaths =
     [

@@ -1,9 +1,4 @@
-{
-  pkgs,
-  inputs,
-  config,
-  ...
-}: let
+{pkgs, ...}: let
   packages = [
     pkgs.wineWowPackages.stable
     pkgs.foot

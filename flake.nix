@@ -1,47 +1,7 @@
 {
   description = "Rexiel Scarlet's NixOS Configuration";
 
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    booru-flake = {
-      url = "github:Rexcrazy804/booru-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.generators.follows = "";
-    };
-
-    aagl = {
-      url = "github:ezKEa/aagl-gtk-on-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hjem = {
-      url = "github:feel-co/hjem";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-minecraft = {
-      url = "github:Infinidoge/nix-minecraft";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.darwin.follows = "";
-      inputs.home-manager.follows = "";
-    };
-
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    silent-sddm = {
-      url = "github:uiriansan/SilentSDDM";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
   outputs = {
     self,
@@ -59,29 +19,10 @@
             overlays = [outputs.overlays.internal];
           })
       );
+    sources = import ./npins;
   in {
     formatter = forAllSystems (pkgs: pkgs.alejandra);
-    npins = import ./npins;
-
-    overlays.internal = final: prev: {
-      quickshell = inputs.quickshell.packages.${final.system}.default.override {
-        withJemalloc = true;
-        withQtSvg = true;
-        withWayland = true;
-        withX11 = false;
-        withPipewire = true;
-        withPam = true;
-        withHyprland = true;
-        withI3 = false;
-      };
-      # nixpkgs version of quickshell for liverunning only
-      quickshell-nix = prev.quickshell;
-      kokCursor = final.callPackage ./pkgs/kokCursor.nix {};
-      nixvim = final.callPackage ./pkgs/nvim {};
-      mpv-wrapped = final.callPackage ./pkgs/mpv {};
-      catppuccin-bat = final.callPackage ./pkgs/catppuccin-bat.nix {};
-      sddm-silent = inputs.silent-sddm.packages.${final.system}.default;
-    };
+    overlays.internal = import ./overlay.nix {};
 
     packages = forAllSystems (pkgs: {
       catppuccin-bat = pkgs.catppuccin-bat;
@@ -96,7 +37,7 @@
       # Computer die :kokokries:
       # Zaphkiel = nixpkgs.lib.nixosSystem {
       #   specialArgs = {
-      #     inherit inputs outputs;
+      #     inherit inputs outputs sources;
       #     users = ["rexies"];
       #   };
       #   modules = [
@@ -108,7 +49,7 @@
 
       Raphael = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs outputs;
+          inherit inputs outputs sources;
           users = ["rexies" "ancys"];
         };
         modules = [
@@ -120,7 +61,7 @@
 
       Seraphine = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs outputs;
+          inherit inputs outputs sources;
           users = ["rexies"];
         };
         modules = [
@@ -132,7 +73,7 @@
 
       Persephone = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs outputs;
+          inherit inputs outputs sources;
           users = ["rexies"];
         };
         modules = [
@@ -144,7 +85,7 @@
 
       Aphrodite = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs outputs;
+          inherit inputs outputs sources;
           users = ["rexies" "sivanis"];
         };
         modules = [

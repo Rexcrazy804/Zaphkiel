@@ -1,5 +1,31 @@
 {
   "pins": {
+    "aagl": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "ezKEa",
+        "repo": "aagl-gtk-on-nix"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "ec2ec4ec3f908ed9b125ea4afd52627bed60f183",
+      "url": "https://github.com/ezKEa/aagl-gtk-on-nix/archive/ec2ec4ec3f908ed9b125ea4afd52627bed60f183.tar.gz",
+      "hash": "1yyk034x32km8v472m1y6plh2822089b5aw4hil6g4h1ilh2canw"
+    },
+    "agenix": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "ryantm",
+        "repo": "agenix"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "531beac616433bac6f9e2a19feb8e99a22a66baf",
+      "url": "https://github.com/ryantm/agenix/archive/531beac616433bac6f9e2a19feb8e99a22a66baf.tar.gz",
+      "hash": "103slb8xy5sb68zxjjbb9d0svq8xz751a7yrg6vrz5rh4374bzgl"
+    },
     "bat": {
       "type": "Git",
       "repository": {
@@ -13,6 +39,19 @@
       "url": "https://github.com/catppuccin/bat/archive/699f60fc8ec434574ca7451b444b880430319941.tar.gz",
       "hash": "1lirgwgh2hnz6j60py19bbmhvgaqs7i6wf6702k6n83lgw4aixg9"
     },
+    "booru-flake": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Rexcrazy804",
+        "repo": "booru-flake"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "7b720dfe86bc1d11de91bdf985d8f7b075cd1ba3",
+      "url": "https://github.com/Rexcrazy804/booru-flake/archive/7b720dfe86bc1d11de91bdf985d8f7b075cd1ba3.tar.gz",
+      "hash": "1apwspkv3hq45g1904llp83mmnfragpzfizbda65nfb8vfif4kxv"
+    },
     "fish": {
       "type": "Git",
       "repository": {
@@ -25,6 +64,63 @@
       "revision": "b82982c55582cfaf6f220de1893c7c73dd0cb301",
       "url": "https://github.com/rose-pine/fish/archive/b82982c55582cfaf6f220de1893c7c73dd0cb301.tar.gz",
       "hash": "1qqxragn6hynxkf5lbfkbhvqy0w0rw2j9lq6a66lsffp9vbb1xhf"
+    },
+    "hjem": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "feel-co",
+        "repo": "hjem"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "26c5ebaad2b2cfeaf6cf360952f5fe8876326c80",
+      "url": "https://github.com/feel-co/hjem/archive/26c5ebaad2b2cfeaf6cf360952f5fe8876326c80.tar.gz",
+      "hash": "14dq688k19ybl5w0n8f9rl1xdc8i1s6cagsdrbyi45620izinaag"
+    },
+    "nix-minecraft": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Rexcrazy804",
+        "repo": "nix-minecraft"
+      },
+      "branch": "non-flake-overlay",
+      "submodules": false,
+      "revision": "09ba53f12c274d9b0b9dd16daa76f677192c9227",
+      "url": "https://github.com/Rexcrazy804/nix-minecraft/archive/09ba53f12c274d9b0b9dd16daa76f677192c9227.tar.gz",
+      "hash": "0hkan50k5f6p6lpwha219ykjm3kqq9ldkc0vwq77njqz1ghcpb32"
+    },
+    "nixpkgs": {
+      "type": "Channel",
+      "name": "nixos-unstable",
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre820854.30a61f056ac4/nixexprs.tar.xz",
+      "hash": "1ws51n0m8xksrdh2crrivw3bgc3iznpwpyp5pixr3282zj04czhz"
+    },
+    "quickshell": {
+      "type": "Git",
+      "repository": {
+        "type": "Git",
+        "url": "https://git.outfoxxed.me/quickshell/quickshell.git"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "f842b84a5a215e7c8b9ee9c4a32d88bab4fb6f5e",
+      "url": null,
+      "hash": "0ic7kfrfk1a5qa1v3mhzgywb0a1nd7qnshil2br86g8i9bm2ppb8"
+    },
+    "silent-sddm": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "uiriansan",
+        "repo": "SilentSDDM"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "d22008bfb29f8b5c65369da876be3ba9cecabeab",
+      "url": "https://github.com/uiriansan/SilentSDDM/archive/d22008bfb29f8b5c65369da876be3ba9cecabeab.tar.gz",
+      "hash": "0rj7c8rf121s87yzy9fqn93w11ikcizar1j3xxixf3hs2vip958x"
     }
   },
   "version": 5

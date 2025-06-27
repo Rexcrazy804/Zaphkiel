@@ -100,14 +100,16 @@
     "quickshell": {
       "type": "Git",
       "repository": {
-        "type": "Git",
-        "url": "https://git.outfoxxed.me/quickshell/quickshell.git"
+        "type": "Forgejo",
+        "server": "https://git.outfoxxed.me/",
+        "owner": "quickshell",
+        "repo": "quickshell"
       },
       "branch": "master",
       "submodules": false,
-      "revision": "f842b84a5a215e7c8b9ee9c4a32d88bab4fb6f5e",
-      "url": null,
-      "hash": "0ic7kfrfk1a5qa1v3mhzgywb0a1nd7qnshil2br86g8i9bm2ppb8"
+      "revision": "1d02292fbf24c41f947cf72dd7de57f6dedf2173",
+      "url": "https://git.outfoxxed.me/quickshell/quickshell/archive/1d02292fbf24c41f947cf72dd7de57f6dedf2173.tar.gz",
+      "hash": "1r29y1ywcp72zghw7yn5dc9sx5lq0b78xb63d7qbcn5wzrcjy4gr"
     },
     "silent-sddm": {
       "type": "Git",

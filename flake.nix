@@ -71,6 +71,7 @@
       };
     };
 
+    # for a non flake version take a look at ./users/dots/quickshell/
     devShells = forAllSystems (pkgs: {
       quickshell = let
         qtDeps = [

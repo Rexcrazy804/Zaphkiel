@@ -12,8 +12,8 @@
   };
   # nixpkgs version of quickshell for liverunning only
   quickshell-nix = prev.quickshell;
-  kokCursor = final.callPackage ./pkgs/kokCursor.nix {};
-  nixvim-minimal = final.callPackage ./pkgs/nvim {};
+  kokCursor = final.callPackage ../kokCursor.nix {};
+  nixvim-minimal = final.callPackage ../nvim {};
   nixvim = final.nixvim-minimal.override {
     extraPkgs = [
       # language servers
@@ -25,6 +25,6 @@
       final.alejandra
     ];
   };
-  mpv-wrapped = final.callPackage ./pkgs/mpv {};
+  mpv-wrapped = final.callPackage ../mpv {};
   sddm-silent = final.callPackage sources.silent-sddm {gitRev = sources.silent-sddm.revision;};
 }

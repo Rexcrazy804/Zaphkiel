@@ -1,5 +1,9 @@
 {...}: let
   sources = import ./npins;
+  overlays = {
+    internal = import ./pkgs/overlays/internal.nix {inherit sources;};
+    lix = import ./pkgs/overlays/lix.nix {lix = null;};
+  };
 in {
   _module.args = {inherit sources;};
   imports = [
@@ -10,4 +14,8 @@ in {
     (sources.booru-flake + "/nix/nixosModule.nix")
     (sources.nix-minecraft + "/modules/minecraft-servers.nix")
   ];
+
+  nixpkgs = {
+    overlays = builtins.attrValues overlays;
+  };
 }

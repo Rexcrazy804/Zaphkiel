@@ -19,7 +19,7 @@
       );
   in {
     formatter = forAllSystems (pkgs: pkgs.alejandra);
-    overlays.internal = import ./overlay.nix {inherit sources;};
+    overlays.internal = import ./pkgs/overlays/internal.nix {inherit sources;};
 
     packages = forAllSystems (pkgs: {
       inherit (pkgs) nixvim nixvim-minimal kokCursor;

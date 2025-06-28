@@ -89,10 +89,11 @@
   #
   # If it's not available, I guess just do pkgs.lix.
   # FIXME: does this cause problems in support channels?
+  # TODO: rever to latest after kms incedent is dealt with
   lixPackageToUse =
     if lix != null
     then lixPackageFromSource
-    else prev.lixPackageSets.latest.lix;
+    else prev.lixPackageSets.lix_2_92.lix;
 
   # Especially if using Lix from nixpkgs, it is plausible that the overlay
   # could be used against the wrong Lix major version and cause confusing build

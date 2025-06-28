@@ -3,6 +3,29 @@
   overlays = {
     internal = import ./pkgs/overlays/internal.nix {inherit sources;};
     lix = import ./pkgs/overlays/lix.nix {lix = null;};
+
+    # left here in loving memory of wanting to kms
+    # if you feel the same, please go to https://988lifeline.org/
+    # https://lix.systems/blog/2025-06-27-lix-critical-bug/
+    # Your Lovingly,
+    # Rexiel Scarlet - june 29, 2025
+    # lixVul = final: prev: {
+    #   lixPackageSets = prev.lixPackageSets.extend (final': prev': {
+    #     lix_2_93 = prev'.lix_2_93.overrideScope (new: old: {
+    #       lix = old.lix.overrideAttrs (_new: old': {
+    #         patches =
+    #           (old'.patches or [])
+    #           ++ [
+    #             (final.fetchpatch {
+    #               decode = "base64 -d";
+    #               url = "https://gerrit.lix.systems/changes/lix~3510/revisions/7/patch?download";
+    #               hash = "sha256-3Lh2mvrJlw4TlmWehgYu8n6XypjFD62k0yd+3OsGENU=";
+    #             })
+    #           ];
+    #       });
+    #     });
+    #   });
+    # };
   };
 in {
   _module.args = {inherit sources;};

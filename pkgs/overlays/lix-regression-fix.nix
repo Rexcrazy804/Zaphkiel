@@ -1,3 +1,8 @@
+# left here in loving memory of wanting to kms
+# if you feel the same, please go to https://988lifeline.org/
+# https://lix.systems/blog/2025-06-27-lix-critical-bug/
+# Yours Lovingly,
+# Rexiel Scarlet - june 29, 2025
 final: prev: {
   lixPackageSets = prev.lixPackageSets.extend (final': prev': {
     lix_2_93 = prev'.lix_2_93.overrideScope (new: old: {

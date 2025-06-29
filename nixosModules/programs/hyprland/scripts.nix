@@ -28,7 +28,6 @@
       set recording_file $HOME/Videos/recording-$(date +%d%h%m_%H%M%S)
       notify-send -t 2000  "Recording started" "Gpu screen recording has begun"
       wl-screenrec $(if test -n "$geometry"; echo -n -g$geometry; end) \
-        --codec hevc \
         --audio \
         --audio-device alsa_output.pci-0000_00_1f.3.analog-stereo.monitor \
         -f $recording_file.mp4

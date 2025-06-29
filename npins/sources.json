@@ -26,7 +26,7 @@
       "url": "https://github.com/ryantm/agenix/archive/531beac616433bac6f9e2a19feb8e99a22a66baf.tar.gz",
       "hash": "103slb8xy5sb68zxjjbb9d0svq8xz751a7yrg6vrz5rh4374bzgl"
     },
-    "bat": {
+    "catp-bat": {
       "type": "Git",
       "repository": {
         "type": "GitHub",
@@ -52,7 +52,7 @@
       "url": "https://github.com/Rexcrazy804/booru-flake/archive/7b720dfe86bc1d11de91bdf985d8f7b075cd1ba3.tar.gz",
       "hash": "1apwspkv3hq45g1904llp83mmnfragpzfizbda65nfb8vfif4kxv"
     },
-    "fish": {
+    "rosep-fish": {
       "type": "Git",
       "repository": {
         "type": "GitHub",
@@ -124,6 +124,19 @@
       "revision": "1d02292fbf24c41f947cf72dd7de57f6dedf2173",
       "url": "https://git.outfoxxed.me/quickshell/quickshell/archive/1d02292fbf24c41f947cf72dd7de57f6dedf2173.tar.gz",
       "hash": "1r29y1ywcp72zghw7yn5dc9sx5lq0b78xb63d7qbcn5wzrcjy4gr"
+    },
+    "rosep-foot": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "rose-pine",
+        "repo": "foot"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "fd30db031194d5905b9f5ab832ed770931036944",
+      "url": "https://github.com/rose-pine/foot/archive/fd30db031194d5905b9f5ab832ed770931036944.tar.gz",
+      "hash": "0kgnv6b4lb980mn3fjygkiqnzpj6kfgb4f85hiidpscgm8k4lqs0"
     },
     "silent-sddm": {
       "type": "Git",

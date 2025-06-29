@@ -3,9 +3,7 @@
     enable = true;
     shellAbbrs = {
       # nix stuff
-      snwb = "sudo nixos-rebuild boot --flake ~/nixos";
-      snwt = "sudo nixos-rebuild test --flake ~/nixos";
-      snws = "sudo nixos-rebuild switch --flake ~/nixos";
+      snw = "~/nixos/rebuild.sh";
       nsh = "nix shell nixpkgs#";
       nrn = "nix run nixpkgs#";
       "nuf --set-cursor" = "env NIXPKGS_ALLOW_UNFREE=1 nix % --impure";
@@ -42,16 +40,13 @@
     };
 
     interactiveShellInit = let
-      lsColors = pkgs.runCommandLocal "lscolors" {nativeBuildInputs = [pkgs.vivid];} ''
-        vivid generate rose-pine > $out
-      '';
       rosepine-fzf = ["fg:#908caa" "bg:-1" "hl:#ebbcba" "fg+:#e0def4" "bg+:#26233a" "hl+:#ebbcba" "border:#403d52" "header:#31748f" "gutter:#191724" "spinner:#f6c177" "info:#9ccfd8" "pointer:#c4a7e7" "marker:#eb6f92" "prompt:#908caa"];
       fzf-options = builtins.concatStringsSep " " (builtins.map (option: "--color=" + option) rosepine-fzf);
     in ''
       set sponge_purge_only_on_exit true
       set fish_greeting
       set fish_cursor_insert line blink
-      set -Ux LS_COLORS $(cat ${lsColors})
+      set -Ux LS_COLORS $(cat ${../../users/dots/fish/rose-pine-lscolors})
       set -Ux FZF_DEFAULT_OPTS ${fzf-options}
       fish_vi_key_bindings
 

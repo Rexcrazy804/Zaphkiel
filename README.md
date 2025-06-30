@@ -110,6 +110,49 @@ cursor, `nix build` it instead) replacing `nixvim` with your desired package
 nix run github:Rexcrazy804/Zaphkiel#nixvim
 ```
 
+## Flake Structure
+```
+hosts/                  # starting point for host specific configuration
+- <hostname>/           # divided into three files for segregation
+- - extras/             # things I am lazy to seperate into a module just yet
+- - configuration.nix
+- - user-configuration.nix
+- - hardware-configuration.nix
+
+nixosModules/           # common options and defaults shared across all hosts
+- external/             # used for hosting modified nixos modules that aren't written by me
+- graphics/             # novideo and friends
+- nix/                  # my beloved
+- programs/             # options wraping other nixos options for programs
+- - booru-flake/        # fuck around and find out
+- - hyprland/           # scripts and nix related hyprland config
+- server/               # same as above but for services
+- - minecraft/          # nix-minecrat entry point
+- system/               # largely defaults
+- - networking/         # networking setup with dnscrypt-proxy2
+- server-default.nix    # strictly imports server only stuff
+
+npins/
+- default.nix           # auto generated file to import npins
+- sources.json          # where is the flake.lock? here it is `sources.json`
+
+pkgs/                   # exported packages are found here
+- overlays/             # overlays (duh)
+
+secrets/                # home to my age encrypted secrets
+templates/              # reusable flake and non flake templates for various nix errands
+
+users/                  # user specific configuration imported by hosts hosting said user
+- dots/                 # ricers, this is the .config/ folder you might be looking for
+- - <program>/          # doots
+- - hyprland/           # might niri, too lazy for now, hyprland
+- - quickshell/         # god bless foxxed for creating this lovely thing
+- - - kurukurubar/      # adorable quickshell rice for kuru kuru maxxing
+- - - kurumibar/        # my first now unmainted rectangle bar
+- rexies.nix            # main file responsible for leveraging hjem to plant dots in place
+- <others>.nix
+```
+
 ## Acknowledgement
 Firstly, I have to thank [sioodmy](https://github.com/sioodmy) for being the
 inspiration to ditch home manager and writing wrappers myself. I had known of

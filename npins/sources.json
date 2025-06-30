@@ -26,6 +26,19 @@
       "url": "https://github.com/ryantm/agenix/archive/531beac616433bac6f9e2a19feb8e99a22a66baf.tar.gz",
       "hash": "103slb8xy5sb68zxjjbb9d0svq8xz751a7yrg6vrz5rh4374bzgl"
     },
+    "booru-flake": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Rexcrazy804",
+        "repo": "booru-flake"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "d663b3c0f95abbdbf4b6afc7d862328024f7a937",
+      "url": "https://github.com/Rexcrazy804/booru-flake/archive/d663b3c0f95abbdbf4b6afc7d862328024f7a937.tar.gz",
+      "hash": "04k87l1yblcnj1bv0fnyxgibipf46257fna4ik40ygakj589qhii"
+    },
     "catp-bat": {
       "type": "Git",
       "repository": {
@@ -38,32 +51,6 @@
       "revision": "699f60fc8ec434574ca7451b444b880430319941",
       "url": "https://github.com/catppuccin/bat/archive/699f60fc8ec434574ca7451b444b880430319941.tar.gz",
       "hash": "1lirgwgh2hnz6j60py19bbmhvgaqs7i6wf6702k6n83lgw4aixg9"
-    },
-    "booru-flake": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "Rexcrazy804",
-        "repo": "booru-flake"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "7b720dfe86bc1d11de91bdf985d8f7b075cd1ba3",
-      "url": "https://github.com/Rexcrazy804/booru-flake/archive/7b720dfe86bc1d11de91bdf985d8f7b075cd1ba3.tar.gz",
-      "hash": "1apwspkv3hq45g1904llp83mmnfragpzfizbda65nfb8vfif4kxv"
-    },
-    "rosep-fish": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "rose-pine",
-        "repo": "fish"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "b82982c55582cfaf6f220de1893c7c73dd0cb301",
-      "url": "https://github.com/rose-pine/fish/archive/b82982c55582cfaf6f220de1893c7c73dd0cb301.tar.gz",
-      "hash": "1qqxragn6hynxkf5lbfkbhvqy0w0rw2j9lq6a66lsffp9vbb1xhf"
     },
     "flake-compat": {
       "type": "Git",
@@ -124,6 +111,19 @@
       "revision": "1d02292fbf24c41f947cf72dd7de57f6dedf2173",
       "url": "https://git.outfoxxed.me/quickshell/quickshell/archive/1d02292fbf24c41f947cf72dd7de57f6dedf2173.tar.gz",
       "hash": "1r29y1ywcp72zghw7yn5dc9sx5lq0b78xb63d7qbcn5wzrcjy4gr"
+    },
+    "rosep-fish": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "rose-pine",
+        "repo": "fish"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "b82982c55582cfaf6f220de1893c7c73dd0cb301",
+      "url": "https://github.com/rose-pine/fish/archive/b82982c55582cfaf6f220de1893c7c73dd0cb301.tar.gz",
+      "hash": "1qqxragn6hynxkf5lbfkbhvqy0w0rw2j9lq6a66lsffp9vbb1xhf"
     },
     "rosep-foot": {
       "type": "Git",

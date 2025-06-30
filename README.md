@@ -110,7 +110,7 @@ cursor, `nix build` it instead) replacing `nixvim` with your desired package
 nix run github:Rexcrazy804/Zaphkiel#nixvim
 ```
 
-## Credits & Thanks
+## Acknowledgement
 Firstly, I have to thank [sioodmy](https://github.com/sioodmy) for being the
 inspiration to ditch home manager and writing wrappers myself. I had known of
 wrappers before, but if it weren't for him, I wouldn't have heard of
@@ -125,10 +125,10 @@ for all the help I've received and continue to receive.
 
 Lastly, I have to thank the nix community for their efforts in
 [home-manager](https://github.com/nix-community/home-manager) and
-[nixvim](https://github.com/nix-community/nixvim). Both of which have been great
-resources throughout my early adventures in nix.
+[nixvim](https://github.com/nix-community/nixvim). Both of which have been
+great resources throughout my early adventures in nix.
 
-### References and Thanks for Quickshell config
+### Quickshell
 - [nydragon/nysh](https://github.com/nydragon/nysh)
 - [end-4/dots-hyprland](https://github.com/end-4/dots-hyprland/tree/ii-qs/.config/quickshell)
 - [pikabar](https://git.pika-os.com/wm-packages/pikabar/src/branch/main/pikabar/usr/share/pikabar)

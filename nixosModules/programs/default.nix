@@ -9,8 +9,7 @@
     ./obs.nix
     ./keyd.nix
     ./firefox.nix
-
-    ./hyprland
+    ./hyprland.nix
     ./booru-flake
 
     # this is not an option

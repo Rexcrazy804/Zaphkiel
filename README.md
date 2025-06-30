@@ -122,7 +122,6 @@ nixosModules/           # common options and defaults shared across all hosts
 - nix/                  # my beloved
 - programs/             # options wraping other nixos options for programs
 - - booru-flake/        # fuck around and find out
-- - hyprland/           # scripts and nix related hyprland config
 - server/               # same as above but for services
 - - minecraft/          # nix-minecraft entry point
 - system/               # largely defaults
@@ -134,7 +133,10 @@ npins/                  # flakes? what is that?
 - sources.json          # where is the flake.lock? here it is
 
 pkgs/                   # exported packages are found here
+- mpv/                  # mpv wrapper with anime4k
+- nvim/                 # nvim configuration
 - overlays/             # overlays (duh)
+- scripts/              # cute scripts to do various things
 
 secrets/                # home to my age encrypted secrets
 templates/              # reusable flake and non flake templates for various nix errands

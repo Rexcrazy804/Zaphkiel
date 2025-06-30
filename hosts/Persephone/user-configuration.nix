@@ -13,7 +13,7 @@
     pkgs.cowsay
     # from internal overlay
     pkgs.mpv-wrapped
-    pkgs.wallcrop
+    pkgs.scripts.wallcrop
   ];
   special = builtins.attrValues {
     discord = pkgs.discord.override {
@@ -39,7 +39,7 @@ in {
         name = "cropped-${image.name}";
         src = image;
         dontUnpack = true;
-        nativeBuildInputs = [pkgs.wallcrop];
+        nativeBuildInputs = [pkgs.scripts.wallcrop];
         installPhase = ''
           wallcrop $src 0 1030 > $out
         '';

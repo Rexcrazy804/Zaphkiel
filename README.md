@@ -23,15 +23,15 @@ https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 |Cursor|[Kokomi Cursor](https://www.pling.com/p/2167734/)| nil / really long random text to make this table very wide yes looks like I|
 
 ## What the heck is going on here?
-### Short answer
 - npins based non flake nixos configuration
 - hjem over home manager
 - matugen injecting colors based on wallpaper
 - booru flake image collection to neatly access images all over the flake
 - exports a flake.nix that relies on npins' nixpkgs source for repo flake support
 
-### Let me tell you a story
-> if you'd prefer it please see these delightful blogs by Jade [`skip button`](#Exported-packages)<br>
+<details>
+<summary>The long answer</summary>
+> if you'd prefer it please see these delightful blogs by Jade
 > [Flakes aren't real](https://jade.fyi/blog/flakes-arent-real/) <br>
 > [Pinning nixos with npins](https://jade.fyi/blog/pinning-nixos-with-npins/) <br>
 
@@ -87,6 +87,7 @@ modules and writing my own overlays to minimize the overhead introduced by
 bloated flakes of some repos, like seriously some flakes need to embrace KISS.
 Ultimately at the end of the day flakes is heavily opinionated, and this
 repository is a testament to how I want to consume nixos flakes.
+</details>
 
 Lastly, you may want to ask: Rexi, how fast is your eval time?
 > `nixos-rebuild dry-build --option eval-cache false` completed in `9.5s`

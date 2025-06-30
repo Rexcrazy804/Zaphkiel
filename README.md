@@ -29,8 +29,8 @@ https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 - booru flake image collection to neatly access images all over the flake
 - exports a flake.nix that relies on npins' nixpkgs source for repo flake support
 
-<details>
-<summary>The long answer</summary>
+<details open>
+<summary><h3>The long answer</h3></summary>
 
 > if you'd prefer it please see these delightful blogs by Jade <br>
 > [Flakes aren't real](https://jade.fyi/blog/flakes-arent-real/) <br>

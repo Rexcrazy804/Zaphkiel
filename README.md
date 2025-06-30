@@ -96,11 +96,13 @@ Lastly, you may want to ask: Rexi, how fast is your eval time?
 ## Exported packages
 The following packages are exported by this flake:
 
-- `nixvim` My custom neovim configuration wrapped using the builtin neovim-unstable wrapper, heavily inspired by [sioodmy](https://github.com/sioodmy) (notably with the inclusion of lazy loading featuring [lz.n](https://github.com/nvim-neorocks/lz.n)).
-- `nixvim-minimal` less bloated version (no lsp) don't confuse this and above with the [nixvim](https://github.com/nix-community/nixvim) project.
-- `quickshell` My quickshell configuration, specifically kurukurubar
-- `kokCursor` A cute kokomi XCursor
-- `mpv` My mpv configuration with [anime4k](https://github.com/bloc97/Anime4K) shaders baked in
+| package | description |
+| ------- | ----------- |
+| `nixvim` | My custom neovim configuration wrapped using the builtin neovim-unstable wrapper|
+| `nixvim-minimal` | less bloated version (no lsps) don't confuse this and above with the [nixvim](https://github.com/nix-community/nixvim) project. |
+| `quickshell` | My quickshell configuration, specifically kurukurubar |
+| `kokCursor` | A cute kokomi XCursor |
+| `mpv` | My mpv configuration with [anime4k](https://github.com/bloc97/Anime4K) shaders baked in |
 
 you may run any of the above with the following command (ofc you can't run a
 cursor, `nix build` it instead) replacing `nixvim` with your desired package

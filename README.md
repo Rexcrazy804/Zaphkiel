@@ -110,7 +110,7 @@ cursor, `nix build` it instead) replacing `nixvim` with your desired package
 nix run github:Rexcrazy804/Zaphkiel#nixvim
 ```
 
-## Flake Structure
+## Structure overview
 ```
 hosts/                  # starting point for host specific configuration
 - <hostname>/           # divided into three files for seperation

@@ -70,18 +70,21 @@ Item {
       // color: Dat.Colors.surface_container
       // color: "transparent"
 
-      delegate: Rectangle {
+      delegate: Item {
         required property var model
-
-        color: (monthGrid.currDay == model.day && monthGrid.currMonth == model.month) ? Dat.Colors.primary : "transparent"
-        radius: 10
+        Rectangle {
+          anchors.centerIn: parent
+          height: parent.height
+          width: this.height
+          radius: 6
+          color: (monthGrid.currDay == model.day && monthGrid.currMonth == model.month) ? Dat.Colors.primary : "transparent"
+        }
 
         Text {
           anchors.centerIn: parent
           color: (parent.model.month == monthGrid.currMonth) ? (parent.model.day == monthGrid.currDay) ? Dat.Colors.on_primary : Dat.Colors.on_surface : Dat.Colors.withAlpha(Dat.Colors.on_surface_variant, 0.70)
-          horizontalAlignment: Text.AlignVCenter
           text: parent.model.day
-          verticalAlignment: Text.AlignVCenter
+          font.pointSize: 10
         }
       }
     }

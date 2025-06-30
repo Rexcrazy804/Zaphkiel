@@ -27,4 +27,5 @@
   };
   mpv-wrapped = final.callPackage ../mpv {};
   sddm-silent = final.callPackage sources.silent-sddm {gitRev = sources.silent-sddm.revision;};
+  wallcrop = final.callPackage ../wallcrop.nix {};
 }

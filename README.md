@@ -124,14 +124,14 @@ nixosModules/           # common options and defaults shared across all hosts
 - - booru-flake/        # fuck around and find out
 - - hyprland/           # scripts and nix related hyprland config
 - server/               # same as above but for services
-- - minecraft/          # nix-minecrat entry point
+- - minecraft/          # nix-minecraft entry point
 - system/               # largely defaults
 - - networking/         # networking setup with dnscrypt-proxy2
 - server-default.nix    # strictly imports server only stuff
 
 npins/                  # flakes? what is that?
 - default.nix           # auto generated file to import npins
-- sources.json          # where is the flake.lock? here it is `sources.json`
+- sources.json          # where is the flake.lock? here it is
 
 pkgs/                   # exported packages are found here
 - overlays/             # overlays (duh)
@@ -146,6 +146,7 @@ users/                  # user specific configuration imported by hosts hosting 
 - - quickshell/         # god bless foxxed for creating this lovely thing
 - - - kurukurubar/      # adorable bar for kuru kuru maxxing
 - - - kurumibar/        # my first now unmainted rectangle bar
+- - - shell.nix         # devshell for qml development with quickshell
 - rexies.nix            # main file responsible for leveraging hjem to plant dots in place
 - <others>.nix          # other users
 

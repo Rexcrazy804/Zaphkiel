@@ -113,11 +113,8 @@ nix run github:Rexcrazy804/Zaphkiel#nixvim
 ## Flake Structure
 ```
 hosts/                  # starting point for host specific configuration
-- <hostname>/           # divided into three files for segregation
+- <hostname>/           # divided into three files for seperation
 - - extras/             # things I am lazy to seperate into a module just yet
-- - configuration.nix
-- - user-configuration.nix
-- - hardware-configuration.nix
 
 nixosModules/           # common options and defaults shared across all hosts
 - external/             # used for hosting modified nixos modules that aren't written by me
@@ -132,7 +129,7 @@ nixosModules/           # common options and defaults shared across all hosts
 - - networking/         # networking setup with dnscrypt-proxy2
 - server-default.nix    # strictly imports server only stuff
 
-npins/
+npins/                  # flakes? what is that?
 - default.nix           # auto generated file to import npins
 - sources.json          # where is the flake.lock? here it is `sources.json`
 
@@ -147,10 +144,16 @@ users/                  # user specific configuration imported by hosts hosting 
 - - <program>/          # doots
 - - hyprland/           # might niri, too lazy for now, hyprland
 - - quickshell/         # god bless foxxed for creating this lovely thing
-- - - kurukurubar/      # adorable quickshell rice for kuru kuru maxxing
+- - - kurukurubar/      # adorable bar for kuru kuru maxxing
 - - - kurumibar/        # my first now unmainted rectangle bar
 - rexies.nix            # main file responsible for leveraging hjem to plant dots in place
-- <others>.nix
+- <others>.nix          # other users
+
+README.md               # are you reading me yet?
+default.nix             # main file that is evaluated to build the nixos configuration
+flake.nix               # sneaky flake.nix that uses npins for inputs
+license                 # MIT License
+rebuild.sh              # evaluates npins and calls default.nix to rebuild
 ```
 
 ## Acknowledgement

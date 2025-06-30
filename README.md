@@ -31,7 +31,8 @@ https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 
 <details>
 <summary>The long answer</summary>
-> if you'd prefer it please see these delightful blogs by Jade
+
+> if you'd prefer it please see these delightful blogs by Jade <br>
 > [Flakes aren't real](https://jade.fyi/blog/flakes-arent-real/) <br>
 > [Pinning nixos with npins](https://jade.fyi/blog/pinning-nixos-with-npins/) <br>
 

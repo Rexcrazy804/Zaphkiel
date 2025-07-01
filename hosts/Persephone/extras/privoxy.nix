@@ -11,6 +11,7 @@
           "nyaa.si"
           "rule34.xxx"
           ".yande.re"
+          "www.zerochan.net"
         ];
         proxy = "100.121.86.4:8888";
       in

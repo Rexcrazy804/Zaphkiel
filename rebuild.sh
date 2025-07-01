@@ -10,4 +10,4 @@ shift
 nixpkgs_pin=$(nix eval --raw -f npins/default.nix nixpkgs)
 # without --fast, nixos-rebuild will compile nix and use the compiled nix to
 # evaluate the config, wasting several seconds
-sudo env HOSTNAME=${HOSTNAME} nixos-rebuild --log-format bar-with-logs -I nixpkgs=${nixpkgs_pin} -I nixos-config=${PWD}/default.nix "$cmd" --no-reexec "$@"
+sudo HOSTNAME=${HOSTNAME} nixos-rebuild --log-format bar-with-logs -I nixpkgs=${nixpkgs_pin} -I nixos-config=${PWD}/default.nix "$cmd" --no-reexec "$@"

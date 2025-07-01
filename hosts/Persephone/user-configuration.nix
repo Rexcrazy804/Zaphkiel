@@ -60,7 +60,8 @@ in {
           magick $src -crop 450x450+640+25 - > $out
         '';
       };
-    in lib.mkForce face;
+    in
+      lib.mkForce face;
     "Pictures/booru".source = config.programs.booru-flake.imageFolder;
   };
 }

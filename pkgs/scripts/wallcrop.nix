@@ -1,5 +1,8 @@
 # a shrimple script to crop my wallpapers
-{writers, imagemagick}:
+{
+  writers,
+  imagemagick,
+}:
 writers.writeFishBin "wallcrop" ''
   set image $argv[1]
   set offsetX $argv[2]

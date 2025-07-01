@@ -39,9 +39,11 @@ in {
         name = "cropped-${image.name}";
         src = image;
         dontUnpack = true;
-        nativeBuildInputs = [pkgs.scripts.wallcrop];
+        # nativeBuildInputs = [pkgs.scripts.wallcrop];
+        nativeBuildInputs = [pkgs.imagemagick];
         installPhase = ''
-          wallcrop $src 0 1030 > $out
+          magick $src -crop 1920x1080+600+1200 - > $out
+          # wallcrop $src 0 1030 > $out
         '';
       };
   };

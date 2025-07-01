@@ -5,12 +5,7 @@
   ...
 }: let
   generic = [
-    pkgs.wineWowPackages.stable
-    pkgs.bottles
-    pkgs.winetricks
-    pkgs.rconc
     pkgs.foot
-    pkgs.cbonsai
     pkgs.cowsay
     pkgs.mpv-wrapped
   ];
@@ -31,7 +26,20 @@ in {
   };
   programs.matugen = {
     enable = true;
-    wallpaper = config.programs.booru-flake.images."7655511";
+    # wallpaper = config.programs.booru-flake.images."7655511";
+    wallpaper = let
+      image = config.programs.booru-flake.images."9561470";
+    in
+      pkgs.stdenv.mkDerivation {
+        name = "cropped-${image.name}";
+        src = image;
+        dontUnpack = true;
+        nativeBuildInputs = [pkgs.imagemagick];
+        installPhase = ''
+          # wallcrop $src 0 1030 > $out
+          magick $src -crop 4368x2170+0+188 - > $out
+        '';
+      };
   };
 
   hjem.users."rexies".files = {

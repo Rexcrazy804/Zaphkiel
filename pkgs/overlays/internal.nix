@@ -28,4 +28,9 @@
   sddm-silent = final.callPackage sources.silent-sddm {gitRev = sources.silent-sddm.revision;};
   wallcrop = final.callPackage ../wallcrop.nix {};
   scripts = final.callPackage ../scripts {};
+
+  # a lil cursed but lets me rexport the custom theme
+  sddm-silent-custom = final.sddm-silent.override (import ../../nixosModules/programs/sddm/theme.nix {
+    inherit (final) fetchurl runCommandWith ffmpeg;
+  });
 }

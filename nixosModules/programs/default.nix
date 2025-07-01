@@ -2,7 +2,6 @@
   imports = [
     ./gdm.nix
     ./steam.nix
-    ./sddm.nix
     ./aagl.nix
     ./age.nix
     ./direnv.nix
@@ -10,7 +9,9 @@
     ./keyd.nix
     ./firefox.nix
     ./hyprland.nix
+
     ./booru-flake
+    ./sddm
 
     # this is not an option
     # auto enables fish and overwrites bash

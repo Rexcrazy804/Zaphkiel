@@ -103,6 +103,7 @@ The following packages are exported by this flake:
 | nixvim | My custom neovim configuration wrapped using the builtin neovim-unstable wrapper|
 | nixvim-minimal | less bloated version (no lsps) don't confuse this and above with the [nixvim](https://github.com/nix-community/nixvim) project. |
 | mpv | My mpv configuration with [anime4k](https://github.com/bloc97/Anime4K) shaders baked in |
+| sddm-silent-custom | slightly customized silentSDDM theme rexport |
 
 you may run any of the above with the following command (ofc you can't run a
 cursor, `nix build` it instead) replacing `nixvim` with your desired package

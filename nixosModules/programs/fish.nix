@@ -8,6 +8,9 @@
       nrn = "nix run nixpkgs#";
       "nuf --set-cursor" = "env NIXPKGS_ALLOW_UNFREE=1 nix % --impure";
 
+      # see pkgs/default.nix
+      zb = "nix-build ~/nixos/pkgs --argstr package";
+
       # git stuff
       gaa = "git add --all";
       ga = "git add";

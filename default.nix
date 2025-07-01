@@ -3,7 +3,6 @@
   overlays = {
     internal = import ./pkgs/overlays/internal.nix {inherit sources;};
     lix = import ./pkgs/overlays/lix.nix {lix = null;};
-    lix-regfix = import ./pkgs/overlays/lix-regression-fix.nix;
   };
 in {
   _module.args = {inherit sources;};

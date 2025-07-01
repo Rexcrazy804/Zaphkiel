@@ -10,8 +10,7 @@
     withHyprland = true;
     withI3 = false;
   };
-  # nixpkgs version of quickshell for liverunning only
-  quickshell-nix = prev.quickshell;
+  kurukurubar = final.callPackage ../kurukurubar.nix {inherit (prev) quickshell;};
   kokCursor = final.callPackage ../kokCursor.nix {};
   nixvim-minimal = final.callPackage ../nvim {};
   nixvim = final.nixvim-minimal.override {

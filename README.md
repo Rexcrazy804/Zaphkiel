@@ -98,7 +98,7 @@ The following packages are exported by this flake:
 
 | package | description |
 | ------- | ----------- |
-| quickshell | My quickshell configuration, specifically kurukurubar |
+| kurukurubar | adorable bar to spin the kuru kuru |
 | kokCursor | A cute kokomi XCursor |
 | nixvim | My custom neovim configuration wrapped using the builtin neovim-unstable wrapper|
 | nixvim-minimal | less bloated version (no lsps) don't confuse this and above with the [nixvim](https://github.com/nix-community/nixvim) project. |

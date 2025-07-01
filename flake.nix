@@ -22,10 +22,10 @@
     overlays.internal = import ./pkgs/overlays/internal.nix {inherit sources;};
 
     packages = forAllSystems (pkgs: {
-      inherit (pkgs) nixvim nixvim-minimal kokCursor;
-      quickshell = pkgs.callPackage ./pkgs/quickshell.nix {quickshell = pkgs.quickshell-nix;};
+      inherit (pkgs) nixvim nixvim-minimal kokCursor kurukurubar;
+      # old export, to not break things for some cuties
+      quickshell = pkgs.lib.warn "prefer #kurukurubar instead. #quickshell will be removed soon" pkgs.kurukurubar;
       mpv = pkgs.mpv-wrapped.override {anime = true;};
-      sddm-theme = pkgs.sddm-silent.override {theme = "rei";};
     });
 
     templates = {

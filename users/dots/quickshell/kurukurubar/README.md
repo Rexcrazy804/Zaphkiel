@@ -26,7 +26,7 @@ using [this template](../../../../nixosModules/external/matugen/templates/quicks
 ### Live running on nix
 This rice is exposed as a package in the toplevel flake and can be used to run the rice as follows
 ```
-nix run github:Rexcrazy804/Zaphkiel#quickshell
+nix run github:Rexcrazy804/Zaphkiel#kurukurubar
 ```
 
 ## Acknowledgement

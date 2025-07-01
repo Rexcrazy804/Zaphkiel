@@ -9,15 +9,13 @@
       overlays = [(import ../../../pkgs/overlays/internal.nix {inherit sources;})];
     },
 }: let
+  inherit (pkgs.lib) makeSearchPath;
   qtDeps = [
     pkgs.quickshell
     pkgs.kdePackages.qtbase
     pkgs.kdePackages.qtdeclarative
   ];
-  qmlPath = pkgs.lib.pipe qtDeps [
-    (builtins.map (lib: "${lib}/lib/qt-6/qml"))
-    (builtins.concatStringsSep ":")
-  ];
+  qmlPath = makeSearchPath "lib/qt-6/qml" qtDeps;
 in
   pkgs.mkShell {
     shellHook = ''

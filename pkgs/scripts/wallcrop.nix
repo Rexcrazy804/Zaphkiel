@@ -19,7 +19,7 @@ writers.writeFishBin "wallcrop" ''
 
   if test $imgWidth -gt $imgHeight
     set heightRatio (math $imgHeight / $scrnHeight)
-    set reqWidth (math -s 0 $widthRatio x $scrnWidth)
+    set reqWidth (math -s 0 $heightRatio x $scrnWidth)
     set reqHeight $imgHeight
   else
     set widthRatio (math $imgWidth / $scrnWidth)

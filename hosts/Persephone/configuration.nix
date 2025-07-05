@@ -9,6 +9,7 @@
     ./hardware-configuration.nix
     ./user-configuration.nix
     ./extras/privoxy.nix
+    ./extras/lanzaboote.nix
     ../../nixosModules
     ../../users/rexies.nix
   ];

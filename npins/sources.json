@@ -52,6 +52,19 @@
       "url": "https://github.com/catppuccin/bat/archive/6810349b28055dce54076712fc05fc68da4b8ec0.tar.gz",
       "hash": "1y5sfi7jfr97z1g6vm2mzbsw59j1jizwlmbadvmx842m0i5ak5ll"
     },
+    "crane": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "ipetkov",
+        "repo": "crane"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "aed2020fd3dc26e1e857d4107a5a67a33ab6c1fd",
+      "url": "https://github.com/ipetkov/crane/archive/aed2020fd3dc26e1e857d4107a5a67a33ab6c1fd.tar.gz",
+      "hash": "0c3k2i1ikf6rxz9xxjxdaffgpc6mwm9d7xywf2i3g614sa06wsmj"
+    },
     "flake-compat": {
       "type": "Git",
       "repository": {
@@ -78,6 +91,19 @@
       "revision": "26c5ebaad2b2cfeaf6cf360952f5fe8876326c80",
       "url": "https://github.com/feel-co/hjem/archive/26c5ebaad2b2cfeaf6cf360952f5fe8876326c80.tar.gz",
       "hash": "14dq688k19ybl5w0n8f9rl1xdc8i1s6cagsdrbyi45620izinaag"
+    },
+    "lanzaboote": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Rexcrazy804",
+        "repo": "lanzaboote"
+      },
+      "branch": "npins-support",
+      "submodules": false,
+      "revision": "67ad02a1b91daf0c3c6dd768e97776735edc1b93",
+      "url": "https://github.com/Rexcrazy804/lanzaboote/archive/67ad02a1b91daf0c3c6dd768e97776735edc1b93.tar.gz",
+      "hash": "18f86kq665688jn26d8g6s0n1lf6vp93213q7s9s9653r28diwhj"
     },
     "nix-minecraft": {
       "type": "Git",
@@ -137,6 +163,19 @@
       "revision": "fd30db031194d5905b9f5ab832ed770931036944",
       "url": "https://github.com/rose-pine/foot/archive/fd30db031194d5905b9f5ab832ed770931036944.tar.gz",
       "hash": "0kgnv6b4lb980mn3fjygkiqnzpj6kfgb4f85hiidpscgm8k4lqs0"
+    },
+    "rust-overlay": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "oxalica",
+        "repo": "rust-overlay"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "9e5e62a33a929a67a5427fb7324a6f583dced0b2",
+      "url": "https://github.com/oxalica/rust-overlay/archive/9e5e62a33a929a67a5427fb7324a6f583dced0b2.tar.gz",
+      "hash": "106qj2s26nfbh8cmg2w9zwrpljv9g72a6h74758bmwfak1gvk0vm"
     },
     "silent-sddm": {
       "type": "Git",

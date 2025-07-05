@@ -11,7 +11,8 @@
       "submodules": false,
       "revision": "ec2ec4ec3f908ed9b125ea4afd52627bed60f183",
       "url": "https://github.com/ezKEa/aagl-gtk-on-nix/archive/ec2ec4ec3f908ed9b125ea4afd52627bed60f183.tar.gz",
-      "hash": "1yyk034x32km8v472m1y6plh2822089b5aw4hil6g4h1ilh2canw"
+      "hash": "1yyk034x32km8v472m1y6plh2822089b5aw4hil6g4h1ilh2canw",
+      "frozen": true
     },
     "agenix": {
       "type": "Git",
@@ -63,7 +64,8 @@
       "submodules": false,
       "revision": "aed2020fd3dc26e1e857d4107a5a67a33ab6c1fd",
       "url": "https://github.com/ipetkov/crane/archive/aed2020fd3dc26e1e857d4107a5a67a33ab6c1fd.tar.gz",
-      "hash": "0c3k2i1ikf6rxz9xxjxdaffgpc6mwm9d7xywf2i3g614sa06wsmj"
+      "hash": "0c3k2i1ikf6rxz9xxjxdaffgpc6mwm9d7xywf2i3g614sa06wsmj",
+      "frozen": true
     },
     "flake-compat": {
       "type": "Git",
@@ -77,7 +79,8 @@
       "submodules": false,
       "revision": "88e58d66efad1b3e0edf8633ea0774f7105d37c9",
       "url": "https://git.lix.systems/lix-project/flake-compat/archive/88e58d66efad1b3e0edf8633ea0774f7105d37c9.tar.gz",
-      "hash": "0vxzmiidmv700fvrg3snhqk5sfhvwbl5djhryafs602qd5w2q5a4"
+      "hash": "0vxzmiidmv700fvrg3snhqk5sfhvwbl5djhryafs602qd5w2q5a4",
+      "frozen": true
     },
     "hjem": {
       "type": "Git",
@@ -88,9 +91,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "26c5ebaad2b2cfeaf6cf360952f5fe8876326c80",
-      "url": "https://github.com/feel-co/hjem/archive/26c5ebaad2b2cfeaf6cf360952f5fe8876326c80.tar.gz",
-      "hash": "14dq688k19ybl5w0n8f9rl1xdc8i1s6cagsdrbyi45620izinaag"
+      "revision": "a1a2680af8038c4b85c6078e44fc3e422c81e04b",
+      "url": "https://github.com/feel-co/hjem/archive/a1a2680af8038c4b85c6078e44fc3e422c81e04b.tar.gz",
+      "hash": "003zq8fp7qil2746azm3z7hc8zkxppylgr7a13kaxlqi7f48sk99"
     },
     "lanzaboote": {
       "type": "Git",
@@ -116,13 +119,14 @@
       "submodules": false,
       "revision": "09ba53f12c274d9b0b9dd16daa76f677192c9227",
       "url": "https://github.com/Rexcrazy804/nix-minecraft/archive/09ba53f12c274d9b0b9dd16daa76f677192c9227.tar.gz",
-      "hash": "0hkan50k5f6p6lpwha219ykjm3kqq9ldkc0vwq77njqz1ghcpb32"
+      "hash": "0hkan50k5f6p6lpwha219ykjm3kqq9ldkc0vwq77njqz1ghcpb32",
+      "frozen": true
     },
     "nixpkgs": {
       "type": "Channel",
       "name": "nixos-unstable",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre823481.3016b4b15d13/nixexprs.tar.xz",
-      "hash": "1ml7yaq7r15rfpx9vqh32bisc2w7kdsv6kmclnb2g113fbv6fd85"
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre824861.5c724ed1388e/nixexprs.tar.xz",
+      "hash": "00vrii52r78nvjm5rskqd8v5an5izrr4bks8lsjs5j3pd8024f0k"
     },
     "quickshell": {
       "type": "Git",
@@ -134,9 +138,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "f681e2016fd71b42985bd520b3a20c62488582e9",
-      "url": "https://git.outfoxxed.me/quickshell/quickshell/archive/f681e2016fd71b42985bd520b3a20c62488582e9.tar.gz",
-      "hash": "1vi304b6msksdzknghp6pa21xpjasinnac41j0nxilr1g2ghvcvc"
+      "revision": "87d99b866f9866db10b55c8b03632f0eecae52d8",
+      "url": "https://git.outfoxxed.me/quickshell/quickshell/archive/87d99b866f9866db10b55c8b03632f0eecae52d8.tar.gz",
+      "hash": "0nq00h667xchlzsywsfd8jgqdhdhw9l7ij6plfh3pjhmcmpngqxx"
     },
     "rosep-fish": {
       "type": "Git",
@@ -175,7 +179,8 @@
       "submodules": false,
       "revision": "9e5e62a33a929a67a5427fb7324a6f583dced0b2",
       "url": "https://github.com/oxalica/rust-overlay/archive/9e5e62a33a929a67a5427fb7324a6f583dced0b2.tar.gz",
-      "hash": "106qj2s26nfbh8cmg2w9zwrpljv9g72a6h74758bmwfak1gvk0vm"
+      "hash": "106qj2s26nfbh8cmg2w9zwrpljv9g72a6h74758bmwfak1gvk0vm",
+      "frozen": true
     },
     "silent-sddm": {
       "type": "Git",
@@ -186,9 +191,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "0af010f52abf5af3b9729ab5f4634443c316c077",
-      "url": "https://github.com/uiriansan/SilentSDDM/archive/0af010f52abf5af3b9729ab5f4634443c316c077.tar.gz",
-      "hash": "03njik7dma501nbr53zv9alyc34zj35p484608zz3v9280015kqb"
+      "revision": "8ad3b967fed32d820133a983bf154ab19f89a36c",
+      "url": "https://github.com/uiriansan/SilentSDDM/archive/8ad3b967fed32d820133a983bf154ab19f89a36c.tar.gz",
+      "hash": "0h49nnmhyyly1k2s4p34wa7i4r21qz0wi2digb9hykmd16nxmnmk"
     }
   },
   "version": 5

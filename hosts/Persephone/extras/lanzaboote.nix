@@ -15,5 +15,6 @@ in {
     enable = true;
     pkiBundle = "/var/lib/sbctl";
     package = lanzaboote.tool;
+    configurationLimit = 12;
   };
 }

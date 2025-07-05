@@ -1,8 +1,9 @@
 {sources, ...}: {
   imports = [./activation.nix];
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.flake.source = sources.nixpkgs;
   nix = {
+    nixPath = ["nixpkgs=/etc/nixos/nixpkgs"];
+
     channel.enable = false;
     settings = {
       experimental-features = ["nix-command" "flakes"];
@@ -15,5 +16,9 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
+  };
+
+  environment.etc = {
+    "nixos/nixpkgs".source = sources.nixpkgs;
   };
 }

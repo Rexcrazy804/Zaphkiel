@@ -9,7 +9,7 @@
       "nuf --set-cursor" = "env NIXPKGS_ALLOW_UNFREE=1 nix % --impure";
 
       # see pkgs/default.nix
-      zb = "nix-build ~/nixos/pkgs --argstr package";
+      zb = "nix-build ~/nixos/pkgs -A";
 
       # git stuff
       gaa = "git add --all";

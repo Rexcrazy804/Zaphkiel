@@ -11,7 +11,7 @@
   qsConfig = ../users/dots/quickshell/kurukurubar;
 in
   symlinkJoin rec {
-    pname = "qs-wrapper";
+    pname = "kurukurubar";
     version = quickshell.version;
 
     paths = [quickshell];
@@ -36,11 +36,11 @@ in
     };
 
     postBuild = ''
-      wrapProgram $out/bin/quickshell \
+      makeWrapper $out/bin/quickshell $out/bin/kurukurubar \
         --set FONTCONFIG_FILE "${fontconfig}" \
         --set QML2_IMPORT_PATH "${qmlPath}" \
         --add-flags '-p ${qsConfig}'
     '';
 
-    meta.mainProgram = "quickshell";
+    meta.mainProgram = "kurukurubar";
   }

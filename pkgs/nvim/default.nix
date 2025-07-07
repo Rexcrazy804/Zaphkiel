@@ -1,110 +1,87 @@
 {
-  neovimUtils,
-  vimUtils,
-  lib,
-  vimPlugins,
-  wrapNeovimUnstable,
-  neovim-unwrapped,
   pkgs,
-  extraPkgs ? [],
-  ...
+  mnw,
 }: let
-  nvimConfig = neovimUtils.makeNeovimConfig {
-    withPython3 = false;
-    withRuby = false;
-    withNodejs = false;
+  # just taking what I need from mnw, you don't need to do this
+  wrapper-uncheckd = pkgs.callPackage (mnw + "/wrapper.nix") {};
+  wrapper = module: let
+    inherit (pkgs) lib;
+    evaled = lib.evalModules {
+      specialArgs = {
+        inherit pkgs;
+        modulesPath = mnw + "/modules";
+      };
+      modules = [
+        (import (mnw + "/modules/options.nix") false)
+        module
+      ];
+    };
 
-    customRC = ''
-      :luafile ${./init.lua}
+    failedAssertions = map (x: x.message) (builtins.filter (x: !x.assertion) evaled.config.assertions);
+    baseSystemAssertWarn =
+      if failedAssertions != []
+      then throw "\nFailed assertions:\n${lib.concatMapStrings (x: "- ${x}") failedAssertions}"
+      else lib.showWarnings evaled.config.warnings;
+  in
+    wrapper-uncheckd (baseSystemAssertWarn evaled.config);
+in
+  wrapper {
+    neovim = pkgs.neovim-unwrapped;
+    initLua = ''
+      require("plugins")
     '';
 
-    plugins = builtins.attrValues {
-      inherit
-        (vimPlugins)
-        lz-n
-        catppuccin-nvim
-        rose-pine
-        neo-tree-nvim
-        nvim-web-devicons
-        which-key-nvim
-        toggleterm-nvim
-        lualine-nvim
-        nvim-colorizer-lua
-        gitsigns-nvim
-        flash-nvim
-        vim-startuptime
-        fidget-nvim
-        telescope-nvim
-        telescope-fzf-native-nvim
-        nvim-lspconfig
-        nvim-lsputils
-        nvim-autopairs
-        indent-blankline-nvim
-        nvim-cmp
-        cmp-buffer
-        cmp-path
-        cmp-nvim-lsp
-        cmp-nvim-lsp-document-symbol
-        cmp-nvim-lsp-signature-help
-        lspkind-nvim
-        nvim-dbee
-        ;
-
-      # dbee-cmp = vimUtils.buildVimPlugin rec {
-      #   pname = "cmp-dbee";
-      #   version = "unstable-${builtins.substring 0 6 src.rev}";
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "MattiasMTS";
-      #     repo = "cmp-dbee";
-      #     rev = "1650f67b9bf43c029fc37570665ca895a33cdf5a";
-      #     sha256 = "sha256-XxB4jQu9xAi/7XDcwsd0hGLSs74ysjg0N/uaTHjqByI=";
-      #   };
-      #   nvimSkipModules = ["cmp-dbee.source" "cmp-dbee.connection"];
-      #   meta.homepage = "https://github.com/hrsh7th/cmp-buffer/";
-      # };
-
-      treesitter = vimPlugins.nvim-treesitter.withAllGrammars;
-
-      # figure this out later by comparing this with nvim-treesitter.builtGrammars
-      # treesitter = vimPlugins.nvim-treesitter.withPlugins (p: with p; [
-      #   rust yaml xml vim
-      #   typescript toml sql
-      #   readline python php nix
-      #   ninja meson lua luadoc
-      #   latex kotlin json5 json
-      #   javascript java ini hyprlang
-      #   http html groovy go
-      #   glsl gitignore gitcommit gitattributes
-      #   git_rebase git_config gdscript diff
-      #   dart cuda csv css
-      #   cpp cmake c_sharp
-      #   c bibtex bash awk
-      #   nu
-      # ]);
-    };
-  };
-
-  nvim = wrapNeovimUnstable neovim-unwrapped nvimConfig;
-  packages =
-    [
+    extraBinPath = [
       pkgs.fzf
       pkgs.ripgrep
       pkgs.wl-clipboard
       pkgs.fd
-    ]
-    ++ extraPkgs;
-in
-  pkgs.symlinkJoin {
-    name = "nvim-wrapped-${nvim.version}";
+    ];
 
-    paths = [nvim];
+    plugins = {
+      start = builtins.attrValues {
+        inherit
+          (pkgs.vimPlugins)
+          lz-n
+          nvim-cmp
+          cmp-buffer
+          cmp-path
+          cmp-nvim-lsp
+          cmp-nvim-lsp-document-symbol
+          cmp-nvim-lsp-signature-help
+          lspkind-nvim
+          nvim-web-devicons
+          ;
 
-    buildInputs = [pkgs.makeWrapper];
+        treesitter = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+      };
 
-    postBuild = ''
-      wrapProgram $out/bin/nvim \
-      --prefix PATH : ${lib.makeBinPath packages}
-    '';
+      opt = builtins.attrValues {
+        inherit
+          (pkgs.vimPlugins)
+          catppuccin-nvim
+          rose-pine
+          neo-tree-nvim
+          which-key-nvim
+          toggleterm-nvim
+          lualine-nvim
+          nvim-colorizer-lua
+          gitsigns-nvim
+          flash-nvim
+          fidget-nvim
+          telescope-nvim
+          telescope-fzf-native-nvim
+          nvim-lspconfig
+          nvim-lsputils
+          nvim-autopairs
+          indent-blankline-nvim
+          nvim-dbee
+          ;
+      };
 
-    meta.mainProgram = "nvim";
+      dev.myconfig = {
+        pure = ../../users/dots/nvim;
+        impure = "/home/rexies/nixos/users/dots/nvim";
+      };
+    };
   }

@@ -18,8 +18,6 @@
       # language servers
       final.nil
       final.lua-language-server
-      final.vscode-langservers-extracted
-      final.sqls
       # formatter
       final.alejandra
     ];

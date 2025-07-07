@@ -19,6 +19,7 @@ https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 |Launcher|[Fuzzel](https://codeberg.org/dnkl/fuzzel)|[`users/dots/fuzzel/fuzzel.ini`](users/dots/fuzzel/fuzzel.ini)|
 |Colors|[Matugen](https://github.com/InioX/matugen)|[`nixosModules/external/matugen/templates/`](nixosModules/external/matugen/templates/)|
 |Terminal|[Foot](https://codeberg.org/dnkl/foot)|[`users/dots/foot/foot.ini`](users/dots/foot/foot.ini)|
+|Editor|[Neovim](https://neovim.io/)|[`users/dots/nvim/`](users/dots/nvim/)|
 |Wallpapers|[booru-flake](https://github.com/Rexcrazy804/booru-flake)|[`nixosModules/programs/booru-flake/preview.md`](nixosModules/programs/booru-flake/preview.md)|
 |Cursor|[Kokomi Cursor](https://www.pling.com/p/2167734/)| nil / really long random text to make this table very wide yes looks like I|
 

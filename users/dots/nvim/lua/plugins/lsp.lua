@@ -16,4 +16,4 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
-vim.lsp.enable { 'nix', 'luals' }
+vim.lsp.enable { 'nix', 'lua', 'qml' }

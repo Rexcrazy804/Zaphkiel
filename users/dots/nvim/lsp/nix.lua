@@ -1,6 +1,5 @@
 ---@type vim.lsp.Config
 return {
-  name = "nil",
   cmd = { "nil" },
   filetypes = { "nix" },
   root_markers = { "flake.nix", ".git" },

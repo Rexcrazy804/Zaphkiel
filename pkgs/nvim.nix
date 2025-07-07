@@ -43,14 +43,9 @@ in
         inherit
           (pkgs.vimPlugins)
           lz-n
-          nvim-cmp
-          cmp-buffer
-          cmp-path
-          cmp-nvim-lsp
-          cmp-nvim-lsp-document-symbol
-          cmp-nvim-lsp-signature-help
-          lspkind-nvim
+          blink-cmp
           nvim-web-devicons
+          lspkind-nvim
           ;
 
         treesitter = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;

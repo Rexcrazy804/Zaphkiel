@@ -100,10 +100,10 @@ The following packages are exported by this flake:
 | ------- | ----------- |
 | kurukurubar | adorable bar to spin the kuru kuru |
 | kokCursor | A cute kokomi XCursor |
-| nixvim | My custom neovim configuration wrapped using the builtin neovim-unstable wrapper|
-| nixvim-minimal | less bloated version (no lsps) don't confuse this and above with the [nixvim](https://github.com/nix-community/nixvim) project. |
+| nixvim | My custom neovim configuration using [mnw](https://github.com/Gerg-L/mnw)|
+| nixvim-minimal | less bloated version (no lsps) don't confuse this and above with the [nixvim](https://github.com/nix-community/nixvim) project|
 | mpv | My mpv configuration with [anime4k](https://github.com/bloc97/Anime4K) shaders baked in |
-| sddm-silent-custom | slightly customized silentSDDM theme rexport |
+| sddm-silent-custom | slightly customized silentSDDM theme re-export |
 
 you may run any of the above with the following command (ofc you can't run a
 cursor, `nix build` it instead) replacing `nixvim` with your desired package
@@ -135,7 +135,6 @@ npins/                  # flakes? what is that?
 
 pkgs/                   # exported packages are found here
 - mpv/                  # mpv wrapper with anime4k
-- nvim/                 # nvim configuration
 - overlays/             # overlays (duh)
 - scripts/              # cute scripts to do various things
 
@@ -150,6 +149,7 @@ users/                  # user specific configuration imported by hosts hosting 
 - - - kurukurubar/      # adorable bar for kuru kuru maxxing
 - - - kurumibar/        # my first now unmainted rectangle bar
 - - - shell.nix         # devshell for qml development with quickshell
+- - - nvim/             # nvim configuration
 - rexies.nix            # main file responsible for leveraging hjem to plant dots in place
 - <others>.nix          # other users
 

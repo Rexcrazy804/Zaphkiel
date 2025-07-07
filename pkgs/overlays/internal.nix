@@ -12,18 +12,16 @@
   };
   kurukurubar = final.callPackage ../kurukurubar.nix {inherit (prev) quickshell;};
   kokCursor = final.callPackage ../kokCursor.nix {};
-  nixvim-minimal = final.callPackage ../nvim {};
-  nixvim = final.nixvim-minimal.override {
-    extraPkgs = [
+  nixvim-minimal = import ../nvim.nix { inherit (sources) mnw; pkgs = final; };
+  nixvim = final.nixvim-minimal.override (prev: {
+    extraBinPath = prev.extraBinPath ++ [
       # language servers
       final.nil
       final.lua-language-server
-      final.vscode-langservers-extracted
-      final.sqls
       # formatter
       final.alejandra
     ];
-  };
+  });
   mpv-wrapped = final.callPackage ../mpv {};
   sddm-silent = final.callPackage sources.silent-sddm {gitRev = sources.silent-sddm.revision;};
   wallcrop = final.callPackage ../wallcrop.nix {};

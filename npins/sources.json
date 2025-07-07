@@ -108,6 +108,19 @@
       "url": "https://github.com/Rexcrazy804/lanzaboote/archive/67ad02a1b91daf0c3c6dd768e97776735edc1b93.tar.gz",
       "hash": "18f86kq665688jn26d8g6s0n1lf6vp93213q7s9s9653r28diwhj"
     },
+    "mnw": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Gerg-L",
+        "repo": "mnw"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "cff958a4e050f8d917a6ff3a5624bc4681c6187d",
+      "url": "https://github.com/Gerg-L/mnw/archive/cff958a4e050f8d917a6ff3a5624bc4681c6187d.tar.gz",
+      "hash": "0989skdz5qxv7fhssg3b5rhz3i7ynajnirrx1hyy1nfqgp4bd6vr"
+    },
     "nix-minecraft": {
       "type": "Git",
       "repository": {

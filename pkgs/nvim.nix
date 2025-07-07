@@ -71,8 +71,6 @@ in
           fidget-nvim
           telescope-nvim
           telescope-fzf-native-nvim
-          nvim-lspconfig
-          nvim-lsputils
           nvim-autopairs
           indent-blankline-nvim
           nvim-dbee

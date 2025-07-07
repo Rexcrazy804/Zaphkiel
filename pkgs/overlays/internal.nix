@@ -12,7 +12,7 @@
   };
   kurukurubar = final.callPackage ../kurukurubar.nix {inherit (prev) quickshell;};
   kokCursor = final.callPackage ../kokCursor.nix {};
-  nixvim-minimal = import ../nvim { inherit (sources) mnw; pkgs = final; };
+  nixvim-minimal = import ../nvim.nix { inherit (sources) mnw; pkgs = final; };
   nixvim = final.nixvim-minimal.override (prev: {
     extraBinPath = prev.extraBinPath ++ [
       # language servers

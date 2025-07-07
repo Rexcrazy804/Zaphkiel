@@ -7,23 +7,19 @@ map('n', '<leader>x', '<CMD>bdelete<CR>', defaults("Delete current buffer"))
 map('n', '<leader>X', '<CMD>bdelete!<CR>', defaults("Force delete current buffer"))
 
 -- lsp
-vim.lsp.config("*", {
-  on_attach = function(client, bufnr)
-    local opts = function(desc)
-      return { noremap = true, silent = true, desc = desc, }
-    end
-    local map = vim.api.nvim_buf_set_keymap
-    map(bufnr, 'n', '<leader>lf', '<cmd>lua vim.diagnostic.open_float()<CR>', opts('Lsp: Diagnostics'))
-    map(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts('Lsp: Goto Definition'))
-    map(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts('Lsp: Goto Declaration'))
-    map(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts('Lsp: Goto References'))
-    map(bufnr, 'n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts('Lsp: Goto Implementation'))
-    map(bufnr, 'n', 'gT', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts('Lsp: Type Definition'))
-    map(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts('Lsp: Hover'))
-    map(bufnr, 'n', '<leader>cw', '<cmd>lua vim.lsp.buf.workspace_symbol()<cr>', opts('Lsp: Workspace Symbol'))
-    map(bufnr, 'n', '<leader>ra', '<cmd>lua vim.lsp.buf.rename()<cr>', opts('Lsp: Rename'))
-    map(bufnr, 'n', '<leader>cr', '<cmd>lua vim.lsp.buf.references()<cr>', opts('Lsp: References'))
-    map(bufnr, 'n', '<leader>fm', '<cmd>lua vim.lsp.buf.format()<cr>', opts('Lsp: Run the lsp formatter'))
-    vim.keymap.set({ 'n', 'v' }, '<leader>ca', '<CMD>lua vim.lsp.buf.code_action()<CR>', opts('Lsp: Code Actions'))
-  end
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    map('n', '<leader>lf', '<cmd>lua vim.diagnostic.open_float()<CR>', defaults('Lsp: Diagnostics'))
+    map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', defaults('Lsp: Goto Definition'))
+    map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', defaults('Lsp: Goto Declaration'))
+    map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', defaults('Lsp: Goto References'))
+    map('n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<cr>', defaults('Lsp: Goto Implementation'))
+    map('n', 'gT', '<cmd>lua vim.lsp.buf.type_definition()<cr>', defaults('Lsp: Type Definition'))
+    map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', defaults('Lsp: Hover'))
+    map('n', '<leader>cw', '<cmd>lua vim.lsp.buf.workspace_symbol()<cr>', defaults('Lsp: Workspace Symbol'))
+    map('n', '<leader>ra', '<cmd>lua vim.lsp.buf.rename()<cr>', defaults('Lsp: Rename'))
+    map('n', '<leader>cr', '<cmd>lua vim.lsp.buf.references()<cr>', defaults('Lsp: References'))
+    map('n', '<leader>fm', '<cmd>lua vim.lsp.buf.format()<cr>', defaults('Lsp: Run the lsp formatter'))
+    map({ 'n', 'v' }, '<leader>ca', '<CMD>lua vim.lsp.buf.code_action()<CR>', defaults('Lsp: Code Actions'))
+  end,
 })

@@ -36,7 +36,10 @@
         settings = {
           General = {
             # required for theming the virtual keyboard
-            GreeterEnvironment = "QML2_IMPORT_PATH=${sddm-theme}/share/sddm/themes/${sddm-theme.pname}/components/,QT_IM_MODULE=qtvirtualkeyboard";
+            GreeterEnvironment = builtins.concatStringsSep "," [
+              "QML2_IMPORT_PATH=${sddm-theme}/share/sddm/themes/${sddm-theme.pname}/components/"
+              "QT_IM_MODULE=qtvirtualkeyboard"
+            ];
             InputMethod = "qtvirtualkeyboard";
           };
         };

@@ -10,11 +10,12 @@ require('lz.n').load {
       },
 
       appearance = {
-        nerd_font_variant = 'mono'
+        nerd_font_variant = 'mono',
       },
 
       completion = {
         menu = {
+          border = 'single',
           auto_show = false,
           draw = {
             components = {
@@ -56,6 +57,8 @@ require('lz.n').load {
         documentation = {
           auto_show = true,
           auto_show_delay_ms = 200,
+
+          window = { border = 'single' },
         }
       },
 

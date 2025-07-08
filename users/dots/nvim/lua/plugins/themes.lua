@@ -79,6 +79,15 @@ require("lz.n").load {
           -- leafy search
           CurSearch = { fg = "base", bg = "leaf", inherit = false },
           Search = { fg = "text", bg = "leaf", blend = 20, inherit = false },
+
+          -- make blink transparent
+          BlinkCmpDoc = { bg = 'NONE' },
+          BlinkCmpDocSeparator = { bg = 'NONE' },
+          BlinkCmpScrollBarGutter = { bg = 'NONE' },
+          -- here to let you know that I tried my fucking best to get rid of
+          -- the transparency of whatever that shit is called but failed after
+          -- a fuck tone of tries thank god devMode exists otherwise I would
+          -- have kms'd
         },
       })
     end

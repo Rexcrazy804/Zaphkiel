@@ -1,0 +1,24 @@
+{
+  "pins": {
+    "nixpkgs": {
+      "type": "Channel",
+      "name": "nixpkgs-unstable",
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.11pre826760.9b008d603929/nixexprs.tar.xz",
+      "hash": "01210b03yv98zydp1h5njdy4wgv34yqnznl9x6kgw08k0dcfyk74"
+    },
+    "rust-overlay": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "oxalica",
+        "repo": "rust-overlay"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "c587235f892930a61c9e415f0d9792a1b27a41a2",
+      "url": "https://github.com/oxalica/rust-overlay/archive/c587235f892930a61c9e415f0d9792a1b27a41a2.tar.gz",
+      "hash": "0h1vpdi9kg9hwpc959hhqr7nv3np45khrf7xw57xnlvn5cf8qnyk"
+    }
+  },
+  "version": 5
+}

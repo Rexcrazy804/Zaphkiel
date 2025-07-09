@@ -39,6 +39,23 @@
         '';
       };
 
+      rust-npins = {
+        path = ./templates/Rust/npins-minimal;
+        description = "Rust npins template with oxalica overlay + mold linker";
+        welcomeText = ''
+          # A minimal rust template
+          ## Features
+          - npins
+          - oxalica rust overlay
+
+          ## WARNING
+          - you must run `npins init` after pulling this template to generate `npins/default.nix`
+          - the sources are locked with `npins/sources.json` and can be updated via `npins update`
+
+          in the event that these steps fail, please open an issue on Rexcrazy804/Zaphkiel
+        '';
+      };
+
       nix-minimal = {
         path = ./templates/Nix/minimal;
         description = "A minimal nix flake template with the lambda for ease of use";

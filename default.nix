@@ -17,7 +17,5 @@ in {
     (sources.nix-minecraft {inherit pkgs;} + "/modules/minecraft-servers.nix")
   ];
 
-  nixpkgs = {
-    overlays = builtins.attrValues overlays;
-  };
+  nixpkgs.overlays = builtins.attrValues overlays;
 }

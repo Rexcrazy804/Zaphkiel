@@ -3,6 +3,7 @@
   overlays = {
     internal = import ./pkgs/overlays/internal.nix {inherit sources;};
     lix = import ./pkgs/overlays/lix.nix {lix = null;};
+    npins = import ./pkgs/overlays/npins.nix;
   };
 in {
   _module.args = {inherit sources;};

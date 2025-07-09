@@ -25,7 +25,7 @@
 
   users.users.rexies = {
     enable = true;
-    initialPassword = "rose";
+    initialPassword = "kokomi";
     createHome = true;
     isNormalUser = true;
     extraGroups = ["wheel"];

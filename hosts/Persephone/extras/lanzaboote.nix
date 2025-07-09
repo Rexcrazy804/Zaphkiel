@@ -5,9 +5,9 @@
 }: let
   # have to manually import sources to prevent infinite recursion
   sources = import ../../../npins;
-  lanzaboote = import (sources.lanzaboote + "/default-npins.nix") {inherit sources;};
+  lanzaboote = import (sources.lanzaboote {pkgs = import sources.nixpkgs {};} + "/default-npins.nix") {inherit sources;};
 in {
-  imports = [(sources.lanzaboote + "/nix/modules/lanzaboote.nix")];
+  imports = [(sources.lanzaboote {pkgs = import sources.nixpkgs {};} + "/nix/modules/lanzaboote.nix")];
   environment.systemPackages = [pkgs.sbctl];
 
   boot.loader.systemd-boot.enable = lib.mkForce false;

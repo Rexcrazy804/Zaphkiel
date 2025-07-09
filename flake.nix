@@ -64,14 +64,6 @@
         '';
       };
 
-      nix-npins = {
-        path = ./templates/Nix/npins-compat;
-        description = "A cursed npin-flake bridge template";
-        welcomeText = ''
-          # A cursed npin-flake bridge template by Rexiel Scarlet (Rexcrazy804)
-        '';
-      };
-
       vm-basic = {
         path = ./templates/Nix/basic-vm;
         description = "Basic npins based virtual machine template";

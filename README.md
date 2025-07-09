@@ -146,11 +146,11 @@ users/                  # user specific configuration imported by hosts hosting 
 - dots/                 # ricers, this is the .config/ folder you might be looking for
 - - <program>/          # doots
 - - hyprland/           # might niri, too lazy for now, hyprland
+- - nvim/             # nvim configuration
 - - quickshell/         # god bless foxxed for creating this lovely thing
 - - - kurukurubar/      # adorable bar for kuru kuru maxxing
 - - - kurumibar/        # my first now unmainted rectangle bar
 - - - shell.nix         # devshell for qml development with quickshell
-- - - nvim/             # nvim configuration
 - rexies.nix            # main file responsible for leveraging hjem to plant dots in place
 - <others>.nix          # other users
 

@@ -73,6 +73,11 @@
       enable = true;
       package = pkgs.kdePackages.kdeconnect-kde;
     };
+
+    gamescope = {
+      enable = true;
+      capSysNice = true;
+    };
   };
 
   hardware.bluetooth.powerOnBoot = lib.mkForce false;

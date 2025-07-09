@@ -73,11 +73,6 @@
       enable = true;
       package = pkgs.kdePackages.kdeconnect-kde;
     };
-
-    gamescope = {
-      enable = true;
-      capSysNice = true;
-    };
   };
 
   hardware.bluetooth.powerOnBoot = lib.mkForce false;
@@ -101,4 +96,11 @@
 
   # disable network manager wait online service (+6 seconds to boot time!!!!)
   systemd.services.NetworkManager-wait-online.enable = false;
+
+  services.sunshine = {
+    enable = true;
+    autoStart = false;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
 }

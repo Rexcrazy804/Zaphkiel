@@ -138,8 +138,8 @@
     "nixpkgs": {
       "type": "Channel",
       "name": "nixos-unstable",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre824861.5c724ed1388e/nixexprs.tar.xz",
-      "hash": "sha256-EzgiAGp3yKKlpkjPRXL+sVhVNmp46lyq3BadLEqMeQM="
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre826938.9807714d6944/nixexprs.tar.xz",
+      "hash": "sha256-ROMKbpfgrbogAWXNXJxUu+BoPyZdOq/MQ3UNYVP863o="
     },
     "quickshell": {
       "type": "Git",
@@ -151,9 +151,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "5d7e07508ae3e5487edb1ac5a152120434f091d5",
-      "url": "https://git.outfoxxed.me/quickshell/quickshell/archive/5d7e07508ae3e5487edb1ac5a152120434f091d5.tar.gz",
-      "hash": "sha256-5fQ2cetL3rTHqXe2VM3puawL/8u5j6ujBr6Gdt7Iues="
+      "revision": "0aecd9729f3f85ba49218ce4823f533a75a92ab0",
+      "url": "https://git.outfoxxed.me/quickshell/quickshell/archive/0aecd9729f3f85ba49218ce4823f533a75a92ab0.tar.gz",
+      "hash": "sha256-IbGpwrRwHDSZOwz0yEzu8hfCjEsCv2aBbVuIElItCNc="
     },
     "rosep-fish": {
       "type": "Git",
@@ -204,9 +204,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "8ad3b967fed32d820133a983bf154ab19f89a36c",
-      "url": "https://github.com/uiriansan/SilentSDDM/archive/8ad3b967fed32d820133a983bf154ab19f89a36c.tar.gz",
-      "hash": "sha256-s9rarQmtTg/TerGJyMHHQWQSj+JkXKLFDJ56D6u1iUA="
+      "revision": "d6600b9df7e3d6265f8f84c836fc06168d65e8a2",
+      "url": "https://github.com/uiriansan/SilentSDDM/archive/d6600b9df7e3d6265f8f84c836fc06168d65e8a2.tar.gz",
+      "hash": "sha256-0GeFXk2poqWbXxq9RtB39mwZB/i2xm2naMdpo3HhdIA="
     }
   },
   "version": 6

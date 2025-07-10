@@ -1,5 +1,5 @@
 # you may leverage the following command to build systems using this
-# sudo nixos-rebuild --no-reexec --file ~/nixos/default.nix -A <hostName> <boot|test|switch>
+# sudo nixos-rebuild --no-reexec --file ./default.nix -A <hostName> <boot|test|switch|...>
 let
   inherit (builtins) mapAttrs;
   sources = import ./npins;

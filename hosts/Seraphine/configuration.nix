@@ -32,7 +32,7 @@
     sddm-custom-theme.enable = true;
     direnv.enable = true;
     obs-studio.enable = false;
-    steam.enable = true;
+    steam.enable = false;
     hyprland.enable = true;
     keyd.enable = true;
   };

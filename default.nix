@@ -3,19 +3,17 @@
 let
   inherit (builtins) mapAttrs;
   sources = import ./npins;
+  pkgs = import sources.nixpkgs {};
   lazysources = mapAttrs (k: v: v {inherit pkgs;}) sources;
   nixosConfig = import (sources.nixpkgs + "/nixos/lib/eval-config.nix");
-  pkgs = import sources.nixpkgs {
-    overlays = builtins.attrValues {
-      internal = import ./pkgs/overlays/internal.nix {inherit sources;};
-      lix = import ./pkgs/overlays/lix.nix {lix = null;};
-      npins = import ./pkgs/overlays/npins.nix;
-    };
-    config.allowUnfree = true;
+  overlays = builtins.attrValues {
+    internal = import ./pkgs/overlays/internal.nix {inherit sources;};
+    lix = import ./pkgs/overlays/lix.nix {lix = null;};
+    # temporary
+    npins = import ./pkgs/overlays/npins.nix;
   };
 in {
   Persephone = nixosConfig {
-    inherit pkgs;
     system = null;
     specialArgs = {
       sources = lazysources;
@@ -23,6 +21,7 @@ in {
     };
 
     modules = [
+      {nixpkgs.overlays = overlays;}
       ./hosts/Persephone/configuration.nix
       ./nixosModules
       ./users
@@ -30,12 +29,12 @@ in {
   };
 
   Seraphine = nixosConfig {
-    inherit pkgs;
     specialArgs = {
       sources = lazysources;
       users = ["rexies"];
     };
     modules = [
+      {nixpkgs.overlays = overlays;}
       ./hosts/Seraphine/configuration.nix
       ./nixosModules
       ./users
@@ -43,12 +42,12 @@ in {
   };
 
   Aphrodite = nixosConfig {
-    inherit pkgs;
     specialArgs = {
       sources = lazysources;
       users = ["rexies" "sivanis"];
     };
     modules = [
+      {nixpkgs.overlays = overlays;}
       ./hosts/Aphrodite/configuration.nix
       ./users
       ./nixosModules/server-default.nix

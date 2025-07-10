@@ -6,6 +6,7 @@
   ...
 }: {
   imports = [
+    (sources.nix-minecraft + "/modules/minecraft-servers.nix")
     ./hollyj.nix
     ./backupservice.nix
   ];

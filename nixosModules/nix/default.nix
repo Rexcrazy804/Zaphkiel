@@ -1,6 +1,5 @@
 {sources, ...}: {
   imports = [./activation.nix];
-  nixpkgs.config.allowUnfree = true;
   nixpkgs.flake.source = sources.nixpkgs;
   nix = {
     channel.enable = false;

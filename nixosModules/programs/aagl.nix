@@ -4,6 +4,8 @@
   config,
   ...
 }: {
+  imports = [(sources.aagl + "/module")];
+
   options = {
     progModule.anime-games.enable = lib.mkEnableOption "Enable Anime Games";
   };

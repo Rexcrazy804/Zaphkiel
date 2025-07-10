@@ -31,6 +31,15 @@
       glg = "git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all";
       gl = "git log";
 
+      # systemctl
+      sy = "systemctl";
+      sya = "systemctl start";
+      syo = "systemctl stop";
+      # sysctl user
+      su = "systemctl --user";
+      sua = "systemctl --user start";
+      suo = "systemctl --user stop";
+
       # misc
       qsp = "qs --log-rules 'quickshell.dbus.properties.warning = false' -p ./kurukurubar/";
       lse = "eza --icons --group-directories-first -1";

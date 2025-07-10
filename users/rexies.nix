@@ -134,7 +134,7 @@ in {
       ".config/qt6ct/colors/matugen.conf".source = "${matugenTheme}/qtct-colors.conf";
 
       # discord
-      ".config/Vencord/themes/midnight.css".source = "${matugenTheme}/discord-midnight.css";
+      ".config/vesktop/themes/midnight.css".source = "${matugenTheme}/discord-midnight.css";
     };
   };
 }

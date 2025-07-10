@@ -23,7 +23,7 @@ Singleton {
     property int total
     property int totalSec
 
-    path: Qt.resolvedUrl("/proc/stat")
+    path: "/proc/stat"
 
     onLoaded: {
       const data = cpuInfo.text();
@@ -47,7 +47,7 @@ Singleton {
     property int free
     property int total
 
-    path: Qt.resolvedUrl("/proc/meminfo")
+    path: "/proc/meminfo"
 
     onLoaded: {
       const text = memInfo.text();

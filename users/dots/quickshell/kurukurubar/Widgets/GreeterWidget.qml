@@ -22,7 +22,7 @@ RowLayout {
       anchors.centerIn: parent
       height: this.width
       mipmap: true
-      source: Quickshell.env("HOME") + "/.face.icon"
+      source: "file://" + Quickshell.env("HOME") + "/.face.icon"
       visible: false
       width: 90
 

@@ -41,7 +41,7 @@
       suo = "systemctl --user stop";
 
       # misc
-      qsp = "qs --log-rules 'quickshell.dbus.properties.warning = false' -p ./kurukurubar/";
+      qsp = "qs --log-rules 'quickshell.dbus.properties.warning = false' -p .";
       lse = "eza --icons --group-directories-first -1";
     };
     shellAliases = {

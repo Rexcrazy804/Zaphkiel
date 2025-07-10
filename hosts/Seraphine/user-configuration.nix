@@ -4,24 +4,21 @@
   lib,
   ...
 }: let
-  generic = [
+  packages = [
     pkgs.foot
     pkgs.cowsay
     pkgs.mpv-wrapped
+
+    # internal overlay
+    pkgs.discord
   ];
-  special = builtins.attrValues {
-    discord = pkgs.discord.override {
-      withOpenASAR = true;
-      withMoonlight = true;
-    };
-  };
 in {
   imports = [
     ../../nixosModules/external/matugen
     ./extras/filebrowser.nix
   ];
   users.users."rexies" = {
-    packages = special ++ generic;
+    inherit packages;
     extraGroups = ["video" "input"];
   };
   programs.matugen = {

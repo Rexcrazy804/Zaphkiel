@@ -31,6 +31,7 @@
   sddm-silent = final.callPackage (sources.silent-sddm {pkgs = final;}) {gitRev = sources.silent-sddm.revision;};
   wallcrop = final.callPackage ../wallcrop.nix {};
   scripts = final.callPackage ../scripts {};
+  discord = prev.vesktop.override {withSystemVencord = true;};
 
   # a lil cursed but lets me rexport the custom theme
   sddm-silent-custom = final.sddm-silent.override (import ../../nixosModules/programs/sddm/theme.nix {

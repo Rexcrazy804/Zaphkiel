@@ -4,28 +4,24 @@
   config,
   ...
 }: let
-  generic = [
+  packages = [
     pkgs.wineWowPackages.stable
     pkgs.bottles
     pkgs.winetricks
     pkgs.foot
     pkgs.cbonsai
     pkgs.cowsay
+
     # from internal overlay
     pkgs.mpv-wrapped
     pkgs.scripts.wallcrop
+    pkgs.discord # yes this is vesktop
   ];
-  special = builtins.attrValues {
-    discord = pkgs.discord.override {
-      withOpenASAR = true;
-      withMoonlight = true;
-    };
-  };
 in {
   imports = [../../nixosModules/external/matugen];
 
   users.users."rexies" = {
-    packages = special ++ generic;
+    inherit packages;
     extraGroups = ["video" "input"];
   };
 

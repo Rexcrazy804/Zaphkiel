@@ -26,4 +26,30 @@ in {
       ./users
     ];
   };
+
+  Seraphine = nixosConfig {
+    inherit pkgs;
+    specialArgs = {
+      sources = lazysources;
+      users = ["rexies"];
+    };
+    modules = [
+      ./hosts/Seraphine/configuration.nix
+      ./nixosModules
+      ./users
+    ];
+  };
+
+  Aphrodite = nixosConfig {
+    inherit pkgs;
+    specialArgs = {
+      sources = lazysources;
+      users = ["rexies" "sivanis"];
+    };
+    modules = [
+      ./hosts/Aphrodite/configuration.nix
+      ./users
+      ./nixosModules/server-default.nix
+    ];
+  };
 }

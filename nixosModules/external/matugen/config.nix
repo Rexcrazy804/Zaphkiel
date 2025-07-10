@@ -5,11 +5,6 @@
       output_path = "~/hyprcolors.conf";
     };
 
-    midnight-discord = {
-      input_path = "${./templates/midnight-discord.css}";
-      output_path = "~/discord-midnight.css";
-    };
-
     gtk3 = {
       input_path = "${./templates/gtk-colors.css}";
       output_path = "~/gtk3-colors.css";

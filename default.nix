@@ -1,21 +1,56 @@
-{...}: let
+# you may leverage the following command to build systems using this
+# sudo nixos-rebuild --no-reexec --file ./default.nix -A <hostName> <boot|test|switch|...>
+let
+  inherit (builtins) mapAttrs;
   sources = import ./npins;
   pkgs = import sources.nixpkgs {};
-  overlays = {
+  lazysources = mapAttrs (k: v: v {inherit pkgs;}) sources;
+  nixosConfig = import (sources.nixpkgs + "/nixos/lib/eval-config.nix");
+  overlays = builtins.attrValues {
     internal = import ./pkgs/overlays/internal.nix {inherit sources;};
     lix = import ./pkgs/overlays/lix.nix {lix = null;};
+    # temporary
     npins = import ./pkgs/overlays/npins.nix;
   };
 in {
-  _module.args = {inherit sources;};
-  imports = [
-    ./hosts/${builtins.getEnv "HOSTNAME"}/configuration.nix
-    (sources.agenix {inherit pkgs;} + "/modules/age.nix")
-    (sources.hjem {inherit pkgs;} + "/modules/nixos")
-    (sources.aagl {inherit pkgs;} + "/module")
-    (sources.booru-flake {inherit pkgs;} + "/nix/nixosModule.nix")
-    (sources.nix-minecraft {inherit pkgs;} + "/modules/minecraft-servers.nix")
-  ];
+  Persephone = nixosConfig {
+    system = null;
+    specialArgs = {
+      sources = lazysources;
+      users = ["rexies"];
+    };
 
-  nixpkgs.overlays = builtins.attrValues overlays;
+    modules = [
+      {nixpkgs.overlays = overlays;}
+      ./hosts/Persephone/configuration.nix
+      ./nixosModules
+      ./users
+    ];
+  };
+
+  Seraphine = nixosConfig {
+    specialArgs = {
+      sources = lazysources;
+      users = ["rexies"];
+    };
+    modules = [
+      {nixpkgs.overlays = overlays;}
+      ./hosts/Seraphine/configuration.nix
+      ./nixosModules
+      ./users
+    ];
+  };
+
+  Aphrodite = nixosConfig {
+    specialArgs = {
+      sources = lazysources;
+      users = ["rexies" "sivanis"];
+    };
+    modules = [
+      {nixpkgs.overlays = overlays;}
+      ./hosts/Aphrodite/configuration.nix
+      ./users
+      ./nixosModules/server-default.nix
+    ];
+  };
 }

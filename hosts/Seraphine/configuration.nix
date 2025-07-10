@@ -4,12 +4,9 @@
   lib,
   ...
 }: {
-  _module.args.users = ["rexies"];
   imports = [
     ./hardware-configuration.nix
     ./user-configuration.nix
-    ../../nixosModules
-    ../../users/rexies.nix
   ];
 
   networking.hostName = "Seraphine";
@@ -35,7 +32,7 @@
     sddm-custom-theme.enable = true;
     direnv.enable = true;
     obs-studio.enable = false;
-    steam.enable = true;
+    steam.enable = false;
     hyprland.enable = true;
     keyd.enable = true;
   };

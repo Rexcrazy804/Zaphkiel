@@ -1,4 +1,6 @@
-{...}: {
+{sources, ...}: {
+  imports = [(sources.booru-flake + "/nix/nixosModule.nix")];
+
   programs.booru-flake = {
     enable = true;
     prefetcher.enable = true;

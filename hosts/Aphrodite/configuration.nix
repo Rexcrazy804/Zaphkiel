@@ -4,14 +4,10 @@
   config,
   ...
 }: {
-  _module.args.users = ["rexies" "sivanis"];
   imports = [
     ./hardware-configuration.nix
     ./user-configuration.nix
     ./extras/tinyproxy.nix
-    ../../nixosModules/server-default.nix
-    ../../users/rexies.nix
-    ../../users/sivanis.nix
   ];
 
   boot.tmp.cleanOnBoot = true;

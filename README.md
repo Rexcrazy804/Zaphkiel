@@ -146,19 +146,19 @@ users/                  # user specific configuration imported by hosts hosting 
 - dots/                 # ricers, this is the .config/ folder you might be looking for
 - - <program>/          # doots
 - - hyprland/           # might niri, too lazy for now, hyprland
-- - nvim/             # nvim configuration
+- - nvim/               # nvim configuration
 - - quickshell/         # god bless foxxed for creating this lovely thing
 - - - kurukurubar/      # adorable bar for kuru kuru maxxing
 - - - kurumibar/        # my first now unmainted rectangle bar
 - - - shell.nix         # devshell for qml development with quickshell
-- rexies.nix            # main file responsible for leveraging hjem to plant dots in place
+- default.nix           # imports hjem and required users as specified by users specialArg
+- rexies.nix            # my user, leverages hjem the most
 - <others>.nix          # other users
 
 README.md               # are you reading me yet?
-default.nix             # main file that is evaluated to build the nixos configuration
+default.nix             # entry point for building configurations
 flake.nix               # sneaky flake.nix that uses npins for inputs
 license                 # MIT License
-rebuild.sh              # evaluates npins and calls default.nix to rebuild
 ```
 
 ## Acknowledgement

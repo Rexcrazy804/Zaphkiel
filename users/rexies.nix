@@ -105,16 +105,16 @@ in {
       # shell
       # ".config/nushell/config.nu".source = ./dots/nushell/config.nu;
       # ".config/starship.toml".source = starship;
-      ".config/fish/themes".source = sources.rosep-fish {inherit pkgs;} + "/themes";
+      ".config/fish/themes".source = sources.rosep-fish + "/themes";
       ".config/fish/config.fish".source = ./dots/fish/config.fish;
       # bat
       ".config/bat/config".source = ./dots/bat/config;
       # NOTE: required bat cache --build before theme can be used
-      ".config/bat/themes".source = sources.catp-bat {inherit pkgs;} + "/themes";
+      ".config/bat/themes".source = sources.catp-bat + "/themes";
 
       # foot terminal
       ".config/foot/foot.ini".source = ./dots/foot/foot.ini;
-      ".config/foot/rose-pine.ini".source = sources.rosep-foot {inherit pkgs;} + "/rose-pine";
+      ".config/foot/rose-pine.ini".source = sources.rosep-foot + "/rose-pine";
 
       # hyprland
       ".config/uwsm/env".source = ./dots/uwsm/env;

@@ -1,9 +1,16 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: let
+  inherit (config.networking) hostName;
+  rebuildCommand = "sudo nixos-rebuild --log-format bar --no-reexec --file ~/nixos/default.nix -A ${hostName}";
+in {
   programs.fish = {
     enable = true;
     shellAbbrs = {
       # nix stuff
-      snw = "~/nixos/rebuild.sh";
+      snw = rebuildCommand;
       nsh = "nix shell nixpkgs#";
       nrn = "nix run nixpkgs#";
       "nuf --set-cursor" = "env NIXPKGS_ALLOW_UNFREE=1 nix % --impure";
@@ -46,9 +53,9 @@
     };
     shellAliases = {
       ls = "eza --icons --group-directories-first -1";
-      snowboot = "~/nixos/rebuild.sh boot";
-      snowfall = "~/nixos/rebuild.sh switch";
-      snowtest = "~/nixos/rebuild.sh test";
+      snowboot = "${rebuildCommand} boot";
+      snowfall = "${rebuildCommand} switch";
+      snowtest = "${rebuildCommand} test";
     };
 
     interactiveShellInit = let

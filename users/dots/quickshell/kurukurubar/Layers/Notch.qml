@@ -29,7 +29,7 @@ WlrLayershell {
     }
 
     Region {
-      item: inboxRect
+      item: inboxRect.contentItem
     }
   }
 

@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 
 import "../Data/" as Dat
+import "../Containers/" as Con
 
 Rectangle {
   id: root
@@ -13,7 +14,7 @@ Rectangle {
     anchors.fill: parent
     spacing: 0
 
-    CentralPane {
+    Con.CentralSwipable {
       Layout.fillHeight: true
       Layout.fillWidth: true
     }

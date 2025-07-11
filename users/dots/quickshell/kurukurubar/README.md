@@ -38,6 +38,8 @@ end_4, sora, a certain individual that has not yet returned, foxxed, starch,
 aureus, caesus, oyudays, lysec, friday and squirrel modeller
 
 ## Components outline
+> WARNING <br>
+> outdated, will need to redo this later
 ```
 | Notch
 - | TopBar

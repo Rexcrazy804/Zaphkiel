@@ -72,19 +72,20 @@ Item {
 
       delegate: Item {
         required property var model
+
         Rectangle {
           anchors.centerIn: parent
-          height: parent.height
-          width: this.height
-          radius: 6
           color: (monthGrid.currDay == model.day && monthGrid.currMonth == model.month) ? Dat.Colors.primary : "transparent"
+          height: parent.height
+          radius: 6
+          width: this.height
         }
 
         Text {
           anchors.centerIn: parent
           color: (parent.model.month == monthGrid.currMonth) ? (parent.model.day == monthGrid.currDay) ? Dat.Colors.on_primary : Dat.Colors.on_surface : Dat.Colors.withAlpha(Dat.Colors.on_surface_variant, 0.70)
-          text: parent.model.day
           font.pointSize: 10
+          text: parent.model.day
         }
       }
     }

@@ -104,16 +104,6 @@ in {
     flags = ["--cmd cd"];
   };
   programs.direnv.enableFishIntegration = true;
-  programs.starship = {
-    enable = false;
-    transientPrompt.enable = true;
-    # I don't know why they thought not including starship in environment.systemPackages was
-    # a genius idea
-    transientPrompt.left = ''
-      ${pkgs.starship}/bin/starship module directory
-      ${pkgs.starship}/bin/starship module character
-    '';
-  };
   programs.command-not-found.enable = false;
   programs.fzf.keybindings = true;
 

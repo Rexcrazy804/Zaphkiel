@@ -12,6 +12,8 @@ let
     # temporary
     npins = import ./pkgs/overlays/npins.nix;
   };
+  # modulesPath = sources.nixpkgs + "/nixos/modules";
+  # baseModules = builtins.map (path: modulesPath + "/" + path) (import ./baseModules.nix);
 in {
   Persephone = nixosConfig {
     system = null;

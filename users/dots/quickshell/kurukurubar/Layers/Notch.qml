@@ -343,39 +343,43 @@ WlrLayershell {
 
     onStateChanged: {
       if (state == "INBOX") {
-        inboxRect.visible = true
+        inboxRect.visible = true;
       } else {
-        inboxRect.visible = popupHideTimer.running
+        inboxRect.visible = popupHideTimer.running;
       }
     }
 
     Connections {
-      target: Dat.NotifServer.server
       function onNotification(e) {
         if (popupHideTimer.running) {
-          popupHideTimer.restart()
+          popupHideTimer.restart();
           return;
         }
         popupHideTimer.running = true;
         inboxRect.visible = true;
       }
+
+      target: Dat.NotifServer.server
     }
 
     Con.Inbox {
       id: inboxRect
-      model: (notificationRect.state == "INBOX")? Dat.NotifServer.notifications : Dat.NotifServer.lastNotif
+
       anchors.bottom: parent.bottom
       anchors.horizontalCenter: parent.horizontalCenter
       anchors.top: parent.top
+      model: (notificationRect.state == "INBOX") ? Dat.NotifServer.notifications : Dat.NotifServer.lastNotif
       width: 500
     }
 
     Timer {
       id: popupHideTimer
+
       interval: 3000
+
       onTriggered: {
         if (notificationRect.state == "POPUP") {
-          inboxRect.visible = false
+          inboxRect.visible = false;
         }
       }
     }

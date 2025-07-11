@@ -1,36 +1,49 @@
 import Quickshell
 import QtQuick
-import "Panes" as Panes
+import "Layers" as Lay
 import "Data" as Dat
 
 ShellRoot {
-  Loader {
-    active: Dat.Config.data.reservedShell
+  Variants {
+    model: Quickshell.screens
 
-    sourceComponent: Panes.PseudoReserved {
+    Scope {
+      id: scopeRoot
+
+      required property ShellScreen modelData
+
+      LazyLoader {
+        activeAsync: Dat.Config.data.reservedShell
+
+        component: Lay.PseudoReserved {
+          modelData: scopeRoot.modelData
+        }
+      }
+
+      LazyLoader {
+        activeAsync: Dat.Config.data.mousePsystem
+
+        component: Lay.MouseParticles {
+          modelData: scopeRoot.modelData
+        }
+      }
+
+      Lay.Notch {
+        modelData: scopeRoot.modelData
+      }
+
+      // inhibit the reload popup
+      Connections {
+        function onReloadCompleted() {
+          Quickshell.inhibitReloadPopup();
+        }
+
+        function onReloadFailed() {
+          Quickshell.inhibitReloadPopup();
+        }
+
+        target: Quickshell
+      }
     }
-  }
-
-  Loader {
-    active: Dat.Config.data.mousePsystem
-
-    sourceComponent: Panes.BottomLayer {
-    }
-  }
-
-  Panes.Notch {
-  }
-
-  // inhibit the reload popup
-  Connections {
-    function onReloadCompleted() {
-      Quickshell.inhibitReloadPopup();
-    }
-
-    function onReloadFailed() {
-      Quickshell.inhibitReloadPopup();
-    }
-
-    target: Quickshell
   }
 }

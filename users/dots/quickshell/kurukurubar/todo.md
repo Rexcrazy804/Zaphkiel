@@ -29,12 +29,12 @@
 - [x] use listView on trayItem instead of rowLayout (HomeView)
 - [x] trayItem animations
 - [x] cleanup rectangle: color: "transparents" with Item {}
+- [x] reorganize tree structure
 
 ### What I do not like to see
 - [ ] greetd and lockscreen
 - [ ] Lazy Loading
 - [ ] app launcher
-- [ ] reorganize tree structure
 - [ ] background layer for setting wallpaper
 - [ ] use font.family for specifying fonts
 - [ ] adjust anchor magins in homeView

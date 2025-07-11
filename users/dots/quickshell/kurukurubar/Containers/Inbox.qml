@@ -7,63 +7,41 @@ import Quickshell.Services.Notifications
 import "../Data/" as Dat
 import "../Generics/" as Gen
 
-Item {
-  id: inboxRect
+ListView {
+  id: inbox
+  clip: true
+  removeDisplaced: this.addDisplaced
+  spacing: 5
 
-  property alias list: inbox
+  add: Transition {
+    NumberAnimation {
+      duration: Dat.MaterialEasing.standardDecelTime
+      easing.bezierCurve: Dat.MaterialEasing.standardDecel
+      from: 1000
+      property: "x"
+    }
+  }
+  addDisplaced: Transition {
+    NumberAnimation {
+      duration: Dat.MaterialEasing.standardTime
+      easing.bezierCurve: Dat.MaterialEasing.standard
+      properties: "x,y"
+    }
+  }
+  delegate: Gen.Notification {
+    required property Notification modelData
 
-  ColumnLayout {
-    anchors.fill: parent
-
-    Rectangle {
-      Layout.fillHeight: true
-      Layout.fillWidth: true
-      clip: true
-      color: "transparent"
-
-      ListView {
-        id: inbox
-
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-        height: (contentHeight < 300) ? contentHeight : 300
-        model: Dat.NotifServer.notifications
-        removeDisplaced: this.addDisplaced
-        spacing: 5
-
-        add: Transition {
-          NumberAnimation {
-            duration: Dat.MaterialEasing.standardDecelTime
-            easing.bezierCurve: Dat.MaterialEasing.standardDecel
-            from: 1000
-            property: "x"
-          }
-        }
-        addDisplaced: Transition {
-          NumberAnimation {
-            duration: Dat.MaterialEasing.standardTime
-            easing.bezierCurve: Dat.MaterialEasing.standard
-            properties: "x,y"
-          }
-        }
-        delegate: Gen.Notification {
-          required property Notification modelData
-
-          color: Dat.Colors.surface_container
-          notif: modelData
-          radius: 20
-          width: inbox.width
-        }
-        remove: Transition {
-          NumberAnimation {
-            duration: Dat.MaterialEasing.standardAccelTime
-            easing.bezierCurve: Dat.MaterialEasing.standardAccel
-            property: "x"
-            to: 1000
-          }
-        }
-      }
+    color: Dat.Colors.surface_container
+    notif: modelData
+    radius: 20
+    width: inbox.width
+  }
+  remove: Transition {
+    NumberAnimation {
+      duration: Dat.MaterialEasing.standardAccelTime
+      easing.bezierCurve: Dat.MaterialEasing.standardAccel
+      property: "x"
+      to: 1000
     }
   }
 }

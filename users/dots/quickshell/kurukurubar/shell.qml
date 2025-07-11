@@ -29,6 +29,7 @@ ShellRoot {
       }
 
       Lay.Notch {
+        id: notch
         modelData: scopeRoot.modelData
       }
 

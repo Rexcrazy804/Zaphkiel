@@ -12,6 +12,7 @@ Singleton {
   property bool dndEnabled: false
   property int notifCount: notifServer.trackedNotifications.values.length
   property ScriptModel notifications: serverNotifications
+  property ScriptModel lastNotif: srvlastNotif
   property NotificationServer server: notifServer
 
   function clearNotifs() {
@@ -39,5 +40,10 @@ Singleton {
     id: serverNotifications
 
     values: [...notifServer.trackedNotifications.values].reverse()
+  }
+
+  ScriptModel {
+    id: srvlastNotif
+    values: [([...notifServer.trackedNotifications.values].reverse()[0])]
   }
 }

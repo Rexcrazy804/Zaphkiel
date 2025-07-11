@@ -151,9 +151,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "4b35d7b51b61f16a5f3d862419ba173783a21079",
-      "url": "https://git.outfoxxed.me/quickshell/quickshell/archive/4b35d7b51b61f16a5f3d862419ba173783a21079.tar.gz",
-      "hash": "sha256-sTzO1D4EDSv4atZOtCbdANyb1V1SgYGgpXVwQ3AS66M="
+      "revision": "026aac375617a99ea0b5746fd6df2fc8aa526761",
+      "url": "https://git.outfoxxed.me/quickshell/quickshell/archive/026aac375617a99ea0b5746fd6df2fc8aa526761.tar.gz",
+      "hash": "sha256-QNwSVRSnb173usdTV4TtKPepGNrKhUFn06r/444kkOU="
     },
     "rosep-fish": {
       "type": "Git",

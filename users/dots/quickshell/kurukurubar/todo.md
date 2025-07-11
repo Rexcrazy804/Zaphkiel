@@ -31,18 +31,21 @@
 - [x] cleanup rectangle: color: "transparents" with Item {}
 
 ### What I do not like to see
+- [ ] greetd and lockscreen
+- [ ] Lazy Loading
+- [ ] app launcher
+- [ ] reorganize tree structure
+- [ ] background layer for setting wallpaper
 - [ ] use font.family for specifying fonts
-- [ ] useExec detached in SessionActions.qml
 - [ ] adjust anchor magins in homeView
+- [ ] revamp notification popups / osd
 
 ### Later
-- [ ] revamp notification popups / osd
-- [ ] Dynamically load and unload expandedPane
-- [ ] support setting wallpapers via the shell
 - [ ] scaling support
 - - [x] scaling in systemView
 - - [ ] scaling in powerTab
 - [ ] draggable notification body / improve dismiss #26
+- [ ] useExec detached in SessionActions.qml # master only feature so we wait
 
 ### Dumpster
 - [ ] kdeConnect Integration

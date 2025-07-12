@@ -12,29 +12,29 @@
   networking.hostName = "Seraphine";
   time.timeZone = "Asia/Dubai";
 
-  graphicsModule = {
-    intel.enable = true;
-  };
-
-  servModule = {
-    enable = true;
-    tailscale = {
-      enable = true;
-      exitNode.enable = true;
-      exitNode.networkDevice = "wlp1s0";
+  zaphkiel = {
+    programs = {
+      sddm-custom-theme.enable = true;
+      obs-studio.enable = false;
+      steam.enable = false;
+      hyprland.enable = true;
+      keyd.enable = true;
     };
-    openssh.enable = true;
-    jellyfin.enable = true;
-    minecraft.enable = false;
-  };
-
-  progModule = {
-    sddm-custom-theme.enable = true;
-    direnv.enable = true;
-    obs-studio.enable = false;
-    steam.enable = false;
-    hyprland.enable = true;
-    keyd.enable = true;
+    graphics = {
+      enable = true;
+      intel.enable = true;
+    };
+    services = {
+      enable = true;
+      tailscale = {
+        enable = true;
+        exitNode.enable = true;
+        exitNode.networkDevice = "wlp1s0";
+      };
+      openssh.enable = true;
+      jellyfin.enable = true;
+      minecraft.enable = false;
+    };
   };
 
   # forward dns onto the tailnet

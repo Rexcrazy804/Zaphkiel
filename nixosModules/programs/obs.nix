@@ -4,11 +4,8 @@
   config,
   ...
 }: {
-  options = {
-    progModule.obs-studio.enable = lib.mkEnableOption "Enable OBS studio";
-  };
-
-  config = lib.mkIf config.progModule.obs-studio.enable {
+  options.zaphkiel.programs.obs-studio.enable = lib.mkEnableOption "obs-studio";
+  config = lib.mkIf config.zaphkiel.programs.anime-games.enable {
     programs.obs-studio = {
       enable = true;
       enableVirtualCamera = true;

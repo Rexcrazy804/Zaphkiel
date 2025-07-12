@@ -3,11 +3,8 @@
   config,
   ...
 }: {
-  options = {
-    progModule.keyd.enable = lib.mkEnableOption "Enable keyd daemon";
-  };
-
-  config = lib.mkIf config.progModule.keyd.enable {
+  options.zaphkiel.programs.keyd.enable = lib.mkEnableOption "keyd";
+  config = lib.mkIf config.zaphkiel.programs.anime-games.enable {
     services.keyd = {
       enable = true;
       keyboards.default = {

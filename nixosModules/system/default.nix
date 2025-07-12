@@ -1,4 +1,4 @@
-{...}: {
+{
   # not a lot of optoins for this module yet .w.
   imports = [
     ./boot.nix

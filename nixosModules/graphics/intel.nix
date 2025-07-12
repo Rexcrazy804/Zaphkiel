@@ -4,13 +4,8 @@
   config,
   ...
 }: {
-  options = {
-    graphicsModule = {
-      intel.enable = lib.mkEnableOption "Enable intel graphics card";
-    };
-  };
-
-  config = lib.mkIf config.graphicsModule.intel.enable {
+  options.zaphkiel.graphics.intel.enable = lib.mkEnableOption "intel graphics";
+  config = lib.mkIf (config.zaphkiel.graphics.intel.enable && config.zaphkiel.graphics.enable) {
     # WARN too lazy to futher modularize this maybe re use nixos-hardware's module
     hardware.graphics.extraPackages = with pkgs; [
       intel-media-driver

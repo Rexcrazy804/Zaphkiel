@@ -4,13 +4,8 @@
   config,
   ...
 }: {
-  options = {
-    progModule.hyprland = {
-      enable = lib.mkEnableOption "Enable Hyprland";
-    };
-  };
-
-  config = lib.mkIf config.progModule.hyprland.enable {
+  options.zaphkiel.programs.hyprland.enable = lib.mkEnableOption "hyprland";
+  config = lib.mkIf config.zaphkiel.programs.hyprland.enable {
     programs.hyprland = {
       enable = true;
       withUWSM = true;

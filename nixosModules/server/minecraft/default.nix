@@ -11,13 +11,8 @@
     ./backupservice.nix
   ];
 
-  options = {
-    servModule.minecraft = {
-      enable = lib.mkEnableOption "Enable Minecraft Server";
-    };
-  };
-
-  config = lib.mkIf (config.servModule.minecraft.enable && config.servModule.enable) {
+  options.zaphkiel.services.minecraft.enable = lib.mkEnableOption "minecraft service";
+  config = lib.mkIf (config.zaphkiel.services.minecraft.enable && config.zaphkiel.services.enable) {
     users.users.minecraft.packages = [pkgs.rconc];
     nixpkgs.overlays = [(import "${sources.nix-minecraft}/overlay.nix")];
 

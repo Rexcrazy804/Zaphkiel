@@ -4,7 +4,6 @@
 # tryna fucking do this. Thanks to Quinz for all the npins repos he shared
 let
   inherit (builtins) mapAttrs attrValues;
-  inherit (pkgs.lib) makeOverridable makeExtensible lists;
 
   # https://github.com/andir/npins?tab=readme-ov-file#using-the-nixpkgs-fetchers
   src = import ./npins;
@@ -22,29 +21,20 @@ let
   # modulesPath = src.nixpkgs + "/nixos/modules";
   # baseModules = builtins.map (path: modulesPath + "/" + path) (import ./baseModules.nix);
 
-  evalConfig = import (src.nixpkgs + "/nixos/lib/eval-config.nix");
   nixosConfig = hostName:
-    makeOverridable evalConfig {
+    import (src.nixpkgs + "/nixos/lib/eval-config.nix") {
       system = null;
-      specialArgs = makeExtensible (final: {
-        inherit sources;
-        users = ["rexies"];
-      });
+      specialArgs = {inherit sources;};
       modules = [
         {nixpkgs.overlays = overlays;}
         ./hosts/${hostName}/configuration.nix
         ./users
+        ./users/rexies.nix
         ./nixosModules
       ];
     };
 in {
   Persephone = nixosConfig "Persephone";
   Seraphine = nixosConfig "Seraphine";
-
-  Aphrodite = (nixosConfig "Aphrodite").override (old: {
-    specialArgs = old.specialArgs.extend (_final: prev: {
-      users = prev.users ++ ["sivanis"];
-    });
-    modules = (lists.remove ./nixosModules old.modules) ++ [./nixosModules/server-default.nix];
-  });
+  Aphrodite = nixosConfig "Aphrodite";
 }

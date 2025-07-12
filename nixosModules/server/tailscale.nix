@@ -4,26 +4,24 @@
   config,
   ...
 }: {
-  options = {
-    servModule.tailscale = {
-      enable = lib.mkEnableOption "Enable Tailscale Service";
-      exitNode = {
-        enable = lib.mkEnableOption "Enable use as exit node";
-        networkDevice = lib.mkOption {
-          default = "eth0";
-          type = lib.types.str;
-          description = ''
-            the name of the network device to be used for exitNode Optimization script
-          '';
-        };
+  options.zaphkiel.services.tailscale = {
+    enable = lib.mkEnableOption "Enable Tailscale Service";
+    exitNode = {
+      enable = lib.mkEnableOption "Enable use as exit node";
+      networkDevice = lib.mkOption {
+        default = "eth0";
+        type = lib.types.str;
+        description = ''
+          the name of the network device to be used for exitNode Optimization script
+        '';
       };
     };
   };
 
   config = let
-    cfg = config.servModule.tailscale;
+    cfg = config.zaphkiel.services.tailscale;
   in
-    lib.mkIf (cfg.enable && config.servModule.enable) {
+    lib.mkIf (cfg.enable && config.zaphkiel.services.enable) {
       services.tailscale = {
         enable = true;
         openFirewall = true;

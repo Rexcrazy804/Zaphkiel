@@ -8,7 +8,21 @@
     ./hardware-configuration.nix
     ./user-configuration.nix
     ./extras/tinyproxy.nix
+    ../../users/sivanis.nix
   ];
+
+  zaphkiel.data.headless = true;
+  zaphkiel.services = {
+    enable = true;
+    tailscale = {
+      enable = true;
+      exitNode.enable = true;
+      exitNode.networkDevice = "ens18";
+    };
+    openssh.enable = true;
+    fail2ban.enable = false;
+  };
+  time.timeZone = "Asia/Kolkata";
 
   boot.tmp.cleanOnBoot = true;
   networking.hostName = "Aphrodite";
@@ -49,17 +63,6 @@
     ];
   };
 
-  servModule = {
-    enable = true;
-    tailscale = {
-      enable = true;
-      exitNode.enable = true;
-      exitNode.networkDevice = "ens18";
-    };
-    openssh.enable = true;
-    fail2ban.enable = false;
-  };
-
   age.secrets.tailAuth.file = ../../secrets/secret8.age;
   services.tailscale.authKeyFile = config.age.secrets.tailAuth.path;
 
@@ -69,7 +72,5 @@
   };
 
   environment.systemPackages = [pkgs.git pkgs.nixvim];
-  progModule.direnv.enable = true;
-
   system.stateVersion = "23.11";
 }

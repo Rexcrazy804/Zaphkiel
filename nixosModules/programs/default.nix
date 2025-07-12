@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   imports = [
-    ./gdm.nix
+    # ./gdm.nix
     ./steam.nix
     ./aagl.nix
     ./age.nix

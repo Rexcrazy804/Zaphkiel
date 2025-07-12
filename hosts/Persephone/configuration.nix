@@ -9,8 +9,6 @@
     ./user-configuration.nix
     ./extras/privoxy.nix
     ./extras/lanzaboote.nix
-    ../../users/rexies.nix
-    ../../nixosModules
   ];
 
   system.stateVersion = "24.11";

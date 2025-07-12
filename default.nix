@@ -22,14 +22,15 @@ let
   # baseModules = builtins.map (path: modulesPath + "/" + path) (import ./baseModules.nix);
 
   nixosConfig = hostName:
-    import (src.nixpkgs + "/nixos/lib/eval-config.nix")
-    evalConfig {
+    import (src.nixpkgs + "/nixos/lib/eval-config.nix") {
       system = null;
       specialArgs = {inherit sources;};
       modules = [
         {nixpkgs.overlays = overlays;}
         ./hosts/${hostName}/configuration.nix
         ./users
+        ./users/rexies.nix
+        ./nixosModules
       ];
     };
 in {

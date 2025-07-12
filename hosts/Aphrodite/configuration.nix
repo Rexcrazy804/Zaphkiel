@@ -8,10 +8,10 @@
     ./hardware-configuration.nix
     ./user-configuration.nix
     ./extras/tinyproxy.nix
-    ../../users/rexies.nix
     ../../users/sivanis.nix
-    ../../nixosModules/server-default.nix
   ];
+
+  zaphkiel.data.headless = true;
 
   boot.tmp.cleanOnBoot = true;
   networking.hostName = "Aphrodite";

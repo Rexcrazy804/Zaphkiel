@@ -1,11 +1,13 @@
-{
+{lib, config, ...}: {
   imports = [
     ./amd.nix
     ./nvidia.nix
     ./intel.nix
   ];
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
+  config = lib.mkIf (!config.zaphkiel.data.headless) {
+    hardware.graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
   };
 }

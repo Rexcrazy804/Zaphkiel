@@ -1,6 +1,6 @@
 # you may leverage the following command to build systems using this
 # sudo nixos-rebuild --no-reexec --file ./default.nix -A <hostName> <boot|test|switch|...>
-# why am I mentioning this? well, others before my didn't an I spent weeks
+# why am I mentioning this? well, others before me didn't and I spent weeks
 # tryna fucking do this. Thanks to Quinz for all the npins repos he shared
 let
   inherit (builtins) mapAttrs attrValues;

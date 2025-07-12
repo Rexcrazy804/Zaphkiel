@@ -1,4 +1,4 @@
-{...}: {
+{
   # uncategorized
   services.thermald.enable = true;
   services.fwupd.enable = true;

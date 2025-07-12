@@ -1,4 +1,4 @@
-{...}: {
+{
   imports = [
     ./bluetooth.nix
     ./dnsproxy2.nix

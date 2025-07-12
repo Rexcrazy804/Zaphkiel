@@ -1,4 +1,4 @@
-{...}: let
+let
   username = "sivanis";
   description = "Sivani SV";
 in {

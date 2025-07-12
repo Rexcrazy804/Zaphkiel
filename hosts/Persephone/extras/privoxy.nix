@@ -1,4 +1,4 @@
-{...}: {
+{
   # cucked way to bypass captive networks
   services.privoxy = {
     enable = true;

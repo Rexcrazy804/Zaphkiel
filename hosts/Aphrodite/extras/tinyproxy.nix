@@ -1,4 +1,4 @@
-{...}: {
+{
   services.tinyproxy = {
     enable = true;
     settings = {

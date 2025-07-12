@@ -1,4 +1,4 @@
-{...}: {
+{
   imports = [
     ../../nixosModules/external/matugen
   ];

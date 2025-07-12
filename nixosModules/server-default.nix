@@ -1,4 +1,4 @@
-{...}: {
+{
   imports = [
     ./server
     ./nix

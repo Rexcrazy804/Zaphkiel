@@ -1,4 +1,4 @@
-{...}: {
+{
   programs.matugen.templates = {
     hyprland = {
       input_path = "${./templates/hyprland-colors.conf}";

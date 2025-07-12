@@ -13,6 +13,13 @@
   time.timeZone = "Asia/Dubai";
 
   zaphkiel = {
+    programs = {
+      sddm-custom-theme.enable = true;
+      obs-studio.enable = false;
+      steam.enable = false;
+      hyprland.enable = true;
+      keyd.enable = true;
+    };
     graphics = {
       enable = true;
       intel.enable = true;
@@ -28,15 +35,6 @@
       jellyfin.enable = true;
       minecraft.enable = false;
     };
-  };
-
-  progModule = {
-    sddm-custom-theme.enable = true;
-    direnv.enable = true;
-    obs-studio.enable = false;
-    steam.enable = false;
-    hyprland.enable = true;
-    keyd.enable = true;
   };
 
   # forward dns onto the tailnet

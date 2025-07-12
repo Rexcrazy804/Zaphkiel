@@ -1,15 +1,11 @@
+# NOTE not imported
 {
   lib,
   config,
   ...
 }: {
-  options = {
-    progModule.gdm = {
-      enable = lib.mkEnableOption "Enable gdm";
-    };
-  };
-
-  config = lib.mkIf config.progModule.gdm.enable {
+  options.zaphkiel.programs.gdm.enable = lib.mkEnableOption "gdm";
+  config = lib.mkIf config.zaphkiel.programs.gdm.enable {
     services.xserver.displayManager.gdm = {
       enable = true;
       wayland = true;

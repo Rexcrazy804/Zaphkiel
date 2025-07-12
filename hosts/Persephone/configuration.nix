@@ -21,6 +21,15 @@
       intel.enable = true;
     };
 
+    programs = {
+      sddm-custom-theme.enable = true;
+      obs-studio.enable = false;
+      steam.enable = false;
+      hyprland.enable = true;
+      keyd.enable = true;
+      firefox.enable = true;
+    };
+
     services = {
       enable = true;
       tailscale = {
@@ -43,16 +52,6 @@
       "--webclient"
       "--accept-dns=false"
     ];
-  };
-
-  progModule = {
-    sddm-custom-theme.enable = true;
-    direnv.enable = true;
-    obs-studio.enable = false;
-    steam.enable = false;
-    hyprland.enable = true;
-    keyd.enable = true;
-    firefox.enable = true;
   };
 
   # forward dns onto the tailnet

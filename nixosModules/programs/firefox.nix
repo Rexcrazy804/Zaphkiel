@@ -4,11 +4,8 @@
   pkgs,
   ...
 }: {
-  options = {
-    progModule.firefox.enable = lib.mkEnableOption "Enable Firefox";
-  };
-
-  config = lib.mkIf config.progModule.firefox.enable {
+  options.zaphkiel.programs.firefox.enable = lib.mkEnableOption "firefox";
+  config = lib.mkIf config.zaphkiel.programs.firefox.enable {
     environment.systemPackages = [pkgs.firefoxpwa];
     programs.firefox = {
       enable = true;
@@ -16,10 +13,5 @@
         pkgs.firefoxpwa
       ];
     };
-
-    # services.psd.enable = true;
-    # security.sudo.extraConfig = ''
-    #   rexies ALL=(ALL) NOPASSWD: ${pkgs.profile-sync-daemon}/bin/psd-overlay-helper
-    # '';
   };
 }

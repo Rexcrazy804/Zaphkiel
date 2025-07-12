@@ -71,7 +71,5 @@
   };
 
   environment.systemPackages = [pkgs.git pkgs.nixvim];
-  progModule.direnv.enable = true;
-
   system.stateVersion = "23.11";
 }

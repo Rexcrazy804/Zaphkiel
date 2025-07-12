@@ -27,7 +27,7 @@
     find ~/backups/hollyj -type f -mtime +7 -name 'backup-*.tar.gz' -delete
   '';
 in {
-  config = lib.mkIf (config.servModule.minecraft.enable && config.servModule.enable) {
+  config = lib.mkIf (config.zaphkiel.services.minecraft.enable && config.zaphkiel.serivces.enable) {
     systemd.services.mc-hollyj-backup = {
       enable = true;
       description = "Backup minecraft world data to backup folder";

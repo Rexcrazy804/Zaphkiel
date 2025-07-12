@@ -16,7 +16,7 @@
     intel.enable = true;
   };
 
-  servModule = {
+  zaphkiel.services = {
     enable = true;
     tailscale = {
       enable = true;

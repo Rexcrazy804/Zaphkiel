@@ -3,13 +3,9 @@
   config,
   ...
 }: {
-  options = {
-    servModule.fail2ban = {
-      enable = lib.mkEnableOption "Enable fail2ban Service";
-    };
-  };
+  options.zaphkiel.services.fail2ban.enable = lib.mkEnableOption "fail2ban service";
 
-  config = lib.mkIf (config.servModule.fail2ban.enable && config.servModule.enable) {
+  config = lib.mkIf (config.zaphkiel.services.fail2ban.enable && config.zaphkiel.services.enable) {
     services.fail2ban = {
       enable = true;
       maxretry = 3;

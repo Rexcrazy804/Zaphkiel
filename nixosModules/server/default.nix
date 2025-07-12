@@ -8,5 +8,5 @@
     ./fail2ban.nix
   ];
 
-  options.servModule.enable = lib.mkEnableOption "Enable Server Modules";
+  options.zaphkiel.services.enable = lib.mkEnableOption "services";
 }

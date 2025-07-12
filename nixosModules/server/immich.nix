@@ -3,13 +3,9 @@
   config,
   ...
 }: {
-  options = {
-    servModule.immich = {
-      enable = lib.mkEnableOption "Enable Immich Service";
-    };
-  };
+  options.zaphkiel.services.immich.enable = lib.mkEnableOption "immich service";
 
-  config = lib.mkIf (config.servModule.immich.enable && config.servModule.enable) {
+  config = lib.mkIf (config.zaphkiel.services.immich.enable && config.zaphkiel.services.enable) {
     services.immich = {
       enable = true;
       openFirewall = true;

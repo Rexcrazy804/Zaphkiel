@@ -5,15 +5,10 @@
   ...
 }: let
   multimediaDir = "/home/multimedia";
-  stateDirectory = "/var/lib/tailscale/tailscaled-jellyfin";
 in {
-  options = {
-    servModule.jellyfin = {
-      enable = lib.mkEnableOption "Enable Jellyfin and related Services";
-    };
-  };
+  options.zaphkiel.services.jellyfin.enable = lib.mkEnableOption "jellyfin service";
 
-  config = lib.mkIf (config.servModule.jellyfin.enable && config.servModule.enable) {
+  config = lib.mkIf (config.zaphkiel.services.jellyfin.enable && config.zaphkiel.services.enable) {
     services.jellyfin = {
       enable = true;
       openFirewall = false;

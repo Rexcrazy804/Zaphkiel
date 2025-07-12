@@ -3,13 +3,8 @@
   config,
   ...
 }: {
-  options = {
-    servModule.openssh = {
-      enable = lib.mkEnableOption "Enable Openssh Service";
-    };
-  };
-
-  config = lib.mkIf (config.servModule.openssh.enable && config.servModule.enable) {
+  options.zaphkiel.services.openssh.enable = lib.mkEnableOption "openssh service";
+  config = lib.mkIf (config.zaphkiel.services.openssh.enable && config.zaphkiel.services.enable) {
     services.openssh = {
       enable = true;
       openFirewall = true;

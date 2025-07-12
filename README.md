@@ -130,7 +130,6 @@ nixosModules/           # common options and defaults shared across all hosts
 - - minecraft/          # nix-minecraft entry point
 - system/               # largely defaults
 - - networking/         # networking setup with dnscrypt-proxy2
-- server-default.nix    # strictly imports server only stuff
 
 npins/                  # flakes? what is that?
 - default.nix           # auto generated file to import npins
@@ -153,7 +152,7 @@ users/                  # user specific configuration imported by hosts hosting 
 - - - kurukurubar/      # adorable bar for kuru kuru maxxing
 - - - kurumibar/        # my first now unmainted rectangle bar
 - - - shell.nix         # devshell for qml development with quickshell
-- default.nix           # imports hjem and required users as specified by users specialArg
+- default.nix           # imports and declares zaphkiel.data.users
 - rexies.nix            # my user, leverages hjem the most
 - <others>.nix          # other users
 

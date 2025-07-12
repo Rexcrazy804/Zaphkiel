@@ -45,6 +45,6 @@ in {
     specialArgs = old.specialArgs.extend (_final: prev: {
       users = prev.users ++ ["sivanis"];
     });
-    modules = (lists.remove [./nixosModules] old.modules) ++ [./nixosModules/server-default.nix];
+    modules = (lists.remove ./nixosModules old.modules) ++ [./nixosModules/server-default.nix];
   });
 }

@@ -4,35 +4,31 @@
   lib,
   ...
 }: {
-  options = {
-    graphicsModule = {
-      nvidia = {
-        enable = lib.mkEnableOption "Enable nVidia graphics card";
-        hybrid = {
-          enable = lib.mkEnableOption "Enable nVidia optimus prime";
-          igpu = {
-            vendor = lib.mkOption {
-              type = lib.types.enum ["amd" "intel"];
-              default = "amd";
-            };
-            port = lib.mkOption {
-              default = "";
-              description = "Bus Port of igpu";
-            };
-          };
-          dgpu.port = lib.mkOption {
-            default = "";
-            description = "Bus Port of dgpu";
-          };
+  options.zaphkiel.graphics.nvidia = {
+    enable = lib.mkEnableOption "nVidia graphics";
+    hybrid = {
+      enable = lib.mkEnableOption "optimus prime";
+      igpu = {
+        vendor = lib.mkOption {
+          type = lib.types.enum ["amd" "intel"];
+          default = "amd";
         };
+        port = lib.mkOption {
+          default = "";
+          description = "Bus Port of igpu";
+        };
+      };
+      dgpu.port = lib.mkOption {
+        default = "";
+        description = "Bus Port of dgpu";
       };
     };
   };
 
   config = let
-    cfg = config.graphicsModule.nvidia;
+    cfg = config.zaphkiel.graphics.nvidia;
   in
-    lib.mkIf cfg.enable {
+    lib.mkIf (cfg.enable && config.zaphkiel.graphics.enable) {
       nix.settings = {
         extra-substituters = [
           "https://cuda-maintainers.cachix.org"

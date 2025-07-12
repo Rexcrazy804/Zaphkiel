@@ -4,13 +4,9 @@
   lib,
   ...
 }: {
-  options = {
-    graphicsModule = {
-      amd.enable = lib.mkEnableOption "Enable amd graphics card";
-    };
-  };
-  # Enable OpenGL
-  config = lib.mkIf config.graphicsModule.amd.enable {
+  options.zaphkiel.graphics.amd.enable = lib.mkEnableOption "amd graphics";
+
+  config = lib.mkIf (config.zaphkiel.graphics.amd.enable && config.zaphkiel.graphics.enable) {
     environment.systemPackages = [pkgs.radeontop];
     hardware.graphics = {
       extraPackages = with pkgs; [

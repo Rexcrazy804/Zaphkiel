@@ -15,20 +15,23 @@
   networking.hostName = "Persephone";
   time.timeZone = "Asia/Dubai";
 
-  graphicsModule = {
-    intel.enable = true;
-  };
-
-  zaphkiel.services = {
-    enable = true;
-    tailscale = {
+  zaphkiel = {
+    graphics = {
       enable = true;
-      exitNode.enable = true;
-      exitNode.networkDevice = "wlp0s20f3";
+      intel.enable = true;
     };
-    openssh.enable = true;
-    jellyfin.enable = false;
-    minecraft.enable = false;
+
+    services = {
+      enable = true;
+      tailscale = {
+        enable = true;
+        exitNode.enable = true;
+        exitNode.networkDevice = "wlp0s20f3";
+      };
+      openssh.enable = true;
+      jellyfin.enable = false;
+      minecraft.enable = false;
+    };
   };
 
   # tailscale

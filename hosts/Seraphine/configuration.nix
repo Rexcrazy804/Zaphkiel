@@ -12,20 +12,22 @@
   networking.hostName = "Seraphine";
   time.timeZone = "Asia/Dubai";
 
-  graphicsModule = {
-    intel.enable = true;
-  };
-
-  zaphkiel.services = {
-    enable = true;
-    tailscale = {
+  zaphkiel = {
+    graphics = {
       enable = true;
-      exitNode.enable = true;
-      exitNode.networkDevice = "wlp1s0";
+      intel.enable = true;
     };
-    openssh.enable = true;
-    jellyfin.enable = true;
-    minecraft.enable = false;
+    services = {
+      enable = true;
+      tailscale = {
+        enable = true;
+        exitNode.enable = true;
+        exitNode.networkDevice = "wlp1s0";
+      };
+      openssh.enable = true;
+      jellyfin.enable = true;
+      minecraft.enable = false;
+    };
   };
 
   progModule = {

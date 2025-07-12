@@ -1,8 +1,19 @@
 {
+  lib,
   sources,
-  users,
   ...
-}: {
+}: let
+  inherit (lib) mkOption;
+  inherit (lib.types) listOf str;
+in {
   # refer ExtraSpecialArgs.users in flake.nix
-  imports = [(sources.hjem + "/modules/nixos")] ++ builtins.map (username: ./${username}.nix) users;
+  imports = [(sources.hjem + "/modules/nixos")];
+
+  options = {
+    zaphkiel.data.users = mkOption {
+      type = listOf str;
+      default = [];
+      description = "list of users (duh)";
+    };
+  };
 }

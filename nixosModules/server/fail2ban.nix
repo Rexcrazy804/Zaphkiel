@@ -1,5 +1,4 @@
 {
-  users,
   lib,
   config,
   ...

@@ -1,5 +1,4 @@
 {
-  users,
   lib,
   config,
   ...
@@ -19,7 +18,7 @@
       settings = {
         PasswordAuthentication = false;
         PermitRootLogin = "no";
-        AllowUsers = users;
+        AllowUsers = config.zaphkiel.data.users;
       };
     };
   };

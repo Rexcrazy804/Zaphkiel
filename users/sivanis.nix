@@ -2,6 +2,7 @@
   username = "sivanis";
   description = "Sivani SV";
 in {
+  zaphkiel.data.users = [username];
   users.users.${username} = {
     inherit description;
     isNormalUser = true;

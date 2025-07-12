@@ -1,6 +1,5 @@
 {
   pkgs,
-  users,
   lib,
   config,
   ...
@@ -78,7 +77,7 @@ in {
         "transmission"
         "sonarr"
       ]
-      ++ users;
+      ++ config.zaphkiel.data.users;
 
     # Transmission configuration
     age.secrets.transJson = {

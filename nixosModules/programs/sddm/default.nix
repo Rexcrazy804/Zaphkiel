@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  users,
   ...
 }: {
   options = {
@@ -46,9 +45,9 @@
       };
 
       systemd.tmpfiles.rules = let
-        iconPath = user: config.hjem.users.${user}.files.".face.icon".source;
+        iconPath = user: config.hjem.users.${user}.files.".face.icon".source or "";
       in
-        lib.pipe users [
+        lib.pipe config.zaphkiel.data.users [
           (builtins.filter (user: (iconPath user) != null))
           (builtins.map (user: [
             "f+ /var/lib/AccountsService/users/${user}  0600 root root -  [User]\\nIcon=/var/lib/AccountsService/icons/${user}\\n"

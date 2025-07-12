@@ -7,6 +7,8 @@
   imports = [
     ./hardware-configuration.nix
     ./user-configuration.nix
+    ../../users/rexies.nix
+    ../../nixosModules
   ];
 
   networking.hostName = "Seraphine";

@@ -8,6 +8,7 @@
   username = "rexies";
   description = "Rexiel Scarlet";
 in {
+  zaphkiel.data.users = [username];
   users.users.${username} = {
     inherit description;
 

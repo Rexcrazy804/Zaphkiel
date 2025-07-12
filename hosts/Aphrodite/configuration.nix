@@ -22,6 +22,7 @@
     openssh.enable = true;
     fail2ban.enable = false;
   };
+  time.timeZone = "Asia/Kolkata";
 
   boot.tmp.cleanOnBoot = true;
   networking.hostName = "Aphrodite";

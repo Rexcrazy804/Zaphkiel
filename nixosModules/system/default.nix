@@ -7,5 +7,6 @@
     ./locales.nix
     ./networking
     ./services.nix
+    ./users.nix
   ];
 }

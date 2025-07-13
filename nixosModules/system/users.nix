@@ -6,7 +6,6 @@
   inherit (lib) mkOption;
   inherit (lib.types) listOf str;
 in {
-  # refer ExtraSpecialArgs.users in flake.nix
   imports = [(sources.hjem + "/modules/nixos")];
 
   options = {

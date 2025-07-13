@@ -28,7 +28,6 @@ let
       modules = [
         {nixpkgs.overlays = overlays;}
         ./hosts/${hostName}/configuration.nix
-        ./users
         ./users/rexies.nix
         ./nixosModules
       ];

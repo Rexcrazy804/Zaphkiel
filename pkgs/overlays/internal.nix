@@ -37,4 +37,11 @@
   sddm-silent-custom = final.sddm-silent.override (import ../../nixosModules/programs/sddm/theme.nix {
     inherit (final) fetchurl runCommandWith ffmpeg;
   });
+
+  # nix build github:Rexcrazy804/Zaphkiel#booru-images."i<imageid>"
+  booru-images = let
+    imgBuilder = final.callPackage ((sources.booru-flake {pkgs = final;}) + "/nix/imgBuilder.nix");
+  in (final.lib.attrsets.mergeAttrsList (
+    builtins.map (x: {${"i" + x.id} = imgBuilder x;}) (import ../../nixosModules/programs/booru-flake/imgList.nix)
+  ));
 }

@@ -1,10 +1,9 @@
 {
   pkgs,
-  config,
   lib,
   ...
 }: let
-  image = config.programs.booru-flake.images."9561470";
+  image = pkgs.booru-images.i9561470;
   wallpaper = pkgs.stdenv.mkDerivation {
     name = "cropped-${image.name}";
     src = image;

@@ -4,6 +4,17 @@
   lib,
   ...
 }: let
+  image = config.programs.booru-flake.images."9561470";
+  wallpaper = pkgs.stdenv.mkDerivation {
+    name = "cropped-${image.name}";
+    src = image;
+    dontUnpack = true;
+    nativeBuildInputs = [pkgs.imagemagick];
+    installPhase = ''
+      # wallcrop $src 0 1030 > $out
+      magick $src -crop 4368x2170+0+188 - > $out
+    '';
+  };
   packages = [
     pkgs.foot
     pkgs.cowsay
@@ -23,23 +34,12 @@ in {
   };
   programs.matugen = {
     enable = true;
-    # wallpaper = config.programs.booru-flake.images."7655511";
-    wallpaper = let
-      image = config.programs.booru-flake.images."9561470";
-    in
-      pkgs.stdenv.mkDerivation {
-        name = "cropped-${image.name}";
-        src = image;
-        dontUnpack = true;
-        nativeBuildInputs = [pkgs.imagemagick];
-        installPhase = ''
-          # wallcrop $src 0 1030 > $out
-          magick $src -crop 4368x2170+0+188 - > $out
-        '';
-      };
+    inherit wallpaper;
   };
 
   hjem.users."rexies".files = {
+    # pin the fucking json so it doesn't get gc'd
+    ".config/bg.json".source = image.raw_metadata;
     ".config/hypr/hyprland.conf".text = let
       # override scaling for seraphine
       from = ["monitor = eDP-1, preferred, auto, 1.25"];

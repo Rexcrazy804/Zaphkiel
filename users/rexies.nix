@@ -81,7 +81,7 @@ in {
         builtins.replaceStrings from to (builtins.readFile ./dots/hyprland/hyprlock.conf);
 
       faceIcon = let
-        image = pkgs.booru-images.i8726475;
+        image = config.programs.booru-flake.images."8726475";
       in
         pkgs.runCommandWith {
           name = "croped-${image.name}";

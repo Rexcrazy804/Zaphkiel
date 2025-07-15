@@ -27,9 +27,9 @@ in {
 
   programs.matugen = {
     enable = true;
-    # wallpaper = pkgs.booru-images.i8827425;
+    # wallpaper = config.programs.booru-flake.images."8827425";
     wallpaper = let
-      image = pkgs.booru-images.i6887138;
+      image = config.programs.booru-flake.images."6887138";
     in
       pkgs.stdenv.mkDerivation {
         name = "cropped-${image.name}";
@@ -46,7 +46,7 @@ in {
 
   hjem.users."rexies".files = {
     ".face.icon".source = let
-      image = pkgs.booru-images.i6885267;
+      image = config.programs.booru-flake.images."6885267";
       face = pkgs.stdenv.mkDerivation {
         name = "cropped-${image.name}";
         src = image;

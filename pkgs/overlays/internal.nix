@@ -16,6 +16,14 @@
     inherit (sources) mnw;
     pkgs = final;
   };
+
+  # example to use npins to for nvim plugins
+  # vimPlugins = prev.vimPlugins.extend (final': prev': {
+  #   flash-nvim = prev'.flash-nvim.overrideAttrs (_old: {
+  #     src = (sources."flash.nvim" { pkgs = final; });
+  #   });
+  # });
+
   nixvim = final.nixvim-minimal.override (prev: {
     extraBinPath =
       prev.extraBinPath

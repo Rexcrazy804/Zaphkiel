@@ -19,15 +19,25 @@ using [this template](../../../../nixosModules/external/matugen/templates/quicks
 - powerprofilesdaemon (optional)
 - brightnessctl (optional)
 
-### Known Issues
-- `org.Hyprland.style is not installed`: see [#21](https://github.com/Rexcrazy804/Zaphkiel/issues/21#issuecomment-2906546939)
-- Herta faceIcon: symlink an image (of any image type) to ~/.face.icon
+### Installation
+1. Install the above dependencies using your favourite package manager
+2. git clone this repo
+3. copy `kurukurubar` folder into `~/.config/quickshell`
+4. spawn the bar by running `quickshell`
+5. VERY IMPORTANT, press hold the spinning herta to spin her faster - the council of kurukuru
+
+> make sure you are not creating `.config/quickshell/kurukurubar`, in which
+> case you will need to pass the arg `-c kurukurubar` in step 4.
 
 ### Live running on nix
 This rice is exposed as a package in the toplevel flake and can be used to run the rice as follows
 ```
 nix run github:Rexcrazy804/Zaphkiel#kurukurubar
 ```
+
+### Known Issues
+- `org.Hyprland.style is not installed`: see [#21](https://github.com/Rexcrazy804/Zaphkiel/issues/21#issuecomment-2906546939)
+- Herta faceIcon: symlink an image (of any image type) to ~/.face.icon
 
 ## Acknowledgement
 - AlbumCover svg by [Squirrel Modeller](https://github.com/SquirrelModeller)

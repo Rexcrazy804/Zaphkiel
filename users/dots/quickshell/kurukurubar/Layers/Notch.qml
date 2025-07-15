@@ -381,7 +381,7 @@ WlrLayershell {
           inboxRect.opacity: 1
           inboxRect.visible: true
           notificationRect.color: "transparent"
-          notificationRect.implicitHeight: (Dat.NotificationServer.notifCount == 0) ? 0 : inboxRect.list.height
+          notificationRect.implicitHeight: inboxRect.list.height
           notificationRect.implicitWidth: notificationRect.fullWidth
           notificationRect.visible: true
           popupRect.opacity: 0
@@ -635,6 +635,7 @@ WlrLayershell {
 
         Layout.fillHeight: true
         Layout.fillWidth: true
+        screen: notch.screen
       }
     }
   }

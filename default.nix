@@ -12,7 +12,7 @@ let
 
   overlays = attrValues {
     internal = import ./pkgs/overlays/internal.nix {sources = src;};
-    lix = import ./pkgs/overlays/lix.nix {lix = null;};
+    # lix = import ./pkgs/overlays/lix.nix {lix = null;};
     npins = import ./pkgs/overlays/npins.nix; # temporary
   };
 

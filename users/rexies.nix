@@ -62,23 +62,38 @@ in {
       in
         builtins.replaceStrings from to (builtins.readFile ./dots/qt6ct/qt6ct.conf);
 
-      # injecting colors
-      fuzzel = let
-        base = builtins.readFile ./dots/fuzzel/fuzzel.ini;
-        colors = builtins.readFile "${matugenTheme}/fuzzel-colors.ini";
-      in
-        base + colors;
-      starship = let
-        base = lib.importTOML ./dots/starship/starship.toml;
-        colors = lib.importTOML "${matugenTheme}/starship.toml";
-      in
-        pkgs.writers.writeTOML "starship.toml" (lib.recursiveUpdate base colors);
-
       hyprlockInjected = let
         from = ["%%WALLPAPER%%"];
         to = ["${matugen.wallpaper}"];
       in
         builtins.replaceStrings from to (builtins.readFile ./dots/hyprland/hyprlock.conf);
+
+      walkerCSSInjected = let
+        from = [
+          "%%error%%"
+          "%%on_error%%"
+          "%%on_surface%%"
+          "%%surface%%"
+          "%%surface_container%%"
+          "%%surface_container_highest%%"
+        ];
+
+        to = [
+          matugenColors.dark.error
+          matugenColors.dark.on_error
+          matugenColors.dark.on_surface
+          matugenColors.dark.surface
+          matugenColors.dark.surface_container
+          matugenColors.dark.surface_container_highest
+        ];
+      in
+        builtins.replaceStrings from to (builtins.readFile ./dots/walker/themes/custom.css);
+
+      walkerTOMLInjected = let
+        from = ["%%primary%%"];
+        to = [matugenColors.dark.primary];
+      in
+        builtins.replaceStrings from to (builtins.readFile ./dots/walker/themes/custom.toml);
 
       faceIcon = let
         image = config.programs.booru-flake.images."8726475";
@@ -126,13 +141,19 @@ in {
       ".config/yazi/yazi.toml".source = ./dots/yazi/yazi.toml;
       ".config/yazi/keymap.toml".source = ./dots/yazi/keymap.toml;
       ".config/yazi/theme.toml".source = "${matugenTheme}/yazi-theme.toml";
-      ".config/fuzzel/fuzzel.ini".text = fuzzel;
       ".config/background".source = matugen.wallpaper;
+
       # quickshell
       ".config/quickshell".source = quickshellConfig;
+
       # qt6ct
       ".config/qt6ct/qt6ct.conf".text = qt6ct;
       ".config/qt6ct/colors/matugen.conf".source = "${matugenTheme}/qtct-colors.conf";
+
+      # walker
+      ".config/walker/config.toml".source = ./dots/walker/config.toml;
+      ".config/walker/themes/custom.css".text = walkerCSSInjected;
+      ".config/walker/themes/custom.toml".text = walkerTOMLInjected;
 
       # discord
       ".config/vesktop/themes/midnight.css".source = "${matugenTheme}/discord-midnight.css";

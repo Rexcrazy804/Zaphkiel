@@ -30,7 +30,6 @@
       pkgs.rose-pine-gtk-theme
 
       # utility
-      pkgs.swww
       pkgs.wl-clipboard
       pkgs.cliphist
       pkgs.grim

@@ -9,7 +9,7 @@ https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 | --------- | -------- | ------------- | 
 |KuruKuruBar|[Quickshell](https://quickshell.outfoxxed.me/)|[`users/dots/quickshell/kurukurubar`](users/dots/quickshell/kurukurubar)|
 |Compositor|[Hyprland](https://hyprland.org/)|[`users/dots/hyprland/`](users/dots/hyprland/)|
-|Launcher|[Fuzzel](https://codeberg.org/dnkl/fuzzel)|[`users/dots/fuzzel/fuzzel.ini`](users/dots/fuzzel/fuzzel.ini)|
+|Launcher|[Walker](https://github.com/abenz1267/walker)|[`users/dots/walker`](users/dots/walker)|
 |Colors|[Matugen](https://github.com/InioX/matugen)|[`nixosModules/external/matugen/templates/`](nixosModules/external/matugen/templates/)|
 |Terminal|[Foot](https://codeberg.org/dnkl/foot)|[`users/dots/foot/foot.ini`](users/dots/foot/foot.ini)|
 |Editor|[Neovim](https://neovim.io/)|[`users/dots/nvim/`](users/dots/nvim/)|
@@ -153,7 +153,6 @@ users/                  # user specific configuration imported by hosts hosting 
 - - - kurukurubar/      # adorable bar for kuru kuru maxxing
 - - - kurumibar/        # my first now unmainted rectangle bar
 - - - shell.nix         # devshell for qml development with quickshell
-- default.nix           # imports and declares zaphkiel.data.users
 - rexies.nix            # my user, leverages hjem the most
 - <others>.nix          # other users
 

@@ -37,7 +37,7 @@
       pkgs.brightnessctl
       pkgs.hyprsunset
       pkgs.trashy
-      pkgs.fuzzel
+      pkgs.walker
       pkgs.wl-screenrec
       pkgs.libnotify
       pkgs.swappy

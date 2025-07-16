@@ -62,18 +62,6 @@ in {
       in
         builtins.replaceStrings from to (builtins.readFile ./dots/qt6ct/qt6ct.conf);
 
-      # injecting colors
-      fuzzel = let
-        base = builtins.readFile ./dots/fuzzel/fuzzel.ini;
-        colors = builtins.readFile "${matugenTheme}/fuzzel-colors.ini";
-      in
-        base + colors;
-      starship = let
-        base = lib.importTOML ./dots/starship/starship.toml;
-        colors = lib.importTOML "${matugenTheme}/starship.toml";
-      in
-        pkgs.writers.writeTOML "starship.toml" (lib.recursiveUpdate base colors);
-
       hyprlockInjected = let
         from = ["%%WALLPAPER%%"];
         to = ["${matugen.wallpaper}"];
@@ -126,7 +114,6 @@ in {
       ".config/yazi/yazi.toml".source = ./dots/yazi/yazi.toml;
       ".config/yazi/keymap.toml".source = ./dots/yazi/keymap.toml;
       ".config/yazi/theme.toml".source = "${matugenTheme}/yazi-theme.toml";
-      ".config/fuzzel/fuzzel.ini".text = fuzzel;
       ".config/background".source = matugen.wallpaper;
       # quickshell
       ".config/quickshell".source = quickshellConfig;

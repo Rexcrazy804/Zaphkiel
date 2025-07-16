@@ -9,18 +9,18 @@
   lib,
 }: let
   qsConfig = ../users/dots/quickshell/kurukurubar;
+  qtDeps = [
+    kdePackages.qtbase
+    kdePackages.qtdeclarative
+    kdePackages.qtmultimedia
+  ];
 in
-  symlinkJoin rec {
+  symlinkJoin {
     pname = "kurukurubar";
     version = quickshell.version;
 
     paths = [quickshell];
     buildInputs = [makeWrapper];
-    qtDeps = [
-      kdePackages.qtbase
-      kdePackages.qtdeclarative
-      kdePackages.qtmultimedia
-    ];
 
     qmlPath = lib.pipe qtDeps [
       (builtins.map (lib: "${lib}/lib/qt-6/qml"))

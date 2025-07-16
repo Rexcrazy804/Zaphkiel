@@ -38,6 +38,24 @@ Rectangle {
 
         onClicked: () => Dat.Config.data.mousePsystem = !Dat.Config.data.mousePsystem
       }
+
+      Gen.TweakToggle {
+        Layout.fillWidth: true
+        active: Dat.Config.data.setWallpaper
+        text: "Set Wallpaper"
+
+        onClicked: () => Dat.Config.data.setWallpaper = !Dat.Config.data.setWallpaper
+      }
+
+      Item {
+        Layout.fillWidth: true
+        implicitHeight: 25
+        Text {
+          anchors.centerIn: parent
+          text: "kurukurubar <3"
+          color: Dat.Colors.on_surface
+        }
+      }
     }
   }
 }

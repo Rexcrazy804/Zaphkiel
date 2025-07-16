@@ -30,12 +30,12 @@
 - [x] trayItem animations
 - [x] cleanup rectangle: color: "transparents" with Item {}
 - [x] reorganize tree structure
+- [x] background layer for setting wallpaper
 
 ### What I do not like to see
 - [ ] greetd and lockscreen
 - [ ] Lazy Loading
 - [ ] app launcher
-- [ ] background layer for setting wallpaper
 - [ ] use font.family for specifying fonts
 - [ ] adjust anchor magins in homeView
 - [ ] revamp notification popups / osd

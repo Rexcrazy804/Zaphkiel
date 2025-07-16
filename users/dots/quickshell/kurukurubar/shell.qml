@@ -1,3 +1,4 @@
+pragma ComponentBehavior: Bound
 import Quickshell
 import QtQuick
 import "Layers" as Lay
@@ -16,6 +17,13 @@ ShellRoot {
         activeAsync: Dat.Config.data.reservedShell
 
         component: Lay.PseudoReserved {
+          modelData: scopeRoot.modelData
+        }
+      }
+
+      LazyLoader {
+        activeAsync: Dat.Config.data.setWallpaper
+        component: Lay.Wallpaper {
           modelData: scopeRoot.modelData
         }
       }

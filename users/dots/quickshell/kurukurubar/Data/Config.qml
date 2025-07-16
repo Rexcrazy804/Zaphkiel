@@ -1,3 +1,4 @@
+pragma ComponentBehavior: Bound
 pragma Singleton
 import QtQuick
 import Quickshell
@@ -20,6 +21,18 @@ Singleton {
 
       property bool mousePsystem: false
       property bool reservedShell: false
+      property bool setWallpaper: true
+      property string wallSrc: Quickshell.env("HOME") + "/.config/background"
     }
+  }
+
+  IpcHandler {
+    function setWallpaper(path: string) {
+      path = Qt.resolvedUrl(path);
+      jsonData.wallSrc = path;
+      jsonData.setWallpaper = true;
+    }
+
+    target: "config"
   }
 }

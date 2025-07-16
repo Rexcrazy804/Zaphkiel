@@ -67,7 +67,7 @@ switcher_only = true
 weight = 5
 name = "applications"
 placeholder = "Applications"
-prioritize_new = true
+prioritize_new = false
 hide_actions_with_empty_query = true
 context_aware = true
 refresh = true
@@ -87,12 +87,22 @@ weight = 5
 placeholder = "Bookmarks"
 name = "bookmarks"
 icon = "bookmark"
-switcher_only = true
+switcher_only = false
 
 [[builtins.bookmarks.entries]]
-label = "Walker"
-url = "https://github.com/abenz1267/walker"
-keywords = ["walker", "github"]
+label = "nixpkgs"
+url = "https://github.com/NixOS/nixpkgs"
+keywords = ["nixpkgs"]
+
+[[builtins.bookmarks.entries]]
+label = "zaphkiel"
+url = "https://github.com/Rexcrazy804/Zaphkiel"
+keywords = ["git", "zaphkiel", "kurukurubar"]
+
+[[builtins.bookmarks.entries]]
+label = "quickshell"
+url = "https://master.quickshell.org/docs/types/"
+keywords = ["qs"]
 
 [builtins.xdph_picker]
 hidden = true
@@ -200,6 +210,7 @@ history = true
 generic_entry = false
 refresh = true
 use_fd = false
+switcher_only = true
 
 [builtins.ssh]
 weight = 5
@@ -226,6 +237,14 @@ placeholder = "Websearch"
 [[builtins.websearch.entries]]
 name = "DuckDuckGo"
 url = "https://duckduckgo.com/?q=%TERM%"
+
+[[builtins.websearch.entries]]
+name = "nixpkgs"
+url = "https://search.nixos.org/packages?query=%TERM%"
+
+[[builtins.websearch.entries]]
+name = "nixos"
+url = "https://search.nixos.org/options?query=%TERM%"
 
 [builtins.dmenu]
 hidden = true

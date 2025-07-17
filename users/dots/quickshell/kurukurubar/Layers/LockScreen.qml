@@ -54,11 +54,14 @@ Scope {
       }
 
       Image {
+        // Don't show the fg if fg is being generated
+        visible: !Dat.Config.fgGenProc.running
         anchors.fill: parent
         antialiasing: true
         mipmap: true
         smooth: true
-        source: Quickshell.env("HOME") + "/.config/foreground.png"
+        source: Dat.Config.wallFg
+        fillMode: Image.PreserveAspectCrop
       }
 
       Rectangle {

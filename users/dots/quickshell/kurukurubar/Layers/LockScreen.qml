@@ -33,15 +33,25 @@ Scope {
         source: Dat.Config.data.wallSrc
 
         layer.effect: MultiEffect {
+          id: walBlur
+
           autoPaddingEnabled: false
-          blur: (!surface.active) ? 0.69 : 0
           blurEnabled: true
 
-          Behavior on blur {
-            NumberAnimation {
-              duration: Dat.MaterialEasing.emphasizedTime * 1.6
-              easing.type: Easing.Linear
-            }
+          NumberAnimation on blur {
+            duration: Dat.MaterialEasing.emphasizedTime
+            easing.type: Easing.Linear
+            from: 0
+            to: 0.69
+          }
+
+          NumberAnimation {
+            duration: Dat.MaterialEasing.emphasizedTime * 1.5
+            easing.type: Easing.Linear
+            property: "blur"
+            running: surface.active
+            target: walBlur
+            to: 0
           }
         }
       }
@@ -64,6 +74,8 @@ Scope {
       }
 
       Image {
+        id: fg
+
         anchors.fill: parent
         antialiasing: true
         fillMode: Image.PreserveAspectCrop
@@ -72,6 +84,23 @@ Scope {
         source: Dat.Config.wallFg
         // Don't show the fg if fg is being generated
         visible: !Dat.Config.fgGenProc.running
+
+        NumberAnimation on opacity {
+          duration: Dat.MaterialEasing.emphasizedTime
+          easing.type: Easing.Linear
+          from: 0
+          to: 1
+        }
+
+        NumberAnimation {
+          duration: Dat.MaterialEasing.emphasizedTime * 1.5
+          easing.type: Easing.Linear
+          from: 1
+          property: "opacity"
+          running: surface.active
+          target: fg
+          to: 0
+        }
       }
 
       Rectangle {
@@ -89,6 +118,12 @@ Scope {
           ColorAnimation {
             duration: 200
           }
+        }
+        NumberAnimation on opacity {
+          duration: Dat.MaterialEasing.emphasizedTime
+          easing.type: Easing.Linear
+          from: 0
+          to: 1
         }
         Behavior on width {
           NumberAnimation {
@@ -116,6 +151,23 @@ Scope {
             return;
           }
           surface.inputBuffer += kevent.text;
+        }
+
+        SequentialAnimation {
+          running: surface.active
+
+          PauseAnimation {
+            duration: Dat.MaterialEasing.emphasizedTime * 1.2
+          }
+
+          NumberAnimation {
+            duration: Dat.MaterialEasing.emphasizedTime * 0.3
+            easing.type: Easing.Linear
+            from: 1
+            property: "opacity"
+            target: inputRect
+            to: 0
+          }
         }
 
         Item {

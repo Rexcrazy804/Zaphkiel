@@ -51,7 +51,7 @@ Singleton {
       jsonData.wallSrc = path;
       jsonData.setWallpaper = true;
 
-      console.log("[INFO] gerating wallpaper foreground...");
+      console.log("[INFO] generating wallpaper foreground...");
       generateFg.running = true;
     }
 

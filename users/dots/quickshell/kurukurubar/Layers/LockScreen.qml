@@ -85,8 +85,46 @@ Scope {
           surface.inputBuffer += kevent.text;
         }
 
+        Item {
+          anchors.bottom: parent.bottom
+          anchors.left: parent.left
+          anchors.top: parent.top
+          implicitWidth: inputRect.height
+
+          Gen.MatIcon {
+            id: lockIcon
+
+            anchors.centerIn: parent
+            antialiasing: true
+            color: Dat.Colors.on_surface
+            fill: pam.active
+            font.pointSize: 16
+            icon: "lock"
+
+            Behavior on rotation {
+              NumberAnimation {
+                duration: lockRotatetimer.interval
+                easing.type: Easing.Linear
+              }
+            }
+          }
+
+          Timer {
+            id: lockRotatetimer
+
+            interval: 500
+            repeat: true
+            running: pam.active
+            triggeredOnStart: true
+
+            onRunningChanged: lockIcon.rotation = 0
+            onTriggered: lockIcon.rotation += 50
+          }
+        }
+
         RowLayout {
           id: inputRow
+
           anchors.centerIn: parent
           height: parent.height
           spacing: 0
@@ -94,41 +132,11 @@ Scope {
           Item {
             implicitHeight: inputRect.height
             implicitWidth: inputRect.height
-
-            Gen.MatIcon {
-              id: lockIcon
-
-              anchors.centerIn: parent
-              antialiasing: true
-              color: Dat.Colors.on_surface
-              fill: pam.active
-              font.pointSize: 16
-              icon: "lock"
-
-              Behavior on rotation {
-                NumberAnimation {
-                  duration: lockRotatetimer.interval
-                  easing.type: Easing.Linear
-                }
-              }
-            }
-
-            Timer {
-              id: lockRotatetimer
-
-              interval: 500
-              repeat: true
-              running: pam.active
-              triggeredOnStart: true
-
-              onRunningChanged: lockIcon.rotation = 0
-              onTriggered: lockIcon.rotation += 50
-            }
           }
 
           Item {
-            visible: pamText.text != ""
             implicitWidth: pamText.contentWidth + 18
+            visible: pamText.text != ""
 
             Text {
               id: pamText
@@ -136,6 +144,24 @@ Scope {
               anchors.centerIn: parent
               color: Dat.Colors.on_surface_variant
               text: pam.message
+            }
+          }
+
+          Repeater {
+            model: ScriptModel {
+              values: surface.inputBuffer.split("")
+            }
+
+            Item {
+              implicitHeight: inputRect.height
+              implicitWidth: this.height
+              visible: !pam.active
+
+              Text {
+                anchors.centerIn: parent
+                color: Dat.Colors.on_surface
+                text: "*"
+              }
             }
           }
 

@@ -62,12 +62,6 @@ in {
       in
         builtins.replaceStrings from to (builtins.readFile ./dots/qt6ct/qt6ct.conf);
 
-      hyprlockInjected = let
-        from = ["%%WALLPAPER%%"];
-        to = ["${matugen.wallpaper}"];
-      in
-        builtins.replaceStrings from to (builtins.readFile ./dots/hyprland/hyprlock.conf);
-
       walkerCSSInjected = let
         from = [
           "%%error%%"
@@ -136,7 +130,6 @@ in {
       ".config/uwsm/env".source = ./dots/uwsm/env;
       ".config/hypr/hypridle.conf".source = ./dots/hyprland/hypridle.conf;
       ".config/hypr/hyprland.conf".source = ./dots/hyprland/hyprland.conf;
-      ".config/hypr/hyprlock.conf".text = hyprlockInjected;
       ".config/hypr/hyprcolors.conf".source = "${matugenTheme}/hyprcolors.conf";
       ".config/yazi/yazi.toml".source = ./dots/yazi/yazi.toml;
       ".config/yazi/keymap.toml".source = ./dots/yazi/keymap.toml;

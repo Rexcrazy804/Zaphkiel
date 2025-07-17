@@ -10,9 +10,12 @@
       enable = true;
       withUWSM = true;
     };
-    programs.hyprlock.enable = true;
-    systemd.user.services.hypridle.path = [
+    services.hypridle.enable = true;
+    systemd.user.services.hypridle.path = lib.mkForce [
+      config.programs.hyprland.package
+      pkgs.procps
       pkgs.brightnessctl
+      pkgs.quickshell
     ];
 
     qt.enable = true;

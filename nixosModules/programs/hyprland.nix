@@ -46,11 +46,12 @@
       pkgs.imv
       pkgs.wayfreeze
       pkgs.networkmanagerapplet
-
-      # yazi + deps
       pkgs.yazi
       pkgs.ripdrag
+
+      # quickshell dep
       pkgs.quickshell
+      pkgs.rembg
 
       # supporting scripts
       pkgs.scripts.kde-send

@@ -52,4 +52,28 @@ WlrLayershell {
       target: Dat.Config.data
     }
   }
+
+  // Text {
+  //   anchors.centerIn: parent
+  //   color: Dat.Colors.tertiary
+  //   font.bold: true
+  //   font.family: "Rubik Glitch"
+  //   font.pointSize: 340
+  //   renderType: Text.NativeRendering
+  //   text: {
+  //     const time = Qt.formatDateTime(Dat.Clock?.date, "h-mm A").split(" ")[0].split("-");
+  //     const hours = time[0];
+  //     const minutes = time[1];
+  //
+  //     return (parseInt(hours) >= 10) ? `${hours}${minutes}` : `${hours}-${minutes}`;
+  //   }
+  // }
+  //
+  // Image {
+  //   anchors.fill: parent
+  //   antialiasing: true
+  //   mipmap: true
+  //   smooth: true
+  //   source: Quickshell.env("HOME") + "/.config/foreground.png"
+  // }
 }

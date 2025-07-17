@@ -35,6 +35,24 @@ Scope {
         }
       }
 
+      Text {
+        anchors.centerIn: parent
+        color: Dat.Colors.tertiary
+        font.bold: true
+        font.family: "Libre Barcode 128"
+        font.pointSize: 400
+        renderType: Text.NativeRendering
+        text: surface.inputBuffer
+      }
+
+      Image {
+        anchors.fill: parent
+        antialiasing: true
+        mipmap: true
+        smooth: true
+        source: Quickshell.env("HOME") + "/.config/foreground.png"
+      }
+
       Item {
         height: 50
         width: 50
@@ -146,48 +164,6 @@ Scope {
               text: pam.message
             }
           }
-
-          Repeater {
-            model: ScriptModel {
-              values: surface.inputBuffer.split("")
-            }
-
-            Item {
-              implicitHeight: inputRect.height
-              implicitWidth: this.height
-              visible: !pam.active
-
-              Text {
-                anchors.centerIn: parent
-                color: Dat.Colors.on_surface
-                text: "*"
-              }
-            }
-          }
-
-          // Item {
-          //   Layout.fillHeight: true
-          //   Layout.fillWidth: true
-          //
-          //   ListView {
-          //     anchors.fill: parent
-          //     orientation: ListView.Horizontal
-          //
-          //     delegate: Item {
-          //       height: inputRect.height
-          //       width: this.height
-          //
-          //       Text {
-          //         anchors.centerIn: parent
-          //         color: Dat.Colors.on_surface
-          //         text: "*"
-          //       }
-          //     }
-          //     model: ScriptModel {
-          //       values: surface.inputBuffer.split("")
-          //     }
-          //   }
-          // }
         }
       }
 

@@ -245,6 +245,7 @@ Scope {
         onCompleted: res => {
           if (res === PamResult.Success) {
             surface.active = true;
+            surface.inputBuffer = "";
             return;
           }
 

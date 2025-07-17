@@ -47,23 +47,14 @@ Singleton {
 
     command: [script, Dat.Paths.urlToPath(jsonData.wallSrc), Dat.Paths.urlToPath(Dat.Paths.cache)]
 
-    stdout: StdioCollector {
-      onStreamFinished: {
-        let output = text.split("\n");
-        root.wallFg = output[output.length - 2];
-        console.log(output[output.length - 3]);
-      }
-    }
-
-    onExited: ec => {
-      if (ec) {
-        console.log("[ERROR] Foreground exaction script failed");
-        root.wallFg = "";
-      }
-    }
-    onRunningChanged: {
-      if (running && root.wallFg != "") {
-        console.log("[INFO] generating wallpaper foreground...");
+    stdout: SplitParser {
+      onRead: data => {
+        if (/\[.*\]/.test(data)) {
+          console.log(data);
+        }
+        if (/FOREGROUND/.test(data)) {
+          root.wallFg = data.split(" ")[1];
+        }
       }
     }
   }

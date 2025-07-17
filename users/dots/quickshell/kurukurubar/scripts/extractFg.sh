@@ -19,7 +19,7 @@ if ! [ -f "${DSTIMG}" ]; then
     exit 1
   fi
 else
-  echo "[INFO] File in cache"
+  echo "[INFO] Foreground file in cache"
 fi
 
-echo $DSTIMG
+echo -n "FOREGROUND $DSTIMG"

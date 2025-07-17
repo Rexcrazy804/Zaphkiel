@@ -3,7 +3,9 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  inherit (lib) mkForce optional;
+in {
   imports = [
     ./hardware-configuration.nix
     ./user-configuration.nix
@@ -48,7 +50,7 @@
   services.tailscale = {
     authKeyFile = config.age.secrets.tailAuth.path;
     # don't use Persephone as exit node
-    extraSetFlags = lib.mkForce [
+    extraSetFlags = mkForce [
       "--webclient"
       "--accept-dns=false"
     ];
@@ -74,7 +76,7 @@
     };
   };
 
-  hardware.bluetooth.powerOnBoot = lib.mkForce false;
+  hardware.bluetooth.powerOnBoot = mkForce false;
 
   # finger print
   systemd.services.fprintd = {
@@ -98,8 +100,12 @@
 
   services.sunshine = {
     enable = true;
-    autoStart = true;
+    autoStart = false;
     capSysAdmin = true;
     openFirewall = true;
   };
+
+  # idk the service didn't show up and now it does too lazy to rebuild and test
+  # if it was a delusion. If it works don't break it, amiright
+  systemd.user.services.sunshine.wantedBy = mkForce (optional config.services.sunshine.autoStart "graphical-session.target");
 }

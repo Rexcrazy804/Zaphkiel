@@ -15,6 +15,7 @@
         pkgs.noto-fonts-cjk-sans
         pkgs.noto-fonts-cjk-serif
         pkgs.material-symbols
+        pkgs.google-fonts
       ];
     };
   };

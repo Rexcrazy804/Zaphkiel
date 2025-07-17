@@ -20,6 +20,7 @@ Scope {
     WlSessionLockSurface {
       id: surface
 
+      property bool error: false
       property string inputBuffer: ""
 
       Image {
@@ -30,19 +31,26 @@ Scope {
 
         layer.effect: MultiEffect {
           autoPaddingEnabled: false
-          blur: 0.48
+          blur: 0.69
           blurEnabled: true
         }
       }
 
       Text {
+        property list<string> kokomi: ["k", "o", "k", "o", "m", "i"]
+
         anchors.centerIn: parent
-        color: Dat.Colors.tertiary
+        color: (surface.error) ? Dat.Colors.error : Dat.Colors.tertiary
         font.bold: true
         font.family: "Libre Barcode 128"
         font.pointSize: 400
         renderType: Text.NativeRendering
-        text: surface.inputBuffer
+        text: surface.inputBuffer.split('').map(x => {
+          const index = Math.floor(Math.random() * 6);
+          return kokomi[index];
+        }).sort(function () {
+          return 0.5 - Math.random();
+        }).join('')
       }
 
       Image {
@@ -53,28 +61,22 @@ Scope {
         source: Quickshell.env("HOME") + "/.config/foreground.png"
       }
 
-      Item {
-        height: 50
-        width: 50
-
-        MouseArea {
-          anchors.fill: parent
-
-          onClicked: lock.locked = false
-        }
-      }
-
       Rectangle {
         id: inputRect
 
         anchors.centerIn: parent
         clip: true
-        color: Dat.Colors.surface
+        color: (surface.error) ? Dat.Colors.error : Dat.Colors.surface
         focus: true
         height: 40
         radius: 20
         width: inputRow.width
 
+        Behavior on color {
+          ColorAnimation {
+            duration: 200
+          }
+        }
         Behavior on width {
           NumberAnimation {
             duration: Dat.MaterialEasing.emphasizedTime
@@ -114,11 +116,16 @@ Scope {
 
             anchors.centerIn: parent
             antialiasing: true
-            color: Dat.Colors.on_surface
+            color: (surface.error) ? Dat.Colors.on_error : Dat.Colors.on_surface
             fill: pam.active
             font.pointSize: 16
             icon: "lock"
 
+            Behavior on color {
+              ColorAnimation {
+                duration: 200
+              }
+            }
             Behavior on rotation {
               NumberAnimation {
                 duration: lockRotatetimer.interval
@@ -160,7 +167,7 @@ Scope {
               id: pamText
 
               anchors.centerIn: parent
-              color: Dat.Colors.on_surface_variant
+              color: (surface.error) ? Dat.Colors.on_error : Dat.Colors.on_surface
               text: pam.message
             }
           }
@@ -173,7 +180,11 @@ Scope {
         onCompleted: res => {
           if (res === PamResult.Success) {
             lock.locked = false;
+            return;
           }
+
+          surface.error = true;
+          revertColors.running = true;
         }
         onResponseRequiredChanged: {
           if (!responseRequired)
@@ -182,6 +193,14 @@ Scope {
           respond(surface.inputBuffer);
           surface.inputBuffer = "";
         }
+      }
+
+      Timer {
+        id: revertColors
+
+        interval: 2000
+
+        onTriggered: surface.error = false
       }
     }
   }

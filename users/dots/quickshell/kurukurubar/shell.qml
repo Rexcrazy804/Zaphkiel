@@ -23,6 +23,7 @@ ShellRoot {
 
       LazyLoader {
         activeAsync: Dat.Config.data.setWallpaper
+
         component: Lay.Wallpaper {
           modelData: scopeRoot.modelData
         }
@@ -53,5 +54,8 @@ ShellRoot {
         target: Quickshell
       }
     }
+  }
+
+  Lay.LockScreen {
   }
 }

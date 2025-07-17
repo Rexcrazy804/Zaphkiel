@@ -20,10 +20,13 @@ Scope {
     WlSessionLockSurface {
       id: surface
 
+      property bool active: false
       property bool error: false
       property string inputBuffer: ""
 
       Image {
+        id: wallpaper
+
         anchors.fill: parent
         fillMode: Image.PreserveAspectCrop
         layer.enabled: true
@@ -31,8 +34,15 @@ Scope {
 
         layer.effect: MultiEffect {
           autoPaddingEnabled: false
-          blur: 0.69
+          blur: (!surface.active) ? 0.69 : 0
           blurEnabled: true
+
+          Behavior on blur {
+            NumberAnimation {
+              duration: Dat.MaterialEasing.emphasizedTime * 1.6
+              easing.type: Easing.Linear
+            }
+          }
         }
       }
 
@@ -54,14 +64,14 @@ Scope {
       }
 
       Image {
-        // Don't show the fg if fg is being generated
-        visible: !Dat.Config.fgGenProc.running
         anchors.fill: parent
         antialiasing: true
+        fillMode: Image.PreserveAspectCrop
         mipmap: true
         smooth: true
         source: Dat.Config.wallFg
-        fillMode: Image.PreserveAspectCrop
+        // Don't show the fg if fg is being generated
+        visible: !Dat.Config.fgGenProc.running
       }
 
       Rectangle {
@@ -182,7 +192,7 @@ Scope {
 
         onCompleted: res => {
           if (res === PamResult.Success) {
-            lock.locked = false;
+            surface.active = true;
             return;
           }
 
@@ -205,6 +215,28 @@ Scope {
 
         onTriggered: surface.error = false
       }
+
+      Timer {
+        id: unlockTimer
+
+        interval: Dat.MaterialEasing.emphasizedTime * 1.5
+        running: surface.active
+
+        onTriggered: lock.locked = false
+      }
+
+      // debugging only
+      // Item {
+      //   height: 10
+      //   width: 10
+      //
+      //   MouseArea {
+      //     anchors.fill: parent
+      //     hoverEnabled: true
+      //
+      //     onEntered: lock.locked = false
+      //   }
+      // }
     }
   }
 

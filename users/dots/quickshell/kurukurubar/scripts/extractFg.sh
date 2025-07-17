@@ -8,13 +8,15 @@ DSTDIR=${CACHEDIR}/foregrounds
 DSTIMG=${DSTDIR}/${SRCHASH}
 mkdir -p $DSTDIR
 
-# basically only downloads file if it doesn't exist
+# basically I hate bash, but bash is bash
+# (only process wallpaper if not found in cache)
 if ! [ -f "${DSTIMG}" ]; then
   echo "[INFO] Extracting wallpaper foreground"
   if rembg i -m birefnet-general $SRCIMG $DSTIMG; then
     echo "[INFO] Successfully extracted foreground"
   else
     echo "[ERROR] Failed to extract foreground"
+    exit 1
   fi
 else
   echo "[INFO] File in cache"

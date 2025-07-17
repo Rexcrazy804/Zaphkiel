@@ -11,22 +11,7 @@ Singleton {
 
   property alias data: jsonData
   property alias fgGenProc: generateFg
-  readonly property string wallFg: Dat.Paths.urlToPath(Dat.Paths.cache + "/wallpaper-foreground")
-
-  Process {
-    id: generateFg
-
-    command: ["rembg", "i", "-m", "birefnet-general", Dat.Paths.urlToPath(jsonData.wallSrc), root.wallFg]
-
-    onExited: ec => {
-      if (ec) {
-        console.log("[ERROR] Failed to generate foreground image");
-        return
-      }
-
-      console.log("[INFO] wallpaper forground generated");
-    }
-  }
+  property string wallFg: ""
 
   FileView {
     path: Dat.Paths.config + "/config.json"
@@ -50,11 +35,46 @@ Singleton {
       path = Qt.resolvedUrl(path);
       jsonData.wallSrc = path;
       jsonData.setWallpaper = true;
-
-      console.log("[INFO] generating wallpaper foreground...");
-      generateFg.running = true;
     }
 
     target: "config"
+  }
+
+  Process {
+    id: generateFg
+
+    property string script: Dat.Paths.urlToPath(Qt.resolvedUrl("../scripts/extractFg.sh"))
+
+    command: [script, Dat.Paths.urlToPath(jsonData.wallSrc), Dat.Paths.urlToPath(Dat.Paths.cache)]
+
+    stdout: StdioCollector {
+      onStreamFinished: {
+        let output = text.split("\n");
+        root.wallFg = output[output.length - 2];
+        console.log(output[output.length - 3]);
+      }
+    }
+
+    onExited: ec => {
+      if (ec) {
+        console.log("[ERROR] Foreground exaction script failed");
+        root.wallFg = "";
+      }
+    }
+    onRunningChanged: {
+      if (running && root.wallFg != "") {
+        console.log("[INFO] generating wallpaper foreground...");
+      }
+    }
+  }
+
+  Connections {
+    function onWallSrcChanged() {
+      if (jsonData.wallSrc != "") {
+        generateFg.running = true;
+      }
+    }
+
+    target: jsonData
   }
 }

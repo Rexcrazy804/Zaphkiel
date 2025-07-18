@@ -51,9 +51,10 @@ Singleton {
       onRead: data => {
         if (/\[.*\]/.test(data)) {
           console.log(data);
-        }
-        if (/FOREGROUND/.test(data)) {
+        } else if (/FOREGROUND/.test(data)) {
           root.wallFg = data.split(" ")[1];
+        } else {
+          console.log("[EXT] " + data);
         }
       }
     }
@@ -66,7 +67,9 @@ Singleton {
 
     function onWallSrcChanged() {
       if (jsonData.wallSrc != "" && jsonData.wallFgLayer) {
-        generateFg.running = true;
+        if (!generateFg.running) {
+          generateFg.running = true;
+        }
       }
     }
 

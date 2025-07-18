@@ -12,10 +12,11 @@ mkdir -p $DSTDIR
 # (only process wallpaper if not found in cache)
 if ! [ -f "${DSTIMG}" ]; then
   echo "[INFO] Extracting wallpaper foreground"
-  if rembg i -m birefnet-general $SRCIMG $DSTIMG; then
+  if rembg i -m birefnet-general $SRCIMG $DSTIMG &> $CACHEDIR/rembg.log; then
     echo "[INFO] Successfully extracted foreground"
   else
     echo "[ERROR] Failed to extract foreground"
+    echo "[INFO] find log in ${CACHEDIR}/rembg.log"
     exit 1
   fi
 else

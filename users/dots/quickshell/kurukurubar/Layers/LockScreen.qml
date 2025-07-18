@@ -21,6 +21,7 @@ Scope {
       id: surface
 
       property bool active: false
+      property bool error: false
       property string inputBuffer: ""
       property list<string> kokomi: ["k", "o", "k", "o", "m", "i"]
       property string maskedBuffer: ""
@@ -57,56 +58,84 @@ Scope {
         }
       }
 
-      ListView {
+      // old animation logic
+      // ListView {
+      //   anchors.centerIn: parent
+      //   height: currentItem?.contentHeight ?? 1
+      //   highlightRangeMode: ListView.StrictlyEnforceRange
+      //   interactive: false
+      //   orientation: ListView.Horizontal
+      //   width: currentItem?.contentWidth * count ?? 1
+      //
+      //   add: Transition {
+      //     NumberAnimation {
+      //       property: "y"
+      //       duration: Dat.MaterialEasing.emphasizedDecelTime
+      //       easing.bezierCurve: Dat.MaterialEasing.emphasizedDecel
+      //       from: -surface.height
+      //     }
+      //   }
+      //
+      //   displaced: Transition {
+      //     NumberAnimation {
+      //       property: "x"
+      //       duration: Dat.MaterialEasing.emphasizedTime
+      //       easing.bezierCurve: Dat.MaterialEasing.emphasized
+      //     }
+      //   }
+      //
+      //   addDisplaced: dispalced
+      //   removeDisplaced: displaced
+      //
+      //   remove: Transition {
+      //     NumberAnimation {
+      //       property: "y"
+      //       duration: Dat.MaterialEasing.emphasizedTime
+      //       easing.bezierCurve: Dat.MaterialEasing.emphasized
+      //       to: surface.height
+      //     }
+      //   }
+      //
+      //   delegate: Text {
+      //     required property string modelData
+      //     opacity: fg.opacity
+      //
+      //     color: (surface.error) ? Dat.Colors.error : Dat.Colors.tertiary
+      //     font.bold: true
+      //     font.family: "Libre Barcode 128"
+      //     font.pointSize: 400
+      //     renderType: Text.NativeRendering
+      //     text: modelData
+      //   }
+      //   model: ScriptModel {
+      //     values: surface.maskedBuffer.split("")
+      //   }
+      // }
+
+      Item {
         anchors.centerIn: parent
-        height: currentItem?.contentHeight ?? 1
-        highlightRangeMode: ListView.StrictlyEnforceRange
-        interactive: false
-        orientation: ListView.Horizontal
-        width: currentItem?.contentWidth * count ?? 1
+        clip: true
+        height: kokomiText.contentHeight
+        width: (pam.active)? 0 : kokomiText.contentWidth
 
-        add: Transition {
+        Behavior on width {
           NumberAnimation {
-            property: "y"
-            duration: Dat.MaterialEasing.emphasizedDecelTime
-            easing.bezierCurve: Dat.MaterialEasing.emphasizedDecel
-            from: -surface.height
-          }
-        }
-
-        displaced: Transition {
-          NumberAnimation {
-            property: "x"
             duration: Dat.MaterialEasing.emphasizedTime
             easing.bezierCurve: Dat.MaterialEasing.emphasized
           }
         }
 
-        addDisplaced: dispalced
-        removeDisplaced: displaced
+        Text {
+          id: kokomiText
 
-        remove: Transition {
-          NumberAnimation {
-            property: "y"
-            duration: Dat.MaterialEasing.emphasizedTime
-            easing.bezierCurve: Dat.MaterialEasing.emphasized
-            to: surface.height
-          }
-        }
-
-        delegate: Text {
-          required property string modelData
-          opacity: fg.opacity
-
+          anchors.centerIn: parent
           color: (surface.error) ? Dat.Colors.error : Dat.Colors.tertiary
           font.bold: true
           font.family: "Libre Barcode 128"
           font.pointSize: 400
+          opacity: fg.opacity
           renderType: Text.NativeRendering
-          text: modelData
-        }
-        model: ScriptModel {
-          values: surface.maskedBuffer.split("")
+          text: surface.maskedBuffer
         }
       }
 

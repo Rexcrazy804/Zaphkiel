@@ -41,7 +41,8 @@ in
       makeWrapper $out/bin/quickshell $out/bin/kurukurubar \
         --set FONTCONFIG_FILE "${fontconfig}" \
         --set QML2_IMPORT_PATH "${qmlPath}" \
-        --add-flags '-p ${qsConfig}'
+        --add-flags '-p ${qsConfig}' \
+        --prefix PATH ";" "${rembg}/bin/rembg"
     '';
 
     meta.mainProgram = "kurukurubar";

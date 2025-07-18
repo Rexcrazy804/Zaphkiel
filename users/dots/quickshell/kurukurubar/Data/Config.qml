@@ -45,7 +45,7 @@ Singleton {
 
     property string script: Dat.Paths.urlToPath(Qt.resolvedUrl("../scripts/extractFg.sh"))
 
-    command: [script, Dat.Paths.urlToPath(jsonData.wallSrc), Dat.Paths.urlToPath(Dat.Paths.cache)]
+    command: ["bash", script, Dat.Paths.urlToPath(jsonData.wallSrc), Dat.Paths.urlToPath(Dat.Paths.cache)]
 
     stdout: SplitParser {
       onRead: data => {

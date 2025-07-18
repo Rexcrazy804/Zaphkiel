@@ -92,6 +92,8 @@ Scope {
         anchors.fill: parent
         antialiasing: true
         fillMode: Image.PreserveAspectCrop
+        layer.enabled: true
+        layer.smooth: true
         mipmap: true
         smooth: true
         source: Dat.Config.wallFg

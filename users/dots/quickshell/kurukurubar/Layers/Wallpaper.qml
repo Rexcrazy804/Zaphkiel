@@ -40,9 +40,8 @@ WlrLayershell {
     }
     onStatusChanged: {
       if (this.status == Image.Error) {
-        console.log("[ERROR] wallpaper source invalid");
-        console.log("[INFO] disabled background layer");
-        Dat.Config.data.setWallpaper = false;
+        console.log("[ERROR] Wallpaper source invalid");
+        console.log("[INFO] Please disable set wallpaper if not required");
       }
     }
 

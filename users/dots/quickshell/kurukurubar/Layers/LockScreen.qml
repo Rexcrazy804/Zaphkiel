@@ -58,65 +58,11 @@ Scope {
         }
       }
 
-      // old animation logic
-      // ListView {
-      //   anchors.centerIn: parent
-      //   height: currentItem?.contentHeight ?? 1
-      //   highlightRangeMode: ListView.StrictlyEnforceRange
-      //   interactive: false
-      //   orientation: ListView.Horizontal
-      //   width: currentItem?.contentWidth * count ?? 1
-      //
-      //   add: Transition {
-      //     NumberAnimation {
-      //       property: "y"
-      //       duration: Dat.MaterialEasing.emphasizedDecelTime
-      //       easing.bezierCurve: Dat.MaterialEasing.emphasizedDecel
-      //       from: -surface.height
-      //     }
-      //   }
-      //
-      //   displaced: Transition {
-      //     NumberAnimation {
-      //       property: "x"
-      //       duration: Dat.MaterialEasing.emphasizedTime
-      //       easing.bezierCurve: Dat.MaterialEasing.emphasized
-      //     }
-      //   }
-      //
-      //   addDisplaced: dispalced
-      //   removeDisplaced: displaced
-      //
-      //   remove: Transition {
-      //     NumberAnimation {
-      //       property: "y"
-      //       duration: Dat.MaterialEasing.emphasizedTime
-      //       easing.bezierCurve: Dat.MaterialEasing.emphasized
-      //       to: surface.height
-      //     }
-      //   }
-      //
-      //   delegate: Text {
-      //     required property string modelData
-      //     opacity: fg.opacity
-      //
-      //     color: (surface.error) ? Dat.Colors.error : Dat.Colors.tertiary
-      //     font.bold: true
-      //     font.family: "Libre Barcode 128"
-      //     font.pointSize: 400
-      //     renderType: Text.NativeRendering
-      //     text: modelData
-      //   }
-      //   model: ScriptModel {
-      //     values: surface.maskedBuffer.split("")
-      //   }
-      // }
-
       Item {
         anchors.centerIn: parent
         clip: true
         height: kokomiText.contentHeight
-        width: (pam.active)? 0 : kokomiText.contentWidth
+        width: (pam.active) ? 0 : kokomiText.contentWidth
 
         Behavior on width {
           NumberAnimation {
@@ -129,6 +75,7 @@ Scope {
           id: kokomiText
 
           anchors.centerIn: parent
+          anchors.verticalCenterOffset: contentHeight * 0.2
           color: (surface.error) ? Dat.Colors.error : Dat.Colors.tertiary
           font.bold: true
           font.family: "Libre Barcode 128"
@@ -149,7 +96,7 @@ Scope {
         smooth: true
         source: Dat.Config.wallFg
         // Don't show the fg if fg is being generated
-        visible: !Dat.Config.fgGenProc.running
+        visible: !Dat.Config.fgGenProc.running && Dat.Config.data.wallFgLayer
 
         NumberAnimation on opacity {
           duration: Dat.MaterialEasing.emphasizedTime
@@ -351,19 +298,6 @@ Scope {
 
         onTriggered: lock.locked = false
       }
-
-      // debugging only
-      // Item {
-      //   height: 10
-      //   width: 10
-      //
-      //   MouseArea {
-      //     anchors.fill: parent
-      //     hoverEnabled: true
-      //
-      //     onEntered: lock.locked = false
-      //   }
-      // }
     }
   }
 

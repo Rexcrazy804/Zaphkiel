@@ -26,6 +26,7 @@ Singleton {
       property bool mousePsystem: false
       property bool reservedShell: false
       property bool setWallpaper: true
+      property bool wallFgLayer: false
       property string wallSrc: Quickshell.env("HOME") + "/.config/background"
     }
   }
@@ -34,7 +35,6 @@ Singleton {
     function setWallpaper(path: string) {
       path = Qt.resolvedUrl(path);
       jsonData.wallSrc = path;
-      jsonData.setWallpaper = true;
     }
 
     target: "config"
@@ -60,8 +60,12 @@ Singleton {
   }
 
   Connections {
+    function onWallFgLayerChanged() {
+      onWallSrcChanged();
+    }
+
     function onWallSrcChanged() {
-      if (jsonData.wallSrc != "") {
+      if (jsonData.wallSrc != "" && jsonData.wallFgLayer) {
         generateFg.running = true;
       }
     }

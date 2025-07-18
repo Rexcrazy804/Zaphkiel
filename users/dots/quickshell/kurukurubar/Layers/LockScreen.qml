@@ -21,7 +21,6 @@ Scope {
       id: surface
 
       property bool active: false
-      property bool error: false
       property string inputBuffer: ""
       property list<string> kokomi: ["k", "o", "k", "o", "m", "i"]
       property string maskedBuffer: ""
@@ -61,11 +60,43 @@ Scope {
       ListView {
         anchors.centerIn: parent
         height: currentItem?.contentHeight ?? 1
+        highlightRangeMode: ListView.StrictlyEnforceRange
+        interactive: false
         orientation: ListView.Horizontal
         width: currentItem?.contentWidth * count ?? 1
 
+        add: Transition {
+          NumberAnimation {
+            property: "y"
+            duration: Dat.MaterialEasing.emphasizedDecelTime
+            easing.bezierCurve: Dat.MaterialEasing.emphasizedDecel
+            from: -surface.height
+          }
+        }
+
+        displaced: Transition {
+          NumberAnimation {
+            property: "x"
+            duration: Dat.MaterialEasing.emphasizedTime
+            easing.bezierCurve: Dat.MaterialEasing.emphasized
+          }
+        }
+
+        addDisplaced: dispalced
+        removeDisplaced: displaced
+
+        remove: Transition {
+          NumberAnimation {
+            property: "y"
+            duration: Dat.MaterialEasing.emphasizedTime
+            easing.bezierCurve: Dat.MaterialEasing.emphasized
+            to: surface.height
+          }
+        }
+
         delegate: Text {
           required property string modelData
+          opacity: fg.opacity
 
           color: (surface.error) ? Dat.Colors.error : Dat.Colors.tertiary
           font.bold: true
@@ -158,8 +189,11 @@ Scope {
             surface.maskedBuffer = surface.maskedBuffer.slice(0, -1);
             return;
           }
-          surface.inputBuffer += kevent.text;
-          surface.maskedBuffer += surface.kokomi[Math.floor(Math.random() * 6)];
+
+          if (kevent.text) {
+            surface.inputBuffer += kevent.text;
+            surface.maskedBuffer += surface.kokomi[Math.floor(Math.random() * 6)];
+          }
         }
 
         SequentialAnimation {

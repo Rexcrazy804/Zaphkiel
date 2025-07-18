@@ -108,6 +108,7 @@ The following packages are exported by this flake:
 | mpv | My mpv configuration with [anime4k](https://github.com/bloc97/Anime4K) shaders baked in |
 | sddm-silent-custom | slightly customized silentSDDM theme re-export |
 | booru-images | exposes an attret of "i<imgid>" from the [imgList](nixosModules/programs/booru-flake/imgList.nix) |
+| librebarcode | The [librebarcode](https://graphicore.github.io/librebarcode/) font |
 
 you may run any of the above with the following command (ofc you can't run a
 cursor, `nix build` it instead) replacing `nixvim` with your desired package

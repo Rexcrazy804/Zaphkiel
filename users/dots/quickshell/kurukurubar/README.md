@@ -15,9 +15,11 @@ using [this template](../../../../nixosModules/external/matugen/templates/quicks
 - quickshell
 - material-symbols
 - nerdfonts
+- [librebarcode](https://graphicore.github.io/librebarcode/) (should be available in the google-fonts package)
 - qtmultimedia (prolly already installed on your system)
 - powerprofilesdaemon (optional)
 - brightnessctl (optional)
+- rembg (required for foreground layer effect)
 
 ### Installation
 1. Install the above dependencies using your favourite package manager

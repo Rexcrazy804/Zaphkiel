@@ -23,6 +23,8 @@ Scope {
       property bool active: false
       property bool error: false
       property string inputBuffer: ""
+      property list<string> kokomi: ["k", "o", "k", "o", "m", "i"]
+      property string maskedBuffer: ""
 
       Image {
         id: wallpaper
@@ -56,21 +58,25 @@ Scope {
         }
       }
 
-      Text {
-        property list<string> kokomi: ["k", "o", "k", "o", "m", "i"]
-
+      ListView {
         anchors.centerIn: parent
-        color: (surface.error) ? Dat.Colors.error : Dat.Colors.tertiary
-        font.bold: true
-        font.family: "Libre Barcode 128"
-        font.pointSize: 400
-        renderType: Text.NativeRendering
-        text: surface.inputBuffer.split('').map(x => {
-          const index = Math.floor(Math.random() * 6);
-          return kokomi[index];
-        }).sort(function () {
-          return 0.5 - Math.random();
-        }).join('')
+        height: currentItem?.contentHeight ?? 1
+        orientation: ListView.Horizontal
+        width: currentItem?.contentWidth * count ?? 1
+
+        delegate: Text {
+          required property string modelData
+
+          color: (surface.error) ? Dat.Colors.error : Dat.Colors.tertiary
+          font.bold: true
+          font.family: "Libre Barcode 128"
+          font.pointSize: 400
+          renderType: Text.NativeRendering
+          text: modelData
+        }
+        model: ScriptModel {
+          values: surface.maskedBuffer.split("")
+        }
       }
 
       Image {
@@ -145,12 +151,15 @@ Scope {
           if (kevent.key === Qt.Key_Backspace) {
             if (kevent.modifiers & Qt.ControlModifier) {
               surface.inputBuffer = "";
+              surface.maskedBuffer = "";
               return;
             }
             surface.inputBuffer = surface.inputBuffer.slice(0, -1);
+            surface.maskedBuffer = surface.maskedBuffer.slice(0, -1);
             return;
           }
           surface.inputBuffer += kevent.text;
+          surface.maskedBuffer += surface.kokomi[Math.floor(Math.random() * 6)];
         }
 
         SequentialAnimation {
@@ -246,6 +255,7 @@ Scope {
           if (res === PamResult.Success) {
             surface.active = true;
             surface.inputBuffer = "";
+            surface.maskedBuffer = "";
             return;
           }
 
@@ -258,6 +268,7 @@ Scope {
 
           respond(surface.inputBuffer);
           surface.inputBuffer = "";
+          surface.maskedBuffer = "";
         }
       }
 

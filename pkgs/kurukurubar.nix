@@ -42,7 +42,7 @@ in
         --set FONTCONFIG_FILE "${fontconfig}" \
         --set QML2_IMPORT_PATH "${qmlPath}" \
         --add-flags '-p ${qsConfig}' \
-        --prefix PATH ":" "${rembg}/bin/rembg"
+        --prefix PATH : "$out/bin"
     '';
 
     meta.mainProgram = "kurukurubar";

@@ -123,10 +123,10 @@ Item {
             }
           });
 
-          // FOR DEBUGGING
-          // swipeArea.currentIndex = 4;
-          // Dat.Globals.settingsTabIndex = 2;
-          // Dat.Globals.notchState = "FULLY_EXPANDED";
+        // FOR DEBUGGING
+        // swipeArea.currentIndex = 4;
+        // Dat.Globals.settingsTabIndex = 2;
+        // Dat.Globals.notchState = "FULLY_EXPANDED";
         }
         onCurrentIndexChanged: () => {
           if (swipeArea.currentIndex != Dat.Globals.swipeIndex) {

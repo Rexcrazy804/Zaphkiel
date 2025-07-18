@@ -54,7 +54,7 @@ WlrLayershell {
     }
   }
 
-  // some redundant work commented 
+  // some redundant work commented
   // Current models aren't good enough for me to use this well
   // Rectangle {
   //   id: gradient

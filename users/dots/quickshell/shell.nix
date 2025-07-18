@@ -9,7 +9,7 @@
       overlays = [(import ../../../pkgs/overlays/internal.nix {inherit sources;})];
     },
 }: let
-  inherit (pkgs) quickshell material-symbols google-fonts rembg;
+  inherit (pkgs) quickshell material-symbols librebarcode rembg;
   inherit (pkgs.lib) makeSearchPath;
   inherit (pkgs.kdePackages) qtbase qtdeclarative;
 
@@ -21,5 +21,5 @@ in
       export QML2_IMPORT_PATH="$QML2_IMPORT_PATH:${qmlPath}"
     '';
     buildInputs = qtDeps ++ [rembg];
-    packages = [material-symbols google-fonts];
+    packages = [material-symbols librebarcode];
   }

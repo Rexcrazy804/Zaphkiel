@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Effects
 import Quickshell
 import Quickshell.Wayland
 
@@ -39,8 +40,8 @@ WlrLayershell {
     }
     onStatusChanged: {
       if (this.status == Image.Error) {
-        console.log("[WARN] wallpaper source invalid, disabling background");
-        Dat.Config.data.setWallpaper = false;
+        console.log("[ERROR] Wallpaper source invalid");
+        console.log("[INFO] Please disable set wallpaper if not required");
       }
     }
 

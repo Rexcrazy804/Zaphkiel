@@ -10,9 +10,12 @@
       enable = true;
       withUWSM = true;
     };
-    programs.hyprlock.enable = true;
-    systemd.user.services.hypridle.path = [
+    services.hypridle.enable = true;
+    systemd.user.services.hypridle.path = lib.mkForce [
+      config.programs.hyprland.package
+      pkgs.procps
       pkgs.brightnessctl
+      pkgs.quickshell
     ];
 
     qt.enable = true;
@@ -43,11 +46,12 @@
       pkgs.imv
       pkgs.wayfreeze
       pkgs.networkmanagerapplet
-
-      # yazi + deps
       pkgs.yazi
       pkgs.ripdrag
+
+      # quickshell dep
       pkgs.quickshell
+      pkgs.rembg
 
       # supporting scripts
       pkgs.scripts.kde-send

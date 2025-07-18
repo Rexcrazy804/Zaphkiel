@@ -40,6 +40,7 @@
   wallcrop = final.callPackage ../wallcrop.nix {};
   scripts = final.callPackage ../scripts {};
   discord = prev.vesktop.override {withSystemVencord = true;};
+  librebarcode = final.callPackage ../librebarcode.nix {};
 
   # a lil cursed but lets me rexport the custom theme
   sddm-silent-custom = final.sddm-silent.override (import ../../nixosModules/programs/sddm/theme.nix {

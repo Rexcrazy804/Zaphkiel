@@ -31,9 +31,10 @@
 - [x] cleanup rectangle: color: "transparents" with Item {}
 - [x] reorganize tree structure
 - [x] background layer for setting wallpaper
+- [x] lockscreen
 
 ### What I do not like to see
-- [ ] greetd and lockscreen
+- [ ] greetd
 - [ ] Lazy Loading
 - [ ] app launcher
 - [ ] use font.family for specifying fonts

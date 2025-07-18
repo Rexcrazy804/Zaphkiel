@@ -9,18 +9,17 @@
       overlays = [(import ../../../pkgs/overlays/internal.nix {inherit sources;})];
     },
 }: let
+  inherit (pkgs) quickshell material-symbols librebarcode rembg;
   inherit (pkgs.lib) makeSearchPath;
-  qtDeps = [
-    pkgs.quickshell
-    pkgs.kdePackages.qtbase
-    pkgs.kdePackages.qtdeclarative
-  ];
+  inherit (pkgs.kdePackages) qtbase qtdeclarative;
+
+  qtDeps = [quickshell qtbase qtdeclarative];
   qmlPath = makeSearchPath "lib/qt-6/qml" qtDeps;
 in
   pkgs.mkShell {
     shellHook = ''
       export QML2_IMPORT_PATH="$QML2_IMPORT_PATH:${qmlPath}"
     '';
-    buildInputs = qtDeps;
-    packages = [pkgs.material-symbols];
+    buildInputs = qtDeps ++ [rembg];
+    packages = [material-symbols librebarcode];
   }

@@ -1,4 +1,7 @@
 {
+  lib,
+  rembg,
+  librebarcode,
   symlinkJoin,
   makeWrapper,
   quickshell,
@@ -6,7 +9,6 @@
   material-symbols,
   makeFontsConf,
   nerd-fonts,
-  lib,
 }: let
   qsConfig = ../users/dots/quickshell/kurukurubar;
   qtDeps = [
@@ -14,26 +16,26 @@
     kdePackages.qtdeclarative
     kdePackages.qtmultimedia
   ];
+  qmlPath = lib.pipe qtDeps [
+    (builtins.map (lib: "${lib}/lib/qt-6/qml"))
+    (builtins.concatStringsSep ":")
+  ];
+
+  # requried when nix running directly
+  fontconfig = makeFontsConf {
+    fontDirectories = [
+      material-symbols
+      nerd-fonts.caskaydia-mono
+      librebarcode
+    ];
+  };
 in
   symlinkJoin {
     pname = "kurukurubar";
     version = quickshell.version;
 
-    paths = [quickshell];
+    paths = [quickshell rembg];
     buildInputs = [makeWrapper];
-
-    qmlPath = lib.pipe qtDeps [
-      (builtins.map (lib: "${lib}/lib/qt-6/qml"))
-      (builtins.concatStringsSep ":")
-    ];
-
-    # requried when nix running directly
-    fontconfig = makeFontsConf {
-      fontDirectories = [
-        material-symbols
-        nerd-fonts.caskaydia-mono
-      ];
-    };
 
     postBuild = ''
       makeWrapper $out/bin/quickshell $out/bin/kurukurubar \

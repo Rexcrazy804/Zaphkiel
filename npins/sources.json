@@ -77,9 +77,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "88e58d66efad1b3e0edf8633ea0774f7105d37c9",
-      "url": "https://git.lix.systems/lix-project/flake-compat/archive/88e58d66efad1b3e0edf8633ea0774f7105d37c9.tar.gz",
-      "hash": "sha256-RBUseGlYAKOd8hnKVujiGzpdJoZWj5e3A+Ds2mKsv28="
+      "revision": "549f2762aebeff29a2e5ece7a7dc0f955281a1d1",
+      "url": "https://git.lix.systems/lix-project/flake-compat/archive/549f2762aebeff29a2e5ece7a7dc0f955281a1d1.tar.gz",
+      "hash": "sha256-NKw96t+BgHIYzHUjkTK95FqYRVKB8DHpVhefWSz/kTw="
     },
     "hjem": {
       "type": "Git",
@@ -90,9 +90,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "a1a2680af8038c4b85c6078e44fc3e422c81e04b",
-      "url": "https://github.com/feel-co/hjem/archive/a1a2680af8038c4b85c6078e44fc3e422c81e04b.tar.gz",
-      "hash": "sha256-KU2NiDsR067mCOrkR/29fX7E4PmjfmXIETTicx3CfwA="
+      "revision": "3093a74542b30f8155954d585d0ae2401e3adbe5",
+      "url": "https://github.com/feel-co/hjem/archive/3093a74542b30f8155954d585d0ae2401e3adbe5.tar.gz",
+      "hash": "sha256-LzojKFWAAreWyH56aupj/MLwuPPnnyzplw/xdbavC9c="
     },
     "lanzaboote": {
       "type": "Git",
@@ -103,9 +103,9 @@
       },
       "branch": "npins-support",
       "submodules": false,
-      "revision": "67ad02a1b91daf0c3c6dd768e97776735edc1b93",
-      "url": "https://github.com/Rexcrazy804/lanzaboote/archive/67ad02a1b91daf0c3c6dd768e97776735edc1b93.tar.gz",
-      "hash": "sha256-EvLYkMijmKSTPngEMdLdxtFggTYPNSOsRMgUY/A0yKE="
+      "revision": "3e84ec9e5829d29b34c46a811687786add442751",
+      "url": "https://github.com/Rexcrazy804/lanzaboote/archive/3e84ec9e5829d29b34c46a811687786add442751.tar.gz",
+      "hash": "sha256-h9GHeQL3fouAXjDIpAq5Pt8eqRPEjkZ2k61TFx3HLhc="
     },
     "lix-module": {
       "type": "Git",
@@ -151,8 +151,8 @@
     "nixpkgs": {
       "type": "Channel",
       "name": "nixos-unstable",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre830073.62e0f05ede1d/nixexprs.tar.xz",
-      "hash": "sha256-CQTnJDUdkaxq1Jd8lvwEcqjdK/C3SxgPJYtxqqwAJcQ="
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre831064.6e987485eb2c/nixexprs.tar.xz",
+      "hash": "sha256-okomYyezDlua8/ssPHEdE2/gC1r+MElosWlZQuFrIdQ="
     },
     "quickshell": {
       "type": "Git",
@@ -164,9 +164,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "026aac375617a99ea0b5746fd6df2fc8aa526761",
-      "url": "https://git.outfoxxed.me/quickshell/quickshell/archive/026aac375617a99ea0b5746fd6df2fc8aa526761.tar.gz",
-      "hash": "sha256-QNwSVRSnb173usdTV4TtKPepGNrKhUFn06r/444kkOU="
+      "revision": "759bd721dfd38e2ce02048f378ee025bcb175f93",
+      "url": "https://git.outfoxxed.me/quickshell/quickshell/archive/759bd721dfd38e2ce02048f378ee025bcb175f93.tar.gz",
+      "hash": "sha256-GjN9BXxWMlmIAAcKYrsrEPVT/cJkWieG3YOJG7sJuGk="
     },
     "rosep-fish": {
       "type": "Git",
@@ -192,7 +192,8 @@
       "submodules": false,
       "revision": "fd30db031194d5905b9f5ab832ed770931036944",
       "url": "https://github.com/rose-pine/foot/archive/fd30db031194d5905b9f5ab832ed770931036944.tar.gz",
-      "hash": "sha256-QGNKJqqP6dtihAU5sp6bRt5vcZzPSzdsBSgtSpbZ9k0="
+      "hash": "sha256-QGNKJqqP6dtihAU5sp6bRt5vcZzPSzdsBSgtSpbZ9k0=",
+      "frozen": true
     },
     "rust-overlay": {
       "type": "Git",
@@ -217,9 +218,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "d6600b9df7e3d6265f8f84c836fc06168d65e8a2",
-      "url": "https://github.com/uiriansan/SilentSDDM/archive/d6600b9df7e3d6265f8f84c836fc06168d65e8a2.tar.gz",
-      "hash": "sha256-0GeFXk2poqWbXxq9RtB39mwZB/i2xm2naMdpo3HhdIA="
+      "revision": "d6800ae791ed48834ac53ccbd2ee2b8a63f4aa8c",
+      "url": "https://github.com/uiriansan/SilentSDDM/archive/d6800ae791ed48834ac53ccbd2ee2b8a63f4aa8c.tar.gz",
+      "hash": "sha256-cOEqnqVGuNLje/3kttVfu5gxpIVBDZ2SBhL6sh2XB2U="
     }
   },
   "version": 6

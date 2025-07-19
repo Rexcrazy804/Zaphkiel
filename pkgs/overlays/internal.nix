@@ -10,7 +10,10 @@
     withHyprland = true;
     withI3 = false;
   };
-  kurukurubar = final.callPackage ../kurukurubar.nix {inherit (prev) quickshell;};
+  kurukurubar = final.callPackage ../kurukurubar.nix {
+    inherit (prev) quickshell;
+    inherit (final.scripts) gpurecording;
+  };
   kokCursor = final.callPackage ../kokCursor.nix {};
   nixvim-minimal = import ../nvim.nix {
     inherit (sources) mnw;

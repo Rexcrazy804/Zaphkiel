@@ -1,5 +1,6 @@
 {
   lib,
+  gpurecording,
   rembg,
   librebarcode,
   symlinkJoin,
@@ -34,8 +35,8 @@ in
     pname = "kurukurubar";
     version = quickshell.version;
 
-    paths = [quickshell rembg];
-    buildInputs = [makeWrapper];
+    paths = [quickshell rembg gpurecording];
+    nativeBuildInputs = [makeWrapper];
 
     postBuild = ''
       makeWrapper $out/bin/quickshell $out/bin/kurukurubar \

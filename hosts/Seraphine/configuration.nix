@@ -33,7 +33,7 @@
       };
       openssh.enable = true;
       jellyfin.enable = true;
-      minecraft.enable = false;
+      # minecraft.enable = false;
     };
   };
 
@@ -70,7 +70,7 @@
   services.logind.lidSwitchExternalPower = "ignore";
 
   # minecraft server
-  services.minecraft-servers.servers.hollyj.serverProperties.max-players = lib.mkForce 8;
+  # services.minecraft-servers.servers.hollyj.serverProperties.max-players = lib.mkForce 8;
 
   # Resolves wifi connectivity issues on Seraphine
   boot.extraModprobeConfig = lib.concatStringsSep "\n" [

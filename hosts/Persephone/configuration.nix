@@ -40,8 +40,6 @@ in {
         exitNode.networkDevice = "wlp0s20f3";
       };
       openssh.enable = true;
-      jellyfin.enable = false;
-      minecraft.enable = false;
     };
   };
 

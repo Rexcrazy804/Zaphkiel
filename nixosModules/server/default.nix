@@ -4,8 +4,10 @@
     ./immich.nix
     ./openssh.nix
     ./jellyfin.nix
-    ./minecraft
     ./fail2ban.nix
+
+    # meh not used anywhere for now
+    # ./minecraft
   ];
 
   options.zaphkiel.services.enable = lib.mkEnableOption "services";

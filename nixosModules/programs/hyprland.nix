@@ -20,6 +20,23 @@
 
     qt.enable = true;
 
+    programs.dconf.profiles.user.databases = [
+      {
+        settings = {
+          "org/gnome/desktop/interface" = {
+            cursor-theme = "Kokomi_Cursor";
+            gtk-theme = "rose-pine";
+            icon-theme = "rose-pine";
+            document-font-name = "DejaVu Serif";
+            font-name = "DejaVu Sans";
+            monospace-font-name = "CaskaydiaMono NFM";
+            accent-color = "purple";
+            color-scheme = "prefer-dark";
+          };
+        };
+      }
+    ];
+
     # dependencies .w.
     environment.systemPackages = [
       pkgs.kokCursor

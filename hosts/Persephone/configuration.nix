@@ -36,8 +36,7 @@ in {
       enable = true;
       tailscale = {
         enable = true;
-        exitNode.enable = true;
-        exitNode.networkDevice = "wlp0s20f3";
+        exitNode.enable = false;
       };
       openssh.enable = true;
     };
@@ -45,14 +44,7 @@ in {
 
   # tailscale
   age.secrets.tailAuth.file = ../../secrets/secret9.age;
-  services.tailscale = {
-    authKeyFile = config.age.secrets.tailAuth.path;
-    # don't use Persephone as exit node
-    extraSetFlags = mkForce [
-      "--webclient"
-      "--accept-dns=false"
-    ];
-  };
+  services.tailscale.authKeyFile = config.age.secrets.tailAuth.path;
 
   # forward dns onto the tailnet
   networking.firewall.allowedTCPPorts = [53];

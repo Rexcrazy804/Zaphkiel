@@ -10,15 +10,9 @@ let
   pkgs = import src.nixpkgs {};
   sources = mapAttrs (k: v: v {inherit pkgs;}) src;
 
-  lix-patched-module = pkgs.applyPatches {
-    name = "lix-patched-module";
-    src = sources.lix-module;
-    patches = [./pkgs/patches/lix.patch];
-  };
-
   overlays = attrValues {
     internal = import ./pkgs/overlays/internal.nix {sources = src;};
-    lix = import (lix-patched-module + "/overlay.nix") {lix = null;};
+    lix = import ./pkgs/overlays/lix.nix {lix = null;};
     npins = import ./pkgs/overlays/npins.nix; # temporary
   };
 

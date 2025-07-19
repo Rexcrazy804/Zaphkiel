@@ -5,9 +5,29 @@
 }: let
   inherit (config.networking) hostName;
   rebuildCommand = "sudo nixos-rebuild --log-format bar --no-reexec --file ~/nixos/default.nix -A ${hostName}";
+  #         !!!you found the fish!!!
+  #   ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠖⠒⠲⠤⣤⣀⠀⠀⠀⢀⣀⣤⠤⠖⠒⠢⢤⡀⠀⠀⠀⠀⠀⠀⠀⠀
+  #   ⠀⠀⠀⠀⠀⠀⣶⣄⠏⡠⠊⠀⠀⠈⠁⠚⢍⠲⠖⡩⠓⠉⠀⠀⠀⠑⠌⠳⣠⣶⠀⠀⠀⠀⠀⠀
+  #   ⠀⠀⠀⠀⠀⣶⣾⢹⠀⢇⢀⣀⠤⠒⣊⠽⠋⠉⠉⠙⠯⣓⠒⠤⣀⣀⡸⠀⡏⣷⡾⠀⠀⠀⠀⠀
+  #   ⠀⠀⠀⠀⠀⣼⠘⣷⡠⠒⠋⢀⠴⡾⠁⠀⠀⠀⠀⠀⠀⠘⠇⠦⡀⠙⠲⢤⣷⠋⣧⠀⠀⠀⠀⠀
+  #   ⠀⠀⠀⠀⢰⢏⡷⠋⠀⠀⠔⠁⣰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠈⡄⠈⠢⡀⠀⠙⢾⠹⡀⠀⠀⠀⠀
+  #   ⠀⠀⠀⠀⡼⠋⠀⠀⢠⠊⠀⢀⠃⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠘⡀⠀⠑⡄⠀⠀⠙⢇⠀⠀⠀⠀
+  #   ⠀⠀⠀⡜⠁⠀⠀⢀⠃⠀⠀⡸⠀⠀⢀⠀⠀⠀⠀⠀⢀⠀⠀⠀⢇⠀⠀⠐⡀⠀⠀⠈⢢⠀⠀⠀
+  #   ⠀⠀⡜⠀⠀⠀⠀⠎⠀⠀⡴⠃⠀⠀⠸⠀⠀⠀⠀⠀⠸⠀⠀⠀⢸⢆⠀⠀⢱⠀⠀⠀⠀⢃⠀⠀
+  #   ⠀⡸⠀⠀⠀⠀⠸⠀⢠⠞⢀⢆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠇⠀⠀⡼⡀⠳⡀⠀⠇⠀⠀⠀⠈⢆⠀
+  #   ⢠⠇⢀⠀⠀⠀⣠⠖⠁⠀⠉⠹⡀⠀⢰⠀⠀⠀⠀⠀⠀⠂⠀⢀⠋⠉⠀⠈⠢⣄⠀⠀⠀⠀⠘⡀
+  #   ⢸⠀⠇⠀⠀⠀⡇⠀⠀⠀⠀⠀⠉⢁⠙⠒⠒⠒⠒⠒⠚⠃⠈⠉⠀⠀⠀⠀⠀⢸⠀⠀⠀⢰⠀⡇
+  #   ⡇⢰⠀⠀⠀⠀⠁⠀⣹⣶⣾⣿⣷⡦⡄⠀⠀⠀⠀⠀⠀⣠⢴⣾⣿⣷⣶⣇⠀⢸⠀⠀⠀⠀⡄⢱
+  #   ⡇⢸⠀⠀⠀⢀⣤⣾⠟⢹⣯⠡⠼⢷⠀⠀⠀⠀⠀⠀⠀⢀⡾⠥⢌⣿⡍⠻⣷⣼⡀⠀⠀⠀⡇⢸
+  #   ⡇⢸⠀⠀⠀⠈⡿⢿⠀⢿⠀⠀⠀⢸⠁⠀⠀⠀⠀⠀⠀⠈⡄⠀⠀⠉⡗⠀⡿⡿⠀⠀⠀⠀⡇⢸
+  #   ⠻⢬⣇⠀⠀⠀⠘⡄⠀⠈⠂⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠘⠁⠀⣠⠇⠀⠀⠀⣸⡤⠟
+  #   ⠀⠀⠸⡑⠢⠤⣤⡬⠆⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠰⢥⡤⠤⠔⢚⠃⠀⠀
+  #   ⠀⠀⢠⢱⠀⠒⠀⢻⣶⣦⣠⠴⠖⠢⠤⣀⠀⠀⠀⠀⣠⡤⠒⠲⠤⣄⣀⣴⡟⠀⠐⠀⡜⡄⠀⠀
+  #   ⠀⠀⠉⠀⠁⠀⠀⠀⠁⠈⠀⠀⠀⠀⠈⠈⠁⠀⠀⠈⠉⠁⠀⠀⠀⠀⠁⠉⠀⠀⠀⠉⠈⠁⠀⠀
 in {
   programs.fish = {
     enable = true;
+    generateCompletions = false; # fuck this shit (time to manually generate em)
     shellAbbrs = {
       # nix stuff
       snw = rebuildCommand;
@@ -42,10 +62,12 @@ in {
       sy = "systemctl";
       sya = "systemctl start";
       syo = "systemctl stop";
+      syr = "systemctl restart";
       # sysctl user
       su = "systemctl --user";
       sua = "systemctl --user start";
       suo = "systemctl --user stop";
+      sur = "systemctl --user restart";
 
       # misc
       qsp = "qs --log-rules 'quickshell.dbus.properties.warning = false' -p .";
@@ -56,6 +78,7 @@ in {
       snowboot = "${rebuildCommand} boot";
       snowfall = "${rebuildCommand} switch";
       snowtest = "${rebuildCommand} test";
+      # npinsFrozen = "npins show | grep -B 7 'frozen: true' | grep '^\w.*:'";
     };
 
     interactiveShellInit = let

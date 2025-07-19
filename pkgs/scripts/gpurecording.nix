@@ -5,9 +5,9 @@ writers.writeFishBin "gpurecording" ''
     echo "Usage: gpurecording <options>"
     echo ""
     echo "Options:"
-    echo "--help              - display this help"
-    echo "--start [geometry]  - start gpu recording"
-    echo "--stop              - stop gpu recording"
+    echo "--help            - display this help"
+    echo "start [geometry]  - start gpu recording"
+    echo "stop              - stop gpu recording"
   end
 
   function start_recording -a geometry

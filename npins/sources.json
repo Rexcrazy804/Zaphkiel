@@ -79,8 +79,7 @@
       "submodules": false,
       "revision": "88e58d66efad1b3e0edf8633ea0774f7105d37c9",
       "url": "https://git.lix.systems/lix-project/flake-compat/archive/88e58d66efad1b3e0edf8633ea0774f7105d37c9.tar.gz",
-      "hash": "sha256-RBUseGlYAKOd8hnKVujiGzpdJoZWj5e3A+Ds2mKsv28=",
-      "frozen": true
+      "hash": "sha256-RBUseGlYAKOd8hnKVujiGzpdJoZWj5e3A+Ds2mKsv28="
     },
     "hjem": {
       "type": "Git",

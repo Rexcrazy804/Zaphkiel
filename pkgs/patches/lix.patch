@@ -1,0 +1,22 @@
+diff --git a/overlay.nix b/overlay.nix
+index b518253..e23f6d8 100644
+--- a/overlay.nix
++++ b/overlay.nix
+@@ -9,6 +9,8 @@ let
+   # These packages should receive CppNix since they may link to it or otherwise
+   # cause problems (or even just silly mass-rebuilds) if we give them Lix
+   overridelist_upstream = [
++    "npins"
++    "nil"
+     "attic-client"
+     "devenv"
+     "nix-du"
+@@ -60,7 +62,7 @@ let
+   #
+   # If it's not available, I guess just do pkgs.lix.
+   # FIXME: does this cause problems in support channels?
+-  lixPackageToUse = if lix != null then lixPackageFromSource else (prev.lixVersions."${lixAttrName}" or prev.lix);
++  lixPackageToUse = if lix != null then lixPackageFromSource else (prev.lixPackageSets.latest.lix or prev.lix);
+
+   # Especially if using Lix from nixpkgs, it is plausible that the overlay
+   # could be used against the wrong Lix major version and cause confusing build

@@ -108,6 +108,20 @@
       "url": "https://github.com/Rexcrazy804/lanzaboote/archive/67ad02a1b91daf0c3c6dd768e97776735edc1b93.tar.gz",
       "hash": "sha256-EvLYkMijmKSTPngEMdLdxtFggTYPNSOsRMgUY/A0yKE="
     },
+    "lix-module": {
+      "type": "Git",
+      "repository": {
+        "type": "Forgejo",
+        "server": "https://git.lix.systems/",
+        "owner": "lix-project",
+        "repo": "nixos-module"
+      },
+      "branch": "release-2.93",
+      "submodules": false,
+      "revision": "8b1094356f4723d6e89d3f8a95b333ee16d9ab02",
+      "url": "https://git.lix.systems/lix-project/nixos-module/archive/8b1094356f4723d6e89d3f8a95b333ee16d9ab02.tar.gz",
+      "hash": "sha256-SXUAlxpjPRkArRMHy5+Hdi+PiC+ND9yzzIjiaHmTvQU="
+    },
     "mnw": {
       "type": "Git",
       "repository": {

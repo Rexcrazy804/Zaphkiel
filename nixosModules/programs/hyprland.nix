@@ -29,7 +29,7 @@
             icon-theme = "rose-pine";
             document-font-name = "DejaVu Serif";
             font-name = "DejaVu Sans";
-            monospace-font-name = "CaskaydiaMono NFM";
+            monospace-font-name = "CaskaydiaMono NF";
             accent-color = "purple";
             color-scheme = "prefer-dark";
           };

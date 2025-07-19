@@ -29,6 +29,7 @@ Scope {
       Image {
         id: wallpaper
 
+        smooth: true
         anchors.fill: parent
         fillMode: Image.PreserveAspectCrop
         layer.enabled: true

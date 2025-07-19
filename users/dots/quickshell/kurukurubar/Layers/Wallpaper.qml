@@ -26,6 +26,7 @@ WlrLayershell {
   Image {
     id: wallpaper
 
+    smooth: true
     anchors.fill: parent
     asynchronous: true
     fillMode: Image.PreserveAspectCrop

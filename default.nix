@@ -5,9 +5,11 @@
 let
   inherit (builtins) mapAttrs attrValues;
 
-  # https://github.com/andir/npins?tab=readme-ov-file#using-the-nixpkgs-fetchers
   src = import ./npins;
   pkgs = import src.nixpkgs {};
+
+  # you can only do the below if you have npins v6 format (i.e. a more recent git revision of npins till nixpks updates)
+  # https://github.com/andir/npins?tab=readme-ov-file#using-the-nixpkgs-fetchers
   sources = mapAttrs (k: v: v {inherit pkgs;}) src;
 
   overlays = attrValues {

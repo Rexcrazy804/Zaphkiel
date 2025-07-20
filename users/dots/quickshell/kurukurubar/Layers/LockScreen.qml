@@ -29,10 +29,10 @@ Scope {
       Image {
         id: wallpaper
 
-        smooth: true
         anchors.fill: parent
         fillMode: Image.PreserveAspectCrop
         layer.enabled: true
+        smooth: true
         source: Dat.Config.data.wallSrc
 
         layer.effect: MultiEffect {

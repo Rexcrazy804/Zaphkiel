@@ -1,8 +1,6 @@
 import QtQuick
-import QtQuick.Layouts
 import QtQuick.Controls
-import "../Data/" as Dat
-import "../Generics/" as Gen
+import qs.Data as Dat
 
 Item {
   id: popupRect

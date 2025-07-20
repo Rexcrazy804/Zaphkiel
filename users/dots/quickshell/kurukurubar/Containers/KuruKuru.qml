@@ -1,10 +1,9 @@
 import QtQuick
-import QtQuick.Particles
 import QtQuick.Layouts
 import QtQuick.Effects
 
-import "../Data/" as Dat
-import "../Widgets/" as Wid
+import qs.Data as Dat
+import qs.Widgets as Wid
 
 Item {
   RowLayout {

@@ -4,11 +4,20 @@ import Quickshell.Wayland
 import Quickshell
 import Quickshell.Io
 
+import qs.Data as Dat
 import qs.Containers as Con
 
 Scope {
+  id: root
+
+  property string prevState
+
   WlSessionLock {
     id: lock
+
+    onLockedChanged: {
+      Dat.Globals.notchState = root.prevState;
+    }
 
     Con.LockScreenSurface {
       lock: lock
@@ -17,7 +26,9 @@ Scope {
 
   IpcHandler {
     function lock() {
-      lock.locked = true;
+      root.prevState = Dat.Globals.notchState;
+      Dat.Globals.notchState = "COLLAPSED";
+      locker.start();
     }
 
     function unlock() {
@@ -25,5 +36,13 @@ Scope {
     }
 
     target: "lockscreen"
+  }
+
+  Timer {
+    id: locker
+
+    interval: 250
+
+    onTriggered: lock.locked = true
   }
 }

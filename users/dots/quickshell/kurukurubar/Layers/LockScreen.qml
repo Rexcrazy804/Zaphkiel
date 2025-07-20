@@ -20,11 +20,11 @@ Scope {
     WlSessionLockSurface {
       id: surface
 
-      property bool active: false
       property bool error: false
       property string inputBuffer: ""
       property list<string> kokomi: ["k", "o", "k", "o", "m", "i"]
       property string maskedBuffer: ""
+      property bool unlocking: false
 
       Image {
         id: wallpaper
@@ -52,7 +52,7 @@ Scope {
             duration: Dat.MaterialEasing.emphasizedTime * 1.5
             easing.type: Easing.Linear
             property: "blur"
-            running: surface.active
+            running: surface.unlocking
             target: walBlur
             to: 0
           }
@@ -77,7 +77,7 @@ Scope {
 
           anchors.centerIn: parent
           anchors.verticalCenterOffset: contentHeight * 0.2
-          color: (surface.error) ? Dat.Colors.error : Dat.Colors.tertiary
+          color: (surface.error) ? Dat.Colors.error : (surface.unlocking) ? Dat.Colors.primary : Dat.Colors.tertiary
           font.bold: true
           font.family: "Libre Barcode 128"
           font.pointSize: 400
@@ -113,7 +113,7 @@ Scope {
           easing.type: Easing.Linear
           from: 1
           property: "opacity"
-          running: surface.active
+          running: surface.unlocking
           target: fg
           to: 0
         }
@@ -124,7 +124,7 @@ Scope {
 
         anchors.centerIn: parent
         clip: true
-        color: (surface.error) ? Dat.Colors.error : Dat.Colors.surface
+        color: (surface.error) ? Dat.Colors.error : (surface.unlocking) ? Dat.Colors.primary : Dat.Colors.surface
         focus: true
         height: 40
         radius: 20
@@ -176,7 +176,7 @@ Scope {
         }
 
         SequentialAnimation {
-          running: surface.active
+          running: surface.unlocking
 
           PauseAnimation {
             duration: Dat.MaterialEasing.emphasizedTime * 1.2
@@ -203,7 +203,7 @@ Scope {
 
             anchors.centerIn: parent
             antialiasing: true
-            color: (surface.error) ? Dat.Colors.on_error : Dat.Colors.on_surface
+            color: (surface.error) ? Dat.Colors.on_error : (surface.unlocking) ? Dat.Colors.on_primary : Dat.Colors.on_surface
             fill: pam.active
             font.pointSize: 16
             icon: "lock"
@@ -266,7 +266,7 @@ Scope {
 
         onCompleted: res => {
           if (res === PamResult.Success) {
-            surface.active = true;
+            surface.unlocking = true;
             surface.inputBuffer = "";
             surface.maskedBuffer = "";
             return;
@@ -297,7 +297,7 @@ Scope {
         id: unlockTimer
 
         interval: Dat.MaterialEasing.emphasizedTime * 1.5
-        running: surface.active
+        running: surface.unlocking
 
         onTriggered: lock.locked = false
       }

@@ -192,70 +192,147 @@ Scope {
           }
         }
 
-        Item {
-          anchors.bottom: parent.bottom
-          anchors.left: parent.left
-          anchors.top: parent.top
-          implicitWidth: inputRect.height
-
-          Gen.MatIcon {
-            id: lockIcon
-
-            anchors.centerIn: parent
-            antialiasing: true
-            color: (surface.error) ? Dat.Colors.on_error : (surface.unlocking) ? Dat.Colors.on_primary : Dat.Colors.on_surface
-            fill: pam.active
-            font.pointSize: 16
-            icon: "lock"
-
-            Behavior on color {
-              ColorAnimation {
-                duration: 200
-              }
-            }
-            Behavior on rotation {
-              NumberAnimation {
-                duration: lockRotatetimer.interval
-                easing.type: Easing.Linear
-              }
-            }
-          }
-
-          Timer {
-            id: lockRotatetimer
-
-            interval: 500
-            repeat: true
-            running: pam.active
-            triggeredOnStart: true
-
-            onRunningChanged: lockIcon.rotation = 0
-            onTriggered: lockIcon.rotation += 50
-          }
-        }
-
-        RowLayout {
-          id: inputRow
+        MouseArea {
+          id: rowMarea
 
           anchors.centerIn: parent
-          height: parent.height
-          spacing: 0
+          height: inputRow.height
+          hoverEnabled: true
+          width: inputRow.width
 
-          Item {
-            implicitHeight: inputRect.height
-            implicitWidth: inputRect.height
-          }
+          RowLayout {
+            id: inputRow
 
-          Item {
-            implicitWidth: pamText.contentWidth + 18
-            visible: pamText.text != ""
+            anchors.centerIn: parent
+            height: inputRect.height
+            spacing: 0
 
-            Text {
-              id: pamText
+            Item {
+              Layout.fillHeight: true
+              implicitWidth: this.height
+              visible: rowMarea.containsMouse
 
-              anchors.centerIn: parent
-              color: (surface.error) ? Dat.Colors.on_error : Dat.Colors.on_surface
-              text: pam.message
+              Gen.MatIcon {
+                anchors.centerIn: parent
+                antialiasing: true
+                color: (surface.error) ? Dat.Colors.on_error : (surface.unlocking) ? Dat.Colors.on_primary : Dat.Colors.on_surface
+                fill: 1
+                font.pointSize: 16
+                icon: "bedtime"
+              }
+
+              Gen.MouseArea {
+                anchors.fill: parent
+                anchors.margins: 4
+
+                onClicked: Dat.SessionActions.suspend()
+              }
+            }
+
+            Item {
+              Layout.fillHeight: true
+              implicitWidth: this.height
+
+              Gen.MatIcon {
+                id: lockIcon
+
+                anchors.centerIn: parent
+                antialiasing: true
+                color: (surface.error) ? Dat.Colors.on_error : (surface.unlocking) ? Dat.Colors.on_primary : Dat.Colors.on_surface
+                fill: pam.active
+                font.pointSize: 16
+                icon: "lock"
+
+                Behavior on color {
+                  ColorAnimation {
+                    duration: 200
+                  }
+                }
+                Behavior on rotation {
+                  NumberAnimation {
+                    duration: lockRotatetimer.interval
+                    easing.type: Easing.Linear
+                  }
+                }
+              }
+
+              Timer {
+                id: lockRotatetimer
+
+                interval: 500
+                repeat: true
+                running: pam.active
+                triggeredOnStart: true
+
+                onRunningChanged: if (lockIcon.rotation < 180) {
+                  lockIcon.rotation = 360;
+                } else {
+                  lockIcon.rotation = 0;
+                }
+                onTriggered: lockIcon.rotation += 50
+              }
+            }
+
+            Item {
+              Layout.fillHeight: true
+              implicitWidth: this.height
+              visible: pam.message.includes("fingerprint")
+
+              Connections {
+                function onMessageChanged() {
+                  if (pam.message.includes("Failed")) {
+                    pamText.icon = "fingerprint_off";
+                    reFingerTimer.start();
+                  }
+                }
+
+                target: pam
+              }
+
+              Timer {
+                id: reFingerTimer
+
+                interval: 300
+
+                onTriggered: pamText.icon = "fingerprint"
+              }
+
+              Gen.MatIcon {
+                id: pamText
+
+                anchors.centerIn: parent
+                color: (surface.error) ? Dat.Colors.on_error : (surface.unlocking) ? Dat.Colors.on_primary : (reFingerTimer.running) ? Dat.Colors.error : Dat.Colors.on_surface
+                font.pointSize: 16
+                icon: "fingerprint"
+
+                Behavior on color {
+                  ColorAnimation {
+                    duration: 200
+                  }
+                }
+              }
+            }
+
+            Item {
+              Layout.fillHeight: true
+              implicitWidth: this.height
+              visible: rowMarea.containsMouse && !pam.active && !surface.unlocking
+
+              Gen.MatIcon {
+                anchors.centerIn: parent
+                antialiasing: true
+                color: (surface.error) ? Dat.Colors.on_error : (surface.unlocking) ? Dat.Colors.on_primary : Dat.Colors.on_surface
+                fill: 1
+                font.pointSize: 16
+                icon: "login"
+              }
+
+              Gen.MouseArea {
+                anchors.fill: parent
+                anchors.margins: 4
+
+                onClicked: pam.start()
+              }
             }
           }
         }

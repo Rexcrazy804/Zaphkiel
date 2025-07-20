@@ -221,6 +221,20 @@
       "revision": "d6800ae791ed48834ac53ccbd2ee2b8a63f4aa8c",
       "url": "https://github.com/uiriansan/SilentSDDM/archive/d6800ae791ed48834ac53ccbd2ee2b8a63f4aa8c.tar.gz",
       "hash": "sha256-cOEqnqVGuNLje/3kttVfu5gxpIVBDZ2SBhL6sh2XB2U="
+    },
+    "zaphkiel": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Rexcrazy804",
+        "repo": "Zaphkiel"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "cc6d5cf12ae824e6945cc2599a2650d5fe054ffe",
+      "url": "https://github.com/Rexcrazy804/Zaphkiel/archive/cc6d5cf12ae824e6945cc2599a2650d5fe054ffe.tar.gz",
+      "hash": "sha256-u1yJ9JCLlQzmMNQSLZ/zWJTMLDcMDfLYpY/7cPtQuWU=",
+      "frozen": true
     }
   },
   "version": 6

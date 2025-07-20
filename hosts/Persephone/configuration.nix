@@ -20,7 +20,10 @@ in {
   zaphkiel = {
     graphics = {
       enable = true;
-      intel.enable = true;
+      intel = {
+        enable = true;
+        intelQSVprovider = pkgs.vpl-gpu-rt;
+      };
     };
 
     programs = {

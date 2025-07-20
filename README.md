@@ -101,7 +101,8 @@ The following packages are exported by this flake:
 
 | package | description |
 | ------- | ----------- |
-| kurukurubar | adorable bar to spin the kuru kuru |
+| kurukurubar (stable)| adorable bar to spin the kuru kuru |
+| kurukurubar-unstable | latest version, uses master version of qs |
 | kokCursor | A cute kokomi XCursor |
 | nixvim | My custom neovim configuration using [mnw](https://github.com/Gerg-L/mnw)|
 | nixvim-minimal | less bloated version (no lsps) don't confuse this and above with the [nixvim](https://github.com/nix-community/nixvim) project|
@@ -115,6 +116,18 @@ cursor, `nix build` it instead) replacing `nixvim` with your desired package
 ```bash
 nix run github:Rexcrazy804/Zaphkiel#nixvim
 ```
+
+<details>
+<summary><h3>Kurkurubar stable or unstable</h3></summary>
+kurkurubar (stable) version uses nixpkgs version of quickshell and <a href=https://github.com/Rexcrazy804/Zaphkiel/tree/cc6d5cf12ae824e6945cc2599a2650d5fe054ffe>this revision</a>
+of Zaphkiel dots, which is the last version that is fully compatable with qs
+v0.1.0, this package will be updated every major tagged release of quickshell.
+
+kurkurubar-unstable tracks the latest version of the dots and requires master
+version of quickshell. Thus, it requires building quickshell from source. 
+
+For more information on both refer the internal overlay in `pkgs/overlays/internal.nix`
+</details>
 
 ## Structure overview
 ```

@@ -25,7 +25,7 @@
     # these rely on the internal overlay being applied
     # see the forAllSystems funciton
     packages = forAllSystems (pkgs: {
-      inherit (pkgs) nixvim nixvim-minimal kokCursor kurukurubar sddm-silent-custom booru-images librebarcode;
+      inherit (pkgs) nixvim nixvim-minimal kokCursor kurukurubar kurukurubar-unstable sddm-silent-custom booru-images librebarcode;
       quickshell = pkgs.lib.warn "prefer #kurukurubar instead. #quickshell will be removed soon" pkgs.kurukurubar;
       mpv = pkgs.mpv-wrapped.override {anime = true;};
     });

@@ -1,9 +1,8 @@
 import QtQuick
-import QtQuick.Effects
 import Quickshell
 import Quickshell.Wayland
 
-import "../Data" as Dat
+import qs.Data as Dat
 
 WlrLayershell {
   id: layerRoot

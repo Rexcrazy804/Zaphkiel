@@ -168,7 +168,7 @@
 // Library.
 
 import QtQuick
-import "../Data/" as Dat
+import qs.Data as Dat
 
 Item {
   id: root

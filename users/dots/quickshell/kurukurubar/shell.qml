@@ -1,8 +1,8 @@
 pragma ComponentBehavior: Bound
 import Quickshell
 import QtQuick
-import "Layers" as Lay
-import "Data" as Dat
+import qs.Layers as Lay
+import qs.Data as Dat
 
 ShellRoot {
   Variants {

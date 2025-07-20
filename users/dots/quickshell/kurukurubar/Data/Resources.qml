@@ -3,6 +3,8 @@ import Quickshell
 import Quickshell.Io
 import QtQuick
 
+import qs.Data as Dat
+
 Singleton {
   id: root
 
@@ -63,7 +65,7 @@ Singleton {
   Timer {
     interval: 1000
     repeat: true
-    running: Globals.notchState == "FULLY_EXPANDED" && Globals.swipeIndex == 4 && Globals.settingsTabIndex == 0
+    running: Dat.Globals.notchState == "FULLY_EXPANDED" && Dat.Globals.swipeIndex == 4 && Dat.Globals.settingsTabIndex == 0
 
     onTriggered: {
       cpuInfo.reload();
@@ -89,7 +91,7 @@ Singleton {
   Timer {
     interval: 1000 * 60
     repeat: true
-    running: Globals.notchState == "FULLY_EXPANDED" && Globals.swipeIndex == 0
+    running: Dat.Globals.notchState == "FULLY_EXPANDED" && Dat.Globals.swipeIndex == 0
     triggeredOnStart: true
 
     onTriggered: {

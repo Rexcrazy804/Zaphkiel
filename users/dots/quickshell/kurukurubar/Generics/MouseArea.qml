@@ -11,7 +11,7 @@ MouseArea {
     duration: Dat.MaterialEasing.standardTime
     easing.bezierCurve: Dat.MaterialEasing.standard
   }
-  property int layerRadius: parent?.radius ?? 0
+  property int layerRadius: parent?.radius ?? Math.min(parent.width, parent.height)
   property alias layerRect: layer
 
   anchors.fill: parent

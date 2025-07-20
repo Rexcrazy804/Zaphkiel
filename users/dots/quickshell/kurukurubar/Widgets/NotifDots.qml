@@ -1,9 +1,8 @@
 import QtQuick
 import QtQuick.Layouts
 
-import "../Data/" as Dat
-import "../Widgets/" as Wid
-import "../Generics/" as Gen
+import qs.Data as Dat
+import qs.Generics as Gen
 
 Rectangle {
   implicitWidth: dotContainer.implicitWidth + 10

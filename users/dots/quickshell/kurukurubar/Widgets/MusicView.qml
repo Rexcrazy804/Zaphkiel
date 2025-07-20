@@ -1,10 +1,11 @@
+pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Controls
 import Quickshell.Services.Mpris
 import Quickshell
 
-import "../Data/" as Dat
-import "../Widgets/" as Wid
+import qs.Data as Dat
+import qs.Widgets as Wid
 
 Item {
   AnimatedImage {

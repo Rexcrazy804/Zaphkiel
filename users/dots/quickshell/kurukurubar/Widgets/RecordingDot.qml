@@ -1,8 +1,5 @@
 import QtQuick
-import Quickshell.Services.Mpris
-
-import "../Data/" as Dat
-import "../Generics/" as Gen
+import qs.Data as Dat
 
 Item {
   id: root

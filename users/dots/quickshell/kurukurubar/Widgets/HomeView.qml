@@ -5,8 +5,8 @@ import QtQuick.Controls
 import Quickshell.Services.SystemTray
 import Quickshell
 
-import "../Data/" as Dat
-import "../Widgets/" as Wid
+import qs.Data as Dat
+import qs.Widgets as Wid
 
 Item {
   ColumnLayout {
@@ -200,7 +200,7 @@ Item {
               }
             }
             delegate: Wid.TrayItem {
-              stack: stack
+              stackView: stack
             }
             model: ScriptModel {
               values: [...SystemTray.items.values]

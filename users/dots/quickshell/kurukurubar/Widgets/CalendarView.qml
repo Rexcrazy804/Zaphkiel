@@ -1,9 +1,8 @@
-pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
-import "../Data/" as Dat
+import qs.Data as Dat
 
 Item {
   property int index: SwipeView.index

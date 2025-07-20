@@ -5,9 +5,9 @@ import QtQuick.Layouts
 import QtQuick.Effects
 import QtQuick.Controls
 
-import "../Data/" as Dat
-import "../Generics/" as Gen
-import "../Widgets/" as Wid
+import qs.Data as Dat
+import qs.Generics as Gen
+import qs.Widgets as Wid
 
 Item {
   id: root

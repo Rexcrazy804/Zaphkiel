@@ -2,8 +2,8 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell.Services.UPower
 
-import "../Data/" as Dat
-import "../Generics/" as Gen
+import qs.Data as Dat
+import qs.Generics as Gen
 
 Rectangle {
   id: root

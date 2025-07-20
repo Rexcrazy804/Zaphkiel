@@ -118,15 +118,19 @@ nix run github:Rexcrazy804/Zaphkiel#nixvim
 ```
 
 <details>
-<summary><h3>Kurkurubar stable or unstable</h3></summary>
-kurkurubar (stable) version uses nixpkgs version of quickshell and <a href=https://github.com/Rexcrazy804/Zaphkiel/tree/cc6d5cf12ae824e6945cc2599a2650d5fe054ffe>this revision</a>
-of Zaphkiel dots, which is the last version that is fully compatable with qs
-v0.1.0, this package will be updated every major tagged release of quickshell.
+<summary><h3>kurkurubar stable or unstable</h3></summary>
 
-kurkurubar-unstable tracks the latest version of the dots and requires master
-version of quickshell. Thus, it requires building quickshell from source. 
+<ins>kurkurubar (stable)</ins> 
+- uses nixpkgs version of quickshell (v0.1.0)
+- uses [this revision](https://github.com/Rexcrazy804/Zaphkiel/tree/cc6d5cf12ae824e6945cc2599a2650d5fe054ffe) of Zaphkiel dots (last version that is compatible with v0.1.0)
+- package updated every major tagged release of quickshell (bumping the pinned dots revision)
 
-For more information on both refer the internal overlay in `pkgs/overlays/internal.nix`
+<ins>kurkurubar-unstable</ins>
+- follows Zaphkiel master branch HEAD
+- uses untagged master revisions of quickshell
+- requires quickshell to be built from source
+
+For more information on both see the [internal overlay](pkgs/overlays/internal.nix)
 </details>
 
 ## Structure overview

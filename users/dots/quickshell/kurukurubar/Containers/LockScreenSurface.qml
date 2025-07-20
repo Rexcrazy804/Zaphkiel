@@ -63,18 +63,49 @@ WlSessionLockSurface {
       }
     }
 
+    Rectangle {
+      id: gradient
+
+      anchors.fill: kokomiText
+      visible: false
+
+      gradient: Gradient {
+        GradientStop {
+          color: Dat.Colors.primary
+          position: 0.0
+        }
+
+        GradientStop {
+          color: (surface.error) ? Dat.Colors.error : Dat.Colors.tertiary
+          position: 1.0
+        }
+      }
+    }
+
     Text {
       id: kokomiText
 
       anchors.centerIn: parent
       anchors.verticalCenterOffset: contentHeight * 0.2
-      color: (surface.error) ? Dat.Colors.error : (surface.unlocking) ? Dat.Colors.primary : Dat.Colors.tertiary
       font.bold: true
       font.family: "Libre Barcode 128"
       font.pointSize: 400
+      layer.enabled: true
+      layer.smooth: true
       opacity: fg.opacity
       renderType: Text.NativeRendering
       text: surface.maskedBuffer
+      visible: false
+    }
+
+    MultiEffect {
+      anchors.fill: gradient
+      maskEnabled: true
+      maskSource: kokomiText
+      maskSpreadAtMin: 1.0
+      maskThresholdMax: 1.0
+      maskThresholdMin: 0.5
+      source: gradient
     }
   }
 

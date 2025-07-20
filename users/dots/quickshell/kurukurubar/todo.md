@@ -32,6 +32,7 @@
 - [x] reorganize tree structure
 - [x] background layer for setting wallpaper
 - [x] lockscreen
+- [x] useExec detached in SessionActions.qml
 
 ### What I do not like to see
 - [ ] greetd
@@ -46,7 +47,6 @@
 - - [x] scaling in systemView
 - - [ ] scaling in powerTab
 - [ ] draggable notification body / improve dismiss #26
-- [ ] useExec detached in SessionActions.qml # master only feature so we wait
 
 ### Dumpster
 - [ ] kdeConnect Integration

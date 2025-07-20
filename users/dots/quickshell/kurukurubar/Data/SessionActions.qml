@@ -7,58 +7,38 @@ import Quickshell.Io
 Singleton {
   id: root
 
-  // TODO: improve this
-  // assume it is not inhibited by default
   property bool idleInhibited: false
 
   function poweroff() {
-    poweroff.running = true;
+    Quickshell.execDetached(["poweroff"]);
   }
 
   function reboot() {
-    reboot.running = true;
+    Quickshell.execDetached(["reboot"]);
   }
 
   function suspend() {
-    suspend.running = true;
+    Quickshell.execDetached(["loginctl", "lock-session"]);
+    Quickshell.execDetached(["systemctl", "suspend"]);
   }
 
   function toggleIdle() {
     if (root.idleInhibited) {
-      thaw.running = true;
+      Quickshell.execDetached(["systemctl", "--user", "start", "hypridle.service"]);
     } else {
-      freeze.running = true;
+      Quickshell.execDetached(["systemctl", "--user", "stop", "hypridle.service"]);
     }
     root.idleInhibited = !root.idleInhibited;
   }
 
   Process {
-    id: suspend
+    command: ["systemctl", "--user", "is-active", "hypridle.service"]
+    running: true
 
-    command: ["systemctl", "suspend"]
-  }
-
-  Process {
-    id: reboot
-
-    command: ["reboot"]
-  }
-
-  Process {
-    id: poweroff
-
-    command: ["poweroff"]
-  }
-
-  Process {
-    id: freeze
-
-    command: ["systemctl", "--user", "freeze", "hypridle.service"]
-  }
-
-  Process {
-    id: thaw
-
-    command: ["systemctl", "--user", "thaw", "hypridle.service"]
+    stdout: SplitParser {
+      onRead: data => {
+        root.idleInhibited = !(data == "active");
+      }
+    }
   }
 }

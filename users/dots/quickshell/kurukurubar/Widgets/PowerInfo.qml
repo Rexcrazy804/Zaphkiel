@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell.Services.UPower
 
-import "../Data/" as Dat
+import qs.Data as Dat
 
 RowLayout {
   id: info

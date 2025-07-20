@@ -1,5 +1,5 @@
 return {
-  cmd = { "qmlls", "-E" },
+  cmd = { "qmlls" },
   filetypes = { 'qml', 'qmljs' },
-  root_markers = { '.git', 'shell.qml' },
+  root_markers = { '.git', 'shell.qml', '.qmlls.ini' },
 }

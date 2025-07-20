@@ -1,9 +1,8 @@
 import QtQuick
-import QtQuick.Effects
 import Quickshell
 import Quickshell.Wayland
 
-import "../Data" as Dat
+import qs.Data as Dat
 
 WlrLayershell {
   id: layerRoot
@@ -26,11 +25,11 @@ WlrLayershell {
   Image {
     id: wallpaper
 
-    smooth: true
     anchors.fill: parent
     asynchronous: true
     fillMode: Image.PreserveAspectCrop
     retainWhileLoading: true
+    smooth: true
 
     // results in quality reduction some :woe:
     // sourceSize.height: layerRoot.modelData.height

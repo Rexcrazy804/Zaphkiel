@@ -1,3 +1,6 @@
+# WARN
+# no longer used after quickshell introduced better lsp support
+# will lave this untouched for historical and referential reasons
 # NOTE
 # typically you don't want your devShells to depend on the version of your config's nixpkgs
 # but since I want the quickshell version to be consistent between system and the shell

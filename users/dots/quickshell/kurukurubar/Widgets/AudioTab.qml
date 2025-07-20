@@ -2,8 +2,8 @@ import QtQuick
 import Quickshell
 import Quickshell.Services.Pipewire
 
-import "../Generics/" as Gen
-import "../Data/" as Dat
+import qs.Generics as Gen
+import qs.Data as Dat
 
 Rectangle {
   clip: true

@@ -2,8 +2,8 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 
-import "../Data/" as Dat
-import "../Widgets/" as Wid
+import qs.Data as Dat
+import qs.Widgets as Wid
 
 Item {
   ColumnLayout {

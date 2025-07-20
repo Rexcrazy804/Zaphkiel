@@ -3,19 +3,19 @@ import QtQuick
 import QtQuick.Controls
 import Quickshell
 import Quickshell.Services.SystemTray
-import "../Widgets/" as Wid
+import qs.Widgets as Wid
 
 Item {
   id: root
 
   required property int index
   property var menu: Wid.TrayItemMenu {
-    height: root.stack.height
+    height: root.stackView.height
     trayMenu: trayMenu
-    width: root.stack.width
+    width: root.stackView.width
   }
   required property SystemTrayItem modelData
-  required property var stack
+  required property var stackView
 
   implicitHeight: trayItemIcon.width
   implicitWidth: this.implicitHeight
@@ -62,19 +62,19 @@ Item {
           return;
         }
 
-        if (root.stack.depth > 1) {
-          if (root.stack.currentItem == root.menu) {
+        if (root.stackView.depth > 1) {
+          if (root.stackView.currentItem == root.menu) {
             // unwind nesting
             if (root.menu.trayMenu != trayMenu) {
               root.menu.trayMenu = trayMenu;
               return;
             }
-            root.stack.pop();
+            root.stackView.pop();
           } else {
-            root.stack.replace(root.menu, StackView.ReplaceTransition);
+            root.stackView.replace(root.menu, StackView.ReplaceTransition);
           }
         } else {
-          root.stack.push(root.menu);
+          root.stackView.push(root.menu);
         }
       }
     }

@@ -2,7 +2,7 @@
 // a thin wrapper for placing using Material Symbols
 // credit to end for leading me down this route
 import QtQuick
-import "../Data/" as Dat
+import qs.Data as Dat
 
 Text {
   id: root

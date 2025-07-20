@@ -3,8 +3,8 @@ import QtQuick.Layouts
 import Quickshell.Hyprland
 import Quickshell.Wayland
 
-import "../Data/" as Dat
-import "../Generics/" as Gen
+import qs.Data as Dat
+import qs.Generics as Gen
 
 Rectangle {
   id: root

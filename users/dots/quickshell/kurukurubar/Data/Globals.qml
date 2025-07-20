@@ -1,10 +1,9 @@
 pragma Singleton
 import QtQuick
 import Quickshell
-import Quickshell.Io
 import Quickshell.Wayland
 
-import "../Data/" as Dat
+import qs.Data as Dat
 
 Singleton {
   id: root

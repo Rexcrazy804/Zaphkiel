@@ -1,8 +1,8 @@
 import QtQuick
 import QtQuick.Layouts
 
-import "../Data/" as Dat
-import "../Containers/" as Con
+import qs.Data as Dat
+import qs.Containers as Con
 
 Rectangle {
   id: root

@@ -1,5 +1,5 @@
 import QtQuick
-import "../Data/" as Dat
+import qs.Data as Dat
 
 MouseArea {
   id: area

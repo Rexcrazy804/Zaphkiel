@@ -1,10 +1,9 @@
-import Quickshell.Widgets
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import "../Data/" as Dat
-import "../Generics/" as Gen
+import qs.Data as Dat
+import qs.Generics as Gen
 
 Rectangle {
   id: audRect

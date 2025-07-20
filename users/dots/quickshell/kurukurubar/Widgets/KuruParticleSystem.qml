@@ -1,8 +1,5 @@
 import QtQuick
 import QtQuick.Particles
-import QtQuick.Layouts
-
-import "../Data/" as Dat
 
 // god bless sormane for his raining kuru kuru example
 // https://github.com/soramanew/rainingkuru

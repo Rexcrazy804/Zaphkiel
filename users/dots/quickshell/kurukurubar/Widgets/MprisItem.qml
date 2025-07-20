@@ -2,10 +2,10 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Effects
-import QtQuick.Controls
 import Quickshell.Services.Mpris
-import "../Data/" as Dat
-import "../Generics/" as Gen
+
+import qs.Data as Dat
+import qs.Generics as Gen
 
 Rectangle {
   id: rect
@@ -27,7 +27,7 @@ Rectangle {
     mipmap: true
     rotation: 0
     smooth: true
-    source: player.trackArtUrl
+    source: rect.player.trackArtUrl
     width: rect.width - 30
     y: 50
 
@@ -130,7 +130,7 @@ Rectangle {
         font.bold: true
         font.pointSize: 16
         horizontalAlignment: Text.AlignHCenter
-        text: player.trackTitle
+        text: rect.player.trackTitle
         verticalAlignment: Text.AlignBottom
       }
     }
@@ -146,7 +146,7 @@ Rectangle {
         font.bold: true
         font.pointSize: 9
         horizontalAlignment: Text.AlignHCenter
-        text: player.trackArtist
+        text: rect.player.trackArtist
         verticalAlignment: Text.AlignTop
       }
     }

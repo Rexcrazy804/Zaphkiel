@@ -1,10 +1,8 @@
 import QtQuick
 import QtQuick.Layouts
-import Quickshell
-import Quickshell.Services.Pipewire
 
-import "../Generics/" as Gen
-import "../Data/" as Dat
+import qs.Generics as Gen
+import qs.Data as Dat
 
 Rectangle {
   color: Dat.Colors.surface_container_high

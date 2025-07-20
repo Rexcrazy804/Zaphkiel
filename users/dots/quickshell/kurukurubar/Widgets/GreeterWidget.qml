@@ -1,10 +1,9 @@
-pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Effects
 import Quickshell
 
-import "../Data/" as Dat
+import qs.Data as Dat
 
 RowLayout {
   id: root

@@ -3,9 +3,9 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
-import "../Generics/" as Gen
-import "../Data/" as Dat
-import "../Widgets/" as Wid
+import qs.Generics as Gen
+import qs.Data as Dat
+import qs.Widgets as Wid
 
 Item {
   RowLayout {

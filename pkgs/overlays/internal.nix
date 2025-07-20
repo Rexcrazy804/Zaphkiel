@@ -45,6 +45,7 @@
         # language servers
         final.nil
         final.lua-language-server
+        final.kdePackages.qtdeclarative
         # formatter
         final.alejandra
       ];

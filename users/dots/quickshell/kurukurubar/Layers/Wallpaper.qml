@@ -3,6 +3,7 @@ import Quickshell
 import Quickshell.Wayland
 
 import qs.Data as Dat
+import qs.Widgets as Wid
 
 WlrLayershell {
   id: layerRoot
@@ -22,18 +23,10 @@ WlrLayershell {
   screen: modelData
   surfaceFormat.opaque: false
 
-  Image {
+  Wid.Wallpaper {
     id: wallpaper
 
     anchors.fill: parent
-    asynchronous: true
-    fillMode: Image.PreserveAspectCrop
-    retainWhileLoading: true
-    smooth: true
-
-    // results in quality reduction some :woe:
-    // sourceSize.height: layerRoot.modelData.height
-    // sourceSize.width: layerRoot.modelData.width
 
     Component.onCompleted: {
       source = Dat.Config.data.wallSrc;

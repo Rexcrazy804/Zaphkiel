@@ -10,14 +10,22 @@
     withHyprland = true;
     withI3 = false;
   };
+
   kurukurubar = final.callPackage ../kurukurubar.nix {
+    # follows nixpkgs quickshell release and relies on last commit of Zaphkeil
+    # that is fully compatible with qs release v0.1.0
     inherit (prev) quickshell;
     inherit (final.scripts) gpurecording;
+    configPath = (sources.zaphkiel {pkgs = final;}) + "/users/dots/quickshell/kurukurubar";
   };
-  kokCursor = final.callPackage ../kokCursor.nix {};
-  nixvim-minimal = import ../nvim.nix {
-    inherit (sources) mnw;
-    pkgs = final;
+
+  # WARNING
+  # THIS WILL BUILD QUICKSHELL FROM SOURCE
+  # .override the quickshell attribute if you use the quickshell flake,
+  # otherwise leave this be
+  kurukurubar-unstable = final.kurukurubar.override {
+    inherit (final) quickshell;
+    configPath = ../../users/dots/quickshell/kurukurubar;
   };
 
   # example to use npins to for nvim plugins
@@ -26,7 +34,10 @@
   #     src = (sources."flash.nvim" { pkgs = final; });
   #   });
   # });
-
+  nixvim-minimal = import ../nvim.nix {
+    inherit (sources) mnw;
+    pkgs = final;
+  };
   nixvim = final.nixvim-minimal.override (prev: {
     extraBinPath =
       prev.extraBinPath
@@ -38,11 +49,13 @@
         final.alejandra
       ];
   });
+
   mpv-wrapped = final.callPackage ../mpv {};
   sddm-silent = final.callPackage (sources.silent-sddm {pkgs = final;}) {gitRev = sources.silent-sddm.revision;};
   wallcrop = final.callPackage ../wallcrop.nix {};
   scripts = final.callPackage ../scripts {};
   discord = prev.vesktop.override {withSystemVencord = true;};
+  kokCursor = final.callPackage ../kokCursor.nix {};
 
   # fonts
   librebarcode = final.callPackage ../librebarcode.nix {};

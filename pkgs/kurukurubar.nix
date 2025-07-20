@@ -1,3 +1,5 @@
+# Required Zaphkiel Revison for kurkurubar (stable):
+# cc6d5cf12ae824e6945cc2599a2650d5fe054ffe
 {
   lib,
   gpurecording,
@@ -10,8 +12,8 @@
   material-symbols,
   makeFontsConf,
   nerd-fonts,
+  configPath,
 }: let
-  qsConfig = ../users/dots/quickshell/kurukurubar;
   qtDeps = [
     kdePackages.qtbase
     kdePackages.qtdeclarative
@@ -42,7 +44,7 @@ in
       makeWrapper $out/bin/quickshell $out/bin/kurukurubar \
         --set FONTCONFIG_FILE "${fontconfig}" \
         --set QML2_IMPORT_PATH "${qmlPath}" \
-        --add-flags '-p ${qsConfig}' \
+        --add-flags '-p ${configPath}' \
         --prefix PATH : "$out/bin"
     '';
 

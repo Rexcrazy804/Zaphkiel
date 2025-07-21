@@ -1,6 +1,6 @@
 import QtQuick
-import Quickshell.Widgets
 import Quickshell
+import Quickshell.Widgets
 import Quickshell.Wayland
 
 import qs.Data as Dat
@@ -36,25 +36,24 @@ WlrLayershell {
 
     Connections {
       function onWallSrcChanged() {
-        // if (walAnimation.running) {
-        //   // todo handle this
-        //   return
-        // }
+        if (walAnimation.running) {
+          walAnimation.complete();
+        }
         animatingWal.source = Dat.Config.data.wallSrc;
-        walAnimation.start()
+        walAnimation.start();
       }
 
       target: Dat.Config.data
     }
 
     Connections {
-      target: walAnimation
-
-      function onStopped() {
-        wallpaper.source = animatingWal.source
-        animatingWal.source = ""
+      function onFinished() {
+        wallpaper.source = animatingWal.source;
+        animatingWal.source = "";
         animatinRect.width = 0;
       }
+
+      target: walAnimation
     }
   }
 
@@ -70,6 +69,7 @@ WlrLayershell {
 
     NumberAnimation {
       id: walAnimation
+
       duration: Dat.MaterialEasing.emphasizedTime * 10
       easing.bezierCurve: Dat.MaterialEasing.emphasized
       from: 0

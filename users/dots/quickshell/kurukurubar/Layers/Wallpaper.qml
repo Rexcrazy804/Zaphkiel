@@ -1,4 +1,5 @@
 import QtQuick
+import Quickshell.Widgets
 import Quickshell
 import Quickshell.Wayland
 
@@ -27,86 +28,63 @@ WlrLayershell {
     id: wallpaper
 
     anchors.fill: parent
+    source: ""
 
     Component.onCompleted: {
       source = Dat.Config.data.wallSrc;
     }
-    onStatusChanged: {
-      if (this.status == Image.Error) {
-        console.log("[ERROR] Wallpaper source invalid");
-        console.log("[INFO] Please disable set wallpaper if not required");
-      }
-    }
 
     Connections {
       function onWallSrcChanged() {
-        wallpaper.source = Dat.Config.data.wallSrc;
+        // if (walAnimation.running) {
+        //   // todo handle this
+        //   return
+        // }
+        animatingWal.source = Dat.Config.data.wallSrc;
+        walAnimation.start()
       }
 
       target: Dat.Config.data
     }
+
+    Connections {
+      target: walAnimation
+
+      function onStopped() {
+        wallpaper.source = animatingWal.source
+        animatingWal.source = ""
+        animatinRect.width = 0;
+      }
+    }
   }
 
-  // some redundant work commented
-  // Current models aren't good enough for me to use this well
-  // Rectangle {
-  //   id: gradient
-  //
-  //   anchors.fill: forground
-  //   visible: false
-  //
-  //   gradient: Gradient {
-  //     GradientStop {
-  //       color: Dat.Colors.tertiary
-  //       position: 0.0
-  //     }
-  //
-  //     GradientStop {
-  //       color: Dat.Colors.primary
-  //       position: 1.0
-  //     }
-  //   }
-  // }
-  //
-  // Text {
-  //   id: forground
-  //
-  //   anchors.centerIn: parent
-  //   antialiasing: true
-  //   color: Dat.Colors.tertiary
-  //   font.family: "Gnomon*"
-  //   font.pointSize: 450
-  //   font.variableAxes: {
-  //     "TOTD": 0,
-  //     "DIST": 0
-  //   }
-  //   layer.enabled: true
-  //   layer.smooth: true
-  //   renderType: Text.NativeRendering
-  //   text: Qt.formatDateTime(Dat.Clock?.date, "hh:mm AP").split(" ")[0]
-  //   visible: false
-  // }
-  //
-  // MultiEffect {
-  //   anchors.fill: gradient
-  //   maskEnabled: true
-  //   maskSource: forground
-  //   maskSpreadAtMin: 1.0
-  //   maskThresholdMax: 1.0
-  //   maskThresholdMin: 0.5
-  //   source: gradient
-  // }
-  //
-  // Image {
-  //   id: fg
-  //
-  //   anchors.fill: parent
-  //   layer.enabled: true
-  //   layer.smooth: true
-  //   fillMode: Image.PreserveAspectCrop
-  //   mipmap: true
-  //   smooth: true
-  //   source: Dat.Config.wallFg
-  //   visible: !Dat.Config.fgGenProc.running && Dat.Config.data.wallFgLayer
-  // }
+  ClippingRectangle {
+    id: animatinRect
+
+    anchors.centerIn: parent
+    color: "transparent"
+    height: width
+    layer.smooth: true
+    radius: this.width
+    width: 0
+
+    NumberAnimation {
+      id: walAnimation
+      duration: Dat.MaterialEasing.emphasizedTime * 10
+      easing.bezierCurve: Dat.MaterialEasing.emphasized
+      from: 0
+      property: "width"
+      target: animatinRect
+      to: Math.max(layerRoot.width, layerRoot.height) * 1.2
+    }
+
+    Wid.Wallpaper {
+      id: animatingWal
+
+      anchors.centerIn: parent
+      height: layerRoot.height
+      source: ""
+      width: layerRoot.width
+    }
+  }
 }

@@ -57,31 +57,30 @@ WlrLayershell {
     }
   }
 
-  ClippingRectangle {
+  Rectangle {
     id: animatinRect
 
-    anchors.centerIn: parent
+    anchors.right: parent.right
+    clip: true
     color: "transparent"
-    height: width
-    layer.smooth: true
-    radius: this.width
+    height: layerRoot.screen.height
     width: 0
 
     NumberAnimation {
       id: walAnimation
 
-      duration: Dat.MaterialEasing.emphasizedTime * 10
+      duration: Dat.MaterialEasing.emphasizedTime * 5
       easing.bezierCurve: Dat.MaterialEasing.emphasized
       from: 0
       property: "width"
       target: animatinRect
-      to: Math.max(layerRoot.width, layerRoot.height) * 1.2
+      to: Math.max(layerRoot.screen.width)
     }
 
     Wid.Wallpaper {
       id: animatingWal
 
-      anchors.centerIn: parent
+      anchors.right: parent.right
       height: layerRoot.height
       source: ""
       width: layerRoot.width

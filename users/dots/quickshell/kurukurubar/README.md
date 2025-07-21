@@ -37,6 +37,28 @@ This rice is exposed as a package in the toplevel flake and can be used to run t
 nix run github:Rexcrazy804/Zaphkiel#kurukurubar
 ```
 
+### Lock Screen and Foreground Isolation
+The lock screen requires a wallpaper to be set either at the default location `~/.config/background`
+or by manually specifying the path via
+```sh
+# prefer absolute paths '/' or paths starting from your home directory '~/'
+quickshell ipc call config setWallpaper ~/Path/to/your/wallpaper
+```
+
+Once the wallpaper is set correctly you may launch the lock screen like so
+```sh
+quickshell ipc call lockscreen lock
+```
+
+The `Fg Layer Extraction` option must be turned on in the Kuru Settings tab to
+enable the Foreground isolation effect. **First run will take time** as rembg
+downloads the required birefnet model and processes your wallpaper. Subsequent
+runs will depend on your hardware but the results are cached so switching to
+already processed images are instant.
+
+> users of the kurukurubar via nixos flake should replace `quickshell` with
+> `kurukurubar` for the commands listed above
+
 ### Known Issues
 - `org.Hyprland.style is not installed`: see [#21](https://github.com/Rexcrazy804/Zaphkiel/issues/21#issuecomment-2906546939)
 - Herta faceIcon: symlink an image (of any image type) to ~/.face.icon

@@ -10,7 +10,6 @@ in {
     ./hardware-configuration.nix
     ./user-configuration.nix
     ./extras/privoxy.nix
-    ./extras/lanzaboote.nix
   ];
 
   system.stateVersion = "24.11";
@@ -27,6 +26,7 @@ in {
     };
 
     programs = {
+      lanzaboote.enable = true;
       sddm-custom-theme.enable = true;
       obs-studio.enable = false;
       steam.enable = false;

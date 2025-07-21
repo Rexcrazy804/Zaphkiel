@@ -3,6 +3,7 @@
     # ./gdm.nix
     # ./aagl.nix
 
+    ./lanzaboote.nix
     ./steam.nix
     ./age.nix
     ./direnv.nix

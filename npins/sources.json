@@ -103,9 +103,9 @@
       },
       "branch": "npins-support",
       "submodules": false,
-      "revision": "3e84ec9e5829d29b34c46a811687786add442751",
-      "url": "https://github.com/Rexcrazy804/lanzaboote/archive/3e84ec9e5829d29b34c46a811687786add442751.tar.gz",
-      "hash": "sha256-h9GHeQL3fouAXjDIpAq5Pt8eqRPEjkZ2k61TFx3HLhc="
+      "revision": "63b4c797fd6e370ad437ee25e30a5e5ff2c93f83",
+      "url": "https://github.com/Rexcrazy804/lanzaboote/archive/63b4c797fd6e370ad437ee25e30a5e5ff2c93f83.tar.gz",
+      "hash": "sha256-07FC3fevw8phSwfLDLWbzM9nYZr1XezfEDZIRYjtfSM="
     },
     "lix-module": {
       "type": "Git",

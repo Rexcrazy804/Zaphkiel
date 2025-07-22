@@ -19,11 +19,6 @@ keymap = [
   { on = "<Up>", run = "arrow -1", desc = "Move cursor up" },
   { on = "<Down>", run = "arrow 1", desc = "Move cursor down" },
 
-  { on = "<C-u>", run = "arrow -50%", desc = "Move cursor up half page" },
-  { on = "<C-d>", run = "arrow 50%", desc = "Move cursor down half page" },
-  { on = "<C-b>", run = "arrow -100%", desc = "Move cursor up one page" },
-  { on = "<C-f>", run = "arrow 100%", desc = "Move cursor down one page" },
-
   { on = "<S-PageUp>", run = "arrow -50%", desc = "Move cursor up half page" },
   { on = "<S-PageDown>", run = "arrow 50%", desc = "Move cursor down half page" },
   { on = "<PageUp>", run = "arrow -100%", desc = "Move cursor up one page" },
@@ -272,6 +267,8 @@ keymap = [
 
   # ripdrag
   { on = [ "<C-n>" ], run = "shell 'ripdrag \"$@\" -x 2>/dev/null &' --confirm "},
+  { on = [ "<C-f>" ], run = "shell 'ffmpeg -i \"$0\" -crf 28 kuru.mp4' --interactive --block"},
+  { on = [ "<C-w>" ], run = "shell 'qs ipc call config setWallpaper \"$0\"'"},
   # kde connect share
   { on = [ "<A-n>" ], run = "shell 'kde-send \"$@\"' --block --confirm"},
 
@@ -391,8 +388,6 @@ keymap = [
   { on = "l", run = "move 1", desc = "Move forward a character" },
   { on = "<Left>", run = "move -1", desc = "Move back a character" },
   { on = "<Right>", run = "move 1", desc = "Move forward a character" },
-  { on = "<C-b>", run = "move -1", desc = "Move back a character" },
-  { on = "<C-f>", run = "move 1", desc = "Move forward a character" },
 
   # Word-wise movement
   { on = "b", run = "backward", desc = "Move back to the start of the current or previous word" },

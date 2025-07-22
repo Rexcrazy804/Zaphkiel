@@ -204,10 +204,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "fd30db031194d5905b9f5ab832ed770931036944",
-      "url": "https://github.com/rose-pine/foot/archive/fd30db031194d5905b9f5ab832ed770931036944.tar.gz",
-      "hash": "sha256-QGNKJqqP6dtihAU5sp6bRt5vcZzPSzdsBSgtSpbZ9k0=",
-      "frozen": true
+      "revision": "725e9c38880d577ee973eb916e83395964ffc287",
+      "url": "https://github.com/rose-pine/foot/archive/725e9c38880d577ee973eb916e83395964ffc287.tar.gz",
+      "hash": "sha256-Lo8HkJr+uYNUSRNzUhaksJAPvK8fbu5WubtmBSsa0/Q="
     },
     "rust-overlay": {
       "type": "Git",

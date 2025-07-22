@@ -25,6 +25,7 @@
   #   ⠀⠀⢠⢱⠀⠒⠀⢻⣶⣦⣠⠴⠖⠢⠤⣀⠀⠀⠀⠀⣠⡤⠒⠲⠤⣄⣀⣴⡟⠀⠐⠀⡜⡄⠀⠀
   #   ⠀⠀⠉⠀⠁⠀⠀⠀⠁⠈⠀⠀⠀⠀⠈⠈⠁⠀⠀⠈⠉⠁⠀⠀⠀⠀⠁⠉⠀⠀⠀⠉⠈⠁⠀⠀
 in {
+  documentation.man.generateCaches = false; # screw this too
   programs.fish = {
     enable = true;
     generateCompletions = false; # fuck this shit (time to manually generate em)

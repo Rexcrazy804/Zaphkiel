@@ -51,10 +51,10 @@
       ];
   });
 
+  scripts = import ../scripts {inherit (final) lib callPackage;};
   mpv-wrapped = final.callPackage ../mpv {};
   sddm-silent = final.callPackage (sources.silent-sddm {pkgs = final;}) {gitRev = sources.silent-sddm.revision;};
   wallcrop = final.callPackage ../wallcrop.nix {};
-  scripts = final.callPackage ../scripts {};
   discord = prev.vesktop.override {withSystemVencord = true;};
   kokCursor = final.callPackage ../kokCursor.nix {};
   lanzaboote-tool = (import (sources.lanzaboote {pkgs = final;} + "/default-npins.nix") {inherit sources;}).packages.tool;

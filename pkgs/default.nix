@@ -2,5 +2,8 @@
 # nix-build ~/nixos/pkgs -A <package name>
 {sources ? import ../npins}:
 import sources.nixpkgs {
-  overlays = [(import ./overlays/internal.nix {inherit sources;})];
+  overlays = [
+    (import ./overlays/internal.nix {inherit sources;})
+    (import ./overlays/lix.nix {lix = null;})
+  ];
 }

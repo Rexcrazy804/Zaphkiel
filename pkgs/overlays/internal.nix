@@ -58,6 +58,7 @@
   discord = prev.vesktop.override {withSystemVencord = true;};
   kokCursor = final.callPackage ../kokCursor.nix {};
   lanzaboote-tool = (import (sources.lanzaboote {pkgs = final;} + "/default-npins.nix") {inherit sources;}).packages.tool;
+  npins = final.callPackage (sources.npins {pkgs = final;} + "/npins.nix") {};
 
   # fonts
   librebarcode = final.callPackage ../librebarcode.nix {};

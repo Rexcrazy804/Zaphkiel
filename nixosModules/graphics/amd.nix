@@ -25,5 +25,6 @@
     systemd.tmpfiles.rules = [
       "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
     ];
+    environment.sessionVariables.RADV_PERFTEST = "video_decode";
   };
 }

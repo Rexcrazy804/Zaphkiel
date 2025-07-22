@@ -25,5 +25,7 @@ in {
       source = getExe pkgs.btop;
       capabilities = "cap_perfmon+ep";
     };
+
+    environment.sessionVariables.ANV_VIDEO_DECODE = 1;
   };
 }

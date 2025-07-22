@@ -1,3 +1,9 @@
+# WARN
+# https://github.com/mpv-player/mpv/discussions/13909
+# AMD gpu's require RADV_PERFTEST=video_decode to be set
+# and intel requires ANV_VIDEO_DECODE=1
+# for vulkan my modules set these values so note to myself
+# the values are set .w. trust me bro .w.
 {
   pkgs,
   lib,

@@ -27,21 +27,21 @@ in {
 
   programs.matugen = {
     enable = true;
-    # wallpaper = config.programs.booru-flake.images."8827425";
-    wallpaper = let
-      image = config.programs.booru-flake.images."6887138";
-    in
-      pkgs.stdenv.mkDerivation {
-        name = "cropped-${image.name}";
-        src = image;
-        dontUnpack = true;
-        # nativeBuildInputs = [pkgs.scripts.wallcrop];
-        nativeBuildInputs = [pkgs.imagemagick];
-        installPhase = ''
-          magick $src -crop 1920x1080+600+1200 - > $out
-          # wallcrop $src 0 1030 > $out
-        '';
-      };
+    wallpaper = config.programs.booru-flake.images."2768802";
+    # wallpaper = let
+    #   image = config.programs.booru-flake.images."6887138";
+    # in
+    #   pkgs.stdenv.mkDerivation {
+    #     name = "cropped-${image.name}";
+    #     src = image;
+    #     dontUnpack = true;
+    #     # nativeBuildInputs = [pkgs.scripts.wallcrop];
+    #     nativeBuildInputs = [pkgs.imagemagick];
+    #     installPhase = ''
+    #       magick $src -crop 1920x1080+600+1200 - > $out
+    #       # wallcrop $src 0 1030 > $out
+    #     '';
+    #   };
   };
 
   hjem.users."rexies".files = {

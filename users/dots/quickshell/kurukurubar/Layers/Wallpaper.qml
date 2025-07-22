@@ -1,6 +1,5 @@
 import QtQuick
 import Quickshell
-import Quickshell.Widgets
 import Quickshell.Wayland
 
 import qs.Data as Dat
@@ -32,28 +31,24 @@ WlrLayershell {
 
     Component.onCompleted: {
       source = Dat.Config.data.wallSrc;
-    }
 
-    Connections {
-      function onWallSrcChanged() {
+      Dat.Config.data.wallSrcChanged.connect(() => {
         if (walAnimation.running) {
           walAnimation.complete();
         }
         animatingWal.source = Dat.Config.data.wallSrc;
-        walAnimation.start();
-      }
+      });
+      animatingWal.statusChanged.connect(() => {
+        if (animatingWal.status == Image.Ready) {
+          walAnimation.start();
+        }
+      });
 
-      target: Dat.Config.data
-    }
-
-    Connections {
-      function onFinished() {
+      walAnimation.finished.connect(() => {
         wallpaper.source = animatingWal.source;
         animatingWal.source = "";
         animatinRect.width = 0;
-      }
-
-      target: walAnimation
+      });
     }
   }
 

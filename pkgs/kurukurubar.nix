@@ -13,6 +13,7 @@
   makeFontsConf,
   nerd-fonts,
   configPath,
+  asGreeter ? false,
 }: let
   qtDeps = [
     kdePackages.qtbase
@@ -44,7 +45,7 @@ in
       makeWrapper $out/bin/quickshell $out/bin/kurukurubar \
         --set FONTCONFIG_FILE "${fontconfig}" \
         --set QML2_IMPORT_PATH "${qmlPath}" \
-        --add-flags '-p ${configPath}' \
+        --add-flags '-p ${configPath + (lib.optionalString asGreeter "/greeter.qml")}' \
         --prefix PATH : "$out/bin"
     '';
 

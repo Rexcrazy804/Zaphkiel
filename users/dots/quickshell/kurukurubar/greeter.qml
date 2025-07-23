@@ -14,6 +14,10 @@ import qs.Generics as Gen
 ShellRoot {
   id: root
 
+  // starts authentication instantly, great for finger print login without having to
+  // hit enter (sumee's major grevience)
+  // TODO preferred session and preferred user
+  readonly property string instant_auth: Quickshell.env("KURU_DM_INSTANTAUTH")
   readonly property string sessions: Quickshell.env("KURU_DM_SESSIONS")
   readonly property string wallpaper_path: Quickshell.env("KURU_DM_WALLPATH")
 
@@ -73,8 +77,6 @@ ShellRoot {
             font.bold: true
             font.family: "Libre Barcode 128 TEXT"
             font.pointSize: 84
-            layer.enabled: true
-            layer.smooth: true
             renderType: Text.NativeRendering
             rotation: -90
             text: users.current_user
@@ -101,8 +103,6 @@ ShellRoot {
             font.bold: true
             font.family: "Libre Barcode 128 TEXT"
             font.pointSize: 84
-            layer.enabled: true
-            layer.smooth: true
             renderType: Text.NativeRendering
             rotation: 90
             text: sessions.current_session_name
@@ -164,19 +164,27 @@ ShellRoot {
 
           Item {
             Layout.fillHeight: true
+            Layout.leftMargin: 15
             clip: true
-            implicitWidth: fakePasw.contentWidth + 14
+            implicitWidth: fakePasw.contentWidth
+            visible: implicitWidth != 0
+
+            Behavior on implicitWidth {
+              NumberAnimation {
+                duration: Dat.MaterialEasing.emphasizedTime
+                easing.bezierCurve: Dat.MaterialEasing.emphasized
+              }
+            }
 
             Text {
               id: fakePasw
 
               anchors.centerIn: parent
+              anchors.verticalCenterOffset: contentHeight * 0.2
               color: Dat.Colors.on_background
               font.bold: true
               font.family: "Libre Barcode 128"
-              font.pointSize: 12
-              layer.enabled: true
-              layer.smooth: true
+              font.pointSize: 22
               renderType: Text.NativeRendering
               text: sessionLock.fakeBuffer
             }
@@ -198,6 +206,29 @@ ShellRoot {
               fill: Greetd.state == GreetdState.Authenticating
               font.pointSize: 18
               icon: "lock"
+
+              Behavior on rotation {
+                NumberAnimation {
+                  duration: lockRotatetimer.interval
+                  easing.type: Easing.Linear
+                }
+              }
+
+              Timer {
+                id: lockRotatetimer
+
+                interval: 500
+                repeat: true
+                running: Greetd.state == GreetdState.Authenticating
+                triggeredOnStart: true
+
+                onRunningChanged: if (parent.rotation < 180) {
+                  parent.rotation = 360;
+                } else {
+                  parent.rotation = 0;
+                }
+                onTriggered: parent.rotation += 50
+              }
             }
           }
         }
@@ -244,9 +275,16 @@ ShellRoot {
     }
     stdout: SplitParser {
       onRead: data => {
-        console.log("[USER] " + data);
+        console.log("[USERS] " + data);
         users.users_list.push(data);
       }
+    }
+
+    // very unlikely that this completes later than sessions better to be safe
+    // nonetheless
+    onExited: if (root.instant_auth && !users.running) {
+      console.log("[USERS EXIT]");
+      root.authenticate();
     }
   }
 
@@ -276,6 +314,11 @@ ShellRoot {
         sessions.session_names.push(parsedData[0]);
         sessions.session_execs.push(parsedData[1]);
       }
+    }
+
+    onExited: if (root.instant_auth && !users.running) {
+      console.log("[SESIONS EXIT]");
+      root.authenticate();
     }
   }
 }

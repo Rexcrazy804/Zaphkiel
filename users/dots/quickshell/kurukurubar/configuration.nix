@@ -12,6 +12,7 @@
   kuruOpts = {
     KURU_DM_WALLPATH = pkgs.booru-images.i2768802;
     KURU_DM_SESSIONS = concatStringsSep ":" sessionPackages;
+    KURU_DM_INSTANTAUTH = "1";
   };
   optsToString = concatStringsSep " " (attrValues (mapAttrs (k: v: "${k}=\"${v}\"") kuruOpts));
   hyprConf = pkgs.writeText "hyprland.conf" ''

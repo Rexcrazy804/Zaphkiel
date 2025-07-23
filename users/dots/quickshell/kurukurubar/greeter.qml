@@ -1,9 +1,12 @@
 pragma ComponentBehavior: Bound
+import QtQuick
+import QtQuick.Layouts
+
 import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
 import Quickshell.Services.Greetd
-import QtQuick
+
 import qs.Data as Dat
 import qs.Widgets as Wid
 import qs.Generics as Gen
@@ -13,6 +16,10 @@ ShellRoot {
 
   readonly property string sessions: Quickshell.env("KURU_DM_SESSIONS")
   readonly property string wallpaper_path: Quickshell.env("KURU_DM_WALLPATH")
+
+  function authenticate() {
+    Greetd.createSession(users.current_user);
+  }
 
   Component.onCompleted: {
     if (sessions == "") {
@@ -25,7 +32,9 @@ ShellRoot {
   WlSessionLock {
     id: sessionLock
 
-    property string user_passwd
+    property string fakeBuffer: ""
+    readonly property list<string> kokomi: ["k", "o", "k", "o", "m", "i"]
+    property string passwdBuffer: ""
 
     locked: true
 
@@ -105,42 +114,92 @@ ShellRoot {
             onClicked: sessions.next()
           }
         }
-
-        // Text {
-        //   color: Dat.Colors.on_background
-        //   font.family: "CaskaydiaMono NF"
-        //   font.pointSize: 32
-        //   renderType: Text.NativeRendering
-        //   text: Qt.formatDateTime(Dat.Clock.date, "HH MM")
-        //
-        //   anchors {
-        //     bottom: parent.bottom
-        //     bottomMargin: 10
-        //     horizontalCenter: parent.horizontalCenter
-        //   }
-        // }
       }
 
       Rectangle {
         anchors.centerIn: parent
         color: Dat.Colors.surface
-        height: this.width
+        height: 40
         radius: this.width
-        width: 50
+        width: inputRow.width
 
-        Gen.MouseArea {
+        Item {
           anchors.fill: parent
+          focus: true
 
-          onClicked: {
-            Greetd.createSession(users.current_user);
+          Keys.onPressed: kevent => {
+            if (Greetd.state != GreetdState.Inactive) {
+              return;
+            }
+
+            if (kevent.key === Qt.Key_Enter || kevent.key === Qt.Key_Return) {
+              root.authenticate();
+              return;
+            }
+
+            if (kevent.key === Qt.Key_Backspace) {
+              if (kevent.modifiers & Qt.ControlModifier) {
+                sessionLock.passwdBuffer = "";
+                sessionLock.fakeBuffer = "";
+                return;
+              }
+
+              sessionLock.passwdBuffer = sessionLock.passwdBuffer.slice(0, -1);
+              sessionLock.fakeBuffer = sessionLock.fakeBuffer.slice(0, -1);
+              return;
+            }
+
+            if (kevent.text) {
+              sessionLock.passwdBuffer += kevent.text;
+              sessionLock.fakeBuffer += sessionLock.kokomi[Math.floor(Math.random() * 6)];
+            }
           }
         }
 
-        Gen.MatIcon {
+        RowLayout {
+          id: inputRow
+
           anchors.centerIn: parent
-          color: Dat.Colors.on_surface
-          font.pointSize: 18
-          icon: "lock"
+          height: parent.height
+
+          Item {
+            Layout.fillHeight: true
+            clip: true
+            implicitWidth: fakePasw.contentWidth + 14
+
+            Text {
+              id: fakePasw
+
+              anchors.centerIn: parent
+              color: Dat.Colors.on_background
+              font.bold: true
+              font.family: "Libre Barcode 128"
+              font.pointSize: 12
+              layer.enabled: true
+              layer.smooth: true
+              renderType: Text.NativeRendering
+              text: sessionLock.fakeBuffer
+            }
+          }
+
+          Item {
+            Layout.fillHeight: true
+            implicitWidth: height
+
+            Gen.MouseArea {
+              anchors.fill: parent
+
+              onClicked: root.authenticate()
+            }
+
+            Gen.MatIcon {
+              anchors.centerIn: parent
+              color: Dat.Colors.on_surface
+              fill: Greetd.state == GreetdState.Authenticating
+              font.pointSize: 18
+              icon: "lock"
+            }
+          }
         }
       }
     }
@@ -151,13 +210,15 @@ ShellRoot {
       console.log("[MSG] " + message);
       console.log("[ERR] " + error);
       if (responseRequired) {
-        Greetd.respond("kokomi");
+        Greetd.respond(sessionLock.passwdBuffer);
+        sessionLock.passwdBuffer = "";
+        sessionLock.fakeBuffer = "";
       }
     }
 
     function onReadyToLaunch() {
       sessionLock.locked = false;
-      console.log("[GREETD EXEC]" + sessions.current_session)
+      console.log("[GREETD EXEC]" + sessions.current_session);
       Greetd.launch(sessions.current_session.split(" "));
     }
 

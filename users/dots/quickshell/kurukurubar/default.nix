@@ -1,8 +1,8 @@
 {sources ? import ../../../../npins}: let
   pkgs' = import ../../../../pkgs {inherit sources;};
   hyprConf = pkgs'.writeText "hyprland.conf" ''
-    monitor = ,preferred, auto, 1
-    exec-once = KURU_DM_WALLPATH=${pkgs'.booru-images.i2768802} kurukurubar && pkill Hyprland
+    monitor = ,preferred, auto, auto
+    exec-once = KURU_DM_WALLPATH=${pkgs'.booru-images.i2768802} KURU_DM_SESSION="uwsm start default" kurukurubar && pkill Hyprland
     debug {
       disable_logs = false
     }
@@ -53,11 +53,13 @@ in
           packages = [];
         };
 
-        programs.hyprland.enable = true;
+        programs.hyprland = {
+          enable = true;
+          withUWSM = true;
+        };
 
         services.greetd = {
           enable = true;
-          restart = false;
           settings = {
             default_session = {
               command = "${pkgs.hyprland}/bin/hyprland --config ${hyprConf}";

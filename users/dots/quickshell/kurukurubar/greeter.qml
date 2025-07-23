@@ -17,12 +17,59 @@ ShellRoot {
   WlSessionLock {
     id: sessionLock
 
+    property string user_passwd
+
     locked: true
 
     WlSessionLockSurface {
       Wid.Wallpaper {
         anchors.fill: parent
         source: root.wallpaper_path
+      }
+
+      Rectangle {
+        anchors.fill: parent
+
+        gradient: Gradient {
+          GradientStop {
+            color: "transparent"
+            position: 0.0
+          }
+
+          GradientStop {
+            color: Dat.Colors.background
+            position: 1.0
+          }
+        }
+
+        Text {
+          color: Dat.Colors.on_background
+          font.family: "DejaVu Sans"
+          font.pointSize: 16
+          renderType: Text.NativeRendering
+          text: users.current_user
+
+          anchors {
+            bottom: parent.bottom
+            bottomMargin: anchors.leftMargin
+            left: parent.left
+            leftMargin: 10
+          }
+        }
+
+        Text {
+          color: Dat.Colors.on_background
+          font.family: "DejaVu Sans"
+          font.pointSize: 32
+          renderType: Text.NativeRendering
+          text: Qt.formatDateTime(Dat.Clock.date, "HH MM AP")
+
+          anchors {
+            bottom: parent.bottom
+            bottomMargin: 10
+            horizontalCenter: parent.horizontalCenter
+          }
+        }
       }
 
       Rectangle {
@@ -36,7 +83,7 @@ ShellRoot {
           anchors.fill: parent
 
           onClicked: {
-            Greetd.createSession("rexies");
+            Greetd.createSession(users.current_user);
           }
         }
 
@@ -65,5 +112,26 @@ ShellRoot {
     }
 
     target: Greetd
+  }
+
+  Process {
+    id: users
+
+    property string current_user: list[current_user_index]
+    property int current_user_index: 0
+    property list<string> list: []
+
+    command: ["awk", `BEGIN { FS = ":"} /\\/home/ { print $1 }`, "/etc/passwd"]
+    running: true
+
+    stderr: SplitParser {
+      onRead: data => console.log("[ERR] " + data)
+    }
+    stdout: SplitParser {
+      onRead: data => {
+        console.log("[USERS] " + data);
+        users.list.push(data);
+      }
+    }
   }
 }

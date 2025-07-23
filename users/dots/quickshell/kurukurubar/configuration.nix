@@ -68,6 +68,8 @@ in {
     withUWSM = true;
   };
 
+  programs.sway.enable = true;
+
   services.greetd = {
     enable = true;
     settings = {

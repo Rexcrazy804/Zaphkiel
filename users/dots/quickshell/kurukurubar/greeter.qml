@@ -1,21 +1,30 @@
 pragma ComponentBehavior: Bound
 import Quickshell
+import Quickshell.Io
+import Quickshell.Wayland
 import Quickshell.Services.Greetd
 import QtQuick
-import qs.Layers as Lay
+import qs.Widgets as Wid
 
 ShellRoot {
-  Lay.LockScreen {
-    id: lockScreen
-  }
+  Component.onCompleted: sessionLock.locked = true
 
-  Connections {
-    target: lockScreen.lock
+  WlSessionLock {
+    id: sessionLock
 
-    function onLockedChanged() {
-      if (!lockScreen.lock.locked) {
-        Greetd.launch("hyprland")
+    WlSessionLockSurface {
+      Wid.Wallpaper {
+        anchors.fill: parent
+        source: "/etc/kurukurubar/background"
       }
     }
+  }
+
+  IpcHandler {
+    function lock() {
+      sessionLock.locked = true;
+    }
+
+    target: "lockscreen"
   }
 }

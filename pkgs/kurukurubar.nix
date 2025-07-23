@@ -7,6 +7,7 @@
   librebarcode,
   symlinkJoin,
   makeWrapper,
+  runCommandLocal,
   quickshell,
   kdePackages,
   material-symbols,
@@ -33,6 +34,20 @@
       librebarcode
     ];
   };
+
+  greeterConf = runCommandLocal "quick" {} ''
+    mkdir $out
+    cd $out
+    cp -rp ${configPath}/* .
+    chmod u+w *.qml
+    rm shell.qml
+    mv greeter.qml shell.qml
+  '';
+
+  qsConfig =
+    if asGreeter
+    then greeterConf
+    else qmlPath;
 in
   symlinkJoin {
     pname = "kurukurubar";
@@ -45,7 +60,7 @@ in
       makeWrapper $out/bin/quickshell $out/bin/kurukurubar \
         --set FONTCONFIG_FILE "${fontconfig}" \
         --set QML2_IMPORT_PATH "${qmlPath}" \
-        --add-flags '-p ${configPath + (lib.optionalString asGreeter "/greeter.qml")}' \
+        --add-flags '-p ${qsConfig}' \
         --prefix PATH : "$out/bin"
     '';
 

@@ -2,7 +2,11 @@
   pkgs' = import ../../../../pkgs {inherit sources;};
   hyprConf = pkgs'.writeText "hyprland.conf" ''
     monitor = ,preferred, auto, 1
-    exec-once = QS_DISPLAY_MANAGER=1 kurukurubar -d && kurukurubar ipc call lockscreen lock
+    exec-once = kurukurubar -d && kurukurubar ipc lockscreen lock
+
+    debug {
+      disable_logs = false
+    }
 
     misc {
       force_default_wallpaper = 1 # Set to 0 or 1 to disable the anime mascot wallpapers
@@ -40,7 +44,7 @@ in
         nixpkgs.config.allowUnfree = true;
         nix.settings.experimental-features = ["nix-command" "flakes"];
 
-        environment.systemPackages = [(pkgs.kurukurubar-unstable.override {asGreeter = false;})];
+        environment.systemPackages = [(pkgs.kurukurubar-unstable.override {asGreeter = true;})];
         users.users.rexies = {
           enable = true;
           initialPassword = "kokomi";
@@ -61,6 +65,8 @@ in
           };
         };
         nixpkgs.hostPlatform = "x86_64-linux";
+
+        environment.etc."kurukurubar/background".source = pkgs.booru-images.i2768802;
       })
     ];
   }

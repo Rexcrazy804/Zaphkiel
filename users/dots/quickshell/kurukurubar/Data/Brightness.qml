@@ -1,8 +1,9 @@
 pragma Singleton
 import QtQuick
+import Quickshell
 import Quickshell.Io
 
-Item {
+Singleton {
   function decrease() {
     dec.running = true;
   }

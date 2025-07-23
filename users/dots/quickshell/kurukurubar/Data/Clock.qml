@@ -2,9 +2,13 @@ pragma Singleton
 import Quickshell
 import QtQuick
 
-SystemClock {
-  id: clock
+Singleton {
+  property alias date: sysClock.date
 
-  enabled: Globals.notchState != "COLLAPSED"
-  precision: SystemClock.Seconds
+  SystemClock {
+    id: sysClock
+
+    enabled: Globals.notchState != "COLLAPSED"
+    precision: SystemClock.Seconds
+  }
 }

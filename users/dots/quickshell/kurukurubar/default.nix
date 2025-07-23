@@ -2,8 +2,7 @@
   pkgs' = import ../../../../pkgs {inherit sources;};
   hyprConf = pkgs'.writeText "hyprland.conf" ''
     monitor = ,preferred, auto, 1
-    exec-once = kurukurubar -d && kurukurubar ipc lockscreen lock
-
+    exec-once = KURU_DM_WALLPATH=${pkgs'.booru-images.i2768802} kurukurubar && pkill Hyprland
     debug {
       disable_logs = false
     }
@@ -58,6 +57,7 @@ in
 
         services.greetd = {
           enable = true;
+          restart = false;
           settings = {
             default_session = {
               command = "${pkgs.hyprland}/bin/hyprland --config ${hyprConf}";
@@ -65,8 +65,6 @@ in
           };
         };
         nixpkgs.hostPlatform = "x86_64-linux";
-
-        environment.etc."kurukurubar/background".source = pkgs.booru-images.i2768802;
       })
     ];
   }

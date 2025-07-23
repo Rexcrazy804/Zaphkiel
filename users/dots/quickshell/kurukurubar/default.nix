@@ -44,6 +44,7 @@ in
         nix.settings.experimental-features = ["nix-command" "flakes"];
 
         environment.systemPackages = [(pkgs.kurukurubar-unstable.override {asGreeter = true;})];
+
         users.users.rexies = {
           enable = true;
           initialPassword = "kokomi";

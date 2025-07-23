@@ -42,27 +42,34 @@ ShellRoot {
           }
         }
 
-        Text {
-          color: Dat.Colors.on_background
-          font.family: "DejaVu Sans"
-          font.pointSize: 16
-          renderType: Text.NativeRendering
-          text: users.current_user
+        Item {
+          anchors.bottom: parent.bottom
+          anchors.left: parent.left
+          height: userText.contentWidth
+          width: userText.contentHeight
 
-          anchors {
-            bottom: parent.bottom
-            bottomMargin: anchors.leftMargin
-            left: parent.left
-            leftMargin: 10
+          Text {
+            id: userText
+
+            anchors.centerIn: parent
+            color: Dat.Colors.on_background
+            font.bold: true
+            font.family: "Libre Barcode 128 TEXT"
+            font.pointSize: 84
+            layer.enabled: true
+            layer.smooth: true
+            renderType: Text.NativeRendering
+            rotation: -90
+            text: users.current_user
           }
         }
 
         Text {
           color: Dat.Colors.on_background
-          font.family: "DejaVu Sans"
+          font.family: "CaskaydiaMono NF"
           font.pointSize: 32
           renderType: Text.NativeRendering
-          text: Qt.formatDateTime(Dat.Clock.date, "HH MM AP")
+          text: Qt.formatDateTime(Dat.Clock.date, "HH MM")
 
           anchors {
             bottom: parent.bottom

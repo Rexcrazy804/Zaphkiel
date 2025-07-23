@@ -62,6 +62,12 @@ ShellRoot {
             rotation: -90
             text: users.current_user
           }
+
+          MouseArea {
+            anchors.fill: parent
+
+            onClicked: users.next()
+          }
         }
 
         Text {
@@ -127,6 +133,10 @@ ShellRoot {
     property string current_user: list[current_user_index]
     property int current_user_index: 0
     property list<string> list: []
+
+    function next() {
+      current_user_index = (current_user_index + 1) % list.length;
+    }
 
     command: ["awk", `BEGIN { FS = ":"} /\\/home/ { print $1 }`, "/etc/passwd"]
     running: true

@@ -11,8 +11,16 @@ import qs.Generics as Gen
 ShellRoot {
   id: root
 
-  readonly property string session_cmd: Quickshell.env("KURU_DM_SESSION")
+  readonly property string sessions: Quickshell.env("KURU_DM_SESSIONS")
   readonly property string wallpaper_path: Quickshell.env("KURU_DM_WALLPATH")
+
+  Component.onCompleted: {
+    if (sessions == "") {
+      console.log("[WARN] empty sessions list, defaulting to hyprland");
+      sessions.current_session = "hyprland";
+      sessions.current_session_name = "hyprland";
+    }
+  }
 
   WlSessionLock {
     id: sessionLock
@@ -70,19 +78,47 @@ ShellRoot {
           }
         }
 
-        Text {
-          color: Dat.Colors.on_background
-          font.family: "CaskaydiaMono NF"
-          font.pointSize: 32
-          renderType: Text.NativeRendering
-          text: Qt.formatDateTime(Dat.Clock.date, "HH MM")
+        Item {
+          anchors.bottom: parent.bottom
+          anchors.right: parent.right
+          height: sessionText.contentWidth
+          width: sessionText.contentHeight
 
-          anchors {
-            bottom: parent.bottom
-            bottomMargin: 10
-            horizontalCenter: parent.horizontalCenter
+          Text {
+            id: sessionText
+
+            anchors.centerIn: parent
+            color: Dat.Colors.on_background
+            font.bold: true
+            font.family: "Libre Barcode 128 TEXT"
+            font.pointSize: 84
+            layer.enabled: true
+            layer.smooth: true
+            renderType: Text.NativeRendering
+            rotation: 90
+            text: sessions.current_session_name
+          }
+
+          MouseArea {
+            anchors.fill: parent
+
+            onClicked: sessions.next()
           }
         }
+
+        // Text {
+        //   color: Dat.Colors.on_background
+        //   font.family: "CaskaydiaMono NF"
+        //   font.pointSize: 32
+        //   renderType: Text.NativeRendering
+        //   text: Qt.formatDateTime(Dat.Clock.date, "HH MM")
+        //
+        //   anchors {
+        //     bottom: parent.bottom
+        //     bottomMargin: 10
+        //     horizontalCenter: parent.horizontalCenter
+        //   }
+        // }
       }
 
       Rectangle {
@@ -121,7 +157,8 @@ ShellRoot {
 
     function onReadyToLaunch() {
       sessionLock.locked = false;
-      Greetd.launch([(root.session_cmd ? root.session_cmd : "hyprland")]);
+      console.log("[GREETD EXEC]" + sessions.current_session)
+      Greetd.launch(sessions.current_session.split(" "));
     }
 
     target: Greetd
@@ -130,12 +167,12 @@ ShellRoot {
   Process {
     id: users
 
-    property string current_user: list[current_user_index]
+    property string current_user: users_list[current_user_index]
     property int current_user_index: 0
-    property list<string> list: []
+    property list<string> users_list: []
 
     function next() {
-      current_user_index = (current_user_index + 1) % list.length;
+      current_user_index = (current_user_index + 1) % users_list.length;
     }
 
     command: ["awk", `BEGIN { FS = ":"} /\\/home/ { print $1 }`, "/etc/passwd"]
@@ -146,8 +183,37 @@ ShellRoot {
     }
     stdout: SplitParser {
       onRead: data => {
-        console.log("[USERS] " + data);
-        users.list.push(data);
+        console.log("[USER] " + data);
+        users.users_list.push(data);
+      }
+    }
+  }
+
+  Process {
+    id: sessions
+
+    property int current_ses_index: 0
+    property string current_session: session_execs[current_ses_index]
+    property string current_session_name: session_names[current_ses_index]
+    property list<string> session_execs: []
+    property list<string> session_names: []
+
+    function next() {
+      current_ses_index = (current_ses_index + 1) % session_execs.length;
+    }
+
+    command: [Qt.resolvedUrl("./scripts/session.sh"), root.sessions]
+    running: true
+
+    stderr: SplitParser {
+      onRead: data => console.log("[ERR] " + data)
+    }
+    stdout: SplitParser {
+      onRead: data => {
+        console.log("[SESSION] " + data);
+        const parsedData = data.split(",");
+        sessions.session_names.push(parsedData[0]);
+        sessions.session_execs.push(parsedData[1]);
       }
     }
   }

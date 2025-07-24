@@ -69,17 +69,15 @@ ShellRoot {
           height: userText.contentWidth
           width: userText.contentHeight
 
-          Text {
+          Gen.BarCode {
             id: userText
 
             anchors.centerIn: parent
             color: Dat.Colors.on_background
-            font.bold: true
-            font.family: "Libre Barcode 128 TEXT"
             font.pointSize: 84
-            renderType: Text.NativeRendering
             rotation: -90
             text: users.current_user
+            withText: true
           }
 
           MouseArea {
@@ -95,17 +93,15 @@ ShellRoot {
           height: sessionText.contentWidth
           width: sessionText.contentHeight
 
-          Text {
+          Gen.BarCode {
             id: sessionText
 
             anchors.centerIn: parent
             color: Dat.Colors.on_background
-            font.bold: true
-            font.family: "Libre Barcode 128 TEXT"
             font.pointSize: 84
-            renderType: Text.NativeRendering
             rotation: 90
             text: sessions.current_session_name
+            withText: true
           }
 
           MouseArea {
@@ -176,16 +172,13 @@ ShellRoot {
               }
             }
 
-            Text {
+            Gen.BarCode {
               id: fakePasw
 
               anchors.centerIn: parent
               anchors.verticalCenterOffset: contentHeight * 0.2
               color: Dat.Colors.on_background
-              font.bold: true
-              font.family: "Libre Barcode 128"
               font.pointSize: 22
-              renderType: Text.NativeRendering
               text: sessionLock.fakeBuffer
             }
           }
@@ -240,6 +233,9 @@ ShellRoot {
     function onAuthMessage(message, error, responseRequired, echoResponse) {
       console.log("[MSG] " + message);
       console.log("[ERR] " + error);
+      console.log("[RESREQ] " + responseRequired);
+      console.log("[ECHO] " + echoResponse);
+
       if (responseRequired) {
         Greetd.respond(sessionLock.passwdBuffer);
         sessionLock.passwdBuffer = "";
@@ -249,7 +245,7 @@ ShellRoot {
 
     function onReadyToLaunch() {
       sessionLock.locked = false;
-      console.log("[GREETD EXEC]" + sessions.current_session);
+      console.log("[GREETD EXEC] " + sessions.current_session);
       Greetd.launch(sessions.current_session.split(" "));
     }
 

@@ -8,5 +8,6 @@ in
     modules = [
       {nixpkgs.overlays = overlays;}
       ./configuration.nix
+      ../../../../nixosModules/exported/kurukuruDM.nix
     ];
   }

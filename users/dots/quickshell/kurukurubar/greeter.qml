@@ -132,10 +132,18 @@ ShellRoot {
 
       Rectangle {
         anchors.centerIn: parent
+        clip: true
         color: Dat.Colors.surface
         height: 40
         radius: this.width
         width: inputRow.width
+
+        Behavior on width {
+          NumberAnimation {
+            duration: Dat.MaterialEasing.emphasizedTime
+            easing.bezierCurve: Dat.MaterialEasing.emphasized
+          }
+        }
 
         Item {
           anchors.fill: parent
@@ -229,6 +237,26 @@ ShellRoot {
                   NumberAnimation {
                     duration: lockRotatetimer.interval
                     easing.type: Easing.Linear
+                  }
+                }
+
+                SequentialAnimation {
+                  id: lockErrAnimation
+
+                  PropertyAction {
+                    property: "color"
+                    target: lockIcon
+                    value: Dat.Colors.error
+                  }
+
+                  PauseAnimation {
+                    duration: 240
+                  }
+
+                  PropertyAction {
+                    property: "color"
+                    target: lockIcon
+                    value: Dat.Colors.on_error
                   }
                 }
 

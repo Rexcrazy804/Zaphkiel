@@ -42,11 +42,21 @@ in {
     };
   };
 
-  programs.kurukuruDM = {
+  programs.kurukuruDM = let
+    # lets me just read my uwsm env stuff for the env vars
+    # largely just to set my cursor lol
+    uwuToHypr = pkgs.runCommandLocal "quick" {} ''
+      awk '/^export/ { split($2, ARR, "="); print "env = "ARR[1]","ARR[2]}' ${../../users/dots/uwsm/env} > $out
+    '';
+  in {
     enable = true;
     settings = {
       wallpaper = config.programs.matugen.wallpaper;
       instantAuth = true;
+      extraConfig = ''
+        monitor = eDP-1, preferred, auto, 1.25
+        source = ${uwuToHypr}
+      '';
     };
   };
 

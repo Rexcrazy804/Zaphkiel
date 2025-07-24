@@ -105,7 +105,8 @@ ShellRoot {
           color: Dat.Colors.on_background
           font.pointSize: 69
           rotation: 90
-          text: sessions.current_session_name
+          // fooking 39 varient doesnt support () brackets
+          text: sessions.current_session_name.replace(/\(|\)/g, "")
           withText: true
         }
 

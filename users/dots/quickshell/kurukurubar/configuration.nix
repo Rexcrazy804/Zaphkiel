@@ -51,7 +51,7 @@
     settings = {
       wallpaper = pkgs.booru-images.i2768802;
       default_user = "rexies";
-      default_session = "Sway";
+      default_session = "sway";
     };
   };
 }

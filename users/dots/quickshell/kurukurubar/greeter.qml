@@ -14,13 +14,12 @@ import qs.Generics as Gen
 ShellRoot {
   id: root
 
-  readonly property string instant_auth: Quickshell.env("KURU_DM_INSTANTAUTH")
-  readonly property string preferred_session_name: Quickshell.env("KURU_DM_PREF_SES")
-
   // instant_auth starts authentication instantly, great for finger print login
   // without having to hit enter (sumee's major grevience)
+  readonly property string instant_auth: Quickshell.env("KURU_DM_INSTANTAUTH")
+  readonly property string preferred_session: Quickshell.env("KURU_DM_PREF_SES")
   readonly property string preferred_user: Quickshell.env("KURU_DM_PREF_USR")
-  readonly property string sessions: Quickshell.env("KURU_DM_SESSIONS")
+  readonly property string sessions: Quickshell.env("KURU_DM_SESSIONS") ?? console.log("[ERROR] SESSIONS DIR EMPTY")
   readonly property string wallpaper_path: Quickshell.env("KURU_DM_WALLPATH")
 
   function authenticate() {
@@ -392,12 +391,12 @@ ShellRoot {
       onRead: data => {
         console.log("[SESSION] " + data);
         const parsedData = data.split(",");
-        if (parsedData[0] == root.preferred_session_name) {
-          console.log("[INFO] Found preferred session " + root.preferred_session_name);
+        if (parsedData[0] == root.preferred_session) {
+          console.log("[INFO] Found preferred session " + root.preferred_session);
           sessions.current_ses_index = sessions.session_names.length;
         }
-        sessions.session_names.push(parsedData[0]);
-        sessions.session_execs.push(parsedData[1]);
+        sessions.session_names.push(parsedData[1]);
+        sessions.session_execs.push(parsedData[2]);
       }
     }
 

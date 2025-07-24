@@ -6,15 +6,13 @@
 }: let
   inherit (lib) concatStringsSep mapAttrs attrValues mkEnableOption;
   inherit (lib) mkOption mkIf strings mkPackageOption optionalAttrs;
-  inherit (lib) filter filterAttrs attrNames elemAt pipe flatten map splitString;
-  inherit (lib) hasPrefix removePrefix hasSuffix readFile;
+  inherit (lib) filterAttrs attrNames elemAt;
   inherit (lib.types) path lines enum nullOr;
-  inherit (lib.filesystem) listFilesRecursive;
-  inherit (config.services.displayManager) sessionPackages;
+  inherit (config.services.displayManager) sessionData defaultSession;
 
   kuruOpts =
     {
-      SESSIONS = concatStringsSep ":" sessionPackages;
+      SESSIONS = sessionData.desktops;
       WALLPATH = cfg.settings.wallpaper;
       PREF_USR = cfg.settings.default_user;
       PREF_SES = cfg.settings.default_session;
@@ -22,17 +20,6 @@
     // (optionalAttrs cfg.settings.instantAuth {
       INSTANTAUTH = "1";
     });
-
-  desktopSessionNames = pipe sessionPackages [
-    (map (x: listFilesRecursive x))
-    flatten
-    (filter (x: hasSuffix ".desktop" x))
-    (map (x: readFile x))
-    (map (x: splitString "\n" x))
-    (map (x: filter (y: hasPrefix "Name=" y) x))
-    flatten
-    (map (x: removePrefix "Name=" x))
-  ];
 
   optsToString = concatStringsSep " " (attrValues (mapAttrs (k: v: "KURU_DM_${k}=\"${v}\"") kuruOpts));
   baseConfig = ''
@@ -82,10 +69,14 @@ in {
         description = "default selected user";
       };
       default_session = mkOption {
-        type = enum desktopSessionNames;
-        default = elemAt desktopSessionNames 0;
-        description = "full name of session as in the DESKTOP ENTRY";
-        example = "Hyprland (UWSM)";
+        type = enum sessionData.sessionNames;
+        default =
+          if defaultSession != null
+          then defaultSession
+          else elemAt sessionData.sessionNames 0;
+        description = "session name for default session set as null for list";
+        example = "hyprland-uwsm";
+        apply = opt: opt + ".desktop";
       };
       colorsQML = mkOption {
         type = nullOr path;

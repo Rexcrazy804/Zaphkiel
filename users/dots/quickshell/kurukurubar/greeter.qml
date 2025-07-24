@@ -255,7 +255,7 @@ ShellRoot {
   Process {
     id: users
 
-    property string current_user: users_list[current_user_index]
+    property string current_user: users_list[current_user_index] ?? ""
     property int current_user_index: 0
     property list<string> users_list: []
 
@@ -288,8 +288,8 @@ ShellRoot {
     id: sessions
 
     property int current_ses_index: 0
-    property string current_session: session_execs[current_ses_index]
-    property string current_session_name: session_names[current_ses_index]
+    property string current_session: session_execs[current_ses_index] ?? "hyprland"
+    property string current_session_name: session_names[current_ses_index]  ?? "Hyrpland"
     property list<string> session_execs: []
     property list<string> session_names: []
 

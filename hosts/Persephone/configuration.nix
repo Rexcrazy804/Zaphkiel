@@ -24,7 +24,7 @@ in {
 
     programs = {
       lanzaboote.enable = true;
-      sddm-custom-theme.enable = true;
+      sddm-custom-theme.enable = false;
       obs-studio.enable = false;
       steam.enable = false;
       hyprland.enable = true;
@@ -39,6 +39,15 @@ in {
         exitNode.enable = false;
       };
       openssh.enable = true;
+    };
+  };
+
+  programs.kurukuruDM = {
+    enable = true;
+    settings = {
+      wallpaper = config.programs.matugen.wallpaper;
+      # TODO fix this .w.
+      instantAuth = false;
     };
   };
 

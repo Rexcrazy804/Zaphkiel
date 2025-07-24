@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (lib) concatStringsSep mapAttrs attrValues mkEnableOption mkOption mkIf strings mkPackageOption optionalAttrs filterAttrs attrNames elemAt;
-  inherit (lib.types) path lines singleLineStr enum;
+  inherit (lib.types) path lines singleLineStr enum nullOr;
 
   kuruOpts =
     {
@@ -43,7 +43,11 @@ in {
         default = "kurukurubar-unstable";
       }
       // {
-        apply = opt: opt.override {asGreeter = true;};
+        apply = opt:
+          opt.override {
+            asGreeter = true;
+            customColors = cfg.settings.colorsQML;
+          };
       };
     settings = {
       wallpaper = mkOption {
@@ -66,6 +70,11 @@ in {
         default = "";
         description = "full name of session as in the DESKTOP ENTRY";
         example = "Hyprland (UWSM)";
+      };
+      colorsQML = mkOption {
+        type = nullOr path;
+        default = null;
+        description = "A qml file following the Data/Colors.qml format of kurukurubar";
       };
     };
   };

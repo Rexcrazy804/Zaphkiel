@@ -15,6 +15,9 @@
   nerd-fonts,
   configPath,
   asGreeter ? false,
+  # MUST BE A QML FILE
+  # replaces Data/Colors.qml
+  customColors ? null,
 }: let
   qtDeps = [
     kdePackages.qtbase
@@ -35,19 +38,20 @@
     ];
   };
 
-  greeterConf = runCommandLocal "quick" {} ''
-    mkdir $out
-    cd $out
-    cp -rp ${configPath}/* .
-    chmod u+w *.qml
-    rm shell.qml
-    mv greeter.qml shell.qml
-  '';
-
-  qsConfig =
-    if asGreeter
-    then greeterConf
-    else qmlPath;
+  qsConfig = runCommandLocal "quick" {} (''
+      mkdir $out
+      cd $out
+      cp -rp ${configPath}/* .
+    ''
+    + (lib.optionalString asGreeter ''
+      chmod u+w *.qml
+      rm shell.qml
+      mv greeter.qml shell.qml
+    '')
+    + (lib.optionalString (customColors != null) ''
+      chmod u+rw ./Data/Colors.qml
+      cp ${customColors} ./Data/Colors.qml
+    ''));
 in
   symlinkJoin {
     pname = "kurukurubar";

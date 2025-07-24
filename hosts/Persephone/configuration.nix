@@ -52,6 +52,7 @@ in {
     enable = true;
     settings = {
       wallpaper = config.programs.matugen.wallpaper;
+      colorsQML = config.programs.matugen.theme.files + "/quickshell-colors.qml";
       instantAuth = true;
       extraConfig = ''
         monitor = eDP-1, preferred, auto, 1.25

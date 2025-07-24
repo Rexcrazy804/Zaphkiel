@@ -60,9 +60,17 @@ in {
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.hyprland}/bin/hyprland --config ${hyprConf}";
+          command = "${pkgs.dbus}/bin/dbus-run-session ${pkgs.hyprland}/bin/hyprland --config ${hyprConf}";
         };
       };
     };
+
+    # https://github.com/NixOS/nixpkgs/issues/357201
+    security.pam.services.greetd.text = ''
+      auth      substack      login
+      account   include       login
+      password  substack      login
+      session   include       login
+    '';
   };
 }

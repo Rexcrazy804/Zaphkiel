@@ -14,10 +14,12 @@ import qs.Generics as Gen
 ShellRoot {
   id: root
 
-  // starts authentication instantly, great for finger print login without having to
-  // hit enter (sumee's major grevience)
-  // TODO preferred session and preferred user
   readonly property string instant_auth: Quickshell.env("KURU_DM_INSTANTAUTH")
+  readonly property string preferred_session_name: Quickshell.env("KURU_DM_PREF_SES")
+
+  // instant_auth starts authentication instantly, great for finger print login
+  // without having to hit enter (sumee's major grevience)
+  readonly property string preferred_user: Quickshell.env("KURU_DM_PREF_USR")
   readonly property string sessions: Quickshell.env("KURU_DM_SESSIONS")
   readonly property string wallpaper_path: Quickshell.env("KURU_DM_WALLPATH")
 
@@ -117,30 +119,14 @@ ShellRoot {
         }
       }
 
-      Item {
-        id: fakePaswContainer
+      Gen.BarCode {
+        id: fakePasw
 
-        clip: true
-        height: fakePasw.contentWidth
-
-        anchors {
-          left: userRect.right
-          leftMargin: 10
-          right: sessionRect.left
-          rightMargin: anchors.leftMargin
-          top: parent.bottom
-          topMargin: -10
-        }
-
-        Gen.BarCode {
-          id: fakePasw
-
-          anchors.horizontalCenter: parent.horizontalCenter
-          anchors.top: parent.top
-          color: Dat.Colors.on_background
-          font.pointSize: 84
-          text: sessionLock.fakeBuffer
-        }
+        anchors.left: parent.left
+        anchors.top: parent.top
+        color: Dat.Colors.on_background
+        font.pointSize: 48
+        text: sessionLock.fakeBuffer
       }
 
       Rectangle {
@@ -285,6 +271,10 @@ ShellRoot {
     stdout: SplitParser {
       onRead: data => {
         console.log("[USERS] " + data);
+        if (data == root.preferred_user) {
+          console.log("[INFO] Found preferred user " + root.preferred_user);
+          users.current_user_index = users.users_list.length;
+        }
         users.users_list.push(data);
       }
     }
@@ -320,6 +310,10 @@ ShellRoot {
       onRead: data => {
         console.log("[SESSION] " + data);
         const parsedData = data.split(",");
+        if (parsedData[0] == root.preferred_session_name) {
+          console.log("[INFO] Found preferred session " + root.preferred_session_name);
+          sessions.current_ses_index = sessions.session_names.length;
+        }
         sessions.session_names.push(parsedData[0]);
         sessions.session_execs.push(parsedData[1]);
       }

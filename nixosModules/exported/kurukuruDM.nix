@@ -4,13 +4,15 @@
   lib,
   ...
 }: let
-  inherit (lib) concatStringsSep mapAttrs attrValues mkEnableOption mkOption mkIf strings mkPackageOption optionalAttrs;
-  inherit (lib.types) path lines;
+  inherit (lib) concatStringsSep mapAttrs attrValues mkEnableOption mkOption mkIf strings mkPackageOption optionalAttrs filterAttrs attrNames elemAt;
+  inherit (lib.types) path lines singleLineStr enum;
 
   kuruOpts =
     {
       SESSIONS = concatStringsSep ":" config.services.displayManager.sessionPackages;
       WALLPATH = cfg.settings.wallpaper;
+      PREF_USR = cfg.settings.default_user;
+      PREF_SES = cfg.settings.default_session;
     }
     // (optionalAttrs cfg.settings.instantAuth {
       INSTANTAUTH = "1";
@@ -31,6 +33,8 @@
     cfg.settings.extraConfig
   ]);
   cfg = config.programs.kurukuruDM;
+
+  normalUsers = attrNames (filterAttrs (k: v: v.isNormalUser) config.users.users);
 in {
   options.programs.kurukuruDM = {
     enable = mkEnableOption "kurukuru display manager";
@@ -51,6 +55,17 @@ in {
         type = lines;
         default = "";
         description = "extra configuration appended to containerized hyprland instance";
+      };
+      default_user = mkOption {
+        type = enum normalUsers;
+        default = elemAt normalUsers 0;
+        description = "default selected user";
+      };
+      default_session = mkOption {
+        type = singleLineStr;
+        default = "";
+        description = "full name of session as in the DESKTOP ENTRY";
+        example = "Hyprland (UWSM)";
       };
     };
   };

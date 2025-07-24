@@ -48,6 +48,10 @@
   nixpkgs.hostPlatform = "x86_64-linux";
   programs.kurukuruDM = {
     enable = true;
-    settings.wallpaper = pkgs.booru-images.i2768802;
+    settings = {
+      wallpaper = pkgs.booru-images.i2768802;
+      default_user = "rexies";
+      default_session = "Sway";
+    };
   };
 }

@@ -46,8 +46,7 @@ in {
     enable = true;
     settings = {
       wallpaper = config.programs.matugen.wallpaper;
-      # TODO fix this .w.
-      instantAuth = false;
+      instantAuth = true;
     };
   };
 

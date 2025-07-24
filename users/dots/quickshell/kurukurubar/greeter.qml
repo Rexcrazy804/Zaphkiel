@@ -240,7 +240,12 @@ ShellRoot {
         Greetd.respond(sessionLock.passwdBuffer);
         sessionLock.passwdBuffer = "";
         sessionLock.fakeBuffer = "";
+        return;
       }
+
+      // finger print segs
+      // https://github.com/rharish101/ReGreet/blob/f74b193adbae9502b6aa9eafa810a06c5df90529/src/gui/model.rs#L288
+      Greetd.respond("");
     }
 
     function onReadyToLaunch() {

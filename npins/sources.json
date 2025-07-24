@@ -170,16 +170,15 @@
     "quickshell": {
       "type": "Git",
       "repository": {
-        "type": "Forgejo",
-        "server": "https://git.outfoxxed.me/",
-        "owner": "quickshell",
+        "type": "GitHub",
+        "owner": "Rexcrazy804",
         "repo": "quickshell"
       },
-      "branch": "master",
+      "branch": "greetd-fix",
       "submodules": false,
-      "revision": "759bd721dfd38e2ce02048f378ee025bcb175f93",
-      "url": "https://git.outfoxxed.me/quickshell/quickshell/archive/759bd721dfd38e2ce02048f378ee025bcb175f93.tar.gz",
-      "hash": "sha256-GjN9BXxWMlmIAAcKYrsrEPVT/cJkWieG3YOJG7sJuGk="
+      "revision": "efc949fe8e1788b46379920601791e52b5e7d29b",
+      "url": "https://github.com/Rexcrazy804/quickshell/archive/efc949fe8e1788b46379920601791e52b5e7d29b.tar.gz",
+      "hash": "sha256-oD4bfIvU3sA1WZFY+WL2gHRWGzslXkitqe7gEWsPX9A="
     },
     "rosep-fish": {
       "type": "Git",

@@ -62,53 +62,83 @@ ShellRoot {
             position: 1.0
           }
         }
+      }
 
-        Item {
-          anchors.bottom: parent.bottom
-          anchors.left: parent.left
-          height: userText.contentWidth
-          width: userText.contentHeight
+      Item {
+        id: userRect
 
-          Gen.BarCode {
-            id: userText
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        height: userText.contentWidth
+        width: userText.contentHeight
 
-            anchors.centerIn: parent
-            color: Dat.Colors.on_background
-            font.pointSize: 84
-            rotation: -90
-            text: users.current_user
-            withText: true
-          }
+        Gen.BarCode {
+          id: userText
 
-          MouseArea {
-            anchors.fill: parent
-
-            onClicked: users.next()
-          }
+          anchors.centerIn: parent
+          color: Dat.Colors.on_background
+          font.pointSize: 69
+          rotation: -90
+          text: users.current_user
+          withText: true
         }
 
-        Item {
-          anchors.bottom: parent.bottom
-          anchors.right: parent.right
-          height: sessionText.contentWidth
-          width: sessionText.contentHeight
+        MouseArea {
+          anchors.fill: parent
 
-          Gen.BarCode {
-            id: sessionText
+          onClicked: users.next()
+        }
+      }
 
-            anchors.centerIn: parent
-            color: Dat.Colors.on_background
-            font.pointSize: 84
-            rotation: 90
-            text: sessions.current_session_name
-            withText: true
-          }
+      Item {
+        id: sessionRect
 
-          MouseArea {
-            anchors.fill: parent
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        height: sessionText.contentWidth
+        width: sessionText.contentHeight
 
-            onClicked: sessions.next()
-          }
+        Gen.BarCode {
+          id: sessionText
+
+          anchors.centerIn: parent
+          color: Dat.Colors.on_background
+          font.pointSize: 69
+          rotation: 90
+          text: sessions.current_session_name
+          withText: true
+        }
+
+        MouseArea {
+          anchors.fill: parent
+
+          onClicked: sessions.next()
+        }
+      }
+
+      Item {
+        id: fakePaswContainer
+
+        clip: true
+        height: fakePasw.contentWidth
+
+        anchors {
+          left: userRect.right
+          leftMargin: 10
+          right: sessionRect.left
+          rightMargin: anchors.leftMargin
+          top: parent.bottom
+          topMargin: -10
+        }
+
+        Gen.BarCode {
+          id: fakePasw
+
+          anchors.horizontalCenter: parent.horizontalCenter
+          anchors.top: parent.top
+          color: Dat.Colors.on_background
+          font.pointSize: 84
+          text: sessionLock.fakeBuffer
         }
       }
 
@@ -159,31 +189,8 @@ ShellRoot {
           height: parent.height
 
           Item {
-            Layout.fillHeight: true
-            Layout.leftMargin: 15
-            clip: true
-            implicitWidth: fakePasw.contentWidth
-            visible: implicitWidth != 0
+            id: lockContainer
 
-            Behavior on implicitWidth {
-              NumberAnimation {
-                duration: Dat.MaterialEasing.emphasizedTime
-                easing.bezierCurve: Dat.MaterialEasing.emphasized
-              }
-            }
-
-            Gen.BarCode {
-              id: fakePasw
-
-              anchors.centerIn: parent
-              anchors.verticalCenterOffset: contentHeight * 0.2
-              color: Dat.Colors.on_background
-              font.pointSize: 22
-              text: sessionLock.fakeBuffer
-            }
-          }
-
-          Item {
             Layout.fillHeight: true
             implicitWidth: height
 
@@ -294,7 +301,7 @@ ShellRoot {
 
     property int current_ses_index: 0
     property string current_session: session_execs[current_ses_index] ?? "hyprland"
-    property string current_session_name: session_names[current_ses_index]  ?? "Hyrpland"
+    property string current_session_name: session_names[current_ses_index] ?? "Hyrpland"
     property list<string> session_execs: []
     property list<string> session_names: []
 

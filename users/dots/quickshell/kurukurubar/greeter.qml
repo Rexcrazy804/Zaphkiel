@@ -41,6 +41,7 @@ ShellRoot {
     property string fakeBuffer: ""
     readonly property list<string> kokomi: ["k", "o", "k", "o", "m", "i"]
     property string passwdBuffer: ""
+    readonly property bool unlocking: Greetd.state == GreetdState.Authenticating
 
     locked: true
 
@@ -169,52 +170,105 @@ ShellRoot {
           }
         }
 
-        RowLayout {
-          id: inputRow
+        MouseArea {
+          id: inputMArea
 
-          anchors.centerIn: parent
-          height: parent.height
+          anchors.fill: parent
+          hoverEnabled: true
 
-          Item {
-            id: lockContainer
+          RowLayout {
+            id: inputRow
 
-            Layout.fillHeight: true
-            implicitWidth: height
+            anchors.centerIn: parent
+            height: parent.height
 
-            Gen.MouseArea {
-              anchors.fill: parent
+            Item {
+              Layout.fillHeight: true
+              implicitWidth: this.height
+              visible: inputMArea.containsMouse && !sessionLock.unlocking
 
-              onClicked: root.authenticate()
-            }
+              Gen.MouseArea {
+                anchors.fill: parent
+                anchors.margins: 4
 
-            Gen.MatIcon {
-              anchors.centerIn: parent
-              color: Dat.Colors.on_surface
-              fill: Greetd.state == GreetdState.Authenticating
-              font.pointSize: 18
-              icon: "lock"
-
-              Behavior on rotation {
-                NumberAnimation {
-                  duration: lockRotatetimer.interval
-                  easing.type: Easing.Linear
-                }
+                onClicked: Dat.SessionActions.poweroff()
               }
 
-              Timer {
-                id: lockRotatetimer
+              Gen.MatIcon {
+                anchors.centerIn: parent
+                antialiasing: true
+                color: lockIcon.color
+                fill: 1
+                font.pointSize: 16
+                icon: "mode_off_on"
+              }
+            }
 
-                interval: 500
-                repeat: true
-                running: Greetd.state == GreetdState.Authenticating
-                triggeredOnStart: true
+            Item {
+              id: lockContainer
 
-                onRunningChanged: if (parent.rotation < 180) {
-                  parent.rotation = 360;
-                } else {
-                  parent.rotation = 0;
+              Layout.fillHeight: true
+              implicitWidth: height
+
+              Gen.MouseArea {
+                anchors.fill: parent
+
+                onClicked: root.authenticate()
+              }
+
+              Gen.MatIcon {
+                id: lockIcon
+
+                anchors.centerIn: parent
+                color: Dat.Colors.on_surface
+                fill: sessionLock.unlocking
+                font.pointSize: 18
+                icon: "lock"
+
+                Behavior on rotation {
+                  NumberAnimation {
+                    duration: lockRotatetimer.interval
+                    easing.type: Easing.Linear
+                  }
                 }
-                onTriggered: parent.rotation += 50
+
+                Timer {
+                  id: lockRotatetimer
+
+                  interval: 500
+                  repeat: true
+                  running: sessionLock.unlocking
+                  triggeredOnStart: true
+
+                  onRunningChanged: if (parent.rotation < 180) {
+                    parent.rotation = 360;
+                  } else {
+                    parent.rotation = 0;
+                  }
+                  onTriggered: parent.rotation += 50
+                }
+              }
+            }
+
+            Item {
+              Layout.fillHeight: true
+              implicitWidth: this.height
+              visible: inputMArea.containsMouse && !sessionLock.unlocking
+
+              Gen.MouseArea {
+                anchors.fill: parent
+                anchors.margins: 4
+
+                onClicked: Dat.SessionActions.reboot()
+              }
+
+              Gen.MatIcon {
+                anchors.centerIn: parent
+                antialiasing: true
+                color: lockIcon.color
+                fill: 1
+                font.pointSize: 16
+                icon: "restart_alt"
               }
             }
           }

@@ -50,6 +50,7 @@
     enable = true;
     settings = {
       # wallpaper = pkgs.booru-images.i2768802;
+      instantAuth = false;
       default_user = "rexies";
       default_session = "sway";
     };

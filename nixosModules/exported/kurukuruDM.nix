@@ -6,7 +6,7 @@
 }: let
   inherit (lib) concatStringsSep mapAttrs attrValues mkEnableOption;
   inherit (lib) mkOption mkIf strings mkPackageOption optionalAttrs;
-  inherit (lib) filterAttrs attrNames elemAt;
+  inherit (lib) filterAttrs attrNames elemAt warn length;
   inherit (lib.types) path lines enum nullOr;
   inherit (config.services.displayManager) sessionData defaultSession;
 
@@ -67,11 +67,17 @@ in {
         default = "";
         description = "extra configuration appended to containerized hyprland instance";
       };
-      default_user = mkOption {
-        type = enum normalUsers;
-        default = elemAt normalUsers 0;
-        description = "default selected user";
-      };
+      default_user = let
+        true_def_usr = elemAt normalUsers 0;
+      in
+        mkOption {
+          type = enum normalUsers;
+          description = "default selected user";
+          default =
+            if (cfg.settings.instantAuth && (length normalUsers) > 1)
+            then warn "kurukuruDM.settings.instantAuth enabled without specifying settings.default_user" true_def_usr
+            else true_def_usr;
+        };
       default_session = mkOption {
         type = enum sessionData.sessionNames;
         default =

@@ -49,7 +49,7 @@
   programs.kurukuruDM = {
     enable = true;
     settings = {
-      wallpaper = pkgs.booru-images.i2768802;
+      # wallpaper = pkgs.booru-images.i2768802;
       default_user = "rexies";
       default_session = "sway";
     };

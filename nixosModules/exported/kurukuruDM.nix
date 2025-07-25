@@ -6,7 +6,7 @@
 }: let
   inherit (lib) concatStringsSep mapAttrs attrValues mkEnableOption;
   inherit (lib) mkOption mkIf strings mkPackageOption optionalAttrs;
-  inherit (lib) filterAttrs attrNames elemAt warn length;
+  inherit (lib) filterAttrs attrNames elemAt warn length optional;
   inherit (lib.types) path lines enum nullOr;
   inherit (config.services.displayManager) sessionData defaultSession;
 
@@ -97,6 +97,11 @@ in {
   };
 
   config = mkIf cfg.enable {
+    warnings = optional (cfg.settings.instantAuth && !config.services.fprintd.enable) ''
+      `programs.kurukuruDM.settings.instantAuth` enabled without fprintd service.
+      This option is useless and counter intuitive if not used with finger print unlock
+    '';
+
     services.greetd = {
       enable = true;
       settings = {

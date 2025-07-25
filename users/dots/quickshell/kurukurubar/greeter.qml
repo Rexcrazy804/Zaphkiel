@@ -119,14 +119,42 @@ ShellRoot {
         }
       }
 
-      Gen.BarCode {
-        id: fakePasw
+      ListView {
+        id: fakeInputList
 
         anchors.left: parent.left
+        anchors.right: parent.right
         anchors.top: parent.top
-        color: Dat.Colors.on_background
-        font.pointSize: 48
-        text: sessionLock.fakeBuffer
+        height: 100
+        orientation: ListView.Horizontal
+
+        add: Transition {
+          NumberAnimation {
+            duration: Dat.MaterialEasing.standardDecelTime
+            easing.bezierCurve: Dat.MaterialEasing.standardDecel
+            from: -100
+            property: "y"
+            to: 0
+          }
+        }
+        delegate: Gen.BarCode {
+          required property string modelData
+
+          color: Dat.Colors.on_background
+          font.pointSize: 48
+          text: modelData
+        }
+        model: ScriptModel {
+          values: sessionLock.fakeBuffer.split("")
+        }
+        remove: Transition {
+          NumberAnimation {
+            duration: Dat.MaterialEasing.standardAccelTime
+            easing.bezierCurve: Dat.MaterialEasing.standardAccel
+            property: "y"
+            to: -100
+          }
+        }
       }
 
       Rectangle {
@@ -389,8 +417,8 @@ ShellRoot {
     }
     stdout: SplitParser {
       onRead: data => {
-        console.log("[SESSION] " + data);
         const parsedData = data.split(",");
+        console.log("[SESSIONS] " + parsedData[2]);
         if (parsedData[0] == root.preferred_session) {
           console.log("[INFO] Found preferred session " + root.preferred_session);
           sessions.current_ses_index = sessions.session_names.length;

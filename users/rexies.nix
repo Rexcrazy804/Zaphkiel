@@ -12,8 +12,7 @@ in {
   users.users.${username} = {
     inherit description;
 
-    # its fish, but through bash
-    # shell = pkgs.nushell;
+    shell = pkgs.fish;
     isNormalUser = true;
     extraGroups = ["networkmanager" "wheel" "multimedia"];
     hashedPasswordFile = config.age.secrets.rexiesPass.path;

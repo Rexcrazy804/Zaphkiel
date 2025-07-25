@@ -54,7 +54,11 @@ in {
       };
     settings = {
       wallpaper = mkOption {
-        type = path;
+        type = nullOr path;
+        default = pkgs.fetchurl {
+          url = "https://cdn.donmai.us/original/42/64/426488004c63005100d07cec1c3eb074.jpg";
+          hash = "sha256-fht2+m63+hQ/nRAsXfyBKzHPq+lMIiAtnd50+v52mLo=";
+        };
         description = "Wallpaper path";
       };
       instantAuth = mkEnableOption "instantAuth (ideal for finnger print)";

@@ -103,13 +103,38 @@ ShellRoot {
         Gen.BarCode {
           id: sessionText
 
-          anchors.centerIn: parent
+          anchors.horizontalCenter: parent.horizontalCenter
           color: Dat.Colors.on_background
           font.pointSize: 69
           rotation: 90
           // fooking 39 varient doesnt support () brackets
           text: sessions.current_session_name.replace(/\(|\)/g, "")
           withText: true
+
+          Behavior on text {
+            SequentialAnimation {
+              NumberAnimation {
+                duration: Dat.MaterialEasing.standardAccelTime
+                easing.bezierCurve: Dat.MaterialEasing.standardAccel
+                property: "x"
+                target: sessionText
+                to: sessionText.contentHeight
+              }
+
+              PropertyAction {
+                property: "text"
+                target: sessionText
+              }
+
+              NumberAnimation {
+                duration: Dat.MaterialEasing.standardDecelTime
+                easing.bezierCurve: Dat.MaterialEasing.standardDecel
+                property: "x"
+                target: sessionText
+                to: 0
+              }
+            }
+          }
         }
 
         MouseArea {

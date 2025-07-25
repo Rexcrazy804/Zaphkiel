@@ -13,7 +13,7 @@
   material-symbols,
   makeFontsConf,
   nerd-fonts,
-  configPath,
+  configPath ? ../users/dots/quickshell/kurukurubar,
   asGreeter ? false,
   # MUST BE A QML FILE
   # replaces Data/Colors.qml

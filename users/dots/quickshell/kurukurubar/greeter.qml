@@ -103,7 +103,7 @@ ShellRoot {
         Gen.BarCode {
           id: sessionText
 
-          anchors.horizontalCenter: parent.horizontalCenter
+          anchors.centerIn: parent
           color: Dat.Colors.on_background
           font.pointSize: 69
           rotation: 90
@@ -111,30 +111,31 @@ ShellRoot {
           text: sessions.current_session_name.replace(/\(|\)/g, "")
           withText: true
 
-          Behavior on text {
-            SequentialAnimation {
-              NumberAnimation {
-                duration: Dat.MaterialEasing.standardAccelTime
-                easing.bezierCurve: Dat.MaterialEasing.standardAccel
-                property: "x"
-                target: sessionText
-                to: sessionText.contentHeight
-              }
-
-              PropertyAction {
-                property: "text"
-                target: sessionText
-              }
-
-              NumberAnimation {
-                duration: Dat.MaterialEasing.standardDecelTime
-                easing.bezierCurve: Dat.MaterialEasing.standardDecel
-                property: "x"
-                target: sessionText
-                to: 0
-              }
-            }
-          }
+          // whoopsie does not work for now
+          // Behavior on text {
+          //   SequentialAnimation {
+          //     NumberAnimation {
+          //       duration: Dat.MaterialEasing.standardAccelTime
+          //       easing.bezierCurve: Dat.MaterialEasing.standardAccel
+          //       property: "x"
+          //       target: sessionText
+          //       to: sessionText.contentHeight
+          //     }
+          //
+          //     PropertyAction {
+          //       property: "text"
+          //       target: sessionText
+          //     }
+          //
+          //     NumberAnimation {
+          //       duration: Dat.MaterialEasing.standardDecelTime
+          //       easing.bezierCurve: Dat.MaterialEasing.standardDecel
+          //       property: "x"
+          //       target: sessionText
+          //       to: 0
+          //     }
+          //   }
+          // }
         }
 
         MouseArea {

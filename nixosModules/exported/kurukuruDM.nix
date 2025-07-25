@@ -27,8 +27,8 @@
     exec-once = ${optsToString} ${cfg.package}/bin/kurukurubar && pkill Hyprland
 
     misc {
-      force_default_wallpaper = 1 # Set to 0 or 1 to disable the anime mascot wallpapers
-      disable_hyprland_logo = true # If true disables the random hyprland logo / anime girl background. :(
+      force_default_wallpaper = 1
+      disable_hyprland_logo = true
     }
   '';
   hyprConf = pkgs.writeText "hyprland.conf" (strings.concatLines [

@@ -56,6 +56,8 @@ in {
       instantAuth = true;
       extraConfig = ''
         monitor = eDP-1, preferred, auto, 1.25
+        # night light
+        exec-once = fish -c 'set -l hour (date +%H); if test $hour -ge 17 || test $hour -le  7; systemctl --user start hyprsunset.service; end'
         source = ${uwuToHypr}
       '';
     };

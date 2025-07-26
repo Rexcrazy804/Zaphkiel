@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (config.networking) hostName;
-  rebuildCommand = "sudo nixos-rebuild --log-format bar --no-reexec --file ~/nixos/default.nix -A ${hostName}";
+  rebuildCommand = "sudo nixos-rebuild --log-format bar --no-reexec --file ~/nixos/rebuild.nix -A ${hostName}";
   #         !!!you found the fish!!!
   #   ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠖⠒⠲⠤⣤⣀⠀⠀⠀⢀⣀⣤⠤⠖⠒⠢⢤⡀⠀⠀⠀⠀⠀⠀⠀⠀
   #   ⠀⠀⠀⠀⠀⠀⣶⣄⠏⡠⠊⠀⠀⠈⠁⠚⢍⠲⠖⡩⠓⠉⠀⠀⠀⠑⠌⠳⣠⣶⠀⠀⠀⠀⠀⠀

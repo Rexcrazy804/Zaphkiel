@@ -1,3 +1,5 @@
+// why is it in a single file?
+// I am the lazy, I should modularize this eventually
 pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
@@ -67,22 +69,54 @@ ShellRoot {
       }
 
       Item {
-        id: userRect
-
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         height: userText.contentWidth
         width: userText.contentHeight
 
-        Gen.BarCode {
-          id: userText
+        Item {
+          id: userRect
 
-          anchors.centerIn: parent
-          color: Dat.Colors.on_background
-          font.pointSize: 69
-          rotation: -90
-          text: users.current_user
-          withText: true
+          height: parent.height
+          width: parent.width
+
+          Gen.BarCode {
+            id: userText
+
+            anchors.centerIn: parent
+            color: Dat.Colors.on_background
+            font.pointSize: 69
+            rotation: -90
+            text: users.current_user
+            withText: true
+
+            // TODO make this seq animation a generic
+            // A really need a lesson on DRY >.<
+            Behavior on text {
+              SequentialAnimation {
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.standardAccelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standardAccel
+                  property: "x"
+                  target: userRect
+                  to: -userText.contentHeight
+                }
+
+                PropertyAction {
+                  property: "text"
+                  target: userText
+                }
+
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.standardDecelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standardDecel
+                  property: "x"
+                  target: userRect
+                  to: 0
+                }
+              }
+            }
+          }
         }
 
         MouseArea {
@@ -93,49 +127,53 @@ ShellRoot {
       }
 
       Item {
-        id: sessionRect
-
         anchors.bottom: parent.bottom
         anchors.right: parent.right
         height: sessionText.contentWidth
         width: sessionText.contentHeight
 
-        Gen.BarCode {
-          id: sessionText
+        Item {
+          id: sessionRect
 
-          anchors.centerIn: parent
-          color: Dat.Colors.on_background
-          font.pointSize: 69
-          rotation: 90
-          // fooking 39 varient doesnt support () brackets
-          text: sessions.current_session_name.replace(/\(|\)/g, "")
-          withText: true
+          height: parent.height
+          width: parent.width
 
-          // whoopsie does not work for now
-          // Behavior on text {
-          //   SequentialAnimation {
-          //     NumberAnimation {
-          //       duration: Dat.MaterialEasing.standardAccelTime
-          //       easing.bezierCurve: Dat.MaterialEasing.standardAccel
-          //       property: "x"
-          //       target: sessionText
-          //       to: sessionText.contentHeight
-          //     }
-          //
-          //     PropertyAction {
-          //       property: "text"
-          //       target: sessionText
-          //     }
-          //
-          //     NumberAnimation {
-          //       duration: Dat.MaterialEasing.standardDecelTime
-          //       easing.bezierCurve: Dat.MaterialEasing.standardDecel
-          //       property: "x"
-          //       target: sessionText
-          //       to: 0
-          //     }
-          //   }
-          // }
+          Gen.BarCode {
+            id: sessionText
+
+            anchors.centerIn: parent
+            color: Dat.Colors.on_background
+            font.pointSize: 69
+            rotation: 90
+            // fooking 39 varient doesnt support () brackets
+            text: sessions.current_session_name.replace(/\(|\)/g, "")
+            withText: true
+
+            Behavior on text {
+              SequentialAnimation {
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.standardAccelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standardAccel
+                  property: "x"
+                  target: sessionRect
+                  to: sessionText.contentHeight
+                }
+
+                PropertyAction {
+                  property: "text"
+                  target: sessionText
+                }
+
+                NumberAnimation {
+                  duration: Dat.MaterialEasing.standardDecelTime
+                  easing.bezierCurve: Dat.MaterialEasing.standardDecel
+                  property: "x"
+                  target: sessionRect
+                  to: 0
+                }
+              }
+            }
+          }
         }
 
         MouseArea {

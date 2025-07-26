@@ -11,6 +11,7 @@ Scope {
   id: root
 
   property string prevState
+  property alias lock: lock
 
   WlSessionLock {
     id: lock

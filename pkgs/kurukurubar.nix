@@ -7,12 +7,17 @@
   librebarcode,
   symlinkJoin,
   makeWrapper,
+  runCommandLocal,
   quickshell,
   kdePackages,
   material-symbols,
   makeFontsConf,
   nerd-fonts,
-  configPath,
+  configPath ? ../users/dots/quickshell/kurukurubar,
+  asGreeter ? false,
+  # MUST BE A QML FILE
+  # replaces Data/Colors.qml
+  customColors ? null,
 }: let
   qtDeps = [
     kdePackages.qtbase
@@ -32,6 +37,21 @@
       librebarcode
     ];
   };
+
+  qsConfig = runCommandLocal "quick" {} (''
+      mkdir $out
+      cd $out
+      cp -rp ${configPath}/* .
+    ''
+    + (lib.optionalString asGreeter ''
+      chmod u+w *.qml
+      rm shell.qml
+      mv greeter.qml shell.qml
+    '')
+    + (lib.optionalString (customColors != null) ''
+      chmod u+rw ./Data/Colors.qml
+      cp ${customColors} ./Data/Colors.qml
+    ''));
 in
   symlinkJoin {
     pname = "kurukurubar";
@@ -44,7 +64,7 @@ in
       makeWrapper $out/bin/quickshell $out/bin/kurukurubar \
         --set FONTCONFIG_FILE "${fontconfig}" \
         --set QML2_IMPORT_PATH "${qmlPath}" \
-        --add-flags '-p ${configPath}' \
+        --add-flags '-p ${qsConfig}' \
         --prefix PATH : "$out/bin"
     '';
 

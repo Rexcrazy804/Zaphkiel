@@ -24,7 +24,7 @@ in {
 
     programs = {
       lanzaboote.enable = true;
-      sddm-custom-theme.enable = true;
+      sddm-custom-theme.enable = false;
       obs-studio.enable = false;
       steam.enable = false;
       hyprland.enable = true;
@@ -39,6 +39,27 @@ in {
         exitNode.enable = false;
       };
       openssh.enable = true;
+    };
+  };
+
+  programs.kurukuruDM = let
+    # lets me just read my uwsm env stuff for the env vars
+    # largely just to set my cursor lol
+    uwuToHypr = pkgs.runCommandLocal "quick" {} ''
+      awk '/^export/ { split($2, ARR, "="); print "env = "ARR[1]","ARR[2]}' ${../../users/dots/uwsm/env} > $out
+    '';
+  in {
+    enable = true;
+    settings = {
+      wallpaper = config.programs.matugen.wallpaper;
+      colorsQML = config.programs.matugen.theme.files + "/quickshell-colors.qml";
+      instantAuth = true;
+      extraConfig = ''
+        monitor = eDP-1, preferred, auto, 1.25
+        # night light
+        exec-once = fish -c 'set -l hour (date +%H); if test $hour -ge 17 || test $hour -le  7; systemctl --user start hyprsunset.service; end'
+        source = ${uwuToHypr}
+      '';
     };
   };
 

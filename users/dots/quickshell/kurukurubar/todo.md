@@ -33,11 +33,12 @@
 - [x] background layer for setting wallpaper
 - [x] lockscreen
 - [x] useExec detached in SessionActions.qml
+- [x] greetd
 
 ### What I do not like to see
-- [ ] greetd
-- [ ] Lazy Loading
+- [ ] generalize lockscreen and loginscreen
 - [ ] app launcher
+- [ ] Lazy Loading
 - [ ] use font.family for specifying fonts
 - [ ] adjust anchor magins in homeView
 - [ ] revamp notification popups / osd

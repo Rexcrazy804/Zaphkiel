@@ -7,6 +7,7 @@ in {
     ./graphics
     ./programs
     ./server
+    ./exported/kurukuruDM.nix
   ];
 
   options = {

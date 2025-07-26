@@ -1,5 +1,6 @@
 pragma ComponentBehavior: Bound
 import Quickshell
+import Quickshell.Io
 import QtQuick
 import qs.Layers as Lay
 import qs.Data as Dat

@@ -11,11 +11,8 @@
     withI3 = false;
   };
 
-  kurukurubar = final.callPackage ../kurukurubar.nix {
-    # follows nixpkgs quickshell release and relies on last commit of Zaphkeil
-    # that is fully compatible with qs release v0.1.0
+  kurukurubar = final.kurukurubar-unstable.override {
     inherit (prev) quickshell;
-    inherit (final.scripts) gpurecording;
     configPath = (sources.zaphkiel {pkgs = final;}) + "/users/dots/quickshell/kurukurubar";
   };
 
@@ -23,9 +20,9 @@
   # THIS WILL BUILD QUICKSHELL FROM SOURCE
   # .override the quickshell attribute if you use the quickshell flake,
   # otherwise leave this be
-  kurukurubar-unstable = final.kurukurubar.override {
+  kurukurubar-unstable = final.callPackage ../kurukurubar.nix {
     inherit (final) quickshell;
-    configPath = ../../users/dots/quickshell/kurukurubar;
+    inherit (final.scripts) gpurecording;
   };
 
   # example to use npins to for nvim plugins

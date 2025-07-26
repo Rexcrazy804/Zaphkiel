@@ -133,6 +133,13 @@ nix run github:Rexcrazy804/Zaphkiel#nixvim
 For more information on both see the [internal overlay](pkgs/overlays/internal.nix)
 </details>
 
+## Exported modules
+Well there is only one module that is exported rn, and that *DRUM ROLL*
+kurukuruDM now available as `nixosModules.kurukuruDM` :D
+
+> if you run into errors please raise an issue, since I don't use the flake
+> exported module there is a chance for the exported module being broken
+
 ## Structure overview
 ```
 hosts/                  # starting point for host specific configuration

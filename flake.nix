@@ -95,6 +95,17 @@
       };
     };
 
+    nixosModules.kurukuruDM = {
+      pkgs,
+      lib,
+      ...
+    }: {
+      imports = [./nixosModules/exported/kurukuruDM.nix];
+
+      # kurukuruDM requires unstable for nowTM
+      programs.kurukuruDM.package = lib.mkForce self.packages.${pkgs.system}.kurukurubar-unstable;
+    };
+
     # for a non flake version take a look at ./users/dots/quickshell/
     devShells = forAllSystems (pkgs: {
       quickshell = let

@@ -6,8 +6,8 @@
   # `rebuild.nix` for that
 
   # INFO
-  # For non flake users please see default.nix it tries to generally support
-  # both npins but it SHOULD in theory work with something like niv too, feel
+  # For non flake users please see default.nix it tries to primarily supports
+  # npins but it SHOULD in theory work with something like niv too, feel
   # welcome to raise any concerns
 
   description = "Rexiel Scarlet's Flake bridge";
@@ -48,6 +48,8 @@
       mpv = zaphkiel'.packages.mpv-wrapped.override {anime = true;};
     });
 
+    # some code duplication here but its better that we do this rather than get
+    # it through the default.nix due to infinite recursion reasons
     nixosModules.kurukuruDM = {
       pkgs,
       lib,

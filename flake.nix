@@ -1,34 +1,64 @@
 {
-  description = "Rexiel Scarlet's NixOS Configuration";
-  # where is inputs.nixpkgs?
-  # I ate it nyom :P
+  # WARN
+  # This flake solely exists for the purpose of allowing overrides for flake
+  # users which is why there does not exist a flake.lock in this repo. This
+  # flake DOES NOT setup anything for my nixos configurations please see
+  # `rebuild.nix` for that
 
-  outputs = {self, ...} @ inputs: let
-    inherit (self) outputs;
+  # INFO
+  # For non flake users please see default.nix it tries to generally support
+  # both npins but it SHOULD in theory work with something like niv too, feel
+  # welcome to raise any concerns
+
+  description = "Rexiel Scarlet's Flake bridge";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    quickshell.url = "github:quickshell-mirror/quickshell";
+    mnw.url = "github:Gerg-L/mnw";
+  };
+
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
     systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
-    sources = import ./npins;
-    nixpkgs = (import sources.flake-compat {src = sources.nixpkgs;}).outputs;
-
     forAllSystems = fn:
       nixpkgs.lib.genAttrs systems (
         system:
-          fn (import nixpkgs {
-            system = system;
-            overlays = [outputs.overlays.internal];
-          })
+          fn (import nixpkgs {inherit system;})
       );
+
+    zaphkiel = system:
+      import ./default.nix {
+        inherit nixpkgs;
+        inherit system;
+        inherit (inputs) mnw;
+        quickshell = inputs.quickshell.packages.${system}.quickshell;
+      };
   in {
     formatter = forAllSystems (pkgs: pkgs.alejandra);
-    overlays.internal = import ./pkgs/overlays/internal.nix {inherit sources;};
 
-    # NOTE
-    # these rely on the internal overlay being applied
-    # see the forAllSystems funciton
-    packages = forAllSystems (pkgs: {
-      inherit (pkgs) nixvim nixvim-minimal kokCursor kurukurubar kurukurubar-unstable sddm-silent-custom booru-images librebarcode;
-      quickshell = pkgs.lib.warn "prefer #kurukurubar instead. #quickshell will be removed soon" pkgs.kurukurubar;
-      mpv = pkgs.mpv-wrapped.override {anime = true;};
+    packages = forAllSystems (pkgs: let
+      zaphkiel' = zaphkiel pkgs.system;
+    in {
+      inherit (zaphkiel'.packages) nixvim nixvim-minimal kokCursor kurukurubar kurukurubar-unstable booru-images librebarcode;
+      quickshell = pkgs.lib.warn "prefer #kurukurubar instead. #quickshell will be removed soon" zaphkiel'.packages.kurukurubar;
+      mpv = zaphkiel'.packages.mpv-wrapped.override {anime = true;};
     });
+
+    nixosModules.kurukuruDM = {
+      pkgs,
+      lib,
+      ...
+    }: {
+      imports = [./nixosModules/exported/kurukuruDM.nix];
+
+      nixpkgs.overlays = [
+        (final: prev: {inherit (self.packages.${pkgs.system}) kurukurubar kurukurubar-unstable;})
+      ];
+    };
 
     templates = {
       rust-minimal = {
@@ -94,109 +124,5 @@
         '';
       };
     };
-
-    nixosModules.kurukuruDM = {
-      pkgs,
-      lib,
-      ...
-    }: {
-      imports = [./nixosModules/exported/kurukuruDM.nix];
-
-      # kurukuruDM requires unstable for nowTM
-      programs.kurukuruDM.package = lib.mkForce self.packages.${pkgs.system}.kurukurubar-unstable;
-    };
-
-    # for a non flake version take a look at ./users/dots/quickshell/
-    devShells = forAllSystems (pkgs: {
-      quickshell = let
-        qtDeps = [
-          # pkgs.quickshell depends on the internal overlay
-          # see the top of this flake's outputs
-          pkgs.quickshell
-          pkgs.kdePackages.qtbase
-          pkgs.kdePackages.qtdeclarative
-        ];
-      in
-        pkgs.mkShell {
-          shellHook = let
-            qmlPath = pkgs.lib.pipe qtDeps [
-              (builtins.map (lib: "${lib}/lib/qt-6/qml"))
-              (builtins.concatStringsSep ":")
-            ];
-          in ''
-            export QML2_IMPORT_PATH="$QML2_IMPORT_PATH:${qmlPath}"
-            SHELL=fish exec fish
-          '';
-          buildInputs = qtDeps;
-          packages = [pkgs.material-symbols pkgs.google-fonts];
-        };
-    });
-
-    # WARNING
-    # after sayonara-flakes is merged `nnixosConfigurations` are just here for
-    # historical reasons or rather for people new to flakes to learn how
-    # things were done before I dropped flakes
-    # nixosConfigurations' = {
-    #   # Computer die :kokokries:
-    #   Zaphkiel = nixpkgs.lib.nixosSystem {
-    #     specialArgs = {
-    #       inherit inputs outputs sources;
-    #       users = ["rexies"];
-    #     };
-    #     modules = [
-    #       ./hosts/Zaphkiel/configuration.nix
-    #       ./nixosModules
-    #       ./users
-    #     ];
-    #   };
-    #
-    #   Raphael = nixpkgs.lib.nixosSystem {
-    #     specialArgs = {
-    #       inherit inputs outputs sources;
-    #       users = ["rexies" "ancys"];
-    #     };
-    #     modules = [
-    #       ./hosts/Raphael/configuration.nix
-    #       ./nixosModules
-    #       ./users
-    #     ];
-    #   };
-    #
-    #   Seraphine = nixpkgs.lib.nixosSystem {
-    #     specialArgs = {
-    #       inherit inputs outputs sources;
-    #       users = ["rexies"];
-    #     };
-    #     modules = [
-    #       ./hosts/Seraphine/configuration.nix
-    #       ./nixosModules
-    #       ./users
-    #     ];
-    #   };
-    #
-    #   Persephone = nixpkgs.lib.nixosSystem {
-    #     specialArgs = {
-    #       inherit inputs outputs sources;
-    #       users = ["rexies"];
-    #     };
-    #     modules = [
-    #       ./hosts/Persephone/configuration.nix
-    #       ./nixosModules
-    #       ./users
-    #     ];
-    #   };
-    #
-    #   Aphrodite = nixpkgs.lib.nixosSystem {
-    #     specialArgs = {
-    #       inherit inputs outputs sources;
-    #       users = ["rexies" "sivanis"];
-    #     };
-    #     modules = [
-    #       ./hosts/Aphrodite/configuration.nix
-    #       ./users
-    #       ./nixosModules/server-default.nix
-    #     ];
-    #   };
-    # };
   };
 }

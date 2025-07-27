@@ -16,6 +16,7 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     quickshell.url = "github:quickshell-mirror/quickshell";
     mnw.url = "github:Gerg-L/mnw";
+    systems.url = "github:nix-systems/default";
   };
 
   outputs = {
@@ -23,9 +24,8 @@
     nixpkgs,
     ...
   } @ inputs: let
-    systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
     forAllSystems = fn:
-      nixpkgs.lib.genAttrs systems (
+      nixpkgs.lib.genAttrs (import inputs.systems) (
         system:
           fn (import nixpkgs {inherit system;})
       );

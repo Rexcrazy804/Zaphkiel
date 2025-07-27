@@ -1,8 +1,16 @@
 # TODO: use v6 format once that hits nixpkgs-unstable
 {
   sources' ? import ./npins,
-  pkgs ? import sources'.nixpkgs {},
-  quickshell ? import (sources'.quickshell) {},
+  system ? builtins.currentSystem,
+  nixpkgs ? sources'.nixpkgs,
+  pkgs ?
+    import nixpkgs {
+      inherit system;
+    },
+  quickshell ?
+    pkgs.callPackage (sources'.quickshell {}) {
+      gitRev = sources'.quickshell.revision;
+    },
   mnw ? sources'.mnw,
 }: let
   inherit (pkgs.lib) fix;
@@ -20,8 +28,9 @@ in
       kurukurubar-unstable = pkgs.callPackage ./pkgs/kurukurubar.nix {
         inherit quickshell;
         inherit (self.packages.scripts) gpurecording;
+        inherit (self.packages) librebarcode;
       };
-      kurukurubar = self.packages.kurukurubar-unstable.override {
+      kurukurubar = (self.packages.kurukurubar-unstable).override {
         inherit (pkgs) quickshell;
         configPath = (sources.zaphkiel) + "/users/dots/quickshell/kurukurubar";
       };
@@ -52,5 +61,12 @@ in
       scripts = import ./pkgs/scripts {inherit (pkgs) lib callPackage;};
     };
 
-    nixosModules.kurukuruDM = ./nixosModules/exported/kurukuruDM.nix;
+    nixosModules.kurukuruDM = {...}: {
+      imports = [./nixosModules/exported/kurukuruDM.nix];
+      nixpkgs.overlays = [
+        (final: prev: {
+          inherit (self.packages) kurukurubar kurukurubar-unstable;
+        })
+      ];
+    };
   })

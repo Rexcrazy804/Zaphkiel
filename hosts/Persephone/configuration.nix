@@ -10,6 +10,7 @@ in {
     ./hardware-configuration.nix
     ./user-configuration.nix
     ./extras/privoxy.nix
+    ./extras/mysql.nix
   ];
 
   system.stateVersion = "24.11";

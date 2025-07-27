@@ -50,16 +50,19 @@
 
     # some code duplication here but its better that we do this rather than get
     # it through the default.nix due to infinite recursion reasons
-    nixosModules.kurukuruDM = {
-      pkgs,
-      lib,
-      ...
-    }: {
-      imports = [./nixosModules/exported/kurukuruDM.nix];
+    nixosModules = {
+      matugen = ./nixosModules/external/matugen;
+      kurukuruDM = {
+        pkgs,
+        lib,
+        ...
+      }: {
+        imports = [./nixosModules/exported/kurukuruDM.nix];
 
-      nixpkgs.overlays = [
-        (final: prev: {inherit (self.packages.${pkgs.system}) kurukurubar kurukurubar-unstable;})
-      ];
+        nixpkgs.overlays = [
+          (final: prev: {inherit (self.packages.${pkgs.system}) kurukurubar kurukurubar-unstable;})
+        ];
+      };
     };
 
     templates = {

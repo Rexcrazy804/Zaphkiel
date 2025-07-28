@@ -34,6 +34,7 @@ in {
         enable = true;
         ntsync.enable = true;
         wayland.enable = true;
+        ge-proton.enable = true;
       };
     };
 

@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -11,11 +12,18 @@ in {
     enable = mkEnableOption "wine";
     ntsync.enable = mkEnableOption "ntsync kernel module";
     wayland.enable = mkEnableOption "wine wayland";
+    ge-proton.enable = mkEnableOption "proton ge link";
   };
 
   config = mkIf cfg.enable {
     users.users = genAttrs config.zaphkiel.data.users (user: {
       extraGroups = ["video" "input"];
+    });
+
+    hjem.users = genAttrs config.zaphkiel.data.users (user: {
+      files.".local/share/proton-ge" = mkIf cfg.ge-proton.enable {
+        source = pkgs.proton-ge-bin.steamcompattool;
+      };
     });
 
     boot.kernelModules = mkIf cfg.ntsync.enable ["ntsync"];

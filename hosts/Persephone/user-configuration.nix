@@ -4,19 +4,16 @@
   config,
   ...
 }: let
-  packages = [
-    pkgs.wineWowPackages.stable
-    pkgs.bottles
-    pkgs.winetricks
-    pkgs.foot
-    pkgs.cbonsai
-    pkgs.cowsay
-
-    # from internal overlay
-    pkgs.mpv-wrapped
-    pkgs.scripts.wallcrop
-    pkgs.discord # yes this is vesktop
-  ];
+  packages = lib.attrValues {
+    # wine stuff
+    inherit (pkgs.wineWowPackages) waylandFull;
+    inherit (pkgs) heroic bottles winetricks mono;
+    # foot stuff
+    inherit (pkgs) foot cbonsai cowsay;
+    # internal overlay stuff
+    inherit (pkgs) mpv-wrapped discord;
+    inherit (pkgs.scripts) wallcrop;
+  };
 in {
   imports = [../../nixosModules/external/matugen];
 

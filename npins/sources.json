@@ -166,6 +166,23 @@
       "url": "https://github.com/Rexcrazy804/quickshell/archive/efc949fe8e1788b46379920601791e52b5e7d29b.tar.gz",
       "hash": "sha256-oD4bfIvU3sA1WZFY+WL2gHRWGzslXkitqe7gEWsPX9A="
     },
+    "rare": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "RareDevs",
+        "repo": "Rare"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "1.11.3.135",
+      "revision": "5239cd53e5303b51fc9d3d755fa1f9283c52d5f8",
+      "url": "https://api.github.com/repos/RareDevs/Rare/tarball/refs/tags/1.11.3.135",
+      "hash": "sha256-8s2vzOYWIyqIvD8TgFMdOfOR4F/uJxKZf5C7E10JJRo=",
+      "frozen": true
+    },
     "rosep-fish": {
       "type": "Git",
       "repository": {

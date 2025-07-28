@@ -7,7 +7,7 @@
   packages = lib.attrValues {
     # wine stuff
     inherit (pkgs.wineWowPackages) waylandFull;
-    inherit (pkgs) heroic bottles winetricks mono;
+    inherit (pkgs) rare bottles winetricks mono;
     # foot stuff
     inherit (pkgs) foot cbonsai cowsay;
     # internal overlay stuff

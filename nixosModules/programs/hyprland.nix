@@ -65,6 +65,8 @@
       pkgs.networkmanagerapplet
       pkgs.yazi
       pkgs.ripdrag
+      # gnome keyring
+      pkgs.seahorse
 
       # quickshell dep
       pkgs.quickshell
@@ -115,5 +117,7 @@
       "image/jpeg" = ["imv.desktop"];
       "image/png" = ["imv.desktop"];
     };
+
+    services.gnome.gnome-keyring.enable = true;
   };
 }

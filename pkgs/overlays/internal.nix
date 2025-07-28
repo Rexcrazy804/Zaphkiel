@@ -16,10 +16,6 @@
     configPath = (sources.zaphkiel {pkgs = final;}) + "/users/dots/quickshell/kurukurubar";
   };
 
-  # WARNING
-  # THIS WILL BUILD QUICKSHELL FROM SOURCE
-  # .override the quickshell attribute if you use the quickshell flake,
-  # otherwise leave this be
   kurukurubar-unstable = final.callPackage ../kurukurubar.nix {
     inherit (final) quickshell;
     inherit (final.scripts) gpurecording;

@@ -24,7 +24,10 @@ in
       librebarcode = pkgs.callPackage ./pkgs/librebarcode.nix {};
       kokCursor = pkgs.callPackage ./pkgs/kokCursor.nix {};
 
-      # speening the kuru kuru
+      # WARNING
+      # THIS WILL BUILD QUICKSHELL FROM SOURCE
+      # .override the quickshell attribute if you use the quickshell flake,
+      # otherwise leave this be
       kurukurubar-unstable = pkgs.callPackage ./pkgs/kurukurubar.nix {
         inherit quickshell;
         inherit (self.packages.scripts) gpurecording;

@@ -30,6 +30,11 @@ in {
       hyprland.enable = true;
       keyd.enable = true;
       firefox.enable = true;
+      wine = {
+        enable = true;
+        ntsync.enable = true;
+        wayland.enable = true;
+      };
     };
 
     services = {

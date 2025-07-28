@@ -51,12 +51,13 @@
 
       # utility
       pkgs.wl-clipboard
+      pkgs.cliphist
       pkgs.grim
       pkgs.slurp
       pkgs.brightnessctl
       pkgs.hyprsunset
       pkgs.trashy
-      pkgs.walker
+      pkgs.fuzzel
       pkgs.wl-screenrec
       pkgs.libnotify
       pkgs.swappy

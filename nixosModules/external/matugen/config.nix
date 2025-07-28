@@ -25,6 +25,11 @@
       output_path = "~/yazi-theme.toml";
     };
 
+    fuzzel = {
+      input_path = "${./templates/fuzzel-colors.ini}";
+      output_path = "~/fuzzel-colors.ini";
+    };
+
     qtct = {
       input_path = "${./templates/qtct-colors.conf}";
       output_path = "~/qtct-colors.conf";

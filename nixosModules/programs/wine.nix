@@ -20,12 +20,6 @@ in {
       extraGroups = ["video" "input"];
     });
 
-    hjem.users = genAttrs config.zaphkiel.data.users (user: {
-      files.".local/share/proton-ge" = mkIf cfg.ge-proton.enable {
-        source = pkgs.proton-ge-bin.steamcompattool;
-      };
-    });
-
     boot.kernelModules = mkIf cfg.ntsync.enable ["ntsync"];
     services.udev.extraRules = mkIf cfg.ntsync.enable ''
       KERNEL=="ntsync", MODE="0644"
@@ -34,6 +28,7 @@ in {
     environment.sessionVariables = {
       "PROTON_ENABLE_WAYLAND" = mkIf cfg.wayland.enable 1;
       "PROTON_USE_WOW64" = 1;
+      "PROTONPATH" = mkIf cfg.ge-proton.enable pkgs.proton-ge-bin.steamcompattool;
     };
   };
 }

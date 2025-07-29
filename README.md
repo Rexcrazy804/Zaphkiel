@@ -9,7 +9,7 @@ https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 | --------- | -------- | ------------- | 
 |KuruKuruBar|[Quickshell](https://quickshell.outfoxxed.me/)|[`users/dots/quickshell/kurukurubar`](users/dots/quickshell/kurukurubar)|
 |Compositor|[Hyprland](https://hyprland.org/)|[`users/dots/hyprland/`](users/dots/hyprland/)|
-|Launcher|[Walker](https://github.com/abenz1267/walker)|[`users/dots/walker`](users/dots/walker)|
+|Launcher|[Fuzzel](https://codeberg.org/dnkl/fuzzel)|[`users/dots/fuzzel`](users/dots/fuzzel)|
 |Colors|[Matugen](https://github.com/InioX/matugen)|[`nixosModules/external/matugen/templates/`](nixosModules/external/matugen/templates/)|
 |Terminal|[Foot](https://codeberg.org/dnkl/foot)|[`users/dots/foot/foot.ini`](users/dots/foot/foot.ini)|
 |Editor|[Neovim](https://neovim.io/)|[`users/dots/nvim/`](users/dots/nvim/)|

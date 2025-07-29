@@ -26,8 +26,7 @@ in
 
       # WARNING
       # THIS WILL BUILD QUICKSHELL FROM SOURCE
-      # .override the quickshell attribute if you use the quickshell flake,
-      # otherwise leave this be
+      # you can find more information in the readme
       kurukurubar-unstable = pkgs.callPackage ./pkgs/kurukurubar.nix {
         inherit quickshell;
         inherit (self.packages.scripts) gpurecording;

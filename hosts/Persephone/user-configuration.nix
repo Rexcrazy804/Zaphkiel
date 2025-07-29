@@ -7,12 +7,12 @@
   packages = lib.attrValues {
     # wine stuff
     inherit (pkgs.wineWowPackages) waylandFull;
-    inherit (pkgs) rare bottles winetricks mono umu-launcher;
+    inherit (pkgs) legendary-heroic bottles winetricks mono umu-launcher;
     # foot stuff
     inherit (pkgs) foot cbonsai cowsay;
     # internal overlay stuff
     inherit (pkgs) mpv-wrapped discord;
-    inherit (pkgs.scripts) wallcrop;
+    inherit (pkgs.scripts) wallcrop legumulaunch;
   };
 in {
   imports = [../../nixosModules/external/matugen];

@@ -67,20 +67,6 @@
       "hash": "sha256-smpugNIkmDeicNz301Ll1bD7nFOty97T79m4GUMUczA=",
       "frozen": true
     },
-    "flake-compat": {
-      "type": "Git",
-      "repository": {
-        "type": "Forgejo",
-        "server": "https://git.lix.systems/",
-        "owner": "lix-project",
-        "repo": "flake-compat"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "549f2762aebeff29a2e5ece7a7dc0f955281a1d1",
-      "url": "https://git.lix.systems/lix-project/flake-compat/archive/549f2762aebeff29a2e5ece7a7dc0f955281a1d1.tar.gz",
-      "hash": "sha256-NKw96t+BgHIYzHUjkTK95FqYRVKB8DHpVhefWSz/kTw="
-    },
     "hjem": {
       "type": "Git",
       "repository": {
@@ -165,23 +151,6 @@
       "revision": "efc949fe8e1788b46379920601791e52b5e7d29b",
       "url": "https://github.com/Rexcrazy804/quickshell/archive/efc949fe8e1788b46379920601791e52b5e7d29b.tar.gz",
       "hash": "sha256-oD4bfIvU3sA1WZFY+WL2gHRWGzslXkitqe7gEWsPX9A="
-    },
-    "rare": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "GitHub",
-        "owner": "RareDevs",
-        "repo": "Rare"
-      },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "submodules": false,
-      "version": "1.11.3.135",
-      "revision": "5239cd53e5303b51fc9d3d755fa1f9283c52d5f8",
-      "url": "https://api.github.com/repos/RareDevs/Rare/tarball/refs/tags/1.11.3.135",
-      "hash": "sha256-8s2vzOYWIyqIvD8TgFMdOfOR4F/uJxKZf5C7E10JJRo=",
-      "frozen": true
     },
     "rosep-fish": {
       "type": "Git",

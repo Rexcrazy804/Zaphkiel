@@ -31,15 +31,19 @@ in
 
       # WARNING
       # THIS WILL BUILD QUICKSHELL FROM SOURCE
-      # you can find more information in the readme
+      # you can find more information in the README
       kurukurubar-unstable = pkgs.callPackage ./pkgs/kurukurubar.nix {
         inherit quickshell;
         inherit (self.packages.scripts) gpurecording;
         inherit (self.packages) librebarcode;
       };
       kurukurubar = (self.packages.kurukurubar-unstable).override {
+        # quickshell v0.2.0 (nixpkgs)
         inherit (pkgs) quickshell;
-        configPath = (sources.zaphkiel) + "/users/dots/quickshell/kurukurubar";
+
+        # INFO
+        # following zaphkiel master branch
+        # configPath = (sources.zaphkiel) + "/users/dots/quickshell/kurukurubar";
       };
 
       nixvim-minimal = import ./pkgs/nvim.nix {

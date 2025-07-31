@@ -121,13 +121,15 @@ nix run github:Rexcrazy804/Zaphkiel#nixvim
 <summary><h3>kurkurubar stable or unstable</h3></summary>
 
 <ins>kurkurubar (stable)</ins> 
-- uses nixpkgs version of quickshell (v0.1.0)
-- uses [this revision](https://github.com/Rexcrazy804/Zaphkiel/tree/cc6d5cf12ae824e6945cc2599a2650d5fe054ffe) of Zaphkiel dots (last version that is compatible with v0.1.0)
-- package updated every major tagged release of quickshell (bumping the pinned dots revision)
+- uses nixpkgs version of quickshell (v0.2.0)
+- ~uses [this revision](https://github.com/Rexcrazy804/Zaphkiel/tree/cc6d5cf12ae824e6945cc2599a2650d5fe054ffe) of Zaphkiel dots (last version that is compatible with v0.1.0)~
+- ^ currently tracks master branch, not diverged yet
+- package updated every major tagged release of quickshell
 
 <ins>kurkurubar-unstable</ins>
 - follows Zaphkiel master branch HEAD
 - uses untagged master revisions of quickshell
+- by default uses my patched version of qs (for finger print unlock in greetd)
 - requires quickshell to be built from source
 
 For more information on both see the [internal overlay](pkgs/overlays/internal.nix)
@@ -147,6 +149,7 @@ hosts/                  # starting point for host specific configuration
 - - extras/             # things I am lazy to seperate into a module just yet
 
 nixosModules/           # common options and defaults shared across all hosts
+- exported/             # modules exported by toplevel default.nix (and flake.nix)
 - external/             # used for hosting modified nixos modules that aren't written by me
 - graphics/             # novideo and friends
 - nix/                  # my beloved
@@ -215,5 +218,5 @@ great resources throughout my early adventures in nix.
 - and other homies in `#rice-discussion` of Hyprland discord
 
 ## Licensing
-All code in this repository is under the MIT license unless wherever an
+All code in this repository is under the MIT license except wherever an
 explicit licensing is included.

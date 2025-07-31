@@ -148,9 +148,9 @@
       },
       "branch": "greetd-fix",
       "submodules": false,
-      "revision": "efc949fe8e1788b46379920601791e52b5e7d29b",
-      "url": "https://github.com/Rexcrazy804/quickshell/archive/efc949fe8e1788b46379920601791e52b5e7d29b.tar.gz",
-      "hash": "sha256-oD4bfIvU3sA1WZFY+WL2gHRWGzslXkitqe7gEWsPX9A="
+      "revision": "fd8c2328cdad89111939d54653f9be755a4c722a",
+      "url": "https://github.com/Rexcrazy804/quickshell/archive/fd8c2328cdad89111939d54653f9be755a4c722a.tar.gz",
+      "hash": "sha256-3NYObh724bIu1jqnb/PCHvzBOH4oSo1/fR2okk3xuYI="
     },
     "rosep-fish": {
       "type": "Git",

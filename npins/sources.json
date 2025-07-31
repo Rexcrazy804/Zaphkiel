@@ -81,17 +81,20 @@
       "hash": "sha256-LzojKFWAAreWyH56aupj/MLwuPPnnyzplw/xdbavC9c="
     },
     "lanzaboote": {
-      "type": "Git",
+      "type": "GitRelease",
       "repository": {
         "type": "GitHub",
-        "owner": "Rexcrazy804",
+        "owner": "nix-community",
         "repo": "lanzaboote"
       },
-      "branch": "npins-support",
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
       "submodules": false,
-      "revision": "63b4c797fd6e370ad437ee25e30a5e5ff2c93f83",
-      "url": "https://github.com/Rexcrazy804/lanzaboote/archive/63b4c797fd6e370ad437ee25e30a5e5ff2c93f83.tar.gz",
-      "hash": "sha256-07FC3fevw8phSwfLDLWbzM9nYZr1XezfEDZIRYjtfSM="
+      "version": "v0.4.2",
+      "revision": "f0212638a2ec787a7841882f4477d40ae24f0a5d",
+      "url": "https://api.github.com/repos/nix-community/lanzaboote/tarball/refs/tags/v0.4.2",
+      "hash": "sha256-AEEDktApTEZ5PZXNDkry2YV2k6t0dTgLPEmAZbnigXU="
     },
     "mnw": {
       "type": "Git",

@@ -3,10 +3,7 @@
   sources' ? import ./npins,
   system ? builtins.currentSystem,
   nixpkgs ? sources'.nixpkgs,
-  pkgs ?
-    import nixpkgs {
-      inherit system;
-    },
+  pkgs ? import nixpkgs {inherit system;},
   quickshell ?
     pkgs.callPackage (sources'.quickshell {}) {
       gitRev = sources'.quickshell.revision;
@@ -24,6 +21,7 @@ in
         inherit (self.packages) kurukurubar kurukurubar-unstable;
       };
     };
+
     packages = {
       mpv-wrapped = pkgs.callPackage ./pkgs/mpv {};
       librebarcode = pkgs.callPackage ./pkgs/librebarcode.nix {};
@@ -62,6 +60,7 @@ in
           ];
       });
 
+      # the booru image collection
       booru-images = let
         imgBuilder = pkgs.callPackage (sources.booru-flake + "/nix/imgBuilder.nix");
       in (pkgs.lib.attrsets.mergeAttrsList (
@@ -70,10 +69,21 @@ in
 
       # some cute scripts
       scripts = import ./pkgs/scripts {inherit (pkgs) lib callPackage;};
+
+      # is your boot secure yet?
+      lanzaboote = import ../lanzaboote/default.nix {
+        inherit (sources) nixpkgs rust-overlay crane lanzaboote;
+      };
     };
 
-    nixosModules.kurukuruDM = {...}: {
-      imports = [./nixosModules/exported/kurukuruDM.nix];
-      nixpkgs.overlays = [self.overlays.kurukurubar];
+    nixosModules = {
+      kurukuruDM = {
+        imports = [./nixosModules/exported/kurukuruDM.nix];
+        nixpkgs.overlays = [self.overlays.kurukurubar];
+      };
+      lanzaboote = {
+        imports = [(sources.lanzaboote + "/nix/modules/lanzaboote.nix")];
+        boot.lanzaboote.package = self.packages.lanzaboote.tool;
+      };
     };
   })

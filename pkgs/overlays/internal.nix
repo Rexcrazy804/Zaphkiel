@@ -1,3 +1,4 @@
+# this is very ugly and must be standardized in default.nix
 {sources ? import ./npins}: final: prev: {
   quickshell = final.callPackage (sources.quickshell {pkgs = final;}) {
     gitRev = sources.quickshell.revision;
@@ -49,7 +50,6 @@
   sddm-silent = final.callPackage (sources.silent-sddm {pkgs = final;}) {gitRev = sources.silent-sddm.revision;};
   discord = prev.vesktop.override {withSystemVencord = true;};
   kokCursor = final.callPackage ../kokCursor.nix {};
-  lanzaboote-tool = (import (sources.lanzaboote {pkgs = final;} + "/default-npins.nix") {inherit sources;}).packages.tool;
   npins = final.callPackage (sources.npins {pkgs = final;} + "/npins.nix") {};
 
   # fonts
@@ -73,6 +73,11 @@
   #       final.python3Packages.pyside6
   #     ];
   # });
+
+  # v6's the sources
+  lanzaboote = import ../lanzaboote/default.nix (builtins.mapAttrs (k: v: v {pkgs = final;}) {
+    inherit (sources) nixpkgs rust-overlay crane lanzaboote;
+  });
 
   # a lil cursed but lets me rexport the custom theme
   sddm-silent-custom = final.sddm-silent.override (import ../../nixosModules/programs/sddm/theme.nix {

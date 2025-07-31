@@ -19,6 +19,11 @@
   sources = (import ./npins) // sources';
 in
   fix (self: {
+    overlays = {
+      kurukurubar = final: prev: {
+        inherit (self.packages) kurukurubar kurukurubar-unstable;
+      };
+    };
     packages = {
       mpv-wrapped = pkgs.callPackage ./pkgs/mpv {};
       librebarcode = pkgs.callPackage ./pkgs/librebarcode.nix {};
@@ -65,10 +70,6 @@ in
 
     nixosModules.kurukuruDM = {...}: {
       imports = [./nixosModules/exported/kurukuruDM.nix];
-      nixpkgs.overlays = [
-        (final: prev: {
-          inherit (self.packages) kurukurubar kurukurubar-unstable;
-        })
-      ];
+      nixpkgs.overlays = [self.overlays.kurukurubar];
     };
   })

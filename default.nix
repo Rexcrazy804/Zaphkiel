@@ -71,7 +71,7 @@ in
       scripts = import ./pkgs/scripts {inherit (pkgs) lib callPackage;};
 
       # is your boot secure yet?
-      lanzaboote = import ../lanzaboote/default.nix {
+      lanzaboote = import ./pkgs/lanzaboote/default.nix {
         inherit (sources) nixpkgs rust-overlay crane lanzaboote;
       };
     };

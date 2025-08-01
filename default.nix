@@ -1,28 +1,18 @@
 {
-  sources' ? import ./npins,
+  sources' ? {},
+  sources'' ? (import ./npins) // sources',
   system ? builtins.currentSystem,
-  nixpkgs ? sources'.nixpkgs,
+  nixpkgs ? sources''.nixpkgs,
   pkgs ? import nixpkgs {inherit system;},
-  quickshell ?
-    pkgs.callPackage (sources'.quickshell {inherit pkgs;}) {
-      gitRev = sources'.quickshell.revision;
-      withJemalloc = true;
-      withQtSvg = true;
-      withWayland = true;
-      withX11 = false;
-      withPipewire = true;
-      withPam = true;
-      withHyprland = true;
-      withI3 = false;
-    },
+  quickshell ? null,
 }: let
   inherit (pkgs.lib) fix mapAttrs attrValues makeScope;
   inherit (pkgs) newScope;
-  # I wanna use a top level let in to remove the import ./npins redundancy but
-  # that doesn't look cute so here we are .w.
+
+  # WARNING
+  # sources' is npins v6 >.<
   # https://github.com/andir/npins?tab=readme-ov-file#using-the-nixpkgs-fetchers
-  # TODO: figure out if we should check if they are the same before mergin (optimization maybe)?
-  sources = mapAttrs (k: v: v {inherit pkgs;}) ((import ./npins) // sources');
+  sources = mapAttrs (k: v: v {inherit pkgs;}) sources'';
 in
   fix (self: {
     overlays = {
@@ -34,6 +24,22 @@ in
     packages = makeScope newScope (self': let
       inherit (self') callPackage;
     in {
+      quickshell =
+        if (quickshell == null)
+        then
+          callPackage (sources.quickshell) {
+            gitRev = sources.quickshell.revision;
+            withJemalloc = true;
+            withQtSvg = true;
+            withWayland = true;
+            withX11 = false;
+            withPipewire = true;
+            withPam = true;
+            withHyprland = true;
+            withI3 = false;
+          }
+        else quickshell;
+
       mpv-wrapped = callPackage ./pkgs/mpv {};
       librebarcode = callPackage ./pkgs/librebarcode.nix {};
       kokCursor = callPackage ./pkgs/kokCursor.nix {};
@@ -43,7 +49,7 @@ in
       # WARNING
       # THIS WILL BUILD QUICKSHELL FROM SOURCE
       # you can find more information in the README
-      kurukurubar-unstable = callPackage ./pkgs/kurukurubar.nix {inherit quickshell;};
+      kurukurubar-unstable = callPackage ./pkgs/kurukurubar.nix {};
       kurukurubar = (self'.kurukurubar-unstable).override {
         # quickshell v0.2.0 (nixpkgs)
         inherit (pkgs) quickshell;

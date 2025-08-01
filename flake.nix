@@ -6,18 +6,15 @@
   # `rebuild.nix` for that
 
   # INFO
-  # For non flake users please see default.nix it tries to primarily supports
-  # npins but it SHOULD in theory work with something like niv too, feel
-  # welcome to raise any concerns
+  # For non flake users please see default.nix primarilly supports npins (v6) sources.
+  # Feel welcome to raise any concerns
 
   description = "Rexiel Scarlet's Flake bridge";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    quickshell = {
-      url = "github:quickshell-mirror/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    quickshell.url = "github:quickshell-mirror/quickshell";
+    quickshell.inputs.nixpkgs.follows = "nixpkgs";
     systems.url = "github:nix-systems/default";
   };
 

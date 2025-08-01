@@ -16,8 +16,8 @@
       withI3 = false;
     },
 }: let
-  inherit (pkgs.lib) fix mapAttrs attrValues;
-  inherit (pkgs) callPackage;
+  inherit (pkgs.lib) fix mapAttrs attrValues makeScope;
+  inherit (pkgs) newScope;
   # I wanna use a top level let in to remove the import ./npins redundancy but
   # that doesn't look cute so here we are .w.
   # https://github.com/andir/npins?tab=readme-ov-file#using-the-nixpkgs-fetchers
@@ -31,7 +31,9 @@ in
       internal = import ./pkgs/overlays/internal.nix;
     };
 
-    packages = {
+    packages = makeScope newScope (self': let
+      inherit (self') callPackage;
+    in {
       mpv-wrapped = callPackage ./pkgs/mpv {};
       librebarcode = callPackage ./pkgs/librebarcode.nix {};
       kokCursor = callPackage ./pkgs/kokCursor.nix {};
@@ -41,12 +43,8 @@ in
       # WARNING
       # THIS WILL BUILD QUICKSHELL FROM SOURCE
       # you can find more information in the README
-      kurukurubar-unstable = callPackage ./pkgs/kurukurubar.nix {
-        inherit quickshell;
-        inherit (self.packages.scripts) gpurecording;
-        inherit (self.packages) librebarcode;
-      };
-      kurukurubar = (self.packages.kurukurubar-unstable).override {
+      kurukurubar-unstable = callPackage ./pkgs/kurukurubar.nix {inherit quickshell;};
+      kurukurubar = (self'.kurukurubar-unstable).override {
         # quickshell v0.2.0 (nixpkgs)
         inherit (pkgs) quickshell;
 
@@ -80,20 +78,16 @@ in
       ));
 
       # some cute scripts
-      scripts = let
-        scripts' = import ./pkgs/scripts {inherit (pkgs) lib callPackage;};
-      in
-        scripts'.extend (final: prev: {
-          npins-show = prev.npins-show.override {
-            inherit (self.packages) npins;
-          };
-        });
+      scripts = import ./pkgs/scripts {
+        inherit (pkgs) lib;
+        inherit (self') callPackage;
+      };
 
       # is your boot secure yet?
       lanzaboote = import ./pkgs/lanzaboote/default.nix {
         inherit (sources) nixpkgs rust-overlay crane lanzaboote;
       };
-    };
+    });
 
     nixosModules = {
       kurukuruDM = {

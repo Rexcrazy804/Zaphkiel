@@ -2,7 +2,7 @@
 # cc6d5cf12ae824e6945cc2599a2650d5fe054ffe
 {
   lib,
-  gpurecording,
+  scripts,
   rembg,
   librebarcode,
   symlinkJoin,
@@ -57,7 +57,7 @@ in
     pname = "kurukurubar";
     version = quickshell.version;
 
-    paths = [quickshell rembg gpurecording];
+    paths = [quickshell rembg scripts.gpurecording];
     nativeBuildInputs = [makeWrapper];
 
     postBuild = ''

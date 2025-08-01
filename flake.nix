@@ -31,9 +31,8 @@
 
     zaphkiel = system:
       import ./default.nix {
-        inherit nixpkgs;
-        inherit system;
-        quickshell = inputs.quickshell.packages.${system}.quickshell;
+        inherit nixpkgs system;
+        inherit (inputs.quickshell.packages.${system}) quickshell;
       };
   in {
     formatter = forAllSystems (pkgs: pkgs.alejandra);

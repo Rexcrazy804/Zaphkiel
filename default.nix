@@ -84,10 +84,7 @@ in
       ));
 
       # some cute scripts
-      scripts = import ./pkgs/scripts {
-        inherit (pkgs) lib;
-        inherit (self') callPackage;
-      };
+      scripts = callPackage ./pkgs/scripts {};
 
       # is your boot secure yet?
       lanzaboote = import ./pkgs/lanzaboote/default.nix {

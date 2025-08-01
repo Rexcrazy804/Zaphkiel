@@ -10,7 +10,7 @@
   inherit (pkgs) newScope;
 
   # WARNING
-  # sources' is npins v6 >.<
+  # assuming sources' is npins v6 >.<
   # https://github.com/andir/npins?tab=readme-ov-file#using-the-nixpkgs-fetchers
   sources = mapAttrs (k: v: v {inherit pkgs;}) sources'';
 in
@@ -50,12 +50,11 @@ in
       # THIS WILL BUILD QUICKSHELL FROM SOURCE
       # you can find more information in the README
       kurukurubar-unstable = callPackage ./pkgs/kurukurubar.nix {};
+      # INFO
+      # following zaphkiel master branch
+      # quickshell v0.2.0 (nixpkgs)
       kurukurubar = (self'.kurukurubar-unstable).override {
-        # quickshell v0.2.0 (nixpkgs)
         inherit (pkgs) quickshell;
-
-        # INFO
-        # following zaphkiel master branch
         # configPath = (sources.zaphkiel) + "/users/dots/quickshell/kurukurubar";
       };
 

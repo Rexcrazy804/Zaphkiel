@@ -4,18 +4,17 @@
   self,
   config,
   ...
-}: {
+}: let
+  inherit (lib) mkIf mkForce mkEnableOption;
+in {
   imports = [self.nixosModules.lanzaboote];
-  options.zaphkiel.programs.lanzaboote.enable = lib.mkEnableOption "lanzaboote";
-  config = lib.mkIf config.zaphkiel.programs.lanzaboote.enable {
+  options.zaphkiel.programs.lanzaboote.enable = mkEnableOption "lanzaboote";
+  config = mkIf config.zaphkiel.programs.lanzaboote.enable {
     environment.systemPackages = [pkgs.sbctl];
-    boot.loader.systemd-boot.enable = lib.mkForce false;
+    boot.loader.systemd-boot.enable = mkForce false;
     boot.lanzaboote = {
       enable = true;
       pkiBundle = "/var/lib/sbctl";
-      # WARNING
-      # this is from the internal overlay NOT THE SAME as pkgs.lanzaboote-tool
-      # in nipxkgs which does NOT contain the required uefi stub
       configurationLimit = 12;
     };
   };

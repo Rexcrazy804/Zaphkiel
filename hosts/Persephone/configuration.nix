@@ -1,4 +1,5 @@
 {
+  self,
   config,
   pkgs,
   lib,
@@ -8,6 +9,7 @@
 in {
   imports = [
     ./hardware-configuration.nix
+    self.nixosModules.kurukuruDM
     ./user-configuration.nix
     ./extras/privoxy.nix
   ];

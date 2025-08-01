@@ -14,8 +14,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    quickshell.url = "github:quickshell-mirror/quickshell";
-    mnw.url = "github:Gerg-L/mnw";
+    quickshell = {
+      url = "github:quickshell-mirror/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     systems.url = "github:nix-systems/default";
   };
 
@@ -34,7 +36,6 @@
       import ./default.nix {
         inherit nixpkgs;
         inherit system;
-        inherit (inputs) mnw;
         quickshell = inputs.quickshell.packages.${system}.quickshell;
       };
   in {

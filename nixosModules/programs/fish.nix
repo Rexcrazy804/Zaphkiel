@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (config.networking) hostName;
-  rebuildCommand = "sudo nixos-rebuild --log-format bar --no-reexec --file ~/nixos/rebuild.nix -A ${hostName}";
+  rebuildCommand = "sudo nixos-rebuild --log-format bar --no-reexec --file ~/nixos -A nixosConfigurations.${hostName}";
   #         !!!you found the fish!!!
   #   ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠖⠒⠲⠤⣤⣀⠀⠀⠀⢀⣀⣤⠤⠖⠒⠢⢤⡀⠀⠀⠀⠀⠀⠀⠀⠀
   #   ⠀⠀⠀⠀⠀⠀⣶⣄⠏⡠⠊⠀⠀⠈⠁⠚⢍⠲⠖⡩⠓⠉⠀⠀⠀⠑⠌⠳⣠⣶⠀⠀⠀⠀⠀⠀
@@ -78,6 +78,7 @@ in {
       lse = "eza --icons --group-directories-first -1";
     };
     shellAliases = {
+      snow = rebuildCommand;
       ls = "eza --icons --group-directories-first -1";
       snowboot = "${rebuildCommand} boot";
       snowfall = "${rebuildCommand} switch";

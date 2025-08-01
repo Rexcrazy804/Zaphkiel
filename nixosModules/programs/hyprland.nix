@@ -1,17 +1,20 @@
 {
+  self,
   pkgs,
   lib,
   config,
   ...
-}: {
-  options.zaphkiel.programs.hyprland.enable = lib.mkEnableOption "hyprland";
-  config = lib.mkIf config.zaphkiel.programs.hyprland.enable {
+}: let
+  inherit (lib) mkEnableOption mkIf mkForce attrValues;
+in {
+  options.zaphkiel.programs.hyprland.enable = mkEnableOption "hyprland";
+  config = mkIf config.zaphkiel.programs.hyprland.enable {
     programs.hyprland = {
       enable = true;
       withUWSM = true;
     };
     services.hypridle.enable = true;
-    systemd.user.services.hypridle.path = lib.mkForce [
+    systemd.user.services.hypridle.path = mkForce [
       config.programs.hyprland.package
       pkgs.procps
       pkgs.brightnessctl
@@ -38,47 +41,18 @@
     ];
 
     # dependencies .w.
-    environment.systemPackages = [
-      pkgs.kokCursor
-      # QT dep
-      pkgs.kdePackages.qt6ct
-      pkgs.kdePackages.breeze
-      # Theme
-      # pkgs.rose-pine-cursor
-      # pkgs.rose-pine-hyprcursor
-      pkgs.rose-pine-icon-theme
-      pkgs.rose-pine-gtk-theme
-
+    environment.systemPackages = attrValues {
+      inherit (self.packages) kokCursor kurukurubar-unstable;
+      inherit (self.packages.scripts) kde-send gpurecording cowask npins-show;
+      inherit (pkgs.kdePackages) qt6ct breeze;
+      # Themes
+      inherit (pkgs) rose-pine-icon-theme rose-pine-gtk-theme;
       # utility
-      pkgs.wl-clipboard
-      pkgs.cliphist
-      pkgs.grim
-      pkgs.slurp
-      pkgs.brightnessctl
-      pkgs.hyprsunset
-      pkgs.trashy
-      pkgs.fuzzel
-      pkgs.wl-screenrec
-      pkgs.libnotify
-      pkgs.swappy
-      pkgs.imv
-      pkgs.wayfreeze
-      pkgs.networkmanagerapplet
-      pkgs.yazi
-      pkgs.ripdrag
-      # gnome keyring
-      pkgs.seahorse
-
-      # quickshell dep
-      pkgs.quickshell
-      pkgs.rembg
-
-      # supporting scripts
-      pkgs.scripts.kde-send
-      pkgs.scripts.gpurecording
-      pkgs.scripts.cowask
-      pkgs.scripts.npins-show
-    ];
+      inherit (pkgs) wl-clipboard cliphist grim slurp brightnessctl;
+      inherit (pkgs) hyprsunset trashy fuzzel wl-screenrec;
+      inherit (pkgs) libnotify swappy imv wayfreeze networkmanagerapplet;
+      inherit (pkgs) yazi ripdrag seahorse;
+    };
 
     # required when kde plasma is not installed .w.
     # ask me how I knew

@@ -1,18 +1,20 @@
 {
+  self,
   pkgs,
   lib,
   config,
   ...
 }: let
   packages = lib.attrValues {
-    # wine stuff
+    # wine
     inherit (pkgs.wineWowPackages) waylandFull;
     inherit (pkgs) legendary-heroic bottles winetricks mono umu-launcher;
-    # foot stuff
+    # terminal
     inherit (pkgs) foot cbonsai cowsay;
-    # internal overlay stuff
-    inherit (pkgs) mpv-wrapped discord;
-    inherit (pkgs.scripts) wallcrop legumulaunch;
+    # from internal overlay
+    inherit (pkgs) discord;
+    inherit (self.packages) mpv-wrapped;
+    inherit (self.packages.scripts) wallcrop legumulaunch;
   };
 in {
   imports = [../../nixosModules/external/matugen];

@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  self,
+  ...
+}: {
   imports = [
     # ./gdm.nix
     # ./aagl.nix
@@ -22,7 +26,7 @@
   ];
 
   # global
-  environment.systemPackages = [pkgs.git pkgs.nixvim pkgs.npins];
+  environment.systemPackages = [pkgs.git self.packages.nixvim self.packages.npins];
 
   # requried by gdm leaving it here since all my systems do use nushell
   environment.shells = ["/run/current-system/sw/bin/nu"];

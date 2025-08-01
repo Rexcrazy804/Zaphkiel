@@ -89,6 +89,12 @@ in
       lanzaboote = import ./pkgs/lanzaboote/default.nix {
         inherit (sources) nixpkgs rust-overlay crane lanzaboote;
       };
+
+      # a lil cursed but lets me rexport the custom theme
+      sddm-silent = callPackage (sources.silent-sddm) {gitRev = sources.silent-sddm.revision;};
+      sddm-silent-custom = self'.sddm-silent.override (import ./nixosModules/programs/sddm/theme.nix {
+        inherit (pkgs) fetchurl runCommandWith ffmpeg;
+      });
     });
 
     nixosModules = {

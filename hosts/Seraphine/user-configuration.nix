@@ -1,4 +1,5 @@
 {
+  self,
   pkgs,
   config,
   lib,
@@ -15,14 +16,12 @@
       magick $src -crop 4368x2170+0+188 - > $out
     '';
   };
-  packages = [
-    pkgs.foot
-    pkgs.cowsay
-    pkgs.mpv-wrapped
-
-    # internal overlay
-    pkgs.discord
-  ];
+  packages = lib.attrValues {
+    inherit (pkgs) foot cowsay;
+    # from internal overlay
+    inherit (pkgs) discord;
+    inherit (self.packages) mpv-wrapped;
+  };
 in {
   imports = [
     ../../nixosModules/external/matugen

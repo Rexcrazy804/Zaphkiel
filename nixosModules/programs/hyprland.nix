@@ -16,9 +16,10 @@ in {
     services.hypridle.enable = true;
     systemd.user.services.hypridle.path = mkForce [
       config.programs.hyprland.package
+      pkgs.systemd
       pkgs.procps
       pkgs.brightnessctl
-      pkgs.quickshell
+      pkgs.kurukurubar-unstable
     ];
 
     qt.enable = true;

@@ -109,20 +109,22 @@ in
     };
 
     nixosConfigurations = let
-      nixosConfig = hostName:
-        import (nixpkgs + "/nixos/lib/eval-config.nix") {
+      nixosSystem = import (nixpkgs + "/nixos/lib/eval-config.nix");
+      overlays = attrValues {inherit (self.overlays) internal lix;};
+      nixosHost = hostName:
+        nixosSystem {
           system = null;
           specialArgs = {inherit self sources;};
           modules = [
-            {nixpkgs.overlays = attrValues self.overlays;}
+            {nixpkgs.overlays = overlays;}
             ./hosts/${hostName}/configuration.nix
             ./users/rexies.nix
             ./nixosModules
           ];
         };
     in {
-      Persephone = nixosConfig "Persephone";
-      Seraphine = nixosConfig "Seraphine";
-      Aphrodite = nixosConfig "Aphrodite";
+      Persephone = nixosHost "Persephone";
+      Seraphine = nixosHost "Seraphine";
+      Aphrodite = nixosHost "Aphrodite";
     };
   })

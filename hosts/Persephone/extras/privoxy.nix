@@ -19,5 +19,5 @@
         builtins.map (domain: "${domain} ${proxy}") forwarding_domains;
     };
   };
-  networking.proxy.default = "127.0.0.1:8118";
+  networking.proxy.default = "http://127.0.0.1:8118";
 }

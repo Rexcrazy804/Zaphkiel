@@ -7,6 +7,9 @@ in {
     ./graphics
     ./programs
     ./server
+
+    ./exported/kurukuruDM.nix
+    ./external/matugen
   ];
 
   options = {

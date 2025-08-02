@@ -11,13 +11,10 @@
     # terminal
     inherit (pkgs) foot cbonsai cowsay;
     # from internal overlay
-    inherit (pkgs) discord;
-    inherit (pkgs) mpv-wrapped;
+    inherit (pkgs) discord mpv-wrapped;
     inherit (pkgs.scripts) wallcrop legumulaunch;
   };
 in {
-  imports = [../../nixosModules/external/matugen];
-
   users.users."rexies" = {
     inherit packages;
     extraGroups = ["video" "input"];

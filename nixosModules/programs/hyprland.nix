@@ -42,11 +42,12 @@ in {
 
     # dependencies .w.
     environment.systemPackages = attrValues {
+      # internal overlay
       inherit (pkgs) kokCursor kurukurubar-unstable;
       inherit (pkgs.scripts) kde-send gpurecording cowask npins-show;
-      inherit (pkgs.kdePackages) qt6ct breeze;
       # Themes
       inherit (pkgs) rose-pine-icon-theme rose-pine-gtk-theme;
+      inherit (pkgs.kdePackages) qt6ct breeze;
       # utility
       inherit (pkgs) wl-clipboard cliphist grim slurp brightnessctl;
       inherit (pkgs) hyprsunset trashy fuzzel wl-screenrec;

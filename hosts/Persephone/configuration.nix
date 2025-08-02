@@ -8,7 +8,6 @@
 in {
   imports = [
     ./hardware-configuration.nix
-    ../../nixosModules/exported/kurukuruDM.nix
     ./user-configuration.nix
     ./extras/privoxy.nix
   ];

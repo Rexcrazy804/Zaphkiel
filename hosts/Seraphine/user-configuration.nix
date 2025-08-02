@@ -21,10 +21,7 @@
     inherit (pkgs) discord mpv-wrapped;
   };
 in {
-  imports = [
-    ../../nixosModules/external/matugen
-    ./extras/filebrowser.nix
-  ];
+  imports = [./extras/filebrowser.nix];
   users.users."rexies" = {
     inherit packages;
     extraGroups = ["video" "input"];

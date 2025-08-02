@@ -32,8 +32,8 @@
     zaphkiel = system:
       import ./default.nix {
         inherit (inputs.quickshell.packages.${system}) quickshell;
-        inherit nixpkgs system;
-        # Heyya flake cuties, you should check out npins :>
+        pkgs = import nixpkgs {inherit system;};
+        # fear not flake cuties, this is a bridge to the npins side
         sources = {};
       };
   in {

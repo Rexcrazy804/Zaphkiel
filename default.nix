@@ -3,9 +3,8 @@
 {
   sources ? builtins.trace "Zaphkiel: USE `sources` INSTEAD OF `sources'`" {},
   sources' ? (import ./npins) // sources,
-  system ? builtins.currentSystem,
   nixpkgs ? sources'.nixpkgs,
-  pkgs ? import nixpkgs {inherit system;},
+  pkgs ? import nixpkgs {},
   quickshell ? null,
 }: let
   inherit (pkgs.lib) fix mapAttrs attrValues makeScope;

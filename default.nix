@@ -13,88 +13,17 @@
   # assuming sources' is npins v6 >.<
   # https://github.com/andir/npins?tab=readme-ov-file#using-the-nixpkgs-fetchers
   sources = mapAttrs (k: v: v {inherit pkgs;}) sources'';
+
+  # check this out if you wanna see everything exported
+  exportedPackages = import ./pkgs/overlays/exported.nix;
 in
   fix (self: {
     overlays = {
       kurukurubar = final: prev: {inherit (self.packages) kurukurubar kurukurubar-unstable;};
-      lix = import ./pkgs/overlays/lix.nix {lix = null;};
-      internal = import ./pkgs/overlays/internal.nix;
     };
 
-    packages = makeScope newScope (self': let
-      inherit (self') callPackage;
-    in {
-      quickshell =
-        if (quickshell == null)
-        then
-          callPackage (sources.quickshell) {
-            gitRev = sources.quickshell.revision;
-            withJemalloc = true;
-            withQtSvg = true;
-            withWayland = true;
-            withX11 = false;
-            withPipewire = true;
-            withPam = true;
-            withHyprland = true;
-            withI3 = false;
-          }
-        else quickshell;
-
-      mpv-wrapped = callPackage ./pkgs/mpv {};
-      librebarcode = callPackage ./pkgs/librebarcode.nix {};
-      kokCursor = callPackage ./pkgs/kokCursor.nix {};
-
-      npins = callPackage (sources.npins + "/npins.nix") {};
-
-      # WARNING
-      # THIS WILL BUILD QUICKSHELL FROM SOURCE
-      # you can find more information in the README
-      kurukurubar-unstable = callPackage ./pkgs/kurukurubar.nix {};
-      # INFO
-      # following zaphkiel master branch
-      # quickshell v0.2.0 (nixpkgs)
-      kurukurubar = (self'.kurukurubar-unstable).override {
-        inherit (pkgs) quickshell;
-        # configPath = (sources.zaphkiel) + "/users/dots/quickshell/kurukurubar";
-      };
-
-      nixvim-minimal = import ./pkgs/nvim.nix {
-        inherit (sources) mnw;
-        inherit pkgs;
-      };
-      nixvim = self.packages.nixvim-minimal.override (prev: {
-        extraBinPath =
-          prev.extraBinPath
-          ++ [
-            # language servers
-            pkgs.nil
-            pkgs.lua-language-server
-            pkgs.kdePackages.qtdeclarative
-            # formatter
-            pkgs.alejandra
-          ];
-      });
-
-      # the booru image collection
-      booru-images = let
-        imgBuilder = callPackage (sources.booru-flake + "/nix/imgBuilder.nix");
-      in (pkgs.lib.attrsets.mergeAttrsList (
-        builtins.map (x: {${"i" + x.id} = imgBuilder x;}) (import ./nixosModules/programs/booru-flake/imgList.nix)
-      ));
-
-      # some cute scripts
-      scripts = callPackage ./pkgs/scripts {};
-
-      # is your boot secure yet?
-      lanzaboote = import ./pkgs/lanzaboote/default.nix {
-        inherit (sources) nixpkgs rust-overlay crane lanzaboote;
-      };
-
-      # a lil cursed but lets me rexport the custom theme
-      sddm-silent = callPackage (sources.silent-sddm) {gitRev = sources.silent-sddm.revision;};
-      sddm-silent-custom = self'.sddm-silent.override (import ./nixosModules/programs/sddm/theme.nix {
-        inherit (pkgs) fetchurl runCommandWith ffmpeg;
-      });
+    packages = makeScope newScope (exportedPackages {
+      inherit quickshell pkgs sources;
     });
 
     nixosModules = {
@@ -111,8 +40,19 @@ in
     nixosConfigurations = let
       nixosSystem = import (nixpkgs + "/nixos/lib/eval-config.nix");
       overlays = attrValues {
-        inherit (self.overlays) internal lix;
-        extra = final: prev: self.packages.packages final;
+        lix = import ./pkgs/overlays/lix.nix {lix = null;};
+        internal = import ./pkgs/overlays/internal.nix;
+
+        # for the people of the future,
+        # if you don't understand why this was done,
+        # just know I am a eval time racer
+        # this saves 1.1 seconds of eval time
+        internal' = final: prev:
+          (exportedPackages {
+            inherit sources;
+            pkgs = prev;
+          })
+          final;
       };
       nixosHost = hostName:
         nixosSystem {

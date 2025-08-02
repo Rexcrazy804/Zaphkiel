@@ -5,8 +5,12 @@ require('lz.n').load {
     require('blink-cmp').setup({
       keymap = {
         preset = 'enter',
-        ['<right>'] = { 'accept' },
+        -- before you pull out your hair
+        -- I have capslock + hjkl translated to the arrow keys
+        -- see keyd.nix for more info
+        ['<right>'] = { 'accept', 'fallback' },
         ['<down>'] = { 'show', 'select_next' },
+        ['<CR>'] = {},
       },
 
       appearance = {

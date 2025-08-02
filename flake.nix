@@ -3,19 +3,18 @@
   # This flake solely exists for the purpose of allowing overrides for flake
   # users which is why there does not exist a flake.lock in this repo. This
   # flake DOES NOT setup anything for my nixos configurations please see
-  # `rebuild.nix` for that
+  # `default.nix`.nixosConfigurations for that
 
   # INFO
-  # For non flake users please see default.nix it tries to primarily supports
-  # npins but it SHOULD in theory work with something like niv too, feel
-  # welcome to raise any concerns
+  # For non flake users please see default.nix primarilly supports npins (v6) sources.
+  # Feel welcome to raise any concerns
 
   description = "Rexiel Scarlet's Flake bridge";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     quickshell.url = "github:quickshell-mirror/quickshell";
-    mnw.url = "github:Gerg-L/mnw";
+    quickshell.inputs.nixpkgs.follows = "nixpkgs";
     systems.url = "github:nix-systems/default";
   };
 
@@ -32,10 +31,10 @@
 
     zaphkiel = system:
       import ./default.nix {
-        inherit nixpkgs;
-        inherit system;
-        inherit (inputs) mnw;
-        quickshell = inputs.quickshell.packages.${system}.quickshell;
+        inherit (inputs.quickshell.packages.${system}) quickshell;
+        pkgs = import nixpkgs {inherit system;};
+        # fear not flake cuties, this is a bridge to the npins side
+        sources = {};
       };
   in {
     formatter = forAllSystems (pkgs: pkgs.alejandra);

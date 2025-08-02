@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   config,
   ...
 }: {
@@ -70,7 +69,5 @@
     openFirewall = lib.mkForce false;
     startWhenNeeded = lib.mkForce false;
   };
-
-  environment.systemPackages = [pkgs.git pkgs.nixvim];
   system.stateVersion = "23.11";
 }

@@ -78,6 +78,10 @@ in {
             then warn "kurukuruDM.settings.instantAuth enabled without specifying settings.default_user" true_def_usr
             else true_def_usr;
         };
+      # WARN
+      # currently if you have no valid sessions, this throws a out of bonds
+      # error which may be hard to narrow down to this
+      # todo enable nullOr and on null builtins.trace the possible values
       default_session = mkOption {
         type = enum sessionData.sessionNames;
         default =

@@ -1,80 +1,31 @@
-# TODO: use v6 format once that hits nixpkgs-unstable
+# TODO remove the warning after 3 weeks
+# 2nd August, 2025
 {
-  sources' ? import ./npins,
-  system ? builtins.currentSystem,
+  sources ? builtins.trace "Zaphkiel: USE `sources` INSTEAD OF `sources'`" {},
+  sources' ? (import ./npins) // sources,
   nixpkgs ? sources'.nixpkgs,
-  pkgs ? import nixpkgs {inherit system;},
-  quickshell ?
-    pkgs.callPackage (sources'.quickshell {}) {
-      gitRev = sources'.quickshell.revision;
-    },
-  mnw ? sources'.mnw,
+  pkgs ? import nixpkgs {},
+  quickshell ? null,
 }: let
-  inherit (pkgs.lib) fix;
-  # I wanna use a top level let in to remove the import ./npins redundancy but
-  # that doesn't look cute so here we are .w.
-  sources = (import ./npins) // sources';
+  inherit (pkgs.lib) fix mapAttrs attrValues makeScope;
+  inherit (pkgs) newScope;
+
+  # WARNING
+  # assuming sources' is npins v6 >.<
+  # https://github.com/andir/npins?tab=readme-ov-file#using-the-nixpkgs-fetchers
+  sources = mapAttrs (k: v: v {inherit pkgs;}) sources';
+
+  # check this out if you wanna see everything exported
+  exportedPackages = import ./pkgs/overlays/exported.nix;
 in
   fix (self: {
     overlays = {
-      kurukurubar = final: prev: {
-        inherit (self.packages) kurukurubar kurukurubar-unstable;
-      };
+      kurukurubar = final: prev: {inherit (self.packages) kurukurubar kurukurubar-unstable;};
     };
 
-    packages = {
-      mpv-wrapped = pkgs.callPackage ./pkgs/mpv {};
-      librebarcode = pkgs.callPackage ./pkgs/librebarcode.nix {};
-      kokCursor = pkgs.callPackage ./pkgs/kokCursor.nix {};
-
-      # WARNING
-      # THIS WILL BUILD QUICKSHELL FROM SOURCE
-      # you can find more information in the README
-      kurukurubar-unstable = pkgs.callPackage ./pkgs/kurukurubar.nix {
-        inherit quickshell;
-        inherit (self.packages.scripts) gpurecording;
-        inherit (self.packages) librebarcode;
-      };
-      kurukurubar = (self.packages.kurukurubar-unstable).override {
-        # quickshell v0.2.0 (nixpkgs)
-        inherit (pkgs) quickshell;
-
-        # INFO
-        # following zaphkiel master branch
-        # configPath = (sources.zaphkiel) + "/users/dots/quickshell/kurukurubar";
-      };
-
-      nixvim-minimal = import ./pkgs/nvim.nix {
-        inherit pkgs mnw;
-      };
-      nixvim = self.packages.nixvim-minimal.override (prev: {
-        extraBinPath =
-          prev.extraBinPath
-          ++ [
-            # language servers
-            pkgs.nil
-            pkgs.lua-language-server
-            pkgs.kdePackages.qtdeclarative
-            # formatter
-            pkgs.alejandra
-          ];
-      });
-
-      # the booru image collection
-      booru-images = let
-        imgBuilder = pkgs.callPackage (sources.booru-flake + "/nix/imgBuilder.nix");
-      in (pkgs.lib.attrsets.mergeAttrsList (
-        builtins.map (x: {${"i" + x.id} = imgBuilder x;}) (import ./nixosModules/programs/booru-flake/imgList.nix)
-      ));
-
-      # some cute scripts
-      scripts = import ./pkgs/scripts {inherit (pkgs) lib callPackage;};
-
-      # is your boot secure yet?
-      lanzaboote = import ./pkgs/lanzaboote/default.nix {
-        inherit (sources) nixpkgs rust-overlay crane lanzaboote;
-      };
-    };
+    packages = makeScope newScope (exportedPackages {
+      inherit quickshell pkgs sources;
+    });
 
     nixosModules = {
       kurukuruDM = {
@@ -85,5 +36,39 @@ in
         imports = [(sources.lanzaboote + "/nix/modules/lanzaboote.nix")];
         boot.lanzaboote.package = self.packages.lanzaboote.tool;
       };
+    };
+
+    nixosConfigurations = let
+      nixosSystem = import (nixpkgs + "/nixos/lib/eval-config.nix");
+      overlays = attrValues {
+        lix = import ./pkgs/overlays/lix.nix {lix = null;};
+        internal = import ./pkgs/overlays/internal.nix;
+
+        # for the people of the future,
+        # if you don't understand why this was done,
+        # just know I am a eval time racer
+        # this saves 1.1 seconds of eval time
+        internal' = final: prev:
+          (exportedPackages {
+            inherit sources;
+            pkgs = prev;
+          })
+          final;
+      };
+      nixosHost = hostName:
+        nixosSystem {
+          system = null;
+          specialArgs = {inherit sources;};
+          modules = [
+            {nixpkgs.overlays = overlays;}
+            ./hosts/${hostName}/configuration.nix
+            ./users/rexies.nix
+            ./nixosModules
+          ];
+        };
+    in {
+      Persephone = nixosHost "Persephone";
+      Seraphine = nixosHost "Seraphine";
+      Aphrodite = nixosHost "Aphrodite";
     };
   })

@@ -5,18 +5,16 @@
   ...
 }: let
   packages = lib.attrValues {
-    # wine stuff
+    # wine
     inherit (pkgs.wineWowPackages) waylandFull;
     inherit (pkgs) legendary-heroic bottles winetricks mono umu-launcher;
-    # foot stuff
+    # terminal
     inherit (pkgs) foot cbonsai cowsay;
-    # internal overlay stuff
-    inherit (pkgs) mpv-wrapped discord;
+    # from internal overlay
+    inherit (pkgs) discord mpv-wrapped;
     inherit (pkgs.scripts) wallcrop legumulaunch;
   };
 in {
-  imports = [../../nixosModules/external/matugen];
-
   users.users."rexies" = {
     inherit packages;
     extraGroups = ["video" "input"];

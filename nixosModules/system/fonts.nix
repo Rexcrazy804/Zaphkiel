@@ -16,7 +16,6 @@
         pkgs.noto-fonts-cjk-serif
         pkgs.material-symbols
 
-        # from internal overlay
         pkgs.librebarcode
       ];
     };

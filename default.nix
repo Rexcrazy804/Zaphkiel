@@ -1,8 +1,10 @@
+# TODO remove the warning after 3 weeks
+# 2nd August, 2025
 {
-  sources' ? {},
-  sources'' ? (import ./npins) // sources',
+  sources ? builtins.trace "Zaphkiel: USE `sources` INSTEAD OF `sources'`" {},
+  sources' ? (import ./npins) // sources,
   system ? builtins.currentSystem,
-  nixpkgs ? sources''.nixpkgs,
+  nixpkgs ? sources'.nixpkgs,
   pkgs ? import nixpkgs {inherit system;},
   quickshell ? null,
 }: let
@@ -12,7 +14,7 @@
   # WARNING
   # assuming sources' is npins v6 >.<
   # https://github.com/andir/npins?tab=readme-ov-file#using-the-nixpkgs-fetchers
-  sources = mapAttrs (k: v: v {inherit pkgs;}) sources'';
+  sources = mapAttrs (k: v: v {inherit pkgs;}) sources';
 
   # check this out if you wanna see everything exported
   exportedPackages = import ./pkgs/overlays/exported.nix;

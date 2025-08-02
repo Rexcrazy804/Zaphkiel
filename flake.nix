@@ -3,7 +3,7 @@
   # This flake solely exists for the purpose of allowing overrides for flake
   # users which is why there does not exist a flake.lock in this repo. This
   # flake DOES NOT setup anything for my nixos configurations please see
-  # `rebuild.nix` for that
+  # `default.nix`.nixosConfigurations for that
 
   # INFO
   # For non flake users please see default.nix primarilly supports npins (v6) sources.
@@ -31,8 +31,10 @@
 
     zaphkiel = system:
       import ./default.nix {
-        inherit nixpkgs system;
         inherit (inputs.quickshell.packages.${system}) quickshell;
+        inherit nixpkgs system;
+        # Heyya flake cuties, you should check out npins :>
+        sources = {};
       };
   in {
     formatter = forAllSystems (pkgs: pkgs.alejandra);

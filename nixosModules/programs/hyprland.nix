@@ -1,5 +1,4 @@
 {
-  self,
   pkgs,
   lib,
   config,
@@ -43,8 +42,8 @@ in {
 
     # dependencies .w.
     environment.systemPackages = attrValues {
-      inherit (self.packages) kokCursor kurukurubar-unstable;
-      inherit (self.packages.scripts) kde-send gpurecording cowask npins-show;
+      inherit (pkgs) kokCursor kurukurubar-unstable;
+      inherit (pkgs.scripts) kde-send gpurecording cowask npins-show;
       inherit (pkgs.kdePackages) qt6ct breeze;
       # Themes
       inherit (pkgs) rose-pine-icon-theme rose-pine-gtk-theme;

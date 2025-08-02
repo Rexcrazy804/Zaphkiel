@@ -1,5 +1,4 @@
 {
-  self,
   pkgs,
   lib,
   config,
@@ -20,7 +19,7 @@ in {
     cfg = config.zaphkiel.programs.sddm-custom-theme;
     # the theme is overriden via the internal overlay
     # its done this way to be able to export it onto the flake
-    sddm-theme = self.packages.sddm-silent-custom;
+    sddm-theme = pkgs.sddm-silent-custom;
   in
     mkIf cfg.enable {
       # changes might require a restart to be reflected correctly without errors

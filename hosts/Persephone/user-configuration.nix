@@ -1,5 +1,4 @@
 {
-  self,
   pkgs,
   lib,
   config,
@@ -13,8 +12,8 @@
     inherit (pkgs) foot cbonsai cowsay;
     # from internal overlay
     inherit (pkgs) discord;
-    inherit (self.packages) mpv-wrapped;
-    inherit (self.packages.scripts) wallcrop legumulaunch;
+    inherit (pkgs) mpv-wrapped;
+    inherit (pkgs.scripts) wallcrop legumulaunch;
   };
 in {
   imports = [../../nixosModules/external/matugen];

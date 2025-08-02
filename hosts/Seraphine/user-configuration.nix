@@ -1,5 +1,4 @@
 {
-  self,
   pkgs,
   config,
   lib,
@@ -19,8 +18,7 @@
   packages = lib.attrValues {
     inherit (pkgs) foot cowsay;
     # from internal overlay
-    inherit (pkgs) discord;
-    inherit (self.packages) mpv-wrapped;
+    inherit (pkgs) discord mpv-wrapped;
   };
 in {
   imports = [

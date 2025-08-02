@@ -51,7 +51,7 @@ in
         internal' = final: prev:
           (exportedPackages {
             inherit sources;
-            pkgs = prev;
+            pkgs = final;
           })
           final;
       };

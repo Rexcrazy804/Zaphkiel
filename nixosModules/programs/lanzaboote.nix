@@ -7,7 +7,7 @@
 }: let
   inherit (lib) mkIf mkForce mkEnableOption;
 in {
-        imports = [(sources.lanzaboote + "/nix/modules/lanzaboote.nix")];
+  imports = [(sources.lanzaboote + "/nix/modules/lanzaboote.nix")];
   options.zaphkiel.programs.lanzaboote.enable = mkEnableOption "lanzaboote";
   config = mkIf config.zaphkiel.programs.lanzaboote.enable {
     environment.systemPackages = [pkgs.sbctl];

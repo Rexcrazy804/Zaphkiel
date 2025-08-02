@@ -1,5 +1,6 @@
 {
   pkgs,
+  self,
   config,
   lib,
   ...
@@ -15,6 +16,8 @@
         pkgs.noto-fonts-cjk-sans
         pkgs.noto-fonts-cjk-serif
         pkgs.material-symbols
+
+        self.packages.librebarcode
       ];
     };
   };

@@ -110,11 +110,14 @@ in
 
     nixosConfigurations = let
       nixosSystem = import (nixpkgs + "/nixos/lib/eval-config.nix");
-      overlays = attrValues {inherit (self.overlays) internal lix;};
+      overlays = attrValues {
+        inherit (self.overlays) internal lix;
+        extra = final: prev: self.packages.packages final;
+      };
       nixosHost = hostName:
         nixosSystem {
           system = null;
-          specialArgs = {inherit self sources;};
+          specialArgs = {inherit sources;};
           modules = [
             {nixpkgs.overlays = overlays;}
             ./hosts/${hostName}/configuration.nix

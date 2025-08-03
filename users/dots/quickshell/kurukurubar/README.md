@@ -114,7 +114,7 @@ For kurukuruDM you may import and leverage the kurukuruDM module as follows
     # for more information check the module in `nixosModules/exported/kurukuruDM.nix`
     programs.kurukuruDM = {
         enable = true;
-        package = pkgs.kurukurubar-unstable;            # defaults to kurukurubar (stable)
+        package = pkgs.kurukurubar;                     # defaults to kurukurubar-unstable (TODO CHANGE THIS)
         settings = {
             wallpaper = ./path/to/wallpaper;            # you may use fetchurl to get remote images
             instantAuth = false;                        # auto starts authentication, good for fingerprint support ONLY

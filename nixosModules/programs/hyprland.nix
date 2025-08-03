@@ -8,18 +8,22 @@
 in {
   options.zaphkiel.programs.hyprland.enable = mkEnableOption "hyprland";
   config = mkIf config.zaphkiel.programs.hyprland.enable {
+    nixpkgs.overlays = [
+      (final: prev: {
+        kurukurubar-unstable = prev.kurukurubar-unstable.override {
+          customColors = config.programs.matugen.theme.files + "/quickshell-colors.qml";
+        };
+      })
+    ];
     programs.hyprland = {
       enable = true;
       withUWSM = true;
     };
     services.hypridle.enable = true;
-    systemd.user.services.hypridle.path = mkForce [
-      config.programs.hyprland.package
-      pkgs.systemd
-      pkgs.procps
-      pkgs.brightnessctl
-      pkgs.kurukurubar-unstable
-    ];
+    systemd.user.services.hypridle.path = mkForce (attrValues {
+      inherit (config.programs.hyprland) package;
+      inherit (pkgs) systemd procps brightnessctl kurukurubar-unstable;
+    });
 
     qt.enable = true;
 

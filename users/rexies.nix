@@ -76,14 +76,6 @@ in {
         } ''
           magick ${image} -crop 500x500+398+100 - >  $out
         '';
-
-      quickshellConfig = pkgs.runCommandLocal "quick" {} ''
-        mkdir $out
-        cd $out
-        cp -rp ${./dots/quickshell/kurukurubar}/* .
-        chmod u+rw ./Data/Colors.qml
-        cp ${matugenTheme}/quickshell-colors.qml ./Data/Colors.qml
-      '';
     in {
       # git
       ".config/git/config".source = ./dots/git/config;
@@ -91,8 +83,6 @@ in {
       # face Icon
       ".face.icon".source = faceIcon;
       # shell
-      # ".config/nushell/config.nu".source = ./dots/nushell/config.nu;
-      # ".config/starship.toml".source = starship;
       ".config/fish/themes".source = sources.rosep-fish + "/themes";
       ".config/fish/config.fish".source = ./dots/fish/config.fish;
       # bat
@@ -114,8 +104,6 @@ in {
       ".config/yazi/theme.toml".source = "${matugenTheme}/yazi-theme.toml";
       ".config/fuzzel/fuzzel.ini".text = fuzzel;
       ".config/background".source = matugen.wallpaper;
-      # quickshell
-      ".config/quickshell".source = quickshellConfig;
       # qt6ct
       ".config/qt6ct/qt6ct.conf".text = qt6ct;
       ".config/qt6ct/colors/matugen.conf".source = "${matugenTheme}/qtct-colors.conf";

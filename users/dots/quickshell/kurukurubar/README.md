@@ -63,14 +63,21 @@ nix run github:Rexcrazy804/Zaphkiel#kurukurubar
 #### Usage as flake
 First add zaphkiel as a flake input
 ```nix
-inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    zaphkiel = {
-        url = "github:Rexcrazy804/Zaphkiel";
-        inputs.nixpkgs.follows = "nixpkgs";
-        # optional
-        # inputs.quickshell.follows = "quickshell";
-        # inputs.systems.follows = "systems";
+{
+    description = "your cute flake";
+    inputs = {
+        nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+        zaphkiel = {
+            url = "github:Rexcrazy804/Zaphkiel";
+            inputs.nixpkgs.follows = "nixpkgs";
+            # optional
+            # inputs.quickshell.follows = "quickshell";
+            # inputs.systems.follows = "systems";
+        };
+        # other inputs ...
+    };
+    outputs = {self, nixpkgs, ...}@inputs: {
+        # your outputs ...
     };
 }
 ```

@@ -268,7 +268,7 @@ keymap = [
   # ripdrag
   { on = [ "<C-n>" ], run = "shell 'ripdrag \"$@\" -x 2>/dev/null &' --confirm "},
   { on = [ "<C-f>" ], run = "shell 'ffmpeg -i \"$0\" -crf 28 kuru.mp4' --interactive --block"},
-  { on = [ "<C-w>" ], run = "shell 'qs ipc call config setWallpaper \"$0\"'"},
+  { on = [ "<C-w>" ], run = "shell 'kurukurubar ipc call config setWallpaper \"$0\"'"},
   # kde connect share
   { on = [ "<A-n>" ], run = "shell 'kde-send \"$@\"' --block --confirm"},
 

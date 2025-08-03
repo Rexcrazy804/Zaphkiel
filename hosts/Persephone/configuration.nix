@@ -54,11 +54,12 @@ in {
     uwuToHypr = pkgs.runCommandLocal "quick" {} ''
       awk '/^export/ { split($2, ARR, "="); print "env = "ARR[1]","ARR[2]}' ${../../users/dots/uwsm/env} > $out
     '';
+    inherit (config.programs.matugen) wallpaper theme;
   in {
     enable = true;
     settings = {
-      wallpaper = config.programs.matugen.wallpaper;
-      colorsQML = config.programs.matugen.theme.files + "/quickshell-colors.qml";
+      inherit wallpaper;
+      colorsQML = theme.files + "/quickshell-colors.qml";
       instantAuth = true;
       extraConfig = ''
         monitor = eDP-1, preferred, auto, 1.25

@@ -4,6 +4,7 @@
     # ./aagl.nix
 
     ./lanzaboote.nix
+    ./kuruDM.nix
     ./steam.nix
     ./wine.nix
     ./age.nix

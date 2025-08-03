@@ -35,9 +35,9 @@ using [this template](../../../../nixosModules/external/matugen/templates/quicks
 
 ### Lock Screen and Foreground Isolation
 The lock screen requires a wallpaper to be set either at the default location `~/.config/background`
-or by manually specifying the path via
+or by manually specifying the path with: (prefer absolute paths '/' or paths
+starting from your home directory '~/')
 ```sh
-# prefer absolute paths '/' or paths starting from your home directory '~/'
 quickshell ipc call config setWallpaper ~/Path/to/your/wallpaper
 ```
 

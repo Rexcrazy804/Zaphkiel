@@ -4,11 +4,12 @@
   config,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf mkForce attrValues;
+  inherit (lib) mkEnableOption mkIf mkForce attrValues mkAfter;
 in {
   options.zaphkiel.programs.hyprland.enable = mkEnableOption "hyprland";
   config = mkIf config.zaphkiel.programs.hyprland.enable {
-    nixpkgs.overlays = [
+    # won't work as intended without mkAfter
+    nixpkgs.overlays = mkAfter [
       (final: prev: {
         kurukurubar-unstable = prev.kurukurubar-unstable.override {
           customColors = config.programs.matugen.theme.files + "/quickshell-colors.qml";

@@ -59,10 +59,7 @@ already processed images are instant.
 This rice is exposed as a package in the toplevel flake and can be used to run the rice as follows
 ```
 nix run github:Rexcrazy804/Zaphkiel#kurukurubar
-# please do not put this inside your hyprland configs as exec-once !!!!
-# prefer using the zaphkiel flake, intructions below
 ```
-
 #### Usage as flake
 First add zaphkiel as a flake input
 ```nix

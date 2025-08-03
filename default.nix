@@ -20,7 +20,14 @@
 in
   fix (self: {
     overlays = {
-      kurukurubar = final: prev: {inherit (self.packages) kurukurubar kurukurubar-unstable;};
+      # ensures that we don't add the overlay twice
+      kurukurubar = _final: prev:
+        if prev ? kurukurubar-overlay-present
+        then {kurukurubar-overlay-present = 2;}
+        else {
+          kurukurubar-overlay-present = 1;
+          inherit (self.packages) kurukurubar kurukurubar-unstable;
+        };
     };
 
     packages = makeScope newScope (exportedPackages {

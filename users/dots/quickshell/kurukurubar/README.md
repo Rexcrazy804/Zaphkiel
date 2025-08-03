@@ -22,6 +22,8 @@ using [this template](../../../../nixosModules/external/matugen/templates/quicks
 - rembg (required for foreground layer effect)
 
 ### Installation
+> Beloved nixos cuties, please refer to the [Nixos Section](#Nixos)
+
 1. Install the above dependencies using your favourite package manager
 2. git clone this repo
 3. copy `kurukurubar` folder into `~/.config/quickshell`
@@ -30,12 +32,6 @@ using [this template](../../../../nixosModules/external/matugen/templates/quicks
 
 > make sure you are not creating `.config/quickshell/kurukurubar`, in which
 > case you will need to pass the arg `-c kurukurubar` in step 4.
-
-### Live running on nix
-This rice is exposed as a package in the toplevel flake and can be used to run the rice as follows
-```
-nix run github:Rexcrazy804/Zaphkiel#kurukurubar
-```
 
 ### Lock Screen and Foreground Isolation
 The lock screen requires a wallpaper to be set either at the default location `~/.config/background`
@@ -58,6 +54,77 @@ already processed images are instant.
 
 > users of the kurukurubar via nixos flake should replace `quickshell` with
 > `kurukurubar` for the commands listed above
+
+### NixOS
+This rice is exposed as a package in the toplevel flake and can be used to run the rice as follows
+```
+nix run github:Rexcrazy804/Zaphkiel#kurukurubar
+# please do not put this inside your hyprland configs as exec-once !!!!
+# prefer using the zaphkiel flake, intructions below
+```
+
+#### Usage as flake
+First add zaphkiel as a flake input
+```nix
+inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    zaphkiel = {
+        url = "github:Rexcrazy804/Zaphkiel";
+        inputs.nixpkgs.follows = "nixpkgs";
+        # optional
+        # inputs.quickshell.follows = "quickshell";
+        # inputs.systems.follows = "systems";
+    };
+}
+```
+
+Now you may refer to the kurukurubar package as `inputs.zaphkiel.packages.${pkgs.system}.kurukurubar`
+```nix
+{
+    inputs,
+    pkgs,
+    ...
+}: {
+    environment.systemPacakges = [
+        inputs.zaphkiel.packages.${pkgs.system}.kurukurubar
+        # or alternatively
+        inputs.zaphkiel.packages.${pkgs.system}.kurukurubar-unstable
+    ];
+
+    # NOTE
+    # for running the bar, use `kurukurubar`
+    # for instance in the hyprland config, use:
+    # exec-once = kurukurubar
+}
+```
+
+For kurukuruDM you may import and leverage the kurukuruDM module as follows
+```nix
+{
+    inputs,
+    pkgs,
+    ...
+}: {
+    imports = [inputs.zaphkiel.nixosModules.kurukuruDM];
+
+    # for more information check the module in `nixosModules/exported/kurukuruDM.nix`
+    programs.kurukuruDM = {
+        enable = true;
+        package = pkgs.kurukurubar-unstable;            # defaults to kurukurubar (stable)
+        settings = {
+            wallpaper = ./path/to/wallpaper;            # you may use fetchurl to get remote images
+            instantAuth = false;                        # auto starts authentication, good for fingerprint support ONLY
+            default_user = "rexies";                    # set to null for possible values, only usefull for multi user systems
+            default_session = "sway";                   # same as above, only usefull for multi session systems
+            extraConfig = ''                            # extra configuration passed to underlying hyprland session
+              monitor = eDP-1, preferred, auto, 1.25    # you may enter any valid hyprland config here
+            '';
+        };
+    };
+}
+```
+> If your nixpkgs version of quickshell is not v0.2.0, kurukurubar (stable) WILL NOT WORK.
+> prefer using kurukurubar-unstable instead
 
 ### Known Issues
 - `org.Hyprland.style is not installed`: see [#21](https://github.com/Rexcrazy804/Zaphkiel/issues/21#issuecomment-2906546939)

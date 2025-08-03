@@ -127,6 +127,10 @@ For kurukuruDM you may import and leverage the kurukuruDM module as follows
     };
 }
 ```
+
+For a complete functional configuration using this flake see
+[zaphkieltest](https://github.com/Rexcrazy804/zaphkieltest)
+
 > If your nixpkgs version of quickshell is not v0.2.0, kurukurubar (stable) WILL NOT WORK.
 > prefer using kurukurubar-unstable instead
 

@@ -39,8 +39,23 @@
   services.greetd = {
     enable = true;
     settings = let
-      initial_session = {
-        command = "${pkgs.dbus}/bin/dbus-run-session ${pkgs.hyprland}/bin/hyprland";
+      initial_session = let
+        inherit (lib) pipe filter hasPrefix removePrefix readFile head;
+        inherit (lib.filesystem) listFilesRecursive;
+        inherit (lib.strings) splitString;
+        inherit (config.services.displayManager.sessionData) desktops;
+
+        command = pipe desktops [
+          listFilesRecursive
+          head
+          readFile
+          (splitString "\n")
+          (filter (x: hasPrefix "Exec=" x))
+          head
+          (removePrefix "Exec=")
+        ];
+      in {
+        inherit command;
         user = "rexies";
       };
     in {

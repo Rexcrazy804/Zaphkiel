@@ -14,7 +14,6 @@
 
   zaphkiel = {
     programs = {
-      sddm-custom-theme.enable = true;
       obs-studio.enable = false;
       steam.enable = false;
       hyprland.enable = true;
@@ -34,6 +33,19 @@
       openssh.enable = true;
       jellyfin.enable = true;
       # minecraft.enable = false;
+    };
+  };
+
+  services.greetd = {
+    enable = true;
+    settings = let
+      initial_session = {
+        command = "${pkgs.dbus}/bin/dbus-run-session ${pkgs.hyprland}/bin/hyprland";
+        user = "rexies";
+      };
+    in {
+      inherit initial_session;
+      default_session = initial_session;
     };
   };
 
@@ -62,8 +74,6 @@
   };
   programs.adb.enable = true;
   users.users.rexies.extraGroups = ["adbusers" "kvm"];
-  services.displayManager.autoLogin.user = "rexies";
-  services.displayManager.defaultSession = "hyprland-uwsm";
   services.fstrim.enable = true;
 
   # disabled autosuspend

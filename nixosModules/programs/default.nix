@@ -1,10 +1,10 @@
 {pkgs, ...}: {
   imports = [
+    # unimported
     # ./gdm.nix
     # ./aagl.nix
 
-    ./lanzaboote.nix
-    ./kuruDM.nix
+    # internal
     ./steam.nix
     ./wine.nix
     ./age.nix
@@ -13,9 +13,11 @@
     ./keyd.nix
     ./firefox.nix
     ./hyprland.nix
+    ./kuruDM.nix
 
+    # external
     ./booru-flake
-    ./sddm
+    ./lanzaboote.nix
 
     # this is not an option
     # auto enables fish and overwrites bash

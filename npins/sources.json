@@ -195,19 +195,6 @@
       "hash": "sha256-dYO5X5jK8bpQOeRAo8R5aUt6M/+Ji1cZgstZI7SQ2IA=",
       "frozen": true
     },
-    "silent-sddm": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "uiriansan",
-        "repo": "SilentSDDM"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "847614ca264d1ecc8222576c4b8af0841e42e147",
-      "url": "https://github.com/uiriansan/SilentSDDM/archive/847614ca264d1ecc8222576c4b8af0841e42e147.tar.gz",
-      "hash": "sha256-qfZZ4zhpgpaOEM77b0GSEtgRRgxkruI1kJXkcDU63o4="
-    },
     "zaphkiel": {
       "type": "Git",
       "repository": {

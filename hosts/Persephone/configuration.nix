@@ -24,7 +24,6 @@ in {
 
     programs = {
       lanzaboote.enable = true;
-      sddm-custom-theme.enable = false;
       obs-studio.enable = false;
       steam.enable = false;
       hyprland.enable = true;

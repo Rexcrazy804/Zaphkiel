@@ -1,7 +1,13 @@
-# TODO remove the warning after 3 weeks
-# 2nd August, 2025
+# nixos configurations built using
+# sudo nixos-rebuild --no-reexec --file . -A nixosConfigurations.<hostName> <switch|boot|test|...>
+# why? I wasted 3 weeks figuring this out, you are welcome :>
+#
+# building packges
+# nix-build -A packages.<packageName>
 {
   sources ? builtins.trace "Zaphkiel: USE `sources` INSTEAD OF `sources'`" {},
+  # TODO remove the warning after 3 weeks
+  # 2nd August, 2025
   sources' ? (import ./npins) // sources,
   nixpkgs ? sources'.nixpkgs,
   pkgs ? import nixpkgs {},

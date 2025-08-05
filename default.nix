@@ -14,7 +14,7 @@
   quickshell ? null,
 }: let
   inherit (pkgs.lib) fix mapAttrs attrValues makeScope;
-  inherit (pkgs) newScope;
+  inherit (pkgs) newScope mkShellNoCC;
 
   # WARNING
   # assuming sources is npins v6 >.<
@@ -48,6 +48,12 @@ in
       lanzaboote = {
         imports = [(sources.lanzaboote + "/nix/modules/lanzaboote.nix")];
         boot.lanzaboote.package = self.packages.lanzaboote.tool;
+      };
+    };
+
+    devShells.default = mkShellNoCC {
+      packages = attrValues {
+        inherit (pkgs) alejandra gnumake;
       };
     };
 

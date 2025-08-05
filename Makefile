@@ -52,6 +52,7 @@ pkg:
 fmt:
 	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Formatting$(COLOR_END)"
 	alejandra . &> /dev/null
+	cd ./users/dots/quickshell/kurukurubar/; qmlformat -i $$(find . -name '*.qml')
 	git diff --stat
 	echo -e "$(ECHO_DONE)"
 

@@ -26,8 +26,8 @@ COLOR_YELLOW=\e[0;33m
 COLOR_PURPLE=\e[0;35m
 COLOR_END=\e[0m
 
-ECHO_MAKE=$(COLOR_GREEN)[MAKE]$(COLOR_END)
-ECHO_DONE=$(ECHO_MAKE) $(COLOR_BLUE)Done >w<$(COLOR_END)
+ECHO_MAKE=$(COLOR_BLUE)[MAKE]$(COLOR_END)
+ECHO_DONE=$(ECHO_MAKE) $(COLOR_GREEN)Done >w<$(COLOR_END)
 ECHO_HOSTNAME=$(COLOR_PURPLE)$(HOST)$(COLOR_END)
 
 help:
@@ -40,53 +40,53 @@ help:
 .SILENT: $(MAKECMDGOALS)
 
 time:
-	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Timing$(COLOR_END) $(ECHO_HOSTNAME)"
+	echo -e "$(ECHO_MAKE) $(COLOR_GREEN)Timing$(COLOR_END) $(ECHO_HOSTNAME)"
 	time $(EVAL)
 	echo -e "$(ECHO_DONE)"
 
 pkg:
-	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Building Package$(COLOR_END) $(COLOR_PURPLE)$(PKG)$(COLOR_END)"
+	echo -e "$(ECHO_MAKE) $(COLOR_GREEN)Building Package$(COLOR_END) $(COLOR_PURPLE)$(PKG)$(COLOR_END)"
 	$(BUILD) 2> /dev/null || (echo -e "$(ECHO_MAKE) $(COLOR_RED)Package not found$(COLOR_END)"; exit 1)
 	echo -e "$(ECHO_DONE)"
 
 fmt:
-	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Formatting$(COLOR_END)"
+	echo -e "$(ECHO_MAKE) $(COLOR_GREEN)Formatting$(COLOR_END)"
 	alejandra . &> /dev/null
 	cd ./users/dots/quickshell/kurukurubar/; qmlformat -i $$(find . -name '*.qml')
 	git diff --stat
 	echo -e "$(ECHO_DONE)"
 
 build:
-	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Building$(COLOR_END) $(ECHO_HOSTNAME)"
+	echo -e "$(ECHO_MAKE) $(COLOR_GREEN)Building$(COLOR_END) $(ECHO_HOSTNAME)"
 	$(REBUILD) build
 	echo -e "$(ECHO_DONE)"
 
 repl:
-	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Repl$(COLOR_END) $(ECHO_HOSTNAME)"
+	echo -e "$(ECHO_MAKE) $(COLOR_GREEN)Repl$(COLOR_END) $(ECHO_HOSTNAME)"
 	$(REBUILD) repl
 	echo -e "$(ECHO_DONE)"
 
 switch:
-	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Switching$(COLOR_END) $(ECHO_HOSTNAME)"
+	echo -e "$(ECHO_MAKE) $(COLOR_GREEN)Switching$(COLOR_END) $(ECHO_HOSTNAME)"
 	sudo $(REBUILD) switch
 	echo -e "$(ECHO_DONE)"
 
 dry:
-	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Dry Building$(COLOR_END) $(ECHO_HOSTNAME)"
+	echo -e "$(ECHO_MAKE) $(COLOR_GREEN)Dry Building$(COLOR_END) $(ECHO_HOSTNAME)"
 	sudo $(REBUILD) dry-build
 	echo -e "$(ECHO_DONE)"
 
 test:
-	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Testing$(COLOR_END) $(ECHO_HOSTNAME)"
+	echo -e "$(ECHO_MAKE) $(COLOR_GREEN)Testing$(COLOR_END) $(ECHO_HOSTNAME)"
 	sudo $(REBUILD) test
 	echo -e "$(ECHO_DONE)"
 
 boot:
-	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Booting$(COLOR_END) $(ECHO_HOSTNAME)"
+	echo -e "$(ECHO_MAKE) $(COLOR_GREEN)Booting$(COLOR_END) $(ECHO_HOSTNAME)"
 	sudo $(REBUILD) boot
 	echo -e "$(ECHO_DONE)"
 
 clean:
-	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Cleaning$(COLOR_END)"
+	echo -e "$(ECHO_MAKE) $(COLOR_GREEN)Cleaning$(COLOR_END)"
 	rm ./result 2> /dev/null || echo -e "$(ECHO_MAKE) Nothing to clean"
 	echo -e "$(ECHO_DONE)"

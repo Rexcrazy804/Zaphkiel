@@ -1,8 +1,16 @@
+# DEFAULTS
+PKG=kurukurubar
 HOST=$(shell hostname)
+
 REBUILD_ATTR=nixosConfigurations.$(HOST)
 REBUILD_LOGFMT=bar
 REBUILD_ARGS=--log-format $(REBUILD_LOGFMT) --no-reexec --file . -A $(REBUILD_ATTR)
 REBUILD=nixos-rebuild $(REBUILD_ARGS)
+
+BUILD_ATTR=packages.$(PKG)
+BUILD_FILE=./default.nix
+BUILD_ARGS= $(BUILD_FILE) -A $(BUILD_ATTR)
+BUILD=nix-build $(BUILD_ARGS)
 
 EVAL_ATTR=nixosConfigurations.$(HOST).config.system.build.toplevel
 EVAL_FILE=./default.nix
@@ -28,12 +36,17 @@ help:
 
 # "But you can't use make as just a command runner"
 # Oh yes I can darling ~
-.PHONEY: time fmt build repl switch test boot dry help clean
+.PHONEY: time pkg fmt build repl switch test boot dry help clean
 .SILENT: $(MAKECMDGOALS)
 
 time:
 	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Timing$(COLOR_END) $(ECHO_HOSTNAME)"
 	time $(EVAL)
+	echo -e "$(ECHO_DONE)"
+
+pkg:
+	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Building Package$(COLOR_END) $(COLOR_PURPLE)$(PKG)$(COLOR_END)"
+	$(BUILD) 2> /dev/null || (echo -e "$(ECHO_MAKE) $(COLOR_RED)Package not found$(COLOR_END)"; exit 1)
 	echo -e "$(ECHO_DONE)"
 
 fmt:

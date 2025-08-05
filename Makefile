@@ -51,7 +51,7 @@ pkg:
 	echo -e "$(ECHO_DONE)"
 
 clean:
-	$(call ECHO_TARGET,Cleaning,$(HOST))
+	$(call ECHO_TARGET,Cleaning)
 	(rm -v ./result 2> /dev/null && echo -e "$(ECHO_DONE)") || echo -e "$(ECHO_MAKE) Nothing to clean"
 
 fmt:

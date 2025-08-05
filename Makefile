@@ -61,7 +61,7 @@ fmt:
 	alejandra . &> /dev/null
 	cd ./users/dots/quickshell/kurukurubar/; qmlformat -i $$(find . -name '*.qml')
 	mbake format ./Makefile
-	git diff --stat
+	git -P diff --stat
 	$(ECHO_DONE)
 
 rebuild:

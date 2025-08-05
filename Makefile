@@ -26,7 +26,7 @@ COLOR_PURPLE=\e[0;35m
 COLOR_END=\e[0m
 
 ECHO_MAKE=$(COLOR_GREEN)[MAKE]$(COLOR_END)
-ECHO_DONE=$(ECHO_MAKE) $(COLOR_BLUE)Done >w<$(COLOR_END)
+ECHO_DONE=echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Done >w<$(COLOR_END)"
 define ECHO_TARGET =
 echo -e "$(ECHO_MAKE) $(COLOR_BLUE)$(1)$(COLOR_END) $(COLOR_PURPLE)$(2)$(COLOR_END)"
 endef
@@ -43,50 +43,50 @@ help:
 time:
 	$(call ECHO_TARGET,Timing,$(HOST))
 	time $(EVAL)
-	echo -e "$(ECHO_DONE)"
+	$(ECHO_DONE)
 
 pkg:
 	$(call ECHO_TARGET,Building,$(PKG))
 	$(BUILD) 2> /dev/null || (echo -e "$(ECHO_MAKE) $(COLOR_RED)Package not found$(COLOR_END)"; exit 1)
-	echo -e "$(ECHO_DONE)"
+	$(ECHO_DONE)
 
 clean:
 	$(call ECHO_TARGET,Cleaning)
-	(rm -v ./result 2> /dev/null && echo -e "$(ECHO_DONE)") || echo -e "$(ECHO_MAKE) Nothing to clean"
+	(rm -v ./result 2> /dev/null && $(ECHO_DONE)) || echo -e "$(ECHO_MAKE) Nothing to clean"
 
 fmt:
 	$(call ECHO_TARGET,Formatting)
 	alejandra . &> /dev/null
 	cd ./users/dots/quickshell/kurukurubar/; qmlformat -i $$(find . -name '*.qml')
 	git diff --stat
-	echo -e "$(ECHO_DONE)"
+	$(ECHO_DONE)
 
 repl:
 	$(call ECHO_TARGET,Repl,$(HOST))
 	$(REBUILD) repl
-	echo -e "$(ECHO_DONE)"
+	$(ECHO_DONE)
 
 build:
 	$(call ECHO_TARGET,BUILDING,$(HOST))
 	$(REBUILD) build
-	echo -e "$(ECHO_DONE)"
+	$(ECHO_DONE)
 
 switch:
 	$(call ECHO_TARGET,Switching,$(HOST))
 	sudo $(REBUILD) switch
-	echo -e "$(ECHO_DONE)"
+	$(ECHO_DONE)
 
 dry:
 	$(call ECHO_TARGET,Dry Building,$(HOST))
 	sudo $(REBUILD) dry-build
-	echo -e "$(ECHO_DONE)"
+	$(ECHO_DONE)
 
 test:
 	$(call ECHO_TARGET,Testing,$(HOST))
 	sudo $(REBUILD) test
-	echo -e "$(ECHO_DONE)"
+	$(ECHO_DONE)
 
 boot:
 	$(call ECHO_TARGET,Booting,$(HOST))
 	sudo $(REBUILD) boot
-	echo -e "$(ECHO_DONE)"
+	$(ECHO_DONE)

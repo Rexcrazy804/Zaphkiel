@@ -1,34 +1,34 @@
 # DEFAULTS
-PKG=kurukurubar
-HOST=$(shell hostname)
+PKG = kurukurubar
+HOST = $(shell hostname)
 
-REBUILD_ATTR=nixosConfigurations.$(HOST)
-REBUILD_LOGFMT=bar
-REBUILD_ARGS=--log-format $(REBUILD_LOGFMT) --no-reexec --file . -A $(REBUILD_ATTR)
-REBUILD=nixos-rebuild $(REBUILD_ARGS)
+REBUILD_ATTR = nixosConfigurations.$(HOST)
+REBUILD_LOGFMT = bar
+REBUILD_ARGS = --log-format $(REBUILD_LOGFMT) --no-reexec --file . -A $(REBUILD_ATTR)
+REBUILD = nixos-rebuild $(REBUILD_ARGS)
 # only for recusrive rebuild call
-REBLD_REC_COMMON=$(MAKE) MAKEFLAGS+=--no-print-directory rebuild
+REBLD_REC_COMMON = $(MAKE) MAKEFLAGS+=--no-print-directory rebuild
 
-BUILD_ATTR=packages.$(PKG)
-BUILD_FILE=./default.nix
-BUILD_ARGS= $(BUILD_FILE) -A $(BUILD_ATTR)
-BUILD=nix-build $(BUILD_ARGS)
+BUILD_ATTR = packages.$(PKG)
+BUILD_FILE = ./default.nix
+BUILD_ARGS = $(BUILD_FILE) -A $(BUILD_ATTR)
+BUILD = nix-build $(BUILD_ARGS)
 
-EVAL_ATTR=nixosConfigurations.$(HOST).config.system.build.toplevel
-EVAL_FILE=./default.nix
-EVAL_OPTS=--substituters "" --option eval-cache false --raw --read-only
-EVAL_ARGS=--file $(EVAL_FILE) $(EVAL_ATTR) $(EVAL_OPTS)
-EVAL=nix eval $(EVAL_ARGS)
+EVAL_ATTR = nixosConfigurations.$(HOST).config.system.build.toplevel
+EVAL_FILE = ./default.nix
+EVAL_OPTS = --substituters "" --option eval-cache false --raw --read-only
+EVAL_ARGS = --file $(EVAL_FILE) $(EVAL_ATTR) $(EVAL_OPTS)
+EVAL = nix eval $(EVAL_ARGS)
 
-COLOR_GREEN=\e[0;32m
-COLOR_RED=\e[0;31m
-COLOR_BLUE=\e[0;34m
-COLOR_YELLOW=\e[0;33m
-COLOR_PURPLE=\e[0;35m
-COLOR_END=\e[0m
+COLOR_GREEN = \e[0;32m
+COLOR_RED = \e[0;31m
+COLOR_BLUE = \e[0;34m
+COLOR_YELLOW = \e[0;33m
+COLOR_PURPLE = \e[0;35m
+COLOR_END = \e[0m
 
-ECHO_MAKE=$(COLOR_GREEN)[MAKE]$(COLOR_END)
-ECHO_DONE=echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Done >w<$(COLOR_END)"
+ECHO_MAKE = $(COLOR_GREEN)[MAKE]$(COLOR_END)
+ECHO_DONE = echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Done >w<$(COLOR_END)"
 define ECHO_TARGET =
 echo -e "$(ECHO_MAKE) $(COLOR_BLUE)$(1)$(COLOR_END) $(COLOR_PURPLE)$(2)$(COLOR_END)"
 endef

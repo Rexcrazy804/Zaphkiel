@@ -4,6 +4,13 @@ REBUILD_LOGFMT=bar
 REBUILD_ARGS=--log-format $(REBUILD_LOGFMT) --no-reexec --file . -A $(REBUILD_ATTR)
 REBUILD=nixos-rebuild $(REBUILD_ARGS)
 
+EVAL_ATTR=nixosConfigurations.$(HOST).config.system.build.toplevel
+EVAL_FILE=./default.nix
+EVAL_OPTS=--substituters "" --option eval-cache false --raw --read-only
+EVAL_ARGS=--file $(EVAL_FILE) $(EVAL_ATTR) $(EVAL_OPTS)
+EVAL=nix eval $(EVAL_ARGS)
+
+
 COLOR_GREEN=\e[0;32m
 COLOR_RED=\e[0;31m
 COLOR_BLUE=\e[0;34m
@@ -21,13 +28,18 @@ help:
 
 # "But you can't use make as just a command runner"
 # Oh yes I can darling ~
-.PHONEY: fmt build repl switch test boot dry help clean
+.PHONEY: time fmt build repl switch test boot dry help clean
 .SILENT: $(MAKECMDGOALS)
+
+time:
+	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Timing$(COLOR_END) $(ECHO_HOSTNAME)"
+	time $(EVAL)
+	echo -e "$(ECHO_DONE)"
 
 fmt:
 	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Formatting$(COLOR_END)"
 	alejandra . &> /dev/null
-	git diff
+	git diff --stat
 	echo -e "$(ECHO_DONE)"
 
 build:

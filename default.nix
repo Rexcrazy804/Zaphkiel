@@ -17,7 +17,7 @@
   inherit (pkgs) newScope;
 
   # WARNING
-  # assuming sources' is npins v6 >.<
+  # assuming sources is npins v6 >.<
   # https://github.com/andir/npins?tab=readme-ov-file#using-the-nixpkgs-fetchers
   sources = mapAttrs (k: v: v {inherit pkgs;}) sources';
 

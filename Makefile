@@ -18,7 +18,6 @@ EVAL_OPTS=--substituters "" --option eval-cache false --raw --read-only
 EVAL_ARGS=--file $(EVAL_FILE) $(EVAL_ATTR) $(EVAL_OPTS)
 EVAL=nix eval $(EVAL_ARGS)
 
-
 COLOR_GREEN=\e[0;32m
 COLOR_RED=\e[0;31m
 COLOR_BLUE=\e[0;34m
@@ -32,14 +31,13 @@ define ECHO_TARGET =
 echo -e "$(ECHO_MAKE) $(COLOR_BLUE)$(1)$(COLOR_END) $(COLOR_PURPLE)$(2)$(COLOR_END)"
 endef
 
-
 help:
 	$(call ECHO_TARGET,"hi there cutie pie :P")
 	# TODO: complete the help
 
 # "But you can't use make as just a command runner"
 # Oh yes I can darling ~
-.PHONEY: time pkg fmt build repl switch test boot dry help clean
+.PHONEY: time pkg fmt clean repl build switch test boot dry help
 .SILENT: $(MAKECMDGOALS)
 
 time:
@@ -52,6 +50,10 @@ pkg:
 	$(BUILD) 2> /dev/null || (echo -e "$(ECHO_MAKE) $(COLOR_RED)Package not found$(COLOR_END)"; exit 1)
 	echo -e "$(ECHO_DONE)"
 
+clean:
+	$(call ECHO_TARGET,Cleaning,$(HOST))
+	(rm -v ./result 2> /dev/null && echo -e "$(ECHO_DONE)") || echo -e "$(ECHO_MAKE) Nothing to clean"
+
 fmt:
 	$(call ECHO_TARGET,Formatting)
 	alejandra . &> /dev/null
@@ -59,14 +61,14 @@ fmt:
 	git diff --stat
 	echo -e "$(ECHO_DONE)"
 
-build:
-	$(call ECHO_TARGET,BUILDING,$(HOST))
-	$(REBUILD) build
-	echo -e "$(ECHO_DONE)"
-
 repl:
 	$(call ECHO_TARGET,Repl,$(HOST))
 	$(REBUILD) repl
+	echo -e "$(ECHO_DONE)"
+
+build:
+	$(call ECHO_TARGET,BUILDING,$(HOST))
+	$(REBUILD) build
 	echo -e "$(ECHO_DONE)"
 
 switch:
@@ -87,9 +89,4 @@ test:
 boot:
 	$(call ECHO_TARGET,Booting,$(HOST))
 	sudo $(REBUILD) boot
-	echo -e "$(ECHO_DONE)"
-
-clean:
-	$(call ECHO_TARGET,Cleaning,$(HOST))
-	rm ./result 2> /dev/null || echo -e "$(ECHO_MAKE) Nothing to clean"
 	echo -e "$(ECHO_DONE)"

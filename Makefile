@@ -60,6 +60,7 @@ fmt:
 	$(call ECHO_TARGET,Formatting)
 	alejandra . &> /dev/null
 	cd ./users/dots/quickshell/kurukurubar/; qmlformat -i $$(find . -name '*.qml')
+	mbake format ./Makefile
 	git diff --stat
 	$(ECHO_DONE)
 

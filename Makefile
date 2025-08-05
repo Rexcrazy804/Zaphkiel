@@ -21,7 +21,7 @@ help:
 
 # "But you can't use make as just a command runner"
 # Oh yes I can darling ~
-.PHONEY: fmt build repl switch test boot dry-build help clean
+.PHONEY: fmt build repl switch test boot dry help clean
 .SILENT: $(MAKECMDGOALS)
 
 fmt:
@@ -45,7 +45,7 @@ switch:
 	sudo $(REBUILD) switch
 	echo -e "$(ECHO_DONE)"
 
-dry-build:
+dry:
 	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Dry Building$(COLOR_END) $(ECHO_HOSTNAME)"
 	sudo $(REBUILD) dry-build
 	echo -e "$(ECHO_DONE)"
@@ -56,7 +56,7 @@ test:
 	echo -e "$(ECHO_DONE)"
 
 boot:
-	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Testing$(COLOR_END) $(ECHO_HOSTNAME)"
+	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Booting$(COLOR_END) $(ECHO_HOSTNAME)"
 	sudo $(REBUILD) boot
 	echo -e "$(ECHO_DONE)"
 

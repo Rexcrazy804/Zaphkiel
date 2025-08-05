@@ -10,8 +10,8 @@ import qs.Containers as Con
 Scope {
   id: root
 
-  property string prevState
   property alias lock: lock
+  property string prevState
 
   WlSessionLock {
     id: lock

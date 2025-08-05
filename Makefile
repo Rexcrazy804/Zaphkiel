@@ -28,10 +28,13 @@ COLOR_END=\e[0m
 
 ECHO_MAKE=$(COLOR_GREEN)[MAKE]$(COLOR_END)
 ECHO_DONE=$(ECHO_MAKE) $(COLOR_BLUE)Done >w<$(COLOR_END)
-ECHO_HOSTNAME=$(COLOR_PURPLE)$(HOST)$(COLOR_END)
+define ECHO_TARGET =
+echo -e "$(ECHO_MAKE) $(COLOR_BLUE)$(1)$(COLOR_END) $(COLOR_PURPLE)$(2)$(COLOR_END)"
+endef
+
 
 help:
-	echo "hi there cutie pie :P"
+	$(call ECHO_TARGET,"hi there cutie pie :P")
 	# TODO: complete the help
 
 # "But you can't use make as just a command runner"
@@ -40,53 +43,53 @@ help:
 .SILENT: $(MAKECMDGOALS)
 
 time:
-	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Timing$(COLOR_END) $(ECHO_HOSTNAME)"
+	$(call ECHO_TARGET,Timing,$(HOST))
 	time $(EVAL)
 	echo -e "$(ECHO_DONE)"
 
 pkg:
-	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Building Package$(COLOR_END) $(COLOR_PURPLE)$(PKG)$(COLOR_END)"
+	$(call ECHO_TARGET,Building,$(PKG))
 	$(BUILD) 2> /dev/null || (echo -e "$(ECHO_MAKE) $(COLOR_RED)Package not found$(COLOR_END)"; exit 1)
 	echo -e "$(ECHO_DONE)"
 
 fmt:
-	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Formatting$(COLOR_END)"
+	$(call ECHO_TARGET,Formatting)
 	alejandra . &> /dev/null
 	cd ./users/dots/quickshell/kurukurubar/; qmlformat -i $$(find . -name '*.qml')
 	git diff --stat
 	echo -e "$(ECHO_DONE)"
 
 build:
-	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Building$(COLOR_END) $(ECHO_HOSTNAME)"
+	$(call ECHO_TARGET,BUILDING,$(HOST))
 	$(REBUILD) build
 	echo -e "$(ECHO_DONE)"
 
 repl:
-	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Repl$(COLOR_END) $(ECHO_HOSTNAME)"
+	$(call ECHO_TARGET,Repl,$(HOST))
 	$(REBUILD) repl
 	echo -e "$(ECHO_DONE)"
 
 switch:
-	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Switching$(COLOR_END) $(ECHO_HOSTNAME)"
+	$(call ECHO_TARGET,Switching,$(HOST))
 	sudo $(REBUILD) switch
 	echo -e "$(ECHO_DONE)"
 
 dry:
-	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Dry Building$(COLOR_END) $(ECHO_HOSTNAME)"
+	$(call ECHO_TARGET,Dry Building,$(HOST))
 	sudo $(REBUILD) dry-build
 	echo -e "$(ECHO_DONE)"
 
 test:
-	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Testing$(COLOR_END) $(ECHO_HOSTNAME)"
+	$(call ECHO_TARGET,Testing,$(HOST))
 	sudo $(REBUILD) test
 	echo -e "$(ECHO_DONE)"
 
 boot:
-	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Booting$(COLOR_END) $(ECHO_HOSTNAME)"
+	$(call ECHO_TARGET,Booting,$(HOST))
 	sudo $(REBUILD) boot
 	echo -e "$(ECHO_DONE)"
 
 clean:
-	echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Cleaning$(COLOR_END)"
+	$(call ECHO_TARGET,Cleaning,$(HOST))
 	rm ./result 2> /dev/null || echo -e "$(ECHO_MAKE) Nothing to clean"
 	echo -e "$(ECHO_DONE)"

@@ -6,6 +6,8 @@ REBUILD_ATTR=nixosConfigurations.$(HOST)
 REBUILD_LOGFMT=bar
 REBUILD_ARGS=--log-format $(REBUILD_LOGFMT) --no-reexec --file . -A $(REBUILD_ATTR)
 REBUILD=nixos-rebuild $(REBUILD_ARGS)
+# only for recusrive rebuild call
+REBLD_REC_COMMON=$(MAKE) MAKEFLAGS+=--no-print-directory rebuild
 
 BUILD_ATTR=packages.$(PKG)
 BUILD_FILE=./default.nix
@@ -37,7 +39,7 @@ help:
 
 # "But you can't use make as just a command runner"
 # Oh yes I can darling ~
-.PHONEY: time pkg fmt clean repl build switch test boot dry help
+.PHONEY: time pkg fmt clean rebuild repl build switch test boot dry help
 .SILENT: $(MAKECMDGOALS)
 
 time:
@@ -61,32 +63,25 @@ fmt:
 	git diff --stat
 	$(ECHO_DONE)
 
-repl:
-	$(call ECHO_TARGET,Repl,$(HOST))
-	$(REBUILD) repl
+rebuild:
+	$(call ECHO_TARGET,$(REBLD_COMMENT),$(HOST))
+	$(SUDO) $(REBUILD) $(REBLD_COMMAND)
 	$(ECHO_DONE)
+
+repl:
+	$(REBLD_REC_COMMON) REBLD_COMMAND=$@ REBLD_COMMENT=Repl
 
 build:
-	$(call ECHO_TARGET,BUILDING,$(HOST))
-	$(REBUILD) build
-	$(ECHO_DONE)
+	$(REBLD_REC_COMMON) REBLD_COMMAND=$@ REBLD_COMMENT=Building SUDO=sudo
 
 switch:
-	$(call ECHO_TARGET,Switching,$(HOST))
-	sudo $(REBUILD) switch
-	$(ECHO_DONE)
+	$(REBLD_REC_COMMON) REBLD_COMMAND=$@ REBLD_COMMENT=Switching SUDO=sudo
 
 dry:
-	$(call ECHO_TARGET,Dry Building,$(HOST))
-	sudo $(REBUILD) dry-build
-	$(ECHO_DONE)
+	$(REBLD_REC_COMMON) REBLD_COMMAND=dry-build REBLD_COMMENT='Dry Building'
 
 test:
-	$(call ECHO_TARGET,Testing,$(HOST))
-	sudo $(REBUILD) test
-	$(ECHO_DONE)
+	$(REBLD_REC_COMMON) REBLD_COMMAND=$@ REBLD_COMMENT=Testing SUDO=sudo
 
 boot:
-	$(call ECHO_TARGET,Booting,$(HOST))
-	sudo $(REBUILD) boot
-	$(ECHO_DONE)
+	$(REBLD_REC_COMMON) REBLD_COMMAND=$@ REBLD_COMMENT=Booting SUDO=sudo

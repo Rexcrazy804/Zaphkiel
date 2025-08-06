@@ -5,9 +5,9 @@
 - Wallpaper source: [The Herta by meirong](https://www.pixiv.net/artworks/126270092)
 
 A compat and adorable bar designed with the goal of speeening the kuru kuru.
-Designed in acordance to google's material 3 guidelines, you can generate
-colors from your wallpaper using [matugen](https://github.com/InioX/matugen)
-using [this template](../../../../nixosModules/external/matugen/templates/quickshell-colors.qml)
+Designed in acordance to google's material 3 guidelines.
+You may generate colors from your wallpaper using [matugen](https://github.com/InioX/matugen)
+with [this template](../../../../nixosModules/external/matugen/templates/quickshell-colors.qml)
 
 | [Kokomi by omochichi96](https://twitter.com/omochichi96/status/1758113643521245240) | [Shinobu by solipsist](https://www.pixiv.net/en/artworks/119108248) |
 |----------|----------|
@@ -26,7 +26,8 @@ using [this template](../../../../nixosModules/external/matugen/templates/quicks
 
 ### Installation
 
-> Beloved nixos cuties, please refer to the [Nixos Section](#Nixos)
+> Beloved nixos cuties, please refer to the
+> [Nixos Section](#Nixos)
 
 1. Install the above dependencies using your favourite package manager
 1. git clone this repo
@@ -34,14 +35,15 @@ using [this template](../../../../nixosModules/external/matugen/templates/quicks
 1. spawn the bar by running `quickshell`
 1. VERY IMPORTANT, press hold the spinning herta to spin her faster - the council of kurukuru
 
-> make sure you are not creating `.config/quickshell/kurukurubar`, in which
-> case you will need to pass the arg `-c kurukurubar` in step 4.
+> make sure you are not creating `.config/quickshell/kurukurubar`,
+> in which case you will need to pass the arg `-c kurukurubar` in step 4.
 
 ### Lock Screen and Foreground Isolation
 
-The lock screen requires a wallpaper to be set either at the default location `~/.config/background`
-or by manually specifying the path with: (prefer absolute paths '/' or paths
-starting from your home directory '~/')
+The lock screen requires a wallpaper to be set
+either at the default location `~/.config/background`
+or by manually specifying the path with:
+(prefer absolute paths '/' or paths starting from your home directory '~/')
 
 ```sh
 quickshell ipc call config setWallpaper ~/Path/to/your/wallpaper
@@ -53,18 +55,21 @@ Once the wallpaper is set correctly you may launch the lock screen like so
 quickshell ipc call lockscreen lock
 ```
 
-The `Fg Layer Extraction` option must be turned on in the Kuru Settings tab to
-enable the Foreground isolation effect. **First run will take time** as rembg
-downloads the required birefnet model and processes your wallpaper. Subsequent
-runs will depend on your hardware but the results are cached so switching to
-already processed images are instant.
+The `Fg Layer Extraction` option must be turned on in the Kuru Settings tab
+to enable the Foreground isolation effect.
+**First run will take time** as rembg downloads the required birefnet model
+and processes your wallpaper.
+Subsequent runs will depend on your hardware
+but the results are cached
+so switching to already processed images are instant.
 
-> users of the kurukurubar via nixos flake should replace `quickshell` with
-> `kurukurubar` for the commands listed above
+> users of the kurukurubar via nixos flake should replace `quickshell`
+> with `kurukurubar` for the commands listed above
 
 ### NixOS
 
-This rice is exposed as a package in the toplevel flake and can be used to run the rice as follows
+This rice is exposed as a package in the toplevel flake
+and can be used to run the rice as follows
 
 ```
 nix run github:Rexcrazy804/Zaphkiel#kurukurubar
@@ -125,7 +130,8 @@ For kurukuruDM you may import and leverage the kurukuruDM module as follows
 }: {
     imports = [inputs.zaphkiel.nixosModules.kurukuruDM];
 
-    # for more information check the module in `nixosModules/exported/kurukuruDM.nix`
+    # for more information check the module in 
+    # `nixosModules/exported/kurukuruDM.nix`
     programs.kurukuruDM = {
         enable = true;
         package = pkgs.kurukurubar;                     # defaults to kurukurubar-unstable (TODO CHANGE THIS)
@@ -145,8 +151,9 @@ For kurukuruDM you may import and leverage the kurukuruDM module as follows
 For a complete functional configuration using this flake see
 [zaphkieltest](https://github.com/Rexcrazy804/zaphkieltest)
 
-> If your nixpkgs version of quickshell is not v0.2.0, kurukurubar (stable) WILL NOT WORK.
-> prefer using kurukurubar-unstable instead
+> If your nixpkgs version of quickshell is not v0.2.0,
+> kurukurubar (stable) WILL NOT WORK.
+> Prefer using kurukurubar-unstable instead
 
 ### Known Issues
 

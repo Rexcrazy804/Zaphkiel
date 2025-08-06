@@ -62,6 +62,7 @@ fmt:
 	cd ./users/dots/quickshell/kurukurubar/; qmlformat -i $$(find . -name '*.qml')
 	mbake format ./Makefile
 	git -P diff --stat
+	lua-format -c ./users/dots/formatters/luafmt.yaml -i $$(find ./users/dots/ -name '*.lua')
 	$(ECHO_DONE)
 
 rebuild:

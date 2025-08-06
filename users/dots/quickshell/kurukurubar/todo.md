@@ -1,4 +1,5 @@
 ### What I like to see
+
 - [x] hide tray when no trayIcons to show (i.e. no tray items)
 - [x] aa and smoothning on face.icon
 - [x] make the mpris widget less bland when no music is playing
@@ -6,7 +7,7 @@
 - [x] find herta wallpaper
 - [x] kuru kuru transformation +++
 - [x] improve animations on topbar+expandedpane
-- [x] fix particle effect clipping 
+- [x] fix particle effect clipping
 - [x] sleep inhibitter widget
 - [x] Material Symbols on MprisWidget
 - [x] default audio sink and source selection
@@ -36,6 +37,7 @@
 - [x] greetd
 
 ### What I do not like to see
+
 - [ ] generalize lockscreen and loginscreen
 - [ ] app launcher
 - [ ] Lazy Loading
@@ -44,12 +46,14 @@
 - [ ] revamp notification popups / osd
 
 ### Later
+
 - [ ] scaling support
 - - [x] scaling in systemView
 - - [ ] scaling in powerTab
 - [ ] draggable notification body / improve dismiss #26
 
 ### Dumpster
+
 - [ ] kdeConnect Integration
 - [ ] workspace previews in systemView on Hover
 - [ ] improved time based greeting in GreeterWidget

@@ -1,5 +1,7 @@
 # Kuru Kuru Bar
+
 ![image](https://github.com/user-attachments/assets/caec808f-7945-466f-807e-765d69804c76)
+
 - Wallpaper source: [The Herta by meirong](https://www.pixiv.net/artworks/126270092)
 
 A compat and adorable bar designed with the goal of speeening the kuru kuru.
@@ -12,6 +14,7 @@ using [this template](../../../../nixosModules/external/matugen/templates/quicks
 |![image](https://github.com/user-attachments/assets/7ed235f1-0a49-4546-be01-16197dc7940f) | ![image](https://github.com/user-attachments/assets/16cb7c57-92b2-4178-a5e6-d9023012f473) |
 
 ### Depencencies
+
 - quickshell
 - material-symbols
 - nerdfonts
@@ -22,26 +25,30 @@ using [this template](../../../../nixosModules/external/matugen/templates/quicks
 - rembg (required for foreground layer effect)
 
 ### Installation
+
 > Beloved nixos cuties, please refer to the [Nixos Section](#Nixos)
 
 1. Install the above dependencies using your favourite package manager
-2. git clone this repo
-3. copy `kurukurubar` folder into `~/.config/quickshell`
-4. spawn the bar by running `quickshell`
-5. VERY IMPORTANT, press hold the spinning herta to spin her faster - the council of kurukuru
+1. git clone this repo
+1. copy `kurukurubar` folder into `~/.config/quickshell`
+1. spawn the bar by running `quickshell`
+1. VERY IMPORTANT, press hold the spinning herta to spin her faster - the council of kurukuru
 
 > make sure you are not creating `.config/quickshell/kurukurubar`, in which
 > case you will need to pass the arg `-c kurukurubar` in step 4.
 
 ### Lock Screen and Foreground Isolation
+
 The lock screen requires a wallpaper to be set either at the default location `~/.config/background`
 or by manually specifying the path with: (prefer absolute paths '/' or paths
 starting from your home directory '~/')
+
 ```sh
 quickshell ipc call config setWallpaper ~/Path/to/your/wallpaper
 ```
 
 Once the wallpaper is set correctly you may launch the lock screen like so
+
 ```sh
 quickshell ipc call lockscreen lock
 ```
@@ -56,12 +63,17 @@ already processed images are instant.
 > `kurukurubar` for the commands listed above
 
 ### NixOS
+
 This rice is exposed as a package in the toplevel flake and can be used to run the rice as follows
+
 ```
 nix run github:Rexcrazy804/Zaphkiel#kurukurubar
 ```
+
 #### Usage as flake
+
 First add zaphkiel as a flake input
+
 ```nix
 {
     description = "your cute flake";
@@ -83,6 +95,7 @@ First add zaphkiel as a flake input
 ```
 
 Now you may refer to the kurukurubar package as `inputs.zaphkiel.packages.${pkgs.system}.kurukurubar`
+
 ```nix
 {
     inputs,
@@ -103,6 +116,7 @@ Now you may refer to the kurukurubar package as `inputs.zaphkiel.packages.${pkgs
 ```
 
 For kurukuruDM you may import and leverage the kurukuruDM module as follows
+
 ```nix
 {
     inputs,
@@ -135,20 +149,25 @@ For a complete functional configuration using this flake see
 > prefer using kurukurubar-unstable instead
 
 ### Known Issues
+
 - `org.Hyprland.style is not installed`: see [#21](https://github.com/Rexcrazy804/Zaphkiel/issues/21#issuecomment-2906546939)
 - Herta faceIcon: symlink an image (of any image type) to ~/.face.icon
 
 ## Acknowledgement
+
 - AlbumCover svg by [Squirrel Modeller](https://github.com/SquirrelModeller)
 - Particle System ~~stolen from~~ inspired by [soramanew/rainingkuru](https://github.com/soramanew/rainingkuru)
 
 ## Many thanks to these homies :>
+
 end_4, sora, a certain individual that has not yet returned, foxxed, starch,
 aureus, caesus, oyudays, lysec, friday and squirrel modeller
 
 ## Components outline
+
 > WARNING <br>
 > outdated, will need to redo this later
+
 ```
 | Notch
 - | TopBar
@@ -183,4 +202,4 @@ aureus, caesus, oyudays, lysec, friday and squirrel modeller
 - - | Notification
 ```
 
-> with <3 by Rexiel Scarlet
+> with \<3 by Rexiel Scarlet

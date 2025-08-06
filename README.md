@@ -5,8 +5,9 @@ https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 - Wallpaper: [The Herta by meirong](https://www.pixiv.net/artworks/126270092)
 
 ## Overview
+
 | Component | Software | Configuration |
-| --------- | -------- | ------------- | 
+| --------- | -------- | ------------- |
 |KuruKuruBar|[Quickshell](https://quickshell.outfoxxed.me/)|[`users/dots/quickshell/kurukurubar`](users/dots/quickshell/kurukurubar)|
 |Compositor|[Hyprland](https://hyprland.org/)|[`users/dots/hyprland/`](users/dots/hyprland/)|
 |Launcher|[Fuzzel](https://codeberg.org/dnkl/fuzzel)|[`users/dots/fuzzel`](users/dots/fuzzel)|
@@ -26,6 +27,7 @@ https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 > Last revision where Zaphkiel was flake based: [0eee46d1e](https://github.com/Rexcrazy804/Zaphkiel/tree/0eee46d1e5d98c3b94d39795b73a39270fc61ad7)
 
 ## What the heck is going on here?
+
 - npins based non flake nixos configuration
 - hjem over home manager
 - matugen injecting colors based on wallpaper
@@ -52,6 +54,7 @@ gave me enough reason to ditch them both.
 
 My initial solution was to completely go down the sioodmy route of wrapping
 everything, aaaand you guessed it, That did not go well. These are the few grievances
+
 - Nushell was bugging the heck out inconsistently for remote sessions (ssh)
 - I had to log out and back in to have hyprland reload its config
 - matugen, I couldn't think of a wrapped solutions with matugen back then
@@ -69,7 +72,7 @@ wrapper around systemd-tmpfiles to pretty much just stash your dots in place,
 and hey, that's exactly what I needed and its beautiful.
 
 Now with all that evals were neatly averaging around 20s, but hey that's quite
-far away from a dream like <10s eval time. Guess what? Enter
+far away from a dream like \<10s eval time. Guess what? Enter
 [lix](https://lix.systems/). Basically nix but faster, simply switching to lix
 gave me a new average eval time of 15s.
 
@@ -80,23 +83,26 @@ gave me a new average eval time of 15s.
 And now, very recently (June 2025), I've made the decision to move away from
 nix flakes. What motivated this is primarily to couple away from the redundant
 dependencies of poorly composed flakes and further chip away at the stone of my
-ideal eval time (<10s). With jade's two blogs in hand and the accumulated
+ideal eval time (\<10s). With jade's two blogs in hand and the accumulated
 experience of working with nix for over a year I've pushed onto deflaking with
 Sayonara flake #46 and #45. Those pr's whould largely highlight the changes I
 had to make and the challenges that I've had to overcome to ensure that
-everything works the way it used to before the de-flaking. 
+everything works the way it used to before the de-flaking.
 
 And I've come to love this way of managing my configuration, manually importing
 modules and writing my own overlays to minimize the overhead introduced by
 bloated flakes of some repos, like seriously some flakes need to embrace KISS.
 Ultimately at the end of the day flakes is heavily opinionated, and this
 repository is a testament to how I want to consume nixos flakes.
+
 </details>
 
 Lastly, you may want to ask: Rexi, how fast is your eval time?
+
 > `nixos-rebuild dry-build --option eval-cache false` completed in `9.5s`
 
 ## Exported packages
+
 The following packages are exported by this flake:
 
 | package | description |
@@ -113,6 +119,7 @@ The following packages are exported by this flake:
 
 you may run any of the above with the following command (ofc you can't run a
 cursor, `nix build` it instead) replacing `nixvim` with your desired package
+
 ```bash
 nix run github:Rexcrazy804/Zaphkiel#nixvim
 ```
@@ -120,22 +127,26 @@ nix run github:Rexcrazy804/Zaphkiel#nixvim
 <details>
 <summary><h3>kurkurubar stable or unstable</h3></summary>
 
-<ins>kurkurubar (stable)</ins> 
+<ins>kurkurubar (stable)</ins>
+
 - uses nixpkgs version of quickshell (v0.2.0)
 - ~uses [this revision](https://github.com/Rexcrazy804/Zaphkiel/tree/cc6d5cf12ae824e6945cc2599a2650d5fe054ffe) of Zaphkiel dots (last version that is compatible with v0.1.0)~
 - ^ currently tracks master branch, not diverged yet
 - package updated every major tagged release of quickshell
 
 <ins>kurkurubar-unstable</ins>
+
 - follows Zaphkiel master branch HEAD
 - uses untagged master revisions of quickshell
 - by default uses my patched version of qs (for finger print unlock in greetd)
 - requires quickshell to be built from source
 
 For more information on both see the [internal overlay](pkgs/overlays/internal.nix)
+
 </details>
 
 ## Exported modules
+
 Well there is only one module that is exported rn, and that *DRUM ROLL*
 kurukuruDM now available as `nixosModules.kurukuruDM` :D
 
@@ -143,6 +154,7 @@ kurukuruDM now available as `nixosModules.kurukuruDM` :D
 > exported module there is a chance for the exported module being broken
 
 ## Structure overview
+
 ```
 hosts/                  # starting point for host specific configuration
 - <hostname>/           # divided into three files for seperation
@@ -191,6 +203,7 @@ license                 # MIT License
 ```
 
 ## Acknowledgement
+
 Firstly, I have to thank [sioodmy](https://github.com/sioodmy) for being the
 inspiration to ditch home manager and writing wrappers myself. I had known of
 wrappers before, but if it weren't for him, I wouldn't have heard of
@@ -209,6 +222,7 @@ Lastly, I have to thank the nix community for their efforts in
 great resources throughout my early adventures in nix.
 
 ### Quickshell
+
 - [nydragon/nysh](https://github.com/nydragon/nysh)
 - [end-4/dots-hyprland](https://github.com/end-4/dots-hyprland/tree/ii-qs/.config/quickshell)
 - [pikabar](https://git.pika-os.com/wm-packages/pikabar/src/branch/main/pikabar/usr/share/pikabar)
@@ -218,5 +232,6 @@ great resources throughout my early adventures in nix.
 - and other homies in `#rice-discussion` of Hyprland discord
 
 ## Licensing
+
 All code in this repository is under the MIT license except wherever an
 explicit licensing is included.

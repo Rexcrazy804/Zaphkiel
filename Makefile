@@ -7,7 +7,7 @@ REBUILD_LOGFMT = bar
 REBUILD_ARGS = --log-format $(REBUILD_LOGFMT) --no-reexec --file . -A $(REBUILD_ATTR)
 REBUILD = nixos-rebuild $(REBUILD_ARGS)
 # only for recusrive rebuild call
-REBLD_REC_COMMON = $(MAKE) MAKEFLAGS+=--no-print-directory rebuild
+REBLD_REC_COMMON = @$(MAKE) MAKEFLAGS+=--no-print-directory rebuild
 
 BUILD_ATTR = packages.$(PKG)
 BUILD_FILE = ./default.nix
@@ -28,34 +28,33 @@ COLOR_PURPLE = \e[0;35m
 COLOR_END = \e[0m
 
 ECHO_MAKE = $(COLOR_GREEN)[MAKE]$(COLOR_END)
-ECHO_DONE = echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Done >w<$(COLOR_END)"
+ECHO_DONE = @echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Done >w<$(COLOR_END)"
 define ECHO_TARGET =
-echo -e "$(ECHO_MAKE) $(COLOR_BLUE)$(1)$(COLOR_END) $(COLOR_PURPLE)$(2)$(COLOR_END)"
+@echo -e "$(ECHO_MAKE) $(COLOR_BLUE)$(1)$(COLOR_END) $(COLOR_PURPLE)$(2)$(COLOR_END)"
 endef
 
 .PHONY: boot build fmt help pkg rebuild repl switch test time
-.SILENT: $(MAKECMDGOALS)
 
+# TODO: complete the help
 help:
 	$(call ECHO_TARGET,"hi there cutie pie :P")
-	# TODO: complete the help
 
 # "But you can't use make as just a command runner"
 # Oh yes I can darling ~
 
 time:
 	$(call ECHO_TARGET,Timing,$(HOST))
-	time $(EVAL)
+	@time $(EVAL)
 	$(ECHO_DONE)
 
 pkg:
 	$(call ECHO_TARGET,Building,$(PKG))
-	$(BUILD) 2> /dev/null || (echo -e "$(ECHO_MAKE) $(COLOR_RED)Package not found$(COLOR_END)"; exit 1)
+	@$(BUILD) 2> /dev/null || (echo -e "$(ECHO_MAKE) $(COLOR_RED)Package not found$(COLOR_END)"; exit 1)
 	$(ECHO_DONE)
 
 clean:
 	$(call ECHO_TARGET,Cleaning)
-	(rm -v ./result 2> /dev/null && $(ECHO_DONE)) || echo -e "$(ECHO_MAKE) Nothing to clean"
+	@(rm -v ./result 2> /dev/null && $(ECHO_DONE)) || echo -e "$(ECHO_MAKE) Nothing to clean"
 
 # Tree sitter? What's that?
 # TODO: pre-commit + efficient git based formatting
@@ -63,16 +62,16 @@ clean:
 # modified making this more efficent
 fmt:
 	$(call ECHO_TARGET,Formatting)
-	alejandra . &> /dev/null
-	cd ./users/dots/quickshell/kurukurubar/; qmlformat -i $$(find . -name '*.qml')
-	mbake format --config ./users/dots/formatters/bake.toml ./Makefile
-	lua-format -c ./users/dots/formatters/luafmt.yaml -i $$(find ./users/dots/ -name '*.lua')
-	git -P diff --stat
+	@alejandra . &> /dev/null
+	@cd ./users/dots/quickshell/kurukurubar/; qmlformat -i $$(find . -name '*.qml')
+	@mbake format --config ./users/dots/formatters/bake.toml ./Makefile
+	@lua-format -c ./users/dots/formatters/luafmt.yaml -i $$(find ./users/dots/ -name '*.lua')
+	@git -P diff --stat
 	$(ECHO_DONE)
 
 rebuild:
 	$(call ECHO_TARGET,$(REBLD_COMMENT),$(HOST))
-	$(SUDO) $(REBUILD) $(REBLD_COMMAND)
+	@$(SUDO) $(REBUILD) $(REBLD_COMMAND)
 	$(ECHO_DONE)
 
 repl:

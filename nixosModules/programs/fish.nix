@@ -55,6 +55,8 @@ in {
       gra = "git restore .";
       gs = "git status";
       gd = "git diff";
+      # good for readmes
+      gdw = "git diff --word-diff";
       gds = "git diff --staged";
       gdh = "git diff HEAD~1";
       # I forgot where I stole this from

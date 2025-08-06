@@ -62,7 +62,7 @@ clean:
 # modified making this more efficent
 fmt:
 	$(call ECHO_TARGET,Formatting)
-	@alejandra . &> /dev/null
+	@alejandra -q .
 	@cd ./users/dots/quickshell/kurukurubar/; qmlformat -i $$(find . -name '*.qml')
 	@mbake format --config ./users/dots/formatters/bake.toml ./Makefile
 	@lua-format -c ./users/dots/formatters/luafmt.yaml -i $$(find ./users/dots/ -name '*.lua')

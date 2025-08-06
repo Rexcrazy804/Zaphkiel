@@ -11,12 +11,10 @@ return {
         flake = {
           autoEvalInputs = false,
           autoArchive = false,
-          nixpkgsInputName = "nixpkgs",
-        },
+          nixpkgsInputName = "nixpkgs"
+        }
       },
-      formatting = {
-        command = { "alejandra", "--quiet" },
-      },
-    },
-  },
+      formatting = { command = { "alejandra", "--quiet" } }
+    }
+  }
 }

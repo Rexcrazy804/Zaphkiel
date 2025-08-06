@@ -1,5 +1,1 @@
-vim.filetype.add {
-  pattern = {
-    ['.*/hyprland/.*%.conf'] = 'hyprlang',
-  },
-}
+vim.filetype.add { pattern = { [".*/hyprland/.*%.conf"] = "hyprlang" } }

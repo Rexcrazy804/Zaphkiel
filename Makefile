@@ -56,13 +56,17 @@ clean:
 	$(call ECHO_TARGET,Cleaning)
 	(rm -v ./result 2> /dev/null && $(ECHO_DONE)) || echo -e "$(ECHO_MAKE) Nothing to clean"
 
+# Tree sitter? What's that?
+# TODO: pre-commit + efficient git based formatting
+# could probably add git integration by only formatting the files that were
+# modified making this more efficent
 fmt:
 	$(call ECHO_TARGET,Formatting)
 	alejandra . &> /dev/null
 	cd ./users/dots/quickshell/kurukurubar/; qmlformat -i $$(find . -name '*.qml')
 	mbake format ./Makefile
-	git -P diff --stat
 	lua-format -c ./users/dots/formatters/luafmt.yaml -i $$(find ./users/dots/ -name '*.lua')
+	git -P diff --stat
 	$(ECHO_DONE)
 
 rebuild:

@@ -66,6 +66,7 @@ fmt:
 	@cd ./users/dots/quickshell/kurukurubar/; qmlformat -i $$(find . -name '*.qml')
 	@mbake format --config ./users/dots/formatters/bake.toml ./Makefile
 	@lua-format -c ./users/dots/formatters/luafmt.yaml -i $$(find ./users/dots/ -name '*.lua')
+	@mdformat --exclude '**/preview.md' $$(find . -name '*.md')
 	@git -P diff --stat
 	$(ECHO_DONE)
 

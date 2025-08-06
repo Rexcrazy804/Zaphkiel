@@ -33,14 +33,15 @@ define ECHO_TARGET =
 echo -e "$(ECHO_MAKE) $(COLOR_BLUE)$(1)$(COLOR_END) $(COLOR_PURPLE)$(2)$(COLOR_END)"
 endef
 
+.PHONY: boot build fmt help pkg rebuild repl switch test time
+.SILENT: $(MAKECMDGOALS)
+
 help:
 	$(call ECHO_TARGET,"hi there cutie pie :P")
 	# TODO: complete the help
 
 # "But you can't use make as just a command runner"
 # Oh yes I can darling ~
-.PHONEY: time pkg fmt clean rebuild repl build switch test boot dry help
-.SILENT: $(MAKECMDGOALS)
 
 time:
 	$(call ECHO_TARGET,Timing,$(HOST))
@@ -64,7 +65,7 @@ fmt:
 	$(call ECHO_TARGET,Formatting)
 	alejandra . &> /dev/null
 	cd ./users/dots/quickshell/kurukurubar/; qmlformat -i $$(find . -name '*.qml')
-	mbake format ./Makefile
+	mbake format --config ./users/dots/formatters/bake.toml ./Makefile
 	lua-format -c ./users/dots/formatters/luafmt.yaml -i $$(find ./users/dots/ -name '*.lua')
 	git -P diff --stat
 	$(ECHO_DONE)

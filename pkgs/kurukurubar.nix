@@ -19,14 +19,10 @@
   # replaces Data/Colors.qml
   customColors ? null,
 }: let
-  qtDeps = [
+  qmlPath = lib.makeSearchPath "lib/qt-6/qml" [
     kdePackages.qtbase
     kdePackages.qtdeclarative
     kdePackages.qtmultimedia
-  ];
-  qmlPath = lib.pipe qtDeps [
-    (builtins.map (lib: "${lib}/lib/qt-6/qml"))
-    (builtins.concatStringsSep ":")
   ];
 
   # requried when nix running directly

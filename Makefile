@@ -2,6 +2,13 @@
 PKG = kurukurubar
 HOST = $(shell hostname)
 
+FILES_GIT = $(shell git status --porcelain | awk '/^[M\?]/{ print $$2 }')
+FILES_NIX = $(filter %.nix,$(FILES_GIT))
+FILES_QML = $(filter %.qml,$(FILES_GIT))
+FILES_LUA = $(filter %.lua,$(FILES_GIT))
+FILES_MK = $(filter Makefile,$(FILES_GIT))
+FILES_MD = $(filter %.md,$(FILES_GIT))
+
 REBUILD_ATTR = nixosConfigurations.$(HOST)
 REBUILD_LOGFMT = bar
 REBUILD_ARGS = --log-format $(REBUILD_LOGFMT) --no-reexec --file . -A $(REBUILD_ATTR)
@@ -33,7 +40,7 @@ define ECHO_TARGET =
 @echo -e "$(ECHO_MAKE) $(COLOR_BLUE)$(1)$(COLOR_END) $(COLOR_PURPLE)$(2)$(COLOR_END)"
 endef
 
-.PHONY: boot build fmt help pkg rebuild repl switch test time
+.PHONY: boot build fmt fmt-all help pkg rebuild repl switch test time
 
 # TODO: complete the help
 help:
@@ -57,11 +64,33 @@ clean:
 	@(rm -v ./result 2> /dev/null && $(ECHO_DONE)) || echo -e "$(ECHO_MAKE) Nothing to clean"
 
 # Tree sitter? What's that?
-# TODO: pre-commit + efficient git based formatting
-# could probably add git integration by only formatting the files that were
-# modified making this more efficent
+# TODO: pre-commit hooking
 fmt:
-	$(call ECHO_TARGET,Formatting)
+ifneq ($(FILES_NIX),)
+	$(call ECHO_TARGET,Formatting,$(FILES_NIX))
+	@alejandra -q $(FILES_NIX)
+endif
+ifneq ($(FILES_QML),)
+	$(call ECHO_TARGET,Formatting,$(FILES_QML))
+	@cd ./users/dots/quickshell/kurukurubar/; qmlformat -i $(FILES_QML)
+endif
+ifneq ($(FILES_LUA),)
+	$(call ECHO_TARGET,Formatting,$(FILES_LUA))
+	@lua-format -c ./users/dots/formatters/luafmt.yaml -i $(FILES_LUA)
+endif
+ifneq ($(FILES_MK),)
+	$(call ECHO_TARGET,Formatting,$(FILES_MK))
+	@mbake format --config ./users/dots/formatters/bake.toml $(FILES_MK)
+endif
+ifneq ($(FILES_MD),)
+	$(call ECHO_TARGET,Formatting,$(FILES_MD))
+	@mdformat --exclude '**/preview.md' $(FILES_MD)
+endif
+	$(ECHO_DONE)
+
+# TODO generalize the formatter commands and reuse it
+fmt-all:
+	$(call ECHO_TARGET,Formatting all files)
 	@alejandra -q .
 	@cd ./users/dots/quickshell/kurukurubar/; qmlformat -i $$(find . -name '*.qml')
 	@mbake format --config ./users/dots/formatters/bake.toml ./Makefile

@@ -57,7 +57,7 @@ in {
       inherit (pkgs) wl-clipboard cliphist grim slurp brightnessctl;
       inherit (pkgs) hyprsunset trashy fuzzel wl-screenrec;
       inherit (pkgs) libnotify swappy imv wayfreeze networkmanagerapplet;
-      inherit (pkgs) yazi ripdrag seahorse;
+      inherit (pkgs) yazi ripdrag seahorse app2unit;
     };
 
     # required when kde plasma is not installed .w.

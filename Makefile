@@ -2,7 +2,7 @@
 PKG = kurukurubar
 HOST = $(shell hostname)
 
-FILES_GIT = $(shell git status --porcelain | awk '/^[M\?]/{ print $$2 }')
+FILES_GIT = $(shell git status --porcelain | awk '/^ +?[M\?]/{ print $$2 }')
 FILES_NIX = $(filter %.nix,$(FILES_GIT))
 FILES_QML = $(filter %.qml,$(FILES_GIT))
 FILES_LUA = $(filter %.lua,$(FILES_GIT))
@@ -86,7 +86,11 @@ ifneq ($(FILES_MD),)
 	$(call ECHO_TARGET,Formatting,$(FILES_MD))
 	@mdformat --exclude '**/preview.md' $(FILES_MD)
 endif
+ifneq ($(FILES_GIT),)
 	$(ECHO_DONE)
+else
+	$(call ECHO_TARGET,Nothing to format >.<)
+endif
 
 # TODO generalize the formatter commands and reuse it
 fmt-all:

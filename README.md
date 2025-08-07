@@ -33,7 +33,9 @@ https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 - hjem over home manager
 - matugen injecting colors based on wallpaper
 - booru flake image collection to neatly access images all over the flake
-- exports a flake.nix that relies on npins' nixpkgs source for repo flake support
+- exports a bridged flake.nix that lets you consume this configuration as a flake
+- Adorable kurukurubar complimented by the fabulous kurukurulock
+- cute [Makefile](Makefile) helper for formatting and other nix errands within the repo
 
 <details open>
 <summary><h3>The long answer</h3></summary>

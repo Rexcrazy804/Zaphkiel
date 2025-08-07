@@ -110,7 +110,7 @@ in {
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.dbus}/bin/dbus-run-session ${pkgs.hyprland}/bin/hyprland --config ${hyprConf}";
+          command = "${pkgs.hyprland}/bin/hyprland --config ${hyprConf}";
         };
       };
     };

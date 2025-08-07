@@ -3,21 +3,17 @@
   config,
   lib,
   ...
-}: {
-  config = lib.mkIf (!config.zaphkiel.data.headless) {
+}: let
+  inherit (lib) mkIf attrValues;
+in {
+  config = mkIf (!config.zaphkiel.data.headless) {
     fonts = {
       fontDir.enable = true;
-      packages = [
-        pkgs.nerd-fonts.caskaydia-mono
-        pkgs.nerd-fonts.caskaydia-cove
-        pkgs.noto-fonts
-        pkgs.noto-fonts-emoji
-        pkgs.noto-fonts-cjk-sans
-        pkgs.noto-fonts-cjk-serif
-        pkgs.material-symbols
-
-        pkgs.librebarcode
-      ];
+      packages = attrValues {
+        inherit (pkgs.nerd-fonts) caskaydia-mono caskaydia-cove;
+        inherit (pkgs) noto-fonts noto-fonts-emoji noto-fonts-cjk-sans;
+        inherit (pkgs) noto-fonts-cjk-serif material-symbols librebarcode;
+      };
     };
   };
 }

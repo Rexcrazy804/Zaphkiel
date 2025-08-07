@@ -2,7 +2,7 @@
   imports = [
     # unimported
     # ./gdm.nix
-    # ./aagl.nix
+    ./aagl.nix
 
     # internal
     ./steam.nix

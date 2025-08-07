@@ -4,14 +4,15 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "Rexcrazy804",
+        "owner": "ezKEa",
         "repo": "aagl-gtk-on-nix"
       },
-      "branch": "independent-overlay-and-module",
+      "branch": "main",
       "submodules": false,
-      "revision": "095ca5ff17ccfdb70cfa69aa37d4c2e8103b1218",
-      "url": "https://github.com/Rexcrazy804/aagl-gtk-on-nix/archive/095ca5ff17ccfdb70cfa69aa37d4c2e8103b1218.tar.gz",
-      "hash": "sha256-Kf7KNwS0YZTvsW5045HqyobBDHl3Tre+Wj6qfsg59VA="
+      "revision": "5f1e47d9e10c16f7bf4f1ba2affb8c4e0757c5e8",
+      "url": "https://github.com/ezKEa/aagl-gtk-on-nix/archive/5f1e47d9e10c16f7bf4f1ba2affb8c4e0757c5e8.tar.gz",
+      "hash": "sha256-St2lv9zr+L5lTC62WawEx7XKiL2Yzi/JhqHMi58m7CA=",
+      "frozen": true
     },
     "agenix": {
       "type": "Git",

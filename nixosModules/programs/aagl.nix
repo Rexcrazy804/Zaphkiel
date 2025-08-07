@@ -8,8 +8,7 @@
   options.zaphkiel.programs.anime-games.enable = lib.mkEnableOption "anime games";
   config = lib.mkIf config.zaphkiel.programs.anime-games.enable {
     nixpkgs.overlays = [
-      (import sources.rust-overlay)
-      (import (sources.aagl + "/overlay.nix"))
+      (import (sources.aagl + "/overlay.nix") {inherit (sources) rust-overlay;})
     ];
     nix.settings.extra-substituters = ["https://ezkea.cachix.org"];
     nix.settings.extra-trusted-public-keys = ["ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="];

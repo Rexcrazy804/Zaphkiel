@@ -53,7 +53,7 @@ in
 
     devShells.default = let
       precommit = pkgs.writeShellScript "pre-commit" ''
-        if make fmt CHECK=1; then
+        if make chk; then
           exit 0
         else
           make fmt

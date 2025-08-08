@@ -43,7 +43,7 @@ define ECHO_TARGET =
 @echo -e "$(ECHO_MAKE) $(COLOR_BLUE)$(1)$(COLOR_END) $(COLOR_PURPLE)$(2)$(COLOR_END)"
 endef
 
-.PHONY: boot build fmt help pkg rebuild repl switch test time
+.PHONY: boot build chk fmt help pkg rebuild repl switch test time
 
 # TODO: complete the help
 help:
@@ -65,6 +65,9 @@ pkg:
 clean:
 	$(call ECHO_TARGET,Cleaning)
 	@(rm -v ./result 2> /dev/null && $(ECHO_DONE)) || echo -e "$(ECHO_MAKE) Nothing to clean"
+
+chk:
+	@$(MAKE) --no-print-directory fmt CHECK=1
 
 # Tree sitter? What's that?
 fmt:

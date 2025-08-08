@@ -51,14 +51,30 @@ in
       };
     };
 
-    devShells.default = mkShellNoCC {
-      packages = attrValues {
-        # formatters
-        inherit (pkgs) alejandra mbake luaformatter mdformat;
-        # make the cutest
-        inherit (pkgs) gnumake;
+    devShells.default = let
+      precommit = pkgs.writeShellScript "pre-commit" ''
+        make fmt CHECK=1
+      '';
+    in
+      mkShellNoCC {
+        shellHook = ''
+          HOOKS=$(pwd)/.git/hooks
+          if ! [ -f "$HOOKS/pre-commit" ]; then
+            install ${precommit} $HOOKS/pre-commit
+            echo "[SHELL] created precommit hook :>"
+          fi
+          if ! cmp --silent $HOOKS/pre-commit ${precommit}; then
+            install ${precommit} $HOOKS/pre-commit
+            echo "[SHELL] updated precommit hook ^OwO^"
+          fi
+        '';
+        packages = attrValues {
+          # formatters
+          inherit (pkgs) alejandra mbake luaformatter mdformat;
+          # make the cutest
+          inherit (pkgs) gnumake;
+        };
       };
-    };
 
     nixosConfigurations = let
       nixosSystem = import (nixpkgs + "/nixos/lib/eval-config.nix");

@@ -214,6 +214,7 @@ users/                  # user specific configuration imported by hosts hosting 
 - <others>.nix          # other users
 
 README.md               # are you reading me yet?
+Makefile                # a cute helper, Zaphkiel's maid chan
 default.nix             # entry point for building configurations
 flake.nix               # sneaky flake.nix that uses npins for inputs
 license                 # MIT License

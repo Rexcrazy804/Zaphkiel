@@ -1,5 +1,4 @@
 # DEFAULTS
-PKG = kurukurubar
 HOST = $(shell hostname)
 
 ifneq ($(FMT_ALL),)
@@ -58,12 +57,17 @@ time:
 
 # can be passed a path to build the file with callPackage
 pkg:
+ifdef PKG
 	$(call ECHO_TARGET,Building,$(PKG))
-ifneq	($(findstring /, $(PKG)),)
-	@nix-build --expr 'with import <nixpkgs> {}; callPackage $(PKG) {$(PKG_ATTRS)}' 2> /dev/null ||\
-		(echo -e "$(ECHO_MAKE) $(COLOR_RED)Cannot build $(PKG) $(COLOR_END)" && exit 1)
-else
 	@$(BUILD) 2> /dev/null || (echo -e "$(ECHO_MAKE) $(COLOR_RED)Package not found$(COLOR_END)" && exit 1)
+else
+ifdef PKG_PATH
+	$(call ECHO_TARGET,Calling Package,$(PKG_PATH))
+	@nix-build --expr 'with import <nixpkgs> {}; callPackage $(PKG_PATH) {$(PKG_ATTRS)}' 2> /dev/null ||\
+		(echo -e "$(ECHO_MAKE) $(COLOR_RED)Cannot build $(PKG_PATH) $(COLOR_END)" && exit 1)
+else
+	@echo -e "$(ECHO_MAKE) $(COLOR_RED)Neither \$$PKG nor \$$PKG_PATH defined$(COLOR_END)" && exit 1
+endif
 endif
 	$(ECHO_DONE)
 

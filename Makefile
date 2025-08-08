@@ -70,14 +70,15 @@ clean:
 chk:
 ifneq ($(FILES_NIX),)
 	$(call ECHO_TARGET,Checking,$(words $(FILES_NIX)) nix files)
-	@$(foreach FILE,$(FILES_NIX),git show :$(FILE) | alejandra --check -q - > /dev/null)
+	@$(foreach FILE,$(FILES_NIX),git show :$(FILE) | alejandra --check -q - &> /dev/null)
 endif
 ifneq ($(FILES_LUA),)
 	$(call ECHO_TARGET,Checking,$(words $(FILES_LUA)) lua files)
 	@$(foreach FILE,$(FILES_LUA),git show :$(FILE) | lua-format --check -c ./users/dots/formatters/luafmt.yaml)
 endif
 ifneq ($(FILES_MK),)
-	$(call ECHO_TARGET,$(COLOR_YELLOW)Cannot check makefiles :<)
+	$(call ECHO_TARGET,Checking,$(words $(FILES_MK)) make files)
+	@$(foreach FILE,$(FILES_MK),git show :$(FILE) | mbake format --stdin --check --config ./users/dots/formatters/bake.toml &> /dev/null)
 endif
 ifneq ($(FILES_MD),)
 	$(call ECHO_TARGET,Checking,$(words $(FILES_MD)) md files)

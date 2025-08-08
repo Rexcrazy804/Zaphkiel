@@ -1,7 +1,7 @@
 # DEFAULTS
 HOST = $(shell hostname)
 
-ifneq ($(FMT_ALL),)
+ifdef FMT_ALL
   FILES_GIT = $(shell git ls-tree -r HEAD --name-only | paste -sd " ")
 endif
 FILES_GIT ?= $(shell git status --porcelain | awk '/^ +?[M\?]/{ print $$2 }')
@@ -81,7 +81,7 @@ ifdef PKG_PATH
 	@nix-build --expr 'with import <nixpkgs> {}; callPackage $(PKG_PATH) {$(PKG_ATTRS)}' 2> /dev/null ||\
 		(echo -e "$(ECHO_MAKE) $(COLOR_RED)Cannot build $(PKG_PATH) $(COLOR_END)" && exit 1)
 else
-	@echo -e "$(ECHO_MAKE) $(COLOR_RED)Neither \$$PKG nor \$$PKG_PATH defined$(COLOR_END)" && exit 1
+	@echo -e "$(ECHO_MAKE) $(COLOR_RED)Neither $(COLOR_PURPLE)\$$PKG$(COLOR_RED) nor $(COLOR_PURPLE)\$$PKG_PATH$(COLOR_RED) was set$(COLOR_END)" && exit 1
 endif
 endif
 	@$(ECHO_DONE)

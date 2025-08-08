@@ -56,9 +56,15 @@ time:
 	@time $(EVAL)
 	$(ECHO_DONE)
 
+# can be passed a path to build the file with callPackage
 pkg:
 	$(call ECHO_TARGET,Building,$(PKG))
-	@$(BUILD) 2> /dev/null || (echo -e "$(ECHO_MAKE) $(COLOR_RED)Package not found$(COLOR_END)"; exit 1)
+ifneq	($(findstring /, $(PKG)),)
+	@nix-build --expr 'with import <nixpkgs> {}; callPackage $(PKG) {$(PKG_ATTRS)}' 2> /dev/null ||\
+		(echo -e "$(ECHO_MAKE) $(COLOR_RED)Cannot build $(PKG) $(COLOR_END)" && exit 1)
+else
+	@$(BUILD) 2> /dev/null || (echo -e "$(ECHO_MAKE) $(COLOR_RED)Package not found$(COLOR_END)" && exit 1)
+endif
 	$(ECHO_DONE)
 
 clean:

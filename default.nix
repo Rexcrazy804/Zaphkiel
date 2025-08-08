@@ -67,8 +67,7 @@ in
           if ! [ -f "$HOOKS/pre-commit" ]; then
             install ${precommit} $HOOKS/pre-commit
             echo "[SHELL] created precommit hook :>"
-          fi
-          if ! cmp --silent $HOOKS/pre-commit ${precommit}; then
+          elif ! cmp --silent $HOOKS/pre-commit ${precommit}; then
             install ${precommit} $HOOKS/pre-commit
             echo "[SHELL] updated precommit hook ^OwO^"
           fi

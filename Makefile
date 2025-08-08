@@ -36,7 +36,7 @@ COLOR_PURPLE = \e[0;35m
 COLOR_END = \e[0m
 
 ECHO_MAKE = $(COLOR_GREEN)[MAKE]$(COLOR_END)
-ECHO_DONE = @echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Done >w<$(COLOR_END)"
+ECHO_DONE = echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Done >w<$(COLOR_END)"
 define ECHO_TARGET =
 @echo -e "$(ECHO_MAKE) $(COLOR_BLUE)$(1)$(COLOR_END) $(COLOR_PURPLE)$(2)$(COLOR_END)"
 endef
@@ -68,7 +68,7 @@ help:
 time:
 	$(call ECHO_TARGET,Timing,$(HOST))
 	@time $(EVAL)
-	$(ECHO_DONE)
+	@$(ECHO_DONE)
 
 # can be passed a path to build the file with callPackage
 pkg:
@@ -84,11 +84,11 @@ else
 	@echo -e "$(ECHO_MAKE) $(COLOR_RED)Neither \$$PKG nor \$$PKG_PATH defined$(COLOR_END)" && exit 1
 endif
 endif
-	$(ECHO_DONE)
+	@$(ECHO_DONE)
 
 clean:
 	$(call ECHO_TARGET,Cleaning)
-	@(rm -v ./result 2> /dev/null && $(ECHO_DONE)) || echo -e "$(ECHO_MAKE) Nothing to clean"
+	@(rm -v ./result* 2> /dev/null && $(ECHO_DONE)) || echo -e "$(ECHO_MAKE) Nothing to clean"
 
 # mother bake is stupid where there is a colon in the middle
 # bake-format off
@@ -131,7 +131,7 @@ ifneq ($(FILES_MD),)
 	@mdformat $(if $(CHECK),--check) --exclude '**/preview.md' $(FILES_MD)
 endif
 ifneq ($(FILES_GIT),)
-	$(ECHO_DONE)
+	@$(ECHO_DONE)
 else
 	$(call ECHO_TARGET,Nothing to format >.<)
 endif
@@ -139,7 +139,7 @@ endif
 rebuild:
 	$(call ECHO_TARGET,$(REBLD_COMMENT),$(HOST))
 	@$(if $(SUDO),sudo) $(REBUILD) $(REBLD_COMMAND)
-	$(ECHO_DONE)
+	@$(ECHO_DONE)
 
 repl:
 	$(REBLD_REC_COMMON) REBLD_COMMAND=$@ REBLD_COMMENT=Repl

@@ -40,15 +40,30 @@ ECHO_DONE = @echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Done >w<$(COLOR_END)"
 define ECHO_TARGET =
 @echo -e "$(ECHO_MAKE) $(COLOR_BLUE)$(1)$(COLOR_END) $(COLOR_PURPLE)$(2)$(COLOR_END)"
 endef
+define ECHO_HELP =
+@echo -e "$(COLOR_YELLOW)$(1)$(COLOR_END) $(2)"
+endef
 
 .PHONY: boot build chk fmt help pkg rebuild repl switch test time
 
-# TODO: complete the help
-help:
-	$(call ECHO_TARGET,"hi there cutie pie :P")
-
 # "But you can't use make as just a command runner"
 # Oh yes I can darling ~
+help:
+	@echo -e "# $(COLOR_BLUE)Zaphkiel's little helper$(COLOR_END)"
+	@echo ""
+	$(call ECHO_HELP,help,          display this help)
+	@echo ""
+	$(call ECHO_HELP,pkg,           build packages either from $(COLOR_PURPLE)\$$PKG$(COLOR_END) or from $(COLOR_PURPLE)\$$PKG_PATH$(COLOR_END))
+	$(call ECHO_HELP,clean,         removes the result symlink)
+	@echo ""
+	$(call ECHO_HELP,chk,           checks staged files with formatters)
+	$(call ECHO_HELP,fmt,           formats currently modified files set $(COLOR_PURPLE)\$$FMT_ALL$(COLOR_END) for formatting all files)
+	@echo ""
+	$(call ECHO_HELP,rebuild,       $(COLOR_RED)for internal recusrive use only$(COLOR_END))
+	$(call ECHO_HELP,repl build,    | used to perform repsective)
+	$(call ECHO_HELP,boot switch,   > nixos-rebuild subcommands.)
+	$(call ECHO_HELP,test dry,      | $(COLOR_PURPLE)\$$HOST$(COLOR_END) can be used to specify host)
+	$(call ECHO_HELP,time,          benchmark evaluation time for nixos configuraiton)
 
 time:
 	$(call ECHO_TARGET,Timing,$(HOST))

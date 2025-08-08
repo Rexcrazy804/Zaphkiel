@@ -88,9 +88,11 @@ endif
 
 clean:
 	$(call ECHO_TARGET,Cleaning)
-	@(rm -v ./result* 2> /dev/null && $(ECHO_DONE)) || echo -e "$(ECHO_MAKE) Nothing to clean"
+	@if rm -v ./result* 2> /dev/null;\
+		then $(ECHO_DONE);\
+		else echo -e "$(ECHO_MAKE) $(COLOR_YELLOW)Nothing to clean >.<$(COLOR_END)"; fi
 
-# mother bake is stupid where there is a colon in the middle
+# mbake is stupid where there is a colon in the middle
 # bake-format off
 chk:
 ifneq ($(FILES_NIX),)

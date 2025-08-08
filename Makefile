@@ -16,7 +16,7 @@ REBUILD_LOGFMT = bar
 REBUILD_ARGS = --log-format $(REBUILD_LOGFMT) --no-reexec --file . -A $(REBUILD_ATTR)
 REBUILD = nixos-rebuild $(REBUILD_ARGS)
 # only for recusrive rebuild call
-REBLD_REC_COMMON = @$(MAKE) MAKEFLAGS+=--no-print-directory rebuild
+REBLD_REC_COMMON = @$(MAKE) --no-print-directory rebuild
 
 BUILD_ATTR = packages.$(PKG)
 BUILD_FILE = ./default.nix
@@ -92,23 +92,23 @@ endif
 
 rebuild:
 	$(call ECHO_TARGET,$(REBLD_COMMENT),$(HOST))
-	@$(SUDO) $(REBUILD) $(REBLD_COMMAND)
+	@$(if $(SUDO),sudo) $(REBUILD) $(REBLD_COMMAND)
 	$(ECHO_DONE)
 
 repl:
 	$(REBLD_REC_COMMON) REBLD_COMMAND=$@ REBLD_COMMENT=Repl
 
 build:
-	$(REBLD_REC_COMMON) REBLD_COMMAND=$@ REBLD_COMMENT=Building SUDO=sudo
+	$(REBLD_REC_COMMON) REBLD_COMMAND=$@ REBLD_COMMENT=Building SUDO=1
 
 switch:
-	$(REBLD_REC_COMMON) REBLD_COMMAND=$@ REBLD_COMMENT=Switching SUDO=sudo
+	$(REBLD_REC_COMMON) REBLD_COMMAND=$@ REBLD_COMMENT=Switching SUDO=1
 
 dry:
 	$(REBLD_REC_COMMON) REBLD_COMMAND=dry-build REBLD_COMMENT='Dry Building'
 
 test:
-	$(REBLD_REC_COMMON) REBLD_COMMAND=$@ REBLD_COMMENT=Testing SUDO=sudo
+	$(REBLD_REC_COMMON) REBLD_COMMAND=$@ REBLD_COMMENT=Testing SUDO=1
 
 boot:
-	$(REBLD_REC_COMMON) REBLD_COMMAND=$@ REBLD_COMMENT=Booting SUDO=sudo
+	$(REBLD_REC_COMMON) REBLD_COMMAND=$@ REBLD_COMMENT=Booting SUDO=1

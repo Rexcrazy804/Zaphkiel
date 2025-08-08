@@ -60,6 +60,8 @@ in
           exit 1
         fi
       '';
+
+      bake = pkgs.mbake.overrideAttrs (prev: {src = sources.bake;});
     in
       mkShellNoCC {
         shellHook = ''
@@ -74,7 +76,8 @@ in
         '';
         packages = attrValues {
           # formatters
-          inherit (pkgs) alejandra mbake luaformatter mdformat;
+          inherit bake;
+          inherit (pkgs) alejandra luaformatter mdformat;
           # make the cutest
           inherit (pkgs) gnumake;
         };

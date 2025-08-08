@@ -27,6 +27,19 @@
       "url": "https://github.com/ryantm/agenix/archive/531beac616433bac6f9e2a19feb8e99a22a66baf.tar.gz",
       "hash": "sha256-9P1FziAwl5+3edkfFcr5HeGtQUtrSdk/MksX39GieoA="
     },
+    "bake": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Rexcrazy804",
+        "repo": "bake"
+      },
+      "branch": "stdin-check-fix",
+      "submodules": false,
+      "revision": "8fd59e62e64580825a772cb0f8407dc5b1778e80",
+      "url": "https://github.com/Rexcrazy804/bake/archive/8fd59e62e64580825a772cb0f8407dc5b1778e80.tar.gz",
+      "hash": "sha256-WlpeWw/0GdtUK2MmrRqQF/fdmea12RTFpJcQu0vmWcM="
+    },
     "booru-flake": {
       "type": "Git",
       "repository": {

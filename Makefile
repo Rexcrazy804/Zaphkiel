@@ -43,7 +43,7 @@ define ECHO_TARGET =
 @echo -e "$(ECHO_MAKE) $(COLOR_BLUE)$(1)$(COLOR_END) $(COLOR_PURPLE)$(2)$(COLOR_END)"
 endef
 
-.PHONY: boot build fmt fmt-all help pkg rebuild repl switch test time
+.PHONY: boot build fmt help pkg rebuild repl switch test time
 
 # TODO: complete the help
 help:
@@ -67,7 +67,6 @@ clean:
 	@(rm -v ./result 2> /dev/null && $(ECHO_DONE)) || echo -e "$(ECHO_MAKE) Nothing to clean"
 
 # Tree sitter? What's that?
-# TODO: pre-commit hooking
 fmt:
 ifneq ($(FILES_NIX),)
 	$(call ECHO_TARGET,$(ECHO_FMTCHK),$(words $(FILES_NIX)) nix files)

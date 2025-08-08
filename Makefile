@@ -2,6 +2,7 @@
 PKG = kurukurubar
 HOST = $(shell hostname)
 
+FILE_FORMATTING = $(if $(CHECK),Checking,Formatting)
 FILES_GIT = $(shell git status --porcelain | awk '/^ +?[M\?]/{ print $$2 }')
 FILES_NIX = $(filter %.nix,$(FILES_GIT))
 FILES_QML = $(filter %.qml,$(FILES_GIT))
@@ -67,29 +68,29 @@ clean:
 # TODO: pre-commit hooking
 fmt:
 ifneq ($(FILES_NIX),)
-	$(call ECHO_TARGET,Formatting,$(FILES_NIX))
-	@alejandra -q $(FILES_NIX)
+	$(call ECHO_TARGET,$(FILE_FORMATTING),$(FILES_NIX))
+	@alejandra $(if $(CHECK),--check) -q $(FILES_NIX)
 endif
 ifneq ($(FILES_QML),)
-	$(call ECHO_TARGET,Formatting,$(FILES_QML))
+	$(call ECHO_TARGET,$(FILE_FORMATTING),$(FILES_QML))
 	@cd ./users/dots/quickshell/kurukurubar/; qmlformat -i $(FILES_QML)
 endif
 ifneq ($(FILES_LUA),)
-	$(call ECHO_TARGET,Formatting,$(FILES_LUA))
-	@lua-format -c ./users/dots/formatters/luafmt.yaml -i $(FILES_LUA)
+	$(call ECHO_TARGET,$(FILE_FORMATTING),$(FILES_LUA))
+	@lua-format $(if $(CHECK),--check) -c ./users/dots/formatters/luafmt.yaml -i $(FILES_LUA)
 endif
 ifneq ($(FILES_MK),)
-	$(call ECHO_TARGET,Formatting,$(FILES_MK))
-	@mbake format --config ./users/dots/formatters/bake.toml $(FILES_MK)
+	$(call ECHO_TARGET,$(FILE_FORMATTING),$(FILES_MK))
+	@mbake format $(if $(CHECK),--check) --config ./users/dots/formatters/bake.toml $(FILES_MK)
 endif
 ifneq ($(FILES_MD),)
-	$(call ECHO_TARGET,Formatting,$(FILES_MD))
-	@mdformat --exclude '**/preview.md' $(FILES_MD)
+	$(call ECHO_TARGET,$(FILE_FORMATTING),$(FILES_MD))
+	@mdformat $(if $(CHECK),--check) --exclude '**/preview.md' $(FILES_MD)
 endif
 ifneq ($(FILES_GIT),)
 	$(ECHO_DONE)
 else
-	$(call ECHO_TARGET,Nothing to format >.<)
+	$(call ECHO_TARGET,Nothing to $(if $(CHECK), check, format) >.<)
 endif
 
 # TODO generalize the formatter commands and reuse it

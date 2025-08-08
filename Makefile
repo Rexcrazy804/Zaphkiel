@@ -37,7 +37,6 @@ COLOR_PURPLE = \e[0;35m
 COLOR_END = \e[0m
 
 ECHO_MAKE = $(COLOR_GREEN)[MAKE]$(COLOR_END)
-ECHO_FMTCHK = $(if $(CHECK),Checking,Formatting)
 ECHO_DONE = @echo -e "$(ECHO_MAKE) $(COLOR_BLUE)Done >w<$(COLOR_END)"
 define ECHO_TARGET =
 @echo -e "$(ECHO_MAKE) $(COLOR_BLUE)$(1)$(COLOR_END) $(COLOR_PURPLE)$(2)$(COLOR_END)"
@@ -66,31 +65,49 @@ clean:
 	$(call ECHO_TARGET,Cleaning)
 	@(rm -v ./result 2> /dev/null && $(ECHO_DONE)) || echo -e "$(ECHO_MAKE) Nothing to clean"
 
+# mother bake is stupid where there is a colon in the middle
+# bake-format off
 chk:
-	@$(MAKE) --no-print-directory fmt CHECK=1
+ifneq ($(FILES_NIX),)
+	$(call ECHO_TARGET,Checking,$(words $(FILES_NIX)) nix files)
+	@$(foreach FILE,$(FILES_NIX),git show :$(FILE) | alejandra --check -q - > /dev/null)
+endif
+ifneq ($(FILES_LUA),)
+	$(call ECHO_TARGET,Checking,$(words $(FILES_LUA)) lua files)
+	@$(foreach FILE,$(FILES_LUA),git show :$(FILE) | lua-format --check -c ./users/dots/formatters/luafmt.yaml)
+endif
+ifneq ($(FILES_MK),)
+	$(call ECHO_TARGET,$(COLOR_YELLOW)Cannot check makefiles :<)
+endif
+ifneq ($(FILES_MD),)
+	$(call ECHO_TARGET,Checking,$(words $(FILES_MD)) md files)
+	@$(foreach FILE,$(FILES_MD),git show :$(FILE) | mdformat --check --exclude '**/preview.md' - &> /dev/null)
+endif
+	$(call ECHO_TARGET,Checks passed >w<)
+#bake-format on
 
 # Tree sitter? What's that?
 fmt:
 ifneq ($(FILES_NIX),)
-	$(call ECHO_TARGET,$(ECHO_FMTCHK),$(words $(FILES_NIX)) nix files)
-	@alejandra $(if $(CHECK),--check) -q $(FILES_NIX)
+	$(call ECHO_TARGET,Formatting,$(words $(FILES_NIX)) nix files)
+	@alejandra -q $(FILES_NIX)
 endif
 ifneq ($(FILES_LUA),)
-	$(call ECHO_TARGET,$(ECHO_FMTCHK),$(words $(FILES_LUA)) lua files)
-	@lua-format $(if $(CHECK),--check) -c ./users/dots/formatters/luafmt.yaml -i $(FILES_LUA)
+	$(call ECHO_TARGET,Formatting,$(words $(FILES_LUA)) lua files)
+	@lua-format -c ./users/dots/formatters/luafmt.yaml -i $(FILES_LUA)
 endif
 ifneq ($(FILES_MK),)
-	$(call ECHO_TARGET,$(ECHO_FMTCHK),$(words $(FILES_MK)) make files)
+	$(call ECHO_TARGET,Formatting,$(words $(FILES_MK)) make files)
 	@mbake format $(if $(CHECK),--check) --config ./users/dots/formatters/bake.toml $(FILES_MK)
 endif
 ifneq ($(FILES_MD),)
-	$(call ECHO_TARGET,$(ECHO_FMTCHK),$(words $(FILES_MD)) md files)
+	$(call ECHO_TARGET,Formatting,$(words $(FILES_MD)) md files)
 	@mdformat $(if $(CHECK),--check) --exclude '**/preview.md' $(FILES_MD)
 endif
 ifneq ($(FILES_GIT),)
 	$(ECHO_DONE)
 else
-	$(call ECHO_TARGET,Nothing to $(if $(CHECK), check, format) >.<)
+	$(call ECHO_TARGET,Nothing to format >.<)
 endif
 
 rebuild:

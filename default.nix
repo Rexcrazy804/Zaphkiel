@@ -54,8 +54,9 @@ in
     devShells.default = mkShellNoCC {
       packages = attrValues {
         # formatters
-        inherit (pkgs) alejandra gnumake mbake luaformatter mdformat;
-        inherit (pkgs.kdePackages) qtdeclarative;
+        inherit (pkgs) alejandra mbake luaformatter mdformat;
+        # make the cutest
+        inherit (pkgs) gnumake;
       };
     };
 

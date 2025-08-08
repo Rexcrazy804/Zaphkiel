@@ -2,9 +2,11 @@
 PKG = kurukurubar
 HOST = $(shell hostname)
 
-FILES_GIT = $(shell git status --porcelain | awk '/^ +?[M\?]/{ print $$2 }')
+ifneq ($(FMT_ALL),)
+  FILES_GIT = $(shell git ls-tree -r HEAD --name-only | paste -sd " ")
+endif
+FILES_GIT ?= $(shell git status --porcelain | awk '/^ +?[M\?]/{ print $$2 }')
 FILES_NIX = $(filter %.nix,$(FILES_GIT))
-FILES_QML = $(filter %.qml,$(FILES_GIT))
 FILES_LUA = $(filter %.lua,$(FILES_GIT))
 FILES_MK = $(filter Makefile,$(FILES_GIT))
 FILES_MD = $(filter %.md,$(FILES_GIT))
@@ -68,23 +70,19 @@ clean:
 # TODO: pre-commit hooking
 fmt:
 ifneq ($(FILES_NIX),)
-	$(call ECHO_TARGET,$(ECHO_FMTCHK),$(FILES_NIX))
+	$(call ECHO_TARGET,$(ECHO_FMTCHK),$(words $(FILES_NIX)) nix files)
 	@alejandra $(if $(CHECK),--check) -q $(FILES_NIX)
 endif
-ifneq ($(FILES_QML),)
-	$(call ECHO_TARGET,$(ECHO_FMTCHK),$(FILES_QML))
-	@cd ./users/dots/quickshell/kurukurubar/; qmlformat -i $(FILES_QML)
-endif
 ifneq ($(FILES_LUA),)
-	$(call ECHO_TARGET,$(ECHO_FMTCHK),$(FILES_LUA))
+	$(call ECHO_TARGET,$(ECHO_FMTCHK),$(words $(FILES_LUA)) lua files)
 	@lua-format $(if $(CHECK),--check) -c ./users/dots/formatters/luafmt.yaml -i $(FILES_LUA)
 endif
 ifneq ($(FILES_MK),)
-	$(call ECHO_TARGET,$(ECHO_FMTCHK),$(FILES_MK))
+	$(call ECHO_TARGET,$(ECHO_FMTCHK),$(words $(FILES_MK)) make files)
 	@mbake format $(if $(CHECK),--check) --config ./users/dots/formatters/bake.toml $(FILES_MK)
 endif
 ifneq ($(FILES_MD),)
-	$(call ECHO_TARGET,$(ECHO_FMTCHK),$(FILES_MD))
+	$(call ECHO_TARGET,$(ECHO_FMTCHK),$(words $(FILES_MD)) md files)
 	@mdformat $(if $(CHECK),--check) --exclude '**/preview.md' $(FILES_MD)
 endif
 ifneq ($(FILES_GIT),)
@@ -92,16 +90,6 @@ ifneq ($(FILES_GIT),)
 else
 	$(call ECHO_TARGET,Nothing to $(if $(CHECK), check, format) >.<)
 endif
-
-fmt-all:
-	$(call ECHO_TARGET,Formatting all files)
-	@alejandra -q .
-	@cd ./users/dots/quickshell/kurukurubar/; qmlformat -i $$(find . -name '*.qml')
-	@mbake format --config ./users/dots/formatters/bake.toml ./Makefile
-	@lua-format -c ./users/dots/formatters/luafmt.yaml -i $$(find ./users/dots/ -name '*.lua')
-	@mdformat --exclude '**/preview.md' $$(find . -name '*.md')
-	@git -P diff --stat
-	$(ECHO_DONE)
 
 rebuild:
 	$(call ECHO_TARGET,$(REBLD_COMMENT),$(HOST))

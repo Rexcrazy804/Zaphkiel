@@ -19,7 +19,8 @@
   # replaces Data/Colors.qml
   customColors ? null,
 }: let
-  qmlPath = lib.makeSearchPath "lib/qt-6/qml" [
+  inherit (lib) makeSearchPath optionalString cleanSourceWith cleanSource hasSuffix;
+  qmlPath = makeSearchPath "lib/qt-6/qml" [
     kdePackages.qtbase
     kdePackages.qtdeclarative
     kdePackages.qtmultimedia
@@ -34,20 +35,25 @@
     ];
   };
 
-  qsConfig = runCommandLocal "quick" {} (''
+  qsConfig' = runCommandLocal "quick" {} (''
       mkdir $out
       cd $out
       cp -rp ${configPath}/* .
     ''
-    + (lib.optionalString asGreeter ''
+    + (optionalString asGreeter ''
       chmod u+w *.qml
       rm shell.qml
       mv greeter.qml shell.qml
     '')
-    + (lib.optionalString (customColors != null) ''
+    + (optionalString (customColors != null) ''
       chmod u+rw ./Data/Colors.qml
       cp ${customColors} ./Data/Colors.qml
     ''));
+
+  qsConfig = cleanSourceWith {
+    src = cleanSource qsConfig';
+    filter = fname: _ftype: !(hasSuffix "nix" fname || hasSuffix "md" fname);
+  };
 in
   symlinkJoin {
     pname = "kurukurubar";
@@ -65,4 +71,5 @@ in
     '';
 
     meta.mainProgram = "kurukurubar";
+    passthru.config = qsConfig;
   }

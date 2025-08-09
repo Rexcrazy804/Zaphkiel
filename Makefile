@@ -43,6 +43,10 @@ endef
 define ECHO_HELP =
 @echo -e "$(COLOR_YELLOW)$(1)$(COLOR_END) $(2)"
 endef
+define ECHO_NEWLINE
+
+
+endef
 
 .PHONY: boot build chk fmt help pkg rebuild repl switch test time
 
@@ -97,19 +101,19 @@ clean:
 chk:
 ifneq ($(FILES_NIX),)
 	$(call ECHO_TARGET,Checking,$(words $(FILES_NIX)) nix files)
-	@$(foreach FILE,$(FILES_NIX),git show :$(FILE) | alejandra --check -q - &> /dev/null)
+	@$(foreach FILE,$(FILES_NIX),git show :$(FILE) | alejandra --check -q - &> /dev/null $(ECHO_NEWLINE))
 endif
 ifneq ($(FILES_LUA),)
 	$(call ECHO_TARGET,Checking,$(words $(FILES_LUA)) lua files)
-	@$(foreach FILE,$(FILES_LUA),git show :$(FILE) | lua-format --check -c ./users/dots/formatters/luafmt.yaml)
+	@$(foreach FILE,$(FILES_LUA),git show :$(FILE) | lua-format --check -c ./users/dots/formatters/luafmt.yaml $(ECHO_NEWLINE))
 endif
 ifneq ($(FILES_MK),)
 	$(call ECHO_TARGET,Checking,$(words $(FILES_MK)) make files)
-	@$(foreach FILE,$(FILES_MK),git show :$(FILE) | mbake format --stdin --check --config ./users/dots/formatters/bake.toml &> /dev/null)
+	@$(foreach FILE,$(FILES_MK),git show :$(FILE) | mbake format --stdin --check --config ./users/dots/formatters/bake.toml &> /dev/null $(ECHO_NEWLINE))
 endif
 ifneq ($(FILES_MD),)
 	$(call ECHO_TARGET,Checking,$(words $(FILES_MD)) md files)
-	@$(foreach FILE,$(FILES_MD),git show :$(FILE) | mdformat --check --exclude '**/preview.md' - &> /dev/null)
+	@$(foreach FILE,$(FILES_MD),git show :$(FILE) | mdformat --check --exclude '**/preview.md' - &> /dev/null; $(ECHO_NEWLINE))
 endif
 	$(call ECHO_TARGET,Checks passed >w<)
 #bake-format on

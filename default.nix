@@ -53,7 +53,7 @@ in
 
     devShells.default = let
       precommit = pkgs.writeShellScript "pre-commit" ''
-        if make chk FILES_GIT="git status --porcelain | awk '/^M./ { print $2 }'" ; then
+        if make chk FILES_STAGED=1; then
           exit 0
         else
           make fmt

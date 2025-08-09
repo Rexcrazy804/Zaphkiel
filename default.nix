@@ -78,6 +78,9 @@ in
           # formatters
           inherit bake;
           inherit (pkgs) alejandra luaformatter mdformat;
+          inherit (pkgs.qt6) qtdeclarative;
+          # yes I had to fucking write this
+          inherit (self.packages.scripts) qmlcheck;
           # make the cutest
           inherit (pkgs) gnumake;
         };

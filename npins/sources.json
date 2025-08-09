@@ -49,9 +49,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "d663b3c0f95abbdbf4b6afc7d862328024f7a937",
-      "url": "https://github.com/Rexcrazy804/booru-flake/archive/d663b3c0f95abbdbf4b6afc7d862328024f7a937.tar.gz",
-      "hash": "sha256-MUKcUJFTPQ/IjERZd4owxN244uveOrBXkJbR5QM9aBI="
+      "revision": "7b11787457f4163ffc5a567fd9ac8e9e5f6370f0",
+      "url": "https://github.com/Rexcrazy804/booru-flake/archive/7b11787457f4163ffc5a567fd9ac8e9e5f6370f0.tar.gz",
+      "hash": "sha256-1N93LVYL1BMHfuP3RPlVWsh36T7RkLJvL9mR6FsDOtM="
     },
     "catp-bat": {
       "type": "Git",

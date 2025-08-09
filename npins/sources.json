@@ -162,11 +162,11 @@
         "owner": "Rexcrazy804",
         "repo": "quickshell"
       },
-      "branch": "greetd-fix",
+      "branch": "overridable-qs-unwrapped",
       "submodules": false,
-      "revision": "fd8c2328cdad89111939d54653f9be755a4c722a",
-      "url": "https://github.com/Rexcrazy804/quickshell/archive/fd8c2328cdad89111939d54653f9be755a4c722a.tar.gz",
-      "hash": "sha256-3NYObh724bIu1jqnb/PCHvzBOH4oSo1/fR2okk3xuYI="
+      "revision": "ab0d019d48f8ae5fb8f4b8b13dbd145b27a44be7",
+      "url": "https://github.com/Rexcrazy804/quickshell/archive/ab0d019d48f8ae5fb8f4b8b13dbd145b27a44be7.tar.gz",
+      "hash": "sha256-x0WB1X2ZTTWcxz8aBMnNzROMyx//EgxgdGXenmm3GhU="
     },
     "rosep-fish": {
       "type": "Git",

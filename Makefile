@@ -116,7 +116,7 @@ ifneq ($(FILES_MK),)
 endif
 ifneq ($(FILES_MD),)
 	$(call ECHO_TARGET,Checking,$(words $(FILES_MD)) md files)
-	@$(foreach FILE,$(FILES_MD),git show :$(FILE) | mdformat --check --exclude '**/preview.md' - &> /dev/null; $(ECHO_NEWLINE))
+	@$(foreach FILE,$(FILES_MD),git show :$(FILE) | mdformat --check - &> /dev/null; $(ECHO_NEWLINE))
 endif
 	$(call ECHO_TARGET,Checks passed >w<)
 #bake-format on
@@ -137,7 +137,7 @@ ifneq ($(FILES_MK),)
 endif
 ifneq ($(FILES_MD),)
 	$(call ECHO_TARGET,Formatting,$(words $(FILES_MD)) md files)
-	@mdformat $(if $(CHECK),--check) --exclude '**/preview.md' $(FILES_MD)
+	@mdformat $(if $(CHECK),--check) $(FILES_MD)
 endif
 ifneq ($(FILES_GIT),)
 	@$(ECHO_DONE)

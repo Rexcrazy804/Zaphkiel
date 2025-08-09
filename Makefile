@@ -9,6 +9,7 @@ ifdef FILES_STAGED
 endif
 FILES_GIT ?= $(shell git status --porcelain | awk '/[M\?]+/ { print $2 }')
 FILES_NIX = $(filter %.nix,$(FILES_GIT))
+FILES_QML = $(filter users/dots/quickshell/kurukurubar/%.qml,$(FILES_GIT))
 FILES_LUA = $(filter %.lua,$(FILES_GIT))
 FILES_MK = $(filter Makefile,$(FILES_GIT))
 FILES_MD = $(filter %.md,$(FILES_GIT))
@@ -106,6 +107,10 @@ ifneq ($(FILES_NIX),)
 	$(call ECHO_TARGET,Checking,$(words $(FILES_NIX)) nix files)
 	@$(foreach FILE,$(FILES_NIX),git show :$(FILE) | alejandra --check -q - &> /dev/null $(ECHO_NEWLINE))
 endif
+ifneq ($(FILES_QML),)
+	$(call ECHO_TARGET,Checking,$(words $(FILES_QML)) qml files)
+	@$(foreach FILE,$(FILES_QML),git show :$(FILE) | qmlcheck $(ECHO_NEWLINE))
+endif
 ifneq ($(FILES_LUA),)
 	$(call ECHO_TARGET,Checking,$(words $(FILES_LUA)) lua files)
 	@$(foreach FILE,$(FILES_LUA),git show :$(FILE) | lua-format --check -c ./users/dots/formatters/luafmt.yaml $(ECHO_NEWLINE))
@@ -126,6 +131,10 @@ fmt:
 ifneq ($(FILES_NIX),)
 	$(call ECHO_TARGET,Formatting,$(words $(FILES_NIX)) nix files)
 	@alejandra -q $(FILES_NIX)
+endif
+ifneq ($(FILES_QML),)
+	$(call ECHO_TARGET,Formatting,$(words $(FILES_QML)) qml files)
+	@qmlformat -w 2 -l native -n --objects-spacing --functions-spacing -i $(FILES_QML)
 endif
 ifneq ($(FILES_LUA),)
 	$(call ECHO_TARGET,Formatting,$(words $(FILES_LUA)) lua files)

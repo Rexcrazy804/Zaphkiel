@@ -15,4 +15,5 @@ in {
   kde-send = callPackage ./kde-send.nix {};
   npins-show = callPackage ./npins-show.nix {};
   legumulaunch = callPackage ./legumulaunch.nix {};
+  qmlcheck = callPackage ./qmlcheck.nix {};
 })

@@ -133,11 +133,11 @@ ifneq ($(FILES_LUA),)
 endif
 ifneq ($(FILES_MK),)
 	$(call ECHO_TARGET,Formatting,$(words $(FILES_MK)) make files)
-	@mbake format $(if $(CHECK),--check) --config ./users/dots/formatters/bake.toml $(FILES_MK)
+	@mbake format --config ./users/dots/formatters/bake.toml $(FILES_MK)
 endif
 ifneq ($(FILES_MD),)
 	$(call ECHO_TARGET,Formatting,$(words $(FILES_MD)) md files)
-	@mdformat $(if $(CHECK),--check) $(FILES_MD)
+	@mdformat $(FILES_MD)
 endif
 ifneq ($(FILES_GIT),)
 	@$(ECHO_DONE)

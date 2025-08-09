@@ -74,11 +74,11 @@ time:
 pkg:
 ifdef PKG
 	$(call ECHO_TARGET,Building,$(PKG))
-	@$(BUILD) 2> /dev/null || (echo -e "$(ECHO_MAKE) $(COLOR_RED)Package not found$(COLOR_END)" && exit 1)
+	@$(BUILD) || (echo -e "$(ECHO_MAKE) $(COLOR_RED)Failed to build Package$(COLOR_END)" && exit 1)
 else
 ifdef PKG_PATH
 	$(call ECHO_TARGET,Calling Package,$(PKG_PATH))
-	@nix-build --expr 'with import <nixpkgs> {}; callPackage $(PKG_PATH) {$(PKG_ATTRS)}' 2> /dev/null ||\
+	@nix-build --expr 'with import <nixpkgs> {}; callPackage $(PKG_PATH) {$(PKG_ATTRS)}' ||\
 		(echo -e "$(ECHO_MAKE) $(COLOR_RED)Cannot build $(PKG_PATH) $(COLOR_END)" && exit 1)
 else
 	@echo -e "$(ECHO_MAKE) $(COLOR_RED)Neither $(COLOR_PURPLE)\$$PKG$(COLOR_RED) nor $(COLOR_PURPLE)\$$PKG_PATH$(COLOR_RED) was set$(COLOR_END)" && exit 1

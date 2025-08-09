@@ -23,9 +23,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "531beac616433bac6f9e2a19feb8e99a22a66baf",
-      "url": "https://github.com/ryantm/agenix/archive/531beac616433bac6f9e2a19feb8e99a22a66baf.tar.gz",
-      "hash": "sha256-9P1FziAwl5+3edkfFcr5HeGtQUtrSdk/MksX39GieoA="
+      "revision": "9edb1787864c4f59ae5074ad498b6272b3ec308d",
+      "url": "https://github.com/ryantm/agenix/archive/9edb1787864c4f59ae5074ad498b6272b3ec308d.tar.gz",
+      "hash": "sha256-NA/FT2hVhKDftbHSwVnoRTFhes62+7dxZbxj5Gxvghs="
     },
     "bake": {
       "type": "Git",
@@ -89,9 +89,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "3093a74542b30f8155954d585d0ae2401e3adbe5",
-      "url": "https://github.com/feel-co/hjem/archive/3093a74542b30f8155954d585d0ae2401e3adbe5.tar.gz",
-      "hash": "sha256-LzojKFWAAreWyH56aupj/MLwuPPnnyzplw/xdbavC9c="
+      "revision": "ee5c671eeba5cddd94f2c7de3c36f019fae5854e",
+      "url": "https://github.com/feel-co/hjem/archive/ee5c671eeba5cddd94f2c7de3c36f019fae5854e.tar.gz",
+      "hash": "sha256-ByZ81/QttgSS1mQYttnaoMw2WnqMvQ6HCxBPOioKrOA="
     },
     "lanzaboote": {
       "type": "GitRelease",
@@ -139,8 +139,8 @@
     "nixpkgs": {
       "type": "Channel",
       "name": "nixos-unstable",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre836203.dc9637876d0d/nixexprs.tar.xz",
-      "hash": "sha256-GBa/N8y1tJKl+TgKZJkfHB/KtSwYtFdb/PmSxsJjv0w="
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre840654.c2ae88e026f9/nixexprs.tar.xz",
+      "hash": "sha256-GKnBooGFERGYfTIWQvq7mtrtgSNoK5fcoMu+qqzj4AE="
     },
     "npins": {
       "type": "Git",

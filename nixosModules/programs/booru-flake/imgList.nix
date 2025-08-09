@@ -1039,4 +1039,34 @@
     jsonHash = "sha256-KBdpkBCmWnS14u1jKI4WYMIox2A19Tfp+nn2T6HW3DE=";
     imgHash = "sha256-rfwkeoEfAyFTAY4KOdHj+w9IZZpumi/yVQtuvLcUR80=";
   }
+  {
+    id = "7303513";
+    jsonHash = "sha256-+fnvh/Twp9NiSax44P5Q4xUHP9MFe8vUI3wvr5RuXnc=";
+    imgHash = "sha256-ZJrP3gTyTyrrO+vjUHR69FAzzuRFEqJe7K4EO0rAVA8=";
+  }
+  {
+    id = "6752896";
+    jsonHash = "sha256-YmobsvMaxLOhvy4OYmtFrT5K7J+EhePwQMM3DqOmqGo=";
+    imgHash = "sha256-OFYFtrBvedqy0+5v1AktxLdl+4pvDqO4ZtmBQP4qW2s=";
+  }
+  {
+    id = "7034838";
+    jsonHash = "sha256-zI6QHvS+tBJwjU6E4RssjmdAcc3DQmQhbCK8OKOv5Tk=";
+    imgHash = "sha256-0QpFj4052kY70Ic+ZlLdMbwYUn3g3P/JF77xPx7mKxM=";
+  }
+  {
+    id = "7296340";
+    jsonHash = "sha256-kDJg5/YkPDO8qLUfSxceMdMyMIKvfcreMtGqGCilG2M=";
+    imgHash = "sha256-N51VWYLKOzLkqPrf9GNGV6f5gRE5c3dL4qiteOMTHHY=";
+  }
+  {
+    id = "9740351";
+    jsonHash = "sha256-VtG1wa+PT3C+KeLjnO0Ncv8SQerNinMVMDa81tet2u8=";
+    imgHash = "sha256-dnuNW+2W6mKeO3LLl2uZXPNUql00mgD+WMl9+zlsn30=";
+  }
+  {
+    id = "9766096";
+    jsonHash = "sha256-6WzDcRCmYyicjNnBdIWU6Y28UFIl4kEqSNatqkq9qV4=";
+    imgHash = "sha256-CM+Q8xY/W4U/yRaY/0MB5BkzEcvgEbGC7pxcQzDUtT0=";
+  }
 ]

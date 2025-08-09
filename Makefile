@@ -1,10 +1,13 @@
 # DEFAULTS
 HOST = $(shell hostname)
 
-ifdef FMT_ALL
-  FILES_GIT = $(shell git ls-tree -r HEAD --name-only | paste -sd " ")
+ifdef FILES_ALL
+  FILES_GIT = $(shell git ls-tree -r HEAD --name-only)
 endif
-FILES_GIT ?= $(shell git status --porcelain | awk '/^ +?[M\?]/{ print $$2 }')
+ifdef FILES_STAGED
+	FILES_GIT ?= $(shell git diff --staged --name-only)
+endif
+FILES_GIT ?= $(shell git status --porcelain | awk '/[M\?]+/ { print $2 }')
 FILES_NIX = $(filter %.nix,$(FILES_GIT))
 FILES_LUA = $(filter %.lua,$(FILES_GIT))
 FILES_MK = $(filter Makefile,$(FILES_GIT))
@@ -60,10 +63,10 @@ help:
 	$(call ECHO_HELP,pkg,           build packages either from $(COLOR_PURPLE)\$$PKG$(COLOR_END) or from $(COLOR_PURPLE)\$$PKG_PATH$(COLOR_END))
 	$(call ECHO_HELP,clean,         removes the result symlink)
 	@echo ""
-	$(call ECHO_HELP,chk,           checks staged files with formatters)
-	$(call ECHO_HELP,fmt,           formats currently modified files set $(COLOR_PURPLE)\$$FMT_ALL$(COLOR_END) for formatting all files)
+	$(call ECHO_HELP,chk,           checks changed files with formatters. set $(COLOR_PURPLE)\$$FILES_STAGED$(COLOR_END) for staged files only)
+	$(call ECHO_HELP,fmt,           formats changed files set $(COLOR_PURPLE)\$$FILES_ALL$(COLOR_END) for formatting all files)
 	@echo ""
-	$(call ECHO_HELP,rebuild,       $(COLOR_RED)for internal recusrive use only$(COLOR_END))
+	$(call ECHO_HELP,rebuild,       $(COLOR_RED)for internal recursive use only$(COLOR_END))
 	$(call ECHO_HELP,repl build,    | used to perform repsective)
 	$(call ECHO_HELP,boot switch,   > nixos-rebuild subcommands.)
 	$(call ECHO_HELP,test dry,      | $(COLOR_PURPLE)\$$HOST$(COLOR_END) can be used to specify host)

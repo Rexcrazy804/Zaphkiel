@@ -222,7 +222,8 @@
       "version": "1.3.0",
       "revision": "4187a280903523f455523d913d0b596c325e95e7",
       "url": "https://api.github.com/repos/an-anime-team/sleepy-launcher/tarball/refs/tags/1.3.0",
-      "hash": "sha256-8dal3o1LySvsv19EQXTowyP9zVZ+FTjTVT2bzfQP+RM="
+      "hash": "sha256-8dal3o1LySvsv19EQXTowyP9zVZ+FTjTVT2bzfQP+RM=",
+      "frozen": true
     },
     "zaphkiel": {
       "type": "Git",

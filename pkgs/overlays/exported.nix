@@ -97,4 +97,13 @@ in {
   lanzaboote = import ../lanzaboote/default.nix {
     inherit (sources) nixpkgs rust-overlay crane lanzaboote;
   };
+
+  # kids you shouldn't gamble
+  anime-launchers = callPackage ../anime-launchers {
+    inherit (pkgs) extend;
+    inherit (sources) rust-overlay crane aagl;
+    anime-sources = {
+      inherit (sources) sleepy-launcher;
+    };
+  };
 }

@@ -1,9 +1,6 @@
-# nixos configurations built using
 # sudo nixos-rebuild --no-reexec --file . -A nixosConfigurations.<hostName> <switch|boot|test|...>
 # why? I wasted 3 weeks figuring this out, you are welcome :>
-#
-# building packges
-# nix-build -A packages.<packageName>
+# see the Makefile for more commands
 {
   sources ? builtins.trace "Zaphkiel: USE `sources` INSTEAD OF `sources'`" {},
   # TODO remove the warning after 3 weeks
@@ -13,14 +10,18 @@
   allowUnfree ? true,
   pkgs ? import nixpkgs {config = {inherit allowUnfree;};},
   quickshell ? null,
+  useNpinsV6 ? true,
 }: let
   inherit (pkgs.lib) fix mapAttrs attrValues makeScope;
   inherit (pkgs) newScope mkShellNoCC;
 
   # WARNING
-  # assuming sources is npins v6 >.<
+  # set useNpinsV6 to false if your sources are not v6
   # https://github.com/andir/npins?tab=readme-ov-file#using-the-nixpkgs-fetchers
-  sources = mapAttrs (k: v: v {inherit pkgs;}) sources';
+  sources =
+    if useNpinsV6
+    then mapAttrs (k: v: v {inherit pkgs;}) sources'
+    else sources';
 
   # check this out if you wanna see everything exported
   exportedPackages = import ./pkgs/overlays/exported.nix;

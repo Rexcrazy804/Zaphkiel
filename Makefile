@@ -5,9 +5,9 @@ ifdef FILES_ALL
   FILES_GIT = $(shell git ls-tree -r HEAD --name-only)
 endif
 ifdef FILES_STAGED
-	FILES_GIT ?= $(shell git diff --staged --name-only)
+	FILES_GIT ?= $(shell git status --porcelain | awk '/^[MA]/ { print $2 }')
 endif
-FILES_GIT ?= $(shell git status --porcelain | awk '/[M\?]+/ { print $2 }')
+FILES_GIT ?= $(shell git status --porcelain | awk '/[MA\?]+/ { print $2 }')
 FILES_NIX = $(filter %.nix,$(FILES_GIT))
 FILES_QML = $(filter users/dots/quickshell/kurukurubar/%.qml,$(FILES_GIT))
 FILES_LUA = $(filter %.lua,$(FILES_GIT))

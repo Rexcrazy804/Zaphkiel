@@ -21,9 +21,9 @@
   inherit (lib) optionalString licenses;
   inherit (lib) cleanSourceWith cleanSource hasSuffix;
   inherit (craneLib) cleanCargoSource buildDepsOnly buildPackage;
-  src = cleanCargoSource sleepySRC;
+
   commonArgs = {
-    inherit src;
+    src = cleanCargoSource sleepySRC;
     strictDeps = true;
     nativeBuildInputs = [cmake glib gobject-introspection gtk4 pkg-config wrapGAppsHook4];
     buildInputs = [gdk-pixbuf gsettings-desktop-schemas libadwaita librsvg openssl pango];

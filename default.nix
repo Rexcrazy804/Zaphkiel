@@ -10,7 +10,8 @@
   # 2nd August, 2025
   sources' ? (import ./npins) // sources,
   nixpkgs ? sources'.nixpkgs,
-  pkgs ? import nixpkgs {},
+  allowUnfree ? true,
+  pkgs ? import nixpkgs {config = {inherit allowUnfree;};},
   quickshell ? null,
 }: let
   inherit (pkgs.lib) fix mapAttrs attrValues makeScope;

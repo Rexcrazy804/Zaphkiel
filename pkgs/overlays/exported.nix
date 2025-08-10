@@ -25,9 +25,9 @@ in {
   quickshell =
     if (quickshell == null)
     then
-      (callPackage (sources.quickshell + "/wrapper.nix") {
+      (callPackage (sources.quickshell) {
         quickshell-unwrapped =
-          (callPackage (sources.quickshell) {
+          (callPackage (sources.quickshell + "/unwrapped.nix") {
             gitRev = sources.quickshell.revision;
             withJemalloc = true;
             withQtSvg = true;

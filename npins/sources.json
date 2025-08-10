@@ -164,9 +164,9 @@
       },
       "branch": "overridable-qs-unwrapped",
       "submodules": false,
-      "revision": "ab0d019d48f8ae5fb8f4b8b13dbd145b27a44be7",
-      "url": "https://github.com/Rexcrazy804/quickshell/archive/ab0d019d48f8ae5fb8f4b8b13dbd145b27a44be7.tar.gz",
-      "hash": "sha256-x0WB1X2ZTTWcxz8aBMnNzROMyx//EgxgdGXenmm3GhU="
+      "revision": "37c1735c9a1ed952678f1a362abd2d70c8c0d5de",
+      "url": "https://github.com/Rexcrazy804/quickshell/archive/37c1735c9a1ed952678f1a362abd2d70c8c0d5de.tar.gz",
+      "hash": "sha256-RaMYSA9SriRPhTVItp8BJUAv4oAmBAt1Z/iiHr+BEo4="
     },
     "rosep-fish": {
       "type": "Git",

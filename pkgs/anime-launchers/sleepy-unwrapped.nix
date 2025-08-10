@@ -18,7 +18,6 @@
   craneLib,
   sleepySRC,
 }: let
-  inherit (builtins) dirOf baseNameOf;
   inherit (lib) optionalString licenses;
   inherit (lib) cleanSourceWith cleanSource hasSuffix;
   inherit (craneLib) cleanCargoSource buildDepsOnly buildPackage;
@@ -41,8 +40,6 @@ in
         filter = fname: _ftype:
           !(
             hasSuffix ".nix" fname
-            || baseNameOf (dirOf fname) == "npins"
-            || baseNameOf (dirOf fname) == "nix"
             || hasSuffix ".md" fname
             || hasSuffix ".py" fname
             || hasSuffix "LICENSE" fname

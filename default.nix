@@ -56,7 +56,7 @@ in
         if make chk FILES_STAGED=1; then
           exit 0
         else
-          make fmt
+          make fmt FILES_STAGED=1
           exit 1
         fi
       '';

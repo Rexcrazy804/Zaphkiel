@@ -13,8 +13,8 @@ in {
   config = mkIf (cfg.enable && config.zaphkiel.graphics.enable) {
     hardware.graphics.extraPackages = [
       pkgs.intel-media-driver
-      pkgs.vpl-gpu-rt
-      pkgs.intel-vaapi-driver
+           pkgs.vpl-gpu-rt
+           pkgs.intel-vaapi-driver
       pkgs.libvdpau-va-gl
       pkgs.intel-ocl
     ];

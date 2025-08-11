@@ -197,6 +197,7 @@ pkgs/                   # exported packages are found here
 - mpv/                  # mpv wrapper with anime4k
 - overlays/             # overlays (duh)
 - scripts/              # cute scripts to do various things
+- default.nix           # all the exported cuties are here, very uncute code tho :<
 
 secrets/                # home to my age encrypted secrets
 templates/              # reusable flake and non flake templates for various nix errands

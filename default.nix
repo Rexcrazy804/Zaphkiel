@@ -25,10 +25,14 @@
 
   # check this out if you wanna see everything exported
   exportedPackages = import ./pkgs;
+  exportedScope = makeScope newScope (exportedPackages {
+    inherit quickshell pkgs sources;
+  });
 in
   fix (self: {
     overlays = {
-      # ensures that we don't add the overlay twice
+      lix = import ./pkgs/overlays/lix.nix {lix = null;};
+      # ensures that we don't add the overlay twice (straight up stolen from lix)
       kurukurubar = _final: prev:
         if prev ? kurukurubar-overlay-present
         then {kurukurubar-overlay-present = 2;}
@@ -38,8 +42,10 @@ in
         };
     };
 
-    packages = makeScope newScope (exportedPackages {
-      inherit quickshell pkgs sources;
+    # exclusively exported stuff.
+    packages = exportedScope.overrideScope (_final: prev: {
+      # mimics the npins package produced in my configurations
+      npins-lixd = (pkgs.extend self.overlays.lix).callPackage (sources.npins + "/npins.nix") {};
     });
 
     nixosModules = {
@@ -90,9 +96,8 @@ in
     nixosConfigurations = let
       nixosSystem = import (nixpkgs + "/nixos/lib/eval-config.nix");
       overlays = attrValues {
-        lix = import ./pkgs/overlays/lix.nix {lix = null;};
+        inherit (self.overlays) lix;
         internal = import ./pkgs/overlays/internal.nix;
-
         # for the people of the future,
         # if you don't understand why this was done,
         # just know I am a eval time racer

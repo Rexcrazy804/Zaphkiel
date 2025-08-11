@@ -53,6 +53,7 @@ in {
   kokCursor = callPackage ../kokCursor.nix {};
 
   npins = callPackage (sources.npins + "/npins.nix") {};
+  mbake = pkgs.mbake.overrideAttrs (_prev: {src = sources.bake;});
 
   # WARNING
   # THIS WILL BUILD QUICKSHELL FROM SOURCE

@@ -62,8 +62,6 @@ in
           exit 1
         fi
       '';
-
-      bake = pkgs.mbake.overrideAttrs (prev: {src = sources.bake;});
     in
       mkShellNoCC {
         shellHook = ''
@@ -78,11 +76,12 @@ in
         '';
         packages = attrValues {
           # formatters
-          inherit bake;
           inherit (pkgs) alejandra luaformatter mdformat;
           inherit (pkgs.qt6) qtdeclarative;
           # yes I had to fucking write this
           inherit (self.packages.scripts) qmlcheck;
+          # yes I hadda fix this
+          inherit (self.packages) mbake;
           # make the cutest
           inherit (pkgs) gnumake;
         };

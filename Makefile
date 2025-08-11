@@ -53,7 +53,7 @@ define ECHO_NEWLINE
 
 endef
 
-.PHONY: boot build build-nixos chk fmt help pkg rebuild repl switch test time
+.PHONY: boot build chk fmt help pkg rebuild repl switch test time
 
 # "But you can't use make as just a command runner"
 # Oh yes I can darling ~
@@ -79,7 +79,6 @@ time:
 	@time $(EVAL)
 	@$(ECHO_DONE)
 
-# can be passed a path to build the file with callPackage
 pkg:
 ifdef PKG
 	$(call ECHO_TARGET,Building,$(PKG))
@@ -94,12 +93,6 @@ else
 endif
 endif
 	@$(ECHO_DONE)
-
-# for CI only
-# since nixos-rebuild doesn't work >.<
-build-nixos:
-	$(call ECHO_TARGET,CI Build,$(HOST))
-	@nix-build -A nixosConfigurations.$(HOST).config.system.build.toplevel
 
 clean:
 	$(call ECHO_TARGET,Cleaning)

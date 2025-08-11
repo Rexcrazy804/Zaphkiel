@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+    paths:
+      - '**.nix'
+      - '!templates/**'
 jobs:
   tests:
     runs-on: ubuntu-latest

@@ -17,7 +17,8 @@ FILES_MD = $(filter %.md,$(FILES_GIT))
 REBUILD_ATTR = nixosConfigurations.$(HOST)
 REBUILD_LOGFMT = bar
 REBUILD_ARGS = --log-format $(REBUILD_LOGFMT) --no-reexec --file . -A $(REBUILD_ATTR)
-REBUILD = nixos-rebuild $(REBUILD_ARGS)
+REBUILD_CMD = nixos-rebuild
+REBUILD = $(REBUILD_CMD) $(REBUILD_ARGS)
 # only for recusrive rebuild call
 REBLD_REC_COMMON = @$(MAKE) --no-print-directory rebuild
 

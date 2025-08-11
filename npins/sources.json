@@ -77,8 +77,7 @@
       "submodules": false,
       "revision": "444e81206df3f7d92780680e45858e31d2f07a08",
       "url": "https://github.com/ipetkov/crane/archive/444e81206df3f7d92780680e45858e31d2f07a08.tar.gz",
-      "hash": "sha256-0tcS8FHd4QjbCVoxN9jI+PjHgA4vc/IjkUSp+N3zy0U=",
-      "frozen": true
+      "hash": "sha256-0tcS8FHd4QjbCVoxN9jI+PjHgA4vc/IjkUSp+N3zy0U="
     },
     "hjem": {
       "type": "Git",
@@ -205,8 +204,7 @@
       "submodules": false,
       "revision": "17c591a44e4eb77f05f27cd37e1cfc3f219c7fc4",
       "url": "https://github.com/oxalica/rust-overlay/archive/17c591a44e4eb77f05f27cd37e1cfc3f219c7fc4.tar.gz",
-      "hash": "sha256-tG6l0wiX8V8IvG4HFYY8IYN5vpNAxQ+UWunjjpE6SqU=",
-      "frozen": true
+      "hash": "sha256-tG6l0wiX8V8IvG4HFYY8IYN5vpNAxQ+UWunjjpE6SqU="
     },
     "sleepy-launcher": {
       "type": "GitRelease",

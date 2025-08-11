@@ -1,4 +1,4 @@
-name: "Test"
+name: "Populate cachix cache"
 on:
   workflow_dispatch:
   push:

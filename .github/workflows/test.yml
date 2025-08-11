@@ -19,5 +19,6 @@ jobs:
       with:
         name: rexielscarlet
         authToken: '${{ secrets.CACHIX_API_KEY }}'
-    - run: make build-nixos HOST=Persephone
     - run: make pkg PKG=anime-launchers.sleepy-launcher
+    - run: make pkg PKG=lanzaboote.tool
+    - run: make pkg PKG=kurukurubar-unstable

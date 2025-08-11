@@ -23,3 +23,4 @@ jobs:
     - run: make pkg PKG=lanzaboote.tool
     - run: make pkg PKG=kurukurubar-unstable
     - run: make pkg PKG=nixvim
+    - run: make pkg PKG=mbake

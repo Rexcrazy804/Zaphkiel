@@ -22,52 +22,55 @@
   pkgs,
 }: final: let
   inherit (final) callPackage;
+  qs-overrides = {
+    gitRev = sources.quickshell.revision;
+    withJemalloc = true;
+    withQtSvg = true;
+    withWayland = true;
+    withX11 = false;
+    withPipewire = true;
+    withPam = true;
+    withHyprland = true;
+    withI3 = false;
+  };
+  quickshell-unwrapped = (callPackage (sources.quickshell + "/unwrapped.nix") qs-overrides).overrideAttrs {
+    postPatch = ''
+      # required for finger print support
+      # temp measure till foxxed fixes it
+      substituteInPlace src/services/greetd/connection.cpp \
+          --replace-fail "	if (!this->mResponseRequired) {" "	if (false) {"
+    '';
+  };
+  qs-patched = callPackage (sources.quickshell) {inherit quickshell-unwrapped;};
 in {
   quickshell =
     if (quickshell == null)
-    then
-      (callPackage (sources.quickshell) {
-        quickshell-unwrapped =
-          (callPackage (sources.quickshell + "/unwrapped.nix") {
-            gitRev = sources.quickshell.revision;
-            withJemalloc = true;
-            withQtSvg = true;
-            withWayland = true;
-            withX11 = false;
-            withPipewire = true;
-            withPam = true;
-            withHyprland = true;
-            withI3 = false;
-          }).overrideAttrs (old: {
-            postPatch = ''
-              # required for finger print support
-              # temp measure till foxxed fixes it
-              substituteInPlace src/services/greetd/connection.cpp \
-                  --replace-fail "	if (!this->mResponseRequired) {" "	if (false) {"
-            '';
-          });
-      })
+    then qs-patched
     else quickshell;
 
   mpv-wrapped = callPackage ../mpv {};
   librebarcode = callPackage ../librebarcode.nix {};
   kokCursor = callPackage ../kokCursor.nix {};
-
   npins = callPackage (sources.npins + "/npins.nix") {};
   mbake = pkgs.mbake.overrideAttrs (_prev: {src = sources.bake;});
 
-  # WARNING
-  # THIS WILL BUILD QUICKSHELL FROM SOURCE
-  # you can find more information in the README
+  scripts = callPackage ../scripts {};
+  lanzaboote = callPackage ../lanzaboote/default.nix {
+    inherit (sources) rust-overlay crane lanzaboote;
+  };
+  anime-launchers = callPackage ../anime-launchers {
+    inherit (sources) rust-overlay crane aagl;
+    anime-sources = {inherit (sources) sleepy-launcher;};
+  };
+
   kurukurubar-unstable = callPackage ../kurukurubar.nix {};
-  # INFO
-  # following zaphkiel master branch
-  # quickshell v0.2.0 (nixpkgs)
   kurukurubar = (final.kurukurubar-unstable).override {
     inherit (pkgs) quickshell;
+    # following zaphkiel master branch: quickshell v0.2.0
     # configPath = (sources.zaphkiel) + "/users/dots/quickshell/kurukurubar";
   };
 
+  # should I call this kurukuruvim?
   nixvim-minimal = import ../nvim.nix {
     inherit (sources) mnw;
     inherit pkgs;
@@ -91,20 +94,4 @@ in {
   in (pkgs.lib.attrsets.mergeAttrsList (
     builtins.map (x: {${"i" + x.id} = imgBuilder x;}) (import ../../nixosModules/programs/booru-flake/imgList.nix)
   ));
-
-  # some cute scripts
-  scripts = callPackage ../scripts {};
-
-  # is your boot secure yet?
-  lanzaboote = callPackage ../lanzaboote/default.nix {
-    inherit (sources) rust-overlay crane lanzaboote;
-  };
-
-  # kids you shouldn't gamble
-  anime-launchers = callPackage ../anime-launchers {
-    inherit (sources) rust-overlay crane aagl;
-    anime-sources = {
-      inherit (sources) sleepy-launcher;
-    };
-  };
 }

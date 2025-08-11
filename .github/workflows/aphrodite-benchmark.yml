@@ -15,4 +15,9 @@ jobs:
     - uses: cachix/cachix-action@v14
       with:
         name: rexielscarlet
-    - run: nix-shell -p nixos-rebuild-ng --run "make dry REBUILD_CMD=nixos-rebuild-ng HOST=Aphrodite; make time HOST=Aphrodite"
+    - run: nix-shell -p nixos-rebuild-ng --run "make dry REBUILD_CMD=nixos-rebuild-ng HOST=Aphrodite"
+    - run: make time HOST=Aphrodite
+    - run: make time HOST=Aphrodite
+    - run: make time HOST=Aphrodite
+    - run: make time HOST=Aphrodite
+    - run: make time HOST=Aphrodite

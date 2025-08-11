@@ -1,10 +1,10 @@
 {
-  nixpkgs,
+  extend,
   rust-overlay,
   crane,
   lanzaboote,
 }: let
-  pkgs = import nixpkgs {overlays = [(import rust-overlay)];};
+  pkgs = extend (import rust-overlay);
   uefi-rust-stable = pkgs.rust-bin.fromRustupToolchainFile (lanzaboote + "/rust/uefi/rust-toolchain.toml");
   craneLib = (pkgs.callPackage (crane + "/lib") {}).overrideToolchain uefi-rust-stable;
   rustTarget = "${pkgs.stdenv.hostPlatform.qemuArch}-unknown-uefi";

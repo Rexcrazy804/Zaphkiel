@@ -1,3 +1,4 @@
+# TODO untangle this mess
 # a very special overlay with the following purposes
 # 1. serve as the entry point for for default.nix's (at the root of th repo)
 #    for exporting packages in its packages attribute
@@ -95,13 +96,12 @@ in {
   scripts = callPackage ../scripts {};
 
   # is your boot secure yet?
-  lanzaboote = import ../lanzaboote/default.nix {
-    inherit (sources) nixpkgs rust-overlay crane lanzaboote;
+  lanzaboote = callPackage ../lanzaboote/default.nix {
+    inherit (sources) rust-overlay crane lanzaboote;
   };
 
   # kids you shouldn't gamble
   anime-launchers = callPackage ../anime-launchers {
-    inherit (pkgs) extend;
     inherit (sources) rust-overlay crane aagl;
     anime-sources = {
       inherit (sources) sleepy-launcher;

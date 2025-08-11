@@ -9,7 +9,7 @@
   inherit (pkgs.lib) makeScope;
   inherit (pkgs) newScope;
 
-  rustToolchain = pkgs.rust-bin.nightly.latest.default;
+  rustToolchain = pkgs.rust-bin.stable.latest.default;
 in
   makeScope newScope (self: let
     inherit (self) callPackage;

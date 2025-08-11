@@ -24,3 +24,4 @@ jobs:
     - run: make pkg PKG=kurukurubar-unstable
     - run: make pkg PKG=nixvim
     - run: make pkg PKG=mbake
+    - run: make pkg PKG=npins-lixd

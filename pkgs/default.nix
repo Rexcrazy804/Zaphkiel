@@ -48,22 +48,22 @@ in {
     then qs-patched
     else quickshell;
 
-  mpv-wrapped = callPackage ../mpv {};
-  librebarcode = callPackage ../librebarcode.nix {};
-  kokCursor = callPackage ../kokCursor.nix {};
+  mpv-wrapped = callPackage ./mpv {};
+  librebarcode = callPackage ./librebarcode.nix {};
+  kokCursor = callPackage ./kokCursor.nix {};
   npins = callPackage (sources.npins + "/npins.nix") {};
   mbake = pkgs.mbake.overrideAttrs (_prev: {src = sources.bake;});
 
-  scripts = callPackage ../scripts {};
-  lanzaboote = callPackage ../lanzaboote/default.nix {
+  scripts = callPackage ./scripts {};
+  lanzaboote = callPackage ./lanzaboote/default.nix {
     inherit (sources) rust-overlay crane lanzaboote;
   };
-  anime-launchers = callPackage ../anime-launchers {
+  anime-launchers = callPackage ./anime-launchers {
     inherit (sources) rust-overlay crane aagl;
     anime-sources = {inherit (sources) sleepy-launcher;};
   };
 
-  kurukurubar-unstable = callPackage ../kurukurubar.nix {};
+  kurukurubar-unstable = callPackage ./kurukurubar.nix {};
   kurukurubar = (final.kurukurubar-unstable).override {
     inherit (pkgs) quickshell;
     # following zaphkiel master branch: quickshell v0.2.0
@@ -71,7 +71,7 @@ in {
   };
 
   # should I call this kurukuruvim?
-  nixvim-minimal = import ../nvim.nix {
+  nixvim-minimal = import ./nvim.nix {
     inherit (sources) mnw;
     inherit pkgs;
   };
@@ -92,6 +92,6 @@ in {
   booru-images = let
     imgBuilder = callPackage (sources.booru-flake + "/nix/imgBuilder.nix");
   in (pkgs.lib.attrsets.mergeAttrsList (
-    builtins.map (x: {${"i" + x.id} = imgBuilder x;}) (import ../../nixosModules/programs/booru-flake/imgList.nix)
+    builtins.map (x: {${"i" + x.id} = imgBuilder x;}) (import ../nixosModules/programs/booru-flake/imgList.nix)
   ));
 }

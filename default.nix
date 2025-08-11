@@ -24,7 +24,7 @@
     else sources';
 
   # check this out if you wanna see everything exported
-  exportedPackages = import ./pkgs/overlays/exported.nix;
+  exportedPackages = import ./pkgs;
 in
   fix (self: {
     overlays = {

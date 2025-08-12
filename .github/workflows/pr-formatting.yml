@@ -5,7 +5,7 @@ on:
     branches:
       - master
 jobs:
-  tests:
+  style-checks:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4

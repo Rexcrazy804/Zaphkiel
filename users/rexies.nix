@@ -56,7 +56,17 @@ in {
     directory = config.users.users.${username}.home;
     clobberFiles = lib.mkForce true;
 
-    files = let
+    files.".face.icon".source = let
+      image = config.programs.booru-flake.images."8726475";
+    in
+      pkgs.runCommandWith {
+        name = "croped-${image.name}";
+        derivationArgs.nativeBuildInputs = [pkgs.imagemagick];
+      } ''
+        magick ${image} -crop 500x500+398+100 - >  $out
+      '';
+
+    xdg.config.files = let
       matugen = config.programs.matugen;
       matugenTheme = matugen.theme.files;
 
@@ -73,50 +83,38 @@ in {
         colors = builtins.readFile "${matugenTheme}/fuzzel-colors.ini";
       in
         base + colors;
-
-      faceIcon = let
-        image = config.programs.booru-flake.images."8726475";
-      in
-        pkgs.runCommandWith {
-          name = "croped-${image.name}";
-          derivationArgs.nativeBuildInputs = [pkgs.imagemagick];
-        } ''
-          magick ${image} -crop 500x500+398+100 - >  $out
-        '';
     in {
       # git
-      ".config/git/config".source = ./dots/git/config;
+      "git/config".source = ./dots/git/config;
 
-      # face Icon
-      ".face.icon".source = faceIcon;
       # shell
-      ".config/fish/themes".source = sources.rosep-fish + "/themes";
-      ".config/fish/config.fish".source = ./dots/fish/config.fish;
+      "fish/themes".source = sources.rosep-fish + "/themes";
+      "fish/config.fish".source = ./dots/fish/config.fish;
       # bat
-      ".config/bat/config".source = ./dots/bat/config;
+      "bat/config".source = ./dots/bat/config;
       # NOTE: required bat cache --build before theme can be used
-      ".config/bat/themes".source = sources.catp-bat + "/themes";
+      "bat/themes".source = sources.catp-bat + "/themes";
 
       # foot terminal
-      ".config/foot/foot.ini".source = ./dots/foot/foot.ini;
-      ".config/foot/rose-pine.ini".source = sources.rosep-foot + "/rose-pine";
+      "foot/foot.ini".source = ./dots/foot/foot.ini;
+      "foot/rose-pine.ini".source = sources.rosep-foot + "/rose-pine";
 
       # hyprland
-      ".config/uwsm/env".source = ./dots/uwsm/env;
-      ".config/hypr/hypridle.conf".source = ./dots/hyprland/hypridle.conf;
-      ".config/hypr/hyprland.conf".source = ./dots/hyprland/hyprland.conf;
-      ".config/hypr/hyprcolors.conf".source = "${matugenTheme}/hyprcolors.conf";
-      ".config/yazi/yazi.toml".source = ./dots/yazi/yazi.toml;
-      ".config/yazi/keymap.toml".source = ./dots/yazi/keymap.toml;
-      ".config/yazi/theme.toml".source = "${matugenTheme}/yazi-theme.toml";
-      ".config/fuzzel/fuzzel.ini".text = fuzzel;
-      ".config/background".source = matugen.wallpaper;
+      "uwsm/env".source = ./dots/uwsm/env;
+      "hypr/hypridle.conf".source = ./dots/hyprland/hypridle.conf;
+      "hypr/hyprland.conf".source = ./dots/hyprland/hyprland.conf;
+      "hypr/hyprcolors.conf".source = "${matugenTheme}/hyprcolors.conf";
+      "yazi/yazi.toml".source = ./dots/yazi/yazi.toml;
+      "yazi/keymap.toml".source = ./dots/yazi/keymap.toml;
+      "yazi/theme.toml".source = "${matugenTheme}/yazi-theme.toml";
+      "fuzzel/fuzzel.ini".text = fuzzel;
+      "background".source = matugen.wallpaper;
       # qt6ct
-      ".config/qt6ct/qt6ct.conf".text = qt6ct;
-      ".config/qt6ct/colors/matugen.conf".source = "${matugenTheme}/qtct-colors.conf";
+      "qt6ct/qt6ct.conf".text = qt6ct;
+      "qt6ct/colors/matugen.conf".source = "${matugenTheme}/qtct-colors.conf";
 
       # discord
-      ".config/vesktop/themes/midnight.css".source = "${matugenTheme}/discord-midnight.css";
+      "vesktop/themes/midnight.css".source = "${matugenTheme}/discord-midnight.css";
     };
   };
 }

@@ -1,5 +1,5 @@
 final: prev: {
-  discord = prev.vesktop.override {withSystemVencord = true;};
+  discord = prev.vesktop;
   gnomon = final.callPackage ../gnomon.nix {};
 
   # extra stuff to refer to later

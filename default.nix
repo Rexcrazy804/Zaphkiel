@@ -25,9 +25,6 @@
 
   # check this out if you wanna see everything exported
   exportedPackages = import ./pkgs;
-  exportedScope = makeScope newScope (exportedPackages {
-    inherit quickshell pkgs sources;
-  });
 in
   fix (self: {
     overlays = {
@@ -42,10 +39,8 @@ in
         };
     };
 
-    # exclusively exported stuff.
-    packages = exportedScope.overrideScope (_final: prev: {
-      # mimics the npins package produced in my configurations
-      npins-lixd = (pkgs.extend self.overlays.lix).callPackage (sources.npins + "/npins.nix") {};
+    packages = makeScope newScope (exportedPackages {
+      inherit quickshell pkgs sources;
     });
 
     nixosModules = {

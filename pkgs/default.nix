@@ -51,7 +51,10 @@ in {
   mpv-wrapped = callPackage ./mpv {};
   librebarcode = callPackage ./librebarcode.nix {};
   kokCursor = callPackage ./kokCursor.nix {};
-  npins = callPackage (sources.npins + "/npins.nix") {};
+  npins = callPackage ./npins.nix {
+    craneLib = callPackage (sources.crane + "/lib") {};
+    npinsSRC = sources.npins;
+  };
   mbake = pkgs.mbake.overrideAttrs (_prev: {src = sources.bake;});
 
   scripts = callPackage ./scripts {};

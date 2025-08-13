@@ -36,9 +36,9 @@
       },
       "branch": "stdin-check-fix",
       "submodules": false,
-      "revision": "8fd59e62e64580825a772cb0f8407dc5b1778e80",
-      "url": "https://github.com/Rexcrazy804/bake/archive/8fd59e62e64580825a772cb0f8407dc5b1778e80.tar.gz",
-      "hash": "sha256-WlpeWw/0GdtUK2MmrRqQF/fdmea12RTFpJcQu0vmWcM="
+      "revision": "b315fc24022011fd4f83426f16b572782472c1a5",
+      "url": "https://github.com/Rexcrazy804/bake/archive/b315fc24022011fd4f83426f16b572782472c1a5.tar.gz",
+      "hash": "sha256-8c9cGFiO0SYxKQoz8jOAli1iTJus7/61tHBrOw8Ko0c="
     },
     "booru-flake": {
       "type": "Git",
@@ -88,9 +88,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "ee5c671eeba5cddd94f2c7de3c36f019fae5854e",
-      "url": "https://github.com/feel-co/hjem/archive/ee5c671eeba5cddd94f2c7de3c36f019fae5854e.tar.gz",
-      "hash": "sha256-ByZ81/QttgSS1mQYttnaoMw2WnqMvQ6HCxBPOioKrOA="
+      "revision": "46c06ba2fc5f14772a3f64a6e6e4adbff17b1d9f",
+      "url": "https://github.com/feel-co/hjem/archive/46c06ba2fc5f14772a3f64a6e6e4adbff17b1d9f.tar.gz",
+      "hash": "sha256-27YOZ6P8jRjeGydOK/EX/3e4d95eFouSpBSsS08Nryw="
     },
     "lanzaboote": {
       "type": "GitRelease",
@@ -138,8 +138,8 @@
     "nixpkgs": {
       "type": "Channel",
       "name": "nixos-unstable",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre840654.c2ae88e026f9/nixexprs.tar.xz",
-      "hash": "sha256-GKnBooGFERGYfTIWQvq7mtrtgSNoK5fcoMu+qqzj4AE="
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre843472.005433b926e1/nixexprs.tar.xz",
+      "hash": "sha256-8ppDHtFBxY8V1ePXXS+4pcRtIkqylw89z/JHrQn6nhc="
     },
     "npins": {
       "type": "Git",
@@ -202,9 +202,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "17c591a44e4eb77f05f27cd37e1cfc3f219c7fc4",
-      "url": "https://github.com/oxalica/rust-overlay/archive/17c591a44e4eb77f05f27cd37e1cfc3f219c7fc4.tar.gz",
-      "hash": "sha256-tG6l0wiX8V8IvG4HFYY8IYN5vpNAxQ+UWunjjpE6SqU="
+      "revision": "433023cba5f4fa66b8b0fdbb8f91d420c9cc2527",
+      "url": "https://github.com/oxalica/rust-overlay/archive/433023cba5f4fa66b8b0fdbb8f91d420c9cc2527.tar.gz",
+      "hash": "sha256-Tjw2YP7Hz8+ibE8wJ+Ps65vh1lzAe5ozmoo9sdQ7rGg="
     },
     "sleepy-launcher": {
       "type": "GitRelease",

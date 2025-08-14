@@ -25,3 +25,4 @@ jobs:
     - run: make pkg PKG=nixvim
     - run: make pkg PKG=mbake
     - run: make pkg PKG=npins
+    - run: make pkg PKG=stash

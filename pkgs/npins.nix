@@ -8,9 +8,11 @@
   lix,
   nix-prefetch-git,
   git,
+  kokoLib,
 }: let
   inherit (lib) licenses makeBinPath sourceByRegex;
   inherit (craneLib) buildDepsOnly buildPackage;
+  inherit (kokoLib) mkBakaSrc;
 
   src = sourceByRegex npinsSRC [
     "^src$"
@@ -20,25 +22,27 @@
   ];
 
   commonArgs = {
-    inherit src;
     strictDeps = true;
     cargoExtraArgs = "--features clap,crossterm,env_logger";
     buildInputs = lib.optional stdenv.isDarwin (darwin.apple_sdk.frameworks.Security);
     nativeBuildInputs = [makeWrapper];
   };
 
-  cargoArtifacts = buildDepsOnly commonArgs;
-  runtimePath = makeBinPath [lix nix-prefetch-git git];
+  cargoArtifacts = buildDepsOnly {
+    inherit (commonArgs) strictDeps cargoExtraArgs buildInputs nativeBuildInputs;
+    name = "${self.pname}-deps";
+    dummySrc = mkBakaSrc {inherit self craneLib;};
+  };
+
+  self = buildPackage {
+    inherit (commonArgs) strictDeps buildInputs nativeBuildInputs;
+    inherit src cargoArtifacts;
+    doCheck = false;
+    cargoExtraArgs = "--bin npins ${commonArgs.cargoExtraArgs}";
+    postFixup = ''
+      wrapProgram $out/bin/npins --prefix PATH : "${makeBinPath [lix nix-prefetch-git git]}"
+    '';
+    meta.license = licenses.gpl3;
+  };
 in
-  buildPackage (
-    commonArgs
-    // {
-      inherit cargoArtifacts;
-      doCheck = false;
-      cargoExtraArgs = "--bin npins ${commonArgs.cargoExtraArgs}";
-      postFixup = ''
-        wrapProgram $out/bin/npins --prefix PATH : "${runtimePath}"
-      '';
-      meta.license = licenses.gpl3;
-    }
-  )
+  self

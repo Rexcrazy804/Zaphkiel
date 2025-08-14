@@ -48,7 +48,7 @@ in {
     # dependencies .w.
     environment.systemPackages = attrValues {
       # internal overlay
-      inherit (pkgs) kokCursor kurukurubar-unstable;
+      inherit (pkgs) kokCursor kurukurubar-unstable stash;
       inherit (pkgs.scripts) kde-send gpurecording cowask npins-show;
       # Themes
       inherit (pkgs) rose-pine-icon-theme rose-pine-gtk-theme;

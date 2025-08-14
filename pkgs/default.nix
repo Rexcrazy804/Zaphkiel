@@ -57,6 +57,7 @@ in {
   };
   mbake = pkgs.mbake.overrideAttrs (_prev: {src = sources.bake;});
 
+  kokoLib = callPackage ./kokoLib {};
   scripts = callPackage ./scripts {};
   lanzaboote = callPackage ./lanzaboote/default.nix {
     inherit (sources) rust-overlay crane lanzaboote;

@@ -223,6 +223,19 @@
       "hash": "sha256-8dal3o1LySvsv19EQXTowyP9zVZ+FTjTVT2bzfQP+RM=",
       "frozen": true
     },
+    "stash": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NotAShelf",
+        "repo": "stash"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "dd1c3b22da1f984fea2d3b69b294e9840c570b9b",
+      "url": "https://github.com/NotAShelf/stash/archive/dd1c3b22da1f984fea2d3b69b294e9840c570b9b.tar.gz",
+      "hash": "sha256-z1qBTwGT+PUEFxtFjpAUn5PtIxkscSz+adDtzwT05iY="
+    },
     "zaphkiel": {
       "type": "Git",
       "repository": {

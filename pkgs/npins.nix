@@ -9,6 +9,7 @@
   nix-prefetch-git,
   git,
   kokoLib,
+  symlinkJoin,
 }: let
   inherit (lib) licenses makeBinPath sourceByRegex;
   inherit (craneLib) buildDepsOnly buildPackage;
@@ -25,24 +26,28 @@
     strictDeps = true;
     cargoExtraArgs = "--features clap,crossterm,env_logger";
     buildInputs = lib.optional stdenv.isDarwin (darwin.apple_sdk.frameworks.Security);
-    nativeBuildInputs = [makeWrapper];
   };
 
   cargoArtifacts = buildDepsOnly {
-    inherit (commonArgs) strictDeps cargoExtraArgs buildInputs nativeBuildInputs;
+    inherit (commonArgs) strictDeps cargoExtraArgs buildInputs;
     name = "${self.pname}-deps";
     dummySrc = mkBakaSrc {inherit self craneLib;};
   };
 
   self = buildPackage {
-    inherit (commonArgs) strictDeps buildInputs nativeBuildInputs;
+    inherit (commonArgs) strictDeps buildInputs;
     inherit src cargoArtifacts;
     doCheck = false;
     cargoExtraArgs = "--bin npins ${commonArgs.cargoExtraArgs}";
-    postFixup = ''
-      wrapProgram $out/bin/npins --prefix PATH : "${makeBinPath [lix nix-prefetch-git git]}"
-    '';
     meta.license = licenses.gpl3;
   };
 in
-  self
+  symlinkJoin {
+    inherit (self) pname version;
+    paths = [self];
+    nativeBuildInputs = [makeWrapper];
+
+    postBuild = ''
+      wrapProgram $out/bin/npins --prefix PATH : "${makeBinPath [lix nix-prefetch-git git]}"
+    '';
+  }

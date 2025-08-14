@@ -54,7 +54,7 @@ in {
       inherit (pkgs) rose-pine-icon-theme rose-pine-gtk-theme;
       inherit (pkgs.kdePackages) qt6ct breeze;
       # utility
-      inherit (pkgs) wl-clipboard cliphist grim slurp brightnessctl;
+      inherit (pkgs) wl-clipboard grim slurp brightnessctl;
       inherit (pkgs) hyprsunset trashy fuzzel wl-screenrec;
       inherit (pkgs) libnotify swappy imv wayfreeze networkmanagerapplet;
       inherit (pkgs) yazi ripdrag seahorse app2unit;

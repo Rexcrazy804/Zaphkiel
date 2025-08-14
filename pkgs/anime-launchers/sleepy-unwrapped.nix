@@ -17,41 +17,45 @@
   customIcon ? null,
   craneLib,
   sleepySRC,
+  kokoLib,
 }: let
   inherit (lib) optionalString licenses;
   inherit (lib) cleanSourceWith cleanSource hasSuffix;
-  inherit (craneLib) cleanCargoSource buildDepsOnly buildPackage;
+  inherit (craneLib) buildDepsOnly buildPackage;
+  inherit (kokoLib) mkBakaSrc;
 
   commonArgs = {
-    src = cleanCargoSource sleepySRC;
     strictDeps = true;
     nativeBuildInputs = [cmake glib gobject-introspection gtk4 pkg-config wrapGAppsHook4];
     buildInputs = [gdk-pixbuf gsettings-desktop-schemas libadwaita librsvg openssl pango];
   };
-  cargoArtifacts = buildDepsOnly commonArgs;
-in
-  buildPackage (
-    commonArgs
-    // {
-      inherit cargoArtifacts;
-      pname = "sleepy-launcher";
-      version = "1.3.0";
-      src = cleanSourceWith {
-        filter = fname: _ftype:
-          !(
-            hasSuffix ".nix" fname
-            || hasSuffix ".md" fname
-            || hasSuffix ".py" fname
-            || hasSuffix "LICENSE" fname
-          );
-        src = cleanSource sleepySRC;
-      };
 
-      prePatch = optionalString (customIcon != null) ''
-        rm assets/images/icon.png
-        cp ${customIcon} assets/images/icon.png
-      '';
-      passthru = {inherit customIcon;};
-      meta.license = licenses.gpl3;
-    }
-  )
+  cargoArtifacts = buildDepsOnly {
+    inherit (commonArgs) strictDeps nativeBuildInputs buildInputs;
+    name = "${self.pname}-deps";
+    dummySrc = mkBakaSrc {inherit self craneLib;};
+  };
+
+  self = buildPackage {
+    inherit (commonArgs) strictDeps nativeBuildInputs buildInputs;
+    inherit cargoArtifacts;
+    src = cleanSourceWith {
+      filter = fname: _ftype:
+        !(
+          hasSuffix ".nix" fname
+          || hasSuffix ".md" fname
+          || hasSuffix ".py" fname
+          || hasSuffix "LICENSE" fname
+        );
+      src = cleanSource sleepySRC;
+    };
+
+    prePatch = optionalString (customIcon != null) ''
+      rm assets/images/icon.png
+      cp ${customIcon} assets/images/icon.png
+    '';
+    passthru = {inherit customIcon;};
+    meta.license = licenses.gpl3;
+  };
+in
+  self

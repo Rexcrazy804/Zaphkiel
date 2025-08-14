@@ -4,6 +4,7 @@
   rust-overlay,
   aagl,
   anime-sources,
+  kokoLib,
 }: let
   pkgs = extend (import rust-overlay);
   inherit (pkgs.lib) makeScope;
@@ -15,6 +16,7 @@ in
     inherit (self) callPackage;
     craneLib' = callPackage (crane + "/lib") {};
   in {
+    inherit kokoLib;
     craneLib = craneLib'.overrideToolchain rustToolchain;
     wrapAAGL = callPackage (aagl + "/pkgs/wrapAAGL/default.nix") {};
     sleepy-unwrapped = callPackage ./sleepy-unwrapped.nix {

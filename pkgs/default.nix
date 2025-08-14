@@ -56,6 +56,9 @@ in {
     npinsSRC = sources.npins;
   };
   mbake = pkgs.mbake.overrideAttrs (_prev: {src = sources.bake;});
+  stash = callPackage (sources.stash + "/nix/package.nix") {
+    craneLib = callPackage (sources.crane + "/lib") {};
+  };
 
   kokoLib = callPackage ./kokoLib {};
   scripts = callPackage ./scripts {};

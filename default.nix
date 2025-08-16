@@ -13,8 +13,7 @@
   useNpinsV6 ? true,
 }:
 pkgs.lib.fix (self: let
-  inherit (pkgs.lib) mapAttrs attrValues callPackageWith warn;
-  inherit (pkgs) mkShellNoCC;
+  inherit (pkgs.lib) mapAttrs callPackageWith warn;
   callPackage = callPackageWith (pkgs // self.packages);
 
   # WARNING
@@ -26,8 +25,6 @@ pkgs.lib.fix (self: let
     else sources';
 in {
   overlays = {
-    lix = import ./pkgs/overlays/lix.nix {lix = null;};
-    # ensures that we don't add the overlay twice (straight up stolen from lix)
     kurukurubar = _final: prev:
       if prev ? kurukurubar-overlay-present
       then {kurukurubar-overlay-present = 2;}
@@ -85,64 +82,6 @@ in {
     };
   };
 
-  devShells.default = let
-    precommit = pkgs.writeShellScript "pre-commit" ''
-      if make chk FILES_STAGED=1; then
-        exit 0
-      else
-        make fmt FILES_STAGED=1
-        exit 1
-      fi
-    '';
-  in
-    mkShellNoCC {
-      shellHook = ''
-        HOOKS=$(pwd)/.git/hooks
-        if ! [ -f "$HOOKS/pre-commit" ]; then
-          install ${precommit} $HOOKS/pre-commit
-          echo "[SHELL] created precommit hook :>"
-        elif ! cmp --silent $HOOKS/pre-commit ${precommit}; then
-          install ${precommit} $HOOKS/pre-commit
-          echo "[SHELL] updated precommit hook ^OwO^"
-        fi
-      '';
-      packages = attrValues {
-        # formatters
-        inherit (pkgs) alejandra luaformatter mdformat;
-        inherit (pkgs.qt6) qtdeclarative;
-        # yes I had to fucking write this
-        inherit (self.packages.scripts) qmlcheck;
-        # yes I hadda fix this
-        inherit (self.packages) mbake;
-        # make the cutest
-        inherit (pkgs) gnumake;
-      };
-    };
-
-  nixosConfigurations = let
-    nixosSystem = import (nixpkgs + "/nixos/lib/eval-config.nix");
-    overlays = attrValues {
-      inherit (self.overlays) lix;
-      internal = import ./pkgs/overlays/internal.nix;
-      # for the people of the future,
-      # if you don't understand why this was done,
-      # just know I am a eval time racer
-      # this saves 1.1 seconds of eval time
-    };
-    nixosHost = hostName:
-      nixosSystem {
-        system = null;
-        specialArgs = {inherit sources;};
-        modules = [
-          {nixpkgs.overlays = overlays;}
-          ./hosts/${hostName}/configuration.nix
-          ./users/rexies.nix
-          ./nixosModules
-        ];
-      };
-  in {
-    Persephone = nixosHost "Persephone";
-    Seraphine = nixosHost "Seraphine";
-    Aphrodite = nixosHost "Aphrodite";
-  };
+  devShells.default = callPackage ./devShells {};
+  nixosConfigurations = callPackage ./hosts {};
 })

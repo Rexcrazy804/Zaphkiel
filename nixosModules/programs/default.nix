@@ -25,7 +25,7 @@
   ];
 
   # global
-  environment.systemPackages = [pkgs.git pkgs.nixvim pkgs.npins];
+  environment.systemPackages = [pkgs.git pkgs.xvim.default pkgs.npins];
 
   # requried by gdm leaving it here since all my systems do use nushell
   environment.shells = ["/run/current-system/sw/bin/nu"];

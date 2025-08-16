@@ -47,7 +47,7 @@ in {
 
       globalConfig = mkIf cfg.tsplugin.enable ''
         tailscale {
-          auth_key {$TS_AUTH}
+          auth_key {$TS_KEY}
         }
       '';
     };

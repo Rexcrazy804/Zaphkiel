@@ -1,3 +1,4 @@
+# test comment
 {
   extend,
   sources,

@@ -31,13 +31,13 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "Rexcrazy804",
+        "owner": "EbodShojaei",
         "repo": "bake"
       },
-      "branch": "stdin-check-fix",
+      "branch": "main",
       "submodules": false,
-      "revision": "c18229541faa842db16e6913c27e9467c2474b48",
-      "url": "https://github.com/Rexcrazy804/bake/archive/c18229541faa842db16e6913c27e9467c2474b48.tar.gz",
+      "revision": "8891b7429f61c6482a8947e389de3811fd37c2fa",
+      "url": "https://github.com/EbodShojaei/bake/archive/8891b7429f61c6482a8947e389de3811fd37c2fa.tar.gz",
       "hash": "sha256-L3Gpl3olNAux3IzQT7VlKLALpepJPMO5XdTgLasT90k="
     },
     "booru-flake": {

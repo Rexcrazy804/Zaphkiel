@@ -125,11 +125,8 @@ The following packages are exported by this flake:
 | kurukurubar (stable)| adorable bar to spin the kuru kuru |
 | kurukurubar-unstable | latest version, uses master version of qs |
 | kokCursor | A cute kokomi XCursor |
-| nixvim | My custom neovim configuration using [mnw](https://github.com/Gerg-L/mnw)|
-| nixvim-minimal | less bloated version (no lsps) don't confuse this and above with the [nixvim](https://github.com/nix-community/nixvim) project|
+| xvim | My neovim configuration using [mnw](https://github.com/Gerg-L/mnw). provides `.default` and `.minimal`|
 | mpv | My mpv configuration with [anime4k](https://github.com/bloc97/Anime4K) shaders baked in |
-| sddm-silent-custom | slightly customized silentSDDM theme re-export |
-| booru-images | exposes an attret of "i<imgid>" from the [imgList](nixosModules/programs/booru-flake/imgList.nix) |
 | librebarcode | The [librebarcode](https://graphicore.github.io/librebarcode/) font |
 
 you may run any of the above with the following command (ofc you can't run a
@@ -194,10 +191,11 @@ npins/                  # flakes? what is that?
 - sources.json          # where is the flake.lock? here it is
 
 pkgs/                   # exported packages are found here
+- anime-launchers       # crane enabled builds for aagl launchers family
+- lanzaboote            # derivation to build lanzaboote without flakes
 - mpv/                  # mpv wrapper with anime4k
 - overlays/             # overlays (duh)
 - scripts/              # cute scripts to do various things
-- default.nix           # all the exported cuties are here, very uncute code tho :<
 
 secrets/                # home to my age encrypted secrets
 templates/              # reusable flake and non flake templates for various nix errands

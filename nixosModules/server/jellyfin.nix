@@ -5,6 +5,7 @@
   ...
 }: let
   multimediaDir = "/home/multimedia";
+  caddyCfg = config.zaphkiel.services.caddy;
 in {
   options.zaphkiel.services.jellyfin.enable = lib.mkEnableOption "jellyfin service";
 
@@ -12,6 +13,13 @@ in {
     services.jellyfin = {
       enable = true;
       openFirewall = false;
+    };
+
+    services.caddy.virtualHosts."https://jellyfin.fell-rigel.ts.net" = lib.mkIf caddyCfg.tsplugin.enable {
+      extraConfig = ''
+        bind tailscale/jellyfin
+        reverse_proxy localhost:8096
+      '';
     };
 
     services.transmission = {

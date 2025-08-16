@@ -42,7 +42,7 @@
     packages = forAllSystems (pkgs: let
       zaphkiel' = zaphkiel pkgs.system;
     in {
-      inherit (zaphkiel'.packages) nixvim nixvim-minimal kokCursor kurukurubar kurukurubar-unstable booru-images librebarcode;
+      inherit (zaphkiel'.packages) xvim nixvim nixvim-minimal kokCursor kurukurubar kurukurubar-unstable booru-images librebarcode;
       quickshell = pkgs.lib.warn "prefer #kurukurubar instead. #quickshell will be removed soon" zaphkiel'.packages.kurukurubar;
       mpv = zaphkiel'.packages.mpv-wrapped.override {anime = true;};
     });

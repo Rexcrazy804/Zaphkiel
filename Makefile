@@ -25,6 +25,7 @@ REBLD_REC_COMMON = @$(MAKE) --no-print-directory rebuild
 BUILD_ATTR = packages.$(PKG)
 BUILD_FILE = ./default.nix
 BUILD_ARGS = $(BUILD_FILE) -A $(BUILD_ATTR)
+BUILD_OVERRIDES = $(foreach PIN,$(NPINS),NPINS_OVERRIDE_$(PIN) )
 BUILD = nix-build $(BUILD_ARGS)
 
 EVAL_ATTR = nixosConfigurations.$(HOST).config.system.build.toplevel
@@ -62,7 +63,7 @@ help:
 	@echo ""
 	$(call ECHO_HELP,help,          display this help)
 	@echo ""
-	$(call ECHO_HELP,pkg,           build packages either from $(COLOR_PURPLE)\$$PKG$(COLOR_END) or from $(COLOR_PURPLE)\$$PKG_PATH$(COLOR_END))
+	$(call ECHO_HELP,pkg,           build packages either from $(COLOR_PURPLE)\$$PKG$(COLOR_END) or from $(COLOR_PURPLE)\$$PKG_PATH$(COLOR_END). use $(COLOR_PURPLE)\$$NPINS$(COLOR_END) to override pins)
 	$(call ECHO_HELP,clean,         removes the result symlink)
 	@echo ""
 	$(call ECHO_HELP,chk,           checks changed files with formatters. set $(COLOR_PURPLE)\$$FILES_STAGED$(COLOR_END) for staged files only)
@@ -82,7 +83,7 @@ time:
 pkg:
 ifdef PKG
 	$(call ECHO_TARGET,Building,$(PKG))
-	@$(BUILD) || (echo -e "$(ECHO_MAKE) $(COLOR_RED)Failed to build Package$(COLOR_END)" && exit 1)
+	@$(BUILD_OVERRIDES) $(BUILD) || (echo -e "$(ECHO_MAKE) $(COLOR_RED)Failed to build Package$(COLOR_END)" && exit 1)
 else
 ifdef PKG_PATH
 	$(call ECHO_TARGET,Calling Package,$(PKG_PATH))

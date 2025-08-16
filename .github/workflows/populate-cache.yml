@@ -5,13 +5,30 @@ on:
     branches:
       - master
     paths:
-      - 'npins/**'
+      - 'npins/sources.json'
       - 'pkgs/**'
 jobs:
   populate-cache:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - uses: dorny/paths-filter@v3
+      id: fltr
+      with:
+        filters: |
+          sleepy-launcher:
+            - 'pkgs/anime-launchers/sleepy-unwrapped.nix'
+          lanzaboote:
+            - 'pkgs/lanzaboote/**'
+          kurukurubar:
+            - 'pkgs/kurukurubar.nix'
+            - 'pkgs/quickshell.nix'
+          xvim:
+            - 'pkgs/nvim/**'
+          npins:
+            - 'pkgs/npins.nix'
+          pins:
+            - 'npins/sources.json'
     - uses: cachix/install-nix-action@v25
       with:
         nix_path: nixpkgs=channel:nixos-unstable
@@ -19,10 +36,31 @@ jobs:
       with:
         name: rexielscarlet
         authToken: '${{ secrets.CACHIX_API_KEY }}'
-    - run: make pkg PKG=anime-launchers.sleepy-launcher
-    - run: make pkg PKG=lanzaboote.tool
-    - run: make pkg PKG=kurukurubar-unstable
-    - run: make pkg PKG=nixvim
-    - run: make pkg PKG=mbake
-    - run: make pkg PKG=npins
-    - run: make pkg PKG=stash
+
+    - name: build sleepy launcher
+      if: steps.fltr.outputs.sleepy-launcher == 'true' || steps.fltr.outputs.pins == 'true'
+      run: make pkg PKG=anime-launchers.sleepy-launcher
+
+    - name: build lanzaboote
+      if: steps.fltr.outputs.lanzaboote == 'true' || steps.fltr.outputs.pins == 'true'
+      run: make pkg PKG=lanzaboote.tool
+
+    - name: build kurukurubar unstable
+      if: steps.fltr.outputs.kurukurubar == 'true' || steps.fltr.outputs.pins == 'true'
+      run: make pkg PKG=kurukurubar-unstable
+
+    - name: build xvim (neovim)
+      if: steps.fltr.outputs.xvim == 'true' || steps.fltr.outputs.pins == 'true'
+      run: make pkg PKG=nixvim
+
+    - name: build npins (neovim)
+      if: steps.fltr.outputs.npins == 'true' || steps.fltr.outputs.pins == 'true'
+      run: make pkg PKG=npins
+
+    - name: build mbake
+      if: steps.fltr.outputs.pins == 'true'
+      run: make pkg PKG=mbake
+
+    - name: build stash
+      if: steps.fltr.outputs.pins == 'true'
+      run: make pkg PKG=stash

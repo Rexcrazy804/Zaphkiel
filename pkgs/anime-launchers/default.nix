@@ -1,26 +1,24 @@
 {
   extend,
-  crane,
-  rust-overlay,
-  aagl,
-  anime-sources,
+  sources,
   kokoLib,
+  craneLib,
 }: let
-  pkgs = extend (import rust-overlay);
+  inherit (sources) rust-overlay aagl;
   inherit (pkgs.lib) makeScope;
   inherit (pkgs) newScope;
 
+  pkgs = extend (import rust-overlay);
   rustToolchain = pkgs.rust-bin.stable.latest.default;
 in
   makeScope newScope (self: let
     inherit (self) callPackage;
-    craneLib' = callPackage (crane + "/lib") {};
   in {
     inherit kokoLib;
-    craneLib = craneLib'.overrideToolchain rustToolchain;
+    craneLib = craneLib.overrideToolchain rustToolchain;
     wrapAAGL = callPackage (aagl + "/pkgs/wrapAAGL/default.nix") {};
     sleepy-unwrapped = callPackage ./sleepy-unwrapped.nix {
-      sleepySRC = anime-sources.sleepy-launcher;
+      sleepySRC = sources.sleepy-launcher;
     };
     sleepy-launcher = callPackage (aagl + "/pkgs/sleepy-launcher") {
       unwrapped = self.sleepy-unwrapped;

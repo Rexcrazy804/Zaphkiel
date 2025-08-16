@@ -53,7 +53,7 @@ jobs:
       if: steps.fltr.outputs.xvim == 'true' || steps.fltr.outputs.pins == 'true'
       run: make pkg PKG=nixvim
 
-    - name: build npins (neovim)
+    - name: build npins
       if: steps.fltr.outputs.npins == 'true' || steps.fltr.outputs.pins == 'true'
       run: make pkg PKG=npins
 

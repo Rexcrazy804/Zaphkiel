@@ -1,9 +1,8 @@
 {
   extend,
-  rust-overlay,
-  crane,
-  lanzaboote,
+  sources,
 }: let
+  inherit (sources) rust-overlay crane lanzaboote;
   pkgs = extend (import rust-overlay);
   uefi-rust-stable = pkgs.rust-bin.fromRustupToolchainFile (lanzaboote + "/rust/uefi/rust-toolchain.toml");
   craneLib = (pkgs.callPackage (crane + "/lib") {}).overrideToolchain uefi-rust-stable;

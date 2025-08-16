@@ -13,8 +13,8 @@
   useNpinsV6 ? true,
 }:
 pkgs.lib.fix (self: let
-  inherit (pkgs.lib) mapAttrs attrValues makeScope;
-  inherit (pkgs) newScope mkShellNoCC;
+  inherit (pkgs.lib) mapAttrs callPackageWith warn;
+  callPackage = callPackageWith (pkgs // self.packages);
 
   # WARNING
   # set useNpinsV6 to false if your sources are not v6
@@ -23,13 +23,8 @@ pkgs.lib.fix (self: let
     if useNpinsV6
     then mapAttrs (k: v: v {inherit pkgs;}) sources'
     else sources';
-
-  # check this out if you wanna see everything exported
-  exportedPackages = import ./pkgs;
 in {
   overlays = {
-    lix = import ./pkgs/overlays/lix.nix {lix = null;};
-    # ensures that we don't add the overlay twice (straight up stolen from lix)
     kurukurubar = _final: prev:
       if prev ? kurukurubar-overlay-present
       then {kurukurubar-overlay-present = 2;}
@@ -39,9 +34,42 @@ in {
       };
   };
 
-  packages = makeScope newScope (exportedPackages {
-    inherit quickshell pkgs sources;
-  });
+  packages = {
+    inherit sources;
+
+    # kurukuru
+    quickshell = callPackage ./pkgs/quickshell.nix {inherit quickshell;};
+    kurukurubar-unstable = callPackage ./pkgs/kurukurubar.nix {};
+    kurukurubar = (self.packages.kurukurubar-unstable).override {
+      inherit (pkgs) quickshell;
+      # following zaphkiel master branch: quickshell v0.2.0
+      # configPath = (sources.zaphkiel) + "/users/dots/quickshell/kurukurubar";
+    };
+
+    # trivial
+    mpv-wrapped = callPackage ./pkgs/mpv {};
+    librebarcode = callPackage ./pkgs/librebarcode.nix {};
+    kokCursor = callPackage ./pkgs/kokCursor.nix {};
+    npins = callPackage ./pkgs/npins.nix {};
+    stash = callPackage (sources.stash + "/nix/package.nix") {};
+
+    # package sets
+    lanzaboote = callPackage ./pkgs/lanzaboote {};
+    scripts = callPackage ./pkgs/scripts {};
+    anime-launchers = callPackage ./pkgs/anime-launchers {};
+    xvim = callPackage ./pkgs/nvim {};
+
+    # lib
+    kokoLib = callPackage ./pkgs/kokoLib {};
+    craneLib = callPackage (sources.crane + "/lib") {};
+
+    # temp
+    mbake = pkgs.mbake.overrideAttrs (_prev: {src = sources.bake;});
+    # JUST SO YOU KNOW `nivxvim` WAS JUST WHAT I USED TO CALL MY nvim alright
+    # I had ditched the nixvim project long long long ago but the name just stuck
+    nixvim-minimal = warn "please use xvim.minimal instead" self.packages.xvim.minimal;
+    nixvim = warn "please use xvim.default instead" self.packages.xvim.default;
+  };
 
   nixosModules = {
     kurukuruDM = {
@@ -54,70 +82,6 @@ in {
     };
   };
 
-  devShells.default = let
-    precommit = pkgs.writeShellScript "pre-commit" ''
-      if make chk FILES_STAGED=1; then
-        exit 0
-      else
-        make fmt FILES_STAGED=1
-        exit 1
-      fi
-    '';
-  in
-    mkShellNoCC {
-      shellHook = ''
-        HOOKS=$(pwd)/.git/hooks
-        if ! [ -f "$HOOKS/pre-commit" ]; then
-          install ${precommit} $HOOKS/pre-commit
-          echo "[SHELL] created precommit hook :>"
-        elif ! cmp --silent $HOOKS/pre-commit ${precommit}; then
-          install ${precommit} $HOOKS/pre-commit
-          echo "[SHELL] updated precommit hook ^OwO^"
-        fi
-      '';
-      packages = attrValues {
-        # formatters
-        inherit (pkgs) alejandra luaformatter mdformat;
-        inherit (pkgs.qt6) qtdeclarative;
-        # yes I had to fucking write this
-        inherit (self.packages.scripts) qmlcheck;
-        # yes I hadda fix this
-        inherit (self.packages) mbake;
-        # make the cutest
-        inherit (pkgs) gnumake;
-      };
-    };
-
-  nixosConfigurations = let
-    nixosSystem = import (nixpkgs + "/nixos/lib/eval-config.nix");
-    overlays = attrValues {
-      inherit (self.overlays) lix;
-      internal = import ./pkgs/overlays/internal.nix;
-      # for the people of the future,
-      # if you don't understand why this was done,
-      # just know I am a eval time racer
-      # this saves 1.1 seconds of eval time
-      internal' = final: prev:
-        (exportedPackages {
-          inherit sources;
-          pkgs = final;
-        })
-        final;
-    };
-    nixosHost = hostName:
-      nixosSystem {
-        system = null;
-        specialArgs = {inherit sources;};
-        modules = [
-          {nixpkgs.overlays = overlays;}
-          ./hosts/${hostName}/configuration.nix
-          ./users/rexies.nix
-          ./nixosModules
-        ];
-      };
-  in {
-    Persephone = nixosHost "Persephone";
-    Seraphine = nixosHost "Seraphine";
-    Aphrodite = nixosHost "Aphrodite";
-  };
+  devShells.default = callPackage ./devShells {};
+  nixosConfigurations = callPackage ./hosts {};
 })

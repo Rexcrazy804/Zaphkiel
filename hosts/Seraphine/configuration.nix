@@ -25,6 +25,11 @@
     };
     services = {
       enable = true;
+      caddy = {
+        enable = true;
+        secretsFile = config.age.secrets.caddyEnv.path;
+        tsplugin.enable = true;
+      };
       tailscale = {
         enable = true;
         exitNode.enable = true;
@@ -76,6 +81,7 @@
 
   # tailscale
   age.secrets.tailAuth.file = ../../secrets/secret5.age;
+  age.secrets.caddyEnv.file = ../../secrets/secret10.age;
   services.tailscale.authKeyFile = config.age.secrets.tailAuth.path;
 
   # generic

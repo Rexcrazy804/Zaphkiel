@@ -60,20 +60,18 @@ endef
 # Oh yes I can darling ~
 help:
 	@echo -e "# $(COLOR_BLUE)Zaphkiel's little helper$(COLOR_END)"
+	$(call ECHO_HELP,help,          Display this help)
+	$(call ECHO_HELP,pkg,           Build packages either from $(COLOR_PURPLE)\$$PKG$(COLOR_END) or from $(COLOR_PURPLE)\$$PKG_PATH$(COLOR_END). Use $(COLOR_PURPLE)\$$NPINS$(COLOR_END) to override pins)
+	$(call ECHO_HELP,clean,         Removes the result symlink)
 	@echo ""
-	$(call ECHO_HELP,help,          display this help)
+	$(call ECHO_HELP,chk,           Checks changed files with formatters. Set $(COLOR_PURPLE)\$$FILES_STAGED$(COLOR_END) for staged files only)
+	$(call ECHO_HELP,fmt,           Formats changed files set $(COLOR_PURPLE)\$$FILES_ALL$(COLOR_END) for formatting all files)
 	@echo ""
-	$(call ECHO_HELP,pkg,           build packages either from $(COLOR_PURPLE)\$$PKG$(COLOR_END) or from $(COLOR_PURPLE)\$$PKG_PATH$(COLOR_END). use $(COLOR_PURPLE)\$$NPINS$(COLOR_END) to override pins)
-	$(call ECHO_HELP,clean,         removes the result symlink)
-	@echo ""
-	$(call ECHO_HELP,chk,           checks changed files with formatters. set $(COLOR_PURPLE)\$$FILES_STAGED$(COLOR_END) for staged files only)
-	$(call ECHO_HELP,fmt,           formats changed files set $(COLOR_PURPLE)\$$FILES_ALL$(COLOR_END) for formatting all files)
-	@echo ""
+	$(call ECHO_HELP,time,          Benchmark evaluation time for nixos configuraiton)
 	$(call ECHO_HELP,rebuild,       $(COLOR_RED)for internal recursive use only$(COLOR_END))
-	$(call ECHO_HELP,repl build,    | used to perform repsective)
-	$(call ECHO_HELP,boot switch,   > nixos-rebuild subcommands.)
+	$(call ECHO_HELP,repl build,    | Used to perform respective)
+	$(call ECHO_HELP,boot switch,   > nixos-rebuild subcommands)
 	$(call ECHO_HELP,test dry,      | $(COLOR_PURPLE)\$$HOST$(COLOR_END) can be used to specify host)
-	$(call ECHO_HELP,time,          benchmark evaluation time for nixos configuraiton)
 
 time:
 	$(call ECHO_TARGET,Timing,$(HOST))

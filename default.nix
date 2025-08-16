@@ -13,8 +13,9 @@
   useNpinsV6 ? true,
 }:
 pkgs.lib.fix (self: let
-  inherit (pkgs.lib) mapAttrs attrValues makeScope;
-  inherit (pkgs) newScope mkShellNoCC;
+  inherit (pkgs.lib) mapAttrs attrValues callPackageWith warn;
+  inherit (pkgs) mkShellNoCC;
+  callPackage = callPackageWith (pkgs // self.packages);
 
   # WARNING
   # set useNpinsV6 to false if your sources are not v6
@@ -23,9 +24,6 @@ pkgs.lib.fix (self: let
     if useNpinsV6
     then mapAttrs (k: v: v {inherit pkgs;}) sources'
     else sources';
-
-  # check this out if you wanna see everything exported
-  exportedPackages = import ./pkgs;
 in {
   overlays = {
     lix = import ./pkgs/overlays/lix.nix {lix = null;};
@@ -39,9 +37,38 @@ in {
       };
   };
 
-  packages = makeScope newScope (exportedPackages {
-    inherit quickshell pkgs sources;
-  });
+  packages = {
+    inherit sources;
+
+    # kurukuru
+    quickshell = callPackage ./pkgs/quickshell.nix {inherit quickshell;};
+    kurukurubar-unstable = callPackage ./pkgs/kurukurubar.nix {};
+    kurukurubar = (self.packages.kurukurubar-unstable).override {
+      inherit (pkgs) quickshell;
+      # following zaphkiel master branch: quickshell v0.2.0
+      # configPath = (sources.zaphkiel) + "/users/dots/quickshell/kurukurubar";
+    };
+
+    # trivial
+    mpv-wrapped = callPackage ./pkgs/mpv {};
+    librebarcode = callPackage ./pkgs/librebarcode.nix {};
+    kokCursor = callPackage ./pkgs/kokCursor.nix {};
+    npins = callPackage ./pkgs/npins.nix {};
+    stash = callPackage (sources.stash + "/nix/package.nix") {};
+
+    # package sets
+    lanzaboote = callPackage ./pkgs/lanzaboote {};
+    scripts = callPackage ./pkgs/scripts {};
+    anime-launchers = callPackage ./pkgs/anime-launchers {};
+    xvim = callPackage ./pkgs/nvim {};
+
+    # lib
+    kokoLib = callPackage ./pkgs/kokoLib {};
+    craneLib = callPackage (sources.crane + "/lib") {};
+
+    # temp
+    mbake = pkgs.mbake.overrideAttrs (_prev: {src = sources.bake;});
+  };
 
   nixosModules = {
     kurukuruDM = {
@@ -97,12 +124,6 @@ in {
       # if you don't understand why this was done,
       # just know I am a eval time racer
       # this saves 1.1 seconds of eval time
-      internal' = final: prev:
-        (exportedPackages {
-          inherit sources;
-          pkgs = final;
-        })
-        final;
     };
     nixosHost = hostName:
       nixosSystem {

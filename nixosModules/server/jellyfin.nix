@@ -15,13 +15,6 @@ in {
       openFirewall = false;
     };
 
-    services.caddy.virtualHosts."https://jellyfin.fell-rigel.ts.net" = lib.mkIf caddyCfg.tsplugin.enable {
-      extraConfig = ''
-        bind tailscale/jellyfin
-        reverse_proxy localhost:8096
-      '';
-    };
-
     services.transmission = {
       enable = true;
       package = pkgs.transmission_4;
@@ -73,6 +66,28 @@ in {
       "aspnetcore-runtime-6.0.36"
     ];
 
+    # caddy configuration
+    services.caddy.virtualHosts = lib.mkIf caddyCfg.tsplugin.enable {
+      "https://jellyfin.fell-rigel.ts.net" = {
+        extraConfig = ''
+          bind tailscale/jellyfin
+          reverse_proxy localhost:8096
+        '';
+      };
+      "https://torrent.fell-rigel.ts.net" = {
+        extraConfig = ''
+          bind tailscale/torrent
+          reverse_proxy localhost:${builtins.toString config.services.transmission.settings.rpc-port}
+        '';
+      };
+      "https://sonarr.fell-rigel.ts.net" = {
+        extraConfig = ''
+          bind tailscale/torrent
+          reverse_proxy localhost:${builtins.toString config.services.sonarr.settings.server.port}
+        '';
+      };
+    };
+
     users.groups."multimedia".members =
       [
         "root"
@@ -89,35 +104,5 @@ in {
       owner = "transmission";
       group = "users";
     };
-
-    # age.secrets.servarrAuth = {
-    #   file = ../../secrets/secret7.age;
-    # };
-
-    # Figure out if I really need this :]
-    # systemd.services.tailscale-jellyfin = {
-    #   after = ["tailscaled.service"];
-    #   wants = ["tailscaled.service"];
-    #   wantedBy = [ "multi-user.target" ];
-    #   serviceConfig = {
-    #     Type = "simple";
-    #   };
-    #   script = ''
-    #     ${pkgs.tailscale}/bin/tailscaled --statedir=${stateDirectory} --socket=${stateDirectory}/tailscaled.sock --port=0 --tun=user
-    #   '';
-    # };
-    #
-    # systemd.services.tailscale-jellyfin-up = {
-    #   after = ["tailscale-jellyfin-up.service"];
-    #   wants = ["tailscaled.service"];
-    #   wantedBy = [ "multi-user.target" ];
-    #   serviceConfig = {
-    #     Type = "oneshot";
-    #   };
-    #   script = ''
-    #     ${pkgs.tailscale}/bin/tailscale --socket=${stateDirectory}/tailscaled.sock up --auth-key=$(cat ${config.age.secrets.servarrAuth.path}) --hostname=jellyfin --reset
-    #     ${pkgs.tailscale}/bin/tailscale --socket=${stateDirectory}/tailscaled.sock serve --bg localhost:8096
-    #   '';
-    # };
   };
 }

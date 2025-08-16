@@ -6,10 +6,13 @@
 }: let
   multimediaDir = "/home/multimedia";
   caddyCfg = config.zaphkiel.services.caddy;
-in {
-  options.zaphkiel.services.jellyfin.enable = lib.mkEnableOption "jellyfin service";
 
-  config = lib.mkIf (config.zaphkiel.services.jellyfin.enable && config.zaphkiel.services.enable) {
+  inherit (lib) mkIf mkEnableOption;
+  inherit (builtins) toString;
+in {
+  options.zaphkiel.services.jellyfin.enable = mkEnableOption "jellyfin service";
+
+  config = mkIf (config.zaphkiel.services.jellyfin.enable && config.zaphkiel.services.enable) {
     services.jellyfin = {
       enable = true;
       openFirewall = false;
@@ -67,7 +70,7 @@ in {
     ];
 
     # caddy configuration
-    services.caddy.virtualHosts = lib.mkIf caddyCfg.tsplugin.enable {
+    services.caddy.virtualHosts = mkIf caddyCfg.tsplugin.enable {
       "https://jellyfin.fell-rigel.ts.net" = {
         extraConfig = ''
           bind tailscale/jellyfin
@@ -77,13 +80,13 @@ in {
       "https://torrent.fell-rigel.ts.net" = {
         extraConfig = ''
           bind tailscale/torrent
-          reverse_proxy localhost:${builtins.toString config.services.transmission.settings.rpc-port}
+          reverse_proxy localhost:${toString config.services.transmission.settings.rpc-port}
         '';
       };
       "https://sonarr.fell-rigel.ts.net" = {
         extraConfig = ''
           bind tailscale/torrent
-          reverse_proxy localhost:${builtins.toString config.services.sonarr.settings.server.port}
+          reverse_proxy localhost:${toString config.services.sonarr.settings.server.port}
         '';
       };
     };

@@ -85,7 +85,7 @@ in {
       };
       "https://sonarr.fell-rigel.ts.net" = {
         extraConfig = ''
-          bind tailscale/torrent
+          bind tailscale/sonarr
           reverse_proxy localhost:${toString config.services.sonarr.settings.server.port}
         '';
       };

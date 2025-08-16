@@ -4,7 +4,7 @@
   darwin,
   makeWrapper,
   craneLib,
-  npinsSRC,
+  sources,
   lix,
   nix-prefetch-git,
   git,
@@ -15,7 +15,7 @@
   inherit (craneLib) buildDepsOnly buildPackage;
   inherit (kokoLib) mkBakaSrc;
 
-  src = sourceByRegex npinsSRC [
+  src = sourceByRegex (sources.npins) [
     "^src$"
     "^src/.+$"
     "^Cargo.lock$"

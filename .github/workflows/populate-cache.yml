@@ -7,6 +7,7 @@ on:
     paths:
       - 'npins/sources.json'
       - 'pkgs/**'
+      - 'nixosModules/server/caddy.nix'
 jobs:
   populate-cache:
     runs-on: ubuntu-latest
@@ -25,6 +26,8 @@ jobs:
             - 'pkgs/quickshell.nix'
           xvim:
             - 'pkgs/nvim/**'
+          caddy:
+            - 'nixosModules/server/caddy.nix'
           npins:
             - 'pkgs/npins.nix'
           pins:
@@ -64,3 +67,7 @@ jobs:
     - name: build stash
       if: steps.fltr.outputs.pins == 'true'
       run: make pkg PKG=stash
+
+    - name: build Seraphine's caddy package
+      if: steps.fltr.outputs.caddy == 'true' || steps.fltr.outputs.pins == 'true'
+      run: nix-build -A nixosConfigurations.Seraphine.config.services.caddy.package

@@ -5,10 +5,14 @@
   ...
 }: let
   multimediaDir = "/home/multimedia";
-in {
-  options.zaphkiel.services.jellyfin.enable = lib.mkEnableOption "jellyfin service";
+  caddyCfg = config.zaphkiel.services.caddy;
 
-  config = lib.mkIf (config.zaphkiel.services.jellyfin.enable && config.zaphkiel.services.enable) {
+  inherit (lib) mkIf mkEnableOption;
+  inherit (builtins) toString;
+in {
+  options.zaphkiel.services.jellyfin.enable = mkEnableOption "jellyfin service";
+
+  config = mkIf (config.zaphkiel.services.jellyfin.enable && config.zaphkiel.services.enable) {
     services.jellyfin = {
       enable = true;
       openFirewall = false;
@@ -65,6 +69,28 @@ in {
       "aspnetcore-runtime-6.0.36"
     ];
 
+    # caddy configuration
+    services.caddy.virtualHosts = mkIf caddyCfg.tsplugin.enable {
+      "https://jellyfin.fell-rigel.ts.net" = {
+        extraConfig = ''
+          bind tailscale/jellyfin
+          reverse_proxy localhost:8096
+        '';
+      };
+      "https://torrent.fell-rigel.ts.net" = {
+        extraConfig = ''
+          bind tailscale/torrent
+          reverse_proxy localhost:${toString config.services.transmission.settings.rpc-port}
+        '';
+      };
+      "https://sonarr.fell-rigel.ts.net" = {
+        extraConfig = ''
+          bind tailscale/sonarr
+          reverse_proxy localhost:${toString config.services.sonarr.settings.server.port}
+        '';
+      };
+    };
+
     users.groups."multimedia".members =
       [
         "root"
@@ -81,35 +107,5 @@ in {
       owner = "transmission";
       group = "users";
     };
-
-    # age.secrets.servarrAuth = {
-    #   file = ../../secrets/secret7.age;
-    # };
-
-    # Figure out if I really need this :]
-    # systemd.services.tailscale-jellyfin = {
-    #   after = ["tailscaled.service"];
-    #   wants = ["tailscaled.service"];
-    #   wantedBy = [ "multi-user.target" ];
-    #   serviceConfig = {
-    #     Type = "simple";
-    #   };
-    #   script = ''
-    #     ${pkgs.tailscale}/bin/tailscaled --statedir=${stateDirectory} --socket=${stateDirectory}/tailscaled.sock --port=0 --tun=user
-    #   '';
-    # };
-    #
-    # systemd.services.tailscale-jellyfin-up = {
-    #   after = ["tailscale-jellyfin-up.service"];
-    #   wants = ["tailscaled.service"];
-    #   wantedBy = [ "multi-user.target" ];
-    #   serviceConfig = {
-    #     Type = "oneshot";
-    #   };
-    #   script = ''
-    #     ${pkgs.tailscale}/bin/tailscale --socket=${stateDirectory}/tailscaled.sock up --auth-key=$(cat ${config.age.secrets.servarrAuth.path}) --hostname=jellyfin --reset
-    #     ${pkgs.tailscale}/bin/tailscale --socket=${stateDirectory}/tailscaled.sock serve --bg localhost:8096
-    #   '';
-    # };
   };
 }

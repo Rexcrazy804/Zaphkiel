@@ -20,6 +20,12 @@ in {
     extraGroups = ["video" "input"];
   };
 
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
   programs.matugen = {
     enable = true;
     wallpaper = config.programs.booru-flake.images."2768802";

@@ -41,13 +41,6 @@ in {
     ];
   };
 
-  # enable gpg key service for rexies
-  services.pcscd.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
-
   # hjem
   hjem.users.${username} = {
     enable = true;

@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  inherit (lib) mkEnableOption mkOption types mkIf optional mkForce getExe;
+  inherit (lib) mkEnableOption mkOption types mkIf optional mkForce getExe mkAliasOptionModule;
   cfg = config.zaphkiel.services.tailscale;
   # adapted from https://github.com/piyoki/nixos-config/blob/master/system/networking/udp-gro-forwarding.nix
   udp-grp-script = pkgs.writeShellScript "udp-gro-forwarding" ''
@@ -12,6 +12,9 @@
     ${getExe pkgs.ethtool} -K ${cfg.exitNode.networkDevice} rx-udp-gro-forwarding on rx-gro-list off;
   '';
 in {
+  imports = [
+    (mkAliasOptionModule ["zaphkiel" "services" "tailscale" "authFile"] ["services" "tailscale" "authKeyFile"])
+  ];
   options.zaphkiel.services.tailscale = {
     enable = mkEnableOption "Enable Tailscale Service";
     exitNode = {

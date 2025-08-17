@@ -10,16 +10,19 @@
     ../../users/sivanis.nix
   ];
 
-  zaphkiel.data.headless = true;
-  zaphkiel.services = {
-    enable = true;
-    tailscale = {
+  zaphkiel = {
+    data.headless = true;
+    secrets.tailAuth.file = ../../secrets/secret8.age;
+    services = {
       enable = true;
-      exitNode.enable = true;
-      exitNode.networkDevice = "ens18";
+      tailscale = {
+        enable = true;
+        exitNode.enable = true;
+        exitNode.networkDevice = "ens18";
+      };
+      openssh.enable = true;
+      fail2ban.enable = false;
     };
-    openssh.enable = true;
-    fail2ban.enable = false;
   };
   time.timeZone = "Asia/Kolkata";
 
@@ -62,7 +65,6 @@
     ];
   };
 
-  age.secrets.tailAuth.file = ../../secrets/secret8.age;
   services.tailscale.authKeyFile = config.age.secrets.tailAuth.path;
 
   services.openssh = {

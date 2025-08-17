@@ -17,6 +17,7 @@ in {
   time.timeZone = "Asia/Dubai";
 
   zaphkiel = {
+    secrets.tailAuth.file = ../../secrets/secret9.age;
     graphics = {
       enable = true;
       intel.enable = true;
@@ -49,7 +50,6 @@ in {
   };
 
   # tailscale
-  age.secrets.tailAuth.file = ../../secrets/secret9.age;
   services.tailscale.authKeyFile = config.age.secrets.tailAuth.path;
 
   # forward dns onto the tailnet

@@ -13,6 +13,10 @@
   time.timeZone = "Asia/Dubai";
 
   zaphkiel = {
+    secrets = {
+      tailAuth.file = ../../secrets/secret5.age;
+      caddyEnv.file = ../../secrets/secret10.age;
+    };
     programs = {
       obs-studio.enable = false;
       steam.enable = false;
@@ -80,8 +84,6 @@
   };
 
   # tailscale
-  age.secrets.tailAuth.file = ../../secrets/secret5.age;
-  age.secrets.caddyEnv.file = ../../secrets/secret10.age;
   services.tailscale.authKeyFile = config.age.secrets.tailAuth.path;
 
   # generic

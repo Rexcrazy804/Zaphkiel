@@ -44,13 +44,11 @@ in {
       tailscale = {
         enable = true;
         exitNode.enable = false;
+        authFile = config.age.secrets.tailAuth.path;
       };
       openssh.enable = true;
     };
   };
-
-  # tailscale
-  services.tailscale.authKeyFile = config.age.secrets.tailAuth.path;
 
   # forward dns onto the tailnet
   networking.firewall.allowedTCPPorts = [53];

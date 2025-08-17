@@ -38,6 +38,7 @@
         enable = true;
         exitNode.enable = true;
         exitNode.networkDevice = "wlp1s0";
+        authFile = config.age.secrets.tailAuth.path;
       };
       openssh.enable = true;
       jellyfin.enable = true;
@@ -82,9 +83,6 @@
       "[::1]:53"
     ];
   };
-
-  # tailscale
-  services.tailscale.authKeyFile = config.age.secrets.tailAuth.path;
 
   # generic
   programs = {

@@ -19,6 +19,7 @@
         enable = true;
         exitNode.enable = true;
         exitNode.networkDevice = "ens18";
+        authFile = config.age.secrets.tailAuth.path;
       };
       openssh.enable = true;
       fail2ban.enable = false;
@@ -64,8 +65,6 @@
       "[::1]:53"
     ];
   };
-
-  services.tailscale.authKeyFile = config.age.secrets.tailAuth.path;
 
   services.openssh = {
     openFirewall = lib.mkForce false;

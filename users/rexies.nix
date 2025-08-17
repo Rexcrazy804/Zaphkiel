@@ -9,6 +9,11 @@
   description = "Rexiel Scarlet";
 in {
   zaphkiel.data.users = [username];
+  zaphkiel.secrets.rexiesPass = {
+    file = ../secrets/secret1.age;
+    owner = username;
+  };
+
   users.users.${username} = {
     inherit description;
 
@@ -34,12 +39,6 @@ in {
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICZvsZTvR5wQedjnuSoz9p7vK7vLxCdfOdRFmbfQ7GUd rexies@Seraphine"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH8XCGfozlovdRKSzI8mRL7Bkexk+GoK+WCTWxVmBmDA rexies@Persephone"
     ];
-  };
-
-  # define secrets
-  age.secrets.rexiesPass = {
-    file = ../secrets/secret1.age;
-    owner = username;
   };
 
   # enable gpg key service for rexies

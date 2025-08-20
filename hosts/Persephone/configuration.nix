@@ -83,12 +83,6 @@ in {
     tod.driver = pkgs.libfprint-2-tod1-elan;
   };
 
-  virtualisation.podman = {
-    enable = true;
-    defaultNetwork.settings.dns_enabled = true;
-  };
-  users.users.rexies.extraGroups = ["podman"];
-
   # disable network manager wait online service (+6 seconds to boot time!!!!)
   systemd.services.NetworkManager-wait-online.enable = false;
 

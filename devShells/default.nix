@@ -33,7 +33,7 @@ in
       # had to fix checking upstream (temp)
       # TODO use pkgs.mbake once changes are upstreamed (3 years?)
       inherit mbake;
-      # such a cutie
-      inherit (pkgs) gnumake;
+      # TODO remove gnumake once migration is complete
+      inherit (pkgs) gnumake just jq;
     };
   }

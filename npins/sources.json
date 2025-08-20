@@ -232,9 +232,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "7ccaf13bda2e1410c222015eaa7c0a86cca49f22",
-      "url": "https://github.com/NotAShelf/stash/archive/7ccaf13bda2e1410c222015eaa7c0a86cca49f22.tar.gz",
-      "hash": "sha256-svJkhZjj5ORS7eYvL43idZ6GSjLDxVtH6iQ0yGPiEeo="
+      "revision": "03550b884dc6b4ebd4cc6dd55267737d1cd17e6f",
+      "url": "https://github.com/NotAShelf/stash/archive/03550b884dc6b4ebd4cc6dd55267737d1cd17e6f.tar.gz",
+      "hash": "sha256-CjgxVFkejLwJ2HtAIkpZ0Xuspd0UbM2ZvEUOO9svFe8="
     },
     "zaphkiel": {
       "type": "Git",

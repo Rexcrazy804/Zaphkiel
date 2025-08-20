@@ -27,21 +27,34 @@ update +sources='':
 repl:
     nix repl --file .
 
-# symlink dots to .config
+# symlink dots to .config for rapid iteration
 [group("extra")]
-link:
-  #!/usr/bin/env bash
-  scriptdir=$(cd "$(dirname -- "$0")" ; pwd -P)
-  function symlink() {
-      if [[ -e "$2" && ! -L "$2" ]] ; then 
-          echo "$2 exists and is not a symlink. Ignoring it." >&2
-          return 1
-      fi
-      ln -sf "${scriptdir}/$1" "$2"
-  }
+link target:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    ROOT_DIR={{ justfile_directory() }}
+    DOTS_DIR=$ROOT_DIR/users/dots
+    NIX_FILE=$ROOT_DIR/users/rexies.nix
+    function symlink() {
+        if [[ -e "$2" && ! -L "$2" ]] ; then 
+            echo "$2 exists and is not a symlink. Ignoring it." >&2
+            return 1
+        fi
+        mkdir -p $(dirname $2)
+        ln -sfv "${DOTS_DIR}/$1" "$2"
+    }
+    TO_LINK=$(cat $NIX_FILE | 
+      awk '/\.\/dots\/{{ replace(target, '/', '\/') }}/ { 
+        gsub(/\.source|"/, "", $1); 
+        gsub(/\.\/dots\/|;/, "", $3); 
+        print $3","$1
+      }')
 
-  mkdir -p ~/.config
-  symlink git ~/.config/git
+    for LINK in $TO_LINK; do
+      CONFIG_FILE=${LINK##*,}
+      DOTS_FILE=${LINK%%,*}
+      symlink $DOTS_FILE ~/.config/$CONFIG_FILE
+    done;
 
 # build a package
 [group("nix")]

@@ -1,3 +1,13 @@
+# August 21, 2025
+# This file is largely replaced by the justfile
+# presently what's left to add in the justfile is as follows:
+# [ ] formatting and checks
+# [ ] time target
+# [ ] npin overriding
+# and others
+# [ ] figuring out getting just installed on the CI workflow
+# [ ] archiving or nuking the make file
+
 # DEFAULTS
 HOST = $(shell hostname)
 

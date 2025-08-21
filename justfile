@@ -27,35 +27,6 @@ update +sources='':
 repl:
     nix repl --file .
 
-# symlink dots to .config for rapid iteration
-[group("extra")]
-link target:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    ROOT_DIR={{ justfile_directory() }}
-    DOTS_DIR=$ROOT_DIR/users/dots
-    NIX_FILE=$ROOT_DIR/users/rexies.nix
-    function symlink() {
-        if [[ -e "$2" && ! -L "$2" ]] ; then 
-            echo "$2 exists and is not a symlink. Ignoring it." >&2
-            return 1
-        fi
-        mkdir -p $(dirname $2)
-        ln -sfv "${DOTS_DIR}/$1" "$2"
-    }
-    TO_LINK=$(cat $NIX_FILE | 
-      awk '/\.\/dots\/{{ replace(target, '/', '\/') }}/ { 
-        gsub(/\.source|"/, "", $1); 
-        gsub(/\.\/dots\/|;/, "", $3); 
-        print $3","$1
-      }')
-
-    for LINK in $TO_LINK; do
-      CONFIG_FILE=${LINK##*,}
-      DOTS_FILE=${LINK%%,*}
-      symlink $DOTS_FILE ~/.config/$CONFIG_FILE
-    done;
-
 # build a package
 [group("nix")]
 build package="default":

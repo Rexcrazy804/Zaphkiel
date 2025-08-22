@@ -48,6 +48,12 @@ in {
     directory = config.users.users.${username}.home;
     clobberFiles = lib.mkForce true;
 
+    impure = {
+      enable = true;
+      dotsDir = "${./dots}";
+      dotsDirImpure = "/home/rexies/nixos/users/dots";
+    };
+
     files.".face.icon".source = let
       image = config.programs.booru-flake.images."8726475";
     in
@@ -75,29 +81,30 @@ in {
         colors = builtins.readFile "${matugenTheme}/fuzzel-colors.ini";
       in
         base + colors;
+      dots = config.hjem.users.${username}.impure.dotsDir;
     in {
       # git
-      "git/config".source = ./dots/git/config;
+      "git/config".source = dots + "/git/config";
 
       # shell
       "fish/themes".source = sources.rosep-fish + "/themes";
-      "fish/config.fish".source = ./dots/fish/config.fish;
+      "fish/config.fish".source = dots + "/fish/config.fish";
       # bat
-      "bat/config".source = ./dots/bat/config;
+      "bat/config".source = dots + "/bat/config";
       # NOTE: required bat cache --build before theme can be used
       "bat/themes".source = sources.catp-bat + "/themes";
 
       # foot terminal
-      "foot/foot.ini".source = ./dots/foot/foot.ini;
+      "foot/foot.ini".source = dots + "/foot/foot.ini";
       "foot/rose-pine.ini".source = sources.rosep-foot + "/rose-pine";
 
       # hyprland
-      "uwsm/env".source = ./dots/uwsm/env;
-      "hypr/hypridle.conf".source = ./dots/hyprland/hypridle.conf;
-      "hypr/hyprland.conf".source = ./dots/hyprland/hyprland.conf;
+      "uwsm/env".source = dots + "/uwsm/env";
+      "hypr/hypridle.conf".source = dots + "/hyprland/hypridle.conf";
+      "hypr/hyprland.conf".source = dots + "/hyprland/hyprland.conf";
       "hypr/hyprcolors.conf".source = "${matugenTheme}/hyprcolors.conf";
-      "yazi/yazi.toml".source = ./dots/yazi/yazi.toml;
-      "yazi/keymap.toml".source = ./dots/yazi/keymap.toml;
+      "yazi/yazi.toml".source = dots + "/yazi/yazi.toml";
+      "yazi/keymap.toml".source = dots + "/yazi/keymap.toml";
       "yazi/theme.toml".source = "${matugenTheme}/yazi-theme.toml";
       "fuzzel/fuzzel.ini".text = fuzzel;
       "background".source = matugen.wallpaper;

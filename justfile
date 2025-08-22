@@ -51,5 +51,6 @@ develop shell="default":
 
 # rebuild nixos configuration
 [group("nixos")]
-rebuild cmd host=`hostname` +args='':
-    {{ REBUILD_CMD }} --log-format bar --no-reexec --file . -A nixosConfigurations.{{ host }} {{ cmd }} {{ args }}
+rebuild cmd='dry-build' host=`hostname` +args='':
+    {{ if cmd =~ '[sbt][woe][ios][t][h]?' { "sudo " } else { "" } }}\
+      {{ REBUILD_CMD }} --log-format bar --no-reexec --file . -A nixosConfigurations.{{ host }} {{ cmd }} {{ args }}

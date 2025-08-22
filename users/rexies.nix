@@ -70,6 +70,8 @@ in {
       enable = true;
       dotsDir = "${cleanDots}";
       dotsDirImpure = "/home/rexies/nixos/users/dots";
+      # skips parsing hjem.users.<>.files
+      linkFiles = [config.hjem.users.${username}.xdg.config.files];
     };
 
     files.".face.icon".source = let

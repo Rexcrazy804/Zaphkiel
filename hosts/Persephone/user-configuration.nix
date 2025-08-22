@@ -6,8 +6,8 @@
 }: let
   packages = lib.attrValues {
     # wine
-    inherit (pkgs.wineWowPackages) waylandFull;
-    inherit (pkgs) legendary-heroic bottles winetricks mono umu-launcher;
+    # inherit (pkgs.wineWowPackages) waylandFull;
+    # inherit (pkgs) legendary-heroic bottles winetricks mono umu-launcher;
     # terminal
     inherit (pkgs) foot cbonsai cowsay;
     # from internal overlay
@@ -59,6 +59,6 @@ in {
       };
     in
       lib.mkForce face;
-    "Pictures/booru".source = config.programs.booru-flake.imageFolder;
+    # "Pictures/booru".source = config.programs.booru-flake.imageFolder;
   };
 }

@@ -15,4 +15,6 @@ in {
       description = "list of users (duh)";
     };
   };
+
+  config.hjem.extraModules = [(sources.hjem-impure + "/hjem-impure.nix")];
 }

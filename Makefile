@@ -165,7 +165,7 @@ endif
 
 rebuild:
 	$(call ECHO_TARGET,$(REBLD_COMMENT),$(HOST))
-	@$(if $(SUDO),sudo) env $(BUILD_OVERRIDES) $(REBUILD) $(REBLD_COMMAND)
+	$(if $(SUDO),sudo) $(if $(BUILD_OVERRIDES),env $(BUILD_OVERRIDES)) $(REBUILD) $(REBLD_COMMAND)
 	@$(ECHO_DONE)
 
 repl:

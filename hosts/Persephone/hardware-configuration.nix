@@ -14,51 +14,62 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelParams = ["i915.enable_guc=3" "nmi_watchdog=0"];
-  boot.initrd.kernelModules = ["i915"];
   boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "ahci" "nvme" "usb_storage" "sd_mod" "sdhci_pci"];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/abd2092b-7116-4298-9036-fde2f97e501b";
-    fsType = "ext4";
-    options = ["discard"];
+    device = "/dev/disk/by-uuid/492f31cf-5db4-4965-95f7-e4d590aa0c29";
+    fsType = "btrfs";
+    options = ["subvol=root"];
+  };
+
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/492f31cf-5db4-4965-95f7-e4d590aa0c29";
+    fsType = "btrfs";
+    options = ["subvol=home" "compress=zstd"];
+  };
+
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/492f31cf-5db4-4965-95f7-e4d590aa0c29";
+    fsType = "btrfs";
+    options = ["subvol=nix" "compress=zstd"];
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/A428-7A6F";
+    device = "/dev/disk/by-uuid/7DFC-B6FB";
     fsType = "vfat";
     options = ["fmask=0077" "dmask=0077"];
   };
 
-  fileSystems."/run/media/rexies/Aphrodite" = {
-    device = "rexies@aphrodite.fell-rigel.ts.net:/home/rexies";
-    fsType = "sshfs";
-    options = [
-      "allow_other"
-      "_netdev"
-      "x-systemd.automount"
-      "reconnect"
-      "ServerAliveInterval=15"
-      "IdentityFile=${config.users.users.rexies.home}/.ssh/id_ed25519"
-    ];
-  };
-
-  fileSystems."/run/media/rexies/Seraphine" = {
-    device = "rexies@seraphine.fell-rigel.ts.net:/home/rexies";
-    fsType = "sshfs";
-    options = [
-      "allow_other"
-      "_netdev"
-      "x-systemd.automount"
-      "reconnect"
-      "ServerAliveInterval=15"
-      "IdentityFile=${config.users.users.rexies.home}/.ssh/id_ed25519"
-    ];
-  };
+  # fileSystems."/run/media/rexies/Aphrodite" = {
+  #   device = "rexies@aphrodite.fell-rigel.ts.net:/home/rexies";
+  #   fsType = "sshfs";
+  #   options = [
+  #     "allow_other"
+  #     "_netdev"
+  #     "x-systemd.automount"
+  #     "reconnect"
+  #     "ServerAliveInterval=15"
+  #     "IdentityFile=${config.users.users.rexies.home}/.ssh/id_ed25519"
+  #   ];
+  # };
+  #
+  # fileSystems."/run/media/rexies/Seraphine" = {
+  #   device = "rexies@seraphine.fell-rigel.ts.net:/home/rexies";
+  #   fsType = "sshfs";
+  #   options = [
+  #     "allow_other"
+  #     "_netdev"
+  #     "x-systemd.automount"
+  #     "reconnect"
+  #     "ServerAliveInterval=15"
+  #     "IdentityFile=${config.users.users.rexies.home}/.ssh/id_ed25519"
+  #   ];
+  # };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/1274095f-6ddd-47f8-b1b4-11b3b8182f24";}
+    {device = "/dev/disk/by-uuid/d329feee-a8a6-48f4-afb2-3375adff50a3";}
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

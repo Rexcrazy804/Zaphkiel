@@ -12,7 +12,7 @@ in {
     ./extras/privoxy.nix
   ];
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05"; # Did you read the comment?
   networking.hostName = "Persephone";
   time.timeZone = "Asia/Dubai";
 
@@ -24,7 +24,7 @@ in {
     };
 
     programs = {
-      lanzaboote.enable = true;
+      lanzaboote.enable = false;
       obs-studio.enable = false;
       steam.enable = false;
       hyprland.enable = true;
@@ -32,7 +32,7 @@ in {
       firefox.enable = true;
       kuruDM.enable = true;
       wine = {
-        enable = true;
+        enable = false;
         ntsync.enable = true;
         wayland.enable = true;
         ge-proton.enable = true;

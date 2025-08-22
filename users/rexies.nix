@@ -7,6 +7,24 @@
 }: let
   username = "rexies";
   description = "Rexiel Scarlet";
+  cleanDots = let
+    inherit (lib.fileset) unions toSource;
+    root = ./dots;
+  in
+    toSource {
+      inherit root;
+      fileset = unions [
+        (root + /git/config)
+        (root + /fish/config.fish)
+        (root + /bat/config)
+        (root + /foot/foot.ini)
+        (root + /uwsm/env)
+        (root + /hyprland/hypridle.conf)
+        (root + /hyprland/hyprland.conf)
+        (root + /yazi/yazi.toml)
+        (root + /yazi/keymap.toml)
+      ];
+    };
 in {
   zaphkiel.data.users = [username];
   zaphkiel.secrets.rexiesPass = {
@@ -50,7 +68,7 @@ in {
 
     impure = {
       enable = true;
-      dotsDir = "${./dots}";
+      dotsDir = "${cleanDots}";
       dotsDirImpure = "/home/rexies/nixos/users/dots";
     };
 

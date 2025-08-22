@@ -9,7 +9,7 @@ signingkey = ~/.ssh/signkey.pub
 format = ssh
 
 [commit]
-gpgsign = true
+#gpgsign = true
 
 [core]
 editor = nvim

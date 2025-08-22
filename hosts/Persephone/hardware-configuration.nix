@@ -42,31 +42,31 @@
     options = ["fmask=0077" "dmask=0077"];
   };
 
-  # fileSystems."/run/media/rexies/Aphrodite" = {
-  #   device = "rexies@aphrodite.fell-rigel.ts.net:/home/rexies";
-  #   fsType = "sshfs";
-  #   options = [
-  #     "allow_other"
-  #     "_netdev"
-  #     "x-systemd.automount"
-  #     "reconnect"
-  #     "ServerAliveInterval=15"
-  #     "IdentityFile=${config.users.users.rexies.home}/.ssh/id_ed25519"
-  #   ];
-  # };
-  #
-  # fileSystems."/run/media/rexies/Seraphine" = {
-  #   device = "rexies@seraphine.fell-rigel.ts.net:/home/rexies";
-  #   fsType = "sshfs";
-  #   options = [
-  #     "allow_other"
-  #     "_netdev"
-  #     "x-systemd.automount"
-  #     "reconnect"
-  #     "ServerAliveInterval=15"
-  #     "IdentityFile=${config.users.users.rexies.home}/.ssh/id_ed25519"
-  #   ];
-  # };
+  fileSystems."/run/media/rexies/Aphrodite" = {
+    device = "rexies@aphrodite.fell-rigel.ts.net:/home/rexies";
+    fsType = "sshfs";
+    options = [
+      "allow_other"
+      "_netdev"
+      "x-systemd.automount"
+      "reconnect"
+      "ServerAliveInterval=15"
+      "IdentityFile=${config.users.users.rexies.home}/.ssh/id_ed25519"
+    ];
+  };
+
+  fileSystems."/run/media/rexies/Seraphine" = {
+    device = "rexies@seraphine.fell-rigel.ts.net:/home/rexies";
+    fsType = "sshfs";
+    options = [
+      "allow_other"
+      "_netdev"
+      "x-systemd.automount"
+      "reconnect"
+      "ServerAliveInterval=15"
+      "IdentityFile=${config.users.users.rexies.home}/.ssh/id_ed25519"
+    ];
+  };
 
   swapDevices = [
     {device = "/dev/disk/by-uuid/d329feee-a8a6-48f4-afb2-3375adff50a3";}

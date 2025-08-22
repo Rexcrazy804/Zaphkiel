@@ -21,7 +21,7 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/492f31cf-5db4-4965-95f7-e4d590aa0c29";
     fsType = "btrfs";
-    options = ["subvol=root"];
+    options = ["subvol=root" "compress=zstd"];
   };
 
   fileSystems."/home" = {
@@ -33,7 +33,7 @@
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/492f31cf-5db4-4965-95f7-e4d590aa0c29";
     fsType = "btrfs";
-    options = ["subvol=nix" "compress=zstd"];
+    options = ["subvol=nix" "compress=zstd" "noatime"];
   };
 
   fileSystems."/boot" = {

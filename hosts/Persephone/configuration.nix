@@ -72,6 +72,21 @@ in {
 
   hardware.bluetooth.powerOnBoot = mkForce false;
 
+  # btrfs
+  services.btrfs.autoScrub = {
+    enable = true;
+    interval = "monthly";
+    fileSystems = ["/"];
+  };
+  services.beesd.filesystems = {
+    root = {
+      spec = "UUID=492f31cf-5db4-4965-95f7-e4d590aa0c29";
+      hashTableSizeMB = 128;
+      verbosity = "crit";
+      extraOptions = ["--loadavg-target" "5.0"];
+    };
+  };
+
   # finger print
   systemd.services.fprintd = {
     wantedBy = ["multi-user.target"];

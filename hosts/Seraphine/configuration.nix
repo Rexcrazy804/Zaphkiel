@@ -7,6 +7,7 @@
   imports = [
     ./hardware-configuration.nix
     ./user-configuration.nix
+    ./extras/printing.nix
   ];
 
   networking.hostName = "Seraphine";

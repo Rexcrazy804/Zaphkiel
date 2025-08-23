@@ -15,7 +15,7 @@ in {
   config = mkIf (config.zaphkiel.services.jellyfin.enable && config.zaphkiel.services.enable) {
     services.jellyfin = {
       enable = true;
-      openFirewall = false;
+      openFirewall = true;
     };
 
     services.transmission = {

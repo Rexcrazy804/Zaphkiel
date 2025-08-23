@@ -14,9 +14,6 @@
       xkb.variant = "";
     };
 
-    # cups [printers]
-    services.printing.enable = false;
-
     # extra firmware
     hardware.enableAllFirmware = true;
     hardware.steam-hardware.enable = true;

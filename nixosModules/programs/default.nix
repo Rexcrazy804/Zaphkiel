@@ -2,9 +2,9 @@
   imports = [
     # unimported
     # ./gdm.nix
-    ./aagl.nix
 
     # internal
+    ./aagl.nix
     ./steam.nix
     ./wine.nix
     ./age.nix
@@ -14,6 +14,7 @@
     ./firefox.nix
     ./hyprland.nix
     ./kuruDM.nix
+    ./privoxy.nix
 
     # external
     ./booru-flake

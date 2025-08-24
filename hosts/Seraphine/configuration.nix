@@ -10,6 +10,7 @@
     ./extras/printing.nix
   ];
 
+  system.stateVersion = "24.05";
   networking.hostName = "Seraphine";
   time.timeZone = "Asia/Dubai";
 
@@ -107,8 +108,6 @@
   boot.extraModprobeConfig = lib.concatStringsSep "\n" [
     "options iwlwifi 11n_disable=1"
   ];
-
-  system.stateVersion = "24.05";
 
   # temporarily setting it for Seraphine only
   networking.networkmanager.wifi.backend = "iwd";

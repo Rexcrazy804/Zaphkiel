@@ -25,6 +25,10 @@
       hyprland.enable = true;
       keyd.enable = true;
       firefox.enable = true;
+      privoxy = {
+        enable = true;
+        forwards = [{domains = [".donmai.us" ".yande.re" "www.zerochan.net"];}];
+      };
     };
     graphics = {
       enable = true;

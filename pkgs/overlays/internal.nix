@@ -3,7 +3,9 @@ final: prev: let
   inherit (final) callPackage;
 in {
   # purely internal
-  discord = prev.vesktop;
+  discord = prev.discord.override {
+    withMoonlight = true;
+  };
   gnomon = callPackage ../gnomon.nix {};
 
   # kuru

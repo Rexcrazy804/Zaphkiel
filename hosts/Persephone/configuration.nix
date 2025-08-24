@@ -23,7 +23,7 @@ in {
     };
 
     programs = {
-      lanzaboote.enable = false;
+      lanzaboote.enable = true;
       obs-studio.enable = false;
       steam.enable = false;
       hyprland.enable = true;

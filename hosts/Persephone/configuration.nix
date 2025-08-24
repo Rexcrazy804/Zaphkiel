@@ -9,7 +9,6 @@ in {
   imports = [
     ./hardware-configuration.nix
     ./user-configuration.nix
-    ./extra/owaclevm.nix
   ];
 
   system.stateVersion = "25.05"; # Did you read the comment?

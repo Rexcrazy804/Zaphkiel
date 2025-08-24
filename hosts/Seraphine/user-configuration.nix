@@ -18,7 +18,7 @@
   packages = lib.attrValues {
     inherit (pkgs) foot cowsay;
     # from internal overlay
-    inherit (pkgs) discord mpv-wrapped;
+    inherit (pkgs) mpv-wrapped;
   };
 in {
   imports = [./extras/filebrowser.nix];

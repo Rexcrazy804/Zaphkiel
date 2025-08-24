@@ -9,7 +9,6 @@ in {
   imports = [
     ./hardware-configuration.nix
     ./user-configuration.nix
-    ./extras/privoxy.nix
   ];
 
   system.stateVersion = "25.05"; # Did you read the comment?
@@ -36,6 +35,13 @@ in {
         ntsync.enable = true;
         wayland.enable = true;
         ge-proton.enable = true;
+      };
+      privoxy = {
+        enable = true;
+        forwards = [
+          # I shouldn't be exposing myself like this
+          {domains = ["www.privoxy.org" ".donmai.us" "nyaa.si" "rule34.xxx" ".yande.re" "www.zerochan.net" ".kemono.su" "hanime.tv"];}
+        ];
       };
     };
 

@@ -23,6 +23,7 @@
       steam.enable = false;
       hyprland.enable = true;
       keyd.enable = true;
+      firefox.enable = true;
     };
     graphics = {
       enable = true;
@@ -108,15 +109,6 @@
   ];
 
   system.stateVersion = "24.05";
-
-  # maybe move this into its own module idk
-  environment.systemPackages = [pkgs.firefoxpwa];
-  programs.firefox = {
-    enable = true;
-    nativeMessagingHosts.packages = [
-      pkgs.firefoxpwa
-    ];
-  };
 
   # temporarily setting it for Seraphine only
   networking.networkmanager.wifi.backend = "iwd";

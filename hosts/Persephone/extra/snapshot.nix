@@ -4,7 +4,7 @@
     ${pkgs.btrfs-progs}/bin/btrfs subvolume snapshot -r ~/Documents ~/.snapshots/Documents_$(date +%b%d)
   '';
 in {
-  systemd.user.tmpfiles.users."rexies".rules = ["d %h/.snapshots - - - 2d -"];
+  systemd.user.tmpfiles.users."rexies".rules = ["d '%h/.snapshots' - - - 2d -"];
   systemd.user.timers."snapshot-Documents@rexies" = {
     description = "Timer to start document backup for rexies";
     enable = true;

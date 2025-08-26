@@ -2,9 +2,7 @@
 # why? I wasted 3 weeks figuring this out, you are welcome :>
 # see the Makefile for more commands
 {
-  sources ? builtins.trace "Zaphkiel: USE `sources` INSTEAD OF `sources'`" {},
-  # TODO remove the warning after 3 weeks
-  # 2nd August, 2025
+  sources ? {},
   sources' ? (import ./npins) // sources,
   nixpkgs ? sources'.nixpkgs,
   allowUnfree ? true,

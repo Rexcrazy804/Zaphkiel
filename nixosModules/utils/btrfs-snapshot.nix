@@ -6,18 +6,15 @@
   ...
 }: let
   inherit (lib) mkOption mkIf literalExpression mkMerge;
-  inherit (lib) map genAttrs pipe filter;
+  inherit (lib) map genAttrs pipe filter flatten;
+  inherit (lib.attrsets) mapAttrs attrValues;
   inherit (lib.strings) replaceString;
-  inherit (lib.types) listOf submodule str strMatching enum;
+  inherit (lib.types) listOf submodule str strMatching attrsOf;
 
   cfg = config.zaphkiel.utils.btrfs-snapshots;
 
   snapshotAttr = submodule {
     options = {
-      user = mkOption {
-        type = enum config.zaphkiel.data.users;
-        example = "myuser";
-      };
       subvolume = mkOption {
         type = str;
         example = "subvolume/path/from/home";
@@ -82,14 +79,25 @@
     cfg;
 in {
   options.zaphkiel.utils.btrfs-snapshots = mkOption {
-    type = listOf snapshotAttr;
-    default = [];
+    type = attrsOf (listOf snapshotAttr);
+    default = {};
     description = "a list describing files to back up";
     example = literalExpression ''
-      snapshots = [
-        {user = "rexies"; subvolume = "subVolume/path/from/home"; calendar = "*-*-* 12:00:00"; timeToLive = "7d";}
-      ];
+      {
+        rexies = [
+          {subvolume = "subVolume/path/from/home"; calendar = "*-*-* 12:00:00"; expiry = "7d";}
+        ];
+        quinz = [
+          {subvolume = "muhVol"; calendar = "daily"; expiry = "4d";}
+        ];
+      }
     '';
+    apply = opt:
+      pipe opt [
+        (mapAttrs (user: attrList: map (attr: attr // {inherit user;}) attrList))
+        attrValues
+        flatten
+      ];
   };
 
   config = mkIf (cfg != []) {

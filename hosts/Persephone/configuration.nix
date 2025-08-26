@@ -60,7 +60,7 @@ in {
       {
         subvolume = "Documents";
         calendar = "daily";
-        expiry = "2d";
+        expiry = "5d";
       }
       {
         subvolume = "Music";

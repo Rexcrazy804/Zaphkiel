@@ -89,9 +89,6 @@ in {
       };
     };
 
-    # Pokit agent
-    security.soteria.enable = true;
-
     # for whatever reason swappy likes to open images
     # don't let that fucker open images
     xdg.mime.defaultApplications = {

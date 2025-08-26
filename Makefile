@@ -7,6 +7,9 @@
 # and others
 # [ ] figuring out getting just installed on the CI workflow
 # [ ] archiving or nuking the make file
+# August 26, 2025
+# justfile removed from repo till I sort the todolist out
+# you can find it in the npins-template repo
 
 # DEFAULTS
 HOST = $(shell hostname)

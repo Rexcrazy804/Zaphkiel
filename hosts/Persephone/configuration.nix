@@ -9,7 +9,6 @@ in {
   imports = [
     ./hardware-configuration.nix
     ./user-configuration.nix
-    ./extra/snapshot.nix
   ];
 
   system.stateVersion = "25.05"; # Did you read the comment?
@@ -18,6 +17,7 @@ in {
 
   zaphkiel = {
     secrets.tailAuth.file = ../../secrets/secret9.age;
+
     graphics = {
       enable = true;
       intel.enable = true;
@@ -55,6 +55,15 @@ in {
       };
       openssh.enable = true;
     };
+
+    utils.btrfs-snapshots = [
+      {
+        user = "rexies";
+        subvolume = "Documents";
+        calendar = "daily";
+        expiry = "2d";
+      }
+    ];
   };
 
   # forward dns onto the tailnet

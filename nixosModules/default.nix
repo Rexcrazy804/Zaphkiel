@@ -7,6 +7,7 @@ in {
     ./graphics
     ./programs
     ./server
+    ./utils
 
     ./exported/kurukuruDM.nix
     ./external/matugen

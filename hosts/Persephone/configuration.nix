@@ -63,6 +63,18 @@ in {
         calendar = "daily";
         expiry = "2d";
       }
+      {
+        user = "rexies";
+        subvolume = "Music";
+        calendar = "weekly";
+        expiry = "3w";
+      }
+      {
+        user = "rexies";
+        subvolume = "Pictures";
+        calendar = "weekly";
+        expiry = "3w";
+      }
     ];
   };
 

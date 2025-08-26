@@ -56,21 +56,18 @@ in {
       openssh.enable = true;
     };
 
-    utils.btrfs-snapshots = [
+    utils.btrfs-snapshots.rexies = [
       {
-        user = "rexies";
         subvolume = "Documents";
         calendar = "daily";
         expiry = "2d";
       }
       {
-        user = "rexies";
         subvolume = "Music";
         calendar = "weekly";
         expiry = "3w";
       }
       {
-        user = "rexies";
         subvolume = "Pictures";
         calendar = "weekly";
         expiry = "3w";

@@ -100,5 +100,8 @@ in {
     };
 
     services.gnome.gnome-keyring.enable = true;
+
+    # required for mounting mobile phones
+    services.gvfs.enable = true;
   };
 }

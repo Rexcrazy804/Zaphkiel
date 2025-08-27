@@ -7,10 +7,11 @@
   ...
 }: let
   inherit (lib) mkOption;
+  inherit (lib.modules) importApply;
   inherit (lib.types) listOf str;
 in {
   imports = [
-    (lib.modules.importApply (sources.hjem + "/modules/nixos") {
+    (importApply (sources.hjem + "/modules/nixos") {
       inherit pkgs config lib options;
       hjem-lib = import (sources.hjem + "/lib.nix") {inherit lib pkgs;};
     })

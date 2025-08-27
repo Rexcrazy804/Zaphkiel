@@ -88,9 +88,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "46c06ba2fc5f14772a3f64a6e6e4adbff17b1d9f",
-      "url": "https://github.com/feel-co/hjem/archive/46c06ba2fc5f14772a3f64a6e6e4adbff17b1d9f.tar.gz",
-      "hash": "sha256-27YOZ6P8jRjeGydOK/EX/3e4d95eFouSpBSsS08Nryw="
+      "revision": "2426d6ad20e767895e936ed0c9563cc4e2b6c96f",
+      "url": "https://github.com/feel-co/hjem/archive/2426d6ad20e767895e936ed0c9563cc4e2b6c96f.tar.gz",
+      "hash": "sha256-WJ70Dv+tJjIl7mMOqUgcdcz+RrujDRoeKptiU6oh1lI="
     },
     "hjem-impure": {
       "type": "Git",
@@ -101,9 +101,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "deb108d9e8e86cf21cf45c60fddf2ea6239e531d",
-      "url": "https://github.com/Rexcrazy804/hjem-impure/archive/deb108d9e8e86cf21cf45c60fddf2ea6239e531d.tar.gz",
-      "hash": "sha256-XvsDMpACcSBXx2cZhO4sjPJ8/geDr5H/53AwEhHcnb0="
+      "revision": "8008b39dfbcc747e609fe806d2ead82513867266",
+      "url": "https://github.com/Rexcrazy804/hjem-impure/archive/8008b39dfbcc747e609fe806d2ead82513867266.tar.gz",
+      "hash": "sha256-St8r9HmrMW0lXUHRgGeskwOyhI8thWxarW0YI+eFPxU="
     },
     "lanzaboote": {
       "type": "GitRelease",

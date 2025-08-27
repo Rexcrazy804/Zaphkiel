@@ -1,12 +1,20 @@
 {
   lib,
+  pkgs,
+  config,
+  options,
   sources,
   ...
 }: let
   inherit (lib) mkOption;
   inherit (lib.types) listOf str;
 in {
-  imports = [(sources.hjem + "/modules/nixos")];
+  imports = [
+    (lib.modules.importApply (sources.hjem + "/modules/nixos") {
+      inherit pkgs config lib options;
+      hjem-lib = import (sources.hjem + "/lib.nix") {inherit lib pkgs;};
+    })
+  ];
 
   options = {
     zaphkiel.data.users = mkOption {

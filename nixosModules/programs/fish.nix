@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   config,
   ...
@@ -133,20 +134,19 @@ in {
     '';
   };
 
-  programs.zoxide = {
-    enable = true;
-    enableFishIntegration = true;
-    flags = ["--cmd cd"];
+  programs = {
+    zoxide = {
+      enable = true;
+      enableFishIntegration = true;
+      flags = ["--cmd cd"];
+    };
+    direnv.enableFishIntegration = true;
+    command-not-found.enable = false;
+    fzf.keybindings = true;
   };
-  programs.direnv.enableFishIntegration = true;
-  programs.command-not-found.enable = false;
-  programs.fzf.keybindings = true;
 
-  environment.systemPackages = [
-    pkgs.fishPlugins.done
-    pkgs.fishPlugins.sponge
-    pkgs.fishPlugins.hydro
-    pkgs.eza
-    pkgs.fish-lsp
-  ];
+  environment.systemPackages = lib.attrValues {
+    inherit (pkgs.fishPlugins) done sponge hydro;
+    inherit (pkgs) eza fish-lsp;
+  };
 }

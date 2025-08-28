@@ -38,9 +38,9 @@
 
 ### What I do not like to see
 
-- [ ] generalize lockscreen and loginscreen
-- [ ] app launcher
+- [ ] use signals for state (Globals Rewrite)
 - [ ] Lazy Loading
+- [ ] generalize lockscreen and loginscreen
 - [ ] use font.family for specifying fonts
 - [ ] adjust anchor magins in homeView
 - [ ] revamp notification popups / osd
@@ -54,6 +54,7 @@
 
 ### Dumpster
 
+- [ ] app launcher
 - [ ] kdeConnect Integration
 - [ ] workspace previews in systemView on Hover
 - [ ] improved time based greeting in GreeterWidget

@@ -128,4 +128,11 @@ in {
   # idk the service didn't show up and now it does too lazy to rebuild and test
   # if it was a delusion. If it works don't break it, amiright
   systemd.user.services.sunshine.wantedBy = mkForce (optional config.services.sunshine.autoStart "graphical-session.target");
+
+  security.tpm2 = {
+    enable = true;
+    pkcs11.enable = true;
+    tctiEnvironment.enable = true;
+  };
+  users.users.rexies.extraGroups = ["tss"];
 }

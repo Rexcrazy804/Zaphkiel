@@ -125,6 +125,11 @@ in {
           echo (path dirname $package_path | path dirname)
         end
       end
+
+      # stay away from this function or I will show up under your bed :kokoknife:
+      function dekokomi
+        systemd-creds --user decrypt ~/Documents/Mine/kokomi.cred | grep $argv
+      end
     '';
   };
 

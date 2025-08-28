@@ -20,9 +20,17 @@ Item {
       RowLayout {
         id: tabLay
 
-        property int activeIndex: Dat.Globals.settingsTabIndex
+        property int activeIndex: 0
 
         anchors.fill: parent
+
+        Connections {
+          function onSetSettingIdx(x: int) {
+            tabLay.activeIndex = x;
+          }
+
+          target: Dat.Globals
+        }
 
         Repeater {
           model: ["Power", "Audio", "Kuru"]
@@ -111,7 +119,7 @@ Item {
                 // TODO hover animation
                 // onContainsMouseChanged: parent.opacity += (containsMouse)? 0.2 : -0.2
                 onClicked: mevent => {
-                  Dat.Globals.settingsTabIndex = tabRect.index;
+                  Dat.Globals.setSettingIdx(tabRect.index);
                 }
               }
             }

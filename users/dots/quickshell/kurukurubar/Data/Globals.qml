@@ -23,12 +23,6 @@ Singleton {
   // one of "HIDDEN", "POPUP", "INBOX"
   property string notifState: "HIDDEN"
 
-  // SettingsView State
-  // 0 => Power
-  // 1 => Audio
-  // 2 => Network
-  property int settingsTabIndex: 0
-
   // Central Panel SwipeView stuff
   // 0 => Home
   // 1 => Calendar
@@ -36,6 +30,12 @@ Singleton {
   // 3 => Mpris
   // 4 => SettingsView
   property int swipeIndex: 0
+
+  // SettingsView State
+  // 0 => Power
+  // 1 => Audio
+  // 2 => Network
+  signal setSettingIdx(int index)
 
   // fixes issue where bar starts collapsed when reserved shell is turned on
   // thanks syncqtc for noticing it :>

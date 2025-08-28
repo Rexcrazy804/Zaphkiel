@@ -91,16 +91,26 @@ Rectangle {
   Gen.MouseArea {
     id: mArea
 
+    property int settingsIndex
+
     layerColor: Dat.Colors.on_primary
 
     onClicked: {
-      if (Dat.Globals.notchState == "FULLY_EXPANDED" && Dat.Globals.swipeIndex == 4 && Dat.Globals.settingsTabIndex == 0) {
+      if (Dat.Globals.notchState == "FULLY_EXPANDED" && Dat.Globals.swipeIndex == 4 && settingsIndex == 0) {
         Dat.Globals.notchState = "EXPANDED";
       } else {
         Dat.Globals.notchState = "FULLY_EXPANDED";
         Dat.Globals.swipeIndex = 4;
-        Dat.Globals.settingsTabIndex = 0;
+        Dat.Globals.setSettingIdx(0);
       }
+    }
+
+    Connections {
+      function onSetSettingIdx(index: int) {
+        mArea.settingsIndex = index;
+      }
+
+      target: Dat.Globals
     }
   }
 }

@@ -63,10 +63,19 @@ Singleton {
   }
 
   Timer {
+    id: resReloadTimer
+
+    property int settingsIndex: 0
+
     interval: 1000
     repeat: true
-    running: Dat.Globals.notchState == "FULLY_EXPANDED" && Dat.Globals.swipeIndex == 4 && Dat.Globals.settingsTabIndex == 0
+    running: Dat.Globals.notchState == "FULLY_EXPANDED" && Dat.Globals.swipeIndex == 4 && settingsIndex == 0
 
+    Component.onCompleted: {
+      Dat.Globals.onSetSettingIdx.connect(index => {
+        resReloadTimer.settingsIndex = index;
+      });
+    }
     onTriggered: {
       cpuInfo.reload();
       memInfo.reload();

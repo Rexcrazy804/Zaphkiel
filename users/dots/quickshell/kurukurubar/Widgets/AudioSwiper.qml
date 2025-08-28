@@ -8,6 +8,8 @@ import qs.Generics as Gen
 Rectangle {
   id: audRect
 
+  property int settingsIndex
+
   Layout.minimumWidth: swiper.currentItem?.contentWidth + 20
   clip: true
   color: Dat.Colors.primary_container
@@ -17,6 +19,14 @@ Rectangle {
       duration: 150
       easing.type: Easing.Linear
     }
+  }
+
+  Connections {
+    function onSetSettingIdx(index: int) {
+      audRect.settingsIndex = index;
+    }
+
+    target: Dat.Globals
   }
 
   SwipeView {
@@ -46,12 +56,12 @@ Rectangle {
             Dat.Audio.toggleMute(Dat.Audio.sink);
             break;
           case Qt.LeftButton:
-            if (Dat.Globals.notchState == "FULLY_EXPANDED" && Dat.Globals.swipeIndex == 4 && Dat.Globals.settingsTabIndex == 1) {
+            if (Dat.Globals.notchState == "FULLY_EXPANDED" && Dat.Globals.swipeIndex == 4 && audRect.settingsIndex == 1) {
               Dat.Globals.notchState = "EXPANDED";
             } else {
               Dat.Globals.notchState = "FULLY_EXPANDED";
               Dat.Globals.swipeIndex = 4;
-              Dat.Globals.settingsTabIndex = 1;
+              Dat.Globals.setSettingIdx(1);
             }
             break;
           }
@@ -81,12 +91,12 @@ Rectangle {
             Dat.Audio.toggleMute(Dat.Audio.source);
             break;
           case Qt.LeftButton:
-            if (Dat.Globals.notchState == "FULLY_EXPANDED" && Dat.Globals.swipeIndex == 4 && Dat.Globals.settingsTabIndex == 1) {
+            if (Dat.Globals.notchState == "FULLY_EXPANDED" && Dat.Globals.swipeIndex == 4 && audRect.settingsIndex == 1) {
               Dat.Globals.notchState = "EXPANDED";
             } else {
               Dat.Globals.notchState = "FULLY_EXPANDED";
               Dat.Globals.swipeIndex = 4;
-              Dat.Globals.settingsTabIndex = 1;
+              Dat.Globals.setSettingIdx(1);
             }
             break;
           }

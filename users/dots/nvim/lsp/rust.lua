@@ -28,6 +28,7 @@ local function is_library(fname)
   end
 end
 
+---@type vim.lsp.Config
 return {
   cmd = { "rust-analyzer" },
   filetypes = { "rust" },

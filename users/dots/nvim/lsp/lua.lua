@@ -12,6 +12,7 @@ if vim.fn.getcwd():find("nixos") then library[#library + 1] = vim.env.VIMRUNTIME
 local catsLibs = os.getenv("LUACATS_LIB") or ""
 for lib in catsLibs:gmatch("([^:]+)") do library[#library + 1] = lib end
 
+---@type vim.lsp.Config
 return {
   cmd = { "lua-language-server" },
   filetypes = { "lua" },

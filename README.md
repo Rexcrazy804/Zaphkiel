@@ -3,6 +3,7 @@
 https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 
 - Wallpaper: [The Herta by meirong](https://www.pixiv.net/artworks/126270092)
+- [Installation Guide](users/dots/quickshell/kurukurubar/README.md)
 
 ## Overview
 

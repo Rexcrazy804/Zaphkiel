@@ -5,6 +5,7 @@
   ...
 }: let
   inherit (config.networking) hostName;
+  inherit (lib) pipe attrValues concatStringsSep map;
   rebuildCommand = "sudo nixos-rebuild --log-format bar --no-reexec --file ~/nixos -A nixosConfigurations.${hostName}";
   #         !!!you found the fish!!!
   #   ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠖⠒⠲⠤⣤⣀⠀⠀⠀⢀⣀⣤⠤⠖⠒⠢⢤⡀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -91,7 +92,10 @@ in {
 
     interactiveShellInit = let
       rosepine-fzf = ["fg:#908caa" "bg:-1" "hl:#ebbcba" "fg+:#e0def4" "bg+:#26233a" "hl+:#ebbcba" "border:#403d52" "header:#31748f" "gutter:#191724" "spinner:#f6c177" "info:#9ccfd8" "pointer:#c4a7e7" "marker:#eb6f92" "prompt:#908caa"];
-      fzf-options = builtins.concatStringsSep " " (builtins.map (option: "--color=" + option) rosepine-fzf);
+      fzf-options = pipe rosepine-fzf [
+        (map (option: "--color=" + option))
+        (concatStringsSep " ")
+      ];
     in ''
       set sponge_purge_only_on_exit true
       set fish_greeting
@@ -145,7 +149,7 @@ in {
     fzf.keybindings = true;
   };
 
-  environment.systemPackages = lib.attrValues {
+  environment.systemPackages = attrValues {
     inherit (pkgs.fishPlugins) done sponge hydro;
     inherit (pkgs) eza fish-lsp;
   };

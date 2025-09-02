@@ -7,7 +7,7 @@ import Quickshell.Io
 Singleton {
   id: root
 
-  property bool idleInhibited: false
+  property alias idleInhibited: persist.enabled
 
   function poweroff() {
     Quickshell.execDetached(["poweroff"]);
@@ -31,14 +31,16 @@ Singleton {
     root.idleInhibited = !root.idleInhibited;
   }
 
-  Process {
-    command: ["systemctl", "--user", "is-active", "hypridle.service"]
-    running: true
+  PersistentProperties {
+    id: persist
 
-    stdout: SplitParser {
-      onRead: data => {
-        root.idleInhibited = !(data == "active");
-      }
-    }
+    property bool enabled: false
+
+    reloadableId: "idleInhibitor"
+  }
+
+  Process {
+    command: ["systemd-inhibit", "--what=idle", "--who=kurukurubar", "--why=Manually Blocked Idle", "--mode=block", "sleep", "inf"]
+    running: root.idleInhibited
   }
 }

@@ -26,7 +26,7 @@
     forAllSystems = fn:
       nixpkgs.lib.genAttrs (import inputs.systems) (
         system:
-          fn (import nixpkgs {inherit system;})
+          fn nixpkgs.legacyPackages.${system}
       );
 
     zaphkiel = system:

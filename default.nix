@@ -56,6 +56,7 @@ in {
     scripts = callPackage ./pkgs/scripts {};
     anime-launchers = callPackage ./pkgs/anime-launchers {};
     xvim = callPackage ./pkgs/nvim {};
+    booru-images = callPackage ./pkgs/booru-images.nix {};
 
     # lib
     kokoLib = callPackage ./pkgs/kokoLib {};

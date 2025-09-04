@@ -6,8 +6,8 @@
 }: let
   packages = lib.attrValues {
     # wine
-    # inherit (pkgs.wineWowPackages) waylandFull;
-    # inherit (pkgs) legendary-heroic bottles winetricks mono umu-launcher;
+    inherit (pkgs.wineWowPackages) waylandFull;
+    inherit (pkgs) legendary-heroic bottles winetricks mono umu-launcher;
     # terminal
     inherit (pkgs) foot remmina cowsay;
     # from internal overlay

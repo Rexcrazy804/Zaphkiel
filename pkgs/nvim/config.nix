@@ -33,6 +33,7 @@ wrapper {
         (pkgs.vimPlugins)
         catppuccin-nvim
         rose-pine
+        nightfox-nvim
         neo-tree-nvim
         which-key-nvim
         toggleterm-nvim

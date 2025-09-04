@@ -1,4 +1,4 @@
-require("lz.n").load {
+return {
   "blink.cmp",
   event = "InsertEnter",
   after = function()

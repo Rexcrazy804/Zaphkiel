@@ -1,4 +1,4 @@
-require("lz.n").load {
+return {
   {
     "neo-tree.nvim",
     keys = { { "<C-n>", "<CMD>Neotree toggle<CR>", desc = "NeoTree toggle" } },

@@ -1,4 +1,4 @@
-require("lz.n").load {
+return {
   "nvim-dbee",
   command = "Dbee",
   after = function()

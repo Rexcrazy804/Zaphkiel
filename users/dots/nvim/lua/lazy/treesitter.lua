@@ -1,4 +1,4 @@
-require("lz.n").load {
+return {
   "nvim-treesitter",
   event = "FileType",
   after = function()

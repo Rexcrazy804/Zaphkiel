@@ -6,6 +6,8 @@ wrapper {
   neovim = pkgs.neovim-unwrapped;
   initLua = ''
     require("plugins")
+    require("lz.n").load("lazy")
+    vim.cmd.colorscheme "rose-pine"
   '';
 
   extraBinPath = [

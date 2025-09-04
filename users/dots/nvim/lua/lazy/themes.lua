@@ -1,4 +1,4 @@
-require("lz.n").load {
+return {
   {
     "catppuccin-nvim",
     colorscheme = {
@@ -127,6 +127,3 @@ require("lz.n").load {
     end
   }
 }
-
--- set the color scheme
-vim.cmd.colorscheme "rose-pine"

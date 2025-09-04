@@ -1,4 +1,4 @@
-require("lz.n").load {
+return {
   "telescope.nvim",
   keys = {
     { "<leader>ff", "<CMD>Telescope find_files<CR>", desc = "Find Files" },

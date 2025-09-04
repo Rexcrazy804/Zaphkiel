@@ -32,7 +32,7 @@ in {
       firefox.enable = true;
       kuruDM.enable = true;
       wine = {
-        enable = false;
+        enable = true;
         ntsync.enable = true;
         wayland.enable = true;
         ge-proton.enable = true;

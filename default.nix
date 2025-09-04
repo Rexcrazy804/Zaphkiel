@@ -66,8 +66,8 @@ in {
     mbake = pkgs.mbake.overrideAttrs (_prev: {src = sources.bake;});
     # JUST SO YOU KNOW `nivxvim` WAS JUST WHAT I USED TO CALL MY nvim alright
     # I had ditched the nixvim project long long long ago but the name just stuck
-    nixvim-minimal = warn "please use xvim.minimal instead" self.packages.xvim.minimal;
-    nixvim = warn "please use xvim.default instead" self.packages.xvim.default;
+    nixvim-minimal = warn "Zahpkiel: `nixvim-minimal` depricated, please use `xvim.minimal` instead" self.packages.xvim.minimal;
+    nixvim = warn "Zahpkiel: `nixvim` depricated please use xvim.default instead" self.packages.xvim.default;
   };
 
   nixosModules = {

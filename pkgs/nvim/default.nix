@@ -22,4 +22,11 @@ lib.makeScope newScope (self: {
         pkgs.alejandra
       ];
   });
+  vivi = self.default.override (prev: {
+    initLua =
+      prev.initLua
+      + ''
+        vim.cmd.colorscheme "nightfox"
+      '';
+  });
 })

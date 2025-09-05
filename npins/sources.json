@@ -36,9 +36,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "12143a244e0d6393bd9d26ba4356780d531255f8",
-      "url": "https://github.com/EbodShojaei/bake/archive/12143a244e0d6393bd9d26ba4356780d531255f8.tar.gz",
-      "hash": "sha256-HbBibwrd73GA0Z3xiYJAu1te7BADqsSkk0d99bMrwPw="
+      "revision": "8891b7429f61c6482a8947e389de3811fd37c2fa",
+      "url": "https://github.com/EbodShojaei/bake/archive/8891b7429f61c6482a8947e389de3811fd37c2fa.tar.gz",
+      "hash": "sha256-L3Gpl3olNAux3IzQT7VlKLALpepJPMO5XdTgLasT90k="
     },
     "booru-flake": {
       "type": "Git",
@@ -75,9 +75,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "305707bbc27d83aa1039378e91d7dd816f4cac10",
-      "url": "https://github.com/ipetkov/crane/archive/305707bbc27d83aa1039378e91d7dd816f4cac10.tar.gz",
-      "hash": "sha256-dpBFe8SqYKr7W6KN5QOVCr8N76SBKwTslzjw+4BVBVs="
+      "revision": "444e81206df3f7d92780680e45858e31d2f07a08",
+      "url": "https://github.com/ipetkov/crane/archive/444e81206df3f7d92780680e45858e31d2f07a08.tar.gz",
+      "hash": "sha256-0tcS8FHd4QjbCVoxN9jI+PjHgA4vc/IjkUSp+N3zy0U="
     },
     "hjem": {
       "type": "Git",
@@ -130,9 +130,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "ed6cc3e48557ba18266e598a5ebb6602499ada16",
-      "url": "https://github.com/Gerg-L/mnw/archive/ed6cc3e48557ba18266e598a5ebb6602499ada16.tar.gz",
-      "hash": "sha256-v6Rh4aQ6RKjM2N02kK9Usn0Ix7+OY66vNpeklc1MnGE="
+      "revision": "93edfdc3015f2c6aaddba074ed8ae0e78569fff7",
+      "url": "https://github.com/Gerg-L/mnw/archive/93edfdc3015f2c6aaddba074ed8ae0e78569fff7.tar.gz",
+      "hash": "sha256-v3ECXf6adCp3kCgZpbMAK244oXR50ghtFR2+0ekptMg="
     },
     "nix-minecraft": {
       "type": "Git",
@@ -151,8 +151,8 @@
     "nixpkgs": {
       "type": "Channel",
       "name": "nixos-unstable",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre855242.d0fc30899600/nixexprs.tar.xz",
-      "hash": "sha256-nDWEPoSmjN0P/NG9XntBijws0vwxnbeq+pKBLJGC0sA="
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre844474.fbcf476f790d/nixexprs.tar.xz",
+      "hash": "sha256-ZFkjmihDaMJRhh7ztPNKdjiXkfWSa0GaiSvf8X0/LZI="
     },
     "npins": {
       "type": "Git",
@@ -163,9 +163,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "e4683671e145c652c371b6b8ad9b0d757c88853c",
-      "url": "https://github.com/andir/npins/archive/e4683671e145c652c371b6b8ad9b0d757c88853c.tar.gz",
-      "hash": "sha256-Nu86s1xok+1EFM0J9e55hrYPgfoutEZUDBpeXReCOaY="
+      "revision": "afa9fe50cb0bff9ba7e9f7796892f71722b2180d",
+      "url": "https://github.com/andir/npins/archive/afa9fe50cb0bff9ba7e9f7796892f71722b2180d.tar.gz",
+      "hash": "sha256-D6dYAMk9eYpBriE07s8Q7M3WBT7uM9pz3RKIoNk+h7I="
     },
     "quickshell": {
       "type": "Git",
@@ -215,9 +215,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "4486e04adbb4b0e39f593767f2c36e2211003d01",
-      "url": "https://github.com/oxalica/rust-overlay/archive/4486e04adbb4b0e39f593767f2c36e2211003d01.tar.gz",
-      "hash": "sha256-qm53+EUFfzyF8F0MEscHGqf9tx462GV3/zUZrn9wiQU="
+      "revision": "07619500e5937cc4669f24fec355d18a8fec0165",
+      "url": "https://github.com/oxalica/rust-overlay/archive/07619500e5937cc4669f24fec355d18a8fec0165.tar.gz",
+      "hash": "sha256-NspGtm0ZpihxlFD628pvh5ZEhL/Q6/Z9XBpe3n6ZtEw="
     },
     "sleepy-launcher": {
       "type": "GitRelease",
@@ -245,9 +245,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "3176c9651496c9ba4bf55f0f70f373321795831c",
-      "url": "https://github.com/NotAShelf/stash/archive/3176c9651496c9ba4bf55f0f70f373321795831c.tar.gz",
-      "hash": "sha256-EYRDjwPvnYjX5DHK1iFuZIpufvuZi3SeiVrwymm0RY8="
+      "revision": "03550b884dc6b4ebd4cc6dd55267737d1cd17e6f",
+      "url": "https://github.com/NotAShelf/stash/archive/03550b884dc6b4ebd4cc6dd55267737d1cd17e6f.tar.gz",
+      "hash": "sha256-CjgxVFkejLwJ2HtAIkpZ0Xuspd0UbM2ZvEUOO9svFe8="
     },
     "zaphkiel": {
       "type": "Git",

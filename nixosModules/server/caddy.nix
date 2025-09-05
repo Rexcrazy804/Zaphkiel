@@ -21,7 +21,7 @@ in {
       };
       hash = mkOption {
         type = singleLineStr;
-        default = "sha256-r68btTv8N7X/pKwGkP8FWg371rt+bZETXdEN0/ZlFJI=";
+        default = "sha256-0GsjeeJnfLsJywWzWwJcCDk5wjTSBwzqMBY7iHjPQa8=";
         description = "Hash for the plugin";
       };
     };

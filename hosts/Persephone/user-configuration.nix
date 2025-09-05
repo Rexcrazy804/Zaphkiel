@@ -9,7 +9,8 @@
   packages = lib.attrValues {
     # wine
     inherit (pkgs.wineWowPackages) waylandFull;
-    inherit (pkgs) legendary-heroic bottles winetricks mono umu-launcher;
+    inherit (pkgs.heroic-unwrapped) legendary;
+    inherit (pkgs) bottles winetricks mono umu-launcher;
     # terminal
     inherit (pkgs) foot remmina libsixel;
     # from internal overlay

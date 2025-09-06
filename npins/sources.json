@@ -36,9 +36,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "12143a244e0d6393bd9d26ba4356780d531255f8",
-      "url": "https://github.com/EbodShojaei/bake/archive/12143a244e0d6393bd9d26ba4356780d531255f8.tar.gz",
-      "hash": "sha256-HbBibwrd73GA0Z3xiYJAu1te7BADqsSkk0d99bMrwPw="
+      "revision": "8891b7429f61c6482a8947e389de3811fd37c2fa",
+      "url": "https://github.com/EbodShojaei/bake/archive/8891b7429f61c6482a8947e389de3811fd37c2fa.tar.gz",
+      "hash": "sha256-L3Gpl3olNAux3IzQT7VlKLALpepJPMO5XdTgLasT90k="
     },
     "booru-flake": {
       "type": "Git",
@@ -149,17 +149,10 @@
       "frozen": true
     },
     "nixpkgs": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "nixos",
-        "repo": "nixpkgs"
-      },
-      "branch": "nixos-unstable",
-      "submodules": false,
-      "revision": "d0fc30899600b9b3466ddb260fd83deb486c32f1",
-      "url": "https://github.com/nixos/nixpkgs/archive/d0fc30899600b9b3466ddb260fd83deb486c32f1.tar.gz",
-      "hash": "sha256-rw/PHa1cqiePdBxhF66V7R+WAP8WekQ0mCDG4CFqT8Y="
+      "type": "Channel",
+      "name": "nixos-unstable",
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre844474.fbcf476f790d/nixexprs.tar.xz",
+      "hash": "sha256-ZFkjmihDaMJRhh7ztPNKdjiXkfWSa0GaiSvf8X0/LZI="
     },
     "npins": {
       "type": "Git",

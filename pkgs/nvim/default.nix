@@ -26,7 +26,7 @@ lib.makeScope newScope (self: {
     initLua =
       prev.initLua
       + ''
-        vim.cmd.colorscheme "nightfox"
+        vim.cmd.colorscheme "dracula"
       '';
   });
 })

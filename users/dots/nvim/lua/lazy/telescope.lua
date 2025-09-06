@@ -2,6 +2,7 @@ return {
   "telescope.nvim",
   keys = {
     { "<leader>ff", "<CMD>Telescope find_files<CR>", desc = "Find Files" },
+    { "<leader>ft", "<CMD>Telescope colorscheme<CR>", desc = "Pick Theme" },
     { "<leader>fb", "<CMD>Telescope buffers<CR>", desc = "Find Buffers" }, {
       "<leader>fc",
       "<CMD>Telescope command_history<CR>",

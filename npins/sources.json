@@ -149,10 +149,17 @@
       "frozen": true
     },
     "nixpkgs": {
-      "type": "Channel",
-      "name": "nixos-unstable",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre855242.d0fc30899600/nixexprs.tar.xz",
-      "hash": "sha256-nDWEPoSmjN0P/NG9XntBijws0vwxnbeq+pKBLJGC0sA="
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nixos",
+        "repo": "nixpkgs"
+      },
+      "branch": "nixos-unstable",
+      "submodules": false,
+      "revision": "d0fc30899600b9b3466ddb260fd83deb486c32f1",
+      "url": "https://github.com/nixos/nixpkgs/archive/d0fc30899600b9b3466ddb260fd83deb486c32f1.tar.gz",
+      "hash": "sha256-rw/PHa1cqiePdBxhF66V7R+WAP8WekQ0mCDG4CFqT8Y="
     },
     "npins": {
       "type": "Git",
@@ -176,9 +183,9 @@
       },
       "branch": "overridable-qs-unwrapped",
       "submodules": false,
-      "revision": "37c1735c9a1ed952678f1a362abd2d70c8c0d5de",
-      "url": "https://github.com/Rexcrazy804/quickshell/archive/37c1735c9a1ed952678f1a362abd2d70c8c0d5de.tar.gz",
-      "hash": "sha256-RaMYSA9SriRPhTVItp8BJUAv4oAmBAt1Z/iiHr+BEo4="
+      "revision": "3804ffb47366cb7e571a9174b3f278195d0bfc7e",
+      "url": "https://github.com/Rexcrazy804/quickshell/archive/3804ffb47366cb7e571a9174b3f278195d0bfc7e.tar.gz",
+      "hash": "sha256-Wol6pF48ipGKelpUTJ4TGjWr66T+HY1XeF3mtynGPKg="
     },
     "rosep-fish": {
       "type": "Git",

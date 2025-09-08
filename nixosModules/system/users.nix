@@ -22,10 +22,5 @@ in {
     };
   };
 
-  config = {
-    hjem = {
-      extraModules = [(sources.hjem-impure + "/hjem-impure.nix")];
-      linker = pkgs.smfh;
-    };
-  };
+  config.hjem.extraModules = [(sources.hjem-impure + "/hjem-impure.nix")];
 }

@@ -23,8 +23,8 @@ https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 
 ## What the heck is going on here?
 
-- npins based non flake nixos configuration
-- hjem over home manager
+- npins based non flake nixos configuration (WARN: This might change soon)
+- hjem + [hjem-impure](https://github.com/Rexcrazy804/hjem-impure) over home manager
 - matugen injecting colors based on wallpaper
 - booru flake image collection to neatly access images all over the flake
 - exports a bridged flake.nix that lets you consume this configuration as a flake

@@ -7,19 +7,14 @@
   librebarcode,
   symlinkJoin,
   makeWrapper,
-  runCommandLocal,
   quickshell,
   kdePackages,
   material-symbols,
   makeFontsConf,
   nerd-fonts,
   configPath ? ../users/dots/quickshell/kurukurubar,
-  asGreeter ? false,
-  # MUST BE A QML FILE
-  # replaces Data/Colors.qml
-  customColors ? null,
 }: let
-  inherit (lib) makeSearchPath optionalString cleanSourceWith cleanSource hasSuffix;
+  inherit (lib) makeSearchPath;
   qmlPath = makeSearchPath "lib/qt-6/qml" [
     kdePackages.qtbase
     kdePackages.qtdeclarative
@@ -35,25 +30,24 @@
     ];
   };
 
-  qsConfig' = runCommandLocal "quick" {} (''
-      mkdir $out
-      cd $out
-      cp -rp ${configPath}/* .
-    ''
-    + (optionalString asGreeter ''
-      chmod u+w *.qml
-      rm shell.qml
-      mv greeter.qml shell.qml
-    '')
-    + (optionalString (customColors != null) ''
-      chmod u+rw ./Data/Colors.qml
-      cp ${customColors} ./Data/Colors.qml
-    ''));
-
-  qsConfig = cleanSourceWith {
-    src = cleanSource qsConfig';
-    filter = fname: _ftype: !(hasSuffix "nix" fname || hasSuffix "md" fname);
-  };
+  qsConfig = let
+    inherit (lib.fileset) unions toSource;
+    root = configPath;
+  in
+    toSource {
+      inherit root;
+      fileset = unions [
+        (root + /Assets)
+        (root + /Containers)
+        (root + /Data)
+        (root + /Generics)
+        (root + /Layers)
+        (root + /scripts)
+        (root + /Widgets)
+        (root + /shell.qml)
+        (root + /greeter.qml)
+      ];
+    };
 in
   symlinkJoin {
     pname = "kurukurubar";

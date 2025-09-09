@@ -61,7 +61,7 @@
           mein = self.packages;
         };
         modules = [
-          ./hosts/Seraphine/configuration.nix
+          ./hosts/Persephone/configuration.nix
           ./nixosModules
           ./users/rexies.nix
         ];

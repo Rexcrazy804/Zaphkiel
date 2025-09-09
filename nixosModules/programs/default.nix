@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  mein,
+  ...
+}: {
   imports = [
     # unimported
     # ./gdm.nix
@@ -27,7 +31,11 @@
   ];
 
   # global
-  environment.systemPackages = [pkgs.git pkgs.xvim.default pkgs.npins];
+  environment.systemPackages = [
+    mein.${pkgs.system}.xvim.default
+    pkgs.git
+    pkgs.npins
+  ];
 
   # requried by gdm leaving it here since all my systems do use nushell
   environment.shells = ["/run/current-system/sw/bin/nu"];

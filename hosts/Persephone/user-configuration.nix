@@ -1,18 +1,21 @@
 {
+  mein,
   pkgs,
   lib,
   config,
   ...
 }: let
+  inherit (pkgs) system;
   packages = lib.attrValues {
     # wine
     inherit (pkgs.wineWowPackages) waylandFull;
     inherit (pkgs) legendary-heroic bottles winetricks mono umu-launcher;
     # terminal
     inherit (pkgs) foot remmina libsixel;
+    inherit (pkgs) discord;
     # from internal overlay
-    inherit (pkgs) discord mpv-wrapped;
-    inherit (pkgs.scripts) wallcrop legumulaunch;
+    inherit (mein.${system}) mpv-wrapped;
+    inherit (mein.${system}.scripts) wallcrop legumulaunch;
   };
 in {
   users.users."rexies" = {

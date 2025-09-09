@@ -10,6 +10,7 @@
     registry.nixpkgs.flake = inputs.nixpkgs;
     channel.enable = false;
     settings = {
+      allow-import-from-derivation = false;
       experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = true;
       trusted-users = ["root" "@wheel"];

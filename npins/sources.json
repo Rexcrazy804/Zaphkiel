@@ -105,6 +105,20 @@
       "url": "https://github.com/Rexcrazy804/hjem-impure/archive/8008b39dfbcc747e609fe806d2ead82513867266.tar.gz",
       "hash": "sha256-St8r9HmrMW0lXUHRgGeskwOyhI8thWxarW0YI+eFPxU="
     },
+    "image.nvim": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "3rd",
+        "repo": "image.nvim"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "446a8a5cc7a3eae3185ee0c697732c32a5547a0b",
+      "url": "https://github.com/3rd/image.nvim/archive/446a8a5cc7a3eae3185ee0c697732c32a5547a0b.tar.gz",
+      "hash": "sha256-EaDeY8aP41xHTw5epqYjaBqPYs6Z2DABzSaVOnG6D6I=",
+      "frozen": true
+    },
     "lanzaboote": {
       "type": "GitRelease",
       "repository": {

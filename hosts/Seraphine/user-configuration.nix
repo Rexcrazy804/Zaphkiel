@@ -26,11 +26,7 @@ in {
     inherit packages;
     extraGroups = ["video" "input"];
   };
-  programs.matugen = {
-    enable = true;
-    inherit wallpaper;
-  };
-
+  zaphkiel.data.wallpaper = wallpaper;
   hjem.users."rexies".files = {
     # pin the fucking json so it doesn't get gc'd
     ".config/bg.json".source = image.raw_metadata;

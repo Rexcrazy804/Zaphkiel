@@ -5,13 +5,13 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ./user-configuration.nix
     ./extras/tinyproxy.nix
     ../../users/sivanis.nix
   ];
 
   zaphkiel = {
     data.headless = true;
+    data.wallpaper = ./kokomi_116824847_p0_cropped.jpg;
     secrets.tailAuth.file = ../../secrets/secret8.age;
     services = {
       enable = true;

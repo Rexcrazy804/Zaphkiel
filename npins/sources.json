@@ -1,58 +1,5 @@
 {
   "pins": {
-    "aagl": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "ezKEa",
-        "repo": "aagl-gtk-on-nix"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "5f1e47d9e10c16f7bf4f1ba2affb8c4e0757c5e8",
-      "url": "https://github.com/ezKEa/aagl-gtk-on-nix/archive/5f1e47d9e10c16f7bf4f1ba2affb8c4e0757c5e8.tar.gz",
-      "hash": "sha256-St2lv9zr+L5lTC62WawEx7XKiL2Yzi/JhqHMi58m7CA=",
-      "frozen": true
-    },
-    "agenix": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "ryantm",
-        "repo": "agenix"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "9edb1787864c4f59ae5074ad498b6272b3ec308d",
-      "url": "https://github.com/ryantm/agenix/archive/9edb1787864c4f59ae5074ad498b6272b3ec308d.tar.gz",
-      "hash": "sha256-NA/FT2hVhKDftbHSwVnoRTFhes62+7dxZbxj5Gxvghs="
-    },
-    "bake": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "EbodShojaei",
-        "repo": "bake"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "8891b7429f61c6482a8947e389de3811fd37c2fa",
-      "url": "https://github.com/EbodShojaei/bake/archive/8891b7429f61c6482a8947e389de3811fd37c2fa.tar.gz",
-      "hash": "sha256-L3Gpl3olNAux3IzQT7VlKLALpepJPMO5XdTgLasT90k="
-    },
-    "booru-flake": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "Rexcrazy804",
-        "repo": "booru-flake"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "7b11787457f4163ffc5a567fd9ac8e9e5f6370f0",
-      "url": "https://github.com/Rexcrazy804/booru-flake/archive/7b11787457f4163ffc5a567fd9ac8e9e5f6370f0.tar.gz",
-      "hash": "sha256-1N93LVYL1BMHfuP3RPlVWsh36T7RkLJvL9mR6FsDOtM="
-    },
     "catp-bat": {
       "type": "Git",
       "repository": {
@@ -65,45 +12,6 @@
       "revision": "6810349b28055dce54076712fc05fc68da4b8ec0",
       "url": "https://github.com/catppuccin/bat/archive/6810349b28055dce54076712fc05fc68da4b8ec0.tar.gz",
       "hash": "sha256-lJapSgRVENTrbmpVyn+UQabC9fpV1G1e+CdlJ090uvg="
-    },
-    "crane": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "ipetkov",
-        "repo": "crane"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "305707bbc27d83aa1039378e91d7dd816f4cac10",
-      "url": "https://github.com/ipetkov/crane/archive/305707bbc27d83aa1039378e91d7dd816f4cac10.tar.gz",
-      "hash": "sha256-dpBFe8SqYKr7W6KN5QOVCr8N76SBKwTslzjw+4BVBVs="
-    },
-    "hjem": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "feel-co",
-        "repo": "hjem"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "2426d6ad20e767895e936ed0c9563cc4e2b6c96f",
-      "url": "https://github.com/feel-co/hjem/archive/2426d6ad20e767895e936ed0c9563cc4e2b6c96f.tar.gz",
-      "hash": "sha256-WJ70Dv+tJjIl7mMOqUgcdcz+RrujDRoeKptiU6oh1lI="
-    },
-    "hjem-impure": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "Rexcrazy804",
-        "repo": "hjem-impure"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "a280ffc2dfa4a9688bc94933db1810a95aaadf88",
-      "url": "https://github.com/Rexcrazy804/hjem-impure/archive/a280ffc2dfa4a9688bc94933db1810a95aaadf88.tar.gz",
-      "hash": "sha256-FhxxHhCFITdL23TON37dUO+PdJuKWAg71G4I2IFG/rI="
     },
     "image.nvim": {
       "type": "Git",
@@ -118,81 +26,6 @@
       "url": "https://github.com/3rd/image.nvim/archive/446a8a5cc7a3eae3185ee0c697732c32a5547a0b.tar.gz",
       "hash": "sha256-EaDeY8aP41xHTw5epqYjaBqPYs6Z2DABzSaVOnG6D6I=",
       "frozen": true
-    },
-    "lanzaboote": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "GitHub",
-        "owner": "nix-community",
-        "repo": "lanzaboote"
-      },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "submodules": false,
-      "version": "v0.4.2",
-      "revision": "f0212638a2ec787a7841882f4477d40ae24f0a5d",
-      "url": "https://api.github.com/repos/nix-community/lanzaboote/tarball/refs/tags/v0.4.2",
-      "hash": "sha256-AEEDktApTEZ5PZXNDkry2YV2k6t0dTgLPEmAZbnigXU="
-    },
-    "mnw": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "Gerg-L",
-        "repo": "mnw"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "ed6cc3e48557ba18266e598a5ebb6602499ada16",
-      "url": "https://github.com/Gerg-L/mnw/archive/ed6cc3e48557ba18266e598a5ebb6602499ada16.tar.gz",
-      "hash": "sha256-v6Rh4aQ6RKjM2N02kK9Usn0Ix7+OY66vNpeklc1MnGE="
-    },
-    "nix-minecraft": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "Rexcrazy804",
-        "repo": "nix-minecraft"
-      },
-      "branch": "non-flake-overlay",
-      "submodules": false,
-      "revision": "09ba53f12c274d9b0b9dd16daa76f677192c9227",
-      "url": "https://github.com/Rexcrazy804/nix-minecraft/archive/09ba53f12c274d9b0b9dd16daa76f677192c9227.tar.gz",
-      "hash": "sha256-YqzL4AsfS3sO5huw2WjCeI4qp09BKMgvNde4MkGxakI=",
-      "frozen": true
-    },
-    "nixpkgs": {
-      "type": "Channel",
-      "name": "nixos-unstable",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre844474.fbcf476f790d/nixexprs.tar.xz",
-      "hash": "sha256-ZFkjmihDaMJRhh7ztPNKdjiXkfWSa0GaiSvf8X0/LZI="
-    },
-    "npins": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "andir",
-        "repo": "npins"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "e4683671e145c652c371b6b8ad9b0d757c88853c",
-      "url": "https://github.com/andir/npins/archive/e4683671e145c652c371b6b8ad9b0d757c88853c.tar.gz",
-      "hash": "sha256-Nu86s1xok+1EFM0J9e55hrYPgfoutEZUDBpeXReCOaY="
-    },
-    "quickshell": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "Rexcrazy804",
-        "repo": "quickshell"
-      },
-      "branch": "overridable-qs-unwrapped",
-      "submodules": false,
-      "revision": "3804ffb47366cb7e571a9174b3f278195d0bfc7e",
-      "url": "https://github.com/Rexcrazy804/quickshell/archive/3804ffb47366cb7e571a9174b3f278195d0bfc7e.tar.gz",
-      "hash": "sha256-Wol6pF48ipGKelpUTJ4TGjWr66T+HY1XeF3mtynGPKg="
     },
     "rosep-fish": {
       "type": "Git",
@@ -219,49 +52,6 @@
       "revision": "725e9c38880d577ee973eb916e83395964ffc287",
       "url": "https://github.com/rose-pine/foot/archive/725e9c38880d577ee973eb916e83395964ffc287.tar.gz",
       "hash": "sha256-Lo8HkJr+uYNUSRNzUhaksJAPvK8fbu5WubtmBSsa0/Q="
-    },
-    "rust-overlay": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "oxalica",
-        "repo": "rust-overlay"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "4486e04adbb4b0e39f593767f2c36e2211003d01",
-      "url": "https://github.com/oxalica/rust-overlay/archive/4486e04adbb4b0e39f593767f2c36e2211003d01.tar.gz",
-      "hash": "sha256-qm53+EUFfzyF8F0MEscHGqf9tx462GV3/zUZrn9wiQU="
-    },
-    "sleepy-launcher": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "GitHub",
-        "owner": "an-anime-team",
-        "repo": "sleepy-launcher"
-      },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "submodules": false,
-      "version": "1.3.0",
-      "revision": "4187a280903523f455523d913d0b596c325e95e7",
-      "url": "https://api.github.com/repos/an-anime-team/sleepy-launcher/tarball/refs/tags/1.3.0",
-      "hash": "sha256-8dal3o1LySvsv19EQXTowyP9zVZ+FTjTVT2bzfQP+RM=",
-      "frozen": true
-    },
-    "stash": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "NotAShelf",
-        "repo": "stash"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "3176c9651496c9ba4bf55f0f70f373321795831c",
-      "url": "https://github.com/NotAShelf/stash/archive/3176c9651496c9ba4bf55f0f70f373321795831c.tar.gz",
-      "hash": "sha256-EYRDjwPvnYjX5DHK1iFuZIpufvuZi3SeiVrwymm0RY8="
     },
     "zaphkiel": {
       "type": "Git",

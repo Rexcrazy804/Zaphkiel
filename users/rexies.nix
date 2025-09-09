@@ -15,6 +15,7 @@
       inherit root;
       fileset = unions [
         (root + /git/config)
+        (root + /qt6ct/qt6ct.conf)
         (root + /fish/config.fish)
         (root + /bat/config)
         (root + /foot/foot.ini)
@@ -112,6 +113,7 @@ in {
       "background".source = config.zaphkiel.data.wallpaper;
       "matugen/config.toml".source = dots + "/matugen/config.toml";
       "matugen/templates".source = dots + "/matugen/templates";
+      "qt6ct/qt6ct.conf".source = dots + "/qt6ct/qt6ct.conf";
     };
   };
 }

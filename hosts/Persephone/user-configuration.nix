@@ -26,7 +26,7 @@ in {
     enableSSHSupport = true;
   };
 
-  zaphkiel.data.wallpaper = config.programs.booru-flake.images."2768802";
+  zaphkiel.data.wallpaper = config.programs.booru-flake.images."8718409";
   hjem.users."rexies".files = {
     ".face.icon".source = let
       image = config.programs.booru-flake.images."6885267";

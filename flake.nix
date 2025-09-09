@@ -6,6 +6,11 @@
     systems.url = "github:nix-systems/default";
     crane.url = "github:ipetkov/crane";
     mnw.url = "github:Gerg-L/mnw";
+    hjem-impure.url = "github:Rexcrazy804/hjem-impure";
+    hjem = {
+      url = "github:feel-co/hjem";
+      inputs.smfh.follows = "";
+    };
     quickshell = {
       url = "github:Rexcrazy804/quickshell?ref=overridable-qs-unwrapped";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -14,6 +19,16 @@
       url = "github:notashelf/stash";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.crane.follows = "crane";
+    };
+    booru-flake = {
+      url = "github:Rexcrazy804/booru-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.darwin.follows = "";
+      inputs.home-manager.follows = "";
+      inputs.systems.follows = "systems";
     };
   };
 
@@ -25,9 +40,10 @@
     inherit (nixpkgs.lib) genAttrs mapAttrs;
 
     systems = import inputs.systems;
+    pins = import ./npins;
+
     pkgsFor = system: nixpkgs.legacyPackages.${system};
     eachSystem = fn: genAttrs systems (system: fn (pkgsFor system));
-    pins = import ./npins;
     sources = pkgs: mapAttrs (k: v: v {inherit pkgs;}) pins;
   in {
     formatter = eachSystem (pkgs: pkgs.alejandra);
@@ -37,6 +53,20 @@
         inherit pkgs inputs;
         sources = sources pkgs;
       });
+
+    nixosConfigurations = {
+      Persephone = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs sources;
+          mein = self.packages;
+        };
+        modules = [
+          ./hosts/Seraphine/configuration.nix
+          ./nixosModules
+          ./users/rexies.nix
+        ];
+      };
+    };
 
     nixosModules = {
       kurukuruDM = {

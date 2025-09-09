@@ -1,5 +1,48 @@
 {
   "nodes": {
+    "agenix": {
+      "inputs": {
+        "darwin": [],
+        "home-manager": [],
+        "nixpkgs": "nixpkgs",
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1754433428,
+        "narHash": "sha256-NA/FT2hVhKDftbHSwVnoRTFhes62+7dxZbxj5Gxvghs=",
+        "owner": "ryantm",
+        "repo": "agenix",
+        "rev": "9edb1787864c4f59ae5074ad498b6272b3ec308d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryantm",
+        "repo": "agenix",
+        "type": "github"
+      }
+    },
+    "booru-flake": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1754754582,
+        "narHash": "sha256-1N93LVYL1BMHfuP3RPlVWsh36T7RkLJvL9mR6FsDOtM=",
+        "owner": "Rexcrazy804",
+        "repo": "booru-flake",
+        "rev": "7b11787457f4163ffc5a567fd9ac8e9e5f6370f0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Rexcrazy804",
+        "repo": "booru-flake",
+        "type": "github"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1757183466,
@@ -12,6 +55,40 @@
       "original": {
         "owner": "ipetkov",
         "repo": "crane",
+        "type": "github"
+      }
+    },
+    "hjem": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2",
+        "smfh": []
+      },
+      "locked": {
+        "lastModified": 1756255328,
+        "narHash": "sha256-WJ70Dv+tJjIl7mMOqUgcdcz+RrujDRoeKptiU6oh1lI=",
+        "owner": "feel-co",
+        "repo": "hjem",
+        "rev": "2426d6ad20e767895e936ed0c9563cc4e2b6c96f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "feel-co",
+        "repo": "hjem",
+        "type": "github"
+      }
+    },
+    "hjem-impure": {
+      "locked": {
+        "lastModified": 1757443745,
+        "narHash": "sha256-FhxxHhCFITdL23TON37dUO+PdJuKWAg71G4I2IFG/rI=",
+        "owner": "Rexcrazy804",
+        "repo": "hjem-impure",
+        "rev": "a280ffc2dfa4a9688bc94933db1810a95aaadf88",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Rexcrazy804",
+        "repo": "hjem-impure",
         "type": "github"
       }
     },
@@ -31,6 +108,38 @@
       }
     },
     "nixpkgs": {
+      "locked": {
+        "lastModified": 1754028485,
+        "narHash": "sha256-IiiXB3BDTi6UqzAZcf2S797hWEPCRZOwyNThJIYhUfk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "59e69648d345d6e8fef86158c555730fa12af9de",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-25.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1749285348,
+        "narHash": "sha256-frdhQvPbmDYaScPFiCnfdh3B/Vh81Uuoo0w5TkWmmjU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "3e3afe5174c561dee0df6f2c2b2236990146329f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1755186698,
         "narHash": "sha256-wNO3+Ks2jZJ4nTHMuks+cxAiVBGNuEBXsT29Bz6HASo=",
@@ -69,9 +178,13 @@
     },
     "root": {
       "inputs": {
+        "agenix": "agenix",
+        "booru-flake": "booru-flake",
         "crane": "crane",
+        "hjem": "hjem",
+        "hjem-impure": "hjem-impure",
         "mnw": "mnw",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_3",
         "quickshell": "quickshell",
         "stash": "stash",
         "systems": "systems"

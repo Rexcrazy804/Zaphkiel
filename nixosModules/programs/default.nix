@@ -4,7 +4,7 @@
     # ./gdm.nix
 
     # internal
-    ./aagl.nix
+    # ./aagl.nix
     ./steam.nix
     ./wine.nix
     ./age.nix
@@ -19,7 +19,7 @@
 
     # external
     ./booru-flake
-    ./lanzaboote.nix
+    # ./lanzaboote.nix
 
     # this is not an option
     # auto enables fish and overwrites bash

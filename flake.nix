@@ -50,7 +50,6 @@
     # some code duplication here but its better that we do this rather than get
     # it through the default.nix due to infinite recursion reasons
     nixosModules = {
-      matugen = ./nixosModules/external/matugen;
       kurukuruDM = {
         pkgs,
         lib,

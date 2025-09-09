@@ -15,21 +15,27 @@
       inherit root;
       fileset = unions [
         (root + /git/config)
+        (root + /qt6ct/qt6ct.conf)
         (root + /fish/config.fish)
         (root + /bat/config)
         (root + /foot/foot.ini)
+        (root + /fuzzel/fuzzel.ini)
         (root + /uwsm/env)
         (root + /hyprland/hypridle.conf)
         (root + /hyprland/hyprland.conf)
         (root + /yazi/yazi.toml)
         (root + /yazi/keymap.toml)
+        (root + /matugen)
       ];
     };
 in {
-  zaphkiel.data.users = [username];
-  zaphkiel.secrets.rexiesPass = {
-    file = ../secrets/secret1.age;
-    owner = username;
+  zaphkiel = {
+    data.users = [username];
+    programs.matugen.enable = true;
+    secrets.rexiesPass = {
+      file = ../secrets/secret1.age;
+      owner = username;
+    };
   };
 
   users.users.${username} = {
@@ -85,55 +91,29 @@ in {
       '';
 
     xdg.config.files = let
-      matugen = config.programs.matugen;
-      matugenTheme = matugen.theme.files;
-
-      # replacing hardcoded paths
-      qt6ct = let
-        from = ["/home/rexies"];
-        to = ["${config.users.users.${username}.home}"];
-      in
-        builtins.replaceStrings from to (builtins.readFile ./dots/qt6ct/qt6ct.conf);
-
-      # injecting colors
-      fuzzel = let
-        base = builtins.readFile ./dots/fuzzel/fuzzel.ini;
-        colors = builtins.readFile "${matugenTheme}/fuzzel-colors.ini";
-      in
-        base + colors;
       dots = config.hjem.users.${username}.impure.dotsDir;
     in {
-      # git
-      "git/config".source = dots + "/git/config";
-
-      # shell
-      "fish/themes".source = sources.rosep-fish + "/themes";
-      "fish/config.fish".source = dots + "/fish/config.fish";
-      # bat
-      "bat/config".source = dots + "/bat/config";
-      # NOTE: required bat cache --build before theme can be used
-      "bat/themes".source = sources.catp-bat + "/themes";
-
-      # foot terminal
+      # terminal
       "foot/foot.ini".source = dots + "/foot/foot.ini";
       "foot/rose-pine.ini".source = sources.rosep-foot + "/rose-pine";
+      "git/config".source = dots + "/git/config";
+      "fish/themes".source = sources.rosep-fish + "/themes";
+      "fish/config.fish".source = dots + "/fish/config.fish";
+      # NOTE: required bat cache --build before theme can be used
+      "bat/config".source = dots + "/bat/config";
+      "bat/themes".source = sources.catp-bat + "/themes";
 
       # hyprland
       "uwsm/env".source = dots + "/uwsm/env";
       "hypr/hypridle.conf".source = dots + "/hyprland/hypridle.conf";
       "hypr/hyprland.conf".source = dots + "/hyprland/hyprland.conf";
-      "hypr/hyprcolors.conf".source = "${matugenTheme}/hyprcolors.conf";
       "yazi/yazi.toml".source = dots + "/yazi/yazi.toml";
       "yazi/keymap.toml".source = dots + "/yazi/keymap.toml";
-      "yazi/theme.toml".source = "${matugenTheme}/yazi-theme.toml";
-      "fuzzel/fuzzel.ini".text = fuzzel;
-      "background".source = matugen.wallpaper;
-      # qt6ct
-      "qt6ct/qt6ct.conf".text = qt6ct;
-      "qt6ct/colors/matugen.conf".source = "${matugenTheme}/qtct-colors.conf";
-
-      # discord
-      "vesktop/themes/midnight.css".source = "${matugenTheme}/discord-midnight.css";
+      "fuzzel/fuzzel.ini".source = dots + "/fuzzel/fuzzel.ini";
+      "background".source = config.zaphkiel.data.wallpaper;
+      "matugen/config.toml".source = dots + "/matugen/config.toml";
+      "matugen/templates".source = dots + "/matugen/templates";
+      "qt6ct/qt6ct.conf".source = dots + "/qt6ct/qt6ct.conf";
     };
   };
 }

@@ -18,13 +18,6 @@ https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 |Wallpapers|[booru-flake](https://github.com/Rexcrazy804/booru-flake)|[`nixosModules/programs/booru-flake/preview.md`](nixosModules/programs/booru-flake/preview.md)|
 |Cursor|[Kokomi Cursor](https://www.pling.com/p/2167734/)| nil / really long random text to make this table very wide yes looks like I|
 
-> The entry point for *most* of the dots are in [users/dots](users/dots).
-> For certain programs, the colors are injected either directly from matugen
-> or by nix using the generated matugen `theme.json`.
-
-> For nix users new to [hjem](https://github.com/feel-co/hjem),
-> the entry point for planting my dotfiles in place is [users/rexies.nix](users/rexies.nix).
-
 > Last revision where Zaphkiel was flake based:
 > [0eee46d1e](https://github.com/Rexcrazy804/Zaphkiel/tree/0eee46d1e5d98c3b94d39795b73a39270fc61ad7)
 

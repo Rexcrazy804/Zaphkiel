@@ -11,11 +11,13 @@ wrapper {
     vim.cmd.colorscheme "rose-pine"
   '';
 
+  extraLuaPackages = p: [p.magick];
   extraBinPath = [
     pkgs.fzf
     pkgs.ripgrep
     pkgs.wl-clipboard
     pkgs.fd
+    pkgs.imagemagick
   ];
 
   plugins = {
@@ -34,6 +36,7 @@ wrapper {
     opt = builtins.attrValues {
       inherit
         (vimPlugins)
+        image-nvim
         catppuccin-nvim
         rose-pine
         dracula-nvim

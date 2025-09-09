@@ -12,10 +12,11 @@
     inherit (pkgs) legendary-heroic bottles winetricks mono umu-launcher;
     # terminal
     inherit (pkgs) foot remmina libsixel;
-    inherit (pkgs) discord;
     # from internal overlay
     inherit (mein.${system}) mpv-wrapped;
     inherit (mein.${system}.scripts) wallcrop legumulaunch;
+
+    discord = pkgs.discord.override {withMoonlight = true;};
   };
 in {
   users.users."rexies" = {

@@ -1,12 +1,10 @@
 {
   lib,
   pkgs,
-  config,
   ...
 }: let
-  inherit (config.networking) hostName;
   inherit (lib) pipe attrValues concatStringsSep map;
-  rebuildCommand = "sudo nixos-rebuild --log-format bar --no-reexec --file ~/nixos -A nixosConfigurations.${hostName}";
+  rebuildCommand = "nixos-rebuild --flake .# --sudo";
   #         !!!you found the fish!!!
   #   ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠖⠒⠲⠤⣤⣀⠀⠀⠀⢀⣀⣤⠤⠖⠒⠢⢤⡀⠀⠀⠀⠀⠀⠀⠀⠀
   #   ⠀⠀⠀⠀⠀⠀⣶⣄⠏⡠⠊⠀⠀⠈⠁⠚⢍⠲⠖⡩⠓⠉⠀⠀⠀⠑⠌⠳⣠⣶⠀⠀⠀⠀⠀⠀

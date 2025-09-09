@@ -9,7 +9,7 @@
     inherit (pkgs.wineWowPackages) waylandFull;
     inherit (pkgs) legendary-heroic bottles winetricks mono umu-launcher;
     # terminal
-    inherit (pkgs) foot remmina cowsay;
+    inherit (pkgs) foot remmina;
     # from internal overlay
     inherit (pkgs) discord mpv-wrapped;
     inherit (pkgs.scripts) wallcrop legumulaunch;

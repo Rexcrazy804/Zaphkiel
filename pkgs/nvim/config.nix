@@ -1,6 +1,7 @@
 {
   wrapper,
   pkgs,
+  vimPlugins,
 }:
 wrapper {
   neovim = pkgs.neovim-unwrapped;
@@ -32,7 +33,7 @@ wrapper {
 
     opt = builtins.attrValues {
       inherit
-        (pkgs.vimPlugins)
+        (vimPlugins)
         catppuccin-nvim
         rose-pine
         dracula-nvim

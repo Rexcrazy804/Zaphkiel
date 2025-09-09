@@ -5,10 +5,12 @@
   lib,
 }:
 lib.makeScope newScope (self: {
+  vimPlugins' = self.callPackage ./plugins.nix {inherit sources;};
   wrapper = self.callPackage ./wrapper.nix {inherit (sources) mnw;};
   minimal = import ./config.nix {
     inherit (self) wrapper;
     inherit pkgs;
+    vimPlugins = self.vimPlugins';
   };
   default = self.minimal.override (prev: {
     extraBinPath =

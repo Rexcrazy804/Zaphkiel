@@ -28,10 +28,13 @@
       ];
     };
 in {
-  zaphkiel.data.users = [username];
-  zaphkiel.secrets.rexiesPass = {
-    file = ../secrets/secret1.age;
-    owner = username;
+  zaphkiel = {
+    data.users = [username];
+    programs.matugen.enable = true;
+    secrets.rexiesPass = {
+      file = ../secrets/secret1.age;
+      owner = username;
+    };
   };
 
   users.users.${username} = {
@@ -51,7 +54,6 @@ in {
       pkgs.git
       pkgs.bat
       pkgs.delta
-      pkgs.matugen
     ];
 
     openssh.authorizedKeys.keys = [
@@ -116,19 +118,5 @@ in {
       "matugen/config.toml".source = dots + "/matugen/config.toml";
       "matugen/templates".source = dots + "/matugen/templates";
     };
-  };
-
-  systemd.targets.hjem.requires = ["matugen-copy@rexies.service"];
-  systemd.services."matugen-copy@" = {
-    description = "Link files for %i from their manifest";
-    serviceConfig = {
-      User = "%i";
-      Type = "oneshot";
-    };
-    requires = ["hjem-activate@%1.service"];
-    scriptArgs = "${config.zaphkiel.data.wallpaper}";
-    script = ''
-      ${pkgs.matugen}/bin/matugen image $1
-    '';
   };
 }

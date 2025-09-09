@@ -15,6 +15,7 @@
     ./hyprland.nix
     ./kuruDM.nix
     ./privoxy.nix
+    ./matugen.nix
 
     # external
     ./booru-flake

@@ -22,7 +22,7 @@ in {
         User = "%i";
         Type = "oneshot";
       };
-      requires = ["hjem-activate@%1.service"];
+      after = ["hjem-activate@%i.service"];
       scriptArgs = "${zphd.wallpaper}";
       script = ''
         ${pkgs.matugen}/bin/matugen image $1

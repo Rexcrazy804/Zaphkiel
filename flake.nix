@@ -25,20 +25,19 @@
     inherit (nixpkgs.lib) genAttrs mapAttrs;
 
     systems = import inputs.systems;
-    eachSystem = system: nixpkgs.legacyPackages.${system};
-    pkgsFor = fn: genAttrs systems (system: fn (eachSystem system));
+    pkgsFor = system: nixpkgs.legacyPackages.${system};
+    eachSystem = fn: genAttrs systems (system: fn (pkgsFor system));
     pins = import ./npins;
     sources = pkgs: mapAttrs (k: v: v {inherit pkgs;}) pins;
   in {
-    formatter = pkgsFor (pkgs: pkgs.alejandra);
+    formatter = eachSystem (pkgs: pkgs.alejandra);
 
-    packages = pkgsFor (pkgs:
+    packages = eachSystem (pkgs:
       import ./pkgs {
         inherit pkgs inputs;
         sources = sources pkgs;
       });
-    # some code duplication here but its better that we do this rather than get
-    # it through the default.nix due to infinite recursion reasons
+
     nixosModules = {
       kurukuruDM = {
         pkgs,

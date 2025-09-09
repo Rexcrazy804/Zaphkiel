@@ -101,9 +101,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "8008b39dfbcc747e609fe806d2ead82513867266",
-      "url": "https://github.com/Rexcrazy804/hjem-impure/archive/8008b39dfbcc747e609fe806d2ead82513867266.tar.gz",
-      "hash": "sha256-St8r9HmrMW0lXUHRgGeskwOyhI8thWxarW0YI+eFPxU="
+      "revision": "a280ffc2dfa4a9688bc94933db1810a95aaadf88",
+      "url": "https://github.com/Rexcrazy804/hjem-impure/archive/a280ffc2dfa4a9688bc94933db1810a95aaadf88.tar.gz",
+      "hash": "sha256-FhxxHhCFITdL23TON37dUO+PdJuKWAg71G4I2IFG/rI="
     },
     "image.nvim": {
       "type": "Git",

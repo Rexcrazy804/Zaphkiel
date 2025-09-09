@@ -10,7 +10,6 @@ in {
     ./utils
 
     ./exported/kurukuruDM.nix
-    ./external/matugen
   ];
 
   options = {

@@ -6,7 +6,7 @@
 } @ args: let
   inherit (lib) mkOption;
   inherit (lib.modules) importApply;
-  inherit (lib.types) listOf str;
+  inherit (lib.types) listOf str path;
 
   argsWith = attrs: args // attrs;
   hjem-lib = import (sources.hjem + "/lib.nix") {inherit lib pkgs;};
@@ -15,10 +15,16 @@ in {
   imports = [hjemModule];
 
   options = {
-    zaphkiel.data.users = mkOption {
-      type = listOf str;
-      default = [];
-      description = "list of users (duh)";
+    zaphkiel = {
+      data.users = mkOption {
+        type = listOf str;
+        default = [];
+        description = "list of users (duh)";
+      };
+      data.wallpaper = mkOption {
+        type = path;
+        description = "wallpaper path (duh)";
+      };
     };
   };
 

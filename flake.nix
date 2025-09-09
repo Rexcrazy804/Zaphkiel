@@ -1,19 +1,9 @@
 {
-  # WARN
-  # This flake solely exists for the purpose of allowing overrides for flake
-  # users which is why there does not exist a flake.lock in this repo. This
-  # flake DOES NOT setup anything for my nixos configurations please see
-  # `default.nix`.nixosConfigurations for that
-
-  # INFO
-  # For non flake users please see default.nix primarilly supports npins (v6) sources.
-  # Feel welcome to raise any concerns
-
   description = "Rexiel Scarlet's Flake bridge";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    quickshell.url = "github:quickshell-mirror/quickshell";
+    quickshell.url = "github:Rexcrazy804/quickshell?ref=overridable-qs-unwrapped";
     quickshell.inputs.nixpkgs.follows = "nixpkgs";
     systems.url = "github:nix-systems/default";
   };
@@ -23,28 +13,53 @@
     nixpkgs,
     ...
   } @ inputs: let
-    forAllSystems = fn:
-      nixpkgs.lib.genAttrs (import inputs.systems) (
-        system:
-          fn nixpkgs.legacyPackages.${system}
-      );
+    inherit (nixpkgs.lib) genAttrs callPackageWith warn;
 
-    zaphkiel = system:
-      import ./default.nix {
-        inherit (inputs.quickshell.packages.${system}) quickshell;
-        pkgs = import nixpkgs {inherit system;};
-        # fear not flake cuties, this is a bridge to the npins side
-        sources = {};
-      };
+    systems = import inputs.systems;
+    eachSystem = system: nixpkgs.legacyPackages.${system};
+    pkgsFor = fn: genAttrs systems (system: fn (eachSystem system));
+    sources = import ./npins {};
   in {
-    formatter = forAllSystems (pkgs: pkgs.alejandra);
+    formatter = pkgsFor (pkgs: pkgs.alejandra);
 
-    packages = forAllSystems (pkgs: let
-      zaphkiel' = zaphkiel pkgs.system;
+    packages = pkgsFor (pkgs: let
+      self' = self.packages.${pkgs.system};
+      callPackage = callPackageWith (pkgs // self.packages.${pkgs.system});
     in {
-      inherit (zaphkiel'.packages) xvim nixvim nixvim-minimal kokCursor kurukurubar kurukurubar-unstable booru-images librebarcode;
-      quickshell = pkgs.lib.warn "prefer #kurukurubar instead. #quickshell will be removed soon" zaphkiel'.packages.kurukurubar;
-      mpv = zaphkiel'.packages.mpv-wrapped.override {anime = true;};
+      # kurukuru
+      quickshell = callPackage ./pkgs/quickshell.nix {
+        inherit
+          (inputs.quickshell.packages.${pkgs.system})
+          quickshell
+          quickshell-unwrapped
+          ;
+      };
+      kurukurubar-unstable = callPackage ./pkgs/kurukurubar.nix {};
+      kurukurubar = (self'.kurukurubar-unstable).override {
+        inherit (pkgs) quickshell;
+        # following zaphkiel master branch: quickshell v0.2.0
+        # configPath = (sources.zaphkiel) + "/users/dots/quickshell/kurukurubar";
+      };
+
+      # trivial
+      mpv-wrapped = callPackage ./pkgs/mpv {};
+      librebarcode = callPackage ./pkgs/librebarcode.nix {};
+      kokCursor = callPackage ./pkgs/kokCursor.nix {};
+      npins = callPackage ./pkgs/npins.nix {};
+      stash = callPackage (sources.stash + "/nix/package.nix") {};
+
+      # package sets
+      lanzaboote = callPackage ./pkgs/lanzaboote {};
+      scripts = callPackage ./pkgs/scripts {};
+      xvim = callPackage ./pkgs/nvim {};
+      booru-images = callPackage ./pkgs/booru-images.nix {};
+
+      # temp
+      mbake = pkgs.mbake.overrideAttrs (_prev: {src = sources.bake;});
+      # JUST SO YOU KNOW `nivxvim` WAS JUST WHAT I USED TO CALL MY nvim alright
+      # I had ditched the nixvim project long long long ago but the name just stuck
+      nixvim-minimal = warn "Zahpkiel: `nixvim-minimal` depricated, please use `xvim.minimal` instead" self'.xvim.minimal;
+      nixvim = warn "Zahpkiel: `nixvim` depricated please use xvim.default instead" self'.xvim.default;
     });
 
     # some code duplication here but its better that we do this rather than get

@@ -92,20 +92,15 @@ in {
     xdg.config.files = let
       dots = config.hjem.users.${username}.impure.dotsDir;
     in {
-      # git
-      "git/config".source = dots + "/git/config";
-
-      # shell
-      "fish/themes".source = sources.rosep-fish + "/themes";
-      "fish/config.fish".source = dots + "/fish/config.fish";
-      # bat
-      "bat/config".source = dots + "/bat/config";
-      # NOTE: required bat cache --build before theme can be used
-      "bat/themes".source = sources.catp-bat + "/themes";
-
-      # foot terminal
+      # terminal
       "foot/foot.ini".source = dots + "/foot/foot.ini";
       "foot/rose-pine.ini".source = sources.rosep-foot + "/rose-pine";
+      "git/config".source = dots + "/git/config";
+      "fish/themes".source = sources.rosep-fish + "/themes";
+      "fish/config.fish".source = dots + "/fish/config.fish";
+      # NOTE: required bat cache --build before theme can be used
+      "bat/config".source = dots + "/bat/config";
+      "bat/themes".source = sources.catp-bat + "/themes";
 
       # hyprland
       "uwsm/env".source = dots + "/uwsm/env";

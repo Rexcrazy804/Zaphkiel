@@ -1,9 +1,4 @@
-{
-  wrapper,
-  pkgs,
-  vimPlugins,
-}:
-wrapper {
+{pkgs, ...}: {
   neovim = pkgs.neovim-unwrapped;
   initLua = ''
     require("plugins")
@@ -35,7 +30,7 @@ wrapper {
 
     opt = builtins.attrValues {
       inherit
-        (vimPlugins)
+        (pkgs.vimPlugins)
         image-nvim
         catppuccin-nvim
         rose-pine

@@ -57,7 +57,7 @@
     enable = true;
     settings = let
       initial_session = {
-        command = "uwsm start";
+        command = "uwsm start default";
         user = "rexies";
       };
     in {

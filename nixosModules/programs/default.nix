@@ -48,20 +48,4 @@
   # wayland on electron and chromium based apps
   # disable if slow startup time for the same
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  security.sudo = {
-    execWheelOnly = true;
-    extraRules = [
-      {
-        users = ["rexies"];
-        # lets me rebuild without having to enter the password
-        commands = [
-          {
-            command = "/run/current-system/sw/bin/nixos-rebuild";
-            options = ["SETENV" "NOPASSWD"];
-          }
-        ];
-      }
-    ];
-  };
 }

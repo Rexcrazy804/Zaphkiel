@@ -56,21 +56,8 @@
   services.greetd = {
     enable = true;
     settings = let
-      inherit (lib) pipe filter hasPrefix removePrefix readFile head;
-      inherit (lib.filesystem) listFilesRecursive;
-      inherit (lib.strings) splitString;
-      inherit (config.services.displayManager.sessionData) desktops;
-
       initial_session = {
-        command = pipe desktops [
-          listFilesRecursive
-          head
-          readFile
-          (splitString "\n")
-          (filter (x: hasPrefix "Exec=" x))
-          head
-          (removePrefix "Exec=")
-        ];
+        command = "uwsm start";
         user = "rexies";
       };
     in {

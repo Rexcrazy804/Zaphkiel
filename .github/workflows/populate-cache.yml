@@ -40,34 +40,18 @@ jobs:
         name: rexielscarlet
         authToken: '${{ secrets.CACHIX_API_KEY }}'
 
-    - name: build sleepy launcher
-      if: steps.fltr.outputs.sleepy-launcher == 'true' || steps.fltr.outputs.pins == 'true'
-      run: make pkg PKG=anime-launchers.sleepy-launcher
-
-    - name: build lanzaboote
-      if: steps.fltr.outputs.lanzaboote == 'true' || steps.fltr.outputs.pins == 'true'
-      run: make pkg PKG=lanzaboote.tool
-
     - name: build kurukurubar unstable
       if: steps.fltr.outputs.kurukurubar == 'true' || steps.fltr.outputs.pins == 'true'
-      run: make pkg PKG=kurukurubar-unstable
+      run: nix build .#kurukurubar-unstable
 
     - name: build xvim (neovim)
       if: steps.fltr.outputs.xvim == 'true' || steps.fltr.outputs.pins == 'true'
-      run: make pkg PKG=nixvim
-
-    - name: build npins
-      if: steps.fltr.outputs.npins == 'true' || steps.fltr.outputs.pins == 'true'
-      run: make pkg PKG=npins
-
-    - name: build mbake
-      if: steps.fltr.outputs.pins == 'true'
-      run: make pkg PKG=mbake
+      run: nix build .#xvim.default
 
     - name: build stash
       if: steps.fltr.outputs.pins == 'true'
-      run: make pkg PKG=stash
+      run: nix build .#stash
 
     - name: build Seraphine's caddy package
       if: steps.fltr.outputs.caddy == 'true' || steps.fltr.outputs.pins == 'true'
-      run: nix-build -A nixosConfigurations.Seraphine.config.services.caddy.package
+      run: nix build .#nixosConfigurations.Seraphine.config.services.caddy.package

@@ -18,9 +18,9 @@ jobs:
     - uses: cachix/cachix-action@v14
       with:
         name: rexielscarlet
-    - run: nix-shell -p nixos-rebuild-ng --run "make dry REBUILD_CMD=nixos-rebuild-ng HOST=Aphrodite"
-    - run: make time HOST=Aphrodite
-    - run: make time HOST=Aphrodite
-    - run: make time HOST=Aphrodite
-    - run: make time HOST=Aphrodite
-    - run: make time HOST=Aphrodite
+    # TODO get rid of redundancy
+    - run: nix build .#nixosConfigurations.Aphrodite.config.system.build.toplevel
+    - run: time nix eval .#nixosConfigurations.Aphrodite.config.system.build.toplevel --substituters "" --option eval-cache false --raw --read-only
+    - run: time nix eval .#nixosConfigurations.Aphrodite.config.system.build.toplevel --substituters "" --option eval-cache false --raw --read-only
+    - run: time nix eval .#nixosConfigurations.Aphrodite.config.system.build.toplevel --substituters "" --option eval-cache false --raw --read-only
+    - run: time nix eval .#nixosConfigurations.Aphrodite.config.system.build.toplevel --substituters "" --option eval-cache false --raw --read-only

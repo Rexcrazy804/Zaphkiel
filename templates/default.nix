@@ -53,12 +53,4 @@
       > template provided by Rexcrazy804/Zaphkiel
     '';
   };
-
-  java = {
-    path = ./Java;
-    description = "I wish java was minimal";
-    welcomeText = ''
-      # A java template by Rexiel Scarlet (Rexcrazy804)
-    '';
-  };
 }

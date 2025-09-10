@@ -1,23 +1,20 @@
 {
+  self,
   sources,
+  inputs,
   lib,
 }: let
-  inherit (lib) attrValues genAttrs;
-  overlays = attrValues {
-    sources = final: prev: {inherit sources;};
-    # lix = import ../pkgs/overlays/lix.nix {lix = null;};
-    internal = import ../pkgs/overlays/internal.nix;
-  };
-  nixosSystem = import (sources.nixpkgs + "/nixos/lib/eval-config.nix");
+  inherit (lib) genAttrs nixosSystem;
   mkHost = hostName:
     nixosSystem {
-      system = null;
-      specialArgs = {inherit sources;};
+      specialArgs = {
+        inherit inputs sources;
+        mein = self.packages;
+      };
       modules = [
-        {nixpkgs.overlays = overlays;}
         ./${hostName}/configuration.nix
-        ../users/rexies.nix
         ../nixosModules
+        ../users/rexies.nix
       ];
     };
 

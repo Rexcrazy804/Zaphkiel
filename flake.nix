@@ -54,18 +54,9 @@
         sources = sources pkgs;
       });
 
-    nixosConfigurations = {
-      Persephone = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs sources;
-          mein = self.packages;
-        };
-        modules = [
-          ./hosts/Persephone/configuration.nix
-          ./nixosModules
-          ./users/rexies.nix
-        ];
-      };
+    nixosConfigurations = import ./hosts {
+      inherit sources inputs self;
+      inherit (nixpkgs) lib;
     };
 
     nixosModules = {

@@ -3,6 +3,7 @@
   sources,
   inputs,
   lib,
+  ...
 }: let
   inherit (lib) genAttrs nixosSystem;
   mkHost = hostName:

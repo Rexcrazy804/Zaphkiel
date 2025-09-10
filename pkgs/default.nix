@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   sources,
+  ...
 }:
 pkgs.lib.fix (self: let
   inherit (pkgs.lib) callPackageWith warn;

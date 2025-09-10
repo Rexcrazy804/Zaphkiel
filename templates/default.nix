@@ -1,4 +1,4 @@
-{
+{...}: {
   rust-minimal = {
     path = ./Rust/minimal;
     description = "Rust flake with oxalica overlay + mold linker";

@@ -41,22 +41,18 @@
     inherit (lib) genAttrs mapAttrs callPackagesWith;
 
     systems = import inputs.systems;
-    pins = import ./npins;
-    callModule = callPackagesWith {inherit inputs self lib pins;};
+    sources = import ./npins;
+    callModule = callPackagesWith {inherit inputs self lib sources;};
 
     pkgsFor = system: nixpkgs.legacyPackages.${system};
     eachSystem = fn: genAttrs systems (system: fn (pkgsFor system));
-    sources = pkgs: mapAttrs (k: v: v {inherit pkgs;}) pins;
+    # npins v6, switch to this once v6 hits nixpkgs-unstable
+    # sources = pkgs: mapAttrs (k: v: v {inherit pkgs;}) pins;
   in {
     formatter = eachSystem (pkgs: pkgs.alejandra);
-
-    packages = eachSystem (pkgs:
-      callModule ./pkgs {
-        inherit pkgs;
-        sources = sources pkgs;
-      });
-
-    nixosConfigurations = callModule ./hosts {inherit sources;};
+    packages = eachSystem (pkgs: callModule ./pkgs {inherit pkgs;});
+    nixosConfigurations = callModule ./hosts {};
+    templates = callModule ./templates {};
 
     nixosModules = {
       kurukuruDM = {
@@ -71,7 +67,5 @@
         ];
       };
     };
-
-    templates = callModule ./templates {};
   };
 }

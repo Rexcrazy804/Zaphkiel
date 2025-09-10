@@ -38,15 +38,17 @@
     ...
   } @ inputs: let
     inherit (nixpkgs) lib;
-    inherit (lib) genAttrs callPackagesWith;
+    inherit (lib) genAttrs;
 
     systems = import inputs.systems;
     sources = import ./npins;
-    callModule = callPackagesWith {inherit inputs self lib sources;};
+    callModule = {
+      __functor = self: path: attrs: import path (self // attrs);
+      inherit inputs self lib sources;
+    };
 
     pkgsFor = system: nixpkgs.legacyPackages.${system};
     eachSystem = fn: genAttrs systems (system: fn (pkgsFor system));
-
     # TODO
     # npins v6, switch to this once v6 hits nixpkgs-unstable
     # sources = pkgs: mapAttrs (k: v: v {inherit pkgs;}) pins;

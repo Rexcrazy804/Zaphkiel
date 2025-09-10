@@ -29,5 +29,8 @@ in {
     enableSSHSupport = true;
   };
 
-  zaphkiel.data.wallpaper = ./herta.jpg;
+  zaphkiel.data.wallpaper = pkgs.fetchurl {
+    url = "https://cdn.donmai.us/original/00/07/__herta_and_the_herta_honkai_and_1_more_drawn_by_meirong__0007dfbed6ffd22f36e9423b596b004b.jpg";
+    hash = "sha256-Pc1sI1qd/N7OdnRXtPb3RqHMdxyI8NdiPY/7yPxx6ig=";
+  };
 }

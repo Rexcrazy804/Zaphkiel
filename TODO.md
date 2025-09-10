@@ -1,5 +1,6 @@
 ### Zaphkiel
 - [x] fix workflows
+- [ ] point kurukurubar-unstable to kurukurubar till I figure out how to handle it
 - [ ] test workflows
 - - [x] populate cache
 - - [ ] aphrodite benchmark

@@ -1,21 +1,23 @@
 {
   pkgs,
   lib,
-  npins,
+  newScope,
 }:
-lib.fix (self: let
-  inherit (lib) callPackageWith;
-  callPackage = callPackageWith (pkgs // self);
+lib.makeScope newScope (self: let
+  inherit (self) callPackage;
 in {
   wallcrop = callPackage ./wallcrop.nix {};
   cowask = callPackage ./cowask.nix {};
+  gpurecording = callPackage ./gpurecording.nix {};
+  kde-send = callPackage ./kde-send.nix {};
+  npins-show = callPackage ./npins-show.nix {};
+  legumulaunch = callPackage ./legumulaunch.nix {};
+  qmlcheck = callPackage ./qmlcheck.nix {};
+
+  # functions
+  # seperate them into lib later?
   writeAwk = callPackage ./writeAwk.nix {};
   writeAwkBin = name: self.writeAwkScript "/bin/${name}";
   writeJQ = callPackage ./writeJQ.nix {};
   writeJQBin = name: self.writeJQ "/bin/${name}";
-  gpurecording = callPackage ./gpurecording.nix {};
-  kde-send = callPackage ./kde-send.nix {};
-  npins-show = callPackage ./npins-show.nix {inherit npins;};
-  legumulaunch = callPackage ./legumulaunch.nix {};
-  qmlcheck = callPackage ./qmlcheck.nix {};
 })

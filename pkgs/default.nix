@@ -1,17 +1,14 @@
 {
   pkgs,
+  lib,
   inputs,
   sources,
   ...
 }:
-pkgs.lib.fix (self: let
-  inherit (pkgs.lib) callPackageWith warn;
-  inherit (pkgs) system;
-  callPackage = callPackageWith (pkgs // self);
+lib.fix (self: let
+  inherit (lib) warn;
+  inherit (pkgs) system callPackage;
 in {
-  # currently only required for nvim Plugins
-  inherit sources;
-
   # kurukuru
   quickshell = import ./quickshell.nix {
     inherit
@@ -20,7 +17,10 @@ in {
       quickshell-unwrapped
       ;
   };
-  kurukurubar-unstable = callPackage ./kurukurubar.nix {};
+  kurukurubar-unstable = callPackage ./kurukurubar.nix {
+    inherit (self) quickshell;
+    inherit (self) librebarcode scripts;
+  };
   kurukurubar = (self.kurukurubar-unstable).override {
     inherit (pkgs) quickshell;
     # following zaphkiel master branch: quickshell v0.2.0
@@ -34,9 +34,11 @@ in {
   stash = inputs.stash.packages.${system}.default;
 
   # package sets
-  lanzaboote = callPackage ./lanzaboote {};
   scripts = callPackage ./scripts {};
-  xvim = callPackage ./nvim {mnw = inputs.mnw.lib;};
+  xvim = callPackage ./nvim {
+    mnw = inputs.mnw.lib;
+    inherit sources;
+  };
   booru-images = callPackage ./booru-images.nix {
     inherit (inputs.booru-flake.packages.${system}) imgBuilder;
   };

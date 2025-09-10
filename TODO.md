@@ -1,6 +1,9 @@
 ### Zaphkiel
 - [x] fix workflows
 - [ ] test workflows
+- - [x] populate cache
+- - [ ] aphrodite benchmark
+- - [ ] formatting ?
 - [ ] remove booru-flake
 - [ ] figure out colors for kurukurubar
 - [x] fix seraphine

@@ -23,13 +23,8 @@ https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 
 ## What the heck is going on here?
 
-- npins based non flake nixos configuration (WARN: This might change soon)
 - hjem + [hjem-impure](https://github.com/Rexcrazy804/hjem-impure) over home manager
-- matugen injecting colors based on wallpaper
-- booru flake image collection to neatly access images all over the flake
-- exports a bridged flake.nix that lets you consume this configuration as a flake
 - Adorable kurukurubar complimented by the fabulous kurukurulock
-- cute [Makefile](Makefile) helper for formatting and other nix errands within the repo
 
 ## Exported packages
 
@@ -95,15 +90,11 @@ nixosModules/           # common options and defaults shared across all hosts
 - graphics/             # novideo and friends
 - nix/                  # my beloved
 - programs/             # options wraping other nixos options for programs
-- - booru-flake/        # fuck around and find out
 - server/               # same as above but for services
-- - minecraft/          # nix-minecraft entry point
 - system/               # largely defaults
 - - networking/         # networking setup with dnscrypt-proxy2
 
-npins/                  # flakes? what is that?
-- default.nix           # auto generated file to import npins
-- sources.json          # where is the flake.lock? here it is
+npins/                  # npins for pinning non flake stuff
 
 pkgs/                   # exported packages are found here
 - anime-launchers       # crane enabled builds for aagl launchers family
@@ -128,8 +119,6 @@ users/                  # user specific configuration imported by hosts hosting 
 - <others>.nix          # other users
 
 README.md               # are you reading me yet?
-Makefile                # a cute helper, Zaphkiel's maid chan
-default.nix             # entry point for building configurations
 flake.nix               # sneaky flake.nix that uses npins for inputs
 license                 # MIT License
 ```

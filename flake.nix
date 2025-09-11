@@ -44,9 +44,9 @@
   in {
     formatter = eachSystem (pkgs: self.packages.${pkgs.system}.irminsul);
     packages = eachSystem (pkgs: callModule ./pkgs {inherit pkgs;});
+    devShells = eachSystem (pkgs: callModule ./devShells {inherit pkgs;});
     nixosConfigurations = callModule ./hosts {};
     templates = callModule ./templates {};
     nixosModules = callModule ./nixosModules/exported {};
-    devShells = eachSystem (pkgs: {default = pkgs.callPackage ./devShells {};});
   };
 }

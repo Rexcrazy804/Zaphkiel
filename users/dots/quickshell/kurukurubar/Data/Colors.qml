@@ -15,7 +15,14 @@ Singleton {
   }
 
   FileView {
-    path: Dat.Paths.config + "/colors.json"
+    path: {
+      const colors_location = (Quickshell.env("KURU_COLORS"));
+      if (colors_location) {
+        colors_location;
+      } else {
+        Dat.Paths.config + "/colors.json";
+      }
+    }
     watchChanges: true
 
     onAdapterUpdated: writeAdapter()

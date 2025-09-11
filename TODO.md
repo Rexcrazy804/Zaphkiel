@@ -9,7 +9,7 @@
 - [x] remove booru-flake
 - [ ] figure out colors for kurukurubar
 - [x] fix seraphine
-- [ ] setup formatting script (see fuf nixpkgs)
+- [x] setup formatting script (see fuf nixpkgs)
 
 ### External
 

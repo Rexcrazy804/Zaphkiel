@@ -7,6 +7,7 @@ lib.makeScope newScope (self: let
   inherit (self) callPackage;
 in {
   wallcrop = callPackage ./wallcrop.nix {};
+  changeWall = callPackage ./changeWall.nix {};
   cowask = callPackage ./cowask.nix {};
   gpurecording = callPackage ./gpurecording.nix {};
   kde-send = callPackage ./kde-send.nix {};

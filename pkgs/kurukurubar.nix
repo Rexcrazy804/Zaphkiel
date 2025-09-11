@@ -15,8 +15,7 @@
   nerd-fonts,
   configPath ? ../users/dots/quickshell/kurukurubar,
   asGreeter ? false,
-  # MUST BE A QML FILE
-  # replaces Data/Colors.qml
+  # a json file
   customColors ? null,
 }: let
   inherit (lib) makeSearchPath optionalString any;
@@ -61,14 +60,10 @@
       cp -r ./. $out
     '';
 
-    preInstall =
-      (optionalString asGreeter ''
-        rm shell.qml
-        mv greeter.qml shell.qml
-      '')
-      + (optionalString (customColors != null) ''
-        cp ${customColors} ./Data/Colors.qml
-      '');
+    preInstall = optionalString asGreeter ''
+      rm shell.qml
+      mv greeter.qml shell.qml
+    '';
   };
 in
   symlinkJoin {
@@ -82,6 +77,7 @@ in
       makeWrapper $out/bin/quickshell $out/bin/kurukurubar \
         --set FONTCONFIG_FILE "${fontconfig}" \
         --set QML2_IMPORT_PATH "${qmlPath}" \
+        --set KURU_COLORS "${optionalString (customColors != null) "${customColors}"}" \
         --add-flags '-p ${qsConfig}' \
         --prefix PATH : "$out/bin"
     '';

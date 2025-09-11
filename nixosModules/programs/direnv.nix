@@ -1,8 +1,4 @@
 {
-  lib,
-  config,
-  ...
-}: {
   programs.direnv = {
     enable = true;
     silent = true;

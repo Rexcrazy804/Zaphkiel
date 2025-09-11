@@ -21,7 +21,7 @@ in {
       enable = true;
       settings = {
         inherit wallpaper;
-        # colorsQML = theme.files + "/quickshell-colors.qml";
+        colors = ../../users/dots/quickshell/colors.json;
         instantAuth = true;
         extraConfig = ''
           monitor = eDP-1, preferred, auto, 1.25

@@ -50,19 +50,6 @@
     packages = eachSystem (pkgs: callModule ./pkgs {inherit pkgs;});
     nixosConfigurations = callModule ./hosts {};
     templates = callModule ./templates {};
-
-    nixosModules = {
-      kurukuruDM = {
-        pkgs,
-        lib,
-        ...
-      }: {
-        imports = [./nixosModules/exported/kurukuruDM.nix];
-
-        nixpkgs.overlays = [
-          (final: prev: {inherit (self.packages.${pkgs.system}) kurukurubar kurukurubar-unstable;})
-        ];
-      };
-    };
+    nixosModules = callModule ./nixosModules/exported {};
   };
 }

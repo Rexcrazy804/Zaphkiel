@@ -1,4 +1,5 @@
 ### Zaphkiel
+
 - [x] fix workflows
 - [ ] point kurukurubar-unstable to kurukurubar till I figure out how to handle it
 - [ ] test workflows
@@ -11,4 +12,5 @@
 - [ ] setup formatting script (see fuf nixpkgs)
 
 ### External
+
 - [ ] rewrite booru flake to not depend on nix

@@ -47,7 +47,7 @@ WlrLayershell {
     bottomLeftRadius: 20
     bottomRightRadius: 20
     clip: true
-    color: Dat.Colors.withAlpha(Dat.Colors.background, (Dat.Globals.actWinName == "desktop" && Dat.Globals.notchState != "FULLY_EXPANDED") ? 0.79 : 0.89)
+    color: Dat.Colors.withAlpha(Dat.Colors.current.background, (Dat.Globals.actWinName == "desktop" && Dat.Globals.notchState != "FULLY_EXPANDED") ? 0.79 : 0.89)
     state: Dat.Globals.notchState
 
     Behavior on color {
@@ -340,7 +340,7 @@ WlrLayershell {
     anchors.horizontalCenter: notchRect.horizontalCenter
     anchors.top: notchRect.bottom
     anchors.topMargin: 10
-    color: Dat.Colors.surface
+    color: Dat.Colors.current.surface
     radius: 20
     state: Dat.Globals.notifState
 
@@ -365,7 +365,7 @@ WlrLayershell {
         PropertyChanges {
           inboxRect.opacity: 0
           inboxRect.visible: false
-          notificationRect.color: Dat.Colors.surface_container
+          notificationRect.color: Dat.Colors.current.surface_container
           notificationRect.implicitHeight: notificationRect.popupHeight
           notificationRect.implicitWidth: notificationRect.popupWidth
           notificationRect.visible: true

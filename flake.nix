@@ -20,10 +20,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.crane.follows = "crane";
     };
-    booru-flake = {
-      url = "github:Rexcrazy804/booru-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     agenix = {
       url = "github:ryantm/agenix";
       inputs.darwin.follows = "";

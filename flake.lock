@@ -23,26 +23,6 @@
         "type": "github"
       }
     },
-    "booru-flake": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1757493521,
-        "narHash": "sha256-7/VAXuYiwyFh2fLUCAeZKRFr49QM/xAbAY7ukZdTbvk=",
-        "owner": "Rexcrazy804",
-        "repo": "booru-flake",
-        "rev": "2efc60dcade64e83d86afbf29db90007a30728d2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Rexcrazy804",
-        "repo": "booru-flake",
-        "type": "github"
-      }
-    },
     "crane": {
       "locked": {
         "lastModified": 1757183466,
@@ -179,7 +159,6 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
-        "booru-flake": "booru-flake",
         "crane": "crane",
         "hjem": "hjem",
         "hjem-impure": "hjem-impure",

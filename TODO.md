@@ -1,15 +1,15 @@
 ### Zaphkiel
 
 - [x] fix workflows
-- [ ] point kurukurubar-unstable to kurukurubar till I figure out how to handle it
-- [ ] test workflows
+- [x] test workflows
 - - [x] populate cache
 - - [x] aphrodite benchmark
-- - [ ] formatting ?
+- - [x] formatting ?
 - [x] remove booru-flake
-- [ ] figure out colors for kurukurubar
 - [x] fix seraphine
 - [x] setup formatting script (see fuf nixpkgs)
+- [ ] figure out colors for kurukurubar
+- [ ] point kurukurubar-unstable to kurukurubar till I figure out how to handle it
 
 ### External
 

@@ -62,7 +62,7 @@ ShellRoot {
           }
 
           GradientStop {
-            color: Dat.Colors.background
+            color: Dat.Colors.current.background
             position: 1.0
           }
         }
@@ -84,7 +84,7 @@ ShellRoot {
             id: userText
 
             anchors.centerIn: parent
-            color: Dat.Colors.on_background
+            color: Dat.Colors.current.on_background
             font.pointSize: 69
             rotation: -90
             text: users.current_user
@@ -142,7 +142,7 @@ ShellRoot {
             id: sessionText
 
             anchors.centerIn: parent
-            color: Dat.Colors.on_background
+            color: Dat.Colors.current.on_background
             font.pointSize: 69
             rotation: 90
             // fooking 39 varient doesnt support () brackets
@@ -204,7 +204,7 @@ ShellRoot {
         delegate: Gen.BarCode {
           required property string modelData
 
-          color: Dat.Colors.on_background
+          color: Dat.Colors.current.on_background
           font.pointSize: 48
           text: modelData
         }
@@ -224,7 +224,7 @@ ShellRoot {
       Rectangle {
         anchors.centerIn: parent
         clip: true
-        color: Dat.Colors.surface
+        color: Dat.Colors.current.surface
         height: 40
         radius: this.width
         width: inputRow.width
@@ -319,7 +319,7 @@ ShellRoot {
                 id: lockIcon
 
                 anchors.centerIn: parent
-                color: Dat.Colors.on_surface
+                color: Dat.Colors.current.on_surface
                 fill: sessionLock.unlocking
                 font.pointSize: 18
                 icon: "lock"
@@ -337,7 +337,7 @@ ShellRoot {
                   PropertyAction {
                     property: "color"
                     target: lockIcon
-                    value: Dat.Colors.error
+                    value: Dat.Colors.current.error
                   }
 
                   PauseAnimation {
@@ -347,7 +347,7 @@ ShellRoot {
                   PropertyAction {
                     property: "color"
                     target: lockIcon
-                    value: Dat.Colors.on_error
+                    value: Dat.Colors.current.on_error
                   }
                 }
 

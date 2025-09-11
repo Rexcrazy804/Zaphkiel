@@ -8,8 +8,8 @@
 - [x] remove booru-flake
 - [x] fix seraphine
 - [x] setup formatting script (see fuf nixpkgs)
+- [x] ensure quickshell isn't broken for flake users
 - [ ] figure out colors for kurukurubar
-- [ ] point kurukurubar-unstable to kurukurubar till I figure out how to handle it
 
 ### External
 

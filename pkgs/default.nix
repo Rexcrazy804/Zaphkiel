@@ -11,10 +11,10 @@ lib.fix (self: let
 in {
   # kurukuru
   quickshell = import ./quickshell.nix {
+    inherit (inputs.quickshell) rev;
     inherit
       (inputs.quickshell.packages.${pkgs.system})
       quickshell
-      quickshell-unwrapped
       ;
   };
   kurukurubar-unstable = callPackage ./kurukurubar.nix {

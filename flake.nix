@@ -42,7 +42,7 @@
     pkgsFor = system: nixpkgs.legacyPackages.${system};
     eachSystem = fn: lib.genAttrs systems (system: fn (pkgsFor system));
   in {
-    formatter = eachSystem (pkgs: pkgs.alejandra);
+    formatter = eachSystem (pkgs: self.packages.${pkgs.system}.irminsul);
     packages = eachSystem (pkgs: callModule ./pkgs {inherit pkgs;});
     nixosConfigurations = callModule ./hosts {};
     templates = callModule ./templates {};

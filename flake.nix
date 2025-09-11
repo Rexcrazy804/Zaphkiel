@@ -32,13 +32,9 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: let
+  outputs = inputs: let
+    inherit (inputs) nixpkgs self;
     inherit (nixpkgs) lib;
-    inherit (lib) genAttrs;
 
     systems = import inputs.systems;
     sources = import ./npins;
@@ -48,10 +44,7 @@
     };
 
     pkgsFor = system: nixpkgs.legacyPackages.${system};
-    eachSystem = fn: genAttrs systems (system: fn (pkgsFor system));
-    # TODO
-    # npins v6, switch to this once v6 hits nixpkgs-unstable
-    # sources = pkgs: mapAttrs (k: v: v {inherit pkgs;}) pins;
+    eachSystem = fn: lib.genAttrs systems (system: fn (pkgsFor system));
   in {
     formatter = eachSystem (pkgs: pkgs.alejandra);
     packages = eachSystem (pkgs: callModule ./pkgs {inherit pkgs;});

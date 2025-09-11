@@ -9,7 +9,7 @@ import qs.Generics as Gen
 import qs.Widgets as Wid
 
 Rectangle {
-  color: Dat.Colors.surface_container_high
+  color: Dat.Colors.current.surface_container_high
   radius: 20
 
   RowLayout {
@@ -22,7 +22,7 @@ Rectangle {
 
       Rectangle {
         anchors.fill: parent
-        color: Dat.Colors.surface_container
+        color: Dat.Colors.current.surface_container
         radius: 20
       }
 
@@ -81,7 +81,7 @@ Rectangle {
 
                 Text {
                   anchors.centerIn: parent
-                  color: Dat.Colors.primary
+                  color: Dat.Colors.current.primary
                   font.pointSize: 24
                   text: (parent.usage * 100).toFixed(0)
                 }
@@ -91,14 +91,14 @@ Rectangle {
                   anchors.bottomMargin: this.anchors.rightMargin
                   anchors.right: parent.right
                   anchors.rightMargin: 5
-                  color: Dat.Colors.primary
+                  color: Dat.Colors.current.primary
                   height: this.width
                   radius: this.width
                   width: 35
 
                   Text {
                     anchors.centerIn: parent
-                    color: Dat.Colors.on_primary
+                    color: Dat.Colors.current.on_primary
                     font.pointSize: 16
                     text: itemRoot.modelData.icon
                   }
@@ -113,7 +113,7 @@ Rectangle {
 
           // BATTERY information
           Layout.fillWidth: true
-          color: Dat.Colors.surface_container_highest
+          color: Dat.Colors.current.surface_container_highest
           implicitHeight: 28
           radius: 20
           topLeftRadius: 0
@@ -165,7 +165,7 @@ Rectangle {
 
               Text {
                 anchors.centerIn: parent
-                color: Dat.Colors.on_surface
+                color: Dat.Colors.current.on_surface
                 text: parent.modelData
               }
             }
@@ -173,7 +173,7 @@ Rectangle {
         }
         handle: Rectangle {
           anchors.horizontalCenter: parent.horizontalCenter
-          color: Dat.Colors.primary
+          color: Dat.Colors.current.primary
           height: this.width
           radius: this.width
           visible: true
@@ -189,7 +189,7 @@ Rectangle {
 
           Text {
             anchors.centerIn: parent
-            color: Dat.Colors.on_primary
+            color: Dat.Colors.current.on_primary
             text: switch (PowerProfiles.profile) {
             case 0:
               "";

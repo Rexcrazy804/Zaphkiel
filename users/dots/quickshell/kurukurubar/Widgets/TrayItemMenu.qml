@@ -12,7 +12,7 @@ Rectangle {
   required property QsMenuOpener trayMenu
 
   clip: true
-  color: Dat.Colors.surface_container
+  color: Dat.Colors.current.surface_container
   radius: 20
 
   Behavior on trayMenu {
@@ -56,7 +56,7 @@ Rectangle {
       }
       required property QsMenuEntry modelData
 
-      color: (modelData?.isSeparator) ? Dat.Colors.outline : "transparent"
+      color: (modelData?.isSeparator) ? Dat.Colors.current.outline : "transparent"
       height: (modelData?.isSeparator) ? 2 : 28
       radius: 20
       width: root.width
@@ -87,7 +87,7 @@ Rectangle {
 
           Gen.MatIcon {
             anchors.centerIn: parent
-            color: Dat.Colors.primary
+            color: Dat.Colors.current.primary
             fill: entry.modelData?.checkState == Qt.Checked
             font.pixelSize: parent.width * 0.8
             icon: (entry.modelData?.checkState != Qt.Checked) ? "check_box_outline_blank" : "check_box"
@@ -103,7 +103,7 @@ Rectangle {
 
           Gen.MatIcon {
             anchors.centerIn: parent
-            color: Dat.Colors.primary
+            color: Dat.Colors.current.primary
             fill: entry.modelData?.checkState == Qt.Checked
             font.pixelSize: parent.width * 0.8
             icon: (entry.modelData?.checkState != Qt.Checked) ? "radio_button_unchecked" : "radio_button_checked"
@@ -118,7 +118,7 @@ Rectangle {
             id: text
 
             anchors.fill: parent
-            color: (entry.modelData?.enabled) ? Dat.Colors.on_surface : Dat.Colors.primary
+            color: (entry.modelData?.enabled) ? Dat.Colors.current.on_surface : Dat.Colors.current.primary
             font.pointSize: 11
             text: entry.modelData?.text ?? ""
             verticalAlignment: Text.AlignVCenter
@@ -145,7 +145,7 @@ Rectangle {
 
           Text {
             anchors.centerIn: parent
-            color: Dat.Colors.on_surface
+            color: Dat.Colors.current.on_surface
             font.pointSize: 11
             text: ""
           }

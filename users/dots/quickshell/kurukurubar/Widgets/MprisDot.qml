@@ -5,14 +5,14 @@ import qs.Data as Dat
 import qs.Generics as Gen
 
 Rectangle {
-  color: Dat.Colors.surface_container_high
+  color: Dat.Colors.current.surface_container_high
   visible: Mpris.players.values.length
 
   Text {
     id: icon
 
     anchors.centerIn: parent
-    color: Dat.Colors.tertiary
+    color: Dat.Colors.current.tertiary
     font.pointSize: 11
     rotation: Dat.Globals.mprisDotRotation
     text: "󰽰"
@@ -28,7 +28,7 @@ Rectangle {
 
   Gen.MouseArea {
     acceptedButtons: Qt.LeftButton
-    layerColor: Dat.Colors.tertiary
+    layerColor: Dat.Colors.current.tertiary
 
     onClicked: mevent => {
       if (Dat.Globals.notchState == "FULLY_EXPANDED" && Dat.Globals.swipeIndex == 3) {

@@ -82,7 +82,7 @@ Item {
               id: bgRect
 
               anchors.centerIn: parent
-              color: Dat.Colors.surface_container_high
+              color: Dat.Colors.current.surface_container_high
               height: tabRect.height
               radius: 10
               width: tabText.contentWidth + 20
@@ -92,7 +92,7 @@ Item {
               id: tabText
 
               anchors.centerIn: parent
-              color: Dat.Colors.on_surface
+              color: Dat.Colors.current.on_surface
               horizontalAlignment: Text.AlignHCenter
               text: parent.modelData
               verticalAlignment: Text.AlignVCenter

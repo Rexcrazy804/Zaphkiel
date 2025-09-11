@@ -7,7 +7,7 @@ Text {
   id: timeText
 
   anchors.centerIn: parent
-  color: Dat.Colors.secondary
+  color: Dat.Colors.current.secondary
   font.pointSize: 11
   text: Qt.formatDateTime(Dat.Clock.date, "h:mm:ss AP")
 
@@ -15,7 +15,7 @@ Text {
     anchors.centerIn: parent
     anchors.fill: null
     height: 20
-    layerColor: Dat.Colors.secondary
+    layerColor: Dat.Colors.current.secondary
     layerRadius: 20
     width: timeText.contentWidth + 12
 

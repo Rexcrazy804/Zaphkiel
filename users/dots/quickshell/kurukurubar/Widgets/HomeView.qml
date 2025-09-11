@@ -17,7 +17,7 @@ Item {
     Rectangle {
       Layout.fillHeight: true
       Layout.fillWidth: true
-      color: Dat.Colors.surface_container
+      color: Dat.Colors.current.surface_container
       radius: 20
 
       StackView {
@@ -242,7 +242,7 @@ Item {
             id: uptimeText
 
             anchors.centerIn: parent
-            color: Dat.Colors.on_surface
+            color: Dat.Colors.current.on_surface
             font.pointSize: 10
             text: Dat.Resources.uptime
           }

@@ -19,7 +19,7 @@ Item {
     anchors.bottom: parent.bottom
     anchors.bottomMargin: 5
     anchors.horizontalCenter: parent.horizontalCenter
-    color: Dat.Colors.on_surface
+    color: Dat.Colors.current.on_surface
     text: "Play some music"
   }
 

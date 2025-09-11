@@ -15,7 +15,7 @@ RowLayout {
 
     Text {
       anchors.fill: parent
-      color: Dat.Colors.on_surface
+      color: Dat.Colors.current.on_surface
       font.pointSize: 10
       horizontalAlignment: Text.AlignLeft
       text: "󰂏 " + info.bat.energyCapacity.toFixed(2)
@@ -41,7 +41,7 @@ RowLayout {
       }
 
       anchors.centerIn: parent
-      color: Dat.Colors.on_surface
+      color: Dat.Colors.current.on_surface
       font.pointSize: 10
       text: switch (info.bat.state) {
       case UPowerDeviceState.Charging:
@@ -60,7 +60,7 @@ RowLayout {
 
     Text {
       anchors.fill: parent
-      color: Dat.Colors.on_surface
+      color: Dat.Colors.current.on_surface
       font.pointSize: 10
       horizontalAlignment: Text.AlignRight
       text: "󱐋 " + info.bat.changeRate.toFixed(2)

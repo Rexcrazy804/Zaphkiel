@@ -26,20 +26,20 @@ Repeater {
 
     Layout.alignment: Qt.AlignCenter
     clip: true
-    color: Dat.Colors.primary
+    color: Dat.Colors.current.primary
     implicitHeight: this.implicitWidth
     implicitWidth: 28 * Dat.Globals.notchScale
     radius: this.implicitWidth
 
     Gen.MouseArea {
-      layerColor: Dat.Colors.on_primary
+      layerColor: Dat.Colors.current.on_primary
 
       onClicked: mevent => dot.modelData.action(mevent)
     }
 
     Text {
       anchors.centerIn: parent
-      color: Dat.Colors.on_primary
+      color: Dat.Colors.current.on_primary
       font.bold: true
       font.pointSize: 12 * Dat.Globals.notchScale
       text: dot.modelData.text

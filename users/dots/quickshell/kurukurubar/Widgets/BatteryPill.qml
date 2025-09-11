@@ -30,7 +30,7 @@ Rectangle {
   }
 
   Layout.minimumWidth: contentRow.width ? contentRow.width : 1
-  color: Dat.Colors.primary_container
+  color: Dat.Colors.current.primary_container
 
   Behavior on Layout.minimumWidth {
     NumberAnimation {
@@ -55,7 +55,7 @@ Rectangle {
         id: batText
 
         anchors.centerIn: parent
-        color: Dat.Colors.on_primary_container
+        color: Dat.Colors.current.on_primary_container
         font.pointSize: 11
         text: Math.round(root.batPercentage * 100) + "%"
         visible: UPower.displayDevice.percentage > 0
@@ -64,13 +64,13 @@ Rectangle {
 
     Rectangle {
       Layout.fillHeight: true
-      color: Dat.Colors.primary
+      color: Dat.Colors.current.primary
       implicitWidth: this.height
       radius: this.height
 
       Text {
         anchors.centerIn: parent
-        color: Dat.Colors.on_primary
+        color: Dat.Colors.current.on_primary
         font.pointSize: (mArea.containsMouse || !root.hasBattery) ? 9 : 11
         text: (mArea.containsMouse || !root.hasBattery) ? root.profileIcon : ((root.batCharging) ? root.chargeIcon : root.batIcon)
       }
@@ -91,7 +91,7 @@ Rectangle {
   Gen.MouseArea {
     id: mArea
 
-    layerColor: Dat.Colors.on_primary
+    layerColor: Dat.Colors.current.on_primary
 
     onClicked: {
       if (Dat.Globals.notchState == "FULLY_EXPANDED" && Dat.Globals.swipeIndex == 4 && Dat.Globals.settingsTabIndex == 0) {

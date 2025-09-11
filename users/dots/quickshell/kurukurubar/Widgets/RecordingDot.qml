@@ -10,7 +10,7 @@ Item {
     id: recordDot
 
     anchors.centerIn: parent
-    color: Dat.Colors.tertiary
+    color: Dat.Colors.current.tertiary
     height: this.width
     radius: this.width
     width: 10

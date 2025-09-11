@@ -7,7 +7,7 @@ import qs.Data as Dat
 
 Rectangle {
   clip: true
-  color: Dat.Colors.surface_container_high
+  color: Dat.Colors.current.surface_container_high
   radius: 20
 
   ListView {

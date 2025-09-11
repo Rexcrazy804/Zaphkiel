@@ -25,7 +25,7 @@ Item {
       Layout.fillHeight: true
       Layout.fillWidth: true
       clip: true
-      color: Dat.Colors.surface_container_high
+      color: Dat.Colors.current.surface_container_high
       radius: 10
 
       Image {
@@ -42,7 +42,7 @@ Item {
 
         layer.effect: MultiEffect {
           colorization: 1
-          colorizationColor: Dat.Colors.secondary
+          colorizationColor: Dat.Colors.current.secondary
         }
         Behavior on rotation {
           NumberAnimation {
@@ -78,7 +78,7 @@ Item {
           Layout.fillHeight: true
           Layout.fillWidth: true
           clip: true
-          color: Dat.Colors.surface_container
+          color: Dat.Colors.current.surface_container
           radius: 10
 
           RowLayout {
@@ -95,7 +95,7 @@ Item {
                 id: hyprIcon
 
                 anchors.fill: parent
-                color: Dat.Colors.primary
+                color: Dat.Colors.current.primary
                 font.pointSize: 32 * Dat.Globals.notchScale
                 horizontalAlignment: Text.AlignHCenter
                 text: ""
@@ -120,11 +120,11 @@ Item {
 
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-                    color: (Hyprland.focusedWorkspace?.id == this.index + 1) ? Dat.Colors.primary : Dat.Colors.surface_container_high
+                    color: (Hyprland.focusedWorkspace?.id == this.index + 1) ? Dat.Colors.current.primary : Dat.Colors.current.surface_container_high
                     radius: this.width
 
                     Gen.MouseArea {
-                      layerColor: Dat.Colors.primary
+                      layerColor: Dat.Colors.current.primary
 
                       onClicked: Hyprland.dispatch("workspace " + (parent.index + 1))
                     }
@@ -139,7 +139,7 @@ Item {
           // no longer system tray, its gonna be the base of a monitor
           Layout.alignment: Qt.AlignCenter
           antialiasing: true
-          color: Dat.Colors.outline
+          color: Dat.Colors.current.outline
           implicitHeight: 10 * Dat.Globals.notchScale
           implicitWidth: 80 * Dat.Globals.notchScale
           radius: 10

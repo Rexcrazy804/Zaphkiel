@@ -13,7 +13,7 @@ Rectangle {
   required property MprisPlayer player
 
   clip: true
-  color: Dat.Colors.surface_container_low
+  color: Dat.Colors.current.surface_container_low
   radius: 20
 
   Image {
@@ -125,7 +125,7 @@ Rectangle {
 
       Text {
         anchors.fill: parent
-        color: Dat.Colors.primary
+        color: Dat.Colors.current.primary
         elide: Text.ElideRight
         font.bold: true
         font.pointSize: 16
@@ -141,7 +141,7 @@ Rectangle {
 
       Text {
         anchors.fill: parent
-        color: Dat.Colors.secondary
+        color: Dat.Colors.current.secondary
         elide: Text.ElideRight
         font.bold: true
         font.pointSize: 9
@@ -163,7 +163,7 @@ Rectangle {
       id: prevIcon
 
       anchors.centerIn: parent
-      color: Dat.Colors.secondary
+      color: Dat.Colors.current.secondary
       font.bold: true
       font.pixelSize: 30
       icon: "arrow_circle_left"
@@ -192,7 +192,7 @@ Rectangle {
       id: nextIcon
 
       anchors.centerIn: parent
-      color: Dat.Colors.secondary
+      color: Dat.Colors.current.secondary
       font.bold: true
       font.pixelSize: 30
       icon: "arrow_circle_right"

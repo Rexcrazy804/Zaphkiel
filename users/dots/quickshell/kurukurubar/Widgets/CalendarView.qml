@@ -22,7 +22,7 @@ Item {
         Layout.fillWidth: true
         bottomLeftRadius: 0
         bottomRightRadius: 0
-        color: Dat.Colors.primary_container
+        color: Dat.Colors.current.primary_container
         // Day display
         implicitHeight: 18
         radius: 20
@@ -31,7 +31,7 @@ Item {
           id: weekDayText
 
           anchors.centerIn: parent
-          color: Dat.Colors.on_primary_container
+          color: Dat.Colors.current.on_primary_container
           font.pointSize: 8
           text: Qt.formatDateTime(Dat.Clock?.date, "ddd")
         }
@@ -40,14 +40,14 @@ Item {
       Rectangle {
         Layout.fillHeight: true
         Layout.fillWidth: true
-        color: Dat.Colors.primary
+        color: Dat.Colors.current.primary
         radius: 10
         topLeftRadius: 0
         topRightRadius: 0
 
         Text {
           anchors.centerIn: parent
-          color: Dat.Colors.on_primary
+          color: Dat.Colors.current.on_primary
           rotation: -90
           text: Qt.formatDateTime(Dat.Clock?.date, "MMMM")
         }
@@ -66,7 +66,7 @@ Item {
 
       // Layout.leftMargin: 50
       // Layout.rightMargin: this.Layout.leftMargin
-      // color: Dat.Colors.surface_container
+      // color: Dat.Colors.current.surface_container
       // color: "transparent"
 
       delegate: Item {
@@ -74,7 +74,7 @@ Item {
 
         Rectangle {
           anchors.centerIn: parent
-          color: (monthGrid.currDay == model.day && monthGrid.currMonth == model.month) ? Dat.Colors.primary : "transparent"
+          color: (monthGrid.currDay == model.day && monthGrid.currMonth == model.month) ? Dat.Colors.current.primary : "transparent"
           height: parent.height
           radius: 6
           width: this.height
@@ -82,7 +82,7 @@ Item {
 
         Text {
           anchors.centerIn: parent
-          color: (parent.model.month == monthGrid.currMonth) ? (parent.model.day == monthGrid.currDay) ? Dat.Colors.on_primary : Dat.Colors.on_surface : Dat.Colors.withAlpha(Dat.Colors.on_surface_variant, 0.70)
+          color: (parent.model.month == monthGrid.currMonth) ? (parent.model.day == monthGrid.currDay) ? Dat.Colors.current.on_primary : Dat.Colors.current.on_surface : Dat.Colors.withAlpha(Dat.Colors.current.on_surface_variant, 0.70)
           font.pointSize: 10
           text: parent.model.day
         }

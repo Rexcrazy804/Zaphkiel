@@ -65,12 +65,12 @@ RowLayout {
 
     Layout.fillHeight: true
     Layout.fillWidth: true
-    color: Dat.Colors.surface_container
+    color: Dat.Colors.current.surface_container
     radius: 20
 
     Text {
       anchors.centerIn: parent
-      color: Dat.Colors.on_surface
+      color: Dat.Colors.current.on_surface
       font.pointSize: 14
       text: "Hello cutie"
     }

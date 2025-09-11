@@ -42,7 +42,7 @@ Item {
     // too blurry for now
     // layer.enabled: true
     // layer.effect: MultiEffect {
-    //   colorizationColor: Dat.Colors.secondary
+    //   colorizationColor: Dat.Colors.current.secondary
     //   colorization: 1.0
     //   antialiasing: true
     //   smooth: true

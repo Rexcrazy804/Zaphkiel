@@ -22,7 +22,7 @@ Rectangle {
         property bool clearable: Dat.NotifServer.notifCount > 0
 
         anchors.centerIn: parent
-        color: (clearable) ? Dat.Colors.on_surface : Dat.Colors.on_surface_variant
+        color: (clearable) ? Dat.Colors.current.on_surface : Dat.Colors.current.on_surface_variant
         fill: (clearable) ? 1 : 0
         icon: "delete"
       }
@@ -38,8 +38,8 @@ Rectangle {
 
     Gen.ToggleButton {
       active: !Dat.NotifServer.dndEnabled
-      activeColor: Dat.Colors.secondary
-      activeIconColor: Dat.Colors.on_secondary
+      activeColor: Dat.Colors.current.secondary
+      activeIconColor: Dat.Colors.current.on_secondary
       implicitHeight: this.implicitWidth
       implicitWidth: 28
       radius: this.implicitWidth
@@ -57,8 +57,8 @@ Rectangle {
       id: idleButton
 
       active: Dat.SessionActions.idleInhibited
-      activeColor: Dat.Colors.secondary
-      activeIconColor: Dat.Colors.on_secondary
+      activeColor: Dat.Colors.current.secondary
+      activeIconColor: Dat.Colors.current.on_secondary
       implicitHeight: this.implicitWidth
       implicitWidth: 28
       radius: this.implicitWidth

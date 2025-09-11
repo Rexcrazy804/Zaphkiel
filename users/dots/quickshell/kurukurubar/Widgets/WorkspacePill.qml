@@ -10,7 +10,7 @@ Rectangle {
   id: root
 
   clip: true
-  color: Dat.Colors.primary_container
+  color: Dat.Colors.current.primary_container
   height: 20
   implicitWidth: workRow.width + 8
   radius: 20
@@ -31,7 +31,7 @@ Rectangle {
     spacing: 5
 
     Rectangle {
-      color: Dat.Colors.primary
+      color: Dat.Colors.current.primary
       implicitHeight: 20
       implicitWidth: 20
       radius: 20
@@ -40,7 +40,7 @@ Rectangle {
         id: workspaceNumText
 
         anchors.centerIn: parent
-        color: Dat.Colors.on_primary
+        color: Dat.Colors.current.on_primary
         font.pointSize: 10
         text: Hyprland.focusedWorkspace?.id ?? "0"
       }
@@ -52,7 +52,7 @@ Rectangle {
       readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
 
       Layout.maximumWidth: 100
-      color: Dat.Colors.on_primary_container
+      color: Dat.Colors.current.on_primary_container
       elide: Text.ElideRight
       font.pointSize: 11
       text: Dat.Globals.actWinName
@@ -60,7 +60,7 @@ Rectangle {
   }
 
   Gen.MouseArea {
-    layerColor: Dat.Colors.on_primary_container
+    layerColor: Dat.Colors.current.on_primary_container
     layerRadius: 20
 
     onClicked: {

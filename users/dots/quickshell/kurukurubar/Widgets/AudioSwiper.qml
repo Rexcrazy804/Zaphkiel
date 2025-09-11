@@ -10,7 +10,7 @@ Rectangle {
 
   Layout.minimumWidth: swiper.currentItem?.contentWidth + 20
   clip: true
-  color: Dat.Colors.primary_container
+  color: Dat.Colors.current.primary_container
 
   Behavior on Layout.minimumWidth {
     NumberAnimation {
@@ -26,7 +26,7 @@ Rectangle {
     orientation: Qt.Horizontal
 
     Text {
-      color: Dat.Colors.on_primary_container
+      color: Dat.Colors.current.on_primary_container
       font.pointSize: 11
       height: audRect.height
       horizontalAlignment: Text.AlignHCenter
@@ -37,7 +37,7 @@ Rectangle {
       Gen.MouseArea {
         acceptedButtons: Qt.LeftButton | Qt.MiddleButton
         clickOpacity: 0.2
-        layerColor: Dat.Colors.on_primary_container
+        layerColor: Dat.Colors.current.on_primary_container
         layerRadius: audRect.radius
 
         onClicked: mouse => {
@@ -61,7 +61,7 @@ Rectangle {
     }
 
     Text {
-      color: Dat.Colors.on_primary_container
+      color: Dat.Colors.current.on_primary_container
       font.pointSize: 11
       height: audRect.height
       horizontalAlignment: Text.AlignHCenter
@@ -72,7 +72,7 @@ Rectangle {
       Gen.MouseArea {
         acceptedButtons: Qt.LeftButton | Qt.MiddleButton
         clickOpacity: 0.2
-        layerColor: Dat.Colors.on_primary_container
+        layerColor: Dat.Colors.current.on_primary_container
         layerRadius: audRect.radius
 
         onClicked: mouse => {

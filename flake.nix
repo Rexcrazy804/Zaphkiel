@@ -34,11 +34,9 @@
 
     systems = import inputs.systems;
     sources = import ./npins;
-    callModule = {
-      __functor = self: path: attrs: import path (self // attrs);
-      inherit inputs self lib sources;
-    };
+    moduleArgs = {inherit inputs self lib sources;};
 
+    callModule = path: attrs: import path (moduleArgs // attrs);
     pkgsFor = system: nixpkgs.legacyPackages.${system};
     eachSystem = fn: lib.genAttrs systems (system: fn (pkgsFor system));
   in {

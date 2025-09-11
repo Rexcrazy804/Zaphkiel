@@ -1,5 +1,5 @@
 {
-  description = "Rexiel Scarlet's Flake bridge";
+  description = "Rexiel Scarlet's Flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";

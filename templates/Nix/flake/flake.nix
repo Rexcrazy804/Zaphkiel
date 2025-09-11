@@ -3,29 +3,23 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    systems.url = "github:nix-systems/default";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-  }: let
-    systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
-    forAllSystems = f:
-      nixpkgs.lib.genAttrs systems (
-        system:
-          f (import nixpkgs {inherit system;})
-      );
-  in {
-    packages = forAllSystems (pkgs: {
-      default = pkgs.hello;
-    });
+  outputs = inputs: let
+    inherit (inputs) nixpkgs self;
+    inherit (nixpkgs) lib;
 
-    devShells = forAllSystems (pkgs: {
-      default = pkgs.mkShell {
-        packages = [
-          pkgs.hello
-        ];
-      };
-    });
+    systems = import inputs.systems;
+    sources = import ./npins;
+    moduleArgs = {inherit inputs self lib sources;};
+
+    callModule = path: attrs: import path (moduleArgs // attrs);
+    pkgsFor = system: nixpkgs.legacyPackages.${system};
+    eachSystem = fn: lib.genAttrs systems (system: fn (pkgsFor system));
+  in {
+    formatter = eachSystem (pkgs: pkgs.alejandra);
+    packages = eachSystem (pkgs: callModule ./nix/pkgs {inherit pkgs;});
+    devShells = eachSystem (pkgs: callModule ./nix/shells {inherit pkgs;});
   };
 }

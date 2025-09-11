@@ -47,5 +47,6 @@
     nixosConfigurations = callModule ./hosts {};
     templates = callModule ./templates {};
     nixosModules = callModule ./nixosModules/exported {};
+    devShells = eachSystem (pkgs: {default = pkgs.callPackage ./devShells {};});
   };
 }

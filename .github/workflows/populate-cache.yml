@@ -6,6 +6,7 @@ on:
       - master
     paths:
       - 'npins/sources.json'
+      - 'flake.lock'
       - 'pkgs/**'
       - 'nixosModules/server/caddy.nix'
 jobs:
@@ -17,10 +18,6 @@ jobs:
       id: fltr
       with:
         filters: |
-          sleepy-launcher:
-            - 'pkgs/anime-launchers/sleepy-unwrapped.nix'
-          lanzaboote:
-            - 'pkgs/lanzaboote/**'
           kurukurubar:
             - 'pkgs/kurukurubar.nix'
             - 'pkgs/quickshell.nix'
@@ -28,8 +25,8 @@ jobs:
             - 'pkgs/nvim/**'
           caddy:
             - 'nixosModules/server/caddy.nix'
-          npins:
-            - 'pkgs/npins.nix'
+          lockfile:
+            - 'flake.lock'
           pins:
             - 'npins/sources.json'
     - uses: cachix/install-nix-action@v25
@@ -41,17 +38,17 @@ jobs:
         authToken: '${{ secrets.CACHIX_API_KEY }}'
 
     - name: build kurukurubar unstable
-      if: steps.fltr.outputs.kurukurubar == 'true' || steps.fltr.outputs.pins == 'true'
+      if: steps.fltr.outputs.kurukurubar == 'true' || steps.fltr.outputs.lockfile == 'true'
       run: nix build .#kurukurubar-unstable
 
     - name: build xvim (neovim)
-      if: steps.fltr.outputs.xvim == 'true' || steps.fltr.outputs.pins == 'true'
+      if: steps.fltr.outputs.xvim == 'true' || steps.fltr.outputs.pins == 'true' || steps.fltr.outputs.lockfile == 'true'
       run: nix build .#xvim.default
 
     - name: build stash
-      if: steps.fltr.outputs.pins == 'true'
+      if: steps.fltr.outputs.lockfile == 'true'
       run: nix build .#stash
 
     - name: build Seraphine's caddy package
-      if: steps.fltr.outputs.caddy == 'true' || steps.fltr.outputs.pins == 'true'
+      if: steps.fltr.outputs.caddy == 'true' || steps.fltr.outputs.lockfile == 'true'
       run: nix build .#nixosConfigurations.Seraphine.config.services.caddy.package

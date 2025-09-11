@@ -71,12 +71,12 @@ WlSessionLockSurface {
 
       gradient: Gradient {
         GradientStop {
-          color: Dat.Colors.primary
+          color: Dat.Colors.current.primary
           position: 0.0
         }
 
         GradientStop {
-          color: (surface.error) ? Dat.Colors.error : Dat.Colors.tertiary
+          color: (surface.error) ? Dat.Colors.current.error : Dat.Colors.current.tertiary
           position: 1.0
         }
       }
@@ -146,7 +146,7 @@ WlSessionLockSurface {
 
     anchors.centerIn: parent
     clip: true
-    color: (surface.error) ? Dat.Colors.error : (surface.unlocking) ? Dat.Colors.primary : Dat.Colors.surface
+    color: (surface.error) ? Dat.Colors.current.error : (surface.unlocking) ? Dat.Colors.current.primary : Dat.Colors.current.surface
     focus: true
     height: 40
     radius: 20
@@ -237,7 +237,7 @@ WlSessionLockSurface {
           Gen.MatIcon {
             anchors.centerIn: parent
             antialiasing: true
-            color: (surface.error) ? Dat.Colors.on_error : (surface.unlocking) ? Dat.Colors.on_primary : Dat.Colors.on_surface
+            color: (surface.error) ? Dat.Colors.current.on_error : (surface.unlocking) ? Dat.Colors.current.on_primary : Dat.Colors.current.on_surface
             fill: 1
             font.pointSize: 16
             icon: "bedtime"
@@ -260,7 +260,7 @@ WlSessionLockSurface {
 
             anchors.centerIn: parent
             antialiasing: true
-            color: (surface.error) ? Dat.Colors.on_error : (surface.unlocking) ? Dat.Colors.on_primary : Dat.Colors.on_surface
+            color: (surface.error) ? Dat.Colors.current.on_error : (surface.unlocking) ? Dat.Colors.current.on_primary : Dat.Colors.current.on_surface
             fill: pam.active
             font.pointSize: 16
             icon: "lock"
@@ -323,7 +323,7 @@ WlSessionLockSurface {
             id: pamText
 
             anchors.centerIn: parent
-            color: (surface.error) ? Dat.Colors.on_error : (surface.unlocking) ? Dat.Colors.on_primary : (reFingerTimer.running) ? Dat.Colors.error : Dat.Colors.on_surface
+            color: (surface.error) ? Dat.Colors.current.on_error : (surface.unlocking) ? Dat.Colors.current.on_primary : (reFingerTimer.running) ? Dat.Colors.current.error : Dat.Colors.current.on_surface
             font.pointSize: 16
             icon: "fingerprint"
 
@@ -343,7 +343,7 @@ WlSessionLockSurface {
           Gen.MatIcon {
             anchors.centerIn: parent
             antialiasing: true
-            color: (surface.error) ? Dat.Colors.on_error : (surface.unlocking) ? Dat.Colors.on_primary : Dat.Colors.on_surface
+            color: (surface.error) ? Dat.Colors.current.on_error : (surface.unlocking) ? Dat.Colors.current.on_primary : Dat.Colors.current.on_surface
             fill: 1
             font.pointSize: 16
             icon: "login"

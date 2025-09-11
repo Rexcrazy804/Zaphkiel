@@ -27,7 +27,7 @@ Item {
           Layout.fillHeight: true
           Layout.fillWidth: true
           Layout.leftMargin: 10
-          color: Dat.Colors.on_surface
+          color: Dat.Colors.current.on_surface
           horizontalAlignment: Text.AlignRight
           text: (muted) ? "󰖁" : "󰕾"
           verticalAlignment: Text.AlignVCenter
@@ -44,7 +44,7 @@ Item {
 
           Layout.fillHeight: true
           Layout.fillWidth: true
-          color: Dat.Colors.on_surface
+          color: Dat.Colors.current.on_surface
           horizontalAlignment: Text.AlignLeft
           text: "くるくる～――っと。"
           verticalAlignment: Text.AlignVCenter
@@ -55,7 +55,7 @@ Item {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10
         anchors.horizontalCenter: parent.horizontalCenter
-        color: Dat.Colors.surface_container
+        color: Dat.Colors.current.surface_container
         height: 35
         radius: 20
       }

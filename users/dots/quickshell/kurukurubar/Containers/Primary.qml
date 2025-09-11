@@ -7,7 +7,7 @@ import qs.Containers as Con
 Rectangle {
   id: root
 
-  color: Dat.Colors.withAlpha(Dat.Colors.surface, 0.9)
+  color: Dat.Colors.withAlpha(Dat.Colors.current.surface, 0.9)
   radius: 20
 
   RowLayout {

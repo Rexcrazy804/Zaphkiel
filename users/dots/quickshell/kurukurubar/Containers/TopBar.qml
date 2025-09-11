@@ -56,7 +56,7 @@ RowLayout {
         Layout.fillWidth: false
         // little arrow to toggle notch expand states
         Layout.rightMargin: 5
-        color: Dat.Colors.primary
+        color: Dat.Colors.current.primary
         font.pointSize: 11
         text: (Dat.Globals.notchState == "FULLY_EXPANDED") ? "" : ""
         verticalAlignment: Text.AlignVCenter

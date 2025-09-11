@@ -43,7 +43,7 @@ Item {
     delegate: Gen.Notification {
       required property Notification modelData
 
-      color: Dat.Colors.surface_container
+      color: Dat.Colors.current.surface_container
       notif: modelData
       radius: 20
       width: inbox.width

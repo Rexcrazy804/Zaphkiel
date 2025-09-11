@@ -15,7 +15,7 @@ Item {
     Rectangle {
       // the page indicator
       Layout.leftMargin: 8
-      color: Dat.Colors.surface_container_low
+      color: Dat.Colors.current.surface_container_low
       implicitHeight: tabCols.height + 10
       implicitWidth: 28
       radius: 20
@@ -44,7 +44,7 @@ Item {
               id: dotText
 
               anchors.centerIn: parent
-              color: Dat.Colors.on_surface
+              color: Dat.Colors.current.on_surface
               font.pointSize: 11
               state: (swipeArea.currentIndex == tabDot.index) ? "ACTIVE" : "INACTIVE"
               text: tabDot.modelData
@@ -107,7 +107,7 @@ Item {
       Layout.fillWidth: true
       // Pages
       clip: true
-      color: Dat.Colors.surface_container_low
+      color: Dat.Colors.current.surface_container_low
       radius: 20
 
       SwipeView {

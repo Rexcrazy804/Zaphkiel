@@ -6,13 +6,11 @@
   imports = [
     # unimported
     # ./gdm.nix
-
-    # internal
     # ./aagl.nix
+
+    # opts
     ./steam.nix
     ./wine.nix
-    ./age.nix
-    ./direnv.nix
     ./obs.nix
     ./keyd.nix
     ./firefox.nix
@@ -21,13 +19,10 @@
     ./privoxy.nix
     ./matugen.nix
 
-    # external
-    ./booru-flake
-    # ./lanzaboote.nix
-
-    # this is not an option
-    # auto enables fish and overwrites bash
+    # auto
     ./fish.nix
+    ./age.nix
+    ./direnv.nix
   ];
 
   # global

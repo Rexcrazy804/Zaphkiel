@@ -18,19 +18,13 @@ https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 |Wallpapers|[booru-flake](https://github.com/Rexcrazy804/booru-flake)|[`nixosModules/programs/booru-flake/preview.md`](nixosModules/programs/booru-flake/preview.md)|
 |Cursor|[Kokomi Cursor](https://www.pling.com/p/2167734/)| nil / really long random text to make this table very wide yes looks like I|
 
-## Nix
-
 - [hjem](https://github.com/feel-co/hjem) + [hjem-impure](https://github.com/Rexcrazy804/hjem-impure) over home manager
-- Adorable kurukurubar complimented by the fabulous kurukurulock
-
-### timeline
-
 - last revision where Zaphkiel was an npins based config
   [fc91df912](https://github.com/Rexcrazy804/Zaphkiel/tree/fc91df912fd8811ab33456b1f13a33bbe216b36b)
 - ~~Last revision where Zaphkiel was flake based~~ pre-npins flake config
   [0eee46d1e](https://github.com/Rexcrazy804/Zaphkiel/tree/0eee46d1e5d98c3b94d39795b73a39270fc61ad7)
 
-### Exported packages
+## Exported packages
 
 The following packages are exported by this flake:
 
@@ -51,7 +45,7 @@ nix run github:Rexcrazy804/Zaphkiel#nixvim
 ```
 
 <details>
-<summary><h4>kurkurubar stable or unstable</h4></summary>
+<summary><h3>kurkurubar stable or unstable</h3></summary>
 
 <ins>kurkurubar (stable)</ins>
 
@@ -71,7 +65,7 @@ For more information on both see the [internal overlay](pkgs/overlays/internal.n
 
 </details>
 
-### Exported modules
+## Exported modules
 
 Well there is only one module that is exported rn,
 and that is *DRUM ROLL* kurukuruDM!!!

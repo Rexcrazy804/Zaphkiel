@@ -1,4 +1,5 @@
 {
+  mein,
   pkgs,
   config,
   lib,
@@ -30,7 +31,7 @@ in {
     };
 
     users.users = genAttrs zphd.users (user: {
-      packages = [pkgs.matugen];
+      packages = [pkgs.matugen mein.${pkgs.system}.scripts.changeWall];
     });
   };
 }

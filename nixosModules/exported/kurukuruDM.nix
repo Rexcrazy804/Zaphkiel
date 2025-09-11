@@ -7,6 +7,7 @@
   inherit (lib) concatStringsSep mapAttrs attrValues mkEnableOption;
   inherit (lib) mkOption mkIf strings mkPackageOption optionalAttrs;
   inherit (lib) filterAttrs attrNames elemAt warn length optional;
+  inherit (lib) mkRenamedOptionModule;
   inherit (lib.types) path lines enum nullOr;
   inherit (config.services.displayManager) sessionData defaultSession;
 
@@ -39,6 +40,11 @@
 
   normalUsers = attrNames (filterAttrs (k: v: v.isNormalUser) config.users.users);
 in {
+  imports = [
+    (mkRenamedOptionModule
+      ["programs" "kurukuruDM" "settings" "colorsQML"]
+      ["programs" "kurukuruDM" "settings" "colors"])
+  ];
   options.programs.kurukuruDM = {
     enable = mkEnableOption "kurukuru display manager";
     package =
@@ -49,7 +55,7 @@ in {
         apply = opt:
           opt.override {
             asGreeter = true;
-            customColors = cfg.settings.colorsQML;
+            customColors = cfg.settings.colors;
           };
       };
     settings = {
@@ -92,15 +98,21 @@ in {
         example = "hyprland-uwsm";
         apply = opt: opt + ".desktop";
       };
-      colorsQML = mkOption {
+      colors = mkOption {
         type = nullOr path;
         default = null;
-        description = "A qml file following the Data/Colors.qml format of kurukurubar";
+        description = "A json file following the Data/Colors.qml format of kurukurubar";
       };
     };
   };
 
   config = mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = lib.hasSuffix ".json" cfg.settings.colors;
+        message = "KurukuruDM: `settings.colors` must be a json file!";
+      }
+    ];
     warnings = optional (cfg.settings.instantAuth && !config.services.fprintd.enable) ''
       `programs.kurukuruDM.settings.instantAuth` enabled without fprintd service.
       This option is useless and counter intuitive if not used with finger print unlock

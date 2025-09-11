@@ -1,5 +1,6 @@
-{sources, ...}: {
-  imports = [(sources.booru-flake + "/nix/nixosModule.nix")];
+# NO LONGER IMPORTED
+{inputs, ...}: {
+  imports = [inputs.booru-flake.nixosModules.default];
 
   programs.booru-flake = {
     enable = true;

@@ -80,16 +80,6 @@ in {
       parseAttrs = [config.hjem.users.${username}.xdg.config.files];
     };
 
-    files.".face.icon".source = let
-      image = config.programs.booru-flake.images."8726475";
-    in
-      pkgs.runCommandWith {
-        name = "croped-${image.name}";
-        derivationArgs.nativeBuildInputs = [pkgs.imagemagick];
-      } ''
-        magick ${image} -crop 500x500+398+100 - >  $out
-      '';
-
     xdg.config.files = let
       dots = config.hjem.users.${username}.impure.dotsDir;
     in {

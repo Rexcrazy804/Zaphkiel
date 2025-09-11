@@ -1,18 +1,13 @@
 {
   lib,
   pkgs,
-  sources,
+  inputs,
   ...
 } @ args: let
   inherit (lib) mkOption;
-  inherit (lib.modules) importApply;
   inherit (lib.types) listOf str path;
-
-  argsWith = attrs: args // attrs;
-  hjem-lib = import (sources.hjem + "/lib.nix") {inherit lib pkgs;};
-  hjemModule = importApply (sources.hjem + "/modules/nixos") (argsWith {inherit hjem-lib;});
 in {
-  imports = [hjemModule];
+  imports = [inputs.hjem.nixosModules.default];
 
   options = {
     zaphkiel = {
@@ -30,7 +25,7 @@ in {
 
   config = {
     hjem = {
-      extraModules = [(sources.hjem-impure + "/hjem-impure.nix")];
+      extraModules = [inputs.hjem-impure.hjemModules.default];
       linker = pkgs.smfh;
     };
   };

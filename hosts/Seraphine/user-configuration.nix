@@ -1,24 +1,13 @@
 {
   pkgs,
-  config,
   lib,
+  mein,
   ...
 }: let
-  image = config.programs.booru-flake.images."9561470";
-  wallpaper = pkgs.stdenv.mkDerivation {
-    name = "cropped-${image.name}";
-    src = image;
-    dontUnpack = true;
-    nativeBuildInputs = [pkgs.imagemagick];
-    installPhase = ''
-      # wallcrop $src 0 1030 > $out
-      magick $src -crop 4368x2170+0+188 - > $out
-    '';
-  };
   packages = lib.attrValues {
-    inherit (pkgs) foot cowsay;
+    inherit (pkgs) foot;
     # from internal overlay
-    inherit (pkgs) mpv-wrapped;
+    inherit (mein.${pkgs.system}) mpv-wrapped;
   };
 in {
   imports = [./extras/filebrowser.nix];
@@ -26,11 +15,12 @@ in {
     inherit packages;
     extraGroups = ["video" "input"];
   };
-  zaphkiel.data.wallpaper = wallpaper;
-  hjem.users."rexies".files = {
-    # pin the fucking json so it doesn't get gc'd
-    ".config/bg.json".source = image.raw_metadata;
-    ".config/hypr/hyprland.conf".text = let
+  zaphkiel.data.wallpaper = pkgs.fetchurl {
+    url = "https://cdn.donmai.us/original/e6/cb/__lumine_and_noelle_genshin_impact_drawn_by_chigalidepoi__e6cb4bdb2a28017256fd6980eb1cc51b.jpg";
+    hash = "sha256-3XFnzhlBKr2PURGxDWtdOCfXv0ItH/nquxosBZLlm0Y=";
+  };
+  hjem.users."rexies".xdg.config.files = {
+    "hypr/hyprland.conf".text = let
       # override scaling for seraphine
       from = ["monitor = eDP-1, preferred, auto, 1.25"];
       to = ["monitor = eDP-1, preferred, auto, auto"];

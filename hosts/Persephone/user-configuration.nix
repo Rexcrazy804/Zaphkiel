@@ -1,9 +1,10 @@
 {
+  mein,
   pkgs,
   lib,
-  config,
   ...
 }: let
+  inherit (pkgs) system;
   packages = lib.attrValues {
     # wine
     inherit (pkgs.wineWowPackages) waylandFull;
@@ -11,8 +12,10 @@
     # terminal
     inherit (pkgs) foot remmina libsixel;
     # from internal overlay
-    inherit (pkgs) discord mpv-wrapped;
-    inherit (pkgs.scripts) wallcrop legumulaunch;
+    inherit (mein.${system}) mpv-wrapped;
+    inherit (mein.${system}.scripts) wallcrop legumulaunch;
+
+    discord = pkgs.discord.override {withMoonlight = true;};
   };
 in {
   users.users."rexies" = {
@@ -26,21 +29,8 @@ in {
     enableSSHSupport = true;
   };
 
-  zaphkiel.data.wallpaper = config.programs.booru-flake.images."8718409";
-  hjem.users."rexies".files = {
-    ".face.icon".source = let
-      image = config.programs.booru-flake.images."6885267";
-      face = pkgs.stdenv.mkDerivation {
-        name = "cropped-${image.name}";
-        src = image;
-        dontUnpack = true;
-        nativeBuildInputs = [pkgs.imagemagick];
-        installPhase = ''
-          magick $src -crop 450x450+640+25 - > $out
-        '';
-      };
-    in
-      lib.mkForce face;
-    # "Pictures/booru".source = config.programs.booru-flake.imageFolder;
+  zaphkiel.data.wallpaper = pkgs.fetchurl {
+    url = "https://cdn.donmai.us/original/00/07/__herta_and_the_herta_honkai_and_1_more_drawn_by_meirong__0007dfbed6ffd22f36e9423b596b004b.jpg";
+    hash = "sha256-Pc1sI1qd/N7OdnRXtPb3RqHMdxyI8NdiPY/7yPxx6ig=";
   };
 }

@@ -1,14 +1,16 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  mein,
+  ...
+}: {
   imports = [
     # unimported
     # ./gdm.nix
+    # ./aagl.nix
 
-    # internal
-    ./aagl.nix
+    # opts
     ./steam.nix
     ./wine.nix
-    ./age.nix
-    ./direnv.nix
     ./obs.nix
     ./keyd.nix
     ./firefox.nix
@@ -17,17 +19,18 @@
     ./privoxy.nix
     ./matugen.nix
 
-    # external
-    ./booru-flake
-    ./lanzaboote.nix
-
-    # this is not an option
-    # auto enables fish and overwrites bash
+    # auto
     ./fish.nix
+    ./age.nix
+    ./direnv.nix
   ];
 
   # global
-  environment.systemPackages = [pkgs.git pkgs.xvim.default pkgs.npins];
+  environment.systemPackages = [
+    mein.${pkgs.system}.xvim.default
+    pkgs.git
+    pkgs.npins
+  ];
 
   # requried by gdm leaving it here since all my systems do use nushell
   environment.shells = ["/run/current-system/sw/bin/nu"];
@@ -40,20 +43,4 @@
   # wayland on electron and chromium based apps
   # disable if slow startup time for the same
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  security.sudo = {
-    execWheelOnly = true;
-    extraRules = [
-      {
-        users = ["rexies"];
-        # lets me rebuild without having to enter the password
-        commands = [
-          {
-            command = "/run/current-system/sw/bin/nixos-rebuild";
-            options = ["SETENV" "NOPASSWD"];
-          }
-        ];
-      }
-    ];
-  };
 }

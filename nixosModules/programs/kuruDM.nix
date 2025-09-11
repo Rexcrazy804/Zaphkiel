@@ -1,4 +1,5 @@
 {
+  mein,
   pkgs,
   lib,
   config,
@@ -16,6 +17,7 @@ in {
   options.zaphkiel.programs.kuruDM.enable = mkEnableOption "kurukuruDM";
   config = mkIf config.zaphkiel.programs.kuruDM.enable {
     programs.kurukuruDM = {
+      package = mein.${pkgs.system}.kurukurubar-unstable;
       enable = true;
       settings = {
         inherit wallpaper;

@@ -1,17 +1,13 @@
 {
-  sources,
+  mnw,
   pkgs,
-  newScope,
+  callPackage,
   lib,
+  sources,
 }:
-lib.makeScope newScope (self: {
-  vimPlugins' = self.callPackage ./plugins.nix {inherit sources;};
-  wrapper = self.callPackage ./wrapper.nix {inherit (sources) mnw;};
-  minimal = import ./config.nix {
-    inherit (self) wrapper;
-    inherit pkgs;
-    vimPlugins = self.vimPlugins';
-  };
+lib.fix (self: {
+  vimPlugins = callPackage ./plugins.nix {inherit sources;};
+  minimal = mnw.wrap (pkgs // {inherit (self) vimPlugins;}) ./config.nix;
   default = self.minimal.override (prev: {
     extraBinPath =
       prev.extraBinPath

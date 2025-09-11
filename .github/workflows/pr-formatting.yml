@@ -15,4 +15,4 @@ jobs:
     - uses: cachix/cachix-action@v14
       with:
         name: rexielscarlet
-    - run: nix-shell --run "make chk FILES_ALL=1"
+    - run: nix fmt chk FILES_ALL=1

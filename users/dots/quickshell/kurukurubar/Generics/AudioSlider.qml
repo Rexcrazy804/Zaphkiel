@@ -11,8 +11,8 @@ import qs.Generics as Gen
 Item {
   id: root
 
-  property color bgColor: node?.isStream ? Dat.Colors.tertiary_container : Dat.Colors.primary_container
-  property color fgColor: node?.isStream ? Dat.Colors.tertiary : Dat.Colors.primary
+  property color bgColor: node?.isStream ? Dat.Colors.current.tertiary_container : Dat.Colors.current.primary_container
+  property color fgColor: node?.isStream ? Dat.Colors.current.tertiary : Dat.Colors.current.primary
   required property PwNode node
 
   implicitHeight: 42
@@ -30,7 +30,7 @@ Item {
 
         Text {
           anchors.fill: parent
-          color: Dat.Colors.on_surface
+          color: Dat.Colors.current.on_surface
           elide: Text.ElideRight
           font.pointSize: 10
           text: (root.node?.isStream ? root.node?.name : (nameArea.containsMouse) ? root.node?.description : (root.node?.nickname) ? root.node?.nickname : root.node?.description) ?? "Unidentified"
@@ -58,7 +58,7 @@ Item {
         visible: !root.node?.isStream
 
         icon {
-          color: Dat.Colors.primary
+          color: Dat.Colors.current.primary
           font.pointSize: 12
           icon: (!root.node?.isSink) ? "mic" : "volume_up"
         }
@@ -118,7 +118,7 @@ Item {
           }
         }
         handle: Rectangle {
-          color: Dat.Colors.surface_container_high
+          color: Dat.Colors.current.surface_container_high
           implicitHeight: 25
           implicitWidth: 13
           x: slider.leftPadding + slider.visualPosition * (slider.availableWidth - width + 1)

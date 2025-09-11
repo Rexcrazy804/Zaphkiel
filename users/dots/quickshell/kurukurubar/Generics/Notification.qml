@@ -127,7 +127,7 @@ Rectangle {
             id: sumText
 
             Layout.maximumWidth: ((root.width - notifIcon.width) * 0.75)
-            color: Dat.Colors.primary
+            color: Dat.Colors.current.primary
             elide: Text.ElideRight
             text: root.notif?.summary ?? "Kokomi"
           }
@@ -143,7 +143,7 @@ Rectangle {
               id: appText
 
               anchors.centerIn: parent
-              color: Dat.Colors.tertiary
+              color: Dat.Colors.current.tertiary
               font.bold: true
               font.pointSize: 8
               text: root.notif?.appName ?? "idk"
@@ -155,7 +155,7 @@ Rectangle {
           id: bodText
 
           anchors.top: infoRow.bottom
-          color: Dat.Colors.on_surface
+          color: Dat.Colors.current.on_surface
           font.pointSize: 11
           text: root.notif?.body ?? "very cool body that is missing"
           textFormat: Text.MarkdownText
@@ -206,7 +206,7 @@ Rectangle {
               required property NotificationAction modelData
 
               Layout.fillHeight: true
-              color: Dat.Colors.secondary
+              color: Dat.Colors.current.secondary
               implicitWidth: actionText.contentWidth + 14
               radius: 20
 
@@ -214,7 +214,7 @@ Rectangle {
                 id: actionText
 
                 anchors.centerIn: parent
-                color: Dat.Colors.on_secondary
+                color: Dat.Colors.current.on_secondary
                 font.pointSize: 11
                 text: parent.modelData?.text ?? "activate"
               }

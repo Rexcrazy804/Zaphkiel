@@ -177,8 +177,8 @@ Item {
   property int animationDuration: Dat.MaterialEasing.standardTime
   property int degreeLimit: 360
   property int lineWidth: 5
-  property color primaryColor: Dat.Colors.primary
-  property color secondaryColor: Dat.Colors.primary_container
+  property color primaryColor: Dat.Colors.current.primary
+  property color secondaryColor: Dat.Colors.current.primary_container
   property int size: 150
   property real value: 0
 

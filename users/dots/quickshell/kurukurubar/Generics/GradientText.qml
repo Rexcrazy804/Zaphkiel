@@ -9,17 +9,17 @@ Item {
   // default gradient used by greeter
   property Gradient gradient: Gradient {
     GradientStop {
-      color: Dat.Colors.background
+      color: Dat.Colors.current.background
       position: 0.0
     }
 
     GradientStop {
-      color: Dat.Colors.on_background
+      color: Dat.Colors.current.on_background
       position: 0.4
     }
 
     GradientStop {
-      color: Dat.Colors.on_background
+      color: Dat.Colors.current.on_background
       position: 1.0
     }
   }

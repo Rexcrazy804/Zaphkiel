@@ -11,7 +11,7 @@ Rectangle {
   required property var onClicked
   required property string text
 
-  color: Dat.Colors.surface_container
+  color: Dat.Colors.current.surface_container
   implicitHeight: 28
   radius: 10
 
@@ -27,7 +27,7 @@ Rectangle {
         id: toggleText
 
         anchors.centerIn: parent
-        color: Dat.Colors.on_surface
+        color: Dat.Colors.current.on_surface
         text: root.text
         verticalAlignment: Text.AlignVCenter
       }
@@ -42,7 +42,7 @@ Rectangle {
       id: checkBox
 
       Layout.fillHeight: true
-      color: root.active ? Dat.Colors.primary : "transparent"
+      color: root.active ? Dat.Colors.current.primary : "transparent"
       implicitWidth: this.height
       radius: 10
 
@@ -54,7 +54,7 @@ Rectangle {
       }
 
       border {
-        color: Dat.Colors.primary
+        color: Dat.Colors.current.primary
         width: 3
       }
 
@@ -69,7 +69,7 @@ Rectangle {
         id: icon
 
         anchors.centerIn: parent
-        color: root.active ? Dat.Colors.on_primary : Dat.Colors.primary
+        color: root.active ? Dat.Colors.current.on_primary : Dat.Colors.current.primary
         font.pointSize: 15
         icon: root.active ? "check" : "close"
 

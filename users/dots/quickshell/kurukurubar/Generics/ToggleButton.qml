@@ -7,12 +7,12 @@ Rectangle {
   id: root
 
   required property bool active
-  property color activeColor: Dat.Colors.primary
-  property color activeIconColor: Dat.Colors.on_primary
+  property color activeColor: Dat.Colors.current.primary
+  property color activeIconColor: Dat.Colors.current.on_primary
   property alias icon: matIcon
   property alias mArea: mouseArea
-  property color passiveColor: Dat.Colors.surface_container
-  property color passiveIconColor: Dat.Colors.on_surface
+  property color passiveColor: Dat.Colors.current.surface_container
+  property color passiveIconColor: Dat.Colors.current.on_surface
 
   color: "transparent"
   state: (root.active) ? "ACTIVE" : "PASSIVE"

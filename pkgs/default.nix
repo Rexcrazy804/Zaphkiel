@@ -40,9 +40,6 @@ in {
     mnw = inputs.mnw.lib;
     inherit sources;
   };
-  booru-images = callPackage ./booru-images.nix {
-    inherit (inputs.booru-flake.packages.${system}) imgBuilder;
-  };
 
   # JUST SO YOU KNOW `nivxvim` WAS JUST WHAT I USED TO CALL MY nvim alright
   # I had ditched the nixvim project long long long ago but the name just stuck

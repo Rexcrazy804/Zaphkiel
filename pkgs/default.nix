@@ -32,6 +32,7 @@ in {
   librebarcode = callPackage ./librebarcode.nix {};
   kokCursor = callPackage ./kokCursor.nix {};
   stash = inputs.stash.packages.${system}.default;
+  irminsul = callPackage ./formatters {inherit (self.scripts) qmlcheck;};
 
   # package sets
   scripts = callPackage ./scripts {};

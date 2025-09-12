@@ -2,11 +2,12 @@
   pkgs,
   lib,
   self,
+  system,
   ...
 }:
 lib.fix (self': {
   general = pkgs.callPackage ./general.nix {
-    inherit (self.packages.${pkgs.system}) irminsul;
+    inherit (self.packages.${system}) irminsul;
   };
   default = self'.general;
 })

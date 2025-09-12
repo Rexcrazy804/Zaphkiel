@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    systems.url = "github:nix-systems/default";
+    systems.url = "github:nix-systems/x86_64-linux";
     crane.url = "github:ipetkov/crane";
     mnw.url = "github:Gerg-L/mnw";
     hjem-impure.url = "github:Rexcrazy804/hjem-impure";

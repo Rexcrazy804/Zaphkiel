@@ -28,15 +28,19 @@
     };
   };
 
-  outputs = inputs: let
-    inherit (inputs) nixpkgs self;
+  outputs = {
+    self,
+    nixpkgs,
+    systems,
+    ...
+  } @ inputs: let
     inherit (nixpkgs.lib) getAttrs mapAttrs;
 
-    pkgsFor = getAttrs (import inputs.systems) nixpkgs.legacyPackages;
+    pkgsFor = getAttrs (import systems) nixpkgs.legacyPackages;
+    sources = import ./npins;
     moduleArgs = {
-      inherit inputs self;
+      inherit inputs self sources;
       inherit (nixpkgs) lib;
-      sources = import ./npins;
     };
 
     eachSystem = fn: mapAttrs fn pkgsFor;

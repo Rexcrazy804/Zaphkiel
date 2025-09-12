@@ -16,6 +16,7 @@
         ./${hostName}/configuration.nix
         ../nixosModules
         ../users/rexies.nix
+        self.nixosModules.default
       ];
     };
 

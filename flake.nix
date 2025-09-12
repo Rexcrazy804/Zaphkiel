@@ -30,19 +30,21 @@
 
   outputs = inputs: let
     inherit (inputs) nixpkgs self;
-    inherit (nixpkgs) lib;
+    inherit (nixpkgs.lib) getAttrs mapAttrs;
 
-    systems = import inputs.systems;
-    sources = import ./npins;
-    moduleArgs = {inherit inputs self lib sources;};
+    pkgsFor = getAttrs (import inputs.systems) nixpkgs.legacyPackages;
+    moduleArgs = {
+      inherit inputs self;
+      inherit (nixpkgs) lib;
+      sources = import ./npins;
+    };
 
+    eachSystem = fn: mapAttrs fn pkgsFor;
     callModule = path: attrs: import path (moduleArgs // attrs);
-    pkgsFor = system: nixpkgs.legacyPackages.${system};
-    eachSystem = fn: lib.genAttrs systems (system: fn (pkgsFor system));
   in {
-    formatter = eachSystem (pkgs: self.packages.${pkgs.system}.irminsul);
-    packages = eachSystem (pkgs: callModule ./pkgs {inherit pkgs;});
-    devShells = eachSystem (pkgs: callModule ./devShells {inherit pkgs;});
+    formatter = eachSystem (_: pkgs: self.packages.${pkgs.system}.irminsul);
+    packages = eachSystem (system: pkgs: callModule ./pkgs {inherit system pkgs;});
+    devShells = eachSystem (system: pkgs: callModule ./devShells {inherit system pkgs;});
     nixosConfigurations = callModule ./hosts {};
     templates = callModule ./templates {};
     nixosModules = callModule ./nixosModules/exported {};

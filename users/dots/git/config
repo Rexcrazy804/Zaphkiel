@@ -3,13 +3,10 @@
 name = Rexiel Scarlet
 email = 37258415+Rexcrazy804@users.noreply.github.com
 github = Rexcrazy804
-signingkey = ~/.ssh/signkey.pub
-
-[gpg]
-format = ssh
+signingkey = 00AC2D589EE7B0EBA5F03969E22FC5FD4007C746
 
 [commit]
-#gpgsign = true
+gpgsign = true
 
 [core]
 editor = nvim

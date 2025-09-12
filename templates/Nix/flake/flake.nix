@@ -6,20 +6,24 @@
     systems.url = "github:nix-systems/default";
   };
 
-  outputs = inputs: let
-    inherit (inputs) nixpkgs self;
+  outputs = {
+    self,
+    nixpkgs,
+    systems,
+    ...
+  } @ inputs: let
     inherit (nixpkgs) lib;
+    inherit (lib) getAttrs mapAttrs;
 
-    systems = import inputs.systems;
     sources = import ./npins;
     moduleArgs = {inherit inputs self lib sources;};
+    pkgsFor = getAttrs (import systems) nixpkgs.legacyPackages;
 
     callModule = path: attrs: import path (moduleArgs // attrs);
-    pkgsFor = system: nixpkgs.legacyPackages.${system};
-    eachSystem = fn: lib.genAttrs systems (system: fn (pkgsFor system));
+    eachSystem = fn: mapAttrs fn pkgsFor;
   in {
-    formatter = eachSystem (pkgs: pkgs.alejandra);
-    packages = eachSystem (pkgs: callModule ./nix/pkgs {inherit pkgs;});
-    devShells = eachSystem (pkgs: callModule ./nix/shells {inherit pkgs;});
+    formatter = eachSystem (_: pkgs: pkgs.alejandra);
+    packages = eachSystem (system: pkgs: callModule ./nix/pkgs {inherit system pkgs;});
+    devShells = eachSystem (system: pkgs: callModule ./nix/shells {inherit system pkgs;});
   };
 }

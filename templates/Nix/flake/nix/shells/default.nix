@@ -1,10 +1,11 @@
 {
   self,
   pkgs,
+  system,
   ...
 }: {
   default = pkgs.mkShellNoCC {
-    packages = [self.packages.${pkgs.system}.default];
+    packages = [self.packages.${system}.default];
     shellHook = ''
       echo "Kokomi! <><"
     '';

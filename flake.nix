@@ -10,6 +10,7 @@
     hjem = {
       url = "github:feel-co/hjem";
       inputs.smfh.follows = "";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     quickshell = {
       url = "github:Rexcrazy804/quickshell?ref=overridable-qs-unwrapped";
@@ -22,6 +23,7 @@
     };
     agenix = {
       url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
       inputs.home-manager.follows = "";
       inputs.systems.follows = "systems";

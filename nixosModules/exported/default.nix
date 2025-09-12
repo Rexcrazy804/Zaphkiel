@@ -4,12 +4,12 @@
   ...
 }:
 lib.fix (self': {
-  kurukuruDM = attrs: {
+  kurukuruDM = {pkgs, ...}: {
     imports = [./kurukuruDM.nix];
     nixpkgs.overlays = [
       (final: prev: {
         inherit
-          (self.packages.${attrs.pkgs.system})
+          (self.packages.${pkgs.system})
           kurukurubar
           kurukurubar-unstable
           ;

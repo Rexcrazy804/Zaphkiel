@@ -109,7 +109,7 @@ in {
   config = mkIf cfg.enable {
     assertions = [
       {
-        assertion = cfg.settings.colors != null -> lib.hasSuffix ".qml" cfg.settings.colors;
+        assertion = cfg.settings.colors != null -> lib.hasSuffix ".json" cfg.settings.colors;
         message = "KurukuruDM: `settings.colors` must be a json file!";
       }
     ];

@@ -1,5 +1,6 @@
 {
   pkgs,
+  system,
   lib,
   inputs,
   sources,
@@ -7,13 +8,13 @@
 }:
 lib.fix (self: let
   inherit (lib) warn;
-  inherit (pkgs) system callPackage;
+  inherit (pkgs) callPackage;
 in {
   # kurukuru
   quickshell = import ./quickshell.nix {
     inherit (inputs.quickshell) rev;
     inherit
-      (inputs.quickshell.packages.${pkgs.system})
+      (inputs.quickshell.packages.${system})
       quickshell
       ;
   };

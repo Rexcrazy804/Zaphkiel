@@ -42,7 +42,7 @@
     eachSystem = fn: mapAttrs fn pkgsFor;
     callModule = path: attrs: import path (moduleArgs // attrs);
   in {
-    formatter = eachSystem (_: pkgs: self.packages.${pkgs.system}.irminsul);
+    formatter = eachSystem (system: _: self.packages.${system}.irminsul);
     packages = eachSystem (system: pkgs: callModule ./pkgs {inherit system pkgs;});
     devShells = eachSystem (system: pkgs: callModule ./devShells {inherit system pkgs;});
     nixosConfigurations = callModule ./hosts {};

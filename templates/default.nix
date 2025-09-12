@@ -24,7 +24,7 @@
   };
 
   nix-minimal = {
-    path = ./Nix/minimal;
+    path = ./Nix/flake;
     description = "A minimal nix flake template with the lambda for ease of use";
     welcomeText = ''
       # A minimal nix flake template by Rexiel Scarlet (Rexcrazy804)

@@ -8,8 +8,6 @@ in {
     ./programs
     ./server
     ./utils
-
-    ./exported/kurukuruDM.nix
   ];
 
   options = {

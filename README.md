@@ -61,7 +61,7 @@ nix run github:Rexcrazy804/Zaphkiel#nixvim
 - by default uses my patched version of qs (for finger print unlock in greetd)
 - requires quickshell to be built from source
 
-For more information on both see the [internal overlay](pkgs/overlays/internal.nix)
+For more information on both see the [pkgs/default.nix](pkgs/default.nix)
 
 </details>
 

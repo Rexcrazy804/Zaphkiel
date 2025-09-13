@@ -76,6 +76,29 @@
         "type": "github"
       }
     },
+    "hs-todo": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1757767143,
+        "narHash": "sha256-I9bgPFqZiGWJa/sGEvA9/UaH7YfOZ4GF8zR6pdJuo4Q=",
+        "owner": "Rexcrazy804",
+        "repo": "haskell-todo",
+        "rev": "27725ea7cb50dc0bacaa601c3a1fafa77af0c7c4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Rexcrazy804",
+        "repo": "haskell-todo",
+        "type": "github"
+      }
+    },
     "mnw": {
       "locked": {
         "lastModified": 1756659871,
@@ -134,6 +157,7 @@
         "crane": "crane",
         "hjem": "hjem",
         "hjem-impure": "hjem-impure",
+        "hs-todo": "hs-todo",
         "mnw": "mnw",
         "nixpkgs": "nixpkgs",
         "quickshell": "quickshell",

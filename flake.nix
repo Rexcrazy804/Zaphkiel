@@ -28,6 +28,11 @@
       inputs.home-manager.follows = "";
       inputs.systems.follows = "systems";
     };
+    hs-todo = {
+      url = "github:Rexcrazy804/haskell-todo";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
+    };
   };
 
   outputs = {

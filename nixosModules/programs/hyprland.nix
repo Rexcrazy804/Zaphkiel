@@ -1,4 +1,5 @@
 {
+  inputs,
   mein,
   pkgs,
   lib,
@@ -7,6 +8,7 @@
 }: let
   inherit (lib) mkEnableOption mkIf mkForce attrValues;
   zpkgs = mein.${pkgs.system};
+  todo = inputs.hs-todo.packages.${pkgs.system}.default;
 in {
   options.zaphkiel.programs.hyprland.enable = mkEnableOption "hyprland";
   config = mkIf config.zaphkiel.programs.hyprland.enable {
@@ -53,6 +55,8 @@ in {
       inherit (pkgs) hyprsunset trashy fuzzel wl-screenrec;
       inherit (pkgs) libnotify swappy imv wayfreeze networkmanagerapplet;
       inherit (pkgs) yazi ripdrag seahorse app2unit;
+      # external
+      inherit todo;
     };
 
     # required when kde plasma is not installed .w.

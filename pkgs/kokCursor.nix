@@ -1,16 +1,21 @@
-{stdenv}:
+{
+  lib,
+  stdenv,
+  fetchzip,
+}:
 stdenv.mkDerivation {
   name = "kokomiIcon";
-  src = builtins.fetchTarball {
+  src = fetchzip {
     url = let
       proto = "https";
       domain = ["chibisafe" "crispy-caesus" "eu"];
       file = "WUfAKD3Ct2y3";
       filetype = "gz";
     in
-      proto + "://" + (builtins.concatStringsSep "." domain) + "/" + file + "." + filetype;
+      proto + "://" + (lib.concatStringsSep "." domain) + "/" + file + "." + filetype;
 
-    sha256 = "0cb2v94n14i245p97m2r3r09p293wja5rypkhh87pzhnanam5sa4";
+    sha256 = "sha256-ROlSlVUW/nsQhPP6XJTkI4mbQB5Z1JNuISKSYEnaYjE=";
+    extension = "tar";
   };
 
   installPhase = ''

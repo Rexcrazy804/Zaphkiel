@@ -15,8 +15,7 @@
     inherit (nixpkgs) lib;
     inherit (lib) getAttrs mapAttrs;
 
-    sources = import ./npins;
-    moduleArgs = {inherit inputs self lib sources;};
+    moduleArgs = {inherit inputs self lib;};
     pkgsFor = getAttrs (import systems) nixpkgs.legacyPackages;
 
     callModule = path: attrs: import path (moduleArgs // attrs);

@@ -9,7 +9,7 @@
 - [x] fix seraphine
 - [x] setup formatting script (see fuf nixpkgs)
 - [x] ensure quickshell isn't broken for flake users
-- [ ] figure out colors for kurukurubar
+- [x] figure out colors for kurukurubar
 
 ### External
 

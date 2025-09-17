@@ -1,14 +1,14 @@
 ---@type vim.lsp.Config
 return {
   cmd = { "haskell-language-server-wrapper", "--lsp" },
-  filetypes = { "haskell", "lhaskell" },
+  filetypes = { "haskell", "lhaskell", "cabal" },
   root_markers = {
     "hie.yaml", "stack.yaml", "cabal.project", "*.cabal", "package.yaml"
   },
   settings = {
     haskell = {
       formattingProvider = "fourmolu",
-      cabalFormattingProvider = "cabalfmt"
+      cabalFormattingProvider = "cabal-fmt"
     }
   }
 }

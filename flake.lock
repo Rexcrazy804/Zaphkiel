@@ -63,11 +63,11 @@
     },
     "hjem-impure": {
       "locked": {
-        "lastModified": 1757443745,
-        "narHash": "sha256-FhxxHhCFITdL23TON37dUO+PdJuKWAg71G4I2IFG/rI=",
+        "lastModified": 1758188683,
+        "narHash": "sha256-ZYZpw4HJiFclJBvHNdMWZpZIIydtlBg0HeKrc/LWDzE=",
         "owner": "Rexcrazy804",
         "repo": "hjem-impure",
-        "rev": "a280ffc2dfa4a9688bc94933db1810a95aaadf88",
+        "rev": "977293b40f4332c15544bae0d130e58287173db1",
         "type": "github"
       },
       "original": {

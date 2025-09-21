@@ -26,6 +26,7 @@
         (root + /yazi/yazi.toml)
         (root + /yazi/keymap.toml)
         (root + /matugen)
+        (root + /booru/config.toml)
       ];
     };
 in {
@@ -104,6 +105,9 @@ in {
       "matugen/config.toml".source = dots + "/matugen/config.toml";
       "matugen/templates".source = dots + "/matugen/templates";
       "qt6ct/qt6ct.conf".source = dots + "/qt6ct/qt6ct.conf";
+
+      # booru.hs
+      "booru/config.toml".source = dots + "/booru/config.toml";
     };
   };
 }

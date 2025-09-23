@@ -16,6 +16,12 @@
       url = "github:Rexcrazy804/quickshell?ref=overridable-qs-unwrapped";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    booru-hs = {
+      url = "github:Rexcrazy804/booru.hs";
+      # temporary: need optparse-applicative_0_19
+      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
+    };
     stash = {
       url = "github:notashelf/stash";
       inputs.nixpkgs.follows = "nixpkgs";

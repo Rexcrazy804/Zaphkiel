@@ -57,7 +57,7 @@
       };
     };
   };
-  services.dnscrypt-proxy2.settings = {
+  services.dnscrypt-proxy.settings = {
     listen_addresses = [
       "100.121.86.4:53"
       "[fd7a:115c:a1e0::6e01:5604]:53"

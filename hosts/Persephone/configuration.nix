@@ -78,7 +78,7 @@ in {
   # forward dns onto the tailnet
   networking.firewall.allowedTCPPorts = [53];
   networking.firewall.allowedUDPPorts = [53];
-  services.dnscrypt-proxy2.settings = {
+  services.dnscrypt-proxy.settings = {
     listen_addresses = [
       "100.110.70.18:53"
       "[fd7a:115c:a1e0::6a01:4614]:53"

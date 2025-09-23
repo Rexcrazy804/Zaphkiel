@@ -18,8 +18,7 @@
     };
     booru-hs = {
       url = "github:Rexcrazy804/booru.hs";
-      # temporary: need optparse-applicative_0_19
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
     };
     stash = {

@@ -1,4 +1,5 @@
 {
+  inputs,
   mein,
   pkgs,
   lib,
@@ -14,6 +15,8 @@
     # from internal overlay
     inherit (mein.${system}) mpv-wrapped;
     inherit (mein.${system}.scripts) wallcrop legumulaunch;
+
+    booru-hs = inputs.booru-hs.packages.${pkgs.system}.default;
 
     discord = pkgs.discord.override {withMoonlight = true;};
   };

@@ -1,6 +1,7 @@
 # Kuru Kuru Bar
 
 https://github.com/user-attachments/assets/26b32435-a932-4a63-8545-24e5039714b6
+
 - Wallpaper source: [The Herta by meirong](https://www.pixiv.net/artworks/126270092)
 
 A compat and adorable bar designed with the goal of speeening the kuru kuru.

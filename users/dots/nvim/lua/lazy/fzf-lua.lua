@@ -48,5 +48,9 @@ return {
     { "<leader>fa", "<CMD>FzfLua global<CR>", desc = "Find Global" },
     { "<leader>f,", "<CMD>FzfLua resume<CR>", desc = "Resume last find" },
   },
-  after = function() require("fzf-lua").setup({}) end,
+  after = function()
+    require("fzf-lua").setup({
+      actions = { files = { ["enter"] = FzfLua.actions.file_edit } },
+    })
+  end,
 }

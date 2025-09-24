@@ -22,7 +22,46 @@ return {
     Lua = {
       runtime = { version = "LuaJIT" },
       workspace = { checkThirdParty = false, library = library },
-      telemetry = { enable = false }
+      telemetry = { enable = false },
+      format = {
+        defaultConfig = {
+          indent_style = "space",
+          indent_size = "2",
+          tab_width = "2",
+          quote_style = "double",
+          continuation_indent = "2",
+          max_line_length = "80",
+          end_of_line = "unset",
+          table_separator_style = "comma",
+          trailing_table_separator = "never",
+          call_arg_parentheses = "keep",
+          detect_end_of_line = "false",
+          insert_final_newline = "true",
+
+          space_around_table_field_list = "true",
+          space_before_attribute = "true",
+          space_before_function_open_parenthesis = "true",
+          space_before_function_call_open_parenthesis = "false",
+          space_before_closure_open_parenthesis = "true",
+          space_before_function_call_single_arg = "always",
+          space_before_open_square_bracket = "false",
+          space_inside_function_call_parentheses = "false",
+          space_inside_function_param_list_parentheses = "false",
+          space_inside_square_brackets = "false",
+
+          space_around_table_append_operator = "false",
+          ignore_spaces_inside_function_call = "false",
+          space_before_inline_comment = "1",
+          space_after_comment_dash = "false",
+          space_around_math_operator = "true",
+
+          space_after_comma = "true",
+          space_after_comma_in_for_statement = "true",
+          space_around_concat_operator = "true",
+          space_around_logical_operator = "true",
+          space_around_assign_operator = "true"
+        }
+      }
     }
   }
 }

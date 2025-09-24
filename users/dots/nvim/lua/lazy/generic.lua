@@ -66,7 +66,7 @@ return {
         modes = { search = { enabled = true } }
       })
     end
-  }, { "telescope-fzf-native.nvim" }, {
+  }, {
     "fidget.nvim",
     event = "LspAttach",
     after = function()

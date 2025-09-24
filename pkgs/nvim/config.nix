@@ -43,8 +43,7 @@
         gitsigns-nvim
         flash-nvim
         fidget-nvim
-        telescope-nvim
-        telescope-fzf-native-nvim
+        fzf-lua
         nvim-autopairs
         indent-blankline-nvim
         nvim-dbee

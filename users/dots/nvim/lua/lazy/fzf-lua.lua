@@ -18,7 +18,9 @@ return {
       "<leader>f/",
       "<CMD>FzfLua lgrep_curbuf<CR>",
       desc = "Find in current buffer",
-    }, -- git stuff
+    },
+
+    -- git stuff
     { "<leader>gc", "<CMD>FzfLua git_commits<CR>", desc = "Find git commits" },
     {
       "<leader>gbc",
@@ -33,7 +35,9 @@ return {
       "<leader>fd",
       "<CMD>FzfLua diagnostics_document<CR>",
       desc = "Find Lsp Diagnostics",
-    }, -- neovim Yugoslavian
+    },
+
+    -- neovim
     { "<leader>ft", "<CMD>FzfLua colorschemes<CR>", desc = "Pick Theme" },
     {
       "<leader>fc",

@@ -10,6 +10,7 @@
   mdformat,
   qt6,
   qmlcheck,
+  taplo,
 }: let
   interpreter = "${gnumake}/bin/make -f";
   writeMakefile = writers.makeScriptWriter {
@@ -25,6 +26,7 @@
     mdformat
     qt6.qtdeclarative
     qmlcheck
+    taplo
   ];
 in
   symlinkJoin {

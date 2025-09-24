@@ -9,6 +9,7 @@ FILES_NIX = $(filter %.nix,$(FILES_GIT))
 FILES_QML = $(filter users/dots/quickshell/kurukurubar/%.qml,$(FILES_GIT))
 FILES_LUA = $(filter %.lua,$(FILES_GIT))
 FILES_MD = $(filter %.md,$(FILES_GIT))
+FILES_TOML = $(filter %.toml,$(FILES_GIT))
 
 COLOR_GREEN = \e[0;32m
 COLOR_RED = \e[0;31m
@@ -73,6 +74,10 @@ ifneq ($(FILES_LUA),)
 	$(call ECHO_TARGET,Checking,$(words $(FILES_LUA)) lua files)
 	@$(foreach FILE,$(FILES_LUA),git show :$(FILE) | lua-format --check -c ./pkgs/formatters/luafmt.yaml $(ECHO_NEWLINE))
 endif
+ifneq ($(FILES_TOML),)
+	$(call ECHO_TARGET,Checking,$(words $(FILES_TOML)) toml files)
+	@$(foreach FILE,$(FILES_TOML),git show :$(FILE) | taplo format --check - $(ECHO_NEWLINE))
+endif
 ifneq ($(FILES_MD),)
 	$(call ECHO_TARGET,Checking,$(words $(FILES_MD)) md files)
 	@$(foreach FILE,$(FILES_MD),git show :$(FILE) | mdformat --check - &> /dev/null; $(ECHO_NEWLINE))
@@ -92,6 +97,10 @@ endif
 ifneq ($(FILES_LUA),)
 	$(call ECHO_TARGET,Formatting,$(words $(FILES_LUA)) lua files)
 	@lua-format -c ./pkgs/formatters/luafmt.yaml -i $(FILES_LUA)
+endif
+ifneq ($(FILES_TOML),)
+	$(call ECHO_TARGET,Formatting,$(words $(FILES_TOML)) toml files)
+	@taplo format $(FILES_TOML)
 endif
 ifneq ($(FILES_MD),)
 	$(call ECHO_TARGET,Formatting,$(words $(FILES_MD)) md files)

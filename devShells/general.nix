@@ -1,9 +1,10 @@
 {
-  pkgs,
+  writeShellScript,
   mkShellNoCC,
   irminsul,
+  taplo,
 }: let
-  precommit = pkgs.writeShellScript "pre-commit" ''
+  precommit = writeShellScript "pre-commit" ''
     if irminsul chk FILES_STAGED=1; then
       exit 0
     else
@@ -23,5 +24,5 @@ in
         echo "[SHELL] updated precommit hook ^OwO^"
       fi
     '';
-    packages = [irminsul];
+    packages = [irminsul taplo];
   }

@@ -32,7 +32,7 @@ return {
           max_line_length = "80",
           end_of_line = "unset",
           table_separator_style = "comma",
-          trailing_table_separator = "never",
+          trailing_table_separator = "smart",
           call_arg_parentheses = "keep",
           detect_end_of_line = "false",
           insert_final_newline = "true",

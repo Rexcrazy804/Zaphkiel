@@ -90,7 +90,7 @@
   services.fstrim.enable = true;
 
   # disabled autosuspend
-  services.logind.lidSwitchExternalPower = "ignore";
+  services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
 
   # minecraft server
   # services.minecraft-servers.servers.hollyj.serverProperties.max-players = lib.mkForce 8;

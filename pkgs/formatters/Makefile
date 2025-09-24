@@ -76,7 +76,7 @@ ifneq ($(FILES_LUA),)
 endif
 ifneq ($(FILES_TOML),)
 	$(call ECHO_TARGET,Checking,$(words $(FILES_TOML)) toml files)
-	@$(foreach FILE,$(FILES_TOML),git show :$(FILE) | taplo format --check - $(ECHO_NEWLINE))
+	@$(foreach FILE,$(FILES_TOML),git show :$(FILE) | taplo format --check - &> /dev/null $(ECHO_NEWLINE))
 endif
 ifneq ($(FILES_MD),)
 	$(call ECHO_TARGET,Checking,$(words $(FILES_MD)) md files)
@@ -100,7 +100,7 @@ ifneq ($(FILES_LUA),)
 endif
 ifneq ($(FILES_TOML),)
 	$(call ECHO_TARGET,Formatting,$(words $(FILES_TOML)) toml files)
-	@taplo format $(FILES_TOML)
+	@taplo format $(FILES_TOML) &> /dev/null
 endif
 ifneq ($(FILES_MD),)
 	$(call ECHO_TARGET,Formatting,$(words $(FILES_MD)) md files)

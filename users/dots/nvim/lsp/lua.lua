@@ -17,7 +17,6 @@ return {
   cmd = { "lua-language-server" },
   filetypes = { "lua" },
   root_markers = { ".luarc.json", ".luarc.jsonc", ".git" },
-
   settings = {
     Lua = {
       runtime = { version = "LuaJIT" },
@@ -37,7 +36,6 @@ return {
           call_arg_parentheses = "keep",
           detect_end_of_line = "false",
           insert_final_newline = "true",
-
           space_around_table_field_list = "true",
           space_before_attribute = "true",
           space_before_function_open_parenthesis = "true",
@@ -54,14 +52,13 @@ return {
           space_before_inline_comment = "1",
           space_after_comment_dash = "false",
           space_around_math_operator = "true",
-
           space_after_comma = "true",
           space_after_comma_in_for_statement = "true",
           space_around_concat_operator = "true",
           space_around_logical_operator = "true",
-          space_around_assign_operator = "true"
-        }
-      }
-    }
-  }
+          space_around_assign_operator = "true",
+        },
+      },
+    },
+  },
 }

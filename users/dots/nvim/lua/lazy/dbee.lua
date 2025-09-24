@@ -9,14 +9,15 @@ return {
           {
             name = "owocle",
             type = "oracle",
-            url = "oracle://system:rexies@0.0.0.0:1521/FREEPDB1"
-          }, {
+            url = "oracle://system:rexies@0.0.0.0:1521/FREEPDB1",
+          },
+          {
             name = "sales_history",
             type = "oracle",
-            url = "oracle://HR:rexies@0.0.0.0:1521/FREEPDB1"
-          }
-        })
-      }
+            url = "oracle://HR:rexies@0.0.0.0:1521/FREEPDB1",
+          },
+        }),
+      },
     })
-  end
+  end,
 }

@@ -35,5 +35,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
       defaults("Lsp: Run the lsp formatter"))
     map({ "n", "v" }, "<leader>ca", "<CMD>lua vim.lsp.buf.code_action()<CR>",
       defaults("Lsp: Code Actions"))
-  end
+  end,
 })

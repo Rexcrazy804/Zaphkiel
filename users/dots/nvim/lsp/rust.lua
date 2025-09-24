@@ -52,8 +52,13 @@ return {
     end
 
     local cmd = {
-      "cargo", "metadata", "--no-deps", "--format-version", "1",
-      "--manifest-path", cargo_crate_dir .. "/Cargo.toml"
+      "cargo",
+      "metadata",
+      "--no-deps",
+      "--format-version",
+      "1",
+      "--manifest-path",
+      cargo_crate_dir .. "/Cargo.toml",
     }
 
     vim.system(cmd, { text = true }, function(output)
@@ -86,7 +91,6 @@ return {
       reload_workspace(bufnr)
     end, { desc = "Reload current cargo workspace" })
   end,
-
   settings = {
     ["rust-analyzer"] = {
       check = {
@@ -94,12 +98,16 @@ return {
         invocationLocation = "workspace",
         features = "all",
         extraArgs = {
-          "--", "--no-deps", "-Dclippy::correctness", "-Dclippy::complexity",
-          "-Wclippy::perf", "-Wclippy::pedantic"
-        }
+          "--",
+          "--no-deps",
+          "-Dclippy::correctness",
+          "-Dclippy::complexity",
+          "-Wclippy::perf",
+          "-Wclippy::pedantic",
+        },
       },
       diagnostics = { styleLints = { enable = true } },
-      rustfmt = { rangeFormatting = { enable = true } }
-    }
-  }
+      rustfmt = { rangeFormatting = { enable = true } },
+    },
+  },
 }

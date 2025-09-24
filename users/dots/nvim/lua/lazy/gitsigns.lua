@@ -57,7 +57,7 @@ return {
           { desc = "Gitsigns: preview hunk" })
         map("n", "<leader>hi", gitsigns.preview_hunk_inline,
           { desc = "Gitsigns: inline hunk" })
-      end
+      end,
     })
-  end
+  end,
 }

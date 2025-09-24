@@ -1,7 +1,12 @@
 local border = {
-  { "╭", "FloatBorder" }, { "─", "FloatBorder" }, { "╮", "FloatBorder" },
-  { "│", "FloatBorder" }, { "╯", "FloatBorder" }, { "─", "FloatBorder" },
-  { "╰", "FloatBorder" }, { "│", "FloatBorder" }
+  { "╭", "FloatBorder" },
+  { "─", "FloatBorder" },
+  { "╮", "FloatBorder" },
+  { "│", "FloatBorder" },
+  { "╯", "FloatBorder" },
+  { "─", "FloatBorder" },
+  { "╰", "FloatBorder" },
+  { "│", "FloatBorder" },
 }
 
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview

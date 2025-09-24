@@ -4,17 +4,14 @@ return {
   after = function()
     require("blink-cmp").setup({
       keymap = {
-        preset = "enter",
-        -- before you pull out your hair
+        preset = "enter", -- before you pull out your hair
         -- I have capslock + hjkl translated to the arrow keys
         -- see keyd.nix for more info
         ["<right>"] = { "accept", "fallback" },
         ["<down>"] = { "show", "select_next" },
-        ["<CR>"] = {}
+        ["<CR>"] = {},
       },
-
       appearance = { nerd_font_variant = "mono" },
-
       completion = {
         menu = {
           border = "single",
@@ -47,22 +44,21 @@ return {
                     if dev_icon then hl = dev_hl end
                   end
                   return hl
-                end
-              }
-            }
-          }
+                end,
+              },
+            },
+          },
         },
         ghost_text = { enabled = true },
         documentation = {
           auto_show = true,
           auto_show_delay_ms = 200,
 
-          window = { border = "single" }
-        }
+          window = { border = "single" },
+        },
       },
-
       sources = { default = { "lsp", "path", "snippets", "buffer" } },
-      fuzzy = { implementation = "prefer_rust_with_warning" }
+      fuzzy = { implementation = "prefer_rust_with_warning" },
     })
-  end
+  end,
 }

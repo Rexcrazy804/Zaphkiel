@@ -14,8 +14,9 @@ return {
           host = "127.0.0.1",
           port = 1521,
           dbName = "FREEPDB1",
-          params = { tls = "skip-verify" }
-        }, {
+          params = { tls = "skip-verify" },
+        },
+        {
           driver = "oracle",
           proto = "tcp",
           user = "HR",
@@ -23,9 +24,9 @@ return {
           host = "127.0.0.1",
           port = 1521,
           dbName = "FREEPDB1",
-          params = { tls = "skip-verify" }
-        }
-      }
-    }
-  }
+          params = { tls = "skip-verify" },
+        },
+      },
+    },
+  },
 }

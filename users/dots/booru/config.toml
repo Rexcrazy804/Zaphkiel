@@ -215,7 +215,16 @@ ids = [
     "7296340",
     "9740351",
     "9766096",
-    "9992382"
+    "9992382",
+    "10014349",
+    "9987754",
+    "9998548",
+    "9929440",
+    "9881008",
+    "9823185",
+    "9695292",
+    "9695278",
+    "9245157",
 ]
 
 [filters]
@@ -223,4 +232,4 @@ artists = { list = ["elodeas", "yoneyama_mai", "void_0", "morncolour", "yeurei"]
 
 [preview_filters]
 ratings = { list = ["e"], inverted = false }
-ids = { list = [ "7303513", "6752896" ], inverted = false }
+ids = { list = [ "7303513", "6752896", "9695292" ], inverted = false }

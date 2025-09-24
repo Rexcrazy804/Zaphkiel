@@ -34,7 +34,12 @@ in {
   };
 
   zaphkiel.data.wallpaper = pkgs.fetchurl {
-    url = "https://cdn.donmai.us/original/00/07/__herta_and_the_herta_honkai_and_1_more_drawn_by_meirong__0007dfbed6ffd22f36e9423b596b004b.jpg";
-    hash = "sha256-Pc1sI1qd/N7OdnRXtPb3RqHMdxyI8NdiPY/7yPxx6ig=";
+    url = "https://cdn.donmai.us/original/99/9d/999d4de94253b96e02bebae7fd8d8b53.jpg";
+    hash = "sha256-vwtq6zGs4N4WlAT7nnfUyvA720CWOBdeQ1oV65XYaHs=";
+  };
+
+  hjem.users."rexies".files.".face.icon".source = pkgs.fetchurl {
+    url = "https://cdn.donmai.us/original/4e/62/4e62c63e4ee802f41ebb9e4074716758.jpg";
+    hash = "sha256-JNdDjK9U9VB1m23OKzqnx/GKlqnMgqOTVcMvMfm5WR4=";
   };
 }

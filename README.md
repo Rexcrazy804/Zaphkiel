@@ -143,7 +143,7 @@ All code in this repository is under the MIT license
 except wherever an explicit licensing is included.
 
 [anime4k]: https://github.com/bloc97/Anime4K
-[booru images]: nixosModules/programs/booru-flake/preview.md
+[booru images]: users/dots/booru/preview.md
 [booru-hs]: https://github.com/Rexcrazy804/booru.hs
 [enddots]: https://github.com/end-4/dots-hyprland/tree/ii-qs/.config/quickshell
 [flake-rev]: https://github.com/Rexcrazy804/Zaphkiel/tree/0eee46d1e5d98c3b94d39795b73a39270fc61ad7

@@ -225,6 +225,7 @@ ids = [
   "9695292",
   "9695278",
   "9245157",
+  "10021400",
 ]
 
 [filters]
@@ -238,4 +239,4 @@ artists = { list = [
 
 [preview_filters]
 ratings = { list = ["e"], inverted = false }
-ids = { list = ["7303513", "6752896", "9695292"], inverted = false }
+ids = { list = ["7303513", "6752896", "9695292", "10021400"], inverted = false }

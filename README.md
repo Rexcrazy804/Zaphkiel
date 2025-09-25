@@ -15,7 +15,7 @@ https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 |Colors|[Matugen]|[`nixosModules/external/matugen/templates/`][mtgndots]|
 |Terminal|[foot]|[`users/dots/foot/foot.ini`][footdots]|
 |Editor|[Neovim]|[`users/dots/nvim/`][nvimdots]|
-|Wallpapers|[booru-hs]|[`nixosModules/programs/booru-flake/preview.md`][booru images]|
+|Wallpapers|[booru-hs]|[`users/dots/booru/preview.md`][booru images]|
 |Cursor|[Kokomi Cursor][kokcursor]| nil / really long random text to make this table very wide yes looks like I|
 
 - [hjem] + [hjem-impure] over home manager

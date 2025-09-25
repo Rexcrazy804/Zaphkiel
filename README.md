@@ -71,10 +71,6 @@ Well there is only one module that is exported rn,
 and that is *DRUM ROLL* kurukuruDM!!!
 now available as `nixosModules.kurukuruDM` :D
 
-> if you run into errors please open an issue,
-> since I don't use the flake exported module
-> there is a chance for the exported module being broken
-
 ## Structure overview
 
 ```
@@ -117,7 +113,7 @@ users/                  # user specific configuration imported by hosts hosting 
 - <others>.nix          # other users
 
 README.md               # are you reading me yet?
-flake.nix               # sneaky flake.nix that uses npins for inputs
+flake.nix               # flakes this flake that, how about you flake-
 license                 # MIT License
 ```
 
@@ -131,14 +127,6 @@ I wouldn't have heard of `pkgs.symlinkJoin` :D
 I also extend my gratitude to [NotAShelf](https://github.com/NotAShelf)
 for developing the hjem nixos module. And also for his welcome criticism
 on some of the dumb nix code I've written.
-
-I have to thank both the AnAnimeGameLauncher and Hyprland discord communities
-for all the help I've received and continue to receive.
-
-Lastly, I have to thank the nix community for their efforts in
-[home-manager](https://github.com/nix-community/home-manager)
-and [nixvim](https://github.com/nix-community/nixvim).
-Both of which have been great resources throughout my early adventures in nix.
 
 ### Quickshell
 

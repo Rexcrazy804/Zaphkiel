@@ -2,27 +2,27 @@
 
 https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 
-- Wallpaper: [The Herta by meirong](https://www.pixiv.net/artworks/126270092)
-- [Installation Guide](users/dots/quickshell/kurukurubar/README.md)
+- Wallpaper: [The Herta by meirong][wallpaper]
+- [Installation Guide][install guide]
 
 ## Overview
 
 | Component | Software | Configuration |
 | --------- | -------- | ------------- |
-|KuruKuruBar|[Quickshell](https://quickshell.outfoxxed.me/)|[`users/dots/quickshell/kurukurubar`](users/dots/quickshell/kurukurubar)|
-|Compositor|[Hyprland](https://hyprland.org/)|[`users/dots/hyprland/`](users/dots/hyprland/)|
-|Launcher|[Fuzzel](https://codeberg.org/dnkl/fuzzel)|[`users/dots/fuzzel`](users/dots/fuzzel)|
-|Colors|[Matugen](https://github.com/InioX/matugen)|[`nixosModules/external/matugen/templates/`](nixosModules/external/matugen/templates/)|
-|Terminal|[Foot](https://codeberg.org/dnkl/foot)|[`users/dots/foot/foot.ini`](users/dots/foot/foot.ini)|
-|Editor|[Neovim](https://neovim.io/)|[`users/dots/nvim/`](users/dots/nvim/)|
-|Wallpapers|[booru-flake](https://github.com/Rexcrazy804/booru-flake)|[`nixosModules/programs/booru-flake/preview.md`](nixosModules/programs/booru-flake/preview.md)|
-|Cursor|[Kokomi Cursor](https://www.pling.com/p/2167734/)| nil / really long random text to make this table very wide yes looks like I|
+|KuruKuruBar|[Quickshell]|[`users/dots/quickshell/kurukurubar`][kurudots]|
+|Compositor|[Hyprland]|[`users/dots/hyprland/`][hyprdots]|
+|Launcher|[Fuzzel]|[`users/dots/fuzzel`][fuzldots]|
+|Colors|[Matugen]|[`nixosModules/external/matugen/templates/`][mtgndots]|
+|Terminal|[foot]|[`users/dots/foot/foot.ini`][footdots]|
+|Editor|[Neovim]|[`users/dots/nvim/`][nvimdots]|
+|Wallpapers|[booru-hs]|[`nixosModules/programs/booru-flake/preview.md`][booru images]|
+|Cursor|[Kokomi Cursor][kokcursor]| nil / really long random text to make this table very wide yes looks like I|
 
-- [hjem](https://github.com/feel-co/hjem) + [hjem-impure](https://github.com/Rexcrazy804/hjem-impure) over home manager
+- [hjem] + [hjem-impure] over home manager
 - last revision where Zaphkiel was an npins based config
-  [fc91df912](https://github.com/Rexcrazy804/Zaphkiel/tree/fc91df912fd8811ab33456b1f13a33bbe216b36b)
+  [fc91df912][npins-rev]
 - ~~Last revision where Zaphkiel was flake based~~ pre-npins flake config
-  [0eee46d1e](https://github.com/Rexcrazy804/Zaphkiel/tree/0eee46d1e5d98c3b94d39795b73a39270fc61ad7)
+  [0eee46d1e][flake-rev]
 
 ## Exported packages
 
@@ -33,9 +33,9 @@ The following packages are exported by this flake:
 | kurukurubar (stable)| adorable bar to spin the kuru kuru |
 | kurukurubar-unstable | latest version, uses master version of qs |
 | kokCursor | A cute kokomi XCursor |
-| xvim | My neovim configuration using [mnw](https://github.com/Gerg-L/mnw). provides `.default` and `.minimal`|
-| mpv | My mpv configuration with [anime4k](https://github.com/bloc97/Anime4K) shaders baked in |
-| librebarcode | The [librebarcode](https://graphicore.github.io/librebarcode/) font |
+| xvim | My neovim configuration using [mnw] provides `.default` and `.minimal`|
+| mpv | My mpv configuration with [anime4k] shaders baked in |
+| librebarcode | The [librebarcode] font |
 
 you may run any of the above with the following command (ofc you can't run a
 cursor, `nix build` it instead) replacing `nixvim` with your desired package
@@ -50,8 +50,7 @@ nix run github:Rexcrazy804/Zaphkiel#nixvim
 <ins>kurkurubar (stable)</ins>
 
 - uses nixpkgs version of quickshell (v0.2.0)
-- ~uses [this revision](https://github.com/Rexcrazy804/Zaphkiel/tree/cc6d5cf12ae824e6945cc2599a2650d5fe054ffe) of Zaphkiel dots (last version that is compatible with v0.1.0)~
-- ^ currently tracks master branch, not diverged yet
+- currently tracks master branch, not diverged yet
 - package updated every major tagged release of quickshell
 
 <ins>kurkurubar-unstable</ins>
@@ -119,22 +118,22 @@ license                 # MIT License
 
 ## Acknowledgement
 
-Firstly, I have to thank [sioodmy](https://github.com/sioodmy)
+Firstly, I have to thank [sioodmy]
 for being the inspiration to ditch home manager and writing wrappers myself.
 I had known of wrappers before, but if it weren't for him,
 I wouldn't have heard of `pkgs.symlinkJoin` :D
 
-I also extend my gratitude to [NotAShelf](https://github.com/NotAShelf)
+I also extend my gratitude to [NotAShelf]
 for developing the hjem nixos module. And also for his welcome criticism
 on some of the dumb nix code I've written.
 
 ### Quickshell
 
-- [nydragon/nysh](https://github.com/nydragon/nysh)
-- [end-4/dots-hyprland](https://github.com/end-4/dots-hyprland/tree/ii-qs/.config/quickshell)
-- [pikabar](https://git.pika-os.com/wm-packages/pikabar/src/branch/main/pikabar/usr/share/pikabar)
-- [soramanew/rainingkurukuru](https://github.com/soramanew/rainingkuru)
-- [outfoxxed/nixnew](https://git.outfoxxed.me/outfoxxed/nixnew/src/branch/master/modules/user/modules/quickshell)
+- [nydragon/nysh][nysh]
+- [end-4/dots-hyprland][enddots]
+- [pikabar]
+- [soramanew/rainingkurukuru][rainingkuru]
+- [outfoxxed/nixnew][nixnew]
 - one unmentioned individual that did not return
 - and other homies in `#rice-discussion` of Hyprland discord
 
@@ -142,3 +141,35 @@ on some of the dumb nix code I've written.
 
 All code in this repository is under the MIT license
 except wherever an explicit licensing is included.
+
+[anime4k]: https://github.com/bloc97/Anime4K
+[booru images]: nixosModules/programs/booru-flake/preview.md
+[booru-hs]: https://github.com/Rexcrazy804/booru.hs
+[enddots]: https://github.com/end-4/dots-hyprland/tree/ii-qs/.config/quickshell
+[flake-rev]: https://github.com/Rexcrazy804/Zaphkiel/tree/0eee46d1e5d98c3b94d39795b73a39270fc61ad7
+[foot]: https://codeberg.org/dnkl/foot
+[footdots]: users/dots/foot/foot.ini
+[fuzldots]: users/dots/fuzzel
+[fuzzel]: https://codeberg.org/dnkl/fuzzel
+[hjem]: https://github.com/feel-co/hjem
+[hjem-impure]: https://github.com/Rexcrazy804/hjem-impure
+[hyprdots]: users/dots/hyprland/
+[hyprland]: https://hyprland.org/
+[install guide]: users/dots/quickshell/kurukurubar/README.md
+[kokcursor]: https://www.pling.com/p/2167734/
+[kurudots]: users/dots/quickshell/kurukurubar
+[librebarcode]: https://graphicore.github.io/librebarcode/
+[matugen]: https://github.com/InioX/matugen
+[mnw]: https://github.com/Gerg-L/mnw
+[mtgndots]: users/dots/matugen/templates/
+[neovim]: https://neovim.io/
+[nixnew]: https://git.outfoxxed.me/outfoxxed/nixnew/src/branch/master/modules/user/modules/quickshell
+[notashelf]: https://github.com/NotAShelf
+[npins-rev]: https://github.com/Rexcrazy804/Zaphkiel/tree/fc91df912fd8811ab33456b1f13a33bbe216b36b
+[nvimdots]: users/dots/nvim/
+[nysh]: https://github.com/nydragon/nysh
+[pikabar]: https://git.pika-os.com/wm-packages/pikabar/src/branch/main/pikabar/usr/share/pikabar
+[quickshell]: https://quickshell.outfoxxed.me/
+[rainingkuru]: https://github.com/soramanew/rainingkuru
+[sioodmy]: https://github.com/sioodmy
+[wallpaper]: https://www.pixiv.net/artworks/126270092

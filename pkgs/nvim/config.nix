@@ -23,6 +23,7 @@
         blink-cmp
         nvim-web-devicons
         lspkind-nvim
+        direnv-vim
         ;
 
       treesitter = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;

@@ -276,6 +276,9 @@ keymap = [
   { on = [
     "<C-w>",
   ], run = "shell 'changeWall \"$0\"'" },
+  { on = [
+    "<C-S-w>",
+  ], run = 'shell --interactive -- changeWall "$0"' },
   # kde connect share
   { on = [
     "<A-n>",

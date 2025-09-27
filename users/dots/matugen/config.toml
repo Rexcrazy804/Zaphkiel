@@ -21,7 +21,3 @@ output_path = "~/.config/fuzzel/colors.ini"
 [templates.qtct]
 input_path = "./templates/qtct-colors.conf"
 output_path = "~/.config/qt6ct/colors/matugen.conf"
-
-[templates.quickshell]
-input_path = "./templates/quickshell-colors.qml"
-output_path = "~/.config/styles/quickshell/kurukurubar.qml"

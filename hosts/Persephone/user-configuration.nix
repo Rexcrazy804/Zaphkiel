@@ -33,13 +33,24 @@ in {
     enableSSHSupport = true;
   };
 
-  zaphkiel.data.wallpaper = pkgs.fetchurl {
-    url = "https://cdn.donmai.us/original/99/9d/999d4de94253b96e02bebae7fd8d8b53.jpg";
-    hash = "sha256-vwtq6zGs4N4WlAT7nnfUyvA720CWOBdeQ1oV65XYaHs=";
+  zaphkiel = {
+    data.wallpaper = pkgs.fetchurl {
+      url = "https://cdn.donmai.us/original/96/f4/96f4257e8cdbc7dff2e0389c8adfeaab.jpg";
+      hash = "sha256-Fcm/08qrcJ0Qr8XW3iHKsQ/zmduiXjqJs9e9MVa2eq0=";
+    };
+    programs.matugen.scheme = "scheme-fidelity";
   };
 
-  hjem.users."rexies".files.".face.icon".source = pkgs.fetchurl {
-    url = "https://cdn.donmai.us/original/4e/62/4e62c63e4ee802f41ebb9e4074716758.jpg";
-    hash = "sha256-JNdDjK9U9VB1m23OKzqnx/GKlqnMgqOTVcMvMfm5WR4=";
+  hjem.users."rexies".files.".face.icon".source = pkgs.stdenvNoCC.mkDerivation {
+    name = "face.jpg";
+    nativeBuildInputs = [pkgs.imagemagick];
+    src = pkgs.fetchurl {
+      url = "https://cdn.donmai.us/original/e9/c3/e9c3dbb346bb4ea181c2ae8680551585.jpg";
+      hash = "sha256-0RKzzRxW1mtqHutt+9aKzkC5KijIiVLQqW5IRFI/IWY=";
+    };
+    dontUnpack = true;
+    installPhase = "
+      magick $src -crop 640x640+2300+1580 $out
+    ";
   };
 }

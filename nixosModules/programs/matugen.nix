@@ -5,16 +5,30 @@
   lib,
   ...
 }: let
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib) mkIf mkEnableOption mkOption;
   inherit (lib) genAttrs map;
+  inherit (lib.types) enum;
   cfg = config.zaphkiel.programs.matugen;
   zphd = config.zaphkiel.data;
 in {
-  options.zaphkiel.programs.matugen.enable = mkEnableOption "matugen copy service";
+  options.zaphkiel.programs.matugen = {
+    enable = mkEnableOption "matugen copy service";
+    scheme = mkOption {
+      type = enum [
+        "scheme-content"
+        "scheme-expressive"
+        "scheme-fidelity"
+        "scheme-fruit-salad"
+        "scheme-monochrome"
+        "scheme-neutral"
+        "scheme-rainbow"
+        "scheme-tonal-spot"
+      ];
+      default = "scheme-tonal-spot";
+      description = "sets color scheme type";
+    };
+  };
 
-  # TODO
-  # currently relies on hjem's linker services
-  # replace with systemd's tmpfiles target when/if possible
   config = mkIf cfg.enable {
     systemd.targets.hjem.requires = map (user: "matugen-copy@${user}.service") zphd.users;
     systemd.services."matugen-copy@" = {
@@ -24,9 +38,9 @@ in {
         Type = "oneshot";
       };
       after = ["hjem-activate@%i.service"];
-      scriptArgs = "${zphd.wallpaper}";
+      scriptArgs = "${zphd.wallpaper} ${cfg.scheme}";
       script = ''
-        ${pkgs.matugen}/bin/matugen image $1
+        ${pkgs.matugen}/bin/matugen -t $2 image $1 --json hex > $HOME/.config/kurukurubar/colors.json
       '';
     };
 

@@ -6,7 +6,7 @@
     vim.cmd.colorscheme "rose-pine"
   '';
 
-  extraLuaPackages = p: [p.magick];
+  extraLuaPackages = p: [p.magick p.neorg];
   extraBinPath = [
     pkgs.fzf
     pkgs.ripgrep
@@ -26,7 +26,12 @@
         direnv-vim
         ;
 
-      treesitter = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+      treesitter = let
+        nts = pkgs.vimPlugins.nvim-treesitter;
+        tsg = pkgs.tree-sitter-grammars;
+        norgG = [tsg.tree-sitter-norg tsg.tree-sitter-norg-meta];
+      in
+        nts.withPlugins (_: nts.allGrammars ++ norgG);
     };
 
     opt = builtins.attrValues {
@@ -46,6 +51,7 @@
         fzf-lua
         nvim-autopairs
         indent-blankline-nvim
+        neorg
         ;
     };
 

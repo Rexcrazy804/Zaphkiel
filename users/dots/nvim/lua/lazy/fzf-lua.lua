@@ -28,7 +28,11 @@ return {
       desc = "Find git commits of current buffer",
     },
     { "<leader>gs", "<CMD>FzfLua git_status<CR>", desc = "Show git status" },
-    { "<leader>gbr", "<CMD>FzfLua git_branches<CR>", desc = "Show git branches" },
+    {
+      "<leader>gbr",
+      "<CMD>FzfLua git_branches<CR>",
+      desc = "Show git branches",
+    },
 
     -- lsp
     {
@@ -45,7 +49,11 @@ return {
       desc = "Find old commands",
     },
     { "<leader>fs", "<CMD>FzfLua spellcheck<CR>", desc = "Find mispelt words" },
-    { "z=", "<CMD>FzfLua spell_suggest<CR>", desc = "List suggested spellings" },
+    {
+      "z=",
+      "<CMD>FzfLua spell_suggest<CR>",
+      desc = "List suggested spellings",
+    },
 
     -- special
     { "<leader>fz", "<CMD>FzfLua zoxide<CR>", desc = "Find Zoxide jump" },

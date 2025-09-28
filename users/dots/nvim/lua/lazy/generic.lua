@@ -12,7 +12,11 @@ return {
   {
     "toggleterm.nvim",
     keys = {
-      { "<A-i>", "<CMD>ToggleTerm direction=float<CR>", desc = "Floating Term" },
+      {
+        "<A-i>",
+        "<CMD>ToggleTerm direction=float<CR>",
+        desc = "Floating Term",
+      },
     },
     after = function()
       require("toggleterm").setup({
@@ -46,8 +50,11 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     after = function()
       require("ibl").setup({
-        scope = { show_end = false, show_exact_scope = false,
-        show_start = false },
+        scope = {
+          show_end = false,
+          show_exact_scope = false,
+          show_start = false,
+        },
       })
     end,
   },
@@ -60,8 +67,11 @@ return {
     "flash.nvim",
     event = "BufReadPost",
     keys = {
-      { "<leader>/", "<CMD>lua require('flash').jump()<CR>",
-      desc = "FLASH jump" },
+      {
+        "<leader>/",
+        "<CMD>lua require('flash').jump()<CR>",
+        desc = "FLASH jump",
+      },
     },
     after = function()
       require("flash").setup({

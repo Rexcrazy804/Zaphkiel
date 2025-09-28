@@ -3,9 +3,16 @@ return {
   cmd = "Neorg",
   ft = "norg",
   keys = {
-    { "<leader>nt", "<CMD>Neorg toc left<CR>", desc = "Neorg Table of contents" },
-    { "<leader>nj", "<CMD>Neorg journal today<CR>",
-    desc = "Neorg Journal Today" },
+    {
+      "<leader>nt",
+      "<CMD>Neorg toc left<CR>",
+      desc = "Neorg Table of contents",
+    },
+    {
+      "<leader>nj",
+      "<CMD>Neorg journal today<CR>",
+      desc = "Neorg Journal Today",
+    },
     {
       "<leader>nJ",
       "<CMD>Neorg journal toc update<CR>",
@@ -13,7 +20,7 @@ return {
     },
   },
   after = function()
-    require("neorg").setup {
+    require("neorg").setup({
       load = {
         ["core.defaults"] = {},
         ["core.concealer"] = {},
@@ -28,6 +35,6 @@ return {
         },
         ["core.journal"] = { config = { workspace = "journal" } },
       },
-    }
+    })
   end,
 }

@@ -1,28 +1,28 @@
 -- who doesn't like rust bloat wtf is this shit
 -- borrowed from https://github.com/neovim/nvim-lspconfig/blob/master/lsp/rust_analyzer.lua
 local function reload_workspace(bufnr)
-  local clients = vim.lsp.get_clients { bufnr = bufnr, name = "rust_analyzer" }
+  local clients = vim.lsp.get_clients({ bufnr = bufnr, name = "rust_analyzer" })
   for _, client in ipairs(clients) do
-    vim.notify "Reloading Cargo Workspace"
+    vim.notify("Reloading Cargo Workspace")
     client.request("rust-analyzer/reloadWorkspace", nil, function(err)
       if err then error(tostring(err)) end
-      vim.notify "Cargo workspace reloaded"
+      vim.notify("Cargo workspace reloaded")
     end, 0)
   end
 end
 
 local function is_library(fname)
   local user_home = vim.fs.normalize(vim.env.HOME)
-  local cargo_home = os.getenv "CARGO_HOME" or user_home .. "/.cargo"
+  local cargo_home = os.getenv("CARGO_HOME") or user_home .. "/.cargo"
   local registry = cargo_home .. "/registry/src"
   local git_registry = cargo_home .. "/git/checkouts"
 
-  local rustup_home = os.getenv "RUSTUP_HOME" or user_home .. "/.rustup"
+  local rustup_home = os.getenv("RUSTUP_HOME") or user_home .. "/.rustup"
   local toolchains = rustup_home .. "/toolchains"
 
-  for _, item in ipairs { toolchains, registry, git_registry } do
+  for _, item in ipairs({ toolchains, registry, git_registry }) do
     if vim.fs.relpath(item, fname) then
-      local clients = vim.lsp.get_clients { name = "rust_analyzer" }
+      local clients = vim.lsp.get_clients({ name = "rust_analyzer" })
       return #clients > 0 and clients[#clients].config.root_dir or nil
     end
   end
@@ -44,10 +44,12 @@ return {
     local cargo_workspace_root
 
     if cargo_crate_dir == nil then
-      on_dir(vim.fs.root(fname, { "rust-project.json" }) or
-               vim.fs
-                 .dirname(
-          vim.fs.find(".git", { path = fname, upward = true })[1]))
+      on_dir(
+        vim.fs.root(fname, { "rust-project.json" })
+          or vim.fs.dirname(
+            vim.fs.find(".git", { path = fname, upward = true })[1]
+          )
+      )
       return
     end
 
@@ -72,10 +74,17 @@ return {
 
         on_dir(cargo_workspace_root or cargo_crate_dir)
       else
-        vim.schedule(function()
-          vim.notify(("[rust_analyzer] cmd failed with code %d: %s\n%s"):format(
-            output.code, cmd, output.stderr))
-        end)
+        vim.schedule(
+          function()
+            vim.notify(
+              ("[rust_analyzer] cmd failed with code %d: %s\n%s"):format(
+                output.code,
+                cmd,
+                output.stderr
+              )
+            )
+          end
+        )
       end
     end)
   end,
@@ -87,9 +96,12 @@ return {
     end
   end,
   on_attach = function(_, bufnr)
-    vim.api.nvim_buf_create_user_command(bufnr, "LspCargoReload", function()
-      reload_workspace(bufnr)
-    end, { desc = "Reload current cargo workspace" })
+    vim.api.nvim_buf_create_user_command(
+      bufnr,
+      "LspCargoReload",
+      function() reload_workspace(bufnr) end,
+      { desc = "Reload current cargo workspace" }
+    )
   end,
   settings = {
     ["rust-analyzer"] = {

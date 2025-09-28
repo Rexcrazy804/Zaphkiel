@@ -19,7 +19,7 @@ vim.o.undofile = true
 vim.o.wrap = false
 
 vim.o.scrolloff = 5
-vim.g.mapleader = " ";
+vim.g.mapleader = " "
 
 -- inline hints .w.
 -- mfing breaking changes I will fight you

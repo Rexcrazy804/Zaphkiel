@@ -6,7 +6,7 @@
   makeWrapper,
   # formatters
   alejandra,
-  luaformatter,
+  stylua,
   mdformat,
   qt6,
   qmlcheck,
@@ -22,7 +22,7 @@
 
   deps = lib.makeSearchPath "bin" [
     alejandra
-    luaformatter
+    stylua
     mdformat
     qt6.qtdeclarative
     qmlcheck

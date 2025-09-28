@@ -72,7 +72,7 @@ ifneq ($(FILES_QML),)
 endif
 ifneq ($(FILES_LUA),)
 	$(call ECHO_TARGET,Checking,$(words $(FILES_LUA)) lua files)
-	@$(foreach FILE,$(FILES_LUA),git show :$(FILE) | lua-format --check -c ./pkgs/formatters/luafmt.yaml $(ECHO_NEWLINE))
+	@$(foreach FILE,$(FILES_LUA),git show :$(FILE) | stylua --check --config-path ./pkgs/formatters/stylua.toml - $(ECHO_NEWLINE))
 endif
 ifneq ($(FILES_TOML),)
 	$(call ECHO_TARGET,Checking,$(words $(FILES_TOML)) toml files)
@@ -96,7 +96,7 @@ ifneq ($(FILES_QML),)
 endif
 ifneq ($(FILES_LUA),)
 	$(call ECHO_TARGET,Formatting,$(words $(FILES_LUA)) lua files)
-	@lua-format -c ./pkgs/formatters/luafmt.yaml -i $(FILES_LUA)
+	@stylua --config-path ./pkgs/formatters/stylua.toml $(FILES_LUA)
 endif
 ifneq ($(FILES_TOML),)
 	$(call ECHO_TARGET,Formatting,$(words $(FILES_TOML)) toml files)

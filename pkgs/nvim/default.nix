@@ -24,7 +24,7 @@ lib.fix (self: {
     initLua =
       prev.initLua
       + ''
-        vim.cmd.colorscheme "dracula"
+        vim.cmd.colorscheme "tokyonight-night"
       '';
   });
 })

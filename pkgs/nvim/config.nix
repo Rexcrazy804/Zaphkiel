@@ -35,7 +35,7 @@
         image-nvim
         catppuccin-nvim
         rose-pine
-        dracula-nvim
+        tokyonight-nvim
         neo-tree-nvim
         which-key-nvim
         toggleterm-nvim

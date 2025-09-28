@@ -25,11 +25,6 @@ return {
     end,
   },
   {
-    "nvim-colorizer.lua",
-    ft = { "lua", "css", "scss", "html", "ini", "toml", "json" },
-    after = function() require("colorizer").setup() end,
-  },
-  {
     "lualine.nvim",
     event = "VimEnter",
     after = function()

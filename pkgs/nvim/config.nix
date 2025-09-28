@@ -40,7 +40,6 @@
         which-key-nvim
         toggleterm-nvim
         lualine-nvim
-        nvim-colorizer-lua
         gitsigns-nvim
         flash-nvim
         fidget-nvim

@@ -2,6 +2,9 @@ return {
   "neorg",
   cmd = "Neorg",
   ft = "norg",
+  keys = {
+    { "<leader>nt", "<CMD>Neorg toc left<CR>", desc = "Neorg Table of contents" },
+  },
   after = function()
     require("neorg").setup {
       load = {

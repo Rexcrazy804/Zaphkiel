@@ -47,7 +47,6 @@
         fzf-lua
         nvim-autopairs
         indent-blankline-nvim
-        nvim-dbee
         ;
     };
 

@@ -23,7 +23,12 @@ return {
     require("neorg").setup({
       load = {
         ["core.defaults"] = {},
-        ["core.concealer"] = {},
+        ["core.summary"] = {},
+        ["core.concealer"] = {
+          config = {
+            init_open_folds = "always",
+          },
+        },
         ["core.dirman"] = {
           config = {
             workspaces = {

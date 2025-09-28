@@ -55,6 +55,8 @@ return {
   after = function()
     require("fzf-lua").setup({
       actions = { files = { ["enter"] = FzfLua.actions.file_edit } },
+      -- Force bg color to be transparent - Sumee
+      fzf_colors = { ["bg"] = "-1" },
     })
   end,
 }

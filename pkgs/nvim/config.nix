@@ -24,6 +24,7 @@
         nvim-web-devicons
         lspkind-nvim
         direnv-vim
+        oil-nvim
         ;
 
       treesitter = let

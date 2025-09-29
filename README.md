@@ -90,9 +90,10 @@ nixosModules/           # common options and defaults shared across all hosts
 npins/                  # npins for pinning non flake stuff
 
 pkgs/                   # exported packages are found here
-- anime-launchers       # crane enabled builds for aagl launchers family
+- irminsul              # basically tree sitter built with a makefile
 - lanzaboote            # derivation to build lanzaboote without flakes
 - mpv/                  # mpv wrapper with anime4k
+- nvim/                 # configures mnw wrapper and deps for nvim
 - overlays/             # overlays (duh)
 - scripts/              # cute scripts to do various things
 

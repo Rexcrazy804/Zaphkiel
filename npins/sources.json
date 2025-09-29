@@ -27,6 +27,19 @@
       "hash": "sha256-EaDeY8aP41xHTw5epqYjaBqPYs6Z2DABzSaVOnG6D6I=",
       "frozen": true
     },
+    "neorg": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nvim-neorg",
+        "repo": "neorg"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "4da2159b3f3420d43613f43e159f4253b8544474",
+      "url": "https://github.com/nvim-neorg/neorg/archive/4da2159b3f3420d43613f43e159f4253b8544474.tar.gz",
+      "hash": "1yrsr4rlr8q2dfykkdxxf9q3nlvslvgyfiq8w6fpsnzj2xs5nnhc"
+    },
     "rosep-fish": {
       "type": "Git",
       "repository": {

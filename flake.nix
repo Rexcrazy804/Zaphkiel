@@ -6,7 +6,11 @@
     systems.url = "github:nix-systems/x86_64-linux";
     crane.url = "github:ipetkov/crane";
     mnw.url = "github:Gerg-L/mnw";
-    hjem-impure.url = "github:Rexcrazy804/hjem-impure";
+    hjem-impure = {
+      url = "github:Rexcrazy804/hjem-impure";
+      inputs.nixpkgs.follows = "";
+      inputs.hjem.follows = "";
+    };
     hjem = {
       url = "github:feel-co/hjem";
       inputs.smfh.follows = "";

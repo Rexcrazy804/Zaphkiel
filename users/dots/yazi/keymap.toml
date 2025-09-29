@@ -62,7 +62,8 @@ keymap = [
   # Operation
   { on = "<Enter>", run = "open", desc = "Open selected files" },
   { on = "<S-Enter>", run = "open --interactive", desc = "Open selected files interactively" },
-  { on = "<A-Enter>", run = 'shell --block -- cd $(dirname "$1") ; $EDITOR', desc = "Open current directory in $EDITOR" },
+  { on = "<S-A-Enter>", run = 'shell --block -- cd $(dirname "$1") ; $EDITOR', desc = "Open current directory in $EDITOR" },
+  { on = "<A-Enter>", run = 'shell --block -- $SHELL', desc = "Open current directory in $EDITOR" },
   { on = "y", run = "yank", desc = "Yank selected files (copy)" },
   { on = "x", run = "yank --cut", desc = "Yank selected files (cut)" },
   { on = "p", run = "paste", desc = "Paste yanked files" },

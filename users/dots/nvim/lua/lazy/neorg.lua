@@ -27,6 +27,7 @@ return {
         ["core.concealer"] = {
           config = {
             init_open_folds = "always",
+            icon_preset = "diamond",
           },
         },
         ["core.dirman"] = {

@@ -18,7 +18,7 @@ in
 
     image-nvim = buildVimPlugin {
       pname = "image.nvim";
-      version = "07-09-24";
+      version = toVersion sources."image.nvim".revision;
       src = sources."image.nvim";
 
       nvimSkipModules = ["minimal-setup"];

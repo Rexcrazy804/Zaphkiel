@@ -3,8 +3,12 @@
   sources,
   vimPlugins,
   vimUtils,
+  lib,
 }: let
   inherit (vimUtils) buildVimPlugin;
+  inherit (lib) substring;
+
+  toVersion = substring 0 8;
 in
   vimPlugins.extend (final': prev': {
     # for future reference
@@ -19,4 +23,8 @@ in
 
       nvimSkipModules = ["minimal-setup"];
     };
+    neorg = prev'.neorg.overrideAttrs (_: {
+      src = sources.neorg;
+      version = toVersion sources.neorg.revision;
+    });
   })

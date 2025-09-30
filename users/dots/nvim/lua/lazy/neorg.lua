@@ -58,18 +58,16 @@ return {
                 "November",
                 "December",
               }
-              -- Convert the entries into a certain format to be written
+
               local output = {}
               local current_year
               local current_month
 
               for _, entry in ipairs(entries) do
-                local day_pad = ""
                 -- hey if it was gonna be a fucking
                 -- string in the first place why not pad it .w.
+                local day_pad = ""
                 if tonumber(entry[3]) < 10 then day_pad = "0" end
-
-                -- Don't print the year and month if they haven't changed
                 if not current_year or current_year < entry[1] then
                   current_year = entry[1]
                   current_month = nil
@@ -79,8 +77,6 @@ return {
                   current_month = entry[2]
                   table.insert(output, "** " .. months_text[current_month])
                 end
-
-                -- Prints the file link
                 table.insert(
                   output,
                   "   "
@@ -88,7 +84,6 @@ return {
                     .. string.format("[%s| %s]", day_pad .. entry[3], entry[5])
                 )
               end
-
               return output
             end,
           },

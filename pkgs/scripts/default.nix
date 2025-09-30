@@ -10,7 +10,6 @@ in {
   changeWall = callPackage ./changeWall.nix {};
   cowask = callPackage ./cowask.nix {};
   gpurecording = callPackage ./gpurecording.nix {};
-  kde-send = callPackage ./kde-send.nix {};
   npins-show = callPackage ./npins-show.nix {};
   legumulaunch = callPackage ./legumulaunch.nix {};
   qmlcheck = callPackage ./qmlcheck.nix {};

@@ -62,7 +62,13 @@ return {
               local output = {}
               local current_year
               local current_month
+
               for _, entry in ipairs(entries) do
+                local day_pad = ""
+                -- hey if it was gonna be a fucking
+                -- string in the first place why not pad it .w.
+                if tonumber(entry[3]) < 10 then day_pad = "0" end
+
                 -- Don't print the year and month if they haven't changed
                 if not current_year or current_year < entry[1] then
                   current_year = entry[1]
@@ -79,7 +85,7 @@ return {
                   output,
                   "   "
                     .. entry[4]
-                    .. string.format("[%s| %s]", entry[3], entry[5])
+                    .. string.format("[%s| %s]", day_pad .. entry[3], entry[5])
                 )
               end
 

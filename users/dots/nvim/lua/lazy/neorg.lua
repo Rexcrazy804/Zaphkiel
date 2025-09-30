@@ -42,5 +42,6 @@ return {
         ["core.journal"] = { config = { workspace = "journal" } },
       },
     })
+    vim.opt.conceallevel = 2
   end,
 }

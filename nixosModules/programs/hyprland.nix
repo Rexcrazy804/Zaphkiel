@@ -46,7 +46,7 @@ in {
     environment.systemPackages = attrValues {
       # internal overlay
       inherit (zpkgs) kokCursor kurukurubar-unstable stash;
-      inherit (zpkgs.scripts) kde-send gpurecording cowask npins-show;
+      inherit (zpkgs.scripts) taildrop gpurecording cowask npins-show;
       # Themes
       inherit (pkgs) rose-pine-icon-theme rose-pine-gtk-theme;
       inherit (pkgs.kdePackages) qt6ct breeze;

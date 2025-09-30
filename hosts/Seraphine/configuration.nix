@@ -78,13 +78,6 @@
     ];
   };
 
-  # generic
-  programs = {
-    kdeconnect = {
-      enable = true;
-      package = pkgs.kdePackages.kdeconnect-kde;
-    };
-  };
   programs.adb.enable = true;
   users.users.rexies.extraGroups = ["adbusers" "kvm"];
   services.fstrim.enable = true;

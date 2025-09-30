@@ -87,14 +87,6 @@ in {
     ];
   };
 
-  # generic
-  programs = {
-    kdeconnect = {
-      enable = true;
-      package = pkgs.kdePackages.kdeconnect-kde;
-    };
-  };
-
   hardware.bluetooth.powerOnBoot = mkForce false;
 
   # btrfs

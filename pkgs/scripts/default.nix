@@ -13,6 +13,7 @@ in {
   npins-show = callPackage ./npins-show.nix {};
   legumulaunch = callPackage ./legumulaunch.nix {};
   qmlcheck = callPackage ./qmlcheck.nix {};
+  taildrop = callPackage ./taildrop.nix {};
 
   # functions
   # seperate them into lib later?

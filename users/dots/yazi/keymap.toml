@@ -280,10 +280,10 @@ keymap = [
   { on = [
     "<C-S-w>",
   ], run = 'shell --interactive -- changeWall "$0"' },
-  # kde connect share
+  # taildrop share
   { on = [
     "<A-n>",
-  ], run = "shell 'kde-send \"$@\"' --block --confirm" },
+  ], run = "shell --block --confirm -- taildrop $@" },
 
   # Help
   { on = "~", run = "help", desc = "Open help" },

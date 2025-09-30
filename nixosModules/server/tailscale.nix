@@ -4,8 +4,11 @@
   config,
   ...
 }: let
-  inherit (lib) mkEnableOption mkOption types mkIf optional mkForce getExe mkAliasOptionModule;
+  inherit (lib) mkEnableOption mkOption mkIf mkAliasOptionModule mkForce;
+  inherit (lib) optional getExe;
+  inherit (lib.types) str enum nullOr;
   cfg = config.zaphkiel.services.tailscale;
+
   # adapted from https://github.com/piyoki/nixos-config/blob/master/system/networking/udp-gro-forwarding.nix
   udp-grp-script = pkgs.writeShellScript "udp-gro-forwarding" ''
     set -eux
@@ -17,11 +20,16 @@ in {
   ];
   options.zaphkiel.services.tailscale = {
     enable = mkEnableOption "Enable Tailscale Service";
+    operator = mkOption {
+      type = nullOr (enum config.zaphkiel.data.users);
+      default = null;
+      description = "User set as tailscale operator, helps with taildrop stuff";
+    };
     exitNode = {
       enable = mkEnableOption "Enable use as exit node";
       networkDevice = mkOption {
         default = "eth0";
-        type = types.str;
+        type = str;
         description = ''
           the name of the network device to be used for exitNode Optimization script
         '';
@@ -39,7 +47,8 @@ in {
           "--webclient"
           "--accept-dns=false"
         ]
-        ++ optional cfg.exitNode.enable "--advertise-exit-node";
+        ++ optional cfg.exitNode.enable "--advertise-exit-node"
+        ++ optional (cfg.operator != null) "--operator=${cfg.operator}";
     };
 
     # services.resolved.enable = true;

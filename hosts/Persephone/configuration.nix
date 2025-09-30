@@ -50,6 +50,7 @@ in {
       enable = true;
       tailscale = {
         enable = true;
+        operator = "rexies";
         exitNode.enable = false;
         authFile = config.age.secrets.tailAuth.path;
       };

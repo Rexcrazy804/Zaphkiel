@@ -128,4 +128,8 @@ in {
     tctiEnvironment.enable = true;
   };
   users.users.rexies.extraGroups = ["tss"];
+
+  powerManagement.powertop.enable = true;
+  # multi-user.target shouldn't wait for powertop
+  systemd.services.powertop.serviceConfig.Type = mkForce "exec";
 }

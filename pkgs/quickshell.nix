@@ -3,7 +3,7 @@
   quickshell,
 }:
 # only override the drv with my patch if its the latest rev from my fork
-if rev == "3804ffb47366cb7e571a9174b3f278195d0bfc7e"
+if rev == "ab6c42d1b8369614c767c138eca175d75622988c"
 then
   quickshell.override {
     quickshell-unwrapped =

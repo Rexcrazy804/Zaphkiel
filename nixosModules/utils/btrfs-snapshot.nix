@@ -60,7 +60,7 @@
   script = subvol:
     pkgs.writers.writeBashBin "backup" ''
       set -euxo pipefail
-      ${pkgs.btrfs-progs}/bin/btrfs subvolume snapshot ~/${subvol} ~/.snapshots/${subvol}/$(date +%b%d)
+      ${pkgs.btrfs-progs}/bin/btrfs subvolume snapshot -r ~/${subvol} ~/.snapshots/${subvol}/$(date +%b%d)
     '';
 
   services =

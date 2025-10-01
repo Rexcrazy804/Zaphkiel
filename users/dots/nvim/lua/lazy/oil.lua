@@ -17,8 +17,8 @@ return {
       keymaps = {
         ["<BS>"] = { "actions.parent", mode = "n" },
         ["="] = { "actions.open_cwd", mode = "n" },
-        ["-"] = {},
-        ["_"] = {},
+        ["-"] = false,
+        ["_"] = false,
       },
     })
   end,

@@ -4,34 +4,41 @@
   config,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf getExe mkPackageOption;
+  inherit (lib) mkEnableOption mkIf getExe mkOption;
+  inherit (lib.types) enum;
   cfg = config.zaphkiel.graphics.intel;
+
+  intel-media-driver = [
+    pkgs.intel-media-driver
+    pkgs.libvdpau-va-gl
+    pkgs.vpl-gpu-rt
+  ];
+
+  runtimes = [
+    pkgs.intel-compute-runtime
+    pkgs.intel-ocl
+  ];
 in {
   options.zaphkiel.graphics.intel = {
     enable = mkEnableOption "intel graphics";
-    qsvDriver = mkPackageOption pkgs "intel QSV driver" {
-      default = pkgs.intel-media-sdk;
-      example = pkgs.vpl-gpu-rt;
+    hwAccelDriver = mkOption {
+      type = enum ["media-driver" "vaapi-driver"];
+      default = "media-driver";
+      description = "Hardware acceleration driver to use";
+      apply = x:
+        if x == "media-driver"
+        then intel-media-driver
+        else [pkgs.intel-vaapi-driver];
     };
   };
-  config = mkIf (cfg.enable && config.zaphkiel.graphics.enable) {
-    # TODO remove this once media sdk is updated
-    # required for intel-media-sdk,
-    # due to
-    nixpkgs.config.permittedInsecurePackages = ["intel-media-sdk-23.2.2"];
 
+  config = mkIf (cfg.enable && config.zaphkiel.graphics.enable) {
+    hardware.graphics.extraPackages = runtimes ++ cfg.hwAccelDriver;
+
+    # enables frame buffer compression
     boot.kernelParams = ["i915.enable_fbc=1"];
 
-    hardware.graphics.extraPackages = [
-      # base for hardware acceleration
-      pkgs.intel-media-driver
-      pkgs.libvdpau-va-gl
-      # supporting run times
-      pkgs.intel-compute-runtime
-      pkgs.intel-ocl
-      cfg.qsvDriver
-    ];
-
+    # enables gpu usage statistic in btop
     security.wrappers.btop = {
       owner = "root";
       group = "root";

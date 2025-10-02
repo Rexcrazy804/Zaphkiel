@@ -20,9 +20,7 @@ in {
     # due to
     nixpkgs.config.permittedInsecurePackages = ["intel-media-sdk-23.2.2"];
 
-    # TODO make this configurable
-    # (both my systems use guc3 for now so we ball)
-    boot.kernelParams = ["i915.enable_guc=3" "i915.enable_fbc=1"];
+    boot.kernelParams = ["i915.enable_fbc=1"];
 
     hardware.graphics.extraPackages = [
       # base for hardware acceleration

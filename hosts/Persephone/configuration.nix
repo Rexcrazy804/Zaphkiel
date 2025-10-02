@@ -22,7 +22,7 @@ in {
       enable = true;
       intel = {
         enable = true;
-        qsvDriver = pkgs.vpl-gpu-rt;
+        hwAccelDriver = "media-driver";
       };
     };
 

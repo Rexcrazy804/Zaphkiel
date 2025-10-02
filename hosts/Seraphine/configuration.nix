@@ -34,7 +34,7 @@
       enable = true;
       intel = {
         enable = true;
-        qsvDriver = pkgs.intel-media-sdk;
+        hwAccelDriver = "vaapi-driver";
       };
     };
     services = {

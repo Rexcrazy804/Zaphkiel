@@ -20,7 +20,10 @@ in {
 
     graphics = {
       enable = true;
-      intel.enable = true;
+      intel = {
+        enable = true;
+        qsvDriver = pkgs.vpl-gpu-rt;
+      };
     };
 
     programs = {

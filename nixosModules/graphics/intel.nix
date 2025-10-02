@@ -4,19 +4,34 @@
   config,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf getExe;
+  inherit (lib) mkEnableOption mkIf getExe mkPackageOption;
   cfg = config.zaphkiel.graphics.intel;
 in {
   options.zaphkiel.graphics.intel = {
     enable = mkEnableOption "intel graphics";
+    qsvDriver = mkPackageOption pkgs "intel QSV driver" {
+      default = pkgs.intel-media-sdk;
+      example = pkgs.vpl-gpu-rt;
+    };
   };
   config = mkIf (cfg.enable && config.zaphkiel.graphics.enable) {
+    # TODO remove this once media sdk is updated
+    # required for intel-media-sdk,
+    # due to
+    nixpkgs.config.permittedInsecurePackages = ["intel-media-sdk-23.2.2"];
+
+    # TODO make this configurable
+    # (both my systems use guc3 for now so we ball)
+    boot.kernelParams = ["i915.enable_guc=3" "i915.enable_fbc=1"];
+
     hardware.graphics.extraPackages = [
+      # base for hardware acceleration
       pkgs.intel-media-driver
-      pkgs.vpl-gpu-rt
-      pkgs.intel-vaapi-driver
       pkgs.libvdpau-va-gl
+      # supporting run times
+      pkgs.intel-compute-runtime
       pkgs.intel-ocl
+      cfg.qsvDriver
     ];
 
     security.wrappers.btop = {
@@ -26,6 +41,10 @@ in {
       capabilities = "cap_perfmon+ep";
     };
 
-    environment.sessionVariables.ANV_VIDEO_DECODE = 1;
+    environment.sessionVariables = {
+      # not supported yet
+      # ANV_VIDEO_DECODE = 1;
+      LIBVA_DRIVER_NAME = "iHD";
+    };
   };
 }

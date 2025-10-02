@@ -32,7 +32,10 @@
     };
     graphics = {
       enable = true;
-      intel.enable = true;
+      intel = {
+        enable = true;
+        qsvDriver = pkgs.intel-media-sdk;
+      };
     };
     services = {
       enable = true;
@@ -52,6 +55,9 @@
       # minecraft.enable = false;
     };
   };
+
+  # required for intel-media-sdk
+  nixpkgs.config.permittedInsecurePackages = ["intel-media-sdk-23.2.2"];
 
   services.greetd = {
     enable = true;

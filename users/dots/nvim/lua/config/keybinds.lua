@@ -13,6 +13,10 @@ map(
   defaults("Force delete current buffer")
 )
 
+-- clipboard
+map("n", "<leader>y", "V\"+y", defaults("Yank current line to clipboard"))
+map("v", "<leader>y", "\"+y", defaults("Yank selection to clipboard"))
+
 -- lsp
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)

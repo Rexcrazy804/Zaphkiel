@@ -23,7 +23,7 @@ return {
     -- git stuff
     { "<leader>gc", "<CMD>FzfLua git_commits<CR>", desc = "Find git commits" },
     {
-      "<leader>gbc",
+      "<leader>gC",
       "<CMD>FzfLua git_bcommits<CR>",
       desc = "Find git commits of current buffer",
     },

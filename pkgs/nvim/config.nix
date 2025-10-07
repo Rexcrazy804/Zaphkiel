@@ -1,8 +1,8 @@
 {pkgs, ...}: {
   neovim = pkgs.neovim-unwrapped;
   initLua = ''
-    require("plugins")
-    require("lz.n").load("lazy")
+    require("config")
+    require("lz.n").load("plugins")
     vim.cmd.colorscheme "rose-pine"
   '';
 

@@ -49,7 +49,7 @@ in {
     environment.sessionVariables = {
       # not supported yet
       # ANV_VIDEO_DECODE = 1;
-      LIBVA_DRIVER_NAME = "iHD";
+      LIBVA_DRIVER_NAME = mkIf (cfg.hwAccelDriver == intel-media-driver) "iHD";
     };
   };
 }

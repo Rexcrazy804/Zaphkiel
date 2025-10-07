@@ -34,7 +34,7 @@
       enable = true;
       intel = {
         enable = true;
-        hwAccelDriver = "vaapi-driver";
+        hwAccelDriver = "media-driver";
       };
     };
     services = {

@@ -18,7 +18,7 @@
   # a json file
   customColors ? null,
 }: let
-  inherit (lib) makeSearchPath optionalString any;
+  inherit (lib) makeSearchPath optionalString any optionals;
 
   qmlPath = makeSearchPath "lib/qt-6/qml" [
     kdePackages.qtbase
@@ -69,8 +69,10 @@ in
   symlinkJoin {
     pname = "kurukurubar";
     version = quickshell.version;
-
-    paths = [quickshell rembg scripts.gpurecording];
+    paths =
+      [quickshell]
+      # ensures that rembg and gpurecording is not added in the greeter derivation
+      ++ (optionals (! asGreeter) [rembg scripts.gpurecording]);
     nativeBuildInputs = [makeWrapper];
 
     postBuild = ''

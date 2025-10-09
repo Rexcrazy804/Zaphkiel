@@ -190,7 +190,8 @@
         "nixpkgs": "nixpkgs",
         "quickshell": "quickshell",
         "stash": "stash",
-        "systems": "systems"
+        "systems": "systems",
+        "winboat": "winboat"
       }
     },
     "stash": {
@@ -228,6 +229,27 @@
       "original": {
         "owner": "nix-systems",
         "repo": "x86_64-linux",
+        "type": "github"
+      }
+    },
+    "winboat": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1760046812,
+        "narHash": "sha256-S7xOibCL8nOSNhnpfkpkVdaw8ua+4ofUeV2HjLpiq6k=",
+        "owner": "Rexcrazy804",
+        "repo": "winboat",
+        "rev": "22ee960ceb55ea635bac0bf2136e43fb5f43313b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Rexcrazy804",
+        "ref": "fix-nix",
+        "repo": "winboat",
         "type": "github"
       }
     }

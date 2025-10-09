@@ -42,6 +42,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
     };
+    winboat = {
+      url = "github:Rexcrazy804/winboat?ref=fix-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

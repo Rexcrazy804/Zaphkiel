@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
@@ -9,6 +10,7 @@ in {
   imports = [
     ./hardware-configuration.nix
     ./user-configuration.nix
+    inputs.winboat.nixosModules.default
   ];
 
   system.stateVersion = "25.05"; # Did you read the comment?
@@ -130,7 +132,8 @@ in {
     pkcs11.enable = true;
     tctiEnvironment.enable = true;
   };
-  users.users.rexies.extraGroups = ["tss"];
+  users.users.rexies.extraGroups = ["tss" "docker"];
+  services.winboat.enable = true;
 
   powerManagement.powertop.enable = true;
   # multi-user.target shouldn't wait for powertop

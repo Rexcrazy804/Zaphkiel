@@ -18,6 +18,7 @@
     ./kuruDM.nix
     ./privoxy.nix
     ./matugen.nix
+    ./winboat.nix
 
     # auto
     ./fish.nix

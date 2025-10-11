@@ -13,6 +13,7 @@ in {
   legumulaunch = callPackage ./legumulaunch.nix {};
   qmlcheck = callPackage ./qmlcheck.nix {};
   taildrop = callPackage ./taildrop.nix {};
+  getximg = callPackage ./getximg.nix {};
 
   # functions
   # seperate them into lib later?

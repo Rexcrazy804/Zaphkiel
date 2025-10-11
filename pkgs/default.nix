@@ -28,6 +28,10 @@ in {
     # configPath = (sources.zaphkiel) + "/users/dots/quickshell/kurukurubar";
   };
 
+  # winboat
+  winboat-guest-server = callPackage ./winboat/guest.nix {inherit (self) winboat;};
+  winboat = callPackage ./winboat {inherit (self) winboat-guest-server;};
+
   # trivial
   mpv-wrapped = callPackage ./mpv {};
   librebarcode = callPackage ./librebarcode.nix {};

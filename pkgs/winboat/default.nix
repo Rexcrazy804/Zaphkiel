@@ -8,6 +8,8 @@
   makeDesktopItem,
   copyDesktopItems,
   usbutils,
+  freerdp,
+  docker-compose,
   udev,
   winboat-guest-server,
   zip,
@@ -20,9 +22,6 @@ buildNpmPackage (final: {
   postPatch = ''
     substituteInPlace package.json \
       --replace-fail "main/main.js" "src/main/main.ts"
-
-    substituteInPlace electron-builder.json \
-      --replace-fail '["appimage", "deb", "rpm", "tar.gz"]' '["tar.gz"]'
   '';
 
   nativeBuildInputs = [
@@ -54,6 +53,8 @@ buildNpmPackage (final: {
     # install built artifacts
     mkdir -p $out/bin $out/share/winboat
     cp -r dist/linux-unpacked/* $out/share/winboat
+    # prune some stuff we'll never use ig
+    rm $out/share/winboat/{*.so*,winboat,chrome_crashpad_handler,chrome-sandbox}
 
     # install the icon
     mkdir -p $out/share/icons/hicolor/256x256/apps
@@ -70,8 +71,8 @@ buildNpmPackage (final: {
     # wrap wrap wrap
     makeWrapper ${electron}/bin/electron $out/bin/winboat \
       --add-flag "$out/share/winboat/resources/app.asar" \
-      --suffix PATH : "${usbutils}/bin" \
-      ''${gappsWrapperArgs[@]}
+      --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}" \
+      --suffix PATH : ${lib.makeBinPath [usbutils docker-compose freerdp]}
 
     runHook postInstall
   '';

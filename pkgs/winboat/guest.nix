@@ -31,7 +31,7 @@ stdenv.mkDerivation (final: {
     export BUILD_TIMESTAMP=$(date '+%Y-%m-%dT%H:%M:%S')
     export LDFLAGS=(
       "-X 'main.Version=${final.version}'"
-      "-X 'main.CommitHash=${final.src.rev}'"
+      "-X 'main.CommitHash=${final.src.revision}'"
       "-X 'main.BuildTimestamp=''${BUILD_TIMESTAMP}'"
     )
 

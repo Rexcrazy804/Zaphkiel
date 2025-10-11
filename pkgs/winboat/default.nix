@@ -1,6 +1,6 @@
 {
   lib,
-  fetchFromGitHub,
+  sources,
   electron,
   nodejs_24,
   buildNpmPackage,
@@ -13,15 +13,9 @@
   zip,
 }:
 buildNpmPackage (final: {
+  inherit (sources.winboat) version;
   pname = "winboat";
-  version = "0.8.7";
-
-  src = fetchFromGitHub {
-    owner = "TibixDev";
-    repo = "winboat";
-    tag = "v${final.version}";
-    hash = "sha256-30WzvdY8Zn4CAj76bbC0bevuTeOSfDo40FPWof/39Es=";
-  };
+  src = sources.winboat;
 
   postPatch = ''
     substituteInPlace package.json \

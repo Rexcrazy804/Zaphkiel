@@ -30,7 +30,10 @@ in {
 
   # winboat
   winboat-guest-server = callPackage ./winboat/guest.nix {inherit (self) winboat;};
-  winboat = callPackage ./winboat {inherit (self) winboat-guest-server;};
+  winboat = callPackage ./winboat {
+    inherit sources;
+    inherit (self) winboat-guest-server;
+  };
 
   # trivial
   mpv-wrapped = callPackage ./mpv {};

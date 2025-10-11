@@ -22,15 +22,9 @@ in {
   config = mkIf cfg.enable {
     virtualisation.docker.enable = true;
     virtualisation.libvirtd.enable = true;
-
+    environment.systemPackages = [cfg.package];
     # hardcoded cause I am lazy,
     # TODO be unlazy
     users.users.rexies.extraGroups = ["docker"];
-
-    environment.systemPackages = [
-      cfg.package
-      pkgs.freerdp3
-      pkgs.docker-compose
-    ];
   };
 }

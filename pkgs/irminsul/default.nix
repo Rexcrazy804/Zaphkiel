@@ -11,6 +11,7 @@
   qt6,
   qmlcheck,
   taplo,
+  deadnix,
 }: let
   interpreter = "${gnumake}/bin/make -f";
   writeMakefile = writers.makeScriptWriter {
@@ -27,6 +28,7 @@
     qt6.qtdeclarative
     qmlcheck
     taplo
+    deadnix
   ];
 in
   symlinkJoin {

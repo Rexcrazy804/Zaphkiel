@@ -65,6 +65,7 @@ chk:
 ifneq ($(FILES_NIX),)
 	$(call ECHO_TARGET,Checking,$(words $(FILES_NIX)) nix files)
 	@$(foreach FILE,$(FILES_NIX),git show :$(FILE) | alejandra --check -q - &> /dev/null $(ECHO_NEWLINE))
+	@$(foreach FILE,$(FILES_NIX),git show :$(FILE) | deadnix -f -q /dev/stdin &> /dev/null $(ECHO_NEWLINE))
 endif
 ifneq ($(FILES_QML),)
 	$(call ECHO_TARGET,Checking,$(words $(FILES_QML)) qml files)
@@ -89,6 +90,7 @@ fmt:
 ifneq ($(FILES_NIX),)
 	$(call ECHO_TARGET,Formatting,$(words $(FILES_NIX)) nix files)
 	@alejandra -q $(FILES_NIX)
+	@deadnix -e -q $(FILES_NIX)
 endif
 ifneq ($(FILES_QML),)
 	$(call ECHO_TARGET,Formatting,$(words $(FILES_QML)) qml files)

@@ -90,8 +90,7 @@ nixosModules/           # common options and defaults shared across all hosts
 npins/                  # npins for pinning non flake stuff
 
 pkgs/                   # exported packages are found here
-- irminsul              # basically tree sitter built with a makefile
-- lanzaboote            # derivation to build lanzaboote without flakes
+- irminsul/             # basically tree sitter built with a makefile
 - mpv/                  # mpv wrapper with anime4k
 - nvim/                 # configures mnw wrapper and deps for nvim
 - overlays/             # overlays (duh)

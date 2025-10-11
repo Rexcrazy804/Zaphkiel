@@ -14,7 +14,7 @@
   winboat-guest-server,
   zip,
 }:
-buildNpmPackage (final: {
+buildNpmPackage {
   inherit (sources.winboat) version;
   pname = "winboat";
   src = sources.winboat;
@@ -95,4 +95,4 @@ buildNpmPackage (final: {
     license = lib.licenses.mit;
     platforms = ["x86_64-linux"];
   };
-})
+}

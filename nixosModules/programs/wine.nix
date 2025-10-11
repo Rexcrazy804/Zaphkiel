@@ -16,7 +16,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    users.users = genAttrs config.zaphkiel.data.users (user: {
+    users.users = genAttrs config.zaphkiel.data.users (_user: {
       extraGroups = ["video" "input"];
     });
 

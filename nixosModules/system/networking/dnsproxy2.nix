@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  config,
   ...
 }: {
   # don't resolve dns over dhcpd or networkmanager

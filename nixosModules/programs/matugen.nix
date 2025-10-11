@@ -44,7 +44,7 @@ in {
       '';
     };
 
-    users.users = genAttrs zphd.users (user: {
+    users.users = genAttrs zphd.users (_user: {
       packages = [pkgs.matugen mein.${pkgs.system}.scripts.changeWall];
     });
   };

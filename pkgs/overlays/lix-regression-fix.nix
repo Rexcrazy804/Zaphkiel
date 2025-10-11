@@ -4,9 +4,9 @@
 # Yours Lovingly,
 # Rexiel Scarlet - june 29, 2025
 final: prev: {
-  lixPackageSets = prev.lixPackageSets.extend (final': prev': {
-    lix_2_93 = prev'.lix_2_93.overrideScope (new: old: {
-      lix = old.lix.overrideAttrs (_new: old': {
+  lixPackageSets = prev.lixPackageSets.extend (_final': prev': {
+    lix_2_93 = prev'.lix_2_93.overrideScope (_new: old: {
+      lix = old.lix.overrideAttrs (_new': old': {
         patches =
           (old'.patches or [])
           ++ [

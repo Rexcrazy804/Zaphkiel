@@ -1,10 +1,6 @@
 # WARNING
 # this is a merely a configuration used to test the kurukuru greeter
-{
-  modulesPath,
-  pkgs,
-  ...
-}: {
+{modulesPath, ...}: {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
     (modulesPath + "/virtualisation/qemu-vm.nix")

@@ -38,7 +38,7 @@
   ]);
   cfg = config.programs.kurukuruDM;
 
-  normalUsers = attrNames (filterAttrs (k: v: v.isNormalUser) config.users.users);
+  normalUsers = attrNames (filterAttrs (_k: v: v.isNormalUser) config.users.users);
 in {
   imports = [
     (mkRenamedOptionModule

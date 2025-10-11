@@ -1,10 +1,4 @@
-{
-  sources ? import ./npins,
-  system ? builtins.currentSystem or "unknown-system",
-  pkgs ? import sources.nixpkgs {inherit system;},
-  modulesPath,
-  ...
-}: {
+{modulesPath, ...}: {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
     (modulesPath + "/virtualisation/qemu-vm.nix")

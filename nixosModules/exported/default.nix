@@ -7,7 +7,7 @@ lib.fix (self': {
   kurukuruDM = {pkgs, ...}: {
     imports = [./kurukuruDM.nix];
     nixpkgs.overlays = [
-      (final: prev: {
+      (_: _: {
         inherit
           (self.packages.${pkgs.system})
           kurukurubar

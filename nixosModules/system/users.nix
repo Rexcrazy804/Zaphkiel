@@ -3,7 +3,7 @@
   pkgs,
   inputs,
   ...
-} @ args: let
+}: let
   inherit (lib) mkOption;
   inherit (lib.types) listOf str path;
 in {

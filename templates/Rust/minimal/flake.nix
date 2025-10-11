@@ -11,9 +11,9 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
     rust-overlay,
+    ...
   }: let
     overlays = [rust-overlay.overlays.default];
     systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];

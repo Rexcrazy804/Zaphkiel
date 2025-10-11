@@ -10,7 +10,7 @@
 
   toVersion = substring 0 8;
 in
-  vimPlugins.extend (final': prev': {
+  vimPlugins.extend (_final: prev: {
     # for future reference
     # flash-nvim = prev'.flash-nvim.overrideAttrs (_old: {
     #   src = (sources."flash.nvim" { pkgs = final; });
@@ -23,7 +23,7 @@ in
 
       nvimSkipModules = ["minimal-setup"];
     };
-    neorg = prev'.neorg.overrideAttrs (_: {
+    neorg = prev.neorg.overrideAttrs (_: {
       src = sources.neorg;
       version = toVersion sources.neorg.revision;
     });

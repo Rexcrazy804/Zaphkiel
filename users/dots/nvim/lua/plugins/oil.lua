@@ -15,6 +15,7 @@ return {
       skip_confirm_for_simple_edits = true,
       prompt_save_on_select_new_entry = true,
       keymaps = {
+        ["q"] = { "<cmd>q<CR>" },
         ["h"] = { "actions.parent", mode = "n" },
         ["l"] = "actions.select",
         ["H"] = { "actions.open_cwd", mode = "n" },

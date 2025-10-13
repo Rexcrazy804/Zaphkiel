@@ -28,19 +28,13 @@ in {
     # configPath = (sources.zaphkiel) + "/users/dots/quickshell/kurukurubar";
   };
 
-  # winboat
-  winboat-guest-server = callPackage ./winboat/guest.nix {inherit (self) winboat;};
-  winboat = callPackage ./winboat {
-    inherit sources;
-    inherit (self) winboat-guest-server;
-  };
-
   # trivial
   mpv-wrapped = callPackage ./mpv {};
   librebarcode = callPackage ./librebarcode.nix {};
   kokCursor = callPackage ./kokCursor.nix {};
   stash = inputs.stash.packages.${system}.default;
   irminsul = callPackage ./irminsul {inherit (self.scripts) qmlcheck;};
+  winboat = callPackage ./winboat.nix {inherit sources;};
 
   # package sets
   scripts = callPackage ./scripts {};

@@ -136,4 +136,10 @@ in {
   powerManagement.powertop.enable = true;
   # multi-user.target shouldn't wait for powertop
   systemd.services.powertop.serviceConfig.Type = mkForce "exec";
+
+  # network printing
+  services.printing = {
+    enable = true;
+    browsed.enable = true;
+  };
 }

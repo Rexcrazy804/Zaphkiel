@@ -23,7 +23,6 @@
         blink-cmp
         nvim-web-devicons
         lspkind-nvim
-        direnv-vim
         oil-nvim
         ;
 
@@ -53,6 +52,7 @@
         nvim-autopairs
         indent-blankline-nvim
         neorg
+        direnv-nvim
         ;
     };
 

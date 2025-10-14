@@ -23,8 +23,15 @@ in
 
       nvimSkipModules = ["minimal-setup"];
     };
+
     neorg = prev.neorg.overrideAttrs (_: {
       src = sources.neorg;
       version = toVersion sources.neorg.revision;
     });
+
+    direnv-nvim = buildVimPlugin {
+      pname = "direnv.nvim";
+      version = toVersion sources."image.nvim".revision;
+      src = sources."direnv.nvim";
+    };
   })

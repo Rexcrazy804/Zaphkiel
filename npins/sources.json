@@ -13,6 +13,19 @@
       "url": "https://github.com/catppuccin/bat/archive/6810349b28055dce54076712fc05fc68da4b8ec0.tar.gz",
       "hash": "sha256-lJapSgRVENTrbmpVyn+UQabC9fpV1G1e+CdlJ090uvg="
     },
+    "direnv.nvim": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NotAShelf",
+        "repo": "direnv.nvim"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "4dfc8758a1deab45e37b7f3661e0fd3759d85788",
+      "url": "https://github.com/NotAShelf/direnv.nvim/archive/4dfc8758a1deab45e37b7f3661e0fd3759d85788.tar.gz",
+      "hash": "1094iy9rxg0h2mpbdxxb6l5rdr1v5qlix9lyalaqpjym6swbr8ra"
+    },
     "image.nvim": {
       "type": "Git",
       "repository": {

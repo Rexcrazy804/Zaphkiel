@@ -35,6 +35,9 @@ return {
       require("lualine").setup({
         tabline = {
           lualine_a = { { "buffers", symbols = { alternate_file = "" } } },
+          lualine_x = {
+            function() return require("direnv").statusline() end,
+          },
         },
         options = {
           globalstatus = true,

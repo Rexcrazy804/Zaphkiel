@@ -31,7 +31,7 @@ in
 
     direnv-nvim = buildVimPlugin {
       pname = "direnv.nvim";
-      version = toVersion sources."image.nvim".revision;
+      version = toVersion sources."direnv.nvim".revision;
       src = sources."direnv.nvim";
     };
   })

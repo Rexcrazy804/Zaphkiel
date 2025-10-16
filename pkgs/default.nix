@@ -34,7 +34,21 @@ in {
   kokCursor = callPackage ./kokCursor.nix {};
   stash = inputs.stash.packages.${system}.default;
   irminsul = callPackage ./irminsul {inherit (self.scripts) qmlcheck;};
-  winboat = callPackage ./winboat.nix {inherit sources;};
+  winboat = callPackage ./winboat {inherit sources;};
+
+  # overriding the derrivation
+  # winslop = self.winboat.overrideAttrs (old: {
+  #   guestDrv = old.guestDrv.overrideAttrs (new': old': {
+  #     version = "0.8.6";
+  #     src = pkgs.fetchFromGitHub {
+  #       owner = "TibixDev";
+  #       repo = "winboat";
+  #       tag = "v${new'.version}";
+  #       hash = "sha256-Lvv+alPvQAcPFc8d+JC0hJX0sLjRL0/peJmMxiXNb0Q=";
+  #     };
+  #     vendorHash = "sha256-JglpTv1hkqxmcbD8xmG80Sukul5hzGyyANfe+GeKzQ4=";
+  #   });
+  # });
 
   # package sets
   scripts = callPackage ./scripts {};

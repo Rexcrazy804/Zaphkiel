@@ -1,5 +1,5 @@
 {
-  sources ? import ../npins,
+  sources ? import ../../npins,
   lib,
   go,
   electron,
@@ -10,17 +10,16 @@
   usbutils,
   freerdp,
   docker-compose,
-  buildGoModule,
+  pkgsCross,
   buildNpmPackage,
   makeDesktopItem,
   copyDesktopItems,
   writableTmpDirAsHomeHook,
 }:
 buildNpmPackage (final: {
-  inherit (sources.winboat) version;
   pname = "winboat";
-
-  src = sources.winboat;
+  inherit (sources."winboat") version;
+  src = sources."winboat";
 
   postPatch = ''
     substituteInPlace package.json \
@@ -28,26 +27,22 @@ buildNpmPackage (final: {
   '';
 
   nativeBuildInputs = [
-    go
-    zip
     makeWrapper
     copyDesktopItems
+    zip
+    go
     writableTmpDirAsHomeHook
   ];
 
-  buildInputs = [ udev ];
+  buildInputs = [udev];
 
   env.ELECTRON_SKIP_BINARY_DOWNLOAD = 1;
   npmDepsHash = "sha256-nW+cGX4Y0Ndn1ubo4U3n8ZrjM5NkxIt4epB0AghPrNQ=";
   nodejs = nodejs_24;
   makeCacheWritable = true;
 
-  guestDrv = buildGoModule {
-    inherit (final) version src;
-    modRoot = "guest_server";
-    pname = "winboat-server";
-    vendorHash = "sha256-JglpTv1hkqxmcbD8xmG80Sukul5hzGyyANfe+GeKzQ4=";
-  };
+  guestDrv = pkgsCross.mingwW64.callPackage ./guest-server.nix {winboat = final.finalPackage;};
+  passthru.guest-server = final.guestDrv;
 
   buildPhase = ''
     node scripts/build.ts
@@ -56,20 +51,6 @@ buildNpmPackage (final: {
       -c.electronDist=${electron.dist} \
       -c.electronVersion=${electron.version} \
       -c.npmRebuild=false
-
-    # build the go guest_server executable
-    export GOOS=windows
-    export GOARCH=amd64
-    export PACKAGE=winboat-server
-    export BUILD_TIMESTAMP=$(date '+%Y-%m-%dT%H:%M:%S')
-    export LDFLAGS=(
-      "-X 'main.Version=${final.version}'"
-      "-X 'main.CommitHash=${final.src.revision}'"
-      "-X 'main.BuildTimestamp=''${BUILD_TIMESTAMP}'"
-    )
-
-    ln -sf "${final.guestDrv.goModules}" guest_server/vendor
-    (cd guest_server && go build -ldflags="''${LDFLAGS[*]}" -o winboat_guest_server.exe *.go)
   '';
 
   installPhase = ''
@@ -77,29 +58,29 @@ buildNpmPackage (final: {
 
     # install built artifacts
     mkdir -p $out/bin $out/share/winboat
-    cp -r dist/linux-unpacked/* $out/share/winboat
+    cp -r dist/linux-unpacked/resources $out/share/winboat/resources
 
-    # install the icon
+    # install winboat icon
     install -Dm444 icons/icon.png $out/share/icons/hicolor/256x256/apps/winboat.png
 
     # copy the the winboat-guest-server executable and generate the zip
-    cp guest_server/winboat_guest_server.exe $out/share/winboat/resources/guest_server/
+    cp ${lib.getExe final.guestDrv} $out/share/winboat/resources/guest_server/winboat_guest_server.exe
     (cd $out/share/winboat/resources/guest_server/ && zip -r winboat_guest_server.zip .)
 
-    # copy data and guest_server into parent folder
-    cp -r $out/share/winboat/resources/data $out/share/winboat/data
-    cp -r $out/share/winboat/resources/guest_server $out/share/winboat/guest_server
+    # symlink data/ and guest_server/ into parent folder
+    ln -sf $out/share/winboat/resources/data $out/share/winboat/data
+    ln -sf $out/share/winboat/resources/guest_server $out/share/winboat/guest_server
 
     makeWrapper ${electron}/bin/electron $out/bin/winboat \
       --add-flag "$out/share/winboat/resources/app.asar" \
       --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}" \
       --suffix PATH : ${
-        lib.makeBinPath [
-          usbutils
-          docker-compose
-          freerdp
-        ]
-      }
+      lib.makeBinPath [
+        usbutils
+        docker-compose
+        freerdp
+      ]
+    }
 
     runHook postInstall
   '';
@@ -112,7 +93,7 @@ buildNpmPackage (final: {
       exec = "winboat %U";
       terminal = false;
       icon = "winboat";
-      categories = [ "Utility" ];
+      categories = ["Utility"];
     })
   ];
 
@@ -122,10 +103,6 @@ buildNpmPackage (final: {
     homepage = "https://github.com/TibixDev/winboat";
     changelog = "https://github.com/TibixDev/winboat/releases/tag/v${final.version}";
     license = lib.licenses.mit;
-    maintainers = with lib.maintainers; [
-      rexies
-      ppom
-    ];
-    platforms = [ "x86_64-linux" ];
+    platforms = ["x86_64-linux"];
   };
 })

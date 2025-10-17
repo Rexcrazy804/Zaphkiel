@@ -16,4 +16,14 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
-vim.lsp.enable({ "nix", "lua", "qml", "rust", "sql", "ocaml", "hs", "toml" })
+-- adapted from
+-- https://github.com/neovim/neovim/discussions/33978#discussioncomment-13385052
+local servers = {}
+local config_files = vim.api.nvim_get_runtime_file("lsp/*.lua", true)
+
+for _, config_file in ipairs(config_files) do
+  local name = config_file:match("([^/]*)%.lua$")
+
+  if name and (name:len() > 0) then table.insert(servers, name) end
+end
+vim.lsp.enable(servers)

@@ -9,7 +9,7 @@ return {
       -- Statusline integration
       statusline = {
         enabled = true,
-        icon = "",
+        icon = "",
       },
 
       -- Keyboard mappings

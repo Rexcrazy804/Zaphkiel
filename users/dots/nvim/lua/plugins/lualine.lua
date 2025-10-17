@@ -6,7 +6,11 @@ return {
       tabline = {
         lualine_a = { { "buffers", symbols = { alternate_file = "" } } },
         lualine_x = {
-          function() return require("direnv").statusline() end,
+          function()
+            local status = require("direnv").statusline()
+            if status ~= "" then return status .. " " end
+            return status
+          end,
         },
       },
       options = {

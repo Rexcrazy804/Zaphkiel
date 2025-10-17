@@ -4,6 +4,8 @@ local library = {}
 -- configuration directory
 if vim.fn.getcwd():find("nixos") then
   library[#library + 1] = vim.env.VIMRUNTIME
+elseif vim.fn.getcwd():find("vim") then
+  library[#library + 1] = vim.env.VIMRUNTIME
 end
 
 -- this is for getting LuaCats completions from devEnvs and is

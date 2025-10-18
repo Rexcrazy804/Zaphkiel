@@ -7,6 +7,7 @@
     # unimported
     # ./gdm.nix
     # ./aagl.nix
+    # ./lanzaboote.nix
 
     # opts
     ./steam.nix
@@ -19,6 +20,7 @@
     ./privoxy.nix
     ./matugen.nix
     ./winboat.nix
+    ./shpool.nix
 
     # auto
     ./fish.nix

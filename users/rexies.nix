@@ -27,6 +27,7 @@
         (root + /yazi/keymap.toml)
         (root + /matugen)
         (root + /booru/config.toml)
+        (root + /shpool/config.toml)
       ];
     };
 in {
@@ -93,6 +94,7 @@ in {
       # NOTE: required bat cache --build before theme can be used
       "bat/config".source = dots + "/bat/config";
       "bat/themes".source = sources.catp-bat + "/themes";
+      "shpool/config.toml".source = dots + "/shpool/config.toml";
 
       # hyprland
       "uwsm/env".source = dots + "/uwsm/env";

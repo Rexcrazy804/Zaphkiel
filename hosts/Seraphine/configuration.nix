@@ -28,6 +28,10 @@
         enable = true;
         forwards = [{domains = [".donmai.us" ".yande.re" "www.zerochan.net"];}];
       };
+      shpool = {
+        enable = true;
+        users = ["rexies"];
+      };
     };
     graphics = {
       enable = true;

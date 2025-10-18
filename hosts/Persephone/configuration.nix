@@ -48,6 +48,10 @@ in {
           {domains = ["www.privoxy.org" ".donmai.us" "rule34.xxx" ".yande.re" "www.zerochan.net" ".kemono.su" "hanime.tv"];}
         ];
       };
+      shpool = {
+        enable = true;
+        users = ["rexies"];
+      };
     };
 
     services = {

@@ -23,6 +23,8 @@ jobs:
             - 'pkgs/quickshell.nix'
           xvim:
             - 'pkgs/nvim/**'
+          shpool:
+            - 'pkgs/shpool.nix'
           caddy:
             - 'nixosModules/server/caddy.nix'
           lockfile:
@@ -44,6 +46,10 @@ jobs:
     - name: build xvim (neovim)
       if: steps.fltr.outputs.xvim == 'true' || steps.fltr.outputs.pins == 'true' || steps.fltr.outputs.lockfile == 'true'
       run: nix build .#xvim.default
+
+    - name: build shpool
+      if: steps.fltr.outputs.shpool == 'true' || steps.fltr.outputs.pins == 'true' || steps.fltr.outputs.lockfile == 'true'
+      run: nix build .#shpool
 
     - name: build stash
       if: steps.fltr.outputs.lockfile == 'true'

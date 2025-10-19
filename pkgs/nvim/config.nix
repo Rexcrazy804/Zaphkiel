@@ -8,6 +8,7 @@
 
   extraLuaPackages = p: [p.magick p.neorg];
   extraBinPath = [
+    pkgs.git
     pkgs.fzf
     pkgs.ripgrep
     pkgs.wl-clipboard

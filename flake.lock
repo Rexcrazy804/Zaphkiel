@@ -35,11 +35,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759141158,
-        "narHash": "sha256-9f8lWNkYf6DGEXP0MSCHURbCqeoen5tpBp8tUYMJ4xE=",
+        "lastModified": 1760954816,
+        "narHash": "sha256-kuxS5XbzKgyAdagYsRVomzXeOsu4uQdmKmZ4nD4KKug=",
         "owner": "Rexcrazy804",
         "repo": "booru.hs",
-        "rev": "f9f93adda35d0f21edc9087e168d6e855dc7cfea",
+        "rev": "8b12408f1790ead680f1631e257304dcd8f76943",
         "type": "github"
       },
       "original": {

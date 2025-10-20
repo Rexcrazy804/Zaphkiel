@@ -49,7 +49,8 @@ nix run github:Rexcrazy804/Zaphkiel#nixvim
 
 <ins>kurkurubar (stable)</ins>
 
-- uses nixpkgs version of quickshell (v0.2.0)
+- uses nixpkgs version of quickshell (v0.2.1)
+- requires v0.2.1 for finger print unlock in greetd, otherwise v0.2.0 is sufficient
 - currently tracks master branch, not diverged yet
 - package updated every major tagged release of quickshell
 
@@ -57,7 +58,6 @@ nix run github:Rexcrazy804/Zaphkiel#nixvim
 
 - follows Zaphkiel master branch HEAD
 - uses untagged master revisions of quickshell
-- by default uses my patched version of qs (for finger print unlock in greetd)
 - requires quickshell to be built from source
 
 For more information on both see the [pkgs/default.nix](pkgs/default.nix)

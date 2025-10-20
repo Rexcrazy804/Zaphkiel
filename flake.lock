@@ -164,16 +164,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1759319181,
-        "narHash": "sha256-tCVDz9gKtVaG28slX5/COCK3Ahw+JZHcYPerZ39nScw=",
-        "owner": "Rexcrazy804",
+        "lastModified": 1760822546,
+        "narHash": "sha256-cy3wJQQzQbZ/EYUfTDuMiP/haPOjkqGgWOPPl7K9oiM=",
+        "owner": "quickshell-mirror",
         "repo": "quickshell",
-        "rev": "ab6c42d1b8369614c767c138eca175d75622988c",
+        "rev": "3e2ce40b18af943f9ba370ed73565e9f487663ef",
         "type": "github"
       },
       "original": {
-        "owner": "Rexcrazy804",
-        "ref": "overridable-qs-unwrapped",
+        "owner": "quickshell-mirror",
         "repo": "quickshell",
         "type": "github"
       }

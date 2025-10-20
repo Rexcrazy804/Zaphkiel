@@ -17,7 +17,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     quickshell = {
-      url = "github:Rexcrazy804/quickshell?ref=overridable-qs-unwrapped";
+      url = "github:quickshell-mirror/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     booru-hs = {

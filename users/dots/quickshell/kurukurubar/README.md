@@ -87,9 +87,20 @@ First add zaphkiel as a flake input
         zaphkiel = {
             url = "github:Rexcrazy804/Zaphkiel";
             inputs.nixpkgs.follows = "nixpkgs";
+
             # optional
             # inputs.quickshell.follows = "quickshell";
             # inputs.systems.follows = "systems";
+
+            # kurkurubar does not depend on the below
+            # so we point it to null
+            inputs.hjem.follows = "";
+            inputs.hjem-impure.follows = "";
+            inputs.agenix.follows = "";
+            inputs.crane.follows = "";
+            inputs.stash.follows = "";
+            inputs.booru-hs.follows = "";
+            inputs.hs-todo.follows = "";
         };
         # other inputs ...
     };
@@ -107,7 +118,7 @@ Now you may refer to the kurukurubar package as `inputs.zaphkiel.packages.${pkgs
     pkgs,
     ...
 }: {
-    environment.systemPacakges = [
+    environment.systemPackages = [
         inputs.zaphkiel.packages.${pkgs.system}.kurukurubar
         # or alternatively
         inputs.zaphkiel.packages.${pkgs.system}.kurukurubar-unstable

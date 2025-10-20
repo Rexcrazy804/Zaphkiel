@@ -11,17 +11,13 @@ lib.fix (self: let
   inherit (pkgs) callPackage;
 in {
   # kurukuru
-  quickshell = import ./quickshell.nix {
-    inherit (inputs.quickshell) rev;
-    inherit
-      (inputs.quickshell.packages.${system})
-      quickshell
-      ;
-  };
+  quickshell = inputs.quickshell.packages.${system}.default;
   kurukurubar-unstable = callPackage ./kurukurubar.nix {
     inherit (self) quickshell;
     inherit (self) librebarcode scripts;
   };
+  # WARN kurukuruDM will not work on kurukurubar (stable)
+  # if nixpkgs verison of quickshell is below v0.2.1
   kurukurubar = (self.kurukurubar-unstable).override {
     inherit (pkgs) quickshell;
     # following zaphkiel master branch: quickshell v0.2.0

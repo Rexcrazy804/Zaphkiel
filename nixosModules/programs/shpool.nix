@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  mein,
   ...
 }: let
   inherit (lib) mkIf mkEnableOption mkOption getExe;
@@ -20,7 +19,7 @@ in {
     };
     package = mkOption {
       type = package;
-      default = mein.${pkgs.system}.shpool;
+      default = pkgs.shpool;
     };
   };
 

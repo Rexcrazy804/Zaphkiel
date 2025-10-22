@@ -78,22 +78,6 @@
       "url": "https://github.com/rose-pine/foot/archive/725e9c38880d577ee973eb916e83395964ffc287.tar.gz",
       "hash": "sha256-Lo8HkJr+uYNUSRNzUhaksJAPvK8fbu5WubtmBSsa0/Q="
     },
-    "shpool": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "GitHub",
-        "owner": "shell-pool",
-        "repo": "shpool"
-      },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "submodules": false,
-      "version": "v0.9.2",
-      "revision": "6f16a2617a9c70c25f6b212301b22156e594df06",
-      "url": "https://api.github.com/repos/shell-pool/shpool/tarball/v0.9.2",
-      "hash": "0ywxicg0rdsr916myqz1wv8igjszpvh4ywq5280905v5pkr27cjg"
-    },
     "winboat": {
       "type": "GitRelease",
       "repository": {

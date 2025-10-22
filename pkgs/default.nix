@@ -31,7 +31,6 @@ in {
   stash = inputs.stash.packages.${system}.default;
   irminsul = callPackage ./irminsul {inherit (self.scripts) qmlcheck;};
   winboat = callPackage ./winboat {inherit sources;};
-  shpool = callPackage ./shpool.nix {inherit sources;};
 
   # overriding the derrivation
   # winslop = self.winboat.overrideAttrs (old: {

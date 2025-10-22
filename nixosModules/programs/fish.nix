@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (lib) pipe attrValues concatStringsSep map;
-  rebuildCommand = "nixos-rebuild --flake .# --sudo";
+  rebuildCommand = "nixos-rebuild --sudo --flake ~/nixos#";
   #         !!!you found the fish!!!
   #   ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠖⠒⠲⠤⣤⣀⠀⠀⠀⢀⣀⣤⠤⠖⠒⠢⢤⡀⠀⠀⠀⠀⠀⠀⠀⠀
   #   ⠀⠀⠀⠀⠀⠀⣶⣄⠏⡠⠊⠀⠀⠈⠁⠚⢍⠲⠖⡩⠓⠉⠀⠀⠀⠑⠌⠳⣠⣶⠀⠀⠀⠀⠀⠀
@@ -38,9 +38,6 @@ in {
       nsh = "nix shell nixpkgs#";
       nrn = "nix run nixpkgs#";
       "nuf --set-cursor" = "env NIXPKGS_ALLOW_UNFREE=1 nix % --impure";
-
-      # see pkgs/default.nix
-      zb = "nix-build ~/nixos -A";
 
       # git stuff
       gaa = "git add --all";
@@ -76,12 +73,12 @@ in {
       sur = "systemctl --user restart";
 
       # misc
-      qsp = "qs --log-rules 'quickshell.dbus.properties.warning = false' -p .";
+      qsp = "qs -p .";
       lse = "eza --icons --group-directories-first -1";
     };
     shellAliases = {
-      snow = rebuildCommand;
       ls = "eza --icons --group-directories-first -1";
+      snow = rebuildCommand;
       snowboot = "${rebuildCommand} boot";
       snowfall = "${rebuildCommand} switch";
       snowtest = "${rebuildCommand} test";

@@ -79,7 +79,10 @@ in {
       dotsDir = "${cleanDots}";
       dotsDirImpure = "/home/rexies/nixos/users/dots";
       # skips parsing hjem.users.<>.files
-      parseAttrs = [config.hjem.users.${username}.xdg.config.files];
+      parseAttrs = [
+        config.hjem.users.${username}.xdg.config.files
+        config.hjem.users.${username}.xdg.state.files
+      ];
     };
 
     xdg.config.files = let

@@ -1,5 +1,4 @@
 {
-  mein,
   config,
   lib,
   pkgs,
@@ -14,17 +13,14 @@ in {
     enable = mkEnableOption "WinBoat - Windows apps on Linux";
     package = mkOption {
       type = package;
-      default = mein.${pkgs.system}.winboat;
+      default = pkgs.winboat;
       description = "WinBoat package to use";
     };
   };
 
   config = mkIf cfg.enable {
     virtualisation.docker.enable = true;
-    virtualisation.libvirtd.enable = true;
     environment.systemPackages = [cfg.package];
-    # hardcoded cause I am lazy,
-    # TODO be unlazy
     users.users.rexies.extraGroups = ["docker"];
   };
 }

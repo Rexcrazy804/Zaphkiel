@@ -20,7 +20,7 @@ in {
     systemd.user.services.hypridle.path = mkForce (attrValues {
       inherit (config.programs.hyprland) package;
       inherit (pkgs) systemd procps brightnessctl;
-      inherit (zpkgs) kurukurubar-unstable;
+      inherit (zpkgs) kurukurubar;
     });
 
     qt.enable = true;
@@ -45,7 +45,7 @@ in {
     # dependencies .w.
     environment.systemPackages = attrValues {
       # internal overlay
-      inherit (zpkgs) kokCursor kurukurubar-unstable stash;
+      inherit (zpkgs) kokCursor kurukurubar stash;
       inherit (zpkgs.scripts) taildrop gpurecording cowask npins-show;
       # Themes
       inherit (pkgs) rose-pine-icon-theme rose-pine-gtk-theme;

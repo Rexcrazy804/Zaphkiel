@@ -157,26 +157,6 @@
         "type": "github"
       }
     },
-    "quickshell": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1760822546,
-        "narHash": "sha256-cy3wJQQzQbZ/EYUfTDuMiP/haPOjkqGgWOPPl7K9oiM=",
-        "owner": "quickshell-mirror",
-        "repo": "quickshell",
-        "rev": "3e2ce40b18af943f9ba370ed73565e9f487663ef",
-        "type": "github"
-      },
-      "original": {
-        "owner": "quickshell-mirror",
-        "repo": "quickshell",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -187,7 +167,6 @@
         "hs-todo": "hs-todo",
         "mnw": "mnw",
         "nixpkgs": "nixpkgs",
-        "quickshell": "quickshell",
         "stash": "stash",
         "systems": "systems"
       }

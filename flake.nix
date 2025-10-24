@@ -16,10 +16,6 @@
       inputs.smfh.follows = "";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    quickshell = {
-      url = "github:quickshell-mirror/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     booru-hs = {
       url = "github:Rexcrazy804/booru.hs";
       inputs.nixpkgs.follows = "nixpkgs";

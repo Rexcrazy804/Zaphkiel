@@ -49,7 +49,7 @@ in {
     enable = mkEnableOption "kurukuru display manager";
     package =
       mkPackageOption pkgs "Kurukurubar package" {
-        default = "kurukurubar-unstable";
+        default = "kurukurubar";
       }
       // {
         apply = opt:

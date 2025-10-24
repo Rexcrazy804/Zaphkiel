@@ -10,19 +10,11 @@ lib.fix (self: let
   inherit (lib) warn;
   inherit (pkgs) callPackage;
 in {
-  # kurukuru
-  quickshell = inputs.quickshell.packages.${system}.default;
-  kurukurubar-unstable = callPackage ./kurukurubar.nix {
-    inherit (self) quickshell;
-    inherit (self) librebarcode scripts;
-  };
-  # WARN kurukuruDM will not work on kurukurubar (stable)
-  # if nixpkgs verison of quickshell is below v0.2.1
-  kurukurubar = (self.kurukurubar-unstable).override {
-    inherit (pkgs) quickshell;
-    # following zaphkiel master branch: quickshell v0.2.0
-    # configPath = (sources.zaphkiel) + "/users/dots/quickshell/kurukurubar";
-  };
+  # NOTE
+  # for fingerprint to work in kurukuruDM,
+  # you will need quickshell v0.2.1 minimum
+  kurukurubar = callPackage ./kurukurubar.nix {inherit (self) librebarcode scripts;};
+  kurukurubar-unstable = lib.warn "kurukurubar-unstable depricated, use kurukurubar" self.kurukurubar;
 
   # trivial
   mpv-wrapped = callPackage ./mpv {};

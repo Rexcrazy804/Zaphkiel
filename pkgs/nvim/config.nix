@@ -42,7 +42,6 @@
         catppuccin-nvim
         rose-pine
         tokyonight-nvim
-        neo-tree-nvim
         which-key-nvim
         toggleterm-nvim
         lualine-nvim

@@ -22,6 +22,7 @@ in {
   kokCursor = callPackage ./kokCursor.nix {};
   stash = inputs.stash.packages.${system}.default;
   irminsul = callPackage ./irminsul {inherit (self.scripts) qmlcheck;};
+  dust-racing = callPackage ./dust-racing.nix {};
 
   # overriding the derrivation
   # winslop = self.winboat.overrideAttrs (old: {

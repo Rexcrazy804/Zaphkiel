@@ -24,6 +24,10 @@
       openssh.enable = true;
       fail2ban.enable = false;
     };
+    programs.shpool = {
+      enable = true;
+      users = ["rexies"];
+    };
   };
   time.timeZone = "Asia/Kolkata";
 

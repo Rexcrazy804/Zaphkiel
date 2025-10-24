@@ -22,10 +22,10 @@ Text {
   renderType: Text.NativeRendering
   text: root.icon
 
-  Behavior on fill {
-    NumberAnimation {
-      duration: Dat.MaterialEasing.standardTime
-      easing.bezierCurve: Dat.MaterialEasing.standard
-    }
-  }
+  // Behavior on fill {
+  //   NumberAnimation {
+  //     duration: Dat.MaterialEasing.standardTime
+  //     easing.bezierCurve: Dat.MaterialEasing.standard
+  //   }
+  // }
 }

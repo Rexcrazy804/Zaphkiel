@@ -30,8 +30,7 @@ The following packages are exported by this flake:
 
 | package | description |
 | ------- | ----------- |
-| kurukurubar (stable)| adorable bar to spin the kuru kuru |
-| kurukurubar-unstable | latest version, uses master version of qs |
+| kurukurubar | adorable bar to spin the kuru kuru |
 | kokCursor | A cute kokomi XCursor |
 | xvim | My neovim configuration using [mnw] provides `.default` and `.minimal`|
 | mpv | My mpv configuration with [anime4k] shaders baked in |
@@ -43,22 +42,6 @@ cursor, `nix build` it instead) replacing `nixvim` with your desired package
 ```bash
 nix run github:Rexcrazy804/Zaphkiel#nixvim
 ```
-
-<details>
-<summary><h3>kurkurubar stable or unstable</h3></summary>
-
-<ins>kurkurubar (stable)</ins>
-
-- uses nixpkgs version of quickshell (v0.2.1)
-- requires v0.2.1 for finger print unlock in greetd, otherwise v0.2.0 is sufficient
-- currently tracks master branch, not diverged yet
-- package updated every major tagged release of quickshell
-
-<ins>kurkurubar-unstable</ins>
-
-- follows Zaphkiel master branch HEAD
-- uses untagged master revisions of quickshell
-- requires quickshell to be built from source
 
 For more information on both see the [pkgs/default.nix](pkgs/default.nix)
 

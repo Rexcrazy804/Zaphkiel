@@ -120,8 +120,6 @@ Now you may refer to the kurukurubar package as `inputs.zaphkiel.packages.${pkgs
 }: {
     environment.systemPackages = [
         inputs.zaphkiel.packages.${pkgs.system}.kurukurubar
-        # or alternatively
-        inputs.zaphkiel.packages.${pkgs.system}.kurukurubar-unstable
     ];
 
     # NOTE
@@ -161,10 +159,6 @@ For kurukuruDM you may import and leverage the kurukuruDM module as follows
 
 For a complete functional configuration using this flake see
 [zaphkieltest](https://github.com/Rexcrazy804/zaphkieltest)
-
-> If your nixpkgs version of quickshell is not v0.2.0,
-> kurukurubar (stable) WILL NOT WORK.
-> Prefer using kurukurubar-unstable instead
 
 ### Known Issues
 

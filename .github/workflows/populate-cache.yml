@@ -18,9 +18,6 @@ jobs:
       id: fltr
       with:
         filters: |
-          kurukurubar:
-            - 'pkgs/kurukurubar.nix'
-            - 'pkgs/quickshell.nix'
           xvim:
             - 'pkgs/nvim/**'
           caddy:
@@ -36,10 +33,6 @@ jobs:
       with:
         name: rexielscarlet
         authToken: '${{ secrets.CACHIX_API_KEY }}'
-
-    - name: build kurukurubar unstable
-      if: steps.fltr.outputs.kurukurubar == 'true' || steps.fltr.outputs.lockfile == 'true'
-      run: nix build .#kurukurubar-unstable
 
     - name: build xvim (neovim)
       if: steps.fltr.outputs.xvim == 'true' || steps.fltr.outputs.pins == 'true' || steps.fltr.outputs.lockfile == 'true'

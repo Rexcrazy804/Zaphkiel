@@ -50,6 +50,7 @@ stdenv.mkDerivation {
     description = "Dust Racing 2D is a traditional top-down car racing game including a level editor.";
     homepage = "https://juzzlin.github.io/DustRacing2D/index.html";
     platforms = ["x86_64-linux"];
+    license = lib.licenses.gpl3;
     maintainers = with lib.maintainers; [
       rexies
     ];

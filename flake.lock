@@ -181,15 +181,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1760017360,
-        "narHash": "sha256-qKX9qORyBAk1aRr7BcVsf9nHrpzNjNpzZEQWq6ICPCA=",
+        "lastModified": 1761370733,
+        "narHash": "sha256-YdiLHAEI/hEfxuht6WCWG7pSQHRy9trU/cQZ+mdVWLE=",
         "owner": "notashelf",
         "repo": "stash",
-        "rev": "a59e207e76d48c6d016c7b8fe13234d864da6532",
+        "rev": "955a5d51f874b307b03b3e1d57820097daf7bfab",
         "type": "github"
       },
       "original": {
         "owner": "notashelf",
+        "ref": "notashelf/push-rnnzunzyvynn",
         "repo": "stash",
         "type": "github"
       }

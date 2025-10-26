@@ -17,6 +17,14 @@ map(
 map("n", "<leader>y", "V\"+y", defaults("Yank current line to clipboard"))
 map("v", "<leader>y", "\"+y", defaults("Yank selection to clipboard"))
 
+-- undo tree
+map(
+  "n",
+  "<C-n>",
+  vim.cmd.UndotreeToggle,
+  defaults("Yank selection to clipboard")
+)
+
 -- lsp
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)

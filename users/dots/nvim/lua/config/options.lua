@@ -24,3 +24,6 @@ vim.g.mapleader = " "
 -- inline hints .w.
 -- mfing breaking changes I will fight you
 vim.diagnostic.config({ virtual_text = true })
+
+-- I did not feel like making a sepearte file for this
+vim.g.undotree_SetFocusWhenToggle = 1

@@ -23,6 +23,7 @@ in {
   stash = inputs.stash.packages.${system}.default;
   irminsul = callPackage ./irminsul {inherit (self.scripts) qmlcheck;};
   dust-racing = callPackage ./dust-racing.nix {};
+  equibop = callPackage ./equibop {};
 
   # package sets
   scripts = callPackage ./scripts {};

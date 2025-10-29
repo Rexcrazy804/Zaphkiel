@@ -13,13 +13,14 @@
     inherit (pkgs) bottles winetricks mono umu-launcher;
     # terminal
     inherit (pkgs) foot remmina libsixel;
-    # from internal overlay
-    inherit (mein.${system}) mpv-wrapped;
+
+    # from exported packages
+    inherit (mein.${system}) mpv-wrapped equibop;
     inherit (mein.${system}.scripts) wallcrop legumulaunch;
 
     booru-hs = inputs.booru-hs.packages.${pkgs.system}.default;
 
-    discord = pkgs.discord.override {withMoonlight = true;};
+    # discord = pkgs.discord.override {withMoonlight = true;};
   };
 in {
   users.users."rexies" = {

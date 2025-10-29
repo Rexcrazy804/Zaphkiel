@@ -1,4 +1,3 @@
-# adapted from upstream package
 {
   lib,
   stdenv,
@@ -36,6 +35,10 @@ stdenv.mkDerivation (finalAttrs: {
     # disable auto updates
     substituteInPlace src/main/updater.ts \
       --replace-fail 'const isOutdated = autoUpdater.checkForUpdates().then(res => Boolean(res?.isUpdateAvailable));' 'const isOutdated = false;'
+
+    # skip downloading bun
+    substituteInPlace scripts/build/downloadBun.mts \
+      --replace-fail 'if (existsSync(markerFile)) {' 'if (true) {'
   '';
 
   node-modules = callPackage ./node-modules.nix {};
@@ -72,7 +75,6 @@ stdenv.mkDerivation (finalAttrs: {
     # can't run it via bunx / npx since fixupPhase was skipped for node_modules
     node node_modules/electron-builder/out/cli/cli.js \
       --dir \
-      -c.asarUnpack="**/*.node" \
       -c.electronDist=${electron.dist} \
       -c.electronVersion=${electron.version} \
       -c.npmRebuild=false
@@ -104,7 +106,13 @@ stdenv.mkDerivation (finalAttrs: {
       --add-flags $out/opt/Equibop/resources/app.asar \
       ${lib.optionalString withTTS "--add-flags \"--enable-speech-dispatcher\""} \
       ${lib.optionalString withMiddleClickScroll "--add-flags \"--enable-blink-features=MiddleClickAutoscroll\""} \
-      --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"
+      --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}" \
+      --suffix PATH : ${
+      # required for arRPC
+      lib.makeBinPath [
+        bun
+      ]
+    }
   '';
 
   desktopItems = makeDesktopItem {
@@ -142,9 +150,9 @@ stdenv.mkDerivation (finalAttrs: {
     homepage = "https://github.com/Equicord/Equibop";
     changelog = "https://github.com/Equicord/Equibop/releases/tag/v${finalAttrs.version}";
     license = lib.licenses.gpl3Only;
-    maintainers = [
-      lib.maintainers.NotAShelf
-      lib.maintainers.rexies # <- lemme be here alright
+    maintainers = with lib.maintainers; [
+      NotAShelf
+      rexies
     ];
     mainProgram = "equibop";
     # I am not confident in my ability to support Darwin, please PR if this is important to you

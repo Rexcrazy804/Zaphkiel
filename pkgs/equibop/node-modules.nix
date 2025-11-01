@@ -47,14 +47,7 @@ stdenvNoCC.mkDerivation {
     runHook postInstall
   '';
 
-  outputHash =
-    {
-      x86_64-linux = "sha256-GfYM1KK2Utl1XC3Yf7guAzNXkC0/WWia6Axg7Eew9X8=";
-      aarch64-linux = "sha256-mbZwtiGze+ipLXhBnGqXh8B4RdYAQe/HQ893FlCK3L4=";
-    }
-    .${
-      stdenvNoCC.hostPlatform.system
-    };
+  outputHash = "sha256-qAmSEruZk80JJVTmPuJ8ePfpDmNCR9IQC1puG1UtsjA=";
   outputHashAlgo = "sha256";
   outputHashMode = "recursive";
 }

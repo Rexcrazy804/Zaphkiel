@@ -19,13 +19,13 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "equibop";
-  version = "3.0.8";
+  version = "3.1.0";
 
   src = fetchFromGitHub {
     owner = "Equicord";
     repo = "Equibop";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-IZONn2+s4QsgR9hPLTxKnqKQ5qphLr0p9i+hZMP/rSE=";
+    hash = "sha256-VWDbGe0IItINSka0WhwDOhAwcuJa49a035FPX5CtKJY=";
   };
 
   postPatch = ''
@@ -35,10 +35,6 @@ stdenv.mkDerivation (finalAttrs: {
     # disable auto updates
     substituteInPlace src/main/updater.ts \
       --replace-fail 'const isOutdated = autoUpdater.checkForUpdates().then(res => Boolean(res?.isUpdateAvailable));' 'const isOutdated = false;'
-
-    # skip downloading bun
-    substituteInPlace scripts/build/downloadBun.mts \
-      --replace-fail 'if (existsSync(markerFile)) {' 'if (true) {'
   '';
 
   node-modules = callPackage ./node-modules.nix {};
@@ -106,13 +102,7 @@ stdenv.mkDerivation (finalAttrs: {
       --add-flags $out/opt/Equibop/resources/app.asar \
       ${lib.optionalString withTTS "--add-flags \"--enable-speech-dispatcher\""} \
       ${lib.optionalString withMiddleClickScroll "--add-flags \"--enable-blink-features=MiddleClickAutoscroll\""} \
-      --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}" \
-      --suffix PATH : ${
-      # required for arRPC
-      lib.makeBinPath [
-        bun
-      ]
-    }
+      --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"
   '';
 
   desktopItems = makeDesktopItem {

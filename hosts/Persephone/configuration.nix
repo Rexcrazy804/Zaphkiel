@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkForce optional;
+  inherit (lib) mkForce;
 in {
   imports = [
     ./hardware-configuration.nix
@@ -125,10 +125,6 @@ in {
     capSysAdmin = true;
     openFirewall = true;
   };
-
-  # idk the service didn't show up and now it does too lazy to rebuild and test
-  # if it was a delusion. If it works don't break it, amiright
-  systemd.user.services.sunshine.wantedBy = mkForce (optional config.services.sunshine.autoStart "graphical-session.target");
 
   security.tpm2 = {
     enable = true;

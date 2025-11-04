@@ -30,5 +30,7 @@ in {
       "PROTON_USE_WOW64" = 1;
       "PROTONPATH" = mkIf cfg.ge-proton.enable pkgs.proton-ge-bin.steamcompattool;
     };
+
+    environment.etc."proton-ge".source = mkIf cfg.ge-proton.enable pkgs.proton-ge-bin.steamcompattool;
   };
 }

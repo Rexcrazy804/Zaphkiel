@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Reverse 1999
+Exec=umu-run --config /home/rexies/.config/games/r99.toml
+Type=Application
+Categories=Games;

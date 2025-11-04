@@ -3,6 +3,7 @@
   mein,
   pkgs,
   lib,
+  config,
   ...
 }: let
   inherit (pkgs) system;
@@ -22,6 +23,8 @@
 
     # discord = pkgs.discord.override {withMoonlight = true;};
   };
+
+  dots = config.hjem.users.rexies.impure.dotsDir;
 in {
   users.users."rexies" = {
     inherit packages;
@@ -42,16 +45,21 @@ in {
     programs.matugen.scheme = "scheme-fidelity";
   };
 
-  hjem.users."rexies".files.".face.icon".source = pkgs.stdenvNoCC.mkDerivation {
-    name = "face.jpg";
-    nativeBuildInputs = [pkgs.imagemagick];
-    src = pkgs.fetchurl {
-      url = "https://cdn.donmai.us/original/e9/c3/e9c3dbb346bb4ea181c2ae8680551585.jpg";
-      hash = "sha256-0RKzzRxW1mtqHutt+9aKzkC5KijIiVLQqW5IRFI/IWY=";
+  hjem.users.rexies.files = {
+    ".face.icon".source = pkgs.stdenvNoCC.mkDerivation {
+      name = "face.jpg";
+      nativeBuildInputs = [pkgs.imagemagick];
+      src = pkgs.fetchurl {
+        url = "https://cdn.donmai.us/original/e9/c3/e9c3dbb346bb4ea181c2ae8680551585.jpg";
+        hash = "sha256-0RKzzRxW1mtqHutt+9aKzkC5KijIiVLQqW5IRFI/IWY=";
+      };
+      dontUnpack = true;
+      installPhase = "
+        magick $src -crop 640x640+2300+1580 $out
+      ";
     };
-    dontUnpack = true;
-    installPhase = "
-      magick $src -crop 640x640+2300+1580 $out
-    ";
+
+    ".local/share/applications/reverse-1999.desktop".source = dots + "/games/reverse-1999.desktop";
+    ".config/games/r99.toml".source = dots + "/games/r99.toml";
   };
 }

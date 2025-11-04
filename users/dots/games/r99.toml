@@ -1,0 +1,5 @@
+[umu]
+prefix = "~/Games/umu/rev199/"
+proton = "/etc/static/proton-ge"
+exe = "~/Games/Reverse1999en/reverse1999.exe"
+game_id = "rev199"

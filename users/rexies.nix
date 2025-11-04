@@ -7,29 +7,6 @@
 }: let
   username = "rexies";
   description = "Rexiel Scarlet";
-  cleanDots = let
-    inherit (lib.fileset) unions toSource;
-    root = ./dots;
-  in
-    toSource {
-      inherit root;
-      fileset = unions [
-        (root + /git/config)
-        (root + /qt6ct/qt6ct.conf)
-        (root + /fish/config.fish)
-        (root + /bat/config)
-        (root + /foot/foot.ini)
-        (root + /fuzzel/fuzzel.ini)
-        (root + /uwsm/env)
-        (root + /hyprland/hypridle.conf)
-        (root + /hyprland/hyprland.conf)
-        (root + /yazi/yazi.toml)
-        (root + /yazi/keymap.toml)
-        (root + /matugen)
-        (root + /booru/config.toml)
-        (root + /shpool/config.toml)
-      ];
-    };
 in {
   zaphkiel = {
     data.users = [username];
@@ -76,7 +53,7 @@ in {
 
     impure = {
       enable = true;
-      dotsDir = "${cleanDots}";
+      dotsDir = "${./dots}";
       dotsDirImpure = "/home/rexies/nixos/users/dots";
       # skips parsing hjem.users.<>.files
       parseAttrs = [

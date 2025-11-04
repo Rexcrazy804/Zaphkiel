@@ -68,6 +68,8 @@ stdenv.mkDerivation (finalAttrs: {
 
     bun run build
 
+    bun run compileArrpc
+
     # can't run it via bunx / npx since fixupPhase was skipped for node_modules
     node node_modules/electron-builder/out/cli/cli.js \
       --dir \

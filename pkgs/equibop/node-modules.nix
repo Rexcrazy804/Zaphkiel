@@ -32,9 +32,12 @@ stdenvNoCC.mkDerivation {
     export BUN_INSTALL_CACHE_DIR=$(mktemp -d)
 
     bun install \
-      --force \
-      --frozen-lockfile \
-      --no-progress \
+        --filter=equibop \
+        --force \
+        --frozen-lockfile \
+        --ignore-scripts \
+        --linker=hoisted \
+        --no-progress
 
     runHook postBuild
   '';
@@ -47,7 +50,7 @@ stdenvNoCC.mkDerivation {
     runHook postInstall
   '';
 
-  outputHash = "sha256-qAmSEruZk80JJVTmPuJ8ePfpDmNCR9IQC1puG1UtsjA=";
+  outputHash = "sha256-DhwojLP6xbk6d7lIyfzkMamTN7e7tLZAh8jqA8aYy0Q=";
   outputHashAlgo = "sha256";
   outputHashMode = "recursive";
 }

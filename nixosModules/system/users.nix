@@ -25,7 +25,10 @@ in {
 
   config = {
     hjem = {
-      extraModules = [inputs.hjem-impure.hjemModules.default];
+      extraModules = [
+        inputs.hjem-impure.hjemModules.default
+        ../../users/hjemModules/games.nix
+      ];
       linker = pkgs.smfh;
     };
   };

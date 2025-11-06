@@ -77,6 +77,6 @@ in {
 
   config = mkIf cfg.enable {
     packages = cfg.desktopFiles;
-    xdg.config.files = cfg.umu-tomls;
+    xdg.config.files = cfg.umuConfigs;
   };
 }

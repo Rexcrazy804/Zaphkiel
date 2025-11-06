@@ -36,8 +36,8 @@ in {
 
   zaphkiel = {
     data.wallpaper = pkgs.fetchurl {
-      url = "https://cdn.donmai.us/original/96/f4/96f4257e8cdbc7dff2e0389c8adfeaab.jpg";
-      hash = "sha256-Fcm/08qrcJ0Qr8XW3iHKsQ/zmduiXjqJs9e9MVa2eq0=";
+      url = "https://cdn.donmai.us/original/8c/5d/__rubuska_and_corvus_reverse_1999__8c5da40a6b3a247b20327f0c0d71d2b9.jpg";
+      hash = "sha256-Gzk5CRaMnu5WJUvg3SUpnS15FdrPvONcN5bBRdxIFtY=";
     };
     programs.matugen.scheme = "scheme-fidelity";
   };

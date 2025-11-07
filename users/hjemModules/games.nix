@@ -4,9 +4,10 @@
   config,
   ...
 }: let
-  inherit (lib) mkIf mkEnableOption mkOption map;
+  inherit (lib) mkIf mkEnableOption mkOption map toList;
   inherit (lib) listToAttrs nameValuePair catAttrs;
   inherit (lib.types) submodule singleLineStr path listOf attrs;
+  inherit (lib.lists) allUnique;
 
   cfg = config.games;
 
@@ -46,35 +47,45 @@
       };
     };
   });
+
+  processEntries = map (entry: let
+    inherit (entry.umu) game_id;
+  in {
+    desktopFile = pkgs.makeDesktopItem (entry.overrides {
+      name = game_id;
+      desktopName = entry.name;
+      exec = "umu-run --config ${config.xdg.config.directory}/games/${game_id}.toml";
+      categories = ["Game"];
+    });
+    umuConfig = nameValuePair "games/${game_id}.toml" {
+      generator = pkgs.writers.writeTOML "${game_id}.toml";
+      value = {inherit (entry) umu;};
+    };
+  });
 in {
   options.games = {
     enable = mkEnableOption "umu game configs and desktop entries";
     entries = mkOption {
       type = listOf entryType;
       default = [];
-      apply = map (entry: let
-        inherit (entry.umu) game_id;
-        tomlFile = pkgs.writers.writeTOML "${game_id}.toml" {inherit (entry) umu;};
-      in {
-        desktopFile = pkgs.makeDesktopItem (entry.overrides {
-          name = game_id;
-          desktopName = entry.name;
-          exec = "umu-run --config ${config.xdg.config.directory}/games/${game_id}.toml";
-          categories = ["Game"];
-        });
-        umuConfig = nameValuePair "games/${game_id}.toml" {source = tomlFile;};
-      });
+    };
+    _entries = mkOption {
+      readOnly = true;
+      default = cfg.entries;
+      apply = processEntries;
+      description = "internal representation of entries";
     };
     desktopFiles = mkOption {
       readOnly = true;
-      default = catAttrs "desktopFile" cfg.entries;
+      default = catAttrs "desktopFile" cfg._entries;
+      description = "Desktop files for each entry";
     };
     umuConfigs = mkOption {
       readOnly = true;
-      default = catAttrs "umuConfig" cfg.entries;
+      default = catAttrs "umuConfig" cfg._entries;
       apply = listToAttrs;
+      description = "hjem compatible representation of each umu configuration";
     };
-    # DEBUGGING only
     # first = mkOption {
     #   readOnly = true;
     #   default = builtins.elemAt cfg.desktopFiles 0;
@@ -82,6 +93,10 @@ in {
   };
 
   config = mkIf cfg.enable {
+    assertions = toList {
+      assertion = allUnique (map (e: e.umu.game_id) cfg.entries);
+      message = "hjem.games.entries: game id's must be unique!";
+    };
     packages = cfg.desktopFiles;
     xdg.config.files = cfg.umuConfigs;
   };

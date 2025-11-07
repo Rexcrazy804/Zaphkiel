@@ -4,9 +4,9 @@
   config,
   ...
 }: let
-  inherit (lib) mkIf mkEnableOption mkOption map catAttrs;
-  inherit (lib) listToAttrs nameValuePair;
-  inherit (lib.types) submodule singleLineStr path listOf;
+  inherit (lib) mkIf mkEnableOption mkOption map;
+  inherit (lib) listToAttrs nameValuePair catAttrs;
+  inherit (lib.types) submodule singleLineStr path listOf attrs;
 
   cfg = config.games;
 
@@ -16,6 +16,12 @@
         type = singleLineStr;
         description = "Name of the Game";
         example = "Reverse 1999";
+      };
+      overrides = mkOption {
+        type = attrs;
+        default = {};
+        description = "attrs merged with attrset passed to makeDesktopItem";
+        apply = x: y: y // x;
       };
       # see https://github.com/Open-Wine-Components/umu-launcher/blob/main/docs/umu.5.scd
       umu = {
@@ -50,12 +56,12 @@ in {
         inherit (entry.umu) game_id;
         tomlFile = pkgs.writers.writeTOML "${game_id}.toml" {inherit (entry) umu;};
       in {
-        desktopFile = pkgs.makeDesktopItem {
+        desktopFile = pkgs.makeDesktopItem (entry.overrides {
           name = game_id;
           desktopName = entry.name;
           exec = "umu-run --config ${config.xdg.config.directory}/games/${game_id}.toml";
           categories = ["Game"];
-        };
+        });
         umuConfig = nameValuePair "games/${game_id}.toml" {source = tomlFile;};
       });
     };

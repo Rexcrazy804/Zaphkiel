@@ -58,7 +58,7 @@
     desktopFile = pkgs.makeDesktopItem (entry.overrides {
       name = game_id;
       desktopName = entry.name;
-      exec = "umu-run --config ${config.xdg.config.directory}/games/${game_id}.toml";
+      exec = "${pkgs.umu-launcher}/bin/umu-run --config ${config.xdg.config.directory}/games/${game_id}.toml";
       categories = ["Game"];
     });
     umuConfig = nameValuePair "games/${game_id}.toml" {

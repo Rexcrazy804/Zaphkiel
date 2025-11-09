@@ -15,6 +15,7 @@
       modules = [
         ./${hostName}/configuration.nix
         ../nixosModules
+        ../hjemModules
         ../users/rexies.nix
         self.nixosModules.default
       ];

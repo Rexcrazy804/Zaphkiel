@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   inputs,
   ...
 }: let
@@ -20,16 +19,6 @@ in {
         type = path;
         description = "wallpaper path (duh)";
       };
-    };
-  };
-
-  config = {
-    hjem = {
-      extraModules = [
-        inputs.hjem-impure.hjemModules.default
-        ../../users/hjemModules/games.nix
-      ];
-      linker = pkgs.smfh;
     };
   };
 }

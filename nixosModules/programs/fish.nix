@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (lib) pipe attrValues concatStringsSep map;
-  rebuildCommand = "nixos-rebuild --sudo --flake ~/nixos#";
+  rebuildCommand = "nixos-rebuild --sudo --flake .#";
   #         !!!you found the fish!!!
   #   ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠖⠒⠲⠤⣤⣀⠀⠀⠀⢀⣀⣤⠤⠖⠒⠢⢤⡀⠀⠀⠀⠀⠀⠀⠀⠀
   #   ⠀⠀⠀⠀⠀⠀⣶⣄⠏⡠⠊⠀⠀⠈⠁⠚⢍⠲⠖⡩⠓⠉⠀⠀⠀⠑⠌⠳⣠⣶⠀⠀⠀⠀⠀⠀

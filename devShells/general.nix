@@ -15,6 +15,10 @@
 in
   mkShellNoCC {
     shellHook = ''
+      if ! [ -d .git ]; then
+        echo "[SHELL] .git not found, skipping"
+        exit 0
+      fi
       HOOKS=$(pwd)/.git/hooks
       if ! [ -f "$HOOKS/pre-commit" ]; then
         install ${precommit} $HOOKS/pre-commit

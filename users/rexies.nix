@@ -88,6 +88,10 @@ in {
       "matugen/templates".source = dots + "/matugen/templates";
       "qt6ct/qt6ct.conf".source = dots + "/qt6ct/qt6ct.conf";
 
+      # mango
+      "mango/config.conf".source = dots + "/mango/config.conf";
+      "mango/autostart.sh".source = dots + "/mango/autostart.sh";
+
       # booru.hs
       "booru/config.toml".source = dots + "/booru/config.toml";
     };

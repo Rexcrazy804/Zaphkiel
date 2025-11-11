@@ -30,7 +30,7 @@ in {
       # lanzaboote.enable = true;
       obs-studio.enable = false;
       steam.enable = false;
-      hyprland.enable = true;
+      mangowc.enable = true;
       keyd.enable = true;
       firefox.enable = true;
       kuruDM.enable = true;

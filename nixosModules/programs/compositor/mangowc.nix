@@ -18,7 +18,10 @@ in {
 
   config = mkIf cfg.enable {
     zaphkiel.programs.compositor-common.enable = true;
-    environment.systemPackages = [cfg.package];
+    environment.systemPackages = [
+      cfg.package
+      pkgs.wlsunset
+    ];
 
     # REQUIRES uwsm finalize in autostart.sh
     programs.uwsm = mkIf cfg.withUWSM {

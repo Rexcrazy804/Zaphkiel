@@ -15,6 +15,7 @@ in {
   networking.hostName = "Persephone";
   time.timeZone = "Asia/Dubai";
 
+  programs.kurukuruDM.settings.default_session = "mango-uwsm";
   zaphkiel = {
     secrets.tailAuth.file = ../../secrets/secret9.age;
 
@@ -31,6 +32,7 @@ in {
       obs-studio.enable = false;
       steam.enable = false;
       hyprland.enable = true;
+      mangowc.enable = true;
       keyd.enable = true;
       firefox.enable = true;
       kuruDM.enable = true;

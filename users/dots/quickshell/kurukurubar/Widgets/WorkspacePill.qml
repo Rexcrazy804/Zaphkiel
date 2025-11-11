@@ -42,7 +42,7 @@ Rectangle {
         anchors.centerIn: parent
         color: Dat.Colors.current.on_primary
         font.pointSize: 10
-        text: Hyprland.focusedWorkspace?.id ?? "0"
+        text: Hyprland.focusedWorkspace?.id ?? Dat.MangoWC.currentWorkspace
       }
     }
 

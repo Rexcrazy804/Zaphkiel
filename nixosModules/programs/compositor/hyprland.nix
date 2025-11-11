@@ -10,6 +10,8 @@ in {
   config = mkIf config.zaphkiel.programs.hyprland.enable {
     zaphkiel.programs.compositor-common.enable = true;
 
+    environment.systemPackages = [pkgs.hyprsunset];
+
     programs.hyprland = {
       enable = true;
       withUWSM = true;

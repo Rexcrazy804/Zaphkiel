@@ -49,8 +49,6 @@
       };
       tailscale = {
         enable = true;
-        exitNode.enable = true;
-        exitNode.networkDevice = "wlan0";
         authFile = config.age.secrets.tailAuth.path;
       };
       openssh.enable = true;

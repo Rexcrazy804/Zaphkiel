@@ -10,7 +10,7 @@ https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 | Component | Software | Configuration |
 | --------- | -------- | ------------- |
 |KuruKuruBar|[Quickshell]|[`users/dots/quickshell/kurukurubar`][kurudots]|
-|Compositor|[Hyprland]|[`users/dots/hyprland/`][hyprdots]|
+|Compositor|~[Hyprland]~ [MangoWC]|~[`users/dots/hyprland/`][hyprdots]~ [`users/dots/mango`][mangodots]|
 |Launcher|[Fuzzel]|[`users/dots/fuzzel`][fuzldots]|
 |Colors|[Matugen]|[`nixosModules/external/matugen/templates/`][mtgndots]|
 |Terminal|[foot]|[`users/dots/foot/foot.ini`][footdots]|
@@ -142,6 +142,8 @@ except wherever an explicit licensing is included.
 [kokcursor]: https://www.pling.com/p/2167734/
 [kurudots]: users/dots/quickshell/kurukurubar
 [librebarcode]: https://graphicore.github.io/librebarcode/
+[mangodots]: users/dots/mango/
+[mangowc]: https://github.com/DreamMaoMao/mangowc
 [matugen]: https://github.com/InioX/matugen
 [mnw]: https://github.com/Gerg-L/mnw
 [mtgndots]: users/dots/matugen/templates/

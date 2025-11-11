@@ -158,5 +158,5 @@ in {
       '')
     ];
   in
-    lib.mkForce "env MANGOCONFIG=${mangoConfDir} ${mein.${pkgs.system}.mangowc}/bin/mango";
+    mkForce "env MANGOCONFIG=${mangoConfDir} ${mein.${pkgs.system}.mangowc}/bin/mango";
 }

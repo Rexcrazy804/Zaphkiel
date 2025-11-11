@@ -6,6 +6,10 @@ version_check = true
 input_path = "./templates/hyprland-colors.conf"
 output_path = "~/.config/hypr/hyprcolors.conf"
 
+[templates.mango]
+input_path = "./templates/mango-colors.conf"
+output_path = "~/.config/mango/colors.conf"
+
 [templates.discord]
 input_path = "./templates/midnight-discord.css"
 output_path = "~/.config/styles/discord/midnight.css"

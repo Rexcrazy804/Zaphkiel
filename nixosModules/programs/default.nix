@@ -10,13 +10,12 @@
     # ./lanzaboote.nix
 
     # opts
+    ./compositor
     ./steam.nix
     ./wine.nix
     ./obs.nix
     ./keyd.nix
     ./firefox.nix
-    ./hyprland.nix
-    ./mangowc.nix
     ./kuruDM.nix
     ./privoxy.nix
     ./matugen.nix

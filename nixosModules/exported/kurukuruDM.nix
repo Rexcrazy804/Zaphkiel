@@ -104,6 +104,19 @@ in {
         description = "A json file following the Data/Colors.qml format of kurukurubar";
       };
     };
+
+    # for use overriding default session (NON hyprland base)
+    # see hosts/persephone/configuration.nix for usage
+    finalOpts = mkOption {
+      readOnly = true;
+      default = optsToString;
+      description = "space seperated OPT=VALUE kurukuruDM options";
+    };
+    finalOptsAttr = mkOption {
+      readOnly = true;
+      default = kuruOpts;
+      description = "raw options as an attribute set";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -122,6 +135,7 @@ in {
       enable = true;
       settings = {
         default_session = {
+          # lib.mkForce this value to use another compositor as base
           command = "${pkgs.hyprland}/bin/hyprland --config ${hyprConf}";
         };
       };

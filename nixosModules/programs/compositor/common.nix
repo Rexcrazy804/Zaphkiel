@@ -72,7 +72,6 @@ in {
 
     services.hypridle.enable = true;
     systemd.user.services.hypridle.path = mkForce (attrValues {
-      inherit (config.programs.hyprland) package;
       inherit (pkgs) systemd procps brightnessctl;
       inherit (zpkgs) kurukurubar;
     });

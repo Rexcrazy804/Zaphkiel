@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkOption mkIf mkDefault;
+  inherit (lib) mkEnableOption mkOption mkIf mkDefault mkForce;
   cfg = config.zaphkiel.programs.mangowc;
 in {
   options.zaphkiel.programs.mangowc = {
@@ -22,6 +22,8 @@ in {
       cfg.package
       pkgs.wlsunset
     ];
+
+    systemd.user.services.hypridle.path = mkForce [cfg.package];
 
     # REQUIRES uwsm finalize in autostart.sh
     programs.uwsm = mkIf cfg.withUWSM {

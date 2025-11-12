@@ -4,13 +4,13 @@
   config,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkForce;
 in {
   options.zaphkiel.programs.hyprland.enable = mkEnableOption "hyprland";
   config = mkIf config.zaphkiel.programs.hyprland.enable {
     zaphkiel.programs.compositor-common.enable = true;
-
     environment.systemPackages = [pkgs.hyprsunset];
+    systemd.user.services.hypridle.path = mkForce [config.programs.hyprland.package];
 
     programs.hyprland = {
       enable = true;

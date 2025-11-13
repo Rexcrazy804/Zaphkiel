@@ -79,8 +79,6 @@ in {
 
       # uwsm
       "uwsm/env".source = dots + "/uwsm/env";
-      "uwsm/env-hyprland".source = dots + "/uwsm/env-hyprland";
-      "uwsm/env-mango".source = dots + "/uwsm/env-mango";
 
       # mango
       "mango/config.conf".source = dots + "/mango/config.conf";

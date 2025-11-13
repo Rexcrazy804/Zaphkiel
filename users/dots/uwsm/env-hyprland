@@ -1,0 +1,3 @@
+export XDG_CURRENT_DESKTOP=Hyprland
+#export HYPRCURSOR_SIZE=24
+#export HYPRCURSOR_THEME=rose-pine-hyprcursor

@@ -76,8 +76,12 @@ in {
       "bat/themes".source = sources.catp-bat + "/themes";
       "shpool/config.toml".source = dots + "/shpool/config.toml";
 
-      # hyprland
+      # uwsm
       "uwsm/env".source = dots + "/uwsm/env";
+      "uwsm/env-hyprland".source = dots + "/uwsm/env-hyprland";
+      "uwsm/env-mango".source = dots + "/uwsm/env-mango";
+
+      # hyprland
       "hypr/hypridle.conf".source = dots + "/hyprland/hypridle.conf";
       "hypr/hyprland.conf".source = dots + "/hyprland/hyprland.conf";
       "yazi/yazi.toml".source = dots + "/yazi/yazi.toml";

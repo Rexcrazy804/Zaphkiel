@@ -66,8 +66,6 @@ in {
       dots = config.hjem.users.${username}.impure.dotsDir;
     in {
       # terminal
-      "foot/foot.ini".source = dots + "/foot/foot.ini";
-      "foot/rose-pine.ini".source = sources.rosep-foot + "/rose-pine";
       "git/config".source = dots + "/git/config";
       "fish/themes".source = sources.rosep-fish + "/themes";
       "fish/config.fish".source = dots + "/fish/config.fish";
@@ -75,29 +73,31 @@ in {
       "bat/config".source = dots + "/bat/config";
       "bat/themes".source = sources.catp-bat + "/themes";
       "shpool/config.toml".source = dots + "/shpool/config.toml";
+      "yazi/yazi.toml".source = dots + "/yazi/yazi.toml";
+      "yazi/keymap.toml".source = dots + "/yazi/keymap.toml";
+      "booru/config.toml".source = dots + "/booru/config.toml";
 
       # uwsm
       "uwsm/env".source = dots + "/uwsm/env";
       "uwsm/env-hyprland".source = dots + "/uwsm/env-hyprland";
       "uwsm/env-mango".source = dots + "/uwsm/env-mango";
 
-      # hyprland
-      "hypr/hypridle.conf".source = dots + "/hyprland/hypridle.conf";
-      "hypr/hyprland.conf".source = dots + "/hyprland/hyprland.conf";
-      "yazi/yazi.toml".source = dots + "/yazi/yazi.toml";
-      "yazi/keymap.toml".source = dots + "/yazi/keymap.toml";
-      "fuzzel/fuzzel.ini".source = dots + "/fuzzel/fuzzel.ini";
-      "background".source = config.zaphkiel.data.wallpaper;
-      "matugen/config.toml".source = dots + "/matugen/config.toml";
-      "matugen/templates".source = dots + "/matugen/templates";
-      "qt6ct/qt6ct.conf".source = dots + "/qt6ct/qt6ct.conf";
-
       # mango
       "mango/config.conf".source = dots + "/mango/config.conf";
       "mango/autostart.sh".source = dots + "/mango/autostart.sh";
 
-      # booru.hs
-      "booru/config.toml".source = dots + "/booru/config.toml";
+      # hyprland
+      "hypr/hypridle.conf".source = dots + "/hyprland/hypridle.conf";
+      "hypr/hyprland.conf".source = dots + "/hyprland/hyprland.conf";
+
+      # environment
+      "qt6ct/qt6ct.conf".source = dots + "/qt6ct/qt6ct.conf";
+      "background".source = config.zaphkiel.data.wallpaper;
+      "matugen/config.toml".source = dots + "/matugen/config.toml";
+      "matugen/templates".source = dots + "/matugen/templates";
+      "fuzzel/fuzzel.ini".source = dots + "/fuzzel/fuzzel.ini";
+      "foot/foot.ini".source = dots + "/foot/foot.ini";
+      "foot/rose-pine.ini".source = sources.rosep-foot + "/rose-pine";
     };
   };
 }

@@ -7,6 +7,21 @@
 }: let
   inherit (lib) mkEnableOption mkOption mkIf mkDefault mkForce;
   cfg = config.zaphkiel.programs.mangowc;
+
+  # adapted from https://github.com/Vladimir-csp/uwsm/blob/master/uwsm-plugins/labwc.sh
+  uwsmWithPlugin = let
+    mango-plugin = ./mango-plugin.sh;
+  in
+    pkgs.uwsm.overrideAttrs (old: {
+      postPatch =
+        (old.postPatch or "")
+        + ''
+          cp ${mango-plugin} uwsm-plugins/mango.sh
+
+          substituteInPlace uwsm-plugins/meson.build \
+            --replace-fail "'hyprland.sh'," "'hyprland.sh', 'mango.sh',"
+        '';
+    });
 in {
   options.zaphkiel.programs.mangowc = {
     enable = mkEnableOption "mango wayland compositor";
@@ -28,6 +43,7 @@ in {
     # REQUIRES uwsm finalize in autostart.sh
     programs.uwsm = mkIf cfg.withUWSM {
       enable = true;
+      package = uwsmWithPlugin;
       waylandCompositors.mango = {
         prettyName = "MangoWC";
         comment = "Mango compositor managed by UWSM";

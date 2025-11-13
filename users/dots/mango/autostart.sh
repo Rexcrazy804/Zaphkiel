@@ -1,12 +1,6 @@
 #!/usr/bin/env bash
 
-# append "wlroots" to XDG_CURRENT_DESKTOP if not already there
-case "A:${XDG_CURRENT_DESKTOP}:Z" in
-  *:wlroots:*) true ;;
-  *) export XDG_CURRENT_DESKTOP="${XDG_CURRENT_DESKTOP}:wlroots" ;;
-esac
-
-uwsm finalize XDG_CURRENT_DESKTOP XCURSOR_SIZE XCURSOR_THEME
+uwsm finalize
 
 # services
 app2unit -t service -s s kurukurubar

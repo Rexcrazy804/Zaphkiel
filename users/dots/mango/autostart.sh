@@ -9,8 +9,8 @@ esac
 uwsm finalize XDG_CURRENT_DESKTOP XCURSOR_SIZE XCURSOR_THEME
 
 # services
-uwsm app -t service kurukurubar
-uwsm app -t service foot -- --server
-uwsm app -t service stash -- watch
-uwsm app -t service wlsunset -- -s 17:30 -S 7:00
-uwsm app nm-applet
+app2unit -t service -s s kurukurubar
+app2unit -t service -s b foot --server
+app2unit -t service -s b stash watch
+app2unit -t service -s b wlsunset -s 17:30 -S 7:00
+app2unit -t service -s a nm-applet

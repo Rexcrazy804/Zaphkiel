@@ -21,7 +21,7 @@
     programs = {
       obs-studio.enable = false;
       steam.enable = false;
-      hyprland.enable = true;
+      mangowc.enable = true;
       keyd.enable = true;
       firefox.enable = true;
       privoxy = {

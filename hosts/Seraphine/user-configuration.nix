@@ -20,11 +20,11 @@ in {
     hash = "sha256-3XFnzhlBKr2PURGxDWtdOCfXv0ItH/nquxosBZLlm0Y=";
   };
   hjem.users."rexies".xdg.config.files = {
-    "hypr/hyprland.conf".text = let
+    "mango/config.conf".text = let
       # override scaling for seraphine
-      from = ["monitor = eDP-1, preferred, auto, 1.25"];
-      to = ["monitor = eDP-1, preferred, auto, auto"];
+      from = ["monitorrule=eDP-1,1,1,tile,0,1.25,0,0,1920,1080,60"];
+      to = ["monitorrule=eDP-1,1,1,tile,0,1,0,0,1920,1080,60"];
     in
-      lib.mkForce (builtins.replaceStrings from to (builtins.readFile ../../users/dots/hyprland/hyprland.conf));
+      lib.mkForce (builtins.replaceStrings from to (builtins.readFile ../../users/dots/mango/config.conf));
   };
 }

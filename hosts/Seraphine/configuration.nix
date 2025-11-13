@@ -48,6 +48,7 @@
         tsplugin.enable = true;
       };
       tailscale = {
+        operator = "rexies";
         enable = true;
         authFile = config.age.secrets.tailAuth.path;
       };

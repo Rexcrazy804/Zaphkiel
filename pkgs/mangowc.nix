@@ -25,7 +25,10 @@
 }:
 stdenv.mkDerivation {
   pname = "mango";
-  version = "nightly";
+  version =
+    if (sources.mangowc ? version)
+    then sources.mangowc.version
+    else "nightly";
 
   src = sources.mangowc;
 

@@ -12,7 +12,7 @@
     inherit (pkgs.heroic-unwrapped) legendary;
     inherit (pkgs) bottles winetricks mono umu-launcher;
     # terminal
-    inherit (pkgs) foot remmina libsixel;
+    inherit (pkgs) foot libsixel;
 
     # from exported packages
     inherit (mein.${system}) mpv-wrapped equibop;

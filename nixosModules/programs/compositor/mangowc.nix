@@ -8,20 +8,15 @@
   inherit (lib) mkEnableOption mkOption mkIf mkDefault mkForce;
   cfg = config.zaphkiel.programs.mangowc;
 
-  # adapted from https://github.com/Vladimir-csp/uwsm/blob/master/uwsm-plugins/labwc.sh
-  uwsmWithPlugin = let
-    mango-plugin = ./mango-plugin.sh;
-  in
-    pkgs.uwsm.overrideAttrs (old: {
-      postPatch =
-        (old.postPatch or "")
-        + ''
-          cp ${mango-plugin} uwsm-plugins/mango.sh
+  uwsmWithPlugin = pkgs.symlinkJoin {
+    inherit (pkgs.uwsm) pname version;
+    paths = [pkgs.uwsm];
+    postBuild = ''
+      ln -sf ${./mango-plugin.sh} $out/share/uwsm/plugins/mango.sh
+    '';
 
-          substituteInPlace uwsm-plugins/meson.build \
-            --replace-fail "'hyprland.sh'," "'hyprland.sh', 'mango.sh',"
-        '';
-    });
+    meta = pkgs.uwsm.meta // {outputsToInstall = ["out"];};
+  };
 in {
   options.zaphkiel.programs.mangowc = {
     enable = mkEnableOption "mango wayland compositor";

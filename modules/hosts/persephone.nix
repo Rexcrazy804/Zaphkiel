@@ -2,6 +2,7 @@
   dandelion.hosts.Persephone = {lib, ...}: {
     imports = [
       self.dandelion.users.rexies
+      self.dandelion.hardware.persephone
       self.dandelion.modules.fingerprint
       self.dandelion.modules.btrfs
       self.dandelion.modules.sunshine

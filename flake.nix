@@ -1,5 +1,44 @@
 {
+  # I might have just made reading my flake a hellscape
+  # Presenting, the dandruff setup
   description = "Rexiel Scarlet's Flake";
+
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
+    inherit (nixpkgs.lib) filter hasSuffix filesystem pipe map flatten flip;
+    inherit (nixpkgs.lib) foldAttrs recursiveUpdate callPackageWith;
+
+    recursiveImport = path: filter (hasSuffix ".nix") (filesystem.listFilesRecursive path);
+
+    importApply = (flip pipe) [
+      flatten
+      (map (x:
+        if builtins.isPath x
+        then import x
+        else x))
+      (map (x:
+        if builtins.isFunction x
+        then x inputs
+        else x))
+      (foldAttrs recursiveUpdate {})
+    ];
+  in
+    importApply [
+      (recursiveImport ./modules)
+      {
+        packages = self.lib.eachSystem ({
+          pkgs,
+          system,
+        }:
+          filesystem.packagesFromDirectoryRecursive {
+            callPackage = callPackageWith (pkgs // self.packages.${system});
+            directory = ./pkgs;
+          });
+      }
+    ];
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -38,28 +77,5 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
     };
-  };
-
-  outputs = {
-    self,
-    nixpkgs,
-    systems,
-    ...
-  } @ inputs: let
-    inherit (nixpkgs) lib;
-
-    pkgsFor = lib.getAttrs (import systems) nixpkgs.legacyPackages;
-    sources = import ./npins;
-    moduleArgs = {inherit inputs self sources lib;};
-
-    eachSystem = fn: lib.mapAttrs (system: pkgs: fn {inherit system pkgs;}) pkgsFor;
-    callModule = path: attrs: import path (moduleArgs // attrs);
-  in {
-    formatter = eachSystem ({system, ...}: self.packages.${system}.irminsul);
-    packages = eachSystem (attrs: callModule ./pkgs attrs);
-    devShells = eachSystem (attrs: callModule ./devShells attrs);
-    nixosConfigurations = callModule ./hosts {};
-    templates = callModule ./templates {};
-    nixosModules = callModule ./nixosModules/exported {};
   };
 }

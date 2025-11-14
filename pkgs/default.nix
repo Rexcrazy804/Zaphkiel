@@ -24,7 +24,10 @@ in {
   irminsul = callPackage ./irminsul {inherit (self.scripts) qmlcheck;};
   dust-racing = callPackage ./dust-racing.nix {};
   equibop = callPackage ./equibop {};
-  mangowc = callPackage ./mangowc.nix {inherit sources;};
+
+  # mangowc simping
+  mangowc-unwrapped = callPackage ./mangowc/unwrapped.nix {inherit sources;};
+  mangowc = callPackage ./mangowc {inherit (self) mangowc-unwrapped;};
 
   # package sets
   scripts = callPackage ./scripts {};

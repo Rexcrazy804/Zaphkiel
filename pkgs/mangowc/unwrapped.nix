@@ -1,7 +1,7 @@
 # adapted from
 # https://github.com/DreamMaoMao/mangowc/blob/main/nix/default.nix
 {
-  sources,
+  sources ? import ../../npins,
   lib,
   libX11,
   libinput,
@@ -24,7 +24,7 @@
   libGL,
 }:
 stdenv.mkDerivation {
-  pname = "mango";
+  pname = "mango-unwrapped";
   version =
     if (sources.mangowc ? version)
     then sources.mangowc.version

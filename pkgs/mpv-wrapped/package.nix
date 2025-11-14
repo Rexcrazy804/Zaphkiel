@@ -5,13 +5,16 @@
 # for vulkan my modules set these values so note to myself
 # the values are set .w. trust me bro .w.
 {
-  pkgs,
+  symlinkJoin,
+  callPackage,
   lib,
-  # enable anime 4k shadders
+  linkFarm,
   anime ? false,
+  mpv,
+  makeWrapper,
 }: let
-  shadderConfig = pkgs.callPackage ./bindings.nix {};
-  mpvconf = pkgs.linkFarm "mpvConfDir" (
+  shadderConfig = callPackage ./bindings.nix {};
+  mpvconf = linkFarm "mpvConfDir" (
     [
       {
         name = "mpv.conf";
@@ -24,11 +27,11 @@
     })
   );
 in
-  pkgs.symlinkJoin {
-    name = "mpv";
-    paths = [pkgs.mpv];
+  symlinkJoin {
+    name = "mpv-wrapped";
+    paths = [mpv];
 
-    buildInputs = [pkgs.makeWrapper];
+    buildInputs = [makeWrapper];
 
     postBuild = ''
       wrapProgram $out/bin/mpv \

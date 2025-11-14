@@ -34,6 +34,7 @@
           system,
         }:
           filesystem.packagesFromDirectoryRecursive {
+            inherit (pkgs) newScope;
             callPackage = callPackageWith (pkgs // self.packages.${system});
             directory = ./pkgs;
           });

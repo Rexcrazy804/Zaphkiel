@@ -2,8 +2,7 @@
 # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/by-name/sw/sway/package.nix
 {
   lib,
-  callPackage,
-  mangowc-unwrapped ? callPackage ./unwrapped.nix {},
+  mangowc-unwrapped,
   makeWrapper,
   symlinkJoin,
   writeShellScriptBin,

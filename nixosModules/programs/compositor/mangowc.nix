@@ -50,6 +50,14 @@ in {
       enable = mkDefault true;
       wlr.enable = mkDefault true;
       configPackages = [cfg.package];
+      extraPortals = [pkgs.xdg-desktop-portal-gtk];
+      config.mango = {
+        # borrowed from config for sway
+        default = ["gtk"];
+        "org.freedesktop.impl.portal.ScreenCast" = "wlr";
+        "org.freedesktop.impl.portal.Screenshot" = "wlr";
+        "org.freedesktop.impl.portal.Inhibit" = "none";
+      };
     };
 
     security.polkit.enable = mkDefault true;

@@ -66,11 +66,13 @@ in {
       sya = "systemctl start";
       syo = "systemctl stop";
       syr = "systemctl restart";
+      sys = "systemctl status";
       # sysctl user
       su = "systemctl --user";
       sua = "systemctl --user start";
       suo = "systemctl --user stop";
       sur = "systemctl --user restart";
+      sus = "systemctl --user status";
 
       # misc
       qsp = "qs -p .";

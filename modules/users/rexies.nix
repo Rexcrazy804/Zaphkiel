@@ -1,4 +1,4 @@
-{
+{self, ...}: {
   dandelion.users.rexies = {
     pkgs,
     config,
@@ -9,9 +9,15 @@
     username = "rexies";
     description = "Rexiel Scarlet";
   in {
+    imports = [
+      self.dandelion.modules.zaphkiel-data
+      self.dandelion.modules.hjem-impure
+      # self.dandelion.modules.agenix
+      self.dandelion.modules.agenix
+    ];
+
     zaphkiel = {
       data.users = [username];
-      programs.matugen.enable = true;
       secrets.rexiesPass = {
         file = ../../secrets/secret1.age;
         owner = username;

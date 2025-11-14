@@ -5,6 +5,8 @@
     lib,
     ...
   }: {
+    imports = [self.dandelion.modules.kuruDM];
+
     # use mangowc as base for kurukuruDM
     services.greetd.settings.default_session.command = let
       cfg = config.programs.kurukuruDM;

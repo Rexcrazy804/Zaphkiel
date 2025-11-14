@@ -1,11 +1,5 @@
 {
-  pkgs,
-  lib,
-  config,
-  ...
-}: {
-  options.zaphkiel.programs.steam.enable = lib.mkEnableOption "steam";
-  config = lib.mkIf config.zaphkiel.programs.steam.enable {
+  dandelion.modules.steam = {pkgs, ...}: {
     programs.steam = {
       enable = true;
       remotePlay.openFirewall = true;

@@ -1,11 +1,5 @@
 {
-  pkgs,
-  lib,
-  config,
-  ...
-}: {
-  options.zaphkiel.programs.obs-studio.enable = lib.mkEnableOption "obs-studio";
-  config = lib.mkIf config.zaphkiel.programs.obs-studio.enable {
+  dandelion.modules.obs-studio = {pkgs, ...}: {
     programs.obs-studio = {
       enable = true;
       enableVirtualCamera = true;

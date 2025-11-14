@@ -1,5 +1,5 @@
 {
-  dandelion.modules.fingerprinting = {pkgs, ...}: {
+  dandelion.modules.fingerprint = {pkgs, ...}: {
     # finger print
     systemd.services.fprintd = {
       wantedBy = ["multi-user.target"];

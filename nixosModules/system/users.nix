@@ -1,13 +1,7 @@
-{
-  lib,
-  inputs,
-  ...
-}: let
+{lib, ...}: let
   inherit (lib) mkOption;
   inherit (lib.types) listOf str path;
 in {
-  imports = [inputs.hjem.nixosModules.default];
-
   options = {
     zaphkiel = {
       data.users = mkOption {

@@ -21,13 +21,7 @@
 
     programs = {
       # lanzaboote.enable = true;
-      obs-studio.enable = false;
-      steam.enable = false;
       mangowc.enable = true;
-      keyd.enable = true;
-      firefox.enable = true;
-      kuruDM.enable = true;
-      winboat.enable = true;
       wine = {
         enable = true;
         ntsync.enable = true;

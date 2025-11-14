@@ -1,12 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  mein,
-  ...
-}: let
-  inherit (lib) mkForce;
-in {
+{config, ...}: {
   imports = [
     ./hardware-configuration.nix
     ./user-configuration.nix
@@ -65,24 +57,6 @@ in {
       };
       openssh.enable = true;
     };
-
-    utils.btrfs-snapshots.rexies = [
-      {
-        subvolume = "Documents";
-        calendar = "daily";
-        expiry = "5d";
-      }
-      {
-        subvolume = "Music";
-        calendar = "weekly";
-        expiry = "3w";
-      }
-      {
-        subvolume = "Pictures";
-        calendar = "weekly";
-        expiry = "3w";
-      }
-    ];
   };
 
   # forward dns onto the tailnet
@@ -96,67 +70,4 @@ in {
       "[::1]:53"
     ];
   };
-
-  hardware.bluetooth.powerOnBoot = mkForce false;
-
-  # btrfs
-  services.btrfs.autoScrub = {
-    enable = true;
-    interval = "monthly";
-    fileSystems = ["/"];
-  };
-
-  # finger print
-  systemd.services.fprintd = {
-    wantedBy = ["multi-user.target"];
-    serviceConfig.Type = "simple";
-  };
-  services.fprintd = {
-    enable = true;
-    tod.enable = true;
-    tod.driver = pkgs.libfprint-2-tod1-elan;
-  };
-
-  # disable network manager wait online service (+6 seconds to boot time!!!!)
-  systemd.services.NetworkManager-wait-online.enable = false;
-
-  services.sunshine = {
-    enable = true;
-    autoStart = false;
-    capSysAdmin = true;
-    openFirewall = true;
-  };
-
-  security.tpm2 = {
-    enable = true;
-    pkcs11.enable = true;
-    tctiEnvironment.enable = true;
-  };
-  users.users.rexies.extraGroups = ["tss"];
-
-  powerManagement.powertop.enable = true;
-  # multi-user.target shouldn't wait for powertop
-  systemd.services.powertop.serviceConfig.Type = mkForce "exec";
-
-  # network printing
-  services.printing = {
-    enable = true;
-    browsed.enable = true;
-  };
-
-  # use mangowc as base for kurukuruDM
-  services.greetd.settings.default_session.command = let
-    cfg = config.programs.kurukuruDM;
-  in let
-    mangoConfDir = pkgs.linkFarmFromDrvs "mango" [
-      (pkgs.writeShellScript "autostart.sh" ''
-        ${cfg.finalOpts} ${cfg.package}/bin/kurukurubar && pkill mango
-      '')
-      (pkgs.writeText "config.conf" ''
-        monitorrule=eDP-1,1,1,tile,0,1.25,0,0,1920,1080,60
-        cursor_theme=Kokomi_Cursor
-      '')
-    ];
-  in
-    mkForce "env MANGOCONFIG=${mangoConfDir} ${mein.${pkgs.system}.mangowc}/bin/mango";
 }

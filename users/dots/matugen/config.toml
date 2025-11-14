@@ -9,6 +9,7 @@ output_path = "~/.config/hypr/hyprcolors.conf"
 [templates.mango]
 input_path = "./templates/mango-colors.conf"
 output_path = "~/.config/mango/colors.conf"
+post_hook = "mmsg -d reload_config"
 
 [templates.discord]
 input_path = "./templates/midnight-discord.css"

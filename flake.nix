@@ -3,13 +3,9 @@
   # Presenting, the dandruff setup
   description = "Rexiel Scarlet's Flake";
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: let
+  outputs = {nixpkgs, ...} @ inputs: let
     inherit (nixpkgs.lib) filter hasSuffix filesystem pipe map flatten flip;
-    inherit (nixpkgs.lib) foldAttrs recursiveUpdate callPackageWith;
+    inherit (nixpkgs.lib) foldAttrs recursiveUpdate;
 
     recursiveImport = path: filter (hasSuffix ".nix") (filesystem.listFilesRecursive path);
 
@@ -28,17 +24,6 @@
   in
     importApply [
       (recursiveImport ./modules)
-      {
-        packages = self.lib.eachSystem ({
-          pkgs,
-          system,
-        }:
-          filesystem.packagesFromDirectoryRecursive {
-            inherit (pkgs) newScope;
-            callPackage = callPackageWith (pkgs // self.packages.${system});
-            directory = ./pkgs;
-          });
-      }
     ];
 
   inputs = {

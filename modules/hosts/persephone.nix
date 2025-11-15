@@ -9,6 +9,7 @@
     ...
   }: {
     imports = [
+      self.dandelion.profiles.mangowc
       self.dandelion.users.rexies
       self.dandelion.hardware.persephone
       self.dandelion.modules.fingerprint
@@ -16,9 +17,8 @@
       self.dandelion.modules.sunshine
       self.dandelion.modules.tpm
       self.dandelion.modules.printing
+      self.dandelion.modules.kuruDM
       self.dandelion.modules.kuruDM-mango
-      self.dandelion.modules.obs-studio
-      self.dandelion.modules.steam
       self.dandelion.modules.winboat
       self.dandelion.modules.keyd
       self.dandelion.modules.firefox
@@ -32,23 +32,42 @@
     networking.hostName = "Persephone";
     time.timeZone = "Asia/Dubai";
 
-    zaphkiel.utils.btrfs-snapshots.rexies = [
-      {
-        subvolume = "Documents";
-        calendar = "daily";
-        expiry = "5d";
-      }
-      {
-        subvolume = "Music";
-        calendar = "weekly";
-        expiry = "3w";
-      }
-      {
-        subvolume = "Pictures";
-        calendar = "weekly";
-        expiry = "3w";
-      }
-    ];
+    zaphkiel = {
+      data.wallpaper = pkgs.fetchurl {
+        url = "https://cdn.donmai.us/original/8c/5d/__rubuska_and_corvus_reverse_1999__8c5da40a6b3a247b20327f0c0d71d2b9.jpg";
+        hash = "sha256-Gzk5CRaMnu5WJUvg3SUpnS15FdrPvONcN5bBRdxIFtY=";
+      };
+      programs.matugen.scheme = "scheme-fidelity";
+      utils.btrfs-snapshots.rexies = [
+        {
+          subvolume = "Documents";
+          calendar = "daily";
+          expiry = "1d";
+        }
+        {
+          subvolume = "Music";
+          calendar = "weekly";
+          expiry = "3w";
+        }
+        {
+          subvolume = "Pictures";
+          calendar = "weekly";
+          expiry = "3w";
+        }
+      ];
+    };
+
+    # forward dns onto the tailnet
+    networking.firewall.allowedTCPPorts = [53];
+    networking.firewall.allowedUDPPorts = [53];
+    services.dnscrypt-proxy.settings = {
+      listen_addresses = [
+        "100.110.70.18:53"
+        "[fd7a:115c:a1e0::6a01:4614]:53"
+        "127.0.0.1:53"
+        "[::1]:53"
+      ];
+    };
 
     hardware.bluetooth.powerOnBoot = lib.mkForce false;
     powerManagement.powertop.enable = true;
@@ -75,14 +94,6 @@
         # discord = pkgs.discord.override {withMoonlight = true;};
       };
       extraGroups = ["video" "input"];
-    };
-
-    zaphkiel = {
-      data.wallpaper = pkgs.fetchurl {
-        url = "https://cdn.donmai.us/original/8c/5d/__rubuska_and_corvus_reverse_1999__8c5da40a6b3a247b20327f0c0d71d2b9.jpg";
-        hash = "sha256-Gzk5CRaMnu5WJUvg3SUpnS15FdrPvONcN5bBRdxIFtY=";
-      };
-      programs.matugen.scheme = "scheme-fidelity";
     };
 
     hjem.users.rexies.files.".face.icon".source = pkgs.stdenvNoCC.mkDerivation {

@@ -98,7 +98,7 @@
         set sponge_purge_only_on_exit true
         set fish_greeting
         set fish_cursor_insert line blink
-        set -Ux LS_COLORS $(cat ${../../users/dots/fish/rose-pine-lscolors})
+        set -Ux LS_COLORS $(cat ${../../dots/fish/rose-pine-lscolors})
         set -Ux FZF_DEFAULT_OPTS ${fzf-options}
         fish_vi_key_bindings
 

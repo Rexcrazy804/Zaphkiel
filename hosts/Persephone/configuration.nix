@@ -1,13 +1,4 @@
 {config, ...}: {
-  imports = [
-    ./hardware-configuration.nix
-    ./user-configuration.nix
-  ];
-
-  system.stateVersion = "25.05"; # Did you read the comment?
-  networking.hostName = "Persephone";
-  time.timeZone = "Asia/Dubai";
-
   zaphkiel = {
     secrets.tailAuth.file = ../../secrets/secret9.age;
 
@@ -51,17 +42,5 @@
       };
       openssh.enable = true;
     };
-  };
-
-  # forward dns onto the tailnet
-  networking.firewall.allowedTCPPorts = [53];
-  networking.firewall.allowedUDPPorts = [53];
-  services.dnscrypt-proxy.settings = {
-    listen_addresses = [
-      "100.110.70.18:53"
-      "[fd7a:115c:a1e0::6a01:4614]:53"
-      "127.0.0.1:53"
-      "[::1]:53"
-    ];
   };
 }

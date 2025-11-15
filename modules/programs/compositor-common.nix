@@ -1,19 +1,18 @@
 {
-  lib,
-  pkgs,
-  mein,
-  inputs,
-  config,
+  self,
+  hs-todo,
   ...
-}: let
-  inherit (lib) mkEnableOption mkIf mkForce attrValues;
-  zpkgs = mein.${pkgs.system};
-  todo = inputs.hs-todo.packages.${pkgs.system}.default;
-  cfg = config.zaphkiel.programs.compositor-common;
-in {
-  options.zaphkiel.programs.compositor-common.enable = mkEnableOption "common compositor options";
+}: {
+  dandelion.modules.compositor-common = {
+    pkgs,
+    lib,
+    ...
+  }: let
+    inherit (lib) mkForce attrValues;
 
-  config = mkIf cfg.enable {
+    zpkgs = self.packages.${pkgs.system};
+    todo = hs-todo.packages.${pkgs.system}.default;
+  in {
     # for whatever reason swappy likes to open images
     # don't let that fucker open images
     xdg.mime.defaultApplications = {

@@ -2,20 +2,14 @@
   dandelion.users.rexies = {
     pkgs,
     config,
-    sources,
     lib,
     ...
   }: let
     username = "rexies";
     description = "Rexiel Scarlet";
+    sources = self.packages.${pkgs.system}.sources;
   in {
-    imports = [
-      self.dandelion.modules.zaphkiel-data
-      self.dandelion.modules.hjem
-      self.dandelion.modules.hjem-impure
-      self.dandelion.modules.agenix
-      self.dandelion.modules.fish
-    ];
+    imports = [self.dandelion.modules.hjem-impure];
 
     zaphkiel = {
       data.users = [username];

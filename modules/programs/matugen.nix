@@ -1,6 +1,5 @@
-{...}: {
+{self, ...}: {
   dandelion.modules.matugen = {
-    mein,
     pkgs,
     config,
     lib,
@@ -45,7 +44,7 @@
       };
 
       users.users = genAttrs zphd.users (_user: {
-        packages = [pkgs.matugen mein.${pkgs.system}.scripts.changeWall];
+        packages = [pkgs.matugen self.packages.${pkgs.system}.scripts.changeWall];
       });
     };
   };

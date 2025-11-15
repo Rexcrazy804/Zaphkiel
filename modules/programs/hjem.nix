@@ -1,6 +1,10 @@
 {hjem, ...}: {
-  dandelion.modules.hjem = {pkgs, ...}: {
+  dandelion.modules.hjem = {
+    pkgs,
+    lib,
+    ...
+  }: {
     imports = [hjem.nixosModules.default];
-    hjem.linker = pkgs.smfh;
+    hjem.linker = lib.mkForce pkgs.smfh;
   };
 }

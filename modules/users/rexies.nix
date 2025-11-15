@@ -11,9 +11,10 @@
   in {
     imports = [
       self.dandelion.modules.zaphkiel-data
+      self.dandelion.modules.hjem
       self.dandelion.modules.hjem-impure
-      # self.dandelion.modules.agenix
       self.dandelion.modules.agenix
+      self.dandelion.modules.fish
     ];
 
     zaphkiel = {

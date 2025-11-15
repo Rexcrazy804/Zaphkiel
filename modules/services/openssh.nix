@@ -1,10 +1,5 @@
 {
-  lib,
-  config,
-  ...
-}: {
-  options.zaphkiel.services.openssh.enable = lib.mkEnableOption "openssh service";
-  config = lib.mkIf (config.zaphkiel.services.openssh.enable && config.zaphkiel.services.enable) {
+  dandelion.modules.openssh = {config, ...}: {
     services.openssh = {
       enable = true;
       openFirewall = true;

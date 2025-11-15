@@ -7,7 +7,6 @@
   }: {
     imports = [
       self.dandelion.users.rexies
-      self.dandelion.hardware.persephone
       self.dandelion.profiles.mangowc
       self.dandelion.profiles.workstation
       self.dandelion.profiles.gaming
@@ -25,11 +24,13 @@
       self.dandelion.modules.powertop
     ];
 
+    # info
+    networking.hostName = "Persephone";
     nixpkgs.hostPlatform = "x86_64-linux";
     system.stateVersion = "25.05";
-    networking.hostName = "Persephone";
     time.timeZone = "Asia/Dubai";
 
+    # zaphkiel opts
     zaphkiel = {
       graphics.intel.hwAccelDriver = "media-driver";
       # TODO  put data.wallpaper inside matugen and make data.wallpaper an alias
@@ -74,23 +75,7 @@
       ];
     };
 
-    # TODO store tailscale ipv6 and ipv4 in tailscale module
-    # forward dns onto the tailnet
-    networking.firewall.allowedTCPPorts = [53];
-    networking.firewall.allowedUDPPorts = [53];
-    services.dnscrypt-proxy.settings = {
-      listen_addresses = [
-        "100.110.70.18:53"
-        "[fd7a:115c:a1e0::6a01:4614]:53"
-        "127.0.0.1:53"
-        "[::1]:53"
-      ];
-    };
-
-    hardware.bluetooth.powerOnBoot = lib.mkForce false;
-    # disable network manager wait online service (+6 seconds to boot time!!!!)
-    systemd.services.NetworkManager-wait-online.enable = false;
-
+    # user space
     users.users."rexies".packages = lib.attrValues {
       inherit (self.packages.${pkgs.system}) mpv-wrapped equibop;
       inherit (self.packages.${pkgs.system}.scripts) wallcrop legumulaunch;
@@ -119,6 +104,80 @@
           }
         ];
       };
+    };
+
+    # hardware
+    boot.kernelParams = ["i915.enable_guc=3" "nmi_watchdog=0"];
+    boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "ahci" "nvme" "usb_storage" "sd_mod" "sdhci_pci"];
+    hardware.bluetooth.powerOnBoot = lib.mkForce false;
+    systemd.services.NetworkManager-wait-online.enable = false;
+    zramSwap.enable = true;
+
+    # file systems
+    fileSystems = {
+      "/" = {
+        device = "/dev/disk/by-uuid/492f31cf-5db4-4965-95f7-e4d590aa0c29";
+        fsType = "btrfs";
+        options = ["subvol=root" "compress=zstd"];
+      };
+
+      "/home" = {
+        device = "/dev/disk/by-uuid/492f31cf-5db4-4965-95f7-e4d590aa0c29";
+        fsType = "btrfs";
+        options = ["subvol=home" "compress=zstd"];
+      };
+
+      "/nix" = {
+        device = "/dev/disk/by-uuid/492f31cf-5db4-4965-95f7-e4d590aa0c29";
+        fsType = "btrfs";
+        options = ["subvol=nix" "compress=zstd" "noatime"];
+      };
+
+      "/boot" = {
+        device = "/dev/disk/by-uuid/7DFC-B6FB";
+        fsType = "vfat";
+        options = ["fmask=0077" "dmask=0077"];
+      };
+
+      "/run/media/rexies/Aphrodite" = {
+        device = "rexies@aphrodite.fell-rigel.ts.net:/home/rexies";
+        fsType = "sshfs";
+        options = [
+          "allow_other"
+          "_netdev"
+          "x-systemd.automount"
+          "reconnect"
+          "ServerAliveInterval=15"
+          "IdentityFile=${config.users.users.rexies.home}/.ssh/id_ed25519"
+        ];
+      };
+
+      "/run/media/rexies/Seraphine" = {
+        device = "rexies@seraphine.fell-rigel.ts.net:/home/rexies";
+        fsType = "sshfs";
+        options = [
+          "allow_other"
+          "_netdev"
+          "x-systemd.automount"
+          "reconnect"
+          "ServerAliveInterval=15"
+          "IdentityFile=${config.users.users.rexies.home}/.ssh/id_ed25519"
+        ];
+      };
+    };
+    swapDevices = [{device = "/dev/disk/by-uuid/d329feee-a8a6-48f4-afb2-3375adff50a3";}];
+
+    # TODO store tailscale ipv6 and ipv4 in tailscale module
+    # forward dns onto the tailnet
+    networking.firewall.allowedTCPPorts = [53];
+    networking.firewall.allowedUDPPorts = [53];
+    services.dnscrypt-proxy.settings = {
+      listen_addresses = [
+        "100.110.70.18:53"
+        "[fd7a:115c:a1e0::6a01:4614]:53"
+        "127.0.0.1:53"
+        "[::1]:53"
+      ];
     };
   };
 }

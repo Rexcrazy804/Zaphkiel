@@ -57,6 +57,9 @@
         # ANV_VIDEO_DECODE = 1;
         LIBVA_DRIVER_NAME = mkIf (cfg.hwAccelDriver == "media-driver") "iHD";
       };
+
+      boot.kernelModules = ["kvm-intel"];
+      hardware.cpu.intel.updateMicrocode = true;
     };
   };
 }

@@ -17,6 +17,8 @@
       self.dandelion.modules.dnscrypt
       self.dandelion.modules.tailscale
       self.dandelion.modules.openssh
+      # hardware
+      self.dandelion.modules.undetected
     ];
   };
 }

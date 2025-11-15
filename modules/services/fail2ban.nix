@@ -1,11 +1,5 @@
 {
-  lib,
-  config,
-  ...
-}: {
-  options.zaphkiel.services.fail2ban.enable = lib.mkEnableOption "fail2ban service";
-
-  config = lib.mkIf (config.zaphkiel.services.fail2ban.enable && config.zaphkiel.services.enable) {
+  dandelion.modules.fail2ban = {
     services.fail2ban = {
       enable = true;
       maxretry = 3;

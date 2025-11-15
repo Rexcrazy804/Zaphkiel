@@ -1,8 +1,4 @@
-{
-  self,
-  booru-hs,
-  ...
-}: {
+{self, ...}: {
   dandelion.hosts.Persephone = {
     lib,
     pkgs,
@@ -25,6 +21,8 @@
       self.dandelion.modules.kuruDM
       self.dandelion.modules.kuruDM-mango
       self.dandelion.modules.winboat
+      self.dandelion.modules.booru-hs
+      self.dandelion.modules.powertop
     ];
 
     nixpkgs.hostPlatform = "x86_64-linux";
@@ -76,6 +74,7 @@
       ];
     };
 
+    # TODO store tailscale ipv6 and ipv4 in tailscale module
     # forward dns onto the tailnet
     networking.firewall.allowedTCPPorts = [53];
     networking.firewall.allowedUDPPorts = [53];
@@ -89,51 +88,37 @@
     };
 
     hardware.bluetooth.powerOnBoot = lib.mkForce false;
-    powerManagement.powertop.enable = true;
-    # multi-user.target shouldn't wait for powertop
-    systemd.services.powertop.serviceConfig.Type = lib.mkForce "exec";
     # disable network manager wait online service (+6 seconds to boot time!!!!)
     systemd.services.NetworkManager-wait-online.enable = false;
 
-    users.users."rexies" = {
-      packages = lib.attrValues {
-        # inherit (pkgs.heroic-unwrapped) legendary;
-        # terminal
-        inherit (pkgs) foot libsixel;
-
-        # from exported packages
-        inherit (self.packages.${pkgs.system}) mpv-wrapped equibop;
-        inherit (self.packages.${pkgs.system}.scripts) wallcrop legumulaunch;
-
-        booru-hs = booru-hs.packages.${pkgs.system}.default;
-
-        # discord = pkgs.discord.override {withMoonlight = true;};
-      };
-      extraGroups = ["video" "input"];
+    users.users."rexies".packages = lib.attrValues {
+      inherit (self.packages.${pkgs.system}) mpv-wrapped equibop;
+      inherit (self.packages.${pkgs.system}.scripts) wallcrop legumulaunch;
     };
 
-    hjem.users.rexies.files.".face.icon".source = pkgs.stdenvNoCC.mkDerivation {
-      name = "face.jpg";
-      nativeBuildInputs = [pkgs.imagemagick];
-      src = pkgs.fetchurl {
-        url = "https://cdn.donmai.us/original/e9/c3/e9c3dbb346bb4ea181c2ae8680551585.jpg";
-        hash = "sha256-0RKzzRxW1mtqHutt+9aKzkC5KijIiVLQqW5IRFI/IWY=";
-      };
-      dontUnpack = true;
-      installPhase = "
+    hjem.users.rexies = {
+      files.".face.icon".source = pkgs.stdenvNoCC.mkDerivation {
+        name = "face.jpg";
+        nativeBuildInputs = [pkgs.imagemagick];
+        src = pkgs.fetchurl {
+          url = "https://cdn.donmai.us/original/e9/c3/e9c3dbb346bb4ea181c2ae8680551585.jpg";
+          hash = "sha256-0RKzzRxW1mtqHutt+9aKzkC5KijIiVLQqW5IRFI/IWY=";
+        };
+        dontUnpack = true;
+        installPhase = "
           magick $src -crop 640x640+2300+1580 $out
         ";
-    };
-
-    hjem.users.rexies.games = {
-      enable = true;
-      entries = [
-        {
-          name = "Reverse 1999";
-          umu.game_id = "rev199";
-          umu.exe = "/home/rexies/Games/Reverse1999en/reverse1999.exe";
-        }
-      ];
+      };
+      games = {
+        enable = true;
+        entries = [
+          {
+            name = "Reverse 1999";
+            umu.game_id = "rev199";
+            umu.exe = "/home/rexies/Games/Reverse1999en/reverse1999.exe";
+          }
+        ];
+      };
     };
   };
 }

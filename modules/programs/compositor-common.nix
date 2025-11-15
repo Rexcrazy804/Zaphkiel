@@ -47,6 +47,7 @@
       inherit (pkgs) trashy fuzzel wl-screenrec;
       inherit (pkgs) libnotify swappy imv wayfreeze networkmanagerapplet;
       inherit (pkgs) yazi ripdrag seahorse app2unit;
+      inherit (pkgs) foot libsixel;
       # external
       inherit todo;
     };

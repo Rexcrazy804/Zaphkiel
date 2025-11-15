@@ -2,13 +2,7 @@
   zaphkiel = {
     secrets.tailAuth.file = ../../secrets/secret9.age;
 
-    graphics = {
-      enable = true;
-      intel = {
-        enable = true;
-        hwAccelDriver = "media-driver";
-      };
-    };
+    graphics.intel.hwAccelDriver = "media-driver";
 
     programs = {
       # lanzaboote.enable = true;

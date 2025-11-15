@@ -1,12 +1,5 @@
 {
-  pkgs,
-  config,
-  lib,
-  ...
-}: {
-  options.zaphkiel.graphics.amd.enable = lib.mkEnableOption "amd graphics";
-
-  config = lib.mkIf (config.zaphkiel.graphics.amd.enable && config.zaphkiel.graphics.enable) {
+  dandelion.modules.amd = {pkgs, ...}: {
     environment.systemPackages = [pkgs.radeontop];
     hardware.graphics = {
       extraPackages = with pkgs; [

@@ -1,34 +1,33 @@
 {
-  pkgs,
-  config,
-  lib,
-  ...
-}: {
-  options.zaphkiel.graphics.nvidia = {
-    enable = lib.mkEnableOption "nVidia graphics";
-    hybrid = {
-      enable = lib.mkEnableOption "optimus prime";
-      igpu = {
-        vendor = lib.mkOption {
-          type = lib.types.enum ["amd" "intel"];
-          default = "amd";
+  dandelion.modules.nvidia = {
+    pkgs,
+    config,
+    lib,
+    ...
+  }: {
+    options.zaphkiel.graphics.nvidia = {
+      hybrid = {
+        enable = lib.mkEnableOption "optimus prime";
+        igpu = {
+          vendor = lib.mkOption {
+            type = lib.types.enum ["amd" "intel"];
+            default = "amd";
+          };
+          port = lib.mkOption {
+            default = "";
+            description = "Bus Port of igpu";
+          };
         };
-        port = lib.mkOption {
+        dgpu.port = lib.mkOption {
           default = "";
-          description = "Bus Port of igpu";
+          description = "Bus Port of dgpu";
         };
-      };
-      dgpu.port = lib.mkOption {
-        default = "";
-        description = "Bus Port of dgpu";
       };
     };
-  };
 
-  config = let
-    cfg = config.zaphkiel.graphics.nvidia;
-  in
-    lib.mkIf (cfg.enable && config.zaphkiel.graphics.enable) {
+    config = let
+      cfg = config.zaphkiel.graphics.nvidia;
+    in {
       nix.settings = {
         extra-substituters = [
           "https://cuda-maintainers.cachix.org"
@@ -69,4 +68,5 @@
         };
       };
     };
+  };
 }

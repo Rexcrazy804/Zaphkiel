@@ -11,6 +11,7 @@
       self.dandelion.modules.firmware
       self.dandelion.modules.bluetooth
       self.dandelion.modules.network
+      self.dandelion.modules.graphics
     ];
   };
 }

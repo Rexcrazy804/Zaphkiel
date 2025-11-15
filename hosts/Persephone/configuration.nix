@@ -1,7 +1,5 @@
 {config, ...}: {
   zaphkiel = {
-    secrets.tailAuth.file = ../../secrets/secret9.age;
-
     graphics.intel.hwAccelDriver = "media-driver";
 
     programs = {
@@ -13,21 +11,15 @@
         wayland.enable = true;
         ge-proton.enable = true;
       };
-      privoxy = {
-        enable = true;
-        forwards = [
-          # I shouldn't be exposing myself like this
-          {domains = ["www.privoxy.org" ".donmai.us" "rule34.xxx" ".yande.re" "www.zerochan.net" ".kemono.su" "hanime.tv"];}
-        ];
-      };
-      shpool = {
-        enable = true;
-        users = ["rexies"];
-      };
+      privoxy.forwards = [
+        # I shouldn't be exposing myself like this
+        {domains = ["www.privoxy.org" ".donmai.us" "rule34.xxx" ".yande.re" "www.zerochan.net" ".kemono.su" "hanime.tv"];}
+      ];
+      shpool.users = ["rexies"];
     };
 
+    secrets.tailAuth.file = ../../secrets/secret9.age;
     services = {
-      enable = true;
       tailscale = {
         enable = true;
         operator = "rexies";

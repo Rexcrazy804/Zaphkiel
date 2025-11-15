@@ -6,6 +6,7 @@
   dandelion.hosts.Persephone = {
     lib,
     pkgs,
+    config,
     ...
   }: {
     imports = [
@@ -13,18 +14,17 @@
       self.dandelion.hardware.persephone
       self.dandelion.profiles.mangowc
       self.dandelion.profiles.workstation
+      self.dandelion.profiles.gaming
 
       self.dandelion.modules.fingerprint
       self.dandelion.modules.btrfs
       self.dandelion.modules.tpm
       self.dandelion.modules.intel
 
-      self.dandelion.modules.sunshine
       self.dandelion.modules.printing
       self.dandelion.modules.kuruDM
       self.dandelion.modules.kuruDM-mango
       self.dandelion.modules.winboat
-      self.dandelion.modules.hjem-games
     ];
 
     nixpkgs.hostPlatform = "x86_64-linux";
@@ -34,12 +34,29 @@
 
     zaphkiel = {
       graphics.intel.hwAccelDriver = "media-driver";
-
+      # TODO  put data.wallpaper inside matugen and make data.wallpaper an alias
       data.wallpaper = pkgs.fetchurl {
         url = "https://cdn.donmai.us/original/8c/5d/__rubuska_and_corvus_reverse_1999__8c5da40a6b3a247b20327f0c0d71d2b9.jpg";
         hash = "sha256-Gzk5CRaMnu5WJUvg3SUpnS15FdrPvONcN5bBRdxIFtY=";
       };
-      programs.matugen.scheme = "scheme-fidelity";
+      programs = {
+        matugen.scheme = "scheme-fidelity";
+        privoxy.forwards = [
+          # I shouldn't be exposing myself like this
+          {domains = ["www.privoxy.org" ".donmai.us" "rule34.xxx" ".yande.re" "www.zerochan.net" ".kemono.su" "hanime.tv"];}
+        ];
+        shpool.users = ["rexies"];
+      };
+
+      secrets.tailAuth.file = ../../secrets/secret9.age;
+      services = {
+        tailscale = {
+          operator = "rexies";
+          exitNode.enable = false;
+          authFile = config.age.secrets.tailAuth.path;
+        };
+      };
+
       utils.btrfs-snapshots.rexies = [
         {
           subvolume = "Documents";
@@ -80,10 +97,7 @@
 
     users.users."rexies" = {
       packages = lib.attrValues {
-        # wine
-        inherit (pkgs.wineWowPackages) waylandFull;
-        inherit (pkgs.heroic-unwrapped) legendary;
-        inherit (pkgs) bottles winetricks mono umu-launcher;
+        # inherit (pkgs.heroic-unwrapped) legendary;
         # terminal
         inherit (pkgs) foot libsixel;
 

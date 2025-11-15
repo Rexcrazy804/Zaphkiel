@@ -12,6 +12,7 @@
       self.dandelion.modules.bluetooth
       self.dandelion.modules.network
       self.dandelion.modules.graphics
+      self.dandelion.modules.privoxy
     ];
   };
 }

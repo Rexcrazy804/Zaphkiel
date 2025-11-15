@@ -40,20 +40,18 @@
       };
       programs = {
         matugen.scheme = "scheme-fidelity";
+        shpool.users = ["rexies"];
         privoxy.forwards = [
           # I shouldn't be exposing myself like this
           {domains = ["www.privoxy.org" ".donmai.us" "rule34.xxx" ".yande.re" "www.zerochan.net" ".kemono.su" "hanime.tv"];}
         ];
-        shpool.users = ["rexies"];
       };
 
       secrets.tailAuth.file = ../../secrets/secret9.age;
-      services = {
-        tailscale = {
-          operator = "rexies";
-          exitNode.enable = false;
-          authFile = config.age.secrets.tailAuth.path;
-        };
+      services. tailscale = {
+        operator = "rexies";
+        exitNode.enable = false;
+        authFile = config.age.secrets.tailAuth.path;
       };
 
       utils.btrfs-snapshots.rexies = [

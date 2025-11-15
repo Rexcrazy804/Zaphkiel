@@ -1,14 +1,9 @@
 {
-  config,
-  lib,
-  ...
-}: {
-  config = lib.mkIf (!config.zaphkiel.data.headless) {
+  dandelion.modules.boot = {
     boot = {
       loader.systemd-boot.enable = true;
       loader.efi.canTouchEfiVariables = true;
       supportedFilesystems = ["ntfs"];
-
       loader.timeout = 0;
     };
   };

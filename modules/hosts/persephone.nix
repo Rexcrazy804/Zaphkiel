@@ -9,21 +9,20 @@
     ...
   }: {
     imports = [
-      self.dandelion.profiles.mangowc
       self.dandelion.users.rexies
       self.dandelion.hardware.persephone
+      self.dandelion.profiles.mangowc
+      self.dandelion.profiles.workstation
+
       self.dandelion.modules.fingerprint
       self.dandelion.modules.btrfs
-      self.dandelion.modules.sunshine
       self.dandelion.modules.tpm
+
+      self.dandelion.modules.sunshine
       self.dandelion.modules.printing
       self.dandelion.modules.kuruDM
       self.dandelion.modules.kuruDM-mango
       self.dandelion.modules.winboat
-      self.dandelion.modules.keyd
-      self.dandelion.modules.firefox
-      self.dandelion.modules.gnupg
-      self.dandelion.modules.matugen
       self.dandelion.modules.hjem-games
     ];
 

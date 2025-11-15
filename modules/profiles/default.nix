@@ -7,6 +7,10 @@
       self.dandelion.modules.hjem
       self.dandelion.modules.fish
       self.dandelion.modules.nix
+      self.dandelion.modules.matugen
+      self.dandelion.modules.locales
+      self.dandelion.modules.dnscrypt
+      self.dandelion.modules.environment
     ];
   };
 }

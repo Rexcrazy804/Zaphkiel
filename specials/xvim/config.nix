@@ -58,8 +58,8 @@
     };
 
     dev.myconfig = {
-      pure = ../../users/dots/nvim;
-      impure = "/home/rexies/nixos/users/dots/nvim";
+      pure = ../../dots/nvim;
+      impure = "/home/rexies/nixos/dots/nvim";
     };
   };
 }

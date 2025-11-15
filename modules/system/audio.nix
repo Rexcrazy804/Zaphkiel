@@ -1,9 +1,5 @@
 {
-  config,
-  lib,
-  ...
-}: {
-  config = lib.mkIf (!config.zaphkiel.data.headless) {
+  dandelion.modules.audio = {
     services.pulseaudio.enable = false;
     security.rtkit.enable = true;
     services.pipewire = {

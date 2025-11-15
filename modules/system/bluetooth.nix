@@ -1,10 +1,5 @@
 {
-  config,
-  lib,
-  ...
-}: {
-  config = lib.mkIf (!config.zaphkiel.data.headless) {
-    # Bluetooth
+  dandelion.modules.bluetooth = {
     hardware.bluetooth = {
       enable = true;
       powerOnBoot = true;

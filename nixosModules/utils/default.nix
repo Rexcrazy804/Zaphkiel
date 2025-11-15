@@ -1,5 +1,0 @@
-{
-  imports = [
-    ./btrfs-snapshot.nix
-  ];
-}

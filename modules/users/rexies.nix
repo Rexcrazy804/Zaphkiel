@@ -9,8 +9,6 @@
     description = "Rexiel Scarlet";
     sources = self.packages.${pkgs.system}.sources;
   in {
-    imports = [self.dandelion.modules.hjem-impure];
-
     zaphkiel = {
       data.users = [username];
       secrets.rexiesPass = {

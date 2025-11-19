@@ -1,7 +1,7 @@
 # adapted from
 # https://github.com/DreamMaoMao/mangowc/blob/main/nix/default.nix
 {
-  sources ? import ../../npins,
+  sources,
   lib,
   libX11,
   libinput,

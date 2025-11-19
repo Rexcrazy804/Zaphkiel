@@ -1,4 +1,3 @@
-# the cow knows everything
 {
   writers,
   qt6,

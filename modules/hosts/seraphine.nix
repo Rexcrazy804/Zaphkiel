@@ -1,0 +1,109 @@
+{self, ...}: {
+  dandelion.hosts.Seraphine = {
+    pkgs,
+    config,
+    lib,
+    ...
+  }: {
+    imports = [
+      self.dandelion.users.rexies
+
+      self.dandelion.profiles.default
+      self.dandelion.profiles.mangowc
+      self.dandelion.profiles.workstation
+
+      self.dandelion.modules.intel
+      self.dandelion.modules.cups
+      self.dandelion.modules.caddy
+      self.dandelion.modules.jellyfin
+      self.dandelion.modules.greetd-autostart
+    ];
+
+    # info
+    system.stateVersion = "24.05";
+    networking.hostName = "Seraphine";
+    time.timeZone = "Asia/Dubai";
+    nixpkgs.hostPlatform = "x86_64-linux";
+
+    # zaphkiel opts
+    zaphkiel = {
+      secrets = {
+        tailAuth.file = ../../secrets/secret5.age;
+        caddyEnv.file = ../../secrets/secret10.age;
+      };
+      programs = {
+        privoxy.forwards = [{domains = [".donmai.us" ".yande.re" "www.zerochan.net"];}];
+        shpool.users = ["rexies"];
+      };
+      graphics.intel.hwAccelDriver = "media-driver";
+      services = {
+        caddy = {
+          secretsFile = config.age.secrets.caddyEnv.path;
+          tsplugin.enable = true;
+        };
+        tailscale = {
+          operator = "rexies";
+          authFile = config.age.secrets.tailAuth.path;
+        };
+      };
+    };
+
+    # user stuff
+    users.users."rexies".packages = [self.packages.${pkgs.system}.mpv-wrapped];
+    zaphkiel.data.wallpaper = pkgs.fetchurl {
+      url = "https://cdn.donmai.us/original/e6/cb/__lumine_and_noelle_genshin_impact_drawn_by_chigalidepoi__e6cb4bdb2a28017256fd6980eb1cc51b.jpg";
+      hash = "sha256-3XFnzhlBKr2PURGxDWtdOCfXv0ItH/nquxosBZLlm0Y=";
+    };
+    hjem.users."rexies".xdg.config.files = {
+      "mango/config.conf".text = let
+        # override scaling for seraphine
+        from = ["monitorrule=eDP-1,0.55,1,tile,0,1.25,0,0,1920,1080,60"];
+        to = ["monitorrule=eDP-1,0.55,1,tile,0,1,0,0,1920,1080,60"];
+      in
+        lib.mkForce (builtins.replaceStrings from to (builtins.readFile ../../dots/mango/config.conf));
+    };
+
+    # hardware
+    boot.kernelParams = ["i915.enable_guc=2"];
+    boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
+
+    # probably not required, but leaving it in for now
+    services.fstrim.enable = true;
+    # disabled autosuspend
+    services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
+    # temporarily setting it for Seraphine only
+    networking.networkmanager.wifi.backend = "iwd";
+    # Resolves wifi connectivity issues on Seraphine
+    boot.extraModprobeConfig = "options iwlwifi 11n_disable=1";
+
+    fileSystems = {
+      "/" = {
+        device = "/dev/disk/by-uuid/cd29f1f1-5adc-41dd-b13a-2ec03704fb9f";
+        fsType = "ext4";
+        options = ["discard"];
+      };
+      "/boot" = {
+        device = "/dev/disk/by-uuid/9972-2440";
+        fsType = "vfat";
+        options = ["fmask=0077" "dmask=0077"];
+      };
+    };
+
+    swapDevices = [
+      {device = "/dev/disk/by-uuid/abf01339-e9eb-4179-b5ef-91ef6f35af24";}
+    ];
+
+    # TODO same as with persephone
+    # forward dns onto the tailnet
+    networking.firewall.allowedTCPPorts = [53];
+    networking.firewall.allowedUDPPorts = [53];
+    services.dnscrypt-proxy.settings = {
+      listen_addresses = [
+        "100.112.116.17:53"
+        "[fd7a:115c:a1e0::eb01:7412]:53"
+        "127.0.0.1:53"
+        "[::1]:53"
+      ];
+    };
+  };
+}

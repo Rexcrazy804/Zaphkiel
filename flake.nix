@@ -1,6 +1,16 @@
 {
   description = "Rexiel Scarlet's Flake";
 
+  # I might have just made reading my flake a hellscape
+  # Presenting, the *Dandelion* setup
+  outputs = {...} @ inputs: let
+    dandelion = import ./dandelion.nix inputs;
+    inherit (dandelion) importModules recursiveImport;
+  in
+    importModules [
+      (recursiveImport ./modules)
+    ];
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     systems.url = "github:nix-systems/x86_64-linux";
@@ -38,28 +48,5 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
     };
-  };
-
-  outputs = {
-    self,
-    nixpkgs,
-    systems,
-    ...
-  } @ inputs: let
-    inherit (nixpkgs) lib;
-
-    pkgsFor = lib.getAttrs (import systems) nixpkgs.legacyPackages;
-    sources = import ./npins;
-    moduleArgs = {inherit inputs self sources lib;};
-
-    eachSystem = fn: lib.mapAttrs (system: pkgs: fn {inherit system pkgs;}) pkgsFor;
-    callModule = path: attrs: import path (moduleArgs // attrs);
-  in {
-    formatter = eachSystem ({system, ...}: self.packages.${system}.irminsul);
-    packages = eachSystem (attrs: callModule ./pkgs attrs);
-    devShells = eachSystem (attrs: callModule ./devShells attrs);
-    nixosConfigurations = callModule ./hosts {};
-    templates = callModule ./templates {};
-    nixosModules = callModule ./nixosModules/exported {};
   };
 }

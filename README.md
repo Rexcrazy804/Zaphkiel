@@ -5,99 +5,33 @@ https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 - Wallpaper: [The Herta by meirong][wallpaper]
 - [Installation Guide][install guide]
 
-## Overview
+## Summary
 
 | Component | Software | Configuration |
 | --------- | -------- | ------------- |
-|KuruKuruBar|[Quickshell]|[`users/dots/quickshell/kurukurubar`][kurudots]|
-|Compositor|~[Hyprland]~ [MangoWC]|~[`users/dots/hyprland/`][hyprdots]~ [`users/dots/mango`][mangodots]|
-|Launcher|[Fuzzel]|[`users/dots/fuzzel`][fuzldots]|
+|KuruKuruBar|[Quickshell]|[`dots/quickshell/kurukurubar`][kurudots]|
+|Compositor|~[Hyprland]~ [MangoWC]|~[`dots/hyprland/`][hyprdots]~ [`dots/mango`][mangodots]|
+|Launcher|[Fuzzel]|[`dots/fuzzel`][fuzldots]|
 |Colors|[Matugen]|[`nixosModules/external/matugen/templates/`][mtgndots]|
-|Terminal|[foot]|[`users/dots/foot/foot.ini`][footdots]|
-|Editor|[Neovim]|[`users/dots/nvim/`][nvimdots]|
-|Wallpapers|[booru-hs]|[`users/dots/booru/preview.md`][booru images]|
+|Terminal|[foot]|[`dots/foot/foot.ini`][footdots]|
+|Editor|[Neovim]|[`dots/nvim/`][nvimdots]|
+|Wallpapers|[booru-hs]|[`dots/booru/preview.md`][booru images]|
 |Cursor|[Kokomi Cursor][kokcursor]| nil / really long random text to make this table very wide yes looks like I|
 
 - [hjem] + [hjem-impure] over home manager
+- last revision where Zaphkiel was a normal flake
+  [1164182e][pre-dandelion-rev]
 - last revision where Zaphkiel was an npins based config
   [fc91df912][npins-rev]
 - ~~Last revision where Zaphkiel was flake based~~ pre-npins flake config
   [0eee46d1e][flake-rev]
 
-## Exported packages
+## What in the nix is going on here?
 
-The following packages are exported by this flake:
-
-| package | description |
-| ------- | ----------- |
-| kurukurubar | adorable bar to spin the kuru kuru |
-| kokCursor | A cute kokomi XCursor |
-| xvim | My neovim configuration using [mnw] provides `.default` and `.minimal`|
-| mpv | My mpv configuration with [anime4k] shaders baked in |
-| librebarcode | The [librebarcode] font |
-
-you may run any of the above with the following command (ofc you can't run a
-cursor, `nix build` it instead) replacing `nixvim` with your desired package
-
-```bash
-nix run github:Rexcrazy804/Zaphkiel#nixvim
-```
-
-For more information on both see the [pkgs/default.nix](pkgs/default.nix)
-
-</details>
-
-## Exported modules
-
-Well there is only one module that is exported rn,
-and that is *DRUM ROLL* kurukuruDM!!!
-now available as `nixosModules.kurukuruDM` :D
-
-## Structure overview
-
-```
-hosts/                  # starting point for host specific configuration
-- <hostname>/           # divided into three files for seperation
-- - extras/             # things I am lazy to seperate into a module just yet
-
-nixosModules/           # common options and defaults shared across all hosts
-- exported/             # modules exported by toplevel default.nix (and flake.nix)
-- external/             # used for hosting modified nixos modules that aren't written by me
-- graphics/             # novideo and friends
-- nix/                  # my beloved
-- programs/             # options wraping other nixos options for programs
-- server/               # same as above but for services
-- system/               # largely defaults
-- - networking/         # networking setup with dnscrypt-proxy2
-
-npins/                  # npins for pinning non flake stuff
-
-pkgs/                   # exported packages are found here
-- irminsul/             # basically tree sitter built with a makefile
-- mpv/                  # mpv wrapper with anime4k
-- nvim/                 # configures mnw wrapper and deps for nvim
-- overlays/             # overlays (duh)
-- scripts/              # cute scripts to do various things
-
-secrets/                # home to my age encrypted secrets
-templates/              # reusable flake and non flake templates for various nix errands
-
-users/                  # user specific configuration imported by hosts hosting said user
-- dots/                 # ricers, this is the .config/ folder you might be looking for
-- - <program>/          # doots
-- - hyprland/           # might niri, too lazy for now, hyprland
-- - nvim/               # nvim configuration
-- - quickshell/         # god bless foxxed for creating this lovely thing
-- - - kurukurubar/      # adorable bar for kuru kuru maxxing
-- - - kurumibar/        # my first now unmainted rectangle bar
-- - - shell.nix         # devshell for qml development with quickshell
-- rexies.nix            # my user, leverages hjem the most
-- <others>.nix          # other users
-
-README.md               # are you reading me yet?
-flake.nix               # flakes this flake that, how about you flake-
-license                 # MIT License
-```
+The flake impliments the [dandruff pattern], without flake-parts.
+Should you try it? If you like your sanity, please don't.
+The functions that set this up are plagued with foot guns,
+which will be unpleasant to most people.
 
 ## Acknowledgement
 
@@ -109,6 +43,10 @@ I wouldn't have heard of `pkgs.symlinkJoin` :D
 I also extend my gratitude to [NotAShelf]
 for developing the hjem nixos module. And also for his welcome criticism
 on some of the dumb nix code I've written.
+
+After two months of being on a normal, sane, nixos configuration,
+I have switched to the dandelion pattern (no I won't be spelling it correctly)
+largely due to [argosnothing] shilling [jet]'s nixos configuration a great deal.
 
 ### Quickshell
 
@@ -125,35 +63,36 @@ on some of the dumb nix code I've written.
 All code in this repository is under the MIT license
 except wherever an explicit licensing is included.
 
-[anime4k]: https://github.com/bloc97/Anime4K
-[booru images]: users/dots/booru/preview.md
+[argosnothing]: https://github.com/argosnothing
+[booru images]: dots/booru/preview.md
 [booru-hs]: https://github.com/Rexcrazy804/booru.hs
+[dandruff pattern]: https://github.com/Michael-C-Buckley/nixos/blob/cfb8cfa3ee815cbb216cc3b9361373be4837a126/documentation/intent.md#dendritic-nix
 [enddots]: https://github.com/end-4/dots-hyprland/tree/ii-qs/.config/quickshell
 [flake-rev]: https://github.com/Rexcrazy804/Zaphkiel/tree/0eee46d1e5d98c3b94d39795b73a39270fc61ad7
 [foot]: https://codeberg.org/dnkl/foot
-[footdots]: users/dots/foot/foot.ini
-[fuzldots]: users/dots/fuzzel
+[footdots]: dots/foot/foot.ini
+[fuzldots]: dots/fuzzel
 [fuzzel]: https://codeberg.org/dnkl/fuzzel
 [hjem]: https://github.com/feel-co/hjem
 [hjem-impure]: https://github.com/Rexcrazy804/hjem-impure
-[hyprdots]: users/dots/hyprland/
+[hyprdots]: dots/hyprland/
 [hyprland]: https://hyprland.org/
-[install guide]: users/dots/quickshell/kurukurubar/README.md
+[install guide]: dots/quickshell/kurukurubar/README.md
+[jet]: https://github.com/Michael-C-Buckley
 [kokcursor]: https://www.pling.com/p/2167734/
-[kurudots]: users/dots/quickshell/kurukurubar
-[librebarcode]: https://graphicore.github.io/librebarcode/
-[mangodots]: users/dots/mango/
+[kurudots]: dots/quickshell/kurukurubar
+[mangodots]: dots/mango/
 [mangowc]: https://github.com/DreamMaoMao/mangowc
 [matugen]: https://github.com/InioX/matugen
-[mnw]: https://github.com/Gerg-L/mnw
-[mtgndots]: users/dots/matugen/templates/
+[mtgndots]: dots/matugen/templates/
 [neovim]: https://neovim.io/
 [nixnew]: https://git.outfoxxed.me/outfoxxed/nixnew/src/branch/master/modules/user/modules/quickshell
 [notashelf]: https://github.com/NotAShelf
 [npins-rev]: https://github.com/Rexcrazy804/Zaphkiel/tree/fc91df912fd8811ab33456b1f13a33bbe216b36b
-[nvimdots]: users/dots/nvim/
+[nvimdots]: dots/nvim/
 [nysh]: https://github.com/nydragon/nysh
 [pikabar]: https://git.pika-os.com/wm-packages/pikabar/src/branch/main/pikabar/usr/share/pikabar
+[pre-dandelion-rev]: https://github.com/Rexcrazy804/Zaphkiel/tree/1164182e9abc5dccdd9945e9367ee5eba38b31cb
 [quickshell]: https://quickshell.outfoxxed.me/
 [rainingkuru]: https://github.com/soramanew/rainingkuru
 [sioodmy]: https://github.com/sioodmy

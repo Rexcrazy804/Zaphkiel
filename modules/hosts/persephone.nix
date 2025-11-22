@@ -150,18 +150,5 @@
       };
     };
     swapDevices = [{device = "/dev/disk/by-uuid/d329feee-a8a6-48f4-afb2-3375adff50a3";}];
-
-    # TODO store tailscale ipv6 and ipv4 in tailscale module
-    # forward dns onto the tailnet
-    networking.firewall.allowedTCPPorts = [53];
-    networking.firewall.allowedUDPPorts = [53];
-    services.dnscrypt-proxy.settings = {
-      listen_addresses = [
-        "100.110.70.18:53"
-        "[fd7a:115c:a1e0::6a01:4614]:53"
-        "127.0.0.1:53"
-        "[::1]:53"
-      ];
-    };
   };
 }

@@ -90,18 +90,5 @@
     swapDevices = [
       {device = "/dev/disk/by-uuid/abf01339-e9eb-4179-b5ef-91ef6f35af24";}
     ];
-
-    # TODO same as with persephone
-    # forward dns onto the tailnet
-    networking.firewall.allowedTCPPorts = [53];
-    networking.firewall.allowedUDPPorts = [53];
-    services.dnscrypt-proxy.settings = {
-      listen_addresses = [
-        "100.112.116.17:53"
-        "[fd7a:115c:a1e0::eb01:7412]:53"
-        "127.0.0.1:53"
-        "[::1]:53"
-      ];
-    };
   };
 }

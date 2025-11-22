@@ -13,7 +13,7 @@
   material-symbols,
   makeFontsConf,
   nerd-fonts,
-  configPath ? ../users/dots/quickshell/kurukurubar,
+  configPath ? ../dots/quickshell/kurukurubar,
   asGreeter ? false,
   # a json file
   customColors ? null,

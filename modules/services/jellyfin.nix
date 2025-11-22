@@ -1,5 +1,5 @@
 # TODO modularize this further
-{
+{self, ...}: {
   dandelion.modules.jellyfin = {
     pkgs,
     lib,
@@ -104,7 +104,7 @@
 
       # Transmission configuration
       age.secrets.transJson = {
-        file = ../../secrets/secret6.age;
+        file = self.paths.secrets + /secret6.age;
         name = "settings.json";
         owner = "transmission";
         group = "users";

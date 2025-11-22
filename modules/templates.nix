@@ -1,3 +1,3 @@
-{
-  templates = import ../../templates;
+{self, ...}: {
+  templates = import self.paths.templates;
 }

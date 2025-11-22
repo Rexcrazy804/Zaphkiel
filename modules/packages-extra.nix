@@ -8,7 +8,7 @@
     pkgs,
     system,
   }: {
-    xvim = pkgs.callPackage ../specials/xvim {
+    xvim = pkgs.callPackage (self.paths.specials + /xvim) {
       inherit (self.packages.${system}) sources;
       mnw = mnw.lib;
     };

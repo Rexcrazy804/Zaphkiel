@@ -24,7 +24,7 @@
         url = "https://cdn.donmai.us/original/8c/5d/__rubuska_and_corvus_reverse_1999__8c5da40a6b3a247b20327f0c0d71d2b9.jpg";
         hash = "sha256-Gzk5CRaMnu5WJUvg3SUpnS15FdrPvONcN5bBRdxIFtY=";
       };
-      secrets.tailAuth.file = ../../secrets/secret8.age;
+      secrets.tailAuth.file = self.paths.secrets + /secret8.age;
       services.tailscale = {
         exitNode.enable = true;
         exitNode.networkDevice = "ens18";

@@ -49,7 +49,7 @@
         ];
       };
 
-      secrets.tailAuth.file = ../../secrets/secret9.age;
+      secrets.tailAuth.file = self.paths.secrets + /secret9.age;
       services. tailscale = {
         operator = "rexies";
         exitNode.enable = false;

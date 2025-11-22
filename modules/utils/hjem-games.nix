@@ -1,5 +1,5 @@
-{
+{self, ...}: {
   dandelion.modules.hjem-games = {
-    hjem.extraModules = [../../specials/hjemGames.nix];
+    hjem.extraModules = [(self.paths.specials + /hjemGames.nix)];
   };
 }

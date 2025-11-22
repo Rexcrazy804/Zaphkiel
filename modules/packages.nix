@@ -12,6 +12,6 @@ in {
     filesystem.packagesFromDirectoryRecursive {
       inherit (pkgs) newScope;
       callPackage = callPackageWith (pkgs // self.packages.${system});
-      directory = ../pkgs;
+      directory = self.paths.pkgs;
     });
 }

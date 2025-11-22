@@ -12,7 +12,7 @@
     zaphkiel = {
       data.users = [username];
       secrets.rexiesPass = {
-        file = ../../secrets/secret1.age;
+        file = self.paths.secrets + /secret1.age;
         owner = username;
       };
     };
@@ -53,7 +53,7 @@
 
       impure = {
         enable = true;
-        dotsDir = "${../../dots}";
+        dotsDir = "${self.paths.dots}";
         dotsDirImpure = "/home/rexies/nixos/dots";
         # skips parsing hjem.users.<>.files
         parseAttrs = [

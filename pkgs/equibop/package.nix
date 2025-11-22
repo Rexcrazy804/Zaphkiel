@@ -13,19 +13,18 @@
   autoPatchelfHook,
   bun,
   nodejs,
-  nix-update-script,
   withTTS ? true,
   withMiddleClickScroll ? false,
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "equibop";
-  version = "3.1.0";
+  version = "3.1.3";
 
   src = fetchFromGitHub {
     owner = "Equicord";
     repo = "Equibop";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-VWDbGe0IItINSka0WhwDOhAwcuJa49a035FPX5CtKJY=";
+    hash = "sha256-nHCVgZx6qQhtAAyjsRftrnGTO/0saYfbHfR6wmtD0rE=";
   };
 
   postPatch = ''
@@ -59,8 +58,12 @@ stdenv.mkDerivation (finalAttrs: {
     (lib.getLib stdenv.cc.cc)
   ];
 
-  preBuild = ''
+  configurePhase = ''
+    runHook preConfigure
+
     cp -R ${finalAttrs.node-modules} node_modules
+
+    runHook postConfigure
   '';
 
   buildPhase = ''
@@ -129,12 +132,13 @@ stdenv.mkDerivation (finalAttrs: {
 
   passthru = {
     inherit (finalAttrs) node-modules;
-    updateScript = nix-update-script {
-      extraArgs = [
-        "--subpackage"
-        "node-modules"
-      ];
-    };
+    # fails to update node-modules FOD :/
+    # updateScript = nix-update-script {
+    #   extraArgs = [
+    #     "--subpackage"
+    #     "node-modules"
+    #   ];
+    # };
   };
 
   meta = {

@@ -9,7 +9,7 @@
 }:
 stdenvNoCC.mkDerivation {
   inherit (equibop) version src;
-  name = equibop.pname + "-modules";
+  pname = equibop.pname + "-modules";
 
   impureEnvVars =
     lib.fetchers.proxyImpureEnvVars
@@ -50,7 +50,7 @@ stdenvNoCC.mkDerivation {
     runHook postInstall
   '';
 
-  outputHash = "sha256-DhwojLP6xbk6d7lIyfzkMamTN7e7tLZAh8jqA8aYy0Q=";
+  outputHash = "sha256-xRX83RyI6E5F6K70UiACRH1vJaLc17Gy9I/xtF/DaN0=";
   outputHashAlgo = "sha256";
   outputHashMode = "recursive";
 }

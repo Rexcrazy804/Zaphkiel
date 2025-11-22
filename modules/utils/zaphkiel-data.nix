@@ -21,8 +21,8 @@
         readOnly = true;
         default = lib.fix (self: {
           Persephone = {
-            ipv4 = "100.110.70.18";
-            ipv6 = "fd7a:115c:a1e0::6a01:4614";
+            ipv4 = "100.65.1.15";
+            ipv6 = "fd7a:115c:a1e0::f932:10f";
           };
           Aphrodite = {
             ipv4 = "100.121.86.4";

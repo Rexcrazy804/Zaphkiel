@@ -2,16 +2,22 @@
   dandelion.modules.dnscrypt = {
     lib,
     pkgs,
+    config,
     ...
   }: {
-    # don't resolve dns over dhcpd or networkmanager
     networking = {
+      # don't resolve dns over dhcpd or networkmanager
       dhcpcd.extraConfig = "nohook resolv.conf";
       networkmanager.dns = lib.mkForce "none";
       nameservers = [
         "::1"
         "127.0.0.1"
       ];
+      # forward dns onto tailnet
+      firewall.interfaces."tailscale0" = {
+        allowedTCPPorts = [53];
+        allowedUDPPorts = [53];
+      };
     };
 
     services.dnscrypt-proxy = {
@@ -42,9 +48,13 @@
           vortex fd7a:115c:a1e0::5801:637
         '';
 
-        listen_addresses = [
+        listen_addresses = let
+          tsIP = config.zaphkiel.data.tailscale.self;
+        in [
           "127.0.0.1:53"
           "[::1]:53"
+          "${tsIP.ipv4}:53"
+          "[${tsIP.ipv6}]:53"
         ];
 
         sources.public-resolvers = {

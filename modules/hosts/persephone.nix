@@ -35,11 +35,7 @@
     # zaphkiel opts
     zaphkiel = {
       graphics.intel.hwAccelDriver = "media-driver";
-      # TODO  put data.wallpaper inside matugen and make data.wallpaper an alias
-      data.wallpaper = pkgs.fetchurl {
-        url = "https://cdn.donmai.us/original/8c/5d/__rubuska_and_corvus_reverse_1999__8c5da40a6b3a247b20327f0c0d71d2b9.jpg";
-        hash = "sha256-Gzk5CRaMnu5WJUvg3SUpnS15FdrPvONcN5bBRdxIFtY=";
-      };
+      data.wallpaper = self.packages.${pkgs.system}.images.corvus;
       programs = {
         matugen.scheme = "scheme-fidelity";
         shpool.users = ["rexies"];
@@ -82,18 +78,7 @@
     };
 
     hjem.users.rexies = {
-      files.".face.icon".source = pkgs.stdenvNoCC.mkDerivation {
-        name = "face.jpg";
-        nativeBuildInputs = [pkgs.imagemagick];
-        src = pkgs.fetchurl {
-          url = "https://cdn.donmai.us/original/e9/c3/e9c3dbb346bb4ea181c2ae8680551585.jpg";
-          hash = "sha256-0RKzzRxW1mtqHutt+9aKzkC5KijIiVLQqW5IRFI/IWY=";
-        };
-        dontUnpack = true;
-        installPhase = "
-          magick $src -crop 640x640+2300+1580 $out
-        ";
-      };
+      files.".face.icon".source = self.packages.${pkgs.system}.images.voyager-profile;
       games = {
         enable = true;
         entries = [

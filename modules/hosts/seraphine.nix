@@ -27,6 +27,7 @@
 
     # zaphkiel opts
     zaphkiel = {
+      data.wallpaper = self.packages.${pkgs.system}.images.corvus;
       secrets = {
         tailAuth.file = self.paths.secrets + /secret5.age;
         caddyEnv.file = self.paths.secrets + /secret10.age;
@@ -50,10 +51,6 @@
 
     # user stuff
     users.users."rexies".packages = [self.packages.${pkgs.system}.mpv-wrapped];
-    zaphkiel.data.wallpaper = pkgs.fetchurl {
-      url = "https://cdn.donmai.us/original/e6/cb/__lumine_and_noelle_genshin_impact_drawn_by_chigalidepoi__e6cb4bdb2a28017256fd6980eb1cc51b.jpg";
-      hash = "sha256-3XFnzhlBKr2PURGxDWtdOCfXv0ItH/nquxosBZLlm0Y=";
-    };
     # TODO separate hardware specific configurations
     hjem.users."rexies".xdg.config.files = {
       "mango/config.conf".text = let

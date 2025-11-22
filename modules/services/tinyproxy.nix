@@ -1,15 +1,16 @@
 {
-  dandelion.modules.tinyproxy = {
+  dandelion.modules.tinyproxy = {config, ...}: let
+    tsIPs = config.zaphkiel.data.tailscale;
+  in {
     services.tinyproxy = {
       enable = true;
       settings = {
         Port = 8888;
-        # TODO fix this with by configuring listen port as self tailscale port
-        Listen = "100.121.86.4";
+        Listen = tsIPs.self.ipv4;
         Timeout = 600;
         Allow = [
-          "100.112.116.17" # Seraphine
-          "100.65.1.15" # Persephone (New)
+          tsIPs.Seraphine.ipv4
+          tsIPs.Persephone.ipv4
         ];
       };
     };

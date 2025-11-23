@@ -32,6 +32,8 @@ stdenv.mkDerivation {
 
   src = sources.mangowc;
 
+  patches = [./transparent-wlr-session-lock.patch];
+
   nativeBuildInputs = [
     meson
     ninja

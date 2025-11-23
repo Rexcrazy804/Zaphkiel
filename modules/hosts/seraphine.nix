@@ -16,7 +16,7 @@
       self.dandelion.modules.cups
       self.dandelion.modules.caddy
       self.dandelion.modules.jellyfin
-      self.dandelion.modules.greetd-autostart
+      self.dandelion.modules.getty-autostart
     ];
 
     # info

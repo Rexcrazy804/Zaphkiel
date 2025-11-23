@@ -88,6 +88,7 @@ in {
     "fuzzel/fuzzel.ini" = "/fuzzel/fuzzel.ini";
     "foot/foot.ini" = "/foot/foot.ini";
     "foot/rose-pine.ini" = {sources, ...}: sources.rosep-foot + "/rose-pine";
+    "hypr/hypridle.conf" = "/hyprland/hypridle.conf";
   };
 
   dandelion.dots.rexies-mango = mkDotsModule username {
@@ -97,7 +98,6 @@ in {
   };
 
   dandelion.dots.rexies-hyprland = mkDotsModule username {
-    "hypr/hypridle.conf" = "/hyprland/hypridle.conf";
     "hypr/hyprland.conf" = "/hyprland/hyprland.conf";
   };
 }

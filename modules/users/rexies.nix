@@ -1,14 +1,13 @@
-{self, ...}: {
+{self, ...}: let
+  inherit (self.lib) mkDotsModule;
+  username = "rexies";
+in {
   dandelion.users.rexies = {
     pkgs,
     config,
     lib,
     ...
-  }: let
-    username = "rexies";
-    description = "Rexiel Scarlet";
-    sources = self.packages.${pkgs.system}.sources;
-  in {
+  }: {
     zaphkiel = {
       data.users = [username];
       secrets.rexiesPass = {
@@ -18,8 +17,7 @@
     };
 
     users.users.${username} = {
-      inherit description;
-
+      description = "Rexiel Scarlet";
       shell = pkgs.fish;
       isNormalUser = true;
       extraGroups = ["networkmanager" "wheel" "multimedia"];
@@ -44,7 +42,6 @@
       ];
     };
 
-    # hjem
     hjem.users.${username} = {
       enable = true;
       user = username;
@@ -61,43 +58,46 @@
           config.hjem.users.${username}.xdg.state.files
         ];
       };
-
-      xdg.config.files = let
-        dots = config.hjem.users.${username}.impure.dotsDir;
-      in {
-        # terminal
-        "git/config".source = dots + "/git/config";
-        "fish/themes".source = sources.rosep-fish + "/themes";
-        "fish/config.fish".source = dots + "/fish/config.fish";
-        # NOTE: required bat cache --build before theme can be used
-        "bat/config".source = dots + "/bat/config";
-        "bat/themes".source = sources.catp-bat + "/themes";
-        "shpool/config.toml".source = dots + "/shpool/config.toml";
-        "yazi/yazi.toml".source = dots + "/yazi/yazi.toml";
-        "yazi/keymap.toml".source = dots + "/yazi/keymap.toml";
-        "booru/config.toml".source = dots + "/booru/config.toml";
-
-        # uwsm
-        "uwsm/env".source = dots + "/uwsm/env";
-
-        # mango
-        "mango/config.conf".source = dots + "/mango/config.conf";
-        "mango/hardware.conf".source = dots + "/mango/${lib.toLower config.networking.hostName}.conf";
-        "mango/autostart.sh".source = dots + "/mango/autostart.sh";
-
-        # hyprland
-        "hypr/hypridle.conf".source = dots + "/hyprland/hypridle.conf";
-        "hypr/hyprland.conf".source = dots + "/hyprland/hyprland.conf";
-
-        # environment
-        "qt6ct/qt6ct.conf".source = dots + "/qt6ct/qt6ct.conf";
-        "background".source = config.zaphkiel.data.wallpaper;
-        "matugen/config.toml".source = dots + "/matugen/config.toml";
-        "matugen/templates".source = dots + "/matugen/templates";
-        "fuzzel/fuzzel.ini".source = dots + "/fuzzel/fuzzel.ini";
-        "foot/foot.ini".source = dots + "/foot/foot.ini";
-        "foot/rose-pine.ini".source = sources.rosep-foot + "/rose-pine";
-      };
     };
+  };
+
+  # being able to nix freely
+  # I have spawned horrors upon this world
+  # nix beginners, I am sorry
+
+  dandelion.dots.rexies-cli = mkDotsModule username {
+    # terminal
+    "git/config" = "/git/config";
+    "fish/themes" = {sources, ...}: sources.rosep-fish + "/themes";
+    "fish/config.fish" = "/fish/config.fish";
+    # NOTE: required bat cache --build before theme can be used
+    "bat/config" = "/bat/config";
+    "bat/themes" = {sources, ...}: sources.catp-bat + "/themes";
+    "shpool/config.toml" = "/shpool/config.toml";
+    "yazi/yazi.toml" = "/yazi/yazi.toml";
+    "yazi/keymap.toml" = "/yazi/keymap.toml";
+    "booru/config.toml" = "/booru/config.toml";
+  };
+
+  dandelion.dots.rexies-gui = mkDotsModule username {
+    "uwsm/env" = "/uwsm/env";
+    "qt6ct/qt6ct.conf" = "/qt6ct/qt6ct.conf";
+    "background" = {config, ...}: config.zaphkiel.data.wallpaper;
+    "matugen/config.toml" = "/matugen/config.toml";
+    "matugen/templates" = "/matugen/templates";
+    "fuzzel/fuzzel.ini" = "/fuzzel/fuzzel.ini";
+    "foot/foot.ini" = "/foot/foot.ini";
+    "foot/rose-pine.ini" = {sources, ...}: sources.rosep-foot + "/rose-pine";
+  };
+
+  dandelion.dots.rexies-mango = mkDotsModule username {
+    "mango/config.conf" = "/mango/config.conf";
+    "mango/autostart.sh" = "/mango/autostart.sh";
+    "mango/hardware.conf" = d: d.dots + "/mango/${d.lib.toLower d.config.networking.hostName}.conf";
+  };
+
+  dandelion.dots.rexies-hyprland = mkDotsModule username {
+    "hypr/hypridle.conf" = "/hyprland/hypridle.conf";
+    "hypr/hyprland.conf" = "/hyprland/hyprland.conf";
   };
 }

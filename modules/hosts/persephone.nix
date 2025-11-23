@@ -19,8 +19,7 @@
       self.dandelion.modules.intel
 
       self.dandelion.modules.printing
-      self.dandelion.modules.kuruDM
-      self.dandelion.modules.kuruDM-mango
+      self.dandelion.modules.getty-autostart
       self.dandelion.modules.winboat
       self.dandelion.modules.booru-hs
       self.dandelion.modules.powertop

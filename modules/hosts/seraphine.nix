@@ -2,7 +2,6 @@
   dandelion.hosts.Seraphine = {
     pkgs,
     config,
-    lib,
     ...
   }: {
     imports = [
@@ -51,15 +50,6 @@
 
     # user stuff
     users.users."rexies".packages = [self.packages.${pkgs.system}.mpv-wrapped];
-    # TODO separate hardware specific configurations
-    hjem.users."rexies".xdg.config.files = {
-      "mango/config.conf".text = let
-        # override scaling for seraphine
-        from = ["monitorrule=eDP-1,0.55,1,tile,0,1.25,0,0,1920,1080,60"];
-        to = ["monitorrule=eDP-1,0.55,1,tile,0,1,0,0,1920,1080,60"];
-      in
-        lib.mkForce (builtins.replaceStrings from to (builtins.readFile (self.paths.dots + /mango/config.conf)));
-    };
 
     # hardware
     boot.kernelParams = ["i915.enable_guc=2"];

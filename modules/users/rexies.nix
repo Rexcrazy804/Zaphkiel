@@ -82,6 +82,7 @@
 
         # mango
         "mango/config.conf".source = dots + "/mango/config.conf";
+        "mango/hardware.conf".source = dots + "/mango/${lib.toLower config.networking.hostName}.conf";
         "mango/autostart.sh".source = dots + "/mango/autostart.sh";
 
         # hyprland

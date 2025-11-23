@@ -4,7 +4,10 @@
     lib,
     ...
   }: {
-    services.getty.autologinUser = "rexies";
+    services.getty = {
+      autologinUser = "rexies";
+      autologinOnce = true;
+    };
     programs.fish.loginShellInit =
       lib.mkIf config.programs.uwsm.enable
       ''

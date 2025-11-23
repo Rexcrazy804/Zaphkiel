@@ -6,6 +6,9 @@
   }: {
     imports = [
       self.dandelion.users.rexies
+      self.dandelion.dots.rexies-cli
+      self.dandelion.dots.rexies-gui
+      self.dandelion.dots.rexies-mango
 
       self.dandelion.profiles.default
       self.dandelion.profiles.mangowc

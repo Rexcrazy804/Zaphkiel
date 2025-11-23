@@ -7,7 +7,10 @@
   }: {
     imports = [
       self.dandelion.users.rexies
+      self.dandelion.dots.rexies-cli
+
       self.dandelion.profiles.default
+
       self.dandelion.modules.qemu-guest
       self.dandelion.modules.tinyproxy
       self.dandelion.modules.fail2ban

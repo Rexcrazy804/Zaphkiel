@@ -37,9 +37,9 @@
     # zaphkiel opts
     zaphkiel = {
       graphics.intel.hwAccelDriver = "media-driver";
-      data.wallpaper = self.packages.${pkgs.system}.images.kokomi;
+      data.wallpaper = self.packages.${pkgs.system}.images.corvus;
       programs = {
-        matugen.scheme = "scheme-tonal-spot";
+        matugen.scheme = "scheme-fidelity";
         shpool.users = ["rexies"];
         privoxy.forwards = [
           # I shouldn't be exposing myself like this

@@ -12,7 +12,7 @@
       inherit (pkgs.uwsm) pname version;
       paths = [pkgs.uwsm];
       postBuild = ''
-        ln -sf ${self.paths.specials + /mango-plugin.sh} $out/share/uwsm/plugins/mango.sh
+        ln -sf ${self.packages.${pkgs.system}.mangowc.uwsm-plugin} $out/share/uwsm/plugins/mango.sh
       '';
 
       meta = pkgs.uwsm.meta // {outputsToInstall = ["out"];};

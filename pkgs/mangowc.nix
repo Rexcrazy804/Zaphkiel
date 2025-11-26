@@ -68,7 +68,7 @@ in
     '';
 
     passthru = {
-      inherit (mango.passthru) providedSessions;
+      inherit (mango.passthru) providedSessions uwsm-plugin;
       unwrapped = mangowc-unwrapped;
     };
   }

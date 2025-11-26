@@ -60,7 +60,10 @@ stdenv.mkDerivation {
       xwayland
     ];
 
-  passthru.providedSessions = ["mango"];
+  passthru = {
+    providedSessions = ["mango"];
+    uwsm-plugin = ./mango-plugin.sh;
+  };
 
   meta = {
     mainProgram = "mango";

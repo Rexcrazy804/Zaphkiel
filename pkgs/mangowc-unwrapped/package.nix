@@ -1,6 +1,7 @@
 # adapted from
 # https://github.com/DreamMaoMao/mangowc/blob/main/nix/default.nix
 {
+  fetchpatch,
   sources,
   lib,
   libX11,
@@ -32,7 +33,13 @@ stdenv.mkDerivation {
 
   src = sources.mangowc;
 
-  patches = [./transparent-wlr-session-lock.patch];
+  patches = [
+    (fetchpatch {
+      name = "transparent-wlr-session-lock.patch";
+      url = "https://github.com/DreamMaoMao/mangowc/commit/66bf6d5cff790e5209c6850ade5eba9c551d7387.patch";
+      hash = "sha256-8WQkAU4t0Ko0/SXgIWIEJu7DrhyVMjf4aqJo9AjfJUk=";
+    })
+  ];
 
   nativeBuildInputs = [
     meson

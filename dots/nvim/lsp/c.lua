@@ -1,9 +1,24 @@
 ---@type vim.lsp.Config
 return {
-  cmd = { "ccls" },
-  filetypes = { "c", "cpp" },
-  root_markers = { ".ccls", ".git", "meson.build" },
-  offset_encoding = "utf-32",
+  cmd = { "clangd" },
+  filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+  root_markers = {
+    ".git",
+    "meson.build",
+  },
 
-  workspace_required = true,
+  capabilities = {
+    textDocument = {
+      completion = {
+        editsNearCursor = true,
+      },
+    },
+    offsetEncoding = { "utf-8", "utf-16" },
+  },
+
+  on_init = function(client, init_result)
+    if init_result.offsetEncoding then
+      client.offset_encoding = init_result.offsetEncoding
+    end
+  end,
 }

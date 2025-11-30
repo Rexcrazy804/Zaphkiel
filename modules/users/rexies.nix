@@ -89,6 +89,7 @@ in {
     "foot/foot.ini" = "/foot/foot.ini";
     "foot/rose-pine.ini" = {sources, ...}: sources.rosep-foot + "/rose-pine";
     "hypr/hypridle.conf" = "/hyprland/hypridle.conf";
+    "gtk-4.0/settings.ini" = "/gtk/gtk4.ini";
   };
 
   dandelion.dots.rexies-mango = mkDotsModule username {

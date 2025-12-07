@@ -44,7 +44,7 @@
       };
 
       users.users = genAttrs zphd.users (_user: {
-        packages = [pkgs.matugen self.packages.${pkgs.system}.scripts.changeWall];
+        packages = [pkgs.matugen self.packages.${pkgs.stdenv.hostPlatform.system}.scripts.changeWall];
       });
     };
   };

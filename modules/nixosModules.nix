@@ -4,7 +4,7 @@
       imports = [(self.paths.specials + /kurukuruDM.nix)];
       nixpkgs.overlays = [
         (_: _: {
-          inherit (self.packages.${pkgs.system}) kurukurubar;
+          inherit (self.packages.${pkgs.stdenv.hostPlatform.system}) kurukurubar;
         })
       ];
     };

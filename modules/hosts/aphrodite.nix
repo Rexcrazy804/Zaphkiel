@@ -24,7 +24,7 @@
     time.timeZone = "Asia/Kolkata";
 
     zaphkiel = {
-      data.wallpaper = self.packages.${pkgs.system}.images.corvus;
+      data.wallpaper = self.packages.${pkgs.stdenv.hostPlatform.system}.images.corvus;
       secrets.tailAuth.file = self.paths.secrets + /secret8.age;
       services.tailscale = {
         exitNode.enable = true;

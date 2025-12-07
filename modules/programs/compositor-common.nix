@@ -10,8 +10,9 @@
   }: let
     inherit (lib) mkForce attrValues;
 
-    zpkgs = self.packages.${pkgs.system};
-    todo = hs-todo.packages.${pkgs.system}.default;
+    system = pkgs.stdenv.hostPlatform.system;
+    zpkgs = self.packages.${system};
+    todo = hs-todo.packages.${system}.default;
   in {
     # for whatever reason swappy likes to open images
     # don't let that fucker open images

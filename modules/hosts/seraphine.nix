@@ -29,7 +29,7 @@
 
     # zaphkiel opts
     zaphkiel = {
-      data.wallpaper = self.packages.${pkgs.system}.images.corvus;
+      data.wallpaper = self.packages.${pkgs.stdenv.hostPlatform.system}.images.corvus;
       secrets = {
         tailAuth.file = self.paths.secrets + /secret5.age;
         caddyEnv.file = self.paths.secrets + /secret10.age;
@@ -52,7 +52,7 @@
     };
 
     # user stuff
-    users.users."rexies".packages = [self.packages.${pkgs.system}.mpv-wrapped];
+    users.users."rexies".packages = [self.packages.${pkgs.stdenv.hostPlatform.system}.mpv-wrapped];
 
     # hardware
     boot.kernelParams = ["i915.enable_guc=2"];

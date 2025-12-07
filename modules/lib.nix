@@ -24,7 +24,7 @@ in {
       inherit (config.hjem.users.${username}.impure) dotsDir;
       toHjem = x: {source = x;};
       args = {
-        inherit (self.packages.${pkgs.system}) sources;
+        inherit (self.packages.${pkgs.stdenv.hostPlatform.system}) sources;
         inherit lib config;
         dots = dotsDir;
       };

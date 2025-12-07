@@ -37,7 +37,7 @@
     # zaphkiel opts
     zaphkiel = {
       graphics.intel.hwAccelDriver = "media-driver";
-      data.wallpaper = self.packages.${pkgs.system}.images.corvus;
+      data.wallpaper = self.packages.${pkgs.stdenv.hostPlatform.system}.images.corvus;
       programs = {
         matugen.scheme = "scheme-fidelity";
         shpool.users = ["rexies"];
@@ -75,12 +75,12 @@
 
     # user space
     users.users."rexies".packages = lib.attrValues {
-      inherit (self.packages.${pkgs.system}) mpv-wrapped equibop;
-      inherit (self.packages.${pkgs.system}.scripts) wallcrop legumulaunch;
+      inherit (self.packages.${pkgs.stdenv.hostPlatform.system}) mpv-wrapped equibop;
+      inherit (self.packages.${pkgs.stdenv.hostPlatform.system}.scripts) wallcrop legumulaunch;
     };
 
     hjem.users.rexies = {
-      files.".face.icon".source = self.packages.${pkgs.system}.images.voyager-profile;
+      files.".face.icon".source = self.packages.${pkgs.stdenv.hostPlatform.system}.images.voyager-profile;
       games = {
         enable = true;
         entries = [

@@ -1,7 +1,7 @@
 {self, ...}: {
   dandelion.modules.environment = {pkgs, ...}: {
     environment.systemPackages = [
-      self.packages.${pkgs.system}.xvim.default
+      self.packages.${pkgs.stdenv.hostPlatform.system}.xvim.default
       pkgs.git
       pkgs.npins
     ];

@@ -12,7 +12,7 @@
       inherit (pkgs.uwsm) pname version;
       paths = [pkgs.uwsm];
       postBuild = ''
-        ln -sf ${self.packages.${pkgs.system}.mangowc.uwsm-plugin} $out/share/uwsm/plugins/mango.sh
+        ln -sf ${self.packages.${pkgs.stdenv.hostPlatform.system}.mangowc.uwsm-plugin} $out/share/uwsm/plugins/mango.sh
       '';
 
       meta = pkgs.uwsm.meta // {outputsToInstall = ["out"];};
@@ -20,7 +20,7 @@
   in {
     options.zaphkiel.programs.mangowc = {
       package = mkOption {
-        default = self.packages.${pkgs.system}.mangowc;
+        default = self.packages.${pkgs.stdenv.hostPlatform.system}.mangowc;
       };
       withUWSM = mkEnableOption "uwsm for mangowc" // {default = true;};
     };

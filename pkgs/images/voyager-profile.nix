@@ -1,9 +1,9 @@
 {
   fetchurl,
   imagemagick,
-  runCommandNoCCLocal,
+  runCommandLocal,
 }:
-runCommandNoCCLocal "voyager-face.jpg" {
+runCommandLocal "voyager-face.jpg" {
   nativeBuildInputs = [imagemagick];
   src = fetchurl {
     url = "https://cdn.donmai.us/original/e9/c3/e9c3dbb346bb4ea181c2ae8680551585.jpg";

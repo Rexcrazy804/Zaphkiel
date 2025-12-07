@@ -4,6 +4,6 @@
 writers.writeFishBin "changeWall" ''
   set image $argv[1]
   set -q argv[2] || set argv[2] "scheme-tonal-spot"
-  matugen image -t $argv[2] $image --json hex > ~/.config/kurukurubar/colors.json
+  matugen image -t $argv[2] $image
   kurukurubar ipc call config setWallpaper (path resolve $image)
 ''

@@ -39,7 +39,7 @@
         after = ["hjem-activate@%i.service"];
         scriptArgs = "${zphd.wallpaper} ${cfg.scheme}";
         script = ''
-          ${pkgs.matugen}/bin/matugen -t $2 image $1 --json hex > $HOME/.config/kurukurubar/colors.json
+          ${pkgs.matugen}/bin/matugen -t $2 image $1 --json hex
         '';
       };
 

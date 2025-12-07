@@ -32,7 +32,7 @@
       inputs.systems.follows = "systems";
     };
     stash = {
-      url = "github:notashelf/stash/notashelf/push-rnnzunzyvynn";
+      url = "github:notashelf/stash";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.crane.follows = "crane";
     };

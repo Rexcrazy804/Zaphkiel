@@ -1,5 +1,5 @@
 [config]
-caching = true
+caching = false      # I can't express how disheartened I am by a shitty .unwrap()
 version_check = true
 
 [templates.hyprland]
@@ -26,3 +26,11 @@ output_path = "~/.config/fuzzel/colors.ini"
 [templates.qtct]
 input_path = "./templates/qtct-colors.conf"
 output_path = "~/.config/qt6ct/colors/matugen.conf"
+
+# TODO
+# write a simple c library to generate themes on my own
+# god I hate breaking changes
+# atleast have a option to generate the old format
+[templates.quickshell]
+input_path = "./templates/quickshell-config.json"
+output_path = "~/.config/kurukurubar/colors.json"

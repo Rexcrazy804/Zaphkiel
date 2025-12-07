@@ -39,7 +39,6 @@
       graphics.intel.hwAccelDriver = "media-driver";
       data.wallpaper = self.packages.${pkgs.stdenv.hostPlatform.system}.images.corvus;
       programs = {
-        matugen.scheme = "scheme-fidelity";
         shpool.users = ["rexies"];
         privoxy.forwards = [
           # I shouldn't be exposing myself like this
@@ -81,6 +80,7 @@
 
     hjem.users.rexies = {
       files.".face.icon".source = self.packages.${pkgs.stdenv.hostPlatform.system}.images.voyager-profile;
+      matugen.scheme = "scheme-fidelity";
       games = {
         enable = true;
         entries = [

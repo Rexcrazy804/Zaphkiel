@@ -4,6 +4,7 @@
       self.dandelion.modules.agenix
       self.dandelion.modules.hjem
       self.dandelion.modules.hjem-impure
+      self.dandelion.modules.hjem-matugen
       self.dandelion.modules.zaphkiel-data
       self.dandelion.modules.locales
       # programs
@@ -12,7 +13,6 @@
       self.dandelion.modules.fish
       self.dandelion.modules.direnv
       self.dandelion.modules.shpool
-      self.dandelion.modules.matugen
       # network
       self.dandelion.modules.dnscrypt
       self.dandelion.modules.tailscale

@@ -1,17 +1,21 @@
 {self, ...}: {
-  dandelion.modules.matugen = {
+  dandelion.modules.hjem-matugen = {
+    hjem.extraModules = [self.dandelion.modules._hjem-matugen];
+  };
+
+  dandelion.modules._hjem-matugen = {
     pkgs,
     config,
+    osConfig,
     lib,
     ...
   }: let
     inherit (lib) mkOption;
-    inherit (lib) genAttrs map;
     inherit (lib.types) enum;
-    cfg = config.zaphkiel.programs.matugen;
-    zphd = config.zaphkiel.data;
+    cfg = config.matugen;
+    zphd = osConfig.zaphkiel.data;
   in {
-    options.zaphkiel.programs.matugen = {
+    options.matugen = {
       scheme = mkOption {
         type = enum [
           "scheme-content"
@@ -29,23 +33,23 @@
     };
 
     config = {
-      systemd.targets.hjem.requires = map (user: "matugen-copy@${user}.service") zphd.users;
-      systemd.services."matugen-copy@" = {
-        description = "Link files for %i from their manifest";
+      systemd.services."matugen" = {
+        description = "invoke matugen to populate color files";
+        path = [self.packages.${pkgs.stdenv.hostPlatform.system}.mangowc];
         serviceConfig = {
-          User = "%i";
           Type = "oneshot";
         };
-        after = ["hjem-activate@%i.service"];
+        wantedBy = ["graphical-session-pre.target"];
         scriptArgs = "${zphd.wallpaper} ${cfg.scheme}";
         script = ''
           ${pkgs.matugen}/bin/matugen -t $2 image $1 --json hex
         '';
       };
 
-      users.users = genAttrs zphd.users (_user: {
-        packages = [pkgs.matugen self.packages.${pkgs.stdenv.hostPlatform.system}.scripts.changeWall];
-      });
+      packages = [
+        pkgs.matugen
+        self.packages.${pkgs.stdenv.hostPlatform.system}.scripts.changeWall
+      ];
     };
   };
 }

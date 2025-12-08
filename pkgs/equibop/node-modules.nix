@@ -50,7 +50,7 @@ stdenvNoCC.mkDerivation {
     runHook postInstall
   '';
 
-  outputHash = "sha256-xRX83RyI6E5F6K70UiACRH1vJaLc17Gy9I/xtF/DaN0=";
+  outputHash = "sha256-xo8potmx1DPKk9btNnYB/j9up3yKgAX+XC0iCn82jL8=";
   outputHashAlgo = "sha256";
   outputHashMode = "recursive";
 }

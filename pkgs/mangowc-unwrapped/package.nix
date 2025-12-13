@@ -16,12 +16,13 @@
   wayland-scanner,
   xcbutilwm,
   xwayland,
-  enableXWayland ? true,
   meson,
   ninja,
   scenefx,
   wlroots_0_19,
   libGL,
+  enableXWayland ? true,
+  debug ? false,
 }:
 stdenv.mkDerivation {
   pname = "mango-unwrapped";
@@ -31,6 +32,11 @@ stdenv.mkDerivation {
     else "nightly";
 
   src = sources.mangowc;
+
+  mesonFlags = with lib; [
+    (mesonEnable "xwayland" enableXWayland)
+    (mesonBool "asan" debug)
+  ];
 
   nativeBuildInputs = [
     meson

@@ -1,4 +1,3 @@
-# modules imported for EVERYTHING
 {self, ...}: {
   dandelion.profiles.mangowc = {
     imports = [

@@ -10,7 +10,7 @@ https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 | Component | Software | Configuration |
 | --------- | -------- | ------------- |
 |KuruKuruBar|[Quickshell]|[`dots/quickshell/kurukurubar`][kurudots]|
-|Compositor|~[Hyprland]~ [MangoWC]|~[`dots/hyprland/`][hyprdots]~ [`dots/mango`][mangodots]|
+|Compositor|[MangoWC]|[`dots/mango`][mangodots]|
 |Launcher|[Fuzzel]|[`dots/fuzzel`][fuzldots]|
 |Colors|[Matugen]|[`nixosModules/external/matugen/templates/`][mtgndots]|
 |Terminal|[foot]|[`dots/foot/foot.ini`][footdots]|
@@ -75,8 +75,6 @@ except wherever an explicit licensing is included.
 [fuzzel]: https://codeberg.org/dnkl/fuzzel
 [hjem]: https://github.com/feel-co/hjem
 [hjem-impure]: https://github.com/Rexcrazy804/hjem-impure
-[hyprdots]: dots/hyprland/
-[hyprland]: https://hyprland.org/
 [install guide]: dots/quickshell/kurukurubar/README.md
 [jet]: https://github.com/Michael-C-Buckley
 [kokcursor]: https://www.pling.com/p/2167734/

@@ -17,6 +17,9 @@ map(
 map("n", "<leader>y", "V\"+y", defaults("Yank current line to clipboard"))
 map("v", "<leader>y", "\"+y", defaults("Yank selection to clipboard"))
 
+-- yoink current buffer into dragon
+map("n", "<A-n>", "<CMD>silent !ripdrag %<CR>", defaults("Drag current buffer"))
+
 -- undo tree
 map(
   "n",

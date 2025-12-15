@@ -37,7 +37,7 @@
     # zaphkiel opts
     zaphkiel = {
       graphics.intel.hwAccelDriver = "media-driver";
-      data.wallpaper = self.packages.${pkgs.stdenv.hostPlatform.system}.images.corvus;
+      data.wallpaper = self.packages.${pkgs.stdenv.hostPlatform.system}.images.reze;
       programs = {
         shpool.users = ["rexies"];
         privoxy.forwards = [
@@ -80,7 +80,7 @@
 
     hjem.users.rexies = {
       files.".face.icon".source = self.packages.${pkgs.stdenv.hostPlatform.system}.images.voyager-profile;
-      matugen.scheme = "scheme-fidelity";
+      # matugen.scheme = "scheme-fidelity";
       games = {
         enable = true;
         entries = [

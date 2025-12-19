@@ -117,10 +117,11 @@ Item {
 
                   Rectangle {
                     required property int index
+                    property int workspace: Hyprland.focusedWorkspace?.id ?? Dat.MangoWC.currentWorkspace
 
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-                    color: (Hyprland.focusedWorkspace?.id == this.index + 1) ? Dat.Colors.current.primary : Dat.Colors.current.surface_container_high
+                    color: (workspace == this.index + 1) ? Dat.Colors.current.primary : Dat.Colors.current.surface_container_high
                     radius: this.width
 
                     Gen.MouseArea {

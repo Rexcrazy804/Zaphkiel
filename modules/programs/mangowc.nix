@@ -5,7 +5,7 @@
     pkgs,
     ...
   }: let
-    inherit (lib) mkEnableOption mkOption mkIf mkDefault mkForce;
+    inherit (lib) mkEnableOption mkOption mkIf mkForce;
     cfg = config.zaphkiel.programs.mangowc;
 
     uwsmWithPlugin = pkgs.symlinkJoin {
@@ -45,8 +45,8 @@
       };
 
       xdg.portal = {
-        enable = mkDefault true;
-        wlr.enable = mkDefault true;
+        enable = true;
+        wlr.enable = true;
         configPackages = [cfg.package];
         extraPortals = [pkgs.xdg-desktop-portal-gtk];
         config.mango = {
@@ -58,12 +58,12 @@
         };
       };
 
-      security.polkit.enable = mkDefault true;
-      programs.xwayland.enable = mkDefault true;
+      security.polkit.enable = true;
+      programs.xwayland.enable = true;
 
       services = {
         displayManager.sessionPackages = mkIf (! cfg.withUWSM) [cfg.package];
-        graphical-desktop.enable = mkDefault true;
+        graphical-desktop.enable = true;
       };
     };
   };

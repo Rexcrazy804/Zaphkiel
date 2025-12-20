@@ -19,6 +19,7 @@
     xdg.mime.defaultApplications = {
       "image/jpeg" = ["imv.desktop"];
       "image/png" = ["imv.desktop"];
+      "application/pdf" = ["librewolf.desktop"];
     };
 
     services.gnome.gnome-keyring.enable = true;

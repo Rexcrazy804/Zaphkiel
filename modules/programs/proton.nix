@@ -7,5 +7,6 @@
     };
     environment.etc."proton-ge".source = pkgs.proton-ge-bin.steamcompattool;
     environment.systemPackages = [pkgs.umu-launcher];
+    programs.steam.extraCompatPackages = [pkgs.proton-ge-bin];
   };
 }

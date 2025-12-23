@@ -20,14 +20,6 @@ map("v", "<leader>y", "\"+y", defaults("Yank selection to clipboard"))
 -- yoink current buffer into dragon
 map("n", "<A-n>", "<CMD>silent !ripdrag %<CR>", defaults("Drag current buffer"))
 
--- undo tree
-map(
-  "n",
-  "<C-n>",
-  vim.cmd.UndotreeToggle,
-  defaults("Yank selection to clipboard")
-)
-
 -- lsp
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)

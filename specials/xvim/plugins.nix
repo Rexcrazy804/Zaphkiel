@@ -34,4 +34,9 @@ in
       version = toVersion sources."direnv.nvim".revision;
       src = sources."direnv.nvim";
     };
+
+    fzf-lua = prev.fzf-lua.overrideAttrs {
+      src = sources.fzf-lua;
+      version = toVersion sources.fzf-lua.revision;
+    };
   })

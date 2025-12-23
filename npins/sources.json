@@ -26,6 +26,19 @@
       "url": "https://github.com/NotAShelf/direnv.nvim/archive/4dfc8758a1deab45e37b7f3661e0fd3759d85788.tar.gz",
       "hash": "1094iy9rxg0h2mpbdxxb6l5rdr1v5qlix9lyalaqpjym6swbr8ra"
     },
+    "fzf-lua": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "ibhagwan",
+        "repo": "fzf-lua"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "b1d2b0dc146cb9260209da4d7ab754adb0a2653d",
+      "url": "https://github.com/ibhagwan/fzf-lua/archive/b1d2b0dc146cb9260209da4d7ab754adb0a2653d.tar.gz",
+      "hash": "0j1lqfwnpv82r0hnldk71f9yy1vpy73svq55c646w0lxzhicpwwc"
+    },
     "image.nvim": {
       "type": "Git",
       "repository": {

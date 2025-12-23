@@ -58,6 +58,7 @@ return {
     -- special
     { "<leader>fz", "<CMD>FzfLua zoxide<CR>", desc = "Find Zoxide jump" },
     { "<leader>fa", "<CMD>FzfLua global<CR>", desc = "Find Global" },
+    { "<leader>fu", "<CMD>FzfLua undotree<CR>", desc = "Open Undotree" },
     { "<leader>f,", "<CMD>FzfLua resume<CR>", desc = "Resume last find" },
   },
   after = function()

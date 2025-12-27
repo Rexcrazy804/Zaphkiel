@@ -63,10 +63,10 @@
       "version_upper_bound": null,
       "release_prefix": null,
       "submodules": false,
-      "version": "0.10.7",
-      "revision": "2258574e25f4612affdc92621c8aef70e5c134e1",
-      "url": "https://api.github.com/repos/DreamMaoMao/mangowc/tarball/0.10.7",
-      "hash": "104jwxa48l8fxxp6gzcp7h9if6i7z1lm7kxyba2vig7x56vdm02r"
+      "version": "0.10.8",
+      "revision": "ff35c7afe92e77017fdcf3396ea51aa5f29b7a84",
+      "url": "https://api.github.com/repos/DreamMaoMao/mangowc/tarball/0.10.8",
+      "hash": "08rvngicz7nqfzq4p4bl20ssm62p7frkycm9pkpqi9klkbhygk2n"
     },
     "neorg": {
       "type": "Git",

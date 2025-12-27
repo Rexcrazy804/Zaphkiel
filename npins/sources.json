@@ -107,22 +107,6 @@
       "url": "https://github.com/rose-pine/foot/archive/725e9c38880d577ee973eb916e83395964ffc287.tar.gz",
       "hash": "sha256-Lo8HkJr+uYNUSRNzUhaksJAPvK8fbu5WubtmBSsa0/Q="
     },
-    "winboat": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "GitHub",
-        "owner": "TibixDev",
-        "repo": "winboat"
-      },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "submodules": false,
-      "version": "v0.8.7",
-      "revision": "a641ec8b0de1140c1cd7d0f40a37eea0e63494b4",
-      "url": "https://api.github.com/repos/TibixDev/winboat/tarball/v0.8.7",
-      "hash": "0jzlyzzs3mjks0w3lz4jwd6yxsvdnjq6vyiy0817wriwssyv6ifz"
-    },
     "zaphkiel": {
       "type": "Git",
       "repository": {

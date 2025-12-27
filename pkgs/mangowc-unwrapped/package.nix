@@ -1,7 +1,6 @@
 # adapted from
 # https://github.com/DreamMaoMao/mangowc/blob/main/nix/default.nix
 {
-  fetchpatch,
   sources,
   lib,
   libX11,
@@ -34,15 +33,14 @@ stdenv.mkDerivation {
 
   src = sources.mangowc;
 
-  # TODO remove after release v0.10.8
-  patches = [
-    (fetchpatch {
-      # fixes hot reloading crashes with animated xcursors
-      name = "fix-animated-cursor-hot-reload";
-      url = "https://github.com/DreamMaoMao/mangowc/commit/0f861e79a0d5a53a4a0df3b6226bd1d5452ca37b.patch";
-      hash = "sha256-r7KPgMc/XxfNKHDgNca1O0BCZleBFmA6I8y6fiLxipY=";
-    })
-  ];
+  # patches = [
+  #   (fetchpatch {
+  #     # fixes hot reloading crashes with animated xcursors
+  #     name = "fix-animated-cursor-hot-reload";
+  #     url = "https://github.com/DreamMaoMao/mangowc/commit/0f861e79a0d5a53a4a0df3b6226bd1d5452ca37b.patch";
+  #     hash = "sha256-r7KPgMc/XxfNKHDgNca1O0BCZleBFmA6I8y6fiLxipY=";
+  #   })
+  # ];
 
   mesonFlags = with lib; [
     (mesonEnable "xwayland" enableXWayland)

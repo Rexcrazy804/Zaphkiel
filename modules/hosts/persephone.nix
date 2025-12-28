@@ -26,6 +26,7 @@
       self.dandelion.modules.winboat
       self.dandelion.modules.booru-hs
       self.dandelion.modules.powertop
+      self.dandelion.modules.legendary
     ];
 
     # info
@@ -73,10 +74,9 @@
     };
 
     # user space
-    users.users."rexies".packages = lib.attrValues {
-      inherit (self.packages.${pkgs.stdenv.hostPlatform.system}) mpv-wrapped equibop;
-      inherit (self.packages.${pkgs.stdenv.hostPlatform.system}.scripts) wallcrop legumulaunch;
-    };
+    users.users."rexies".packages = [
+      self.packages.${pkgs.stdenv.hostPlatform.system}.equibop
+    ];
 
     hjem.users.rexies = {
       files.".face.icon".source = self.packages.${pkgs.stdenv.hostPlatform.system}.images.voyager-profile;

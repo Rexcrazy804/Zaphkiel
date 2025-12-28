@@ -39,8 +39,8 @@
     # dependencies .w.
     environment.systemPackages = attrValues {
       # internal overlay
-      inherit (zpkgs) kokCursor kurukurubar stash;
-      inherit (zpkgs.scripts) taildrop gpurecording cowask npins-show;
+      inherit (zpkgs) kokCursor kurukurubar stash mpv-wrapped;
+      inherit (zpkgs.scripts) taildrop gpurecording cowask npins-show wallcrop;
       # Themes
       inherit (pkgs) rose-pine-icon-theme rose-pine-gtk-theme;
       inherit (pkgs.kdePackages) qt6ct breeze;

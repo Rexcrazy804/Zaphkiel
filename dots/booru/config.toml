@@ -288,6 +288,13 @@ ids = [
   "7296238",
   "7203630",
   "7848839",
+  "10015220",
+  "9975940",
+  "9163581",
+  "8560900",
+  "8582245",
+  "7218356",
+  "6512105",
 ]
 
 [[providers]]
@@ -340,6 +347,7 @@ artists = { list = [
   "morncolour",
   "yeurei",
   "meirong",
+  "qianqianjie",
 ], inverted = true }
 
 [preview_filters]

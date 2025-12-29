@@ -89,6 +89,11 @@
             umu.game_id = "rev199";
             umu.exe = "/home/rexies/Games/Reverse1999en/reverse1999.exe";
           }
+          {
+            name = "FataMorgana";
+            umu.game_id = "fatamorgana";
+            umu.exe = "/home/rexies/Games/FataMorgana/FataMorgana.exe";
+          }
         ];
       };
     };

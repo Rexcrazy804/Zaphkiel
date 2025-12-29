@@ -38,7 +38,7 @@
     # zaphkiel opts
     zaphkiel = {
       graphics.intel.hwAccelDriver = "media-driver";
-      data.wallpaper = self.packages.${pkgs.stdenv.hostPlatform.system}.images.reze;
+      data.wallpaper = self.packages.${pkgs.stdenv.hostPlatform.system}.images.evernight;
       programs = {
         shpool.users = ["rexies"];
         privoxy.forwards = [

@@ -94,6 +94,11 @@
             umu.game_id = "fatamorgana";
             umu.exe = "/home/rexies/Games/FataMorgana/FataMorgana.exe";
           }
+          {
+            name = "GTA Vice City";
+            umu.game_id = "gtavc";
+            umu.exe = "/home/rexies/Games/GTAVC/gta-vc.exe";
+          }
         ];
       };
     };

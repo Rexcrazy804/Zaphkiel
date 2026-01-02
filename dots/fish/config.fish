@@ -13,3 +13,12 @@ if status is-interactive
     set -g fish_pager_color_background
     set -g fish_pager_color_selected_background
 end
+
+# loginShellInit
+status is-login; and not set -q __fish_nixos_login_config_sourced_user
+and begin
+  if uwsm check may-start;
+    exec uwsm start default
+  end
+  set -g __fish_nixos_login_config_sourced_user 1
+end

@@ -1,5 +1,5 @@
 {
-  dandelion.modules.firmware = {...}: {
+  dandelion.modules.firmware = {
     # uncategorized
     services.thermald.enable = true;
     services.fwupd.enable = true;

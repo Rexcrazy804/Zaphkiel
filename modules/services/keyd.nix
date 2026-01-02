@@ -1,5 +1,5 @@
 {
-  dandelion.modules.keyd = {...}: {
+  dandelion.modules.keyd = {
     services.keyd = {
       enable = true;
       keyboards.default = {

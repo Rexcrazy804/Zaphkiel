@@ -1,5 +1,5 @@
 {
-  dandelion.modules.network = {...}: {
+  dandelion.modules.network = {
     networking = {
       nftables.enable = true;
       networkmanager = {

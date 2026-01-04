@@ -12,7 +12,7 @@
       lib.mkIf config.programs.uwsm.enable
       ''
         if uwsm check may-start;
-          exec uwsm start default
+          uwsm start default
         end
       '';
   };

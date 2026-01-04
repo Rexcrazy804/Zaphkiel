@@ -25,7 +25,6 @@
   optsToString = concatStringsSep " " (attrValues (mapAttrs (k: v: "KURU_DM_${k}=\"${v}\"") kuruOpts));
   baseConfig = ''
     monitor = ,preferred, auto, auto
-    env = XDG_CURRENT_DESKTOP,Hyprland
     exec-once = ${optsToString} ${cfg.package}/bin/kurukurubar && pkill Hyprland
 
     misc {
@@ -137,7 +136,7 @@ in {
       settings = {
         default_session = {
           # lib.mkForce this value to use another compositor as base
-          command = "${pkgs.hyprland}/bin/start-hyprland --config ${hyprConf}";
+          command = "${pkgs.hyprland}/bin/hyprland --config ${hyprConf}";
         };
       };
     };

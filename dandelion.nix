@@ -25,7 +25,7 @@ assert inputs ? nixpkgs; let
   # NOTE an understanding of `recursiveUpdate`
   # and the limitations it imposes is highly recommended
   #
-  # $ cat modules/**/**.nix | grep "dandelion.modules." | sort | uniq -d
+  # $ cat modules/**/**.nix | grep "dandelion.modules.* = " | sort | uniq -d
   # quick sanity check, don't try to have duplicated dandelion.<namespace>.<entry>
   # well you CAN but if one is a funciton and the other isn't, welp won't work.
   # I will cook up something later to do this within the funciton

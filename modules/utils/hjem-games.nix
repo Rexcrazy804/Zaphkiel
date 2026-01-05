@@ -1,13 +1,13 @@
 {self, ...}: {
   dandelion.modules.hjem-games = {
-    hjem.extraModules = [self.dandelion._modules.hjem-games];
+    hjem.extraModules = [self.dandelion.modules._hjem-games];
   };
 
   # A module for creating umu configs and desktop file for launching games
   # via umu-launcher and proton-ge-bin provided by nixpkgs
   # nixosModules/programs/wine.nix contains code for NTSYNC + wayland setup
   # Usage: see hosts/Persephone/user-configuration.nix
-  dandelion._modules.hjem-games = {
+  dandelion.modules._hjem-games = {
     pkgs,
     lib,
     config,

@@ -76,6 +76,7 @@
     # user space
     users.users."rexies".packages = [
       self.packages.${pkgs.stdenv.hostPlatform.system}.equibop
+      pkgs.cemu
     ];
 
     hjem.users.rexies = {

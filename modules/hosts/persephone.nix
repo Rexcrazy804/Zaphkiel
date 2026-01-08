@@ -99,6 +99,11 @@
             umu.game_id = "gtavc";
             umu.exe = "/home/rexies/Games/GTAVC/gta-vc.exe";
           }
+          {
+            name = "NFS Most Wanted";
+            umu.game_id = "nfsmw";
+            umu.exe = "/home/rexies/Games/Need for Speed(TM) Most Wanted/NFS13.exe";
+          }
         ];
       };
     };

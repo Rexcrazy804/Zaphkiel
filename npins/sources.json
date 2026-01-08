@@ -1,5 +1,21 @@
 {
   "pins": {
+    "WiiUDownloader": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Xpl0itU",
+        "repo": "WiiUDownloader"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v2.69",
+      "revision": "7defb5cfd7b65d0b49f4d14446a6635a6e126b3b",
+      "url": "https://api.github.com/repos/Xpl0itU/WiiUDownloader/tarball/v2.69",
+      "hash": "1vx98qklrqw3r9gfzcn9ws3vb78wrg0i2psad05a09q1cx8cg7zm"
+    },
     "catp-bat": {
       "type": "Git",
       "repository": {

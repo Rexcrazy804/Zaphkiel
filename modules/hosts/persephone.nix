@@ -105,6 +105,11 @@
             umu.game_id = "nfsmw";
             umu.exe = "/home/rexies/Games/Need for Speed(TM) Most Wanted/NFS13.exe";
           }
+          {
+            name = "NFS Rivals";
+            umu.game_id = "nfsr";
+            umu.exe = "/home/rexies/Games/NFSRIVALS/NFS14.exe";
+          }
         ];
       };
     };

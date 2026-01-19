@@ -53,6 +53,7 @@
         indent-blankline-nvim
         neorg
         direnv-nvim
+        nvim-dbee
         ;
     };
 

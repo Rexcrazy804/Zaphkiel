@@ -41,7 +41,15 @@ in {
         pkgs.bat
         pkgs.delta
         pkgs.yazi
+        pkgs.foot
       ];
+    };
+
+    fonts = {
+      fontDir.enable = true;
+      packages = lib.attrValues {
+        inherit (pkgs.nerd-fonts) caskaydia-mono caskaydia-cove;
+      };
     };
 
     hjem.users.${username} = {
@@ -72,5 +80,7 @@ in {
     "bat/themes" = {sources, ...}: sources.catp-bat + "/themes";
     "yazi/yazi.toml" = "/yazi/yazi.toml";
     "yazi/keymap.toml" = "/yazi/keymap.toml";
+    "foot/foot.ini" = "/foot/foot.ini";
+    "foot/rose-pine.ini" = {sources, ...}: sources.rosep-foot + "/rose-pine";
   };
 }

@@ -16,6 +16,11 @@
     systems.url = "github:nix-systems/x86_64-linux";
     crane.url = "github:ipetkov/crane";
     mnw.url = "github:Gerg-L/mnw";
+    nixos-wsl = {
+      url = "github:nix-community/nixos-wsl";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "";
+    };
     hjem-impure = {
       url = "github:Rexcrazy804/hjem-impure";
       inputs.nixpkgs.follows = "";

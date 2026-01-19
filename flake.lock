@@ -141,6 +141,27 @@
         "type": "github"
       }
     },
+    "nixos-wsl": {
+      "inputs": {
+        "flake-compat": [],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1768404695,
+        "narHash": "sha256-eT3dNE2CQYcPDHaeRZAEFrZ0BmMq2wLxMp7hCmzOZBA=",
+        "owner": "nix-community",
+        "repo": "nixos-wsl",
+        "rev": "d0d3636b9d174c4558e3bbb18e194d970505fed8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixos-wsl",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1764950072,
@@ -166,6 +187,7 @@
         "hjem-impure": "hjem-impure",
         "hs-todo": "hs-todo",
         "mnw": "mnw",
+        "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
         "stash": "stash",
         "systems": "systems"

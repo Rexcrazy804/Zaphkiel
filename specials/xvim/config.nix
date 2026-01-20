@@ -25,6 +25,7 @@
         nvim-web-devicons
         lspkind-nvim
         oil-nvim
+        mini-align
         ;
 
       treesitter = let

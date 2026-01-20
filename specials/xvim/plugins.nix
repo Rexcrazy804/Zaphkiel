@@ -39,4 +39,10 @@ in
       src = sources.fzf-lua;
       version = toVersion sources.fzf-lua.revision;
     };
+
+    mini-align = buildVimPlugin {
+      pname = "mini.align";
+      version = toVersion sources."mini.align".revision;
+      src = sources."mini.align";
+    };
   })

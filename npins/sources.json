@@ -84,6 +84,19 @@
       "url": "https://api.github.com/repos/DreamMaoMao/mangowc/tarball/0.10.8",
       "hash": "08rvngicz7nqfzq4p4bl20ssm62p7frkycm9pkpqi9klkbhygk2n"
     },
+    "mini.align": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nvim-mini",
+        "repo": "mini.align"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "6d8a6ca3a0fd313938374abccb50cad026229db3",
+      "url": "https://github.com/nvim-mini/mini.align/archive/6d8a6ca3a0fd313938374abccb50cad026229db3.tar.gz",
+      "hash": "0mn9pylz5pwkfm9pwcci8qj78ysb8g7bhdcran1kc80srqa4fv70"
+    },
     "neorg": {
       "type": "Git",
       "repository": {

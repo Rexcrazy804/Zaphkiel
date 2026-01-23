@@ -13,7 +13,7 @@ stdenv.mkDerivation {
     cp db.go $out
   '';
 
-  outputHash = "sha256-Hc5ASGmsOQ3AtN1TUNLTCRfN/oMho/V2bZHQWdzdQDY=";
+  outputHash = "sha256-T9yRkr8kpvgo4hMioboIUDfyjyzfzf3ZL3hqPwIw6T0=";
   outputHashAlgo = "sha256";
   outputHashMode = "recursive";
 

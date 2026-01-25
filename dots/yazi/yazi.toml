@@ -1,5 +1,11 @@
-# A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
-# If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
+# NOTE TO SELF
+# next time something breaks because of this file
+# save your self the trouble and copy the sample config
+# https://github.com/sxyazi/yazi/blob/shipped/yazi-config/preset/yazi-default.toml
+# I have not yet made any changes to the default
+# when I do, I'll note em down in this comment
+# FUCK breaking changes.
+
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
 [mgr]
@@ -25,27 +31,46 @@ cache_dir = ""
 image_delay = 30
 image_filter = "triangle"
 image_quality = 75
-sixel_fraction = 15
 ueberzug_scale = 1
 ueberzug_offset = [0, 0, 0, 0]
 
 [opener]
 edit = [
-  { run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+  { run = "${EDITOR:-vi} %s", desc = "$EDITOR", for = "unix", block = true },
+  { run = "code %s", desc = "code", for = "windows", orphan = true },
+  { run = "code -w %s", desc = "code (block)", for = "windows", block = true },
 ]
-open = [{ run = 'xdg-open "$1"', desc = "Open", for = "linux" }]
+play = [
+  { run = "xdg-open %s1", desc = "Play", for = "linux", orphan = true },
+  { run = "open %s", desc = "Play", for = "macos" },
+  { run = 'start "" %s1', desc = "Play", for = "windows", orphan = true },
+  { run = "termux-open %s1", desc = "Play", for = "android" },
+  { run = "mediainfo %s1; echo 'Press enter to exit'; read _", block = true, desc = "Show media info", for = "unix" },
+  { run = "mediainfo %s1 & pause", block = true, desc = "Show media info", for = "windows" },
+]
+open = [
+  { run = "xdg-open %s1", desc = "Open", for = "linux" },
+  { run = "open %s", desc = "Open", for = "macos" },
+  { run = 'start "" %s1', desc = "Open", for = "windows", orphan = true },
+  { run = "termux-open %s1", desc = "Open", for = "android" },
+]
 reveal = [
-  { run = 'xdg-open "$(dirname "$1")"', desc = "Reveal", for = "linux" },
+  { run = "xdg-open %d1", desc = "Reveal", for = "linux" },
+  { run = "open -R %s1", desc = "Reveal", for = "macos" },
+  { run = "explorer /select,%s1", desc = "Reveal", for = "windows", orphan = true },
+  { run = "termux-open %d1", desc = "Reveal", for = "android" },
+  { run = "clear; exiftool %s1; echo 'Press enter to exit'; read _", desc = "Show EXIF", for = "unix", block = true },
 ]
-extract = [
-  { run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" },
+extract = [{ run = "ya pub extract --list %s", desc = "Extract here" }]
+download = [
+  { run = "ya emit download --open %S", desc = "Download and open" },
+  { run = "ya emit download %S", desc = "Download" },
 ]
-play = [{ run = 'mpv --force-window "$@"', orphan = true, for = "unix" }]
 
 [open]
 rules = [
   # Folder
-  { name = "*/", use = [
+  { url = "*/", use = [
     "edit",
     "open",
     "reveal",
@@ -84,8 +109,10 @@ rules = [
     "edit",
     "reveal",
   ] },
+  # Virtual file system
+  { mime = "vfs/{absent,stale}", use = "download" },
   # Fallback
-  { name = "*", use = [
+  { url = "*", use = [
     "open",
     "reveal",
   ] },
@@ -95,31 +122,39 @@ rules = [
 micro_workers = 10
 macro_workers = 10
 bizarre_retry = 3
-image_alloc = 536870912  # 512MB
-image_bound = [0, 0]
+image_alloc = 536870912      # 512MB
+image_bound = [10000, 10000]
 suppress_preload = false
 
 [plugin]
 fetchers = [
   # Mimetype
-  { id = "mime", name = "*", run = "mime", prio = "high" },
+  { id = "mime", url = "*/", run = "mime.dir", prio = "high" },
+  { id = "mime", url = "local://*", run = "mime.local", prio = "high" },
+  { id = "mime", url = "remote://*", run = "mime.remote", prio = "high" },
 ]
 spotters = [
-  { name = "*/", run = "folder" },
+  { url = "*/", run = "folder" },
   # Code
   { mime = "text/*", run = "code" },
   { mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
   # Image
-  { mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+  { mime = "image/{avif,hei?,jxl}", run = "magick" },
+  { mime = "image/svg+xml", run = "svg" },
   { mime = "image/*", run = "image" },
   # Video
   { mime = "video/*", run = "video" },
+  # Virtual file system
+  { mime = "vfs/*", run = "vfs" },
+  # Error
+  { mime = "null/*", run = "null" },
   # Fallback
-  { name = "*", run = "file" },
+  { url = "*", run = "file" },
 ]
 preloaders = [
   # Image
-  { mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+  { mime = "image/{avif,hei?,jxl}", run = "magick" },
+  { mime = "image/svg+xml", run = "svg" },
   { mime = "image/*", run = "image" },
   # Video
   { mime = "video/*", run = "video" },
@@ -130,14 +165,15 @@ preloaders = [
   { mime = "application/ms-opentype", run = "font" },
 ]
 previewers = [
-  { name = "*/", run = "folder", sync = true },
+  { url = "*/", run = "folder" },
   # Code
   { mime = "text/*", run = "code" },
   { mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
   # JSON
   { mime = "application/{json,ndjson}", run = "json" },
   # Image
-  { mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+  { mime = "image/{avif,hei?,jxl}", run = "magick" },
+  { mime = "image/svg+xml", run = "svg" },
   { mime = "image/*", run = "image" },
   # Video
   { mime = "video/*", run = "video" },
@@ -146,22 +182,26 @@ previewers = [
   # Archive
   { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", run = "archive" },
   { mime = "application/{debian*-package,redhat-package-manager,rpm,android.package-archive}", run = "archive" },
-  { name = "*.{AppImage,appimage}", run = "archive" },
+  { url = "*.{AppImage,appimage}", run = "archive" },
   # Virtual Disk / Disk Image
   { mime = "application/{iso9660-image,qemu-disk,ms-wim,apple-diskimage}", run = "archive" },
   { mime = "application/virtualbox-{vhd,vhdx}", run = "archive" },
-  { name = "*.{img,fat,ext,ext2,ext3,ext4,squashfs,ntfs,hfs,hfsx}", run = "archive" },
+  { url = "*.{img,fat,ext,ext2,ext3,ext4,squashfs,ntfs,hfs,hfsx}", run = "archive" },
   # Font
   { mime = "font/*", run = "font" },
   { mime = "application/ms-opentype", run = "font" },
   # Empty file
   { mime = "inode/empty", run = "empty" },
+  # Virtual file system
+  { mime = "vfs/*", run = "vfs" },
+  # Error
+  { mime = "null/*", run = "null" },
   # Fallback
-  { name = "*", run = "file" },
+  { url = "*", run = "file" },
 ]
 
 [input]
-cursor_blink = true
+cursor_blink = false
 
 # cd
 cd_title = "Change directory:"
@@ -211,13 +251,13 @@ delete_offset = [0, 0, 70, 20]
 
 # overwrite
 overwrite_title = "Overwrite file?"
-overwrite_content = "Will overwrite the following file:"
+overwrite_body = "Will overwrite the following file:"
 overwrite_origin = "center"
 overwrite_offset = [0, 0, 50, 15]
 
 # quit
 quit_title = "Quit?"
-quit_content = "The following tasks are still running, are you sure you want to quit?"
+quit_body = "There are unfinished tasks, quit anyway?\n(Open task manager with default key 'w')"
 quit_origin = "center"
 quit_offset = [0, 0, 50, 15]
 

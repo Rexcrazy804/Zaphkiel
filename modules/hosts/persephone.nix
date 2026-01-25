@@ -25,7 +25,6 @@
       self.dandelion.modules.getty-autostart
       self.dandelion.modules.winboat
       self.dandelion.modules.booru-hs
-      self.dandelion.modules.powertop
       self.dandelion.modules.legendary
     ];
 

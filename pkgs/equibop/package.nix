@@ -7,7 +7,7 @@
   makeDesktopItem,
   copyDesktopItems,
   electron,
-  libicns,
+  python3Packages,
   pipewire,
   libpulseaudio,
   autoPatchelfHook,
@@ -18,18 +18,18 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "equibop";
-  version = "3.1.4";
+  version = "3.1.7";
 
   src = fetchFromGitHub {
     owner = "Equicord";
     repo = "Equibop";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-ASU2a4CtlvglHWzv0AASuEWeycfBfSpi+ZuHsu6K0ko=";
+    hash = "sha256-AzXBANUcm/DYYkNlO7q++/Dx826o5Hg/1cYJ84rMY0U=";
   };
 
   postPatch = ''
     substituteInPlace scripts/build/build.mts \
-      --replace-fail 'const gitHash = execSync("git rev-parse HEAD", { encoding: "utf-8" }).trim();' 'const gitHash = "${lib.fakeHash}"'
+      --replace-fail 'gitHash = execSync("git rev-parse HEAD", { encoding: "utf-8" }).trim();' 'gitHash = "${finalAttrs.src.hash}"'
 
     # disable auto updates
     substituteInPlace src/main/updater.ts \
@@ -66,6 +66,17 @@ stdenv.mkDerivation (finalAttrs: {
     runHook postConfigure
   '';
 
+  # electron builds must be writable to support electron fuses
+  preBuild =
+    lib.optionalString stdenv.hostPlatform.isDarwin ''
+      cp -r ${electron.dist}/Electron.app .
+      chmod -R u+w Electron.app
+    ''
+    + lib.optionalString stdenv.hostPlatform.isLinux ''
+      cp -r ${electron.dist} electron-dist
+      chmod -R u+w electron-dist
+    '';
+
   buildPhase = ''
     runHook preBuild
 
@@ -76,7 +87,11 @@ stdenv.mkDerivation (finalAttrs: {
     # can't run it via bunx / npx since fixupPhase was skipped for node_modules
     node node_modules/electron-builder/out/cli/cli.js \
       --dir \
-      -c.electronDist=${electron.dist} \
+      -c.electronDist=${
+      if stdenv.hostPlatform.isDarwin
+      then "."
+      else "electron-dist"
+    } \
       -c.electronVersion=${electron.version} \
       -c.npmRebuild=false
 
@@ -85,7 +100,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   postBuild = ''
     pushd build
-    ${libicns}/bin/icns2png -x icon.icns
+    ${lib.getExe' python3Packages.icnsutil "icnsutil"} e icon.icns
     popd
   '';
 
@@ -94,10 +109,13 @@ stdenv.mkDerivation (finalAttrs: {
     mkdir -p $out/opt/Equibop
     cp -r dist/*unpacked/resources $out/opt/Equibop/
 
-    for file in build/icon_*x32.png; do
-      file_suffix=''${file//build\/icon_}
-      install -Dm0644 $file $out/share/icons/hicolor/''${file_suffix//x32.png}/apps/equibop.png
+    for file in build/icon.icns.export/*.png; do
+      base=''${file##*/}
+      size=''${base/x*/}
+      install -Dm0644 $file $out/share/icons/hicolor/''${size}x''${size}/apps/equibop.png
     done
+
+    install -Dm0644 build/icon.svg $out/share/icons/hicolor/scalable/apps/equibop.svg
 
     runHook postInstall
   '';
@@ -131,7 +149,6 @@ stdenv.mkDerivation (finalAttrs: {
   };
 
   passthru = {
-    inherit (finalAttrs) node-modules;
     # fails to update node-modules FOD :/
     # updateScript = nix-update-script {
     #   extraArgs = [

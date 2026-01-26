@@ -14,7 +14,7 @@
       "version": "v2.69",
       "revision": "7defb5cfd7b65d0b49f4d14446a6635a6e126b3b",
       "url": "https://api.github.com/repos/Xpl0itU/WiiUDownloader/tarball/v2.69",
-      "hash": "1vx98qklrqw3r9gfzcn9ws3vb78wrg0i2psad05a09q1cx8cg7zm"
+      "hash": "sha256-9Z/HUGcBJ6AKaEpfEcHLHJ21h+bJsu9eyoPjTCdGqe8="
     },
     "catp-bat": {
       "type": "Git",
@@ -40,7 +40,7 @@
       "submodules": false,
       "revision": "4dfc8758a1deab45e37b7f3661e0fd3759d85788",
       "url": "https://github.com/NotAShelf/direnv.nvim/archive/4dfc8758a1deab45e37b7f3661e0fd3759d85788.tar.gz",
-      "hash": "1094iy9rxg0h2mpbdxxb6l5rdr1v5qlix9lyalaqpjym6swbr8ra"
+      "hash": "sha256-KqO8uDbVy4sVVZ6mHikuO+SWCzWr97ZuFRC8npOPJIE="
     },
     "fzf-lua": {
       "type": "Git",
@@ -53,7 +53,7 @@
       "submodules": false,
       "revision": "b1d2b0dc146cb9260209da4d7ab754adb0a2653d",
       "url": "https://github.com/ibhagwan/fzf-lua/archive/b1d2b0dc146cb9260209da4d7ab754adb0a2653d.tar.gz",
-      "hash": "0j1lqfwnpv82r0hnldk71f9yy1vpy73svq55c646w0lxzhicpwwc"
+      "hash": "sha256-jPPLIvydAm6IYaXgrcfxdwfvkwtnNmohyALta7nDNEg="
     },
     "image.nvim": {
       "type": "Git",
@@ -82,7 +82,7 @@
       "version": "0.10.8",
       "revision": "ff35c7afe92e77017fdcf3396ea51aa5f29b7a84",
       "url": "https://api.github.com/repos/DreamMaoMao/mangowc/tarball/0.10.8",
-      "hash": "08rvngicz7nqfzq4p4bl20ssm62p7frkycm9pkpqi9klkbhygk2n"
+      "hash": "sha256-Vszn4Zp0pojvvKkyP7M7V5iqNRB0kUvwd9iez+KzOyM="
     },
     "mini.align": {
       "type": "Git",
@@ -95,7 +95,7 @@
       "submodules": false,
       "revision": "6d8a6ca3a0fd313938374abccb50cad026229db3",
       "url": "https://github.com/nvim-mini/mini.align/archive/6d8a6ca3a0fd313938374abccb50cad026229db3.tar.gz",
-      "hash": "0mn9pylz5pwkfm9pwcci8qj78ysb8g7bhdcran1kc80srqa4fv70"
+      "hash": "sha256-4GxHFM4aIDaDVZk1uM5DS3t0JEaRMX5TdZPf8qm/yVY="
     },
     "neorg": {
       "type": "Git",
@@ -108,7 +108,7 @@
       "submodules": false,
       "revision": "4da2159b3f3420d43613f43e159f4253b8544474",
       "url": "https://github.com/nvim-neorg/neorg/archive/4da2159b3f3420d43613f43e159f4253b8544474.tar.gz",
-      "hash": "1yrsr4rlr8q2dfykkdxxf9q3nlvslvgyfiq8w6fpsnzj2xs5nnhc"
+      "hash": "sha256-DFpbdBfyW32d4QhH59+melM7cHK9tzm9awKjTDPJOvs="
     },
     "rosep-fish": {
       "type": "Git",
@@ -151,5 +151,5 @@
       "frozen": true
     }
   },
-  "version": 5
+  "version": 7
 }

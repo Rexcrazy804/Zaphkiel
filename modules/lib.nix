@@ -21,21 +21,17 @@ in {
       lib,
       ...
     }: let
+      inherit (self.packages.${pkgs.stdenv.hostPlatform.system}) sources;
       inherit (config.hjem.users.${username}.impure) dotsDir;
-      toHjem = x: {source = x;};
-      args = {
-        inherit (self.packages.${pkgs.stdenv.hostPlatform.system}) sources;
-        inherit lib config;
-        dots = dotsDir;
-      };
-    in {
-      hjem.users.${username}.xdg.config.files = mapAttrs (_: dot:
-        toHjem (
+      args = {inherit lib config sources dotsDir;};
+      normalize = dot: {
+        source =
           if isFunction dot
           then dot args
-          else (dotsDir + dot)
-        ))
-      dots;
+          else dotsDir + dot;
+      };
+    in {
+      hjem.users.${username}.xdg.config.files = mapAttrs (_: normalize) dots;
     };
   };
 }

@@ -95,7 +95,7 @@ in {
   dandelion.dots.rexies-mango = mkDotsModule username {
     "mango/config.conf" = "/mango/config.conf";
     "mango/autostart.sh" = "/mango/autostart.sh";
-    "mango/hardware.conf" = d: d.dots + "/mango/${d.lib.toLower d.config.networking.hostName}.conf";
+    "mango/hardware.conf" = d: d.dotsDir + "/mango/${d.lib.toLower d.config.networking.hostName}.conf";
   };
 
   dandelion.dots.rexies-hyprland = mkDotsModule username {

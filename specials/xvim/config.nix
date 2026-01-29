@@ -26,6 +26,7 @@
         lspkind-nvim
         oil-nvim
         mini-align
+        mini-cursorword
         ;
 
       treesitter = let

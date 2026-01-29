@@ -45,4 +45,10 @@ in
       version = toVersion sources."mini.align".revision;
       src = sources."mini.align";
     };
+
+    mini-cursorword = buildVimPlugin {
+      pname = "mini.cursorword";
+      version = toVersion sources."mini.cursorword".revision;
+      src = sources."mini.cursorword";
+    };
   })

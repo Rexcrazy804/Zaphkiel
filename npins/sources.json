@@ -97,6 +97,19 @@
       "url": "https://github.com/nvim-mini/mini.align/archive/6d8a6ca3a0fd313938374abccb50cad026229db3.tar.gz",
       "hash": "sha256-4GxHFM4aIDaDVZk1uM5DS3t0JEaRMX5TdZPf8qm/yVY="
     },
+    "mini.cursorword": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nvim-mini",
+        "repo": "mini.cursorword"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "dda0f57d55bb1fa19423b7201b2ba892c7d2bb3c",
+      "url": "https://github.com/nvim-mini/mini.cursorword/archive/dda0f57d55bb1fa19423b7201b2ba892c7d2bb3c.tar.gz",
+      "hash": "sha256-VyH0+aswqME2PpQtTgQ3VyaUfik1N3y2Psyhr1gHWOE="
+    },
     "neorg": {
       "type": "Git",
       "repository": {

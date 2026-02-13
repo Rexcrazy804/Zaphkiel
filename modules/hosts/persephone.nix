@@ -42,7 +42,7 @@
         shpool.users = ["rexies"];
         privoxy.forwards = [
           # I shouldn't be exposing myself like this
-          {domains = ["www.privoxy.org" ".donmai.us" "rule34.xxx" ".yande.re" "www.zerochan.net" ".kemono.su" "hanime.tv"];}
+          {domains = ["www.privoxy.org" ".donmai.us" "rule34.xxx" ".yande.re" "www.zerochan.net" ".kemono.su" "hanime.tv" "1337x.to"];}
         ];
       };
 

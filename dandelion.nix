@@ -1,6 +1,5 @@
-inputs:
-assert inputs ? nixpkgs; let
-  inherit (inputs.nixpkgs.lib) flip flatten hasSuffix filter filesystem pipe recursiveUpdate foldAttrs;
+{nixpkgs ? throw "[Dandelion]: passed attribute set must contain nixpkgs!!!", ...} @ inputs: let
+  inherit (nixpkgs.lib) flip flatten hasSuffix filter filesystem pipe recursiveUpdate foldAttrs;
 
   # simply import ALL nix files in a directory
   recursiveImport = path: filter (hasSuffix ".nix") (filesystem.listFilesRecursive path);

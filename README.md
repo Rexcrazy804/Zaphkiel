@@ -28,10 +28,30 @@ https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 
 ## What in the nix is going on here?
 
-The flake impliments the [dandruff pattern], without flake-parts.
-Should you try it? If you like your sanity, please don't.
-The functions that set this up are plagued with foot guns,
-which will be unpleasant to most people.
+The flake implements the [dandruff pattern], without flake-parts.
+Should you try it? Well, perhaps you can?
+There is ZERO documentation about this besides my own configuration,
+HOWEVER, this is fairly trivial.
+
+I simply have two functions.
+The first accepts a path and generates a list of paths to nix files.
+The second accepts a list of either:
+
+1. a nix expression that is an attribute set or a function that returns an attribute set
+1. a path to a .nix file containing (1.)
+
+Each entry is first converted into an attribute set if not already (by calling the function)
+and then merged using `recursiveUpdate`.
+
+I was initially against recommending this since I ran into the problem of merging functions,
+deciding thus to hold off from recommending it till I've explored it further.
+But thus far, function merging remains as the sole problem,
+which can be easily avoided by not having duplicated namespaces.
+
+Some interesting files to take a look at would be:
+
+- [nixosConfiguration.nix](modules/nixosConfigurations.nix) Automatic creation of hosts as long as a dandelion.hosts.<hostname> is defined.
+- [packages.nix](modules/packages.nix) + [packages-extra.nix](modules/packages-extra.nix) Showcases recursive merging
 
 ## Acknowledgement
 

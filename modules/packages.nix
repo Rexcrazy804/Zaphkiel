@@ -7,11 +7,12 @@
 in {
   packages = self.lib.eachSystem ({
     pkgs,
-    system,
+    pkgx,
+    ...
   }:
     filesystem.packagesFromDirectoryRecursive {
       inherit (pkgs) newScope;
-      callPackage = callPackageWith (pkgs // self.packages.${system});
+      callPackage = callPackageWith (pkgs // pkgx);
       directory = self.paths.pkgs;
     });
 }

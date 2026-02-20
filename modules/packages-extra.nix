@@ -7,9 +7,10 @@
   packages = self.lib.eachSystem ({
     pkgs,
     system,
+    pkgx,
   }: {
     xvim = pkgs.callPackage (self.paths.specials + /xvim) {
-      inherit (self.packages.${system}) sources;
+      inherit (pkgx) sources;
       mnw = mnw.lib;
     };
     stash = let

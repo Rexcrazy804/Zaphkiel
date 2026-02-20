@@ -11,7 +11,7 @@
     inherit (lib) mkForce attrValues;
 
     system = pkgs.stdenv.hostPlatform.system;
-    zpkgs = self.packages.${system};
+    pkgx = self.lib.mkPkgx' pkgs;
     todo = hs-todo.packages.${system}.default;
   in {
     # for whatever reason swappy likes to open images
@@ -39,8 +39,8 @@
     # dependencies .w.
     environment.systemPackages = attrValues {
       # internal overlay
-      inherit (zpkgs) kokCursor kurukurubar stash mpv-wrapped;
-      inherit (zpkgs.scripts) taildrop gpurecording cowask npins-show wallcrop;
+      inherit (pkgx) kokCursor kurukurubar stash mpv-wrapped;
+      inherit (pkgx.scripts) taildrop gpurecording cowask npins-show wallcrop;
       # Themes
       inherit (pkgs) rose-pine-icon-theme rose-pine-gtk-theme;
       inherit (pkgs.kdePackages) qt6ct breeze;
@@ -75,7 +75,7 @@
     services.hypridle.enable = true;
     systemd.user.services.hypridle.path = mkForce (attrValues {
       inherit (pkgs) systemd procps brightnessctl;
-      inherit (zpkgs) kurukurubar;
+      inherit (pkgx) kurukurubar;
     });
   };
 }

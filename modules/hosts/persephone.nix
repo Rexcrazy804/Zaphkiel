@@ -4,7 +4,9 @@
     pkgs,
     config,
     ...
-  }: {
+  }: let
+    pkgx = self.lib.mkPkgx' pkgs;
+  in {
     imports = [
       self.dandelion.users.rexies
       self.dandelion.dots.rexies-cli
@@ -37,7 +39,7 @@
     # zaphkiel opts
     zaphkiel = {
       graphics.intel.hwAccelDriver = "media-driver";
-      data.wallpaper = self.packages.${pkgs.stdenv.hostPlatform.system}.images.evernight;
+      data.wallpaper = pkgx.images.evernight;
       programs = {
         shpool.users = ["rexies"];
         privoxy.forwards = [
@@ -74,12 +76,12 @@
 
     # user space
     users.users."rexies".packages = [
-      self.packages.${pkgs.stdenv.hostPlatform.system}.equibop
+      pkgx.equibop
       pkgs.cemu
     ];
 
     hjem.users.rexies = {
-      files.".face.icon".source = self.packages.${pkgs.stdenv.hostPlatform.system}.images.voyager-profile;
+      files.".face.icon".source = pkgx.images.voyager-profile;
       # matugen.scheme = "scheme-fidelity";
       games = {
         enable = true;

@@ -12,6 +12,7 @@
   }: let
     inherit (lib) mkOption;
     inherit (lib.types) enum;
+    pkgx = self.lib.mkPkgx' pkgs;
     cfg = config.matugen;
     zphd = osConfig.zaphkiel.data;
   in {
@@ -35,7 +36,7 @@
     config = {
       systemd.services."matugen" = {
         description = "invoke matugen to populate color files";
-        path = [self.packages.${pkgs.stdenv.hostPlatform.system}.mangowc];
+        path = [pkgx.mangowc];
         serviceConfig = {
           Type = "oneshot";
         };
@@ -48,7 +49,7 @@
 
       packages = [
         pkgs.matugen
-        self.packages.${pkgs.stdenv.hostPlatform.system}.scripts.changeWall
+        pkgx.scripts.changeWall
       ];
     };
   };

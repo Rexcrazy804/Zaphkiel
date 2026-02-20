@@ -6,13 +6,14 @@
     ...
   }: let
     inherit (lib) mkEnableOption mkOption mkIf mkForce;
+    pkgx = self.lib.mkPkgx' pkgs;
     cfg = config.zaphkiel.programs.mangowc;
 
     uwsmWithPlugin = pkgs.symlinkJoin {
       inherit (pkgs.uwsm) pname version;
       paths = [pkgs.uwsm];
       postBuild = ''
-        ln -sf ${self.packages.${pkgs.stdenv.hostPlatform.system}.mangowc.uwsm-plugin} $out/share/uwsm/plugins/mango.sh
+        ln -sf ${pkgx.mangowc.uwsm-plugin} $out/share/uwsm/plugins/mango.sh
       '';
 
       meta = pkgs.uwsm.meta // {outputsToInstall = ["out"];};
@@ -20,7 +21,7 @@
   in {
     options.zaphkiel.programs.mangowc = {
       package = mkOption {
-        default = self.packages.${pkgs.stdenv.hostPlatform.system}.mangowc;
+        default = pkgx.mangowc;
       };
       withUWSM = mkEnableOption "uwsm for mangowc" // {default = true;};
     };

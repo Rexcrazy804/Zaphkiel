@@ -17,6 +17,6 @@
         exec-once = ${autostart}
       '';
     in
-      lib.mkForce "env ${self.packages.${pkgs.stdenv.hostPlatform.system}.mangowc}/bin/mango -c ${mangoConf}";
+      lib.mkForce "env ${(self.lib.mkPkgx' pkgs).mangowc}/bin/mango -c ${mangoConf}";
   };
 }

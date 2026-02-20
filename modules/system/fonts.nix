@@ -10,7 +10,7 @@
         inherit (pkgs.nerd-fonts) caskaydia-mono caskaydia-cove;
         inherit (pkgs) noto-fonts noto-fonts-color-emoji noto-fonts-cjk-sans;
         inherit (pkgs) noto-fonts-cjk-serif material-symbols iosevka;
-        inherit (self.packages.${pkgs.stdenv.hostPlatform.system}) librebarcode;
+        inherit (self.lib.mkPkgx' pkgs) librebarcode;
       };
     };
   };

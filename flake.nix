@@ -8,7 +8,8 @@
     inherit (dandelion) importModules recursiveImport;
   in
     importModules [
-      (recursiveImport ./modules)
+      (recursiveImport ./modules) # dandelion modules (uses dandelion.<whatever> namespace)
+      (recursiveImport ./flake) # everything else including your typical packages, devShells, etc
     ];
 
   inputs = {

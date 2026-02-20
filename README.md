@@ -50,8 +50,8 @@ which can be easily avoided by not having duplicated namespaces.
 
 Some interesting files to take a look at would be:
 
-- [nixosConfiguration.nix](modules/nixosConfigurations.nix) Automatic creation of hosts as long as a dandelion.hosts.<hostname> is defined.
-- [packages.nix](modules/packages.nix) + [packages-extra.nix](modules/packages-extra.nix) Showcases recursive merging
+- [nixosConfiguration.nix](flake/nixosConfigurations.nix) Automatic creation of hosts as long as a dandelion.hosts.<hostname> is defined.
+- [packages.nix](flake/packages.nix) + [packages-extra.nix](flake/packages-extra.nix) Showcases recursive merging
 
 ## Acknowledgement
 

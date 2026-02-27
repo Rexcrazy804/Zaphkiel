@@ -27,3 +27,5 @@ vim.diagnostic.config({ virtual_text = true })
 
 -- I did not feel like making a sepearte file for this
 vim.g.undotree_SetFocusWhenToggle = 1
+-- fixes certain out of index issues with treesitter in certain cases
+vim.g._ts_force_sync_parsing = true

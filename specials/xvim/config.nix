@@ -16,6 +16,8 @@
     pkgs.imagemagick
   ];
 
+  providers.python3.enable = true;
+
   plugins = {
     start = builtins.attrValues {
       inherit
@@ -56,6 +58,7 @@
         neorg
         direnv-nvim
         nvim-dbee
+        slimv
         ;
     };
 

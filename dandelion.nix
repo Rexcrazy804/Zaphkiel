@@ -8,11 +8,11 @@
   # Don't try to have duplicated dandelion.<namespace>.<entry>
   # You have been warned.
   #
-  # Use the blow as a quick sanity check
+  # Use the below as a quick sanity check
   # $ cat modules/**/**.nix | grep "dandelion.modules.* = " | sort | uniq -d
   #
   # NOTE
-  # Now if you want to still use diplicated namespaces
+  # Now if you want to still use duplicated namespaces
   # an understanding of `recursiveUpdate` is HIGHLY recomended.
   # Just know that it can't merge functions.
   importModules = flip pipe [

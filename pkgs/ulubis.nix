@@ -1,3 +1,16 @@
+# this does not quite work
+# well it somewhat does but ultimately shoots itself due to opengl error
+# you can't quite launch it inside an other wayland compositor
+# but whatever, I wanted to learn a bit more of lisp packaging
+# and this is how far I've gotten.
+#
+# is library versioning not a thing in lisp?
+# or are these libraries working just fine cause they haven't
+# been updated in since the dinosaurs went extinct?
+# Ah well, I'll know eventually
+#
+# Your truly,
+# Rexiel Scarlet <3
 {
   sbclPackages,
   sbcl,

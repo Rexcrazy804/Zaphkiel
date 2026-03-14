@@ -11,10 +11,10 @@
       "version_upper_bound": null,
       "release_prefix": null,
       "submodules": false,
-      "version": "v2.69",
-      "revision": "7defb5cfd7b65d0b49f4d14446a6635a6e126b3b",
-      "url": "https://api.github.com/repos/Xpl0itU/WiiUDownloader/tarball/v2.69",
-      "hash": "sha256-9Z/HUGcBJ6AKaEpfEcHLHJ21h+bJsu9eyoPjTCdGqe8="
+      "version": "v2.81",
+      "revision": "da4454d03a7a3a3f739e5d584a56b7486c82b0f8",
+      "url": "https://api.github.com/repos/Xpl0itU/WiiUDownloader/tarball/refs/tags/v2.81",
+      "hash": "sha256-a6s3qR0DDx7YKi8jg8JG2d+xjE4lcRpvde52LT+G7go="
     },
     "catp-bat": {
       "type": "Git",
@@ -38,9 +38,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "4dfc8758a1deab45e37b7f3661e0fd3759d85788",
-      "url": "https://github.com/NotAShelf/direnv.nvim/archive/4dfc8758a1deab45e37b7f3661e0fd3759d85788.tar.gz",
-      "hash": "sha256-KqO8uDbVy4sVVZ6mHikuO+SWCzWr97ZuFRC8npOPJIE="
+      "revision": "9e58bb5e8db19d8bf2626de8e94a85fc305a8c1e",
+      "url": "https://github.com/NotAShelf/direnv.nvim/archive/9e58bb5e8db19d8bf2626de8e94a85fc305a8c1e.tar.gz",
+      "hash": "sha256-TlQ3oTRirUf/Po1KWCL4wDp8GgrJXzYWQx0C5qyZFeQ="
     },
     "fzf-lua": {
       "type": "Git",
@@ -51,9 +51,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "b1d2b0dc146cb9260209da4d7ab754adb0a2653d",
-      "url": "https://github.com/ibhagwan/fzf-lua/archive/b1d2b0dc146cb9260209da4d7ab754adb0a2653d.tar.gz",
-      "hash": "sha256-jPPLIvydAm6IYaXgrcfxdwfvkwtnNmohyALta7nDNEg="
+      "revision": "65c848961e66de995052ead60970fbde101ff18f",
+      "url": "https://github.com/ibhagwan/fzf-lua/archive/65c848961e66de995052ead60970fbde101ff18f.tar.gz",
+      "hash": "sha256-MaMZxULzoDajFQ9JT/8u3lyLg11FIaHIjVUqjrYmxNs="
     },
     "image.nvim": {
       "type": "Git",
@@ -64,9 +64,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "446a8a5cc7a3eae3185ee0c697732c32a5547a0b",
-      "url": "https://github.com/3rd/image.nvim/archive/446a8a5cc7a3eae3185ee0c697732c32a5547a0b.tar.gz",
-      "hash": "sha256-EaDeY8aP41xHTw5epqYjaBqPYs6Z2DABzSaVOnG6D6I="
+      "revision": "da2be65c153ba15a14a342b05591652a6df70d58",
+      "url": "https://github.com/3rd/image.nvim/archive/da2be65c153ba15a14a342b05591652a6df70d58.tar.gz",
+      "hash": "sha256-brDtVYD3O+7N2RdQPIx2+6P+faXafoJDUITy0z0cIuA="
     },
     "mangowc": {
       "type": "GitRelease",
@@ -79,10 +79,10 @@
       "version_upper_bound": null,
       "release_prefix": null,
       "submodules": false,
-      "version": "0.10.8",
-      "revision": "ff35c7afe92e77017fdcf3396ea51aa5f29b7a84",
-      "url": "https://api.github.com/repos/DreamMaoMao/mangowc/tarball/0.10.8",
-      "hash": "sha256-Vszn4Zp0pojvvKkyP7M7V5iqNRB0kUvwd9iez+KzOyM="
+      "version": "0.12.6",
+      "revision": "1fc89d01eb5aa0f3784fb4006bf9af47826444d2",
+      "url": "https://api.github.com/repos/DreamMaoMao/mangowc/tarball/refs/tags/0.12.6",
+      "hash": "sha256-MXCXjnGPE+wagrHR8cxGTDhJO4xYp+aBQPApV3JG9XY="
     },
     "mini.align": {
       "type": "Git",
@@ -93,9 +93,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "6d8a6ca3a0fd313938374abccb50cad026229db3",
-      "url": "https://github.com/nvim-mini/mini.align/archive/6d8a6ca3a0fd313938374abccb50cad026229db3.tar.gz",
-      "hash": "sha256-4GxHFM4aIDaDVZk1uM5DS3t0JEaRMX5TdZPf8qm/yVY="
+      "revision": "4d45e0e4f1fd8baefb6ae52a44659704fe7ebe8b",
+      "url": "https://github.com/nvim-mini/mini.align/archive/4d45e0e4f1fd8baefb6ae52a44659704fe7ebe8b.tar.gz",
+      "hash": "sha256-MdbSIDfCasGbS9MPGLRUh8rYbu1zKpSiyEtzgJlgf4k="
     },
     "mini.cursorword": {
       "type": "Git",
@@ -106,9 +106,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "dda0f57d55bb1fa19423b7201b2ba892c7d2bb3c",
-      "url": "https://github.com/nvim-mini/mini.cursorword/archive/dda0f57d55bb1fa19423b7201b2ba892c7d2bb3c.tar.gz",
-      "hash": "sha256-VyH0+aswqME2PpQtTgQ3VyaUfik1N3y2Psyhr1gHWOE="
+      "revision": "8dcf45bc820f3c5f778960ba55206938246b70b7",
+      "url": "https://github.com/nvim-mini/mini.cursorword/archive/8dcf45bc820f3c5f778960ba55206938246b70b7.tar.gz",
+      "hash": "sha256-/fPx5AaTB0Ovssxfl7Le0i8NkTfZCtO1IJpKCFJ6Mpc="
     },
     "neorg": {
       "type": "Git",
@@ -119,9 +119,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "4da2159b3f3420d43613f43e159f4253b8544474",
-      "url": "https://github.com/nvim-neorg/neorg/archive/4da2159b3f3420d43613f43e159f4253b8544474.tar.gz",
-      "hash": "sha256-DFpbdBfyW32d4QhH59+melM7cHK9tzm9awKjTDPJOvs="
+      "revision": "ca524bdf7e68091b1bc5a968cb60e07618472660",
+      "url": "https://github.com/nvim-neorg/neorg/archive/ca524bdf7e68091b1bc5a968cb60e07618472660.tar.gz",
+      "hash": "sha256-ukxw43NfHGTFwi2XV4JGIR14gDMCBDNI/LKZfLITjh4="
     },
     "rosep-fish": {
       "type": "Git",
@@ -132,9 +132,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "b82982c55582cfaf6f220de1893c7c73dd0cb301",
-      "url": "https://github.com/rose-pine/fish/archive/b82982c55582cfaf6f220de1893c7c73dd0cb301.tar.gz",
-      "hash": "sha256-Dvaw1k7XOU2NUQbTJAXPgAOPN1zTLVrc7NZDY5/KHeM="
+      "revision": "127a990e5ad4688118c950123787fb0686afa4c8",
+      "url": "https://github.com/rose-pine/fish/archive/127a990e5ad4688118c950123787fb0686afa4c8.tar.gz",
+      "hash": "sha256-3heI6nhItw5WfKGQT1FRQKfv+lONyn+DzwYjYqJjzLE="
     },
     "rosep-foot": {
       "type": "Git",
@@ -145,9 +145,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "725e9c38880d577ee973eb916e83395964ffc287",
-      "url": "https://github.com/rose-pine/foot/archive/725e9c38880d577ee973eb916e83395964ffc287.tar.gz",
-      "hash": "sha256-Lo8HkJr+uYNUSRNzUhaksJAPvK8fbu5WubtmBSsa0/Q="
+      "revision": "4c897ddad2fef9ebc6ec2e7ebc80ea71337edd07",
+      "url": "https://github.com/rose-pine/foot/archive/4c897ddad2fef9ebc6ec2e7ebc80ea71337edd07.tar.gz",
+      "hash": "sha256-rZm3d7dN4M2cHMx1SrrSWfCKn3JHUVQ+EsH5FvOww4I="
     },
     "zaphkiel": {
       "type": "Git",

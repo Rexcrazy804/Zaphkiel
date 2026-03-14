@@ -9,7 +9,7 @@
     multimediaDir = "/home/multimedia";
     caddyCfg = config.zaphkiel.services.caddy;
 
-    inherit (lib) mkIf;
+    inherit (lib) mkIf mkForce;
     inherit (builtins) toString;
   in {
     services.jellyfin = {
@@ -60,6 +60,10 @@
       enable = true;
       openFirewall = false;
     };
+
+    # I've made a poor decision of throwing my stuff in the /home/multimedia
+    # TODO when I migrate to a new device use some other folder
+    systemd.services.sonarr.serviceConfig.ProtectHome = mkForce false;
 
     # TODO remove this once sonarr is updated
     # required for sonarr

@@ -28,7 +28,7 @@
   in {
     # let root use fish too :D
     users.users.root.shell = pkgs.fish;
-    documentation.man.generateCaches = false; # screw this too
+    documentation.man.cache.enable = false; # screw this too
     programs.fish = {
       enable = true;
       useBabelfish = true;

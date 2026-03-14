@@ -16,7 +16,7 @@
     '';
 
     environment.systemPackages = [
-      pkgs.wineWowPackages.waylandFull
+      pkgs.wineWow64Packages.waylandFull
       pkgs.winetricks
       pkgs.mono
     ];

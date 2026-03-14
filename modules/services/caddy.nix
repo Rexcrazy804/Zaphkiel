@@ -46,6 +46,7 @@
             }
           else pkgs.caddy;
 
+        # cd secrets && sudo agenix -i /etc/ssh/ssh_host_ed25519_key -e secret10.age
         globalConfig = mkIf cfg.tsplugin.enable ''
           tailscale {
             auth_key {$TS_KEY}

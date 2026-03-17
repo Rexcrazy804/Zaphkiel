@@ -55,7 +55,6 @@ stdenv.mkDerivation (final: {
   '';
 
   installPhase = ''
-    mkdir -p $out/bin
-    install -Dm777 tmc.gba $out/bin/tmc.gba
+    install -Dm445 tmc.gba $out/share/roms/gba/zeldatmc.gba
   '';
 })

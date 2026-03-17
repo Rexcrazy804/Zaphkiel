@@ -38,6 +38,6 @@ stdenv.mkDerivation {
   '';
 
   installPhase = ''
-    install -Dm445 poke${edition}.gba $out/share/roms/gba/poke${edition}.gba
+    install -Dm444 poke${edition}.gba $out/share/roms/gba/poke${edition}.gba
   '';
 }

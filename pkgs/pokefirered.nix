@@ -1,12 +1,16 @@
 {
+  lib,
   stdenv,
   fetchFromGitHub,
   agbcc,
   pokefirered-tools,
   gcc-arm-embedded,
   edition ? "firered", # one of ["firered" "leafgreen" "firered_rev1" "leafgreen_rev1"]
+  useDevKitARMC ? true,
 }:
-stdenv.mkDerivation {
+stdenv.mkDerivation (_final: let
+  editionText = edition + lib.optionalString useDevKitARMC "_modern";
+in {
   pname = "pokefirered";
   version = "unstable";
 
@@ -34,10 +38,10 @@ stdenv.mkDerivation {
   '';
 
   buildPhase = ''
-    make -j$(nproc) ${edition}
+    make -j$(nproc) ${editionText}
   '';
 
   installPhase = ''
-    install -Dm444 poke${edition}.gba $out/share/roms/gba/poke${edition}.gba
+    install -Dm444 poke${editionText}.gba $out/share/roms/gba/poke${edition}.gba
   '';
-}
+})

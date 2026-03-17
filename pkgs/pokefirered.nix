@@ -4,6 +4,7 @@
   agbcc,
   pokefirered-tools,
   gcc-arm-embedded,
+  edition ? "firered", # one of ["firered" "leafgreen" "firered_rev1" "leafgreen_rev1"]
 }:
 stdenv.mkDerivation {
   pname = "pokefirered";
@@ -33,10 +34,10 @@ stdenv.mkDerivation {
   '';
 
   buildPhase = ''
-    make -j$(nproc)
+    make -j$(nproc) ${edition}
   '';
 
   installPhase = ''
-    install -Dm445 pokefirered.gba $out/share/roms/gba/pokefirered.gba
+    install -Dm445 poke${edition}.gba $out/share/roms/gba/poke${edition}.gba
   '';
 }

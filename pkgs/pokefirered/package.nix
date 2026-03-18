@@ -1,16 +1,18 @@
 {
+  callPackage,
   lib,
   stdenv,
   fetchFromGitHub,
   agbcc,
-  pokefirered-tools,
   gcc-arm-embedded,
   edition ? "firered", # one of ["firered" "leafgreen" "firered_rev1" "leafgreen_rev1"]
   useDevKitARMC ? true,
 }:
-stdenv.mkDerivation (_final: let
+stdenv.mkDerivation (final: let
   editionText = edition + lib.optionalString useDevKitARMC "_modern";
 in {
+  __structuredAttrs = true; # who the fuck turned this off?
+
   pname = "pokefirered";
   version = "unstable";
 
@@ -20,6 +22,8 @@ in {
     rev = "7e3f822652ecce0c99b626d74f455c3b93660377";
     hash = "sha256-WYHHKJOlxdWwpEecdgREt95KNBhfWYmvnhGRCt8ynKI=";
   };
+
+  vendored.tools = callPackage ./tools.nix {};
 
   nativeBuildInputs = [
     agbcc
@@ -32,7 +36,7 @@ in {
 
   postPatch = ''
     rm -rf tools
-    cp -r ${pokefirered-tools}/share/pokefirered-tools/tools .
+    cp -r ${final.vendored.tools}/share/pokefirered-tools/tools .
     chmod u+rwx tools
     cp -r ${agbcc} ./tools/agbcc
   '';

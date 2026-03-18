@@ -48,4 +48,6 @@ in {
   installPhase = ''
     install -Dm444 poke${editionText}.gba $out/share/roms/gba/poke${edition}.gba
   '';
+
+  passthru.tools = final.vendored.tools;
 })

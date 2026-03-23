@@ -9,9 +9,29 @@
   libpng,
   zeldatmc,
 }:
-stdenv.mkDerivation (_final: let
-  inherit (lib) cmakeFeature;
-  vendoredLibs = {
+stdenv.mkDerivation (final: {
+  __structuredAttrs = true;
+
+  inherit (zeldatmc) src;
+  pname = "zeldatmc-tools";
+  version = "unstable";
+
+  nativeBuildInputs = [
+    gcc-arm-embedded-14
+    which
+    cmake
+  ];
+
+  buildInputs = [
+    zlib
+    libpng
+  ];
+
+  preConfigure = ''
+    pushd tools
+  '';
+
+  vendored = {
     project_content = fetchFromGitHub {
       owner = "aminya";
       repo = "project_options";
@@ -38,31 +58,14 @@ stdenv.mkDerivation (_final: let
       hash = "sha256-I150pDmaHY+RbHMr28f4xdggMB2ZhUNBGgOcsvuiQ3w=";
     };
   };
-in {
-  inherit (zeldatmc) src;
-  pname = "zeldatmc-tools";
-  version = "unstable";
 
-  nativeBuildInputs = [
-    gcc-arm-embedded-14
-    which
-    cmake
-  ];
-
-  buildInputs = [
-    zlib
-    libpng
-  ];
-
-  preConfigure = ''
-    pushd tools
-  '';
-
-  cmakeFlags = [
-    (cmakeFeature "FETCHCONTENT_SOURCE_DIR__PROJECT_OPTIONS" "${vendoredLibs.project_content}")
-    (cmakeFeature "FETCHCONTENT_SOURCE_DIR_JSON" "${vendoredLibs.json}")
-    (cmakeFeature "FETCHCONTENT_SOURCE_DIR_FMT" "${vendoredLibs.fmt}")
-    (cmakeFeature "FETCHCONTENT_SOURCE_DIR_CLI11" "${vendoredLibs.CLI11}")
+  cmakeFlags = let
+    inherit (lib) cmakeFeature;
+  in [
+    (cmakeFeature "FETCHCONTENT_SOURCE_DIR__PROJECT_OPTIONS" "${final.vendored.project_content}")
+    (cmakeFeature "FETCHCONTENT_SOURCE_DIR_JSON" "${final.vendored.json}")
+    (cmakeFeature "FETCHCONTENT_SOURCE_DIR_FMT" "${final.vendored.fmt}")
+    (cmakeFeature "FETCHCONTENT_SOURCE_DIR_CLI11" "${final.vendored.CLI11}")
     (cmakeFeature "CMAKE_POLICY_VERSION_MINIMUM" "3.5")
   ];
 })

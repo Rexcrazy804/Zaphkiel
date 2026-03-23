@@ -1,4 +1,5 @@
 {
+  callPackage,
   python3,
   requireFile,
   stdenv,
@@ -6,11 +7,12 @@
   gcc-arm-embedded-14,
   which,
   agbcc,
-  zeldatmc-tools,
   romBuild ? "baserom.gba",
   romHash ? "sha256-vtx032J1X3BTmCc96O07xZvmEM9Vdg0LmqJ38fUDXnM=",
 }:
 stdenv.mkDerivation (final: {
+  __structuredAttrs = true;
+
   pname = "zeldatmc";
   version = "unstable";
 
@@ -20,6 +22,8 @@ stdenv.mkDerivation (final: {
     rev = "5ab63f00e522ff69c5bc987e379f0163943f2833";
     hash = "sha256-g/hOCkwv94AZFogVH/sdd5TmOOFh/u4IQPeKjW9G8lU=";
   };
+
+  vendored.tools = callPackage ./tools.nix {};
 
   # getting sha256 HASH
   # nix hash convert --hash-algo sha256 --to sri $(nix-prefetch-url file:///path/to/file)
@@ -40,7 +44,7 @@ stdenv.mkDerivation (final: {
 
   postPatch = ''
     cp ${final.baseRom} ./${romBuild}
-    cp -R ${zeldatmc-tools}/* ./tools/
+    cp -R ${final.vendored.tools}/* ./tools/
 
     patchShebangs .
 
@@ -57,4 +61,6 @@ stdenv.mkDerivation (final: {
   installPhase = ''
     install -Dm444 tmc.gba $out/share/roms/gba/zeldatmc.gba
   '';
+
+  passthru.tools = final.vendored.tools;
 })

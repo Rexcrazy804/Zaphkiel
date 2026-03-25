@@ -91,11 +91,11 @@
         "nixpkgs": []
       },
       "locked": {
-        "lastModified": 1767386580,
-        "narHash": "sha256-6W1iRnwMIMsfY2p7ksvGy6l2+YA0j57mqq3Kv3Y7Yzc=",
+        "lastModified": 1774033400,
+        "narHash": "sha256-lECETmsnVngKI5qZYsygEAyFQVSvZNxzDqOWZoxK4mQ=",
         "owner": "Rexcrazy804",
         "repo": "hjem-impure",
-        "rev": "93145962a2b822b63562c7f482b2fb43be64e119",
+        "rev": "1a65894ec4b6b80591a7ec121ee4bb52ca772ebf",
         "type": "github"
       },
       "original": {

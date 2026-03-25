@@ -65,9 +65,9 @@
     # disabled autosuspend
     services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
     # temporarily setting it for Seraphine only
-    # networking.networkmanager.wifi.backend = "iwd";
+    networking.networkmanager.wifi.backend = "iwd";
     # Resolves wifi connectivity issues on Seraphine
-    # boot.extraModprobeConfig = "options iwlwifi 11n_disable=1";
+    boot.extraModprobeConfig = "options iwlwifi 11n_disable=1";
 
     fileSystems = {
       "/" = {

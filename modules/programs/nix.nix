@@ -26,7 +26,7 @@
   in {
     nixpkgs.config.allowUnfree = true;
     nix = {
-      package = pkgs.nixVersions.nix_2_30;
+      # package = pkgs.nixVersions.nix_2_30;
       registry.nixpkgs.flake = nixpkgs;
       channel.enable = false;
       settings = {

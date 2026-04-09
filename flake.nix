@@ -29,7 +29,6 @@
     };
     hjem = {
       url = "github:feel-co/hjem";
-      inputs.smfh.follows = "";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nix-darwin.follows = "";
     };

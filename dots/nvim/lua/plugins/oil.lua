@@ -9,6 +9,7 @@ return {
     },
   },
   after = function()
+    if vim.g.vscode then return end
     require("oil").setup({
       default_file_explorer = true,
       delete_to_trash = true,

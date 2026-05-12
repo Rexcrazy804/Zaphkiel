@@ -20,6 +20,7 @@ return {
     },
   },
   after = function()
+    if vim.g.vscode then return end
     require("neorg").setup({
       load = {
         ["core.defaults"] = {},

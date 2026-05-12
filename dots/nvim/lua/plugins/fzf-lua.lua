@@ -62,6 +62,7 @@ return {
     { "<leader>f,", "<CMD>FzfLua resume<CR>", desc = "Resume last find" },
   },
   after = function()
+    if vim.g.vscode then return end
     require("fzf-lua").setup({
       actions = { files = { ["enter"] = FzfLua.actions.file_edit } },
       -- Force bg color to be transparent - Sumee

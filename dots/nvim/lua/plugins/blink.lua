@@ -2,6 +2,7 @@ return {
   "blink.cmp",
   event = "InsertEnter",
   after = function()
+    if vim.g.vscode then return end
     require("blink-cmp").setup({
       keymap = {
         preset = "enter", -- before you pull out your hair

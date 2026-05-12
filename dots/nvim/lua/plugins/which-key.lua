@@ -1,5 +1,8 @@
 return {
   "which-key.nvim",
   event = "DeferredUIEnter",
-  after = function() require("which-key").setup({ preset = "modern" }) end,
+  after = function()
+    if vim.g.vscode then return end
+    require("which-key").setup({ preset = "modern" })
+  end,
 }

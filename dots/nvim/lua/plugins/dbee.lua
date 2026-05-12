@@ -2,6 +2,7 @@ return {
   "nvim-dbee",
   command = "Dbee",
   after = function()
+    if vim.g.vscode then return end
     require("dbee").setup({
       default_connection = "sales_history",
       sources = {

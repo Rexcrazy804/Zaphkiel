@@ -2,6 +2,7 @@ return {
   "lualine.nvim",
   event = "VimEnter",
   after = function()
+    if vim.g.vscode then return end
     require("lualine").setup({
       tabline = {
         lualine_a = { { "buffers", symbols = { alternate_file = "" } } },

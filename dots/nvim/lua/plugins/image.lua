@@ -2,6 +2,7 @@ return {
   "image.nvim",
   filetypes = { "markdown", "norg", "typst", "html", "css" },
   after = function()
+    if vim.g.vscode then return end
     require("image").setup({
       backend = "sixel",
       processor = "magick_rock",

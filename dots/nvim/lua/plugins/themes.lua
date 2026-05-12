@@ -9,6 +9,7 @@ return {
       "catppuccin-mocha",
     },
     after = function()
+      if vim.g.vscode then return end
       require("catppuccin").setup({
         flavour = "mocha",
         transparent_background = true,
@@ -25,6 +26,7 @@ return {
       "rose-pine-moon",
     },
     after = function()
+      if vim.g.vscode then return end
       require("rose-pine").setup({
         variant = "auto", -- auto, main, moon, or dawn
         dark_variant = "main", -- main, moon, or dawn
@@ -65,6 +67,7 @@ return {
       "tokyonight-moon",
     },
     after = function()
+      if vim.g.vscode then return end
       require("tokyonight").setup({
         transparent = true,
         lualine_bold = true,

@@ -9,6 +9,7 @@ return {
     },
   },
   after = function()
+    if vim.g.vscode then return end
     require("flash").setup({
       search = { mode = "fuzzy" },
       modes = { search = { enabled = true } },

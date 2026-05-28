@@ -21,7 +21,7 @@ jobs:
           xvim:
             - 'pkgs/nvim/**'
           caddy:
-            - 'nixosModules/server/caddy.nix'
+            - 'modules/services/caddy.nix'
           lockfile:
             - 'flake.lock'
           pins:

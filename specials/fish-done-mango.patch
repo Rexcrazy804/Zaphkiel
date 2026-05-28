@@ -1,0 +1,27 @@
+From 4d1698a0a0a7f278905633488520495deb374500 Mon Sep 17 00:00:00 2001
+From: Rexiel Scarlet <37258415+Rexcrazy804@users.noreply.github.com>
+Date: Thu, 28 May 2026 18:35:58 +0400
+Subject: [PATCH] added mangowc support
+
+simple script to get a combination of appid + title for supporting done
+in mangowc
+---
+ conf.d/done.fish | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/conf.d/done.fish b/conf.d/done.fish
+index 8160f06..f727463 100644
+--- a/conf.d/done.fish
++++ b/conf.d/done.fish
+@@ -87,6 +87,8 @@ function __done_get_focused_window_id
+     else if test -n "$NIRI_SOCKET"
+         and type -q jq
+         niri msg --json focused-window | jq ".id"
++    else if test "$XDG_CURRENT_DESKTOP" = "mango"
++        mmsg -gc | awk '{ print $3 }' | string join ' '
+     else if begin
+             test "$XDG_SESSION_DESKTOP" = gnome; and type -q gdbus
+         end
+-- 
+2.53.0
+

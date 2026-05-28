@@ -11,7 +11,7 @@
     ...
   }: let
     inherit (lib) mkOption;
-    inherit (lib.types) enum;
+    inherit (lib.types) enum number;
     pkgx = self.lib.mkPkgx' pkgs;
     cfg = config.matugen;
     zphd = osConfig.zaphkiel.data;
@@ -31,6 +31,11 @@
         default = "scheme-tonal-spot";
         description = "sets color scheme type";
       };
+      srcIndex = mkOption {
+        type = number;
+        default = 0;
+        description = "source color index when multiple colors are found";
+      };
     };
 
     config = {
@@ -43,7 +48,7 @@
         wantedBy = ["graphical-session-pre.target"];
         scriptArgs = "${zphd.wallpaper} ${cfg.scheme}";
         script = ''
-          ${pkgs.matugen}/bin/matugen -t $2 image $1 --json hex
+          ${pkgs.matugen}/bin/matugen -t "$2" image "$1" --json hex --source-color-index ${builtins.toString cfg.srcIndex}
         '';
       };
 

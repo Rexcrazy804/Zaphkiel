@@ -134,6 +134,9 @@
         function dekokomi
           systemd-creds --user decrypt ~/Documents/Mine/kokomi.cred | grep $argv
         end
+
+        # done plugin
+        set -U __done_exclude '^nvim'
       '';
     };
 

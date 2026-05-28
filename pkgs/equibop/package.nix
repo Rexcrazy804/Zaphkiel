@@ -18,13 +18,13 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "equibop";
-  version = "3.1.9";
+  version = "3.2.0";
 
   src = fetchFromGitHub {
     owner = "Equicord";
     repo = "Equibop";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-4v0NKGmdbEdHyjz35l+QUnXvnVfLzIe1vLxOSmdgbYQ=";
+    hash = "sha256-CPRn1F15N4Rjry91Gu+ZXWpKVTOEnHI3TmZn8502QB4=";
   };
 
   postPatch = ''
@@ -34,6 +34,10 @@ stdenv.mkDerivation (finalAttrs: {
     # disable auto updates
     substituteInPlace src/main/updater.ts \
       --replace-fail 'const isOutdated = autoUpdater.checkForUpdates().then(res => Boolean(res?.isUpdateAvailable));' 'const isOutdated = false;'
+
+    # disable auto update for bun
+    substituteInPlace scripts/build/compileArrpc.mts \
+      --replace-fail -baseline ""
   '';
 
   node-modules = callPackage ./node-modules.nix {};

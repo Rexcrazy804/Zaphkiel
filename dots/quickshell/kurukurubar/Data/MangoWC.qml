@@ -12,24 +12,18 @@ Singleton {
   property string currentWorkspace: "0"
 
   Process {
-    command: ["mmsg", "-w", "-t"]
+    command: ["mmsg", "watch", "focusing-client"]
     running: true
 
     stdout: SplitParser {
       onRead: line => {
-        // Monitor Tag_Number Tag_State Clients Focused_Client
-        const regEx = /(.*) tag (\d) (\d) (\d) (\d)/;
-        const data = regEx.exec(line);
-        if (!data)
-          return;
-        const display = data[1];
-        const tNum = data[2];
-        const tState = data[3];
-        const tClients = data[4];
-        if (tState == "1") {
-          root.currentWorkspace = tNum;
-        }
+        let data = JSON.parse(line);
+        root.currentWorkspace = data.tags[0];
       }
     }
+  }
+
+  function setCurrentTag(tagname) {
+    Quickshell.execDetached(["mmsg", "dispatch", `view,${tagname}`]);
   }
 }

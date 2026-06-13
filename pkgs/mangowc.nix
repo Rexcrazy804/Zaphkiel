@@ -6,7 +6,7 @@
   makeWrapper,
   symlinkJoin,
   writeShellScriptBin,
-  withBaseWrapper ? true,
+  withBaseWrapper ? false,
   extraSessionCommands ? "",
   dbus,
   withGtkWrapper ? true,

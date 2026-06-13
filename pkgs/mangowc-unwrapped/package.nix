@@ -21,6 +21,7 @@
   scenefx,
   wlroots_0_19,
   libGL,
+  cjson,
   enableXWayland ? true,
   debug ? false,
 }:
@@ -66,6 +67,7 @@ stdenv.mkDerivation {
       wlroots_0_19
       scenefx
       libGL
+      cjson
     ]
     ++ lib.optionals enableXWayland [
       libX11

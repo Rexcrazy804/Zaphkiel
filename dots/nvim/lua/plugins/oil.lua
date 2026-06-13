@@ -11,6 +11,9 @@ return {
   after = function()
     if vim.g.vscode then return end
     require("oil").setup({
+      float = {
+        border = "single",
+      },
       default_file_explorer = true,
       delete_to_trash = true,
       skip_confirm_for_simple_edits = true,

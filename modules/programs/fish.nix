@@ -157,6 +157,11 @@
       done = pkgs.fishPlugins.done.overrideAttrs (_old: {
         # I should upstream this probably but we ball
         patches = ["${self.paths.specials}/fish-done-mango.patch"];
+        postPatch = ''
+          substituteInPlace conf.d/done.fish \
+            --replace-fail " jq " " ${lib.getExe pkgs.jq} " \
+            --replace-fail "and type -q jq" "and type -q ${lib.getExe pkgs.jq}"
+        '';
       });
     };
   };

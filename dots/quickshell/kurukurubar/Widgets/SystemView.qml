@@ -127,7 +127,7 @@ Item {
                     Gen.MouseArea {
                       layerColor: Dat.Colors.current.primary
 
-                      onClicked: Hyprland.dispatch("workspace " + (parent.index + 1))
+                      onClicked: Hyprland.dispatch("workspace " + (parent.index + 1)) ?? Dat.MangoWC.setCurrentTag(parent.index + 1)
                     }
                   }
                 }

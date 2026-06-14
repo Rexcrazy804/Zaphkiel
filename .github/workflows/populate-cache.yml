@@ -8,7 +8,7 @@ on:
       - 'npins/sources.json'
       - 'flake.lock'
       - 'pkgs/**'
-      - 'nixosModules/server/caddy.nix'
+      - 'modules/services/caddy.nix'
 jobs:
   populate-cache:
     runs-on: ubuntu-latest

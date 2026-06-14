@@ -12,7 +12,7 @@
         ${cfg.finalOpts} ${cfg.package}/bin/kurukurubar && pkill mango
       '';
       mangoConf = pkgs.writeText "config.conf" ''
-        monitorrule=eDP-1,1,1,tile,0,1.25,0,0,1920,1080,60
+        monitorrule=name:eDP-1,width:1920,height:1080,refresh:60,x:0,y:0,scale:1,vrr:0,rr:0
         cursor_theme=Kokomi_Cursor
         exec-once = ${autostart}
       '';

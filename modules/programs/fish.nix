@@ -62,6 +62,22 @@
         glg = "git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all";
         gl = "git log";
 
+        # jujutsu stuff
+        jl = "jj log";
+        jd = "jj describe";
+        jdm = "jj describe -m";
+        jc = "jj commit";
+        jcm = "jj commit -m";
+        jnm = "jj new -m";
+        # general
+        jn = "jj new";
+        js = "jj st";
+        jp = "jj push";
+        je = "jj edit";
+        # bookmarks
+        jbm = "jj bookmark move";
+        jbt = "jj bookmark move -t";
+
         # systemctl
         sy = "systemctl";
         sya = "systemctl start";

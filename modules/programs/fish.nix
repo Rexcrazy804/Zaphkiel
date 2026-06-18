@@ -63,17 +63,19 @@
         gl = "git log";
 
         # jujutsu stuff
-        jl = "jj log";
         jd = "jj describe";
         jdm = "jj describe -m";
         jc = "jj commit";
         jcm = "jj commit -m";
-        jnm = "jj new -m";
-        # general
         jn = "jj new";
+        jnm = "jj new -m";
+        jnb = "jj new -B";
+        jl = "jj log";
+        jla = "jj log -r 'all()'";
         js = "jj st";
         jp = "jj push";
         je = "jj edit";
+        ja = "jj abandon";
         # bookmarks
         jbm = "jj bookmark move";
         jbt = "jj bookmark move -t";

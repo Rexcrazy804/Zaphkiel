@@ -4,6 +4,7 @@
       (self.lib.mkPkgx' pkgs).xvim.default
       pkgs.git
       pkgs.npins
+      pkgs.jujutsu
     ];
 
     environment.variables.EDITOR = "nvim";

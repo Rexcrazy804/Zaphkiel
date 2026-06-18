@@ -8,3 +8,8 @@ email = "37258415+Rexcrazy804@users.noreply.github.com"
 behavior = "own"
 backend = "gpg"
 key = "00AC2D589EE7B0EBA5F03969E22FC5FD4007C746"
+
+[git]
+colocate = true
+sign-on-push = true
+write-change-id-header = true

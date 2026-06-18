@@ -1,8 +1,5 @@
 {
-  dandelion.modules.firefox = {pkgs, ...}: {
-    programs.firefox = {
-      package = pkgs.librewolf;
-      enable = true;
-    };
+  dandelion.modules.firefox = {...}: {
+    programs.firefox.enable = true;
   };
 }

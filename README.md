@@ -80,8 +80,8 @@ largely due to [argosnothing] shilling [jet]'s nixos configuration a great deal.
 
 ## Licensing
 
-All code in this repository is under the MIT license
-except wherever an explicit licensing is included.
+All code in this repository is under the MIT license,
+except wherever an explicit license is included.
 
 [argosnothing]: https://github.com/argosnothing
 [booru images]: dots/booru/preview.md

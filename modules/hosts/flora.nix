@@ -73,6 +73,7 @@ in {
   dandelion.dots.nixos = mkDotsModule username {
     # terminal
     "git/config" = "/git/config";
+    "jj/config.toml" = "/jj/config.toml";
     "fish/themes" = {sources, ...}: sources.rosep-fish + "/themes";
     "fish/config.fish" = "/fish/config.fish";
     # NOTE: required bat cache --build before theme can be used

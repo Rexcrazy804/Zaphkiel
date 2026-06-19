@@ -73,6 +73,7 @@
         jl = "jj log";
         jla = "jj log -r 'all()'";
         jsq = "jj squash -k -u -i --into";
+        jsa = "jj absorb";
         js = "jj st";
         jp = "jj push";
         je = "jj edit";

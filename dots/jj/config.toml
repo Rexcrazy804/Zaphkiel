@@ -15,8 +15,6 @@ sign-on-push = true
 write-change-id-header = true
 
 [ui]
-pager = "delta"
-diff-formatter = ":git"
 default-command = "diff"
 
 [aliases]

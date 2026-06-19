@@ -15,6 +15,7 @@ M.jj_status = function()
     "--template",
     "change_id.short(8) ++ description",
     "--no-graph",
+    "--ignore-working-copy",
   }, { cwd = cwd }, function() M.status = "err" end)
 
   local result = sysobj:wait(100)

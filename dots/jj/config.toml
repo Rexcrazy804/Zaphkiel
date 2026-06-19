@@ -19,3 +19,13 @@ default-command = "diff"
 
 [aliases]
 push = ["git", "push"]
+
+[fix.tools.alejandra]
+command = ["alejandra", "--quiet", "-"]
+patterns = ["**/*.nix"]
+enabled = true
+
+[fix.tools.taplo]
+command = ["taplo", "format", "-"]
+patterns = ["**/*.toml"]
+enabled = true

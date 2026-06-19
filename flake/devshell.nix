@@ -36,3 +36,18 @@
     };
   });
 }
+/*
+   My hook doesn't work with jj so I am stashing my config here for reuse later
+ * TODO look into jj fix
+[aliases]
+push = ["util", "exec", "--", "fish", "-c", """
+if test "$(jj st | head -n 1)" != "The working copy has no changes."
+  jj new
+end
+irminsul fmt FILES_ALL=1
+if test "$(jj st | head -n 1)" = "The working copy has no changes."
+  jj git push
+end
+""", ""]
+*/
+

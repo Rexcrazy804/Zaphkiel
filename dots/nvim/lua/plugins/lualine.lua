@@ -40,10 +40,10 @@ return {
     require("lualine").setup({
       sections = {
         lualine_b = { function() return M.change_id end, "diff", "diagnostics" },
+        lualine_c = { function() return M.desc end },
       },
       tabline = {
         lualine_a = { { "buffers", symbols = { alternate_file = "" } } },
-        lualine_c = { function() return M.desc end },
         lualine_x = {
           function()
             local status = require("direnv").statusline()

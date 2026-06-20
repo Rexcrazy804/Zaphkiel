@@ -19,6 +19,8 @@ M.jj_status = function()
   }, { cwd = cwd }, function() M.status = "err" end)
 
   local result = sysobj:wait(100)
+  if result.code ~= 0 then return end
+
   local status = vim.trim(result.stdout)
   M.change_id = " " .. status:sub(1, 8)
   M.desc = status:sub(9, status:len())

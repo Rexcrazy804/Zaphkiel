@@ -130,6 +130,8 @@
           bind --mode insert alt-c 'cdi; commandline -f repaint'
           bind --mode insert alt-f 'fzf-file-widget'
           bind --mode insert ctrl-b 'shpool detach'
+          bind --mode insert alt-l 'jj log; commandline -f repaint'
+          bind --mode insert alt-j 'jj; commandline -f repaint'
         end
 
         # hydro (prompt) stuff

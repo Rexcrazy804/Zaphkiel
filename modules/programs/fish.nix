@@ -67,6 +67,7 @@
         jdm = "jj describe -m";
         jc = "jj commit";
         jcm = "jj commit -m";
+        jce = "jj config edit --repo"; # imposter ?
         jn = "jj new";
         jnm = "jj new -m";
         jnb = "jj new -B";
@@ -76,13 +77,13 @@
         jsa = "jj absorb";
         js = "jj st";
         jp = "jj push";
+        jf = "jj git fetch";
         je = "jj edit";
         ja = "jj abandon";
         ju = "jj undo";
         jr = "jj redo";
         # bookmarks
         jbm = "jj bookmark move";
-        jbt = "jj bookmark move -t";
 
         # systemctl
         sy = "systemctl";

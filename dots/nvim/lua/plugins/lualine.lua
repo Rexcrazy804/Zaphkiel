@@ -13,7 +13,7 @@ M.jj_status = function()
     "-r",
     "@",
     "--template",
-    "change_id.short(8) ++ description",
+    "change_id.short(8) ++ description.first_line()",
     "--no-graph",
     "--ignore-working-copy",
   }, { cwd = cwd }, function() M.status = "err" end)

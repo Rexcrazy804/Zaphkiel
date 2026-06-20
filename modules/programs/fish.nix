@@ -78,6 +78,7 @@
         jsa = "jj absorb";
         js = "jj st";
         jp = "jj push";
+        jpa = "jj push --all";
         jf = "jj git fetch";
         je = "jj edit";
         ja = "jj abandon";

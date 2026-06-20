@@ -1,7 +1,7 @@
 local M = {}
 
-M.change_id = nil
-M.desc = nil
+M.change_id = "[??]"
+M.desc = "..."
 
 -- cute lil function to get the jujutsu status
 M.jj_status = function()

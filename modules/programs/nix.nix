@@ -1,4 +1,8 @@
-{nixpkgs, ...}: {
+{
+  nixpkgs,
+  rexies-nix-templates,
+  ...
+}: {
   dandelion.modules.nix = {pkgs, ...}: let
     script = pkgs.writers.writeNuBin "activate" ''
       def main [systemConfig: string] {
@@ -27,7 +31,10 @@
     nixpkgs.config.allowUnfree = true;
     nix = {
       # package = pkgs.nixVersions.nix_2_30;
-      registry.nixpkgs.flake = nixpkgs;
+      registry = {
+        nixpkgs.flake = nixpkgs;
+        my-templates.flake = rexies-nix-templates;
+      };
       channel.enable = false;
       settings = {
         allow-import-from-derivation = false;

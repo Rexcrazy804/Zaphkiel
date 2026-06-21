@@ -178,6 +178,21 @@
         "type": "github"
       }
     },
+    "rexies-nix-templates": {
+      "locked": {
+        "lastModified": 1782032888,
+        "narHash": "sha256-LgOxRkIj3gz5q8e0w5+956bq6kza8opb3BtyY2IBnmg=",
+        "ref": "refs/heads/main",
+        "rev": "cc377b3f6631314ea6ad9fe5cccd9169287ef8e3",
+        "revCount": 5,
+        "type": "git",
+        "url": "https://knot1.tangled.sh/did:plc:wt3htnckfbtguzsme2riaxoh"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://knot1.tangled.sh/did:plc:wt3htnckfbtguzsme2riaxoh"
+      }
+    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -189,6 +204,7 @@
         "mnw": "mnw",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
+        "rexies-nix-templates": "rexies-nix-templates",
         "stash": "stash",
         "systems": "systems"
       }

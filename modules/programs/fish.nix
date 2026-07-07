@@ -74,6 +74,7 @@
         jnb = "jj new -B";
         jl = "jj log";
         jla = "jj log -r 'all()'";
+        jlr = "jj log -r 'all()' --no-graph --template 'change_id.short(8) ++ \"\\t\" ++ description.first_line() ++ \"\\n\"' | fzf | awk '{print $1}'"; # a little cursed but I need a fuzzy finder
         jsq = "jj squash -k -u -i --into";
         jsa = "jj absorb";
         js = "jj st";

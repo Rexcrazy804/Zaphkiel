@@ -63,6 +63,7 @@
         gl = "git log";
 
         # jujutsu stuff
+        j = "jj st";
         jd = "jj describe";
         jdm = "jj describe -m";
         jdr = "jj diff -r"; # more imposters
@@ -76,17 +77,19 @@
         jla = "jj log -r 'all()'";
         jlr = "jj log -r 'all()' --no-graph --template 'change_id.short(8) ++ \"\\t\" ++ description.first_line() ++ \"\\n\"' | fzf | awk '{print $1}'"; # a little cursed but I need a fuzzy finder
         jsq = "jj squash -k -u -i --into";
+        jsi = "jj squash -i --into";
         jsa = "jj absorb";
-        js = "jj st";
         jp = "jj push";
         jpa = "jj push --all";
+        jpd = "jj push --deleted";
         jf = "jj git fetch";
         je = "jj edit";
         ja = "jj abandon";
         ju = "jj undo";
         jr = "jj redo";
-        # bookmarks
+        jb = "jj bookmark";
         jbm = "jj bookmark move";
+        jbd = "jj bookmark delete";
 
         # systemctl
         sy = "systemctl";

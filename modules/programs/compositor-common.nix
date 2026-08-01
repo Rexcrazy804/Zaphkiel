@@ -42,8 +42,12 @@
       inherit (pkgx) kokCursor kurukurubar stash mpv-wrapped;
       inherit (pkgx.scripts) taildrop gpurecording cowask npins-show wallcrop;
       # Themes
-      inherit (pkgs) rose-pine-icon-theme catppuccin-gtk;
+      inherit (pkgs) rose-pine-icon-theme;
       inherit (pkgs.kdePackages) qt6ct breeze;
+      catppuccin-gtk = pkgs.catppuccin-gtk.override {
+        accents = ["mauve"];
+        variant = "mocha";
+      };
       # utility
       inherit (pkgs) wl-clipboard grim slurp brightnessctl;
       inherit (pkgs) trashy fuzzel wl-screenrec;

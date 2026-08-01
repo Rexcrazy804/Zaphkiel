@@ -183,8 +183,11 @@
     };
 
     environment.systemPackages = attrValues {
-      inherit (pkgs.fishPlugins) sponge hydro;
+      inherit (pkgs.fishPlugins) sponge;
       inherit (pkgs) eza fish-lsp;
+
+      hydro = pkgs.fishPlugins.hydro.overrideAttrs (_: {patches = ["${self.paths.specials}/hydro-jj-support.patch"];});
+
       done = pkgs.fishPlugins.done.overrideAttrs (_old: {
         # I should upstream this probably but we ball
         patches = ["${self.paths.specials}/fish-done-mango.patch"];

@@ -18,7 +18,7 @@
   xwayland,
   meson,
   ninja,
-  scenefx,
+  scenefx_0_4,
   wlroots_0_19,
   libGL,
   cjson,
@@ -65,7 +65,7 @@ stdenv.mkDerivation {
       wayland
       wayland-protocols
       wlroots_0_19
-      scenefx
+      scenefx_0_4
       libGL
       cjson
     ]

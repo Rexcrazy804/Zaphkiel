@@ -18,10 +18,12 @@
   xwayland,
   meson,
   ninja,
-  scenefx_0_4,
-  wlroots_0_19,
+  scenefx_0_5,
+  wlroots_0_20,
   libGL,
   cjson,
+  libdrm,
+  pango,
   enableXWayland ? true,
   debug ? false,
 }:
@@ -64,10 +66,12 @@ stdenv.mkDerivation {
       pixman
       wayland
       wayland-protocols
-      wlroots_0_19
-      scenefx_0_4
+      wlroots_0_20
+      scenefx_0_5
       libGL
       cjson
+      libdrm
+      pango
     ]
     ++ lib.optionals enableXWayland [
       libX11

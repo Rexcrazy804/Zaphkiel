@@ -42,7 +42,7 @@
       inherit (pkgx) kokCursor kurukurubar stash mpv-wrapped;
       inherit (pkgx.scripts) taildrop gpurecording cowask npins-show wallcrop;
       # Themes
-      inherit (pkgs) rose-pine-icon-theme rose-pine-gtk-theme;
+      inherit (pkgs) rose-pine-icon-theme catppuccin-gtk;
       inherit (pkgs.kdePackages) qt6ct breeze;
       # utility
       inherit (pkgs) wl-clipboard grim slurp brightnessctl;

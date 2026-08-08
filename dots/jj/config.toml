@@ -21,6 +21,11 @@ default-command = "diff"
 
 [aliases]
 push = ["git", "push"]
+pull-pr.definition = ["util", "exec", "--", "bash", "-c", """
+set -euo pipefail
+git fetch $0 pull/$1/head:$2
+"""]
+pull-pr.doc = "A convenient alias to pull a pr $1 from remote $0 into branch $2"
 
 [fix.tools.alejandra]
 command = ["alejandra", "--quiet", "-"]

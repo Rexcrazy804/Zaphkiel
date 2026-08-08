@@ -79,6 +79,7 @@
     users.users."rexies".packages = [
       pkgx.equibop
       pkgs.cemu
+      pkgs.radicle-tui
     ];
 
     hjem.users.rexies = {

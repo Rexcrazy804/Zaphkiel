@@ -17,7 +17,7 @@
     systems.url = "github:nix-systems/x86_64-linux";
     crane.url = "github:ipetkov/crane";
     mnw.url = "github:Gerg-L/mnw";
-    rexies-nix-templates.url = "git+https://knot1.tangled.sh/did:plc:wt3htnckfbtguzsme2riaxoh";
+    rexies-nix-templates.url = "git+https://iris.radicle.network/z3NZwrezFXNuUTHfazunz9BTygnHF";
     nixos-wsl = {
       url = "github:nix-community/nixos-wsl";
       inputs.nixpkgs.follows = "nixpkgs";

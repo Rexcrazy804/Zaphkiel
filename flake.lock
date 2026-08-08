@@ -179,17 +179,17 @@
     },
     "rexies-nix-templates": {
       "locked": {
-        "lastModified": 1782043914,
-        "narHash": "sha256-4fwQ4mOklyXtsBFofkNAv24DE4tYXDoRF0po9f7Q8XU=",
+        "lastModified": 1786179262,
+        "narHash": "sha256-2wjrKJfXFEJjsjHgbDUIdGSdHiGMeNgPMPTkV7XCfOk=",
         "ref": "refs/heads/main",
-        "rev": "dcecbefa69ba6028b33f55b3959e50bf6f334968",
-        "revCount": 7,
+        "rev": "daddb97f7911ed189bf6b64e55830578e46dbb7f",
+        "revCount": 11,
         "type": "git",
-        "url": "https://knot1.tangled.sh/did:plc:wt3htnckfbtguzsme2riaxoh"
+        "url": "https://iris.radicle.network/z3NZwrezFXNuUTHfazunz9BTygnHF"
       },
       "original": {
         "type": "git",
-        "url": "https://knot1.tangled.sh/did:plc:wt3htnckfbtguzsme2riaxoh"
+        "url": "https://iris.radicle.network/z3NZwrezFXNuUTHfazunz9BTygnHF"
       }
     },
     "root": {

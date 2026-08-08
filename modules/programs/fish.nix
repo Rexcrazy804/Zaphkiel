@@ -66,7 +66,6 @@
         j = "jj st";
         jd = "jj describe";
         jdm = "jj describe -m";
-        jdr = "jj diff -r"; # more imposters
         jc = "jj commit";
         jcm = "jj commit -m";
         jce = "jj config edit --repo"; # imposter ?
@@ -76,6 +75,7 @@
         jl = "jj log";
         jla = "jj log -r 'all()'";
         jlr = "jj log -r 'all()' --no-graph --template 'change_id.short(8) ++ \"\\t\" ++ description.first_line() ++ \"\\n\"' | fzf | awk '{print $1}'"; # a little cursed but I need a fuzzy finder
+        js = "jj show";
         jsq = "jj squash -k -u -i --into";
         jsi = "jj squash -i --into";
         jsa = "jj absorb";

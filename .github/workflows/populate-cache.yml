@@ -19,7 +19,8 @@ jobs:
       with:
         filters: |
           xvim:
-            - 'pkgs/nvim/**'
+            - 'specials/xvim/**'
+            - 'dots/nvim/**'
           caddy:
             - 'modules/services/caddy.nix'
           lockfile:

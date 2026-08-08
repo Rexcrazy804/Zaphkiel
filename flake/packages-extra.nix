@@ -2,6 +2,7 @@
   self,
   mnw,
   stash,
+  hjem,
   ...
 }: {
   packages = self.lib.eachSystem ({
@@ -13,6 +14,7 @@
       inherit (pkgx) sources;
       mnw = mnw.lib;
     };
+    hjem-cli = hjem.packages.${system}.hjem;
     stash = let
       stp = stash.packages.${system}.default;
     in

@@ -36,13 +36,13 @@ jobs:
         authToken: '${{ secrets.CACHIX_API_KEY }}'
 
     - name: build xvim (neovim)
-      if: steps.fltr.outputs.xvim == 'true' || steps.fltr.outputs.pins == 'true' || steps.fltr.outputs.lockfile == 'true'
+      if: steps.fltr.outputs.xvim == 'true' || steps.fltr.outputs.pins == 'true' || steps.fltr.outputs.lockfile == 'true' || github.event_name == 'workflow_dispatch'
       run: nix build .#xvim.default
 
     - name: build stash
-      if: steps.fltr.outputs.lockfile == 'true'
+      if: steps.fltr.outputs.lockfile == 'true' || github.event_name == 'workflow_dispatch'
       run: nix build .#stash
 
     - name: build Seraphine's caddy package
-      if: steps.fltr.outputs.caddy == 'true' || steps.fltr.outputs.lockfile == 'true'
+      if: steps.fltr.outputs.caddy == 'true' || steps.fltr.outputs.lockfile == 'true' || github.event_name == 'workflow_dispatch'
       run: nix build .#nixosConfigurations.Seraphine.config.services.caddy.package

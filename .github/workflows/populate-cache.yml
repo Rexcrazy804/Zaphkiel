@@ -42,6 +42,10 @@ jobs:
       if: steps.fltr.outputs.lockfile == 'true'
       run: nix build .#stash
 
+    - name: build hjem-cli
+      if: steps.fltr.outputs.lockfile == 'true' || github.event_name == 'workflow_dispatch'
+      run: nix build .#stash
+
     - name: build Seraphine's caddy package
       if: steps.fltr.outputs.caddy == 'true' || steps.fltr.outputs.lockfile == 'true'
       run: nix build .#nixosConfigurations.Seraphine.config.services.caddy.package

@@ -36,3 +36,6 @@ enabled = true
 command = ["taplo", "format", "-"]
 patterns = ["**/*.toml"]
 enabled = true
+
+[templates]
+git_push_bookmark = '"rexies/push-" ++ change_id.short()'

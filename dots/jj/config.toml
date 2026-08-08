@@ -26,6 +26,7 @@ set -euo pipefail
 git fetch $0 pull/$1/head:$2
 """]
 pull-pr.doc = "A convenient alias to pull a pr $1 from remote $0 into branch $2"
+patch = { definition = ["util", "exec", "git", "push", "rad", "HEAD:refs/patches"], doc = "create a new radicle patch" }
 
 [fix.tools.alejandra]
 command = ["alejandra", "--quiet", "-"]

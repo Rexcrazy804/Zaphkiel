@@ -80,6 +80,7 @@
       pkgx.equibop
       pkgs.cemu
       pkgs.radicle-tui
+      pkgs.kopuz
     ];
 
     hjem.users.rexies = {

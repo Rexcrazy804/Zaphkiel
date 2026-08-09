@@ -78,7 +78,6 @@
     # user space
     users.users."rexies".packages = [
       pkgx.equibop
-      pkgs.cemu
       pkgs.radicle-tui
       pkgs.kopuz
     ];

@@ -66,7 +66,7 @@
       publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHhkSRUQLV7JpjtPdbFR8vXnJhLhSfbh3vL+j9v/5Bv/";
       privateKey = "/etc/ssh/ssh_host_ed25519_key";
       settings.node = {
-        alias = "radicle.aphrodite.ts";
+        alias = "radicle.aphrodite.ts.net";
         externalAddresses = ["aphrodite.fell-rigel.ts.net:8776"];
       };
     };

@@ -14,6 +14,7 @@
       self.dandelion.modules.qemu-guest
       self.dandelion.modules.tinyproxy
       self.dandelion.modules.fail2ban
+      self.dandelion.modules.radicle
     ];
 
     # info
@@ -57,7 +58,17 @@
 
     networking = {
       nftables.enable = true;
-      firewall.interfaces."tailscale0".allowedTCPPorts = config.services.openssh.ports;
+      firewall.interfaces."tailscale0".allowedTCPPorts = config.services.openssh.ports ++ [config.services.radicle.node.listenPort];
+    };
+
+    # radicle
+    services.radicle = {
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHhkSRUQLV7JpjtPdbFR8vXnJhLhSfbh3vL+j9v/5Bv/";
+      privateKey = "/etc/ssh/ssh_host_ed25519_key";
+      settings.node = {
+        alias = "radicle.aphrodite.ts";
+        externalAddresses = ["aphrodite.fell-rigel.ts.net:8776"];
+      };
     };
 
     # hardware

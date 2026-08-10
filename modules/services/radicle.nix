@@ -7,12 +7,8 @@
         listenPort = 8775;
       };
       settings = {
-        preferredSeeds = [
-          "z6MkrLMMsiPWUcNPHcRajuMi9mDfYckSoJyPwwnknocNYPm7@iris.radicle.network:8776"
-        ];
-        node = {
-          seedingPolicy.default = "block";
-        };
+        preferredSeeds = ["z6MkrLMMsiPWUcNPHcRajuMi9mDfYckSoJyPwwnknocNYPm7@iris.radicle.network:8776"];
+        node.seedingPolicy.default = "block";
       };
     };
   };

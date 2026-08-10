@@ -9,7 +9,6 @@
       settings = {
         preferredSeeds = [
           "z6MkrLMMsiPWUcNPHcRajuMi9mDfYckSoJyPwwnknocNYPm7@iris.radicle.network:8776"
-          "z6Mkmqogy2qEM2ummccUthFEaaHvyYmYBYh3dbe9W4ebScxo@rosa.radicle.network:8776"
         ];
         node = {
           seedingPolicy.default = "block";

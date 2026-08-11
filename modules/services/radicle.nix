@@ -4,7 +4,7 @@
       enable = true;
       node = {
         listenAddress = "0.0.0.0";
-        listenPort = 8775;
+        listenPort = 8776;
       };
       settings = {
         preferredSeeds = ["z6MkrLMMsiPWUcNPHcRajuMi9mDfYckSoJyPwwnknocNYPm7@iris.radicle.network:8776"];

@@ -6,7 +6,6 @@ set -g __rexies_last_status 0
 set -g __rexies_prompt_impure
 set -g __rexies_prompt_status
 set -g __rexies_prompt_jj
-set -g fish_transient_prompt 1
 
 function fish_mode_prompt; end; # disable shitty vi indicator
 
@@ -24,18 +23,27 @@ function __rexies_render_prompt
 end
 
 function __rexies_set_status --on-variable __rexies_last_status
+    set -l output
+
     if test $__rexies_last_status -ne 0
-          set __rexies_prompt_status (set_color $fish_color_love)" E$__rexies_last_status"(set_color $fish_color_pine)
-    else
-      set __rexies_prompt_status
+      set output (set_color $fish_color_love)" E$__rexies_last_status"(set_color $fish_color_pine)
+    end
+
+    if test "$output" != "$__rexies_prompt_status"
+      set __rexies_prompt_status $output
     end
 end
 
 function __rexies_set_impure --on-event fish_prompt
+    set -l output
     if test "$IN_NIX_SHELL" = "impure"
-        set __rexies_prompt_impure "!"
+        set output "!"
     else 
-        set __rexies_prompt_impure "@"
+        set output "@"
+    end
+
+    if test "$output" != "$__rexies_prompt_impure"
+        set __rexies_prompt_impure $output
     end
 end
 
@@ -43,19 +51,15 @@ function __rexies_set_jj --on-event fish_prompt
     set __rexies_last_status $status
     set -l output (command jj log -r @ --no-graph --template 'change_id.short(8)' 2>/dev/null)
     if test -n "$output"
-      set __rexies_prompt_jj "$(set_color $fish_color_foam)#$output$(set_color $fish_color_pine)"
-    else
-      set __rexies_prompt_jj $output
+        set output "$(set_color $fish_color_foam)#$output$(set_color $fish_color_pine)"
+    end
+    if test "$output" != "$__rexies_prompt_jj"
+        set __rexies_prompt_jj $output
     end
 end
 
 function fish_prompt
-  set -l last_status $status
-  if contains -- --final-rendering $argv
-      echo "$(set_color $fish_color_pine)$(basename "$PWD")> "
-  else
-      string collect "$__rexies_prompt"
-  end
+  string collect "$__rexies_prompt"
 end
 
 end

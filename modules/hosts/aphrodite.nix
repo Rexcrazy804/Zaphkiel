@@ -58,7 +58,10 @@
 
     networking = {
       nftables.enable = true;
-      firewall.interfaces."tailscale0".allowedTCPPorts = config.services.openssh.ports ++ [config.services.radicle.node.listenPort];
+      firewall.interfaces."tailscale0".allowedTCPPorts =
+        config.services.openssh.ports
+        # radicle internal and exposed ports
+        ++ [config.services.radicle.node.listenPort 10000];
     };
 
     # radicle
@@ -67,7 +70,7 @@
       privateKey = "/etc/ssh/ssh_host_ed25519_key";
       settings.node = {
         alias = "radicle.aphrodite.ts.net";
-        externalAddresses = ["aphrodite.fell-rigel.ts.net:8776"];
+        externalAddresses = ["aphrodite.fell-rigel.ts.net:8776" "aphrodite.fell-rigel.ts.net:10000"];
       };
     };
 

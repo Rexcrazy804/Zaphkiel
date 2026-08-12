@@ -26,7 +26,7 @@ function __rexies_set_status --on-variable __rexies_last_status
     set -l output
 
     if test $__rexies_last_status -ne 0
-      set output (set_color $fish_color_love)" E$__rexies_last_status"(set_color $fish_color_pine)
+      set output (set_color $fish_color_love)"E$__rexies_last_status"(set_color $fish_color_pine)
     end
 
     if test "$output" != "$__rexies_prompt_status"

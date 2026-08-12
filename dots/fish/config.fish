@@ -48,9 +48,14 @@ function __rexies_set_impure --on-event fish_prompt
 end
 
 function __rexies_set_jj --on-event fish_prompt
-    set -l output (command jj log -r @ --no-graph --template 'change_id.short(8)' 2>/dev/null)
+    if ! set -q __rexies_color_foam
+      set -g __rexies_color_foam $fish_color_foam
+      set -g __rexies_color_foam_hex (echo $__rexies_color_foam | awk '{ print "#" $1 }')
+    end
+
+    set -l output (command jj log -r @ --no-graph --template 'change_id.shortest(8)' --color always --config "colors.prefix=\"$__rexies_color_foam_hex\"" 2>/dev/null)
     if test -n "$output"
-        set output "$(set_color $fish_color_foam)#$output$(set_color $fish_color_pine)"
+        set output "$(set_color $__rexies_color_foam)#$output$(set_color $fish_color_pine)"
     end
     if test "$output" != "$__rexies_prompt_jj"
         set __rexies_prompt_jj $output

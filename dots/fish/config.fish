@@ -48,7 +48,6 @@ function __rexies_set_impure --on-event fish_prompt
 end
 
 function __rexies_set_jj --on-event fish_prompt
-    set __rexies_last_status $status
     set -l output (command jj log -r @ --no-graph --template 'change_id.short(8)' 2>/dev/null)
     if test -n "$output"
         set output "$(set_color $fish_color_foam)#$output$(set_color $fish_color_pine)"
@@ -56,6 +55,10 @@ function __rexies_set_jj --on-event fish_prompt
     if test "$output" != "$__rexies_prompt_jj"
         set __rexies_prompt_jj $output
     end
+end
+
+function __rexies_set_last_status --on-event fish_prompt
+  set __rexies_last_status $status
 end
 
 function fish_prompt

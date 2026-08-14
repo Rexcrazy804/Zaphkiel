@@ -18,6 +18,8 @@ write-change-id-header = true
 
 [ui]
 default-command = "diff"
+diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
+diff-instructions = false
 
 [aliases]
 push = ["git", "push"]

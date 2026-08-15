@@ -29,6 +29,7 @@
         oil-nvim
         mini-align
         mini-cursorword
+        hunk-nvim
         ;
 
       treesitter = let

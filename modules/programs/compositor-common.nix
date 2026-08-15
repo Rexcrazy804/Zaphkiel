@@ -36,6 +36,10 @@
       criticalPowerAction = "PowerOff";
     };
 
+    # if I end up switching out of wayland compositoers
+    # this may not belong in compositor common
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
     # dependencies .w.
     environment.systemPackages = attrValues {
       # internal overlay

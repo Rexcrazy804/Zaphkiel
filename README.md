@@ -19,7 +19,7 @@ https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 |Cursor|[Kokomi Cursor][kokcursor]| nil / really long random text to make this table very wide yes looks like I|
 
 - [hjem] + [hjem-impure] over home manager
-- Decentralized on [radicle]
+- Decentralized on [radicle] ([Defelo]'s node explorer)
 - last revision where Zaphkiel was a normal flake
   [1164182e][pre-dandelion-rev]
 - last revision where Zaphkiel was an npins based config
@@ -88,6 +88,7 @@ except wherever an explicit license is included.
 [booru images]: dots/booru/preview.md
 [booru-hs]: https://github.com/Rexcrazy804/booru.hs
 [dandruff pattern]: https://github.com/Michael-C-Buckley/nixos/blob/cfb8cfa3ee815cbb216cc3b9361373be4837a126/documentation/intent.md#dendritic-nix
+[defelo]: https://github.com/Defelo
 [enddots]: https://github.com/end-4/dots-hyprland/tree/ii-qs/.config/quickshell
 [flake-rev]: https://github.com/Rexcrazy804/Zaphkiel/tree/0eee46d1e5d98c3b94d39795b73a39270fc61ad7
 [foot]: https://codeberg.org/dnkl/foot

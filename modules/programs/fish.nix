@@ -66,6 +66,7 @@
         j = "jj st";
         jd = "jj describe";
         jdm = "jj describe -m";
+        jdr = "jj diff -r"; # more imposters
         jc = "jj commit";
         jcm = "jj commit -m";
         jce = "jj config edit --repo"; # imposter ?

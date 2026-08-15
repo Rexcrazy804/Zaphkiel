@@ -52,3 +52,8 @@ enabled = true
 
 [templates]
 git_push_bookmark = '"rexies/push-" ++ change_id.short()'
+
+[template-aliases]
+'format_short_signature(signature)' = '''
+coalesce(signature.name(), email_placeholder)
+'''

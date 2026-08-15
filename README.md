@@ -19,7 +19,7 @@ https://github.com/user-attachments/assets/d11e9823-eb62-470c-9f0d-cb175bb60cbc
 |Cursor|[Kokomi Cursor][kokcursor]| nil / really long random text to make this table very wide yes looks like I|
 
 - [hjem] + [hjem-impure] over home manager
-- Decentralized [Mirror][radicle]
+- Decentralized on [radicle]
 - last revision where Zaphkiel was a normal flake
   [1164182e][pre-dandelion-rev]
 - last revision where Zaphkiel was an npins based config
@@ -113,7 +113,7 @@ except wherever an explicit license is included.
 [pikabar]: https://git.pika-os.com/wm-packages/pikabar/src/branch/main/pikabar/usr/share/pikabar
 [pre-dandelion-rev]: https://github.com/Rexcrazy804/Zaphkiel/tree/1164182e9abc5dccdd9945e9367ee5eba38b31cb
 [quickshell]: https://quickshell.outfoxxed.me/
-[radicle]: https://radicle.network/nodes/iris.radicle.network/rad%3Az3qZMsGeZUYKgfpX9NdDYKEaZr4oq
+[radicle]: https://radicle.defelo.de/nodes/radicle.defelo.de/rad:z3qZMsGeZUYKgfpX9NdDYKEaZr4oq
 [rainingkuru]: https://github.com/soramanew/rainingkuru
 [sioodmy]: https://github.com/sioodmy
 [wallpaper]: https://www.pixiv.net/artworks/126270092

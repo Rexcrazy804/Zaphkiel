@@ -84,7 +84,7 @@ end
 
 # PROMPT
 function __rexies_prompt
-  echo "$(__rexies_prompt_direnv)$(__rexies_prompt_host)$(__rexies_prompt_pwd)$(__rexies_prompt_jj)$(__rexies_prompt_head)"
+  echo "$(__rexies_prompt_direnv)$(__rexies_prompt_host)$(__rexies_prompt_pwd)$(__rexies_prompt_jj)$(__rexies_prompt_head) "
 end
 
 function fish_prompt

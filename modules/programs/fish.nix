@@ -92,6 +92,7 @@
         jbm = "jj bookmark move";
         jbd = "jj bookmark delete";
         jba = "jj bookmark advance -t @-";
+        jbt = "jj bookmark track";
 
         # systemctl
         sy = "systemctl";

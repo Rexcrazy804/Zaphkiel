@@ -4,6 +4,9 @@ endif
 ifdef FILES_STAGED
 FILES_GIT ?= $(shell git status --porcelain | awk '/^[MA]/ { print $2 }')
 endif
+ifdef JJ_CHANGE_ID
+FILES_GIT ?= $(shell jj diff -r $$JJ_CHANGE_ID --summary | sed -e 's/\.\.\///g' | awk -v VAR="$$JJ_WORKSPACE_ROOT" '/^[MA]/ { print VAR"/"$$2 }')
+endif
 FILES_GIT ?= $(shell git status --porcelain | awk '/[MA\?]+/ { print $2 }')
 FILES_NIX = $(filter %.nix,$(FILES_GIT))
 FILES_QML = $(filter users/dots/quickshell/kurukurubar/%.qml,$(FILES_GIT))
@@ -87,6 +90,9 @@ endif
 
 # Tree sitter? What's that?
 fmt:
+ifdef JJ_CHANGE_ID
+	$(call ECHO_TARGET,Change,$$JJ_CHANGE_ID)
+endif
 ifneq ($(FILES_NIX),)
 	$(call ECHO_TARGET,Formatting,$(words $(FILES_NIX)) nix files)
 	@alejandra -q $(FILES_NIX)

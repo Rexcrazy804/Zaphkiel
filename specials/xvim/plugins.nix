@@ -27,13 +27,10 @@ in
     neorg = prev.neorg.overrideAttrs (_: {
       src = sources.neorg;
       version = toVersion sources.neorg.revision;
-
-      nvimSkipModules = [
-        "neorg.core.modules_tests"
-        "neorg.modules.core.concealer.module"
-        "neorg.modules.core.dirman.tests"
-        "neorg.modules.core.ui.module"
-      ];
+      # plugin runs tests via bustedCheckPhase
+      neovimRequireCheckHook = ''
+        echo "Skipping neovimRequireCheckHook"
+      '';
     });
 
     direnv-nvim = buildVimPlugin {

@@ -93,6 +93,7 @@
         jbd = "jj bookmark delete";
         jba = "jj bookmark advance -t @-";
         jbt = "jj bookmark track";
+        jbl = "jj bookmark list --tracked";
 
         # systemctl
         sy = "systemctl";

@@ -11,10 +11,10 @@
       "version_upper_bound": null,
       "release_prefix": null,
       "submodules": false,
-      "version": "v2.99",
-      "revision": "1a56015b1fbd823c611f5b10c26f3483ab06d9ed",
-      "url": "https://api.github.com/repos/Xpl0itU/WiiUDownloader/tarball/refs/tags/v2.99",
-      "hash": "sha256-gjLqka2UZHPPpCaBkyNcMA0eZ4yml/FxYPHhK1tnYyo="
+      "version": "v2.100",
+      "revision": "0f2155ec7e818ef499e0f663ee3d2fc58b8ae0a7",
+      "url": "https://api.github.com/repos/Xpl0itU/WiiUDownloader/tarball/refs/tags/v2.100",
+      "hash": "sha256-5yFzak7NJE5D2/NzsY3s/M67a9UbG6iJJ/Ni6D8dOf4="
     },
     "catp-bat": {
       "type": "Git",
@@ -51,9 +51,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "28440c741e927592877514fba3db21eb188caec8",
-      "url": "https://github.com/ibhagwan/fzf-lua/archive/28440c741e927592877514fba3db21eb188caec8.tar.gz",
-      "hash": "sha256-B32cd/T+7rKXklsXcK6WdGbMjIuNHXRZLC4tv+WMBmE="
+      "revision": "05e44d38de0a79c11fba5f7bf8138791b1dbdd1e",
+      "url": "https://github.com/ibhagwan/fzf-lua/archive/05e44d38de0a79c11fba5f7bf8138791b1dbdd1e.tar.gz",
+      "hash": "sha256-n56nWDxYssTpSWBcverRA8BWmoLamNAPMf7x2mPtRVI="
     },
     "image.nvim": {
       "type": "Git",
@@ -64,9 +64,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "88351f1f7d9dbae286e671ce3690a49660dd8a5c",
-      "url": "https://github.com/3rd/image.nvim/archive/88351f1f7d9dbae286e671ce3690a49660dd8a5c.tar.gz",
-      "hash": "sha256-nyYiMyXzOHaiSXJrG+OnJw+9lpZJ8KrFRoDw/Q63wDc="
+      "revision": "5c6f29a5069e1f7bd5773ce5907454063b0f125d",
+      "url": "https://github.com/3rd/image.nvim/archive/5c6f29a5069e1f7bd5773ce5907454063b0f125d.tar.gz",
+      "hash": "sha256-lCCBt/iWBpXTvohy1eLa5wgGmGlhor6vNqHIEK8dA+U="
     },
     "mangowc": {
       "type": "GitRelease",
@@ -79,10 +79,10 @@
       "version_upper_bound": null,
       "release_prefix": null,
       "submodules": false,
-      "version": "0.15.5",
-      "revision": "5547244d6122f6177936362f2bcdee253adff1b3",
-      "url": "https://api.github.com/repos/DreamMaoMao/mangowc/tarball/refs/tags/0.15.5",
-      "hash": "sha256-dg2cRIOPqjW/Q+5NLS8OWfIyVsRoGZT1Dji8SSVnpmE="
+      "version": "0.16.1",
+      "revision": "3cb7cb2d5b0daf09d7245d61ba36f50ea42734ad",
+      "url": "https://api.github.com/repos/DreamMaoMao/mangowc/tarball/refs/tags/0.16.1",
+      "hash": "sha256-0mX95LpyZuMMkEKS1qTiVrpDLeuCzO5hVJdmdpr7SY0="
     },
     "mini.align": {
       "type": "Git",
@@ -119,9 +119,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "d4dd8979c1129b5251d5565164f54d1cc258e92a",
-      "url": "https://github.com/nvim-neorg/neorg/archive/d4dd8979c1129b5251d5565164f54d1cc258e92a.tar.gz",
-      "hash": "sha256-0IdhPXosA5++UfD8M4Gx+1bonEIcFidXfegpUs52uLI="
+      "revision": "6fda795b0108c92840fd32db6d5dd54e7f997fa8",
+      "url": "https://github.com/nvim-neorg/neorg/archive/6fda795b0108c92840fd32db6d5dd54e7f997fa8.tar.gz",
+      "hash": "sha256-2Rag358IbGrZEhXEt+KqqpGLze+TxTbsba+DxJM4Nrg="
     },
     "rosep-fish": {
       "type": "Git",

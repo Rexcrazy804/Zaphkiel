@@ -5,13 +5,11 @@
   hjem,
   ...
 }: {
-  packages = self.lib.eachSystem ({
-    pkgs,
-    system,
-    pkgx,
-  }: {
+  packages = self.lib.eachSystem (system: let
+    pkgs = self.lib.pkgsOf.${system};
+  in {
     xvim = pkgs.callPackage (self.paths.specials + /xvim) {
-      inherit (pkgx) sources;
+      inherit (self.packages.${system}) sources;
       mnw = mnw.lib;
     };
     hjem-cli = hjem.packages.${system}.hjem;

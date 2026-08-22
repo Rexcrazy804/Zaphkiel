@@ -1,9 +1,7 @@
 {self, ...}: {
-  devShells = self.lib.eachSystem ({
-    pkgs,
-    pkgx,
-    ...
-  }: let
+  devShells = self.lib.eachSystem (system: let
+    pkgs = self.lib.pkgsOf.${system};
+    pkgx = self.packages.${system};
     precommit = pkgs.writeShellScript "pre-commit" ''
       if irminsul chk FILES_STAGED=1; then
         exit 0

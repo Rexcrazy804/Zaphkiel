@@ -4,14 +4,14 @@
   systems,
   ...
 }: let
-  inherit (nixpkgs.lib) getAttrs mapAttrs isFunction;
+  inherit (nixpkgs.lib) genAttrs mapAttrs isFunction;
   inherit (self.lib) mkPkgx;
 in {
   lib = {
     mkPkgx = system: self.packages.${system};
     mkPkgx' = pkgs: mkPkgx pkgs.stdenv.hostPlatform.system;
-    pkgsFor = getAttrs (import systems) nixpkgs.legacyPackages;
-    eachSystem = fn: mapAttrs (system: pkgs: let pkgx = mkPkgx system; in fn {inherit system pkgs pkgx;}) self.lib.pkgsFor;
+    pkgsOf = nixpkgs.legacyPackages;
+    eachSystem = genAttrs (import systems);
 
     # see modules/users/rexies.nix for usage
     # TODO don't toHjem everything perhaps?

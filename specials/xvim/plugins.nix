@@ -27,6 +27,13 @@ in
     neorg = prev.neorg.overrideAttrs (_: {
       src = sources.neorg;
       version = toVersion sources.neorg.revision;
+
+      nvimSkipModules = [
+        "neorg.core.modules_tests"
+        "neorg.modules.core.concealer.module"
+        "neorg.modules.core.dirman.tests"
+        "neorg.modules.core.ui.module"
+      ];
     });
 
     direnv-nvim = buildVimPlugin {

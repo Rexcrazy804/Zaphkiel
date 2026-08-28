@@ -62,7 +62,7 @@ keymap = [
   # Operation
   { on = "<Enter>", run = "open", desc = "Open selected files" },
   { on = "<S-Enter>", run = "open --interactive", desc = "Open selected files interactively" },
-  { on = "<S-A-Enter>", run = 'shell --block -- cd $(dirname "$1") ; $EDITOR', desc = "Open current directory in $EDITOR" },
+  { on = "<S-A-Enter>", run = 'shell --block -- cd %d1; $EDITOR', desc = "Open current directory in $EDITOR" },
   { on = "<A-Enter>", run = 'shell --block -- $SHELL', desc = "Open current directory in $EDITOR" },
   { on = "y", run = "yank", desc = "Yank selected files (copy)" },
   { on = "x", run = "yank --cut", desc = "Yank selected files (cut)" },
@@ -270,20 +270,20 @@ keymap = [
   # ripdrag
   { on = [
     "<C-n>",
-  ], run = "shell 'ripdrag \"$@\" -x 2>/dev/null &' --confirm " },
+  ], run = "shell 'ripdrag %s -x 2>/dev/null &' --confirm " },
   { on = [
     "<C-f>",
-  ], run = "shell 'ffmpeg -i \"$0\" -crf 28 kuru.mp4' --interactive --block" },
+  ], run = "shell 'ffmpeg -i %h -crf 28 kuru.mp4' --interactive --block" },
   { on = [
     "<C-w>",
-  ], run = "shell 'changeWall \"$0\"'" },
+  ], run = "shell 'changeWall %h'" },
   { on = [
     "<C-S-w>",
-  ], run = 'shell --interactive -- changeWall "$0"' },
+  ], run = 'shell --interactive -- changeWall %h' },
   # taildrop share
   { on = [
     "<A-n>",
-  ], run = "shell --block --confirm -- taildrop $@" },
+  ], run = "shell --block --confirm -- taildrop %s" },
 
   # Help
   { on = "~", run = "help", desc = "Open help" },

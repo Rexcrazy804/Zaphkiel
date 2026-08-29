@@ -46,8 +46,8 @@ and then merged using `recursiveUpdate`.
 
 I was initially against recommending this since I ran into the problem of merging functions,
 deciding thus to hold off from recommending it till I've explored it further.
-But thus far, function merging remains as the sole problem,
-which can be easily avoided by not having duplicated namespaces.
+But now, as I've moved to lladios' implementation of recursive merge,
+this is no longer and issue.
 
 Some interesting files to take a look at would be:
 

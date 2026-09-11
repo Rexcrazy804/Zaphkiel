@@ -63,10 +63,13 @@
     };
 
     nixosConfigurations = let
-      inherit (nixpkgs.lib) nixosSystem mkOption types;
+      inherit (nixpkgs.lib) nixosSystem types mkOption mkAliasOptionModule;
 
       hosts = ["aphrodite" "flora" "persephone" "seraphine"];
       flakeOpt = {
+        imports = [
+          (mkAliasOptionModule ["nixpkgs" "hostPlatform"] ["host-system"])
+        ];
         options.flake = mkOption {
           type = types.attrs;
           default = self;
@@ -77,7 +80,7 @@
         };
       };
     in
-      genAttrs hosts (hostName: nixosSystem {modules = [./modules/hosts/${hostName} flakeOpt];});
+      genAttrs hosts (hostName: nixosSystem {modules = [./modules/hosts/${hostName}.nix flakeOpt];});
 
     paths = {
       dots = ./dots;

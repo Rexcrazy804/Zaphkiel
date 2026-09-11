@@ -1,10 +1,11 @@
-{hjem, ...}: {
-  dandelion.modules.hjem = {
-    pkgs,
-    lib,
-    ...
-  }: {
-    imports = [hjem.nixosModules.default];
-    hjem.linker = lib.mkForce pkgs.smfh;
-  };
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
+  inherit (config.flake-inputs) hjem;
+in {
+  imports = [hjem.nixosModules.default];
+  hjem.linker = lib.mkForce pkgs.smfh;
 }

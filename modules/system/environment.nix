@@ -1,15 +1,21 @@
-{self, ...}: {
-  dandelion.modules.environment = {pkgs, ...}: {
-    environment.systemPackages = [
-      (self.lib.mkPkgx' pkgs).xvim.default
-      pkgs.git
-      pkgs.npins
-      pkgs.jujutsu
-    ];
+{
+  pkgs,
+  config,
+  ...
+}: let
+  inherit (config.flake.packages.${system}) xvim;
 
-    environment.variables.EDITOR = "nvim";
-    environment.variables.MANPAGER = "nvim +Man!";
-    # nano deez nutz
-    programs.nano.enable = false;
-  };
+  system = config.host-system;
+in {
+  environment.systemPackages = [
+    xvim.default
+    pkgs.git
+    pkgs.npins
+    pkgs.jujutsu
+  ];
+
+  environment.variables.EDITOR = "nvim";
+  environment.variables.MANPAGER = "nvim +Man!";
+  # nano deez nutz
+  programs.nano.enable = false;
 }

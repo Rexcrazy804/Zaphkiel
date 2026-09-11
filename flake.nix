@@ -9,6 +9,7 @@
     ...
   } @ inputs: let
     inherit (nixpkgs.lib) genAttrs filesystem;
+
     pkgsOf = nixpkgs.legacyPackages;
     eachSystem = genAttrs (import systems);
   in {
@@ -61,11 +62,27 @@
       default = self.nixosModules.kurukuruDM;
     };
 
+    nixosConfigurations = let
+      inherit (nixpkgs.lib) nixosSystem mkOption types;
+
+      hosts = ["aphrodite" "flora" "persephone" "seraphine"];
+      flakeOpt = {
+        options.flake = mkOption {
+          type = types.attrs;
+          default = self;
+        };
+        options.flake-inputs = mkOption {
+          type = types.attrs;
+          default = inputs;
+        };
+      };
+    in
+      genAttrs hosts (hostName: nixosSystem {modules = [./modules/hosts/${hostName} flakeOpt];});
+
     paths = {
-      dots = ../dots;
-      pkgs = ../pkgs;
-      specials = ../specials;
-      secrets = ../secrets;
+      dots = ./dots;
+      secrets = ./secrets;
+      modules = ./modules;
     };
   };
 

@@ -1,11 +1,11 @@
 {
   pkgs,
   config,
+  inputs,
   ...
 }: let
-  inherit (config.flake.packages.${system}) xvim;
-
-  system = config.host-system;
+  inherit (config.nixpkgs.hostPlatform) system;
+  inherit (inputs.self.packages.${system}) xvim;
 in {
   environment.systemPackages = [
     xvim.default

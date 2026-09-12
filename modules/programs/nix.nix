@@ -1,10 +1,8 @@
 {
   pkgs,
-  config,
+  inputs,
   ...
 }: let
-  inherit (config.flake-inputs) nixpkgs rexies-nix-templates;
-
   script = pkgs.writers.writeNuBin "activate" ''
     def main [systemConfig: string] {
       let diff_closure = ${pkgs.nix}/bin/nix store diff-closures /run/current-system $systemConfig;
@@ -33,8 +31,8 @@ in {
   nix = {
     # package = pkgs.nixVersions.nix_2_30;
     registry = {
-      nixpkgs.flake = nixpkgs;
-      my-templates.flake = rexies-nix-templates;
+      nixpkgs.flake = inputs.nixpkgs;
+      my-templates.flake = inputs.rexies-nix-templates;
     };
     channel.enable = false;
     settings = {

@@ -1,11 +1,11 @@
 {
   lib,
   pkgs,
-  config,
+  inputs,
   ...
 }: let
   inherit (lib) pipe attrValues concatStringsSep map;
-  inherit (config.flake) paths;
+  inherit (inputs.self) paths;
 
   rebuildCommand = "nixos-rebuild --sudo --flake ~/nixos#";
   #         !!!you found the fish!!!
@@ -180,7 +180,7 @@ in {
 
     done = pkgs.fishPlugins.done.overrideAttrs (_old: {
       # I should upstream this probably but we ball
-      patches = ["${paths.specials}/fish-done-mango.patch"];
+      patches = ["${paths.patches}/fish-done-mango.patch"];
       postPatch = ''
         substituteInPlace conf.d/done.fish \
           --replace-fail " jq " " ${lib.getExe pkgs.jq} " \

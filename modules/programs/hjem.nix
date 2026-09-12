@@ -1,11 +1,9 @@
 {
   pkgs,
   lib,
-  config,
+  inputs,
   ...
-}: let
-  inherit (config.flake-inputs) hjem;
-in {
-  imports = [hjem.nixosModules.default];
+}: {
+  imports = [inputs.hjem.nixosModules.default];
   hjem.linker = lib.mkForce pkgs.smfh;
 }

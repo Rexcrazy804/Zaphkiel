@@ -1,3 +1,3 @@
-{config, ...}: {
-  hjem.extraModules = [config.flake-inptus.hjem-impure.hjemModules.default];
+{inputs, ...}: {
+  hjem.extraModules = [inputs.hjem-impure.hjemModules.default];
 }

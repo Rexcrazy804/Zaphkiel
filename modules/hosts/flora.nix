@@ -2,17 +2,17 @@
   pkgs,
   config,
   lib,
+  inputs,
   ...
 }: let
-  inherit (config.flake-inputs) nixos-wsl;
-  inherit (config.flake.paths) dots;
-  inherit (config.flake.legacyPackages.${system}) sources;
+  inherit (config.nixpkgs.hostPlatform) system;
+  inherit (inputs.self.paths) dots;
+  inherit (inputs.self.legacyPackages.${system}) sources;
 
-  system = config.host-system;
   username = "nixos";
 in {
   imports = [
-    nixos-wsl.nixosModules.default
+    inputs.nixos-wsl.nixosModules.default
 
     # programs
     ../system/environment.nix
@@ -66,19 +66,19 @@ in {
       ];
     };
 
-    files.xdg.config = let
+    xdg.config.files = let
       dots' = config.hjem.users.${username}.impure.dotsDir;
     in {
-      "git/config" = dots' + "/git/config";
-      "jj/config.toml" = dots' + "/jj/config.toml";
-      "fish/themes" = sources.rosep-fish + "/themes";
-      "fish/config.fish" = dots' + "/fish/config.fish";
-      "bat/config" = dots' + "/bat/config";
-      "bat/themes" = sources.catp-bat + "/themes";
-      "yazi/yazi.toml" = dots' + "/yazi/yazi.toml";
-      "yazi/keymap.toml" = dots' + "/yazi/keymap.toml";
-      "foot/foot.ini" = dots' + "/foot/foot.ini";
-      "foot/rose-pine.ini" = sources.rosep-foot + "/rose-pine";
+      "git/config".source = dots' + "/git/config";
+      "jj/config.toml".source = dots' + "/jj/config.toml";
+      "fish/themes".source = sources.rosep-fish + "/themes";
+      "fish/config.fish".source = dots' + "/fish/config.fish";
+      "bat/config".source = dots' + "/bat/config";
+      "bat/themes".source = sources.catp-bat + "/themes";
+      "yazi/yazi.toml".source = dots' + "/yazi/yazi.toml";
+      "yazi/keymap.toml".source = dots' + "/yazi/keymap.toml";
+      "foot/foot.ini".source = dots' + "/foot/foot.ini";
+      "foot/rose-pine.ini".source = sources.rosep-foot + "/rose-pine";
     };
   };
 }

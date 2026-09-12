@@ -12,9 +12,9 @@
 in {
   imports = [
     ../users/rexies.nix
-    # self.dandelion.dots.rexies-cli
-    # self.dandelion.dots.rexies-gui
-    # self.dandelion.dots.rexies-mango
+    ../dots/rexies-cli.nix
+    ../dots/rexies-gui.nix
+    ../dots/rexies-mango.nix
 
     ../profiles/default.nix
     ../profiles/mangowc.nix

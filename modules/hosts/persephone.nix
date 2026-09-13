@@ -20,6 +20,7 @@ in {
     ../profiles/mangowc.nix
     ../profiles/workstation.nix
     ../profiles/gaming.nix
+    ../profiles/btrfs.nix
 
     ../hardware/fingerprint.nix
     ../hardware/tpm.nix

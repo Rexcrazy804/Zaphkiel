@@ -1,190 +1,191 @@
-{self, ...}: {
-  dandelion.modules.fish = {
-    lib,
-    pkgs,
-    ...
-  }: let
-    inherit (lib) pipe attrValues concatStringsSep map;
-    rebuildCommand = "nixos-rebuild --sudo --flake ~/nixos#";
-    #         !!!you found the fish!!!
-    #   ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠖⠒⠲⠤⣤⣀⠀⠀⠀⢀⣀⣤⠤⠖⠒⠢⢤⡀⠀⠀⠀⠀⠀⠀⠀⠀
-    #   ⠀⠀⠀⠀⠀⠀⣶⣄⠏⡠⠊⠀⠀⠈⠁⠚⢍⠲⠖⡩⠓⠉⠀⠀⠀⠑⠌⠳⣠⣶⠀⠀⠀⠀⠀⠀
-    #   ⠀⠀⠀⠀⠀⣶⣾⢹⠀⢇⢀⣀⠤⠒⣊⠽⠋⠉⠉⠙⠯⣓⠒⠤⣀⣀⡸⠀⡏⣷⡾⠀⠀⠀⠀⠀
-    #   ⠀⠀⠀⠀⠀⣼⠘⣷⡠⠒⠋⢀⠴⡾⠁⠀⠀⠀⠀⠀⠀⠘⠇⠦⡀⠙⠲⢤⣷⠋⣧⠀⠀⠀⠀⠀
-    #   ⠀⠀⠀⠀⢰⢏⡷⠋⠀⠀⠔⠁⣰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠈⡄⠈⠢⡀⠀⠙⢾⠹⡀⠀⠀⠀⠀
-    #   ⠀⠀⠀⠀⡼⠋⠀⠀⢠⠊⠀⢀⠃⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠘⡀⠀⠑⡄⠀⠀⠙⢇⠀⠀⠀⠀
-    #   ⠀⠀⠀⡜⠁⠀⠀⢀⠃⠀⠀⡸⠀⠀⢀⠀⠀⠀⠀⠀⢀⠀⠀⠀⢇⠀⠀⠐⡀⠀⠀⠈⢢⠀⠀⠀
-    #   ⠀⠀⡜⠀⠀⠀⠀⠎⠀⠀⡴⠃⠀⠀⠸⠀⠀⠀⠀⠀⠸⠀⠀⠀⢸⢆⠀⠀⢱⠀⠀⠀⠀⢃⠀⠀
-    #   ⠀⡸⠀⠀⠀⠀⠸⠀⢠⠞⢀⢆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠇⠀⠀⡼⡀⠳⡀⠀⠇⠀⠀⠀⠈⢆⠀
-    #   ⢠⠇⢀⠀⠀⠀⣠⠖⠁⠀⠉⠹⡀⠀⢰⠀⠀⠀⠀⠀⠀⠂⠀⢀⠋⠉⠀⠈⠢⣄⠀⠀⠀⠀⠘⡀
-    #   ⢸⠀⠇⠀⠀⠀⡇⠀⠀⠀⠀⠀⠉⢁⠙⠒⠒⠒⠒⠒⠚⠃⠈⠉⠀⠀⠀⠀⠀⢸⠀⠀⠀⢰⠀⡇
-    #   ⡇⢰⠀⠀⠀⠀⠁⠀⣹⣶⣾⣿⣷⡦⡄⠀⠀⠀⠀⠀⠀⣠⢴⣾⣿⣷⣶⣇⠀⢸⠀⠀⠀⠀⡄⢱
-    #   ⡇⢸⠀⠀⠀⢀⣤⣾⠟⢹⣯⠡⠼⢷⠀⠀⠀⠀⠀⠀⠀⢀⡾⠥⢌⣿⡍⠻⣷⣼⡀⠀⠀⠀⡇⢸
-    #   ⡇⢸⠀⠀⠀⠈⡿⢿⠀⢿⠀⠀⠀⢸⠁⠀⠀⠀⠀⠀⠀⠈⡄⠀⠀⠉⡗⠀⡿⡿⠀⠀⠀⠀⡇⢸
-    #   ⠻⢬⣇⠀⠀⠀⠘⡄⠀⠈⠂⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠘⠁⠀⣠⠇⠀⠀⠀⣸⡤⠟
-    #   ⠀⠀⠸⡑⠢⠤⣤⡬⠆⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠰⢥⡤⠤⠔⢚⠃⠀⠀
-    #   ⠀⠀⢠⢱⠀⠒⠀⢻⣶⣦⣠⠴⠖⠢⠤⣀⠀⠀⠀⠀⣠⡤⠒⠲⠤⣄⣀⣴⡟⠀⠐⠀⡜⡄⠀⠀
-    #   ⠀⠀⠉⠀⠁⠀⠀⠀⠁⠈⠀⠀⠀⠀⠈⠈⠁⠀⠀⠈⠉⠁⠀⠀⠀⠀⠁⠉⠀⠀⠀⠉⠈⠁⠀⠀
-  in {
-    # let root use fish too :D
-    users.users.root.shell = pkgs.fish;
-    documentation.man.cache.enable = false; # screw this too
-    programs.fish = {
+{
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: let
+  inherit (lib) pipe attrValues concatStringsSep map;
+  inherit (inputs.self) paths;
+
+  rebuildCommand = "nixos-rebuild --sudo --flake ~/nixos#";
+  #         !!!you found the fish!!!
+  #   ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠖⠒⠲⠤⣤⣀⠀⠀⠀⢀⣀⣤⠤⠖⠒⠢⢤⡀⠀⠀⠀⠀⠀⠀⠀⠀
+  #   ⠀⠀⠀⠀⠀⠀⣶⣄⠏⡠⠊⠀⠀⠈⠁⠚⢍⠲⠖⡩⠓⠉⠀⠀⠀⠑⠌⠳⣠⣶⠀⠀⠀⠀⠀⠀
+  #   ⠀⠀⠀⠀⠀⣶⣾⢹⠀⢇⢀⣀⠤⠒⣊⠽⠋⠉⠉⠙⠯⣓⠒⠤⣀⣀⡸⠀⡏⣷⡾⠀⠀⠀⠀⠀
+  #   ⠀⠀⠀⠀⠀⣼⠘⣷⡠⠒⠋⢀⠴⡾⠁⠀⠀⠀⠀⠀⠀⠘⠇⠦⡀⠙⠲⢤⣷⠋⣧⠀⠀⠀⠀⠀
+  #   ⠀⠀⠀⠀⢰⢏⡷⠋⠀⠀⠔⠁⣰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠈⡄⠈⠢⡀⠀⠙⢾⠹⡀⠀⠀⠀⠀
+  #   ⠀⠀⠀⠀⡼⠋⠀⠀⢠⠊⠀⢀⠃⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠘⡀⠀⠑⡄⠀⠀⠙⢇⠀⠀⠀⠀
+  #   ⠀⠀⠀⡜⠁⠀⠀⢀⠃⠀⠀⡸⠀⠀⢀⠀⠀⠀⠀⠀⢀⠀⠀⠀⢇⠀⠀⠐⡀⠀⠀⠈⢢⠀⠀⠀
+  #   ⠀⠀⡜⠀⠀⠀⠀⠎⠀⠀⡴⠃⠀⠀⠸⠀⠀⠀⠀⠀⠸⠀⠀⠀⢸⢆⠀⠀⢱⠀⠀⠀⠀⢃⠀⠀
+  #   ⠀⡸⠀⠀⠀⠀⠸⠀⢠⠞⢀⢆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠇⠀⠀⡼⡀⠳⡀⠀⠇⠀⠀⠀⠈⢆⠀
+  #   ⢠⠇⢀⠀⠀⠀⣠⠖⠁⠀⠉⠹⡀⠀⢰⠀⠀⠀⠀⠀⠀⠂⠀⢀⠋⠉⠀⠈⠢⣄⠀⠀⠀⠀⠘⡀
+  #   ⢸⠀⠇⠀⠀⠀⡇⠀⠀⠀⠀⠀⠉⢁⠙⠒⠒⠒⠒⠒⠚⠃⠈⠉⠀⠀⠀⠀⠀⢸⠀⠀⠀⢰⠀⡇
+  #   ⡇⢰⠀⠀⠀⠀⠁⠀⣹⣶⣾⣿⣷⡦⡄⠀⠀⠀⠀⠀⠀⣠⢴⣾⣿⣷⣶⣇⠀⢸⠀⠀⠀⠀⡄⢱
+  #   ⡇⢸⠀⠀⠀⢀⣤⣾⠟⢹⣯⠡⠼⢷⠀⠀⠀⠀⠀⠀⠀⢀⡾⠥⢌⣿⡍⠻⣷⣼⡀⠀⠀⠀⡇⢸
+  #   ⡇⢸⠀⠀⠀⠈⡿⢿⠀⢿⠀⠀⠀⢸⠁⠀⠀⠀⠀⠀⠀⠈⡄⠀⠀⠉⡗⠀⡿⡿⠀⠀⠀⠀⡇⢸
+  #   ⠻⢬⣇⠀⠀⠀⠘⡄⠀⠈⠂⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠘⠁⠀⣠⠇⠀⠀⠀⣸⡤⠟
+  #   ⠀⠀⠸⡑⠢⠤⣤⡬⠆⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠰⢥⡤⠤⠔⢚⠃⠀⠀
+  #   ⠀⠀⢠⢱⠀⠒⠀⢻⣶⣦⣠⠴⠖⠢⠤⣀⠀⠀⠀⠀⣠⡤⠒⠲⠤⣄⣀⣴⡟⠀⠐⠀⡜⡄⠀⠀
+  #   ⠀⠀⠉⠀⠁⠀⠀⠀⠁⠈⠀⠀⠀⠀⠈⠈⠁⠀⠀⠈⠉⠁⠀⠀⠀⠀⠁⠉⠀⠀⠀⠉⠈⠁⠀⠀
+in {
+  # let root use fish too :D
+  users.users.root.shell = pkgs.fish;
+  documentation.man.cache.enable = false; # screw this too
+  programs.fish = {
+    enable = true;
+    useBabelfish = true;
+    generateCompletions = false; # fuck this shit (time to manually generate em)
+    shellAbbrs = {
+      # nix stuff
+      snw = rebuildCommand;
+      nsh = "nix shell nixpkgs#";
+      nrn = "nix run nixpkgs#";
+      "nuf --set-cursor" = "env NIXPKGS_ALLOW_UNFREE=1 nix % --impure";
+
+      # git stuff
+      gaa = "git add --all";
+      ga = "git add";
+      gc = "git commit";
+      gcm = "git commit -m";
+      gca = "git commit --amend";
+      gcp = "git cherry-pick";
+      grs = "git restore --staged";
+      grsa = "git restore --staged .";
+      gr = "git restore";
+      gra = "git restore .";
+      gs = "git status";
+      gd = "git diff";
+      # good for readmes
+      gdw = "git diff --word-diff";
+      gds = "git diff --staged";
+      gdh = "git diff HEAD~1";
+      # I forgot where I stole this from
+      # prolly some stack exchange thread
+      glg = "git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all";
+      gl = "git log";
+
+      # jujutsu stuff
+      j = "jj st";
+      jd = "jj describe";
+      jdm = "jj describe -m";
+      jdr = "jj diff -r"; # more imposters
+      jc = "jj commit";
+      jcm = "jj commit -m";
+      jce = "jj config edit --repo"; # imposter ?
+      jn = "jj new";
+      jnm = "jj new -m";
+      jnb = "jj new -B";
+      jl = "jj log";
+      jla = "jj log -r 'all()'";
+      jlr = "jj log -r 'all()' --no-graph --template 'change_id.short(8) ++ \"\\t\" ++ description.first_line() ++ \"\\n\"' | fzf | awk '{print $1}'"; # a little cursed but I need a fuzzy finder
+      js = "jj show";
+      jsq = "jj squash -k -u -i --into";
+      jsi = "jj squash -i --into";
+      jsa = "jj absorb";
+      jp = "jj push";
+      jpa = "jj push --all";
+      jpd = "jj push --deleted";
+      jf = "jj git fetch";
+      je = "jj edit";
+      ja = "jj abandon";
+      ju = "jj undo";
+      jr = "jj redo";
+      jb = "jj bookmark";
+      jbm = "jj bookmark move";
+      jbd = "jj bookmark delete";
+      jba = "jj bookmark advance -t @-";
+      jbt = "jj bookmark track";
+      jbl = "jj bookmark list --tracked";
+
+      # systemctl
+      sy = "systemctl";
+      sya = "systemctl start";
+      syo = "systemctl stop";
+      syr = "systemctl restart";
+      sys = "systemctl status";
+      # sysctl user
+      su = "systemctl --user";
+      sua = "systemctl --user start";
+      suo = "systemctl --user stop";
+      sur = "systemctl --user restart";
+      sus = "systemctl --user status";
+
+      # misc
+      qsp = "qs -p .";
+      lse = "eza --icons --group-directories-first -1";
+    };
+    shellAliases = {
+      ls = "eza --icons --group-directories-first -1";
+      snow = rebuildCommand;
+      snowboot = "${rebuildCommand} boot";
+      snowfall = "${rebuildCommand} switch";
+      snowtest = "${rebuildCommand} test";
+      # npinsFrozen = "npins show | grep -B 7 'frozen: true' | grep '^\w.*:'";
+    };
+
+    interactiveShellInit = let
+      rosepine-fzf = ["fg:#908caa" "bg:-1" "hl:#ebbcba" "fg+:#e0def4" "bg+:#26233a" "hl+:#ebbcba" "border:#403d52" "header:#31748f" "gutter:#191724" "spinner:#f6c177" "info:#9ccfd8" "pointer:#c4a7e7" "marker:#eb6f92" "prompt:#908caa"];
+      fzf-options = pipe rosepine-fzf [
+        (map (option: "--color=" + option))
+        (concatStringsSep " ")
+      ];
+    in ''
+      set sponge_purge_only_on_exit true
+      set fish_greeting
+      set fish_cursor_insert line blink
+      set -Ux LS_COLORS $(cat ${paths.dots + /fish/rose-pine-lscolors})
+      set -Ux FZF_DEFAULT_OPTS ${fzf-options}
+      fish_vi_key_bindings
+
+      function fish_user_key_bindings
+        bind --mode insert alt-c 'cdi; commandline -f repaint'
+        bind --mode insert alt-f 'fzf-file-widget'
+        bind --mode insert ctrl-b 'shpool detach'
+        bind --mode insert alt-l 'echo ""; jj log 2>/dev/null || ls; commandline -f repaint'
+        bind --mode insert alt-j 'jj; commandline -f repaint'
+      end
+
+      # smoll script to get the store path given an executable name
+      function store_path -a package_name
+        which $package_name 2> /dev/null | path resolve | read -l package_path
+        if test -n "$package_path"
+          echo (path dirname $package_path | path dirname)
+        end
+      end
+
+      # stay away from this function or I will show up under your bed :kokoknife:
+      function dekokomi
+        systemd-creds --user decrypt ~/Documents/Mine/kokomi.cred | grep $argv
+      end
+
+      # done plugin
+      set -U __done_exclude '^nvim'
+    '';
+  };
+
+  programs = {
+    zoxide = {
       enable = true;
-      useBabelfish = true;
-      generateCompletions = false; # fuck this shit (time to manually generate em)
-      shellAbbrs = {
-        # nix stuff
-        snw = rebuildCommand;
-        nsh = "nix shell nixpkgs#";
-        nrn = "nix run nixpkgs#";
-        "nuf --set-cursor" = "env NIXPKGS_ALLOW_UNFREE=1 nix % --impure";
+      enableFishIntegration = true;
+      flags = ["--cmd cd"];
+    };
+    direnv.enableFishIntegration = true;
+    command-not-found.enable = false;
+    fzf.keybindings = true;
+  };
 
-        # git stuff
-        gaa = "git add --all";
-        ga = "git add";
-        gc = "git commit";
-        gcm = "git commit -m";
-        gca = "git commit --amend";
-        gcp = "git cherry-pick";
-        grs = "git restore --staged";
-        grsa = "git restore --staged .";
-        gr = "git restore";
-        gra = "git restore .";
-        gs = "git status";
-        gd = "git diff";
-        # good for readmes
-        gdw = "git diff --word-diff";
-        gds = "git diff --staged";
-        gdh = "git diff HEAD~1";
-        # I forgot where I stole this from
-        # prolly some stack exchange thread
-        glg = "git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all";
-        gl = "git log";
+  environment.systemPackages = attrValues {
+    inherit (pkgs.fishPlugins) sponge;
+    inherit (pkgs) eza fish-lsp;
 
-        # jujutsu stuff
-        j = "jj st";
-        jd = "jj describe";
-        jdm = "jj describe -m";
-        jdr = "jj diff -r"; # more imposters
-        jc = "jj commit";
-        jcm = "jj commit -m";
-        jce = "jj config edit --repo"; # imposter ?
-        jn = "jj new";
-        jnm = "jj new -m";
-        jnb = "jj new -B";
-        jl = "jj log";
-        jla = "jj log -r 'all()'";
-        jlr = "jj log -r 'all()' --no-graph --template 'change_id.short(8) ++ \"\\t\" ++ description.first_line() ++ \"\\n\"' | fzf | awk '{print $1}'"; # a little cursed but I need a fuzzy finder
-        js = "jj show";
-        jsq = "jj squash -k -u -i --into";
-        jsi = "jj squash -i --into";
-        jsa = "jj absorb";
-        jp = "jj push";
-        jpa = "jj push --all";
-        jpd = "jj push --deleted";
-        jf = "jj git fetch";
-        je = "jj edit";
-        ja = "jj abandon";
-        ju = "jj undo";
-        jr = "jj redo";
-        jb = "jj bookmark";
-        jbm = "jj bookmark move";
-        jbd = "jj bookmark delete";
-        jba = "jj bookmark advance -t @-";
-        jbt = "jj bookmark track";
-        jbl = "jj bookmark list --tracked";
-
-        # systemctl
-        sy = "systemctl";
-        sya = "systemctl start";
-        syo = "systemctl stop";
-        syr = "systemctl restart";
-        sys = "systemctl status";
-        # sysctl user
-        su = "systemctl --user";
-        sua = "systemctl --user start";
-        suo = "systemctl --user stop";
-        sur = "systemctl --user restart";
-        sus = "systemctl --user status";
-
-        # misc
-        qsp = "qs -p .";
-        lse = "eza --icons --group-directories-first -1";
-      };
-      shellAliases = {
-        ls = "eza --icons --group-directories-first -1";
-        snow = rebuildCommand;
-        snowboot = "${rebuildCommand} boot";
-        snowfall = "${rebuildCommand} switch";
-        snowtest = "${rebuildCommand} test";
-        # npinsFrozen = "npins show | grep -B 7 'frozen: true' | grep '^\w.*:'";
-      };
-
-      interactiveShellInit = let
-        rosepine-fzf = ["fg:#908caa" "bg:-1" "hl:#ebbcba" "fg+:#e0def4" "bg+:#26233a" "hl+:#ebbcba" "border:#403d52" "header:#31748f" "gutter:#191724" "spinner:#f6c177" "info:#9ccfd8" "pointer:#c4a7e7" "marker:#eb6f92" "prompt:#908caa"];
-        fzf-options = pipe rosepine-fzf [
-          (map (option: "--color=" + option))
-          (concatStringsSep " ")
-        ];
-      in ''
-        set sponge_purge_only_on_exit true
-        set fish_greeting
-        set fish_cursor_insert line blink
-        set -Ux LS_COLORS $(cat ${self.paths.dots + /fish/rose-pine-lscolors})
-        set -Ux FZF_DEFAULT_OPTS ${fzf-options}
-        fish_vi_key_bindings
-
-        function fish_user_key_bindings
-          bind --mode insert alt-c 'cdi; commandline -f repaint'
-          bind --mode insert alt-f 'fzf-file-widget'
-          bind --mode insert ctrl-b 'shpool detach'
-          bind --mode insert alt-l 'echo ""; jj log 2>/dev/null || ls; commandline -f repaint'
-          bind --mode insert alt-j 'jj; commandline -f repaint'
-        end
-
-        # smoll script to get the store path given an executable name
-        function store_path -a package_name
-          which $package_name 2> /dev/null | path resolve | read -l package_path
-          if test -n "$package_path"
-            echo (path dirname $package_path | path dirname)
-          end
-        end
-
-        # stay away from this function or I will show up under your bed :kokoknife:
-        function dekokomi
-          systemd-creds --user decrypt ~/Documents/Mine/kokomi.cred | grep $argv
-        end
-
-        # done plugin
-        set -U __done_exclude '^nvim'
+    done = pkgs.fishPlugins.done.overrideAttrs (_old: {
+      # I should upstream this probably but we ball
+      patches = ["${paths.patches}/fish-done-mango.patch"];
+      postPatch = ''
+        substituteInPlace conf.d/done.fish \
+          --replace-fail " jq " " ${lib.getExe pkgs.jq} " \
+          --replace-fail "and type -q jq" "and type -q ${lib.getExe pkgs.jq}"
       '';
-    };
-
-    programs = {
-      zoxide = {
-        enable = true;
-        enableFishIntegration = true;
-        flags = ["--cmd cd"];
-      };
-      direnv.enableFishIntegration = true;
-      command-not-found.enable = false;
-      fzf.keybindings = true;
-    };
-
-    environment.systemPackages = attrValues {
-      inherit (pkgs.fishPlugins) sponge;
-      inherit (pkgs) eza fish-lsp;
-
-      done = pkgs.fishPlugins.done.overrideAttrs (_old: {
-        # I should upstream this probably but we ball
-        patches = ["${self.paths.specials}/fish-done-mango.patch"];
-        postPatch = ''
-          substituteInPlace conf.d/done.fish \
-            --replace-fail " jq " " ${lib.getExe pkgs.jq} " \
-            --replace-fail "and type -q jq" "and type -q ${lib.getExe pkgs.jq}"
-        '';
-      });
-    };
+    });
   };
 }

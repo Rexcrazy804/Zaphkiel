@@ -1,24 +1,27 @@
-{self, ...}: {
-  dandelion.profiles.default = {
-    imports = [
-      self.dandelion.modules.agenix
-      self.dandelion.modules.hjem
-      self.dandelion.modules.hjem-impure
-      self.dandelion.modules.hjem-matugen
-      self.dandelion.modules.zaphkiel-data
-      self.dandelion.modules.locales
-      # programs
-      self.dandelion.modules.environment
-      self.dandelion.modules.nix
-      self.dandelion.modules.fish
-      self.dandelion.modules.direnv
-      self.dandelion.modules.shpool
-      # network
-      self.dandelion.modules.dnscrypt
-      self.dandelion.modules.tailscale
-      self.dandelion.modules.openssh
-      # hardware
-      self.dandelion.modules.undetected
-    ];
-  };
+{
+  imports = [
+    ../utils/zaphkiel-data.nix
+
+    ../programs/age.nix
+    ../programs/hjem.nix
+    ../programs/hjem-impure.nix
+
+    ../system/locales.nix
+    ../system/environment.nix
+
+    ../programs/nix.nix
+    ../programs/fish.nix
+    ../programs/direnv.nix
+    ../programs/shpool.nix
+
+    ../services/dnscrypt.nix
+    ../services/tailscale.nix
+    ../services/openssh.nix
+
+    ../hardware/undetected.nix
+  ];
+
+  hjem.extraModules = [
+    ../programs/hjem-matugen.nix
+  ];
 }

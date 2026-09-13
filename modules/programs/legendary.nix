@@ -1,8 +1,14 @@
-{self, ...}: {
-  dandelion.modules.legendary = {pkgs, ...}: {
-    environment.systemPackages = [
-      pkgs.heroic-unwrapped.legendary
-      (self.lib.mkPkgx' pkgs).scripts.legumulaunch
-    ];
-  };
+{
+  pkgs,
+  config,
+  inputs,
+  ...
+}: let
+  inherit (config.nixpkgs.hostPlatform) system;
+  inherit (inputs.self.legacyPackages.${system}) scripts;
+in {
+  environment.systemPackages = [
+    pkgs.heroic-unwrapped.legendary
+    scripts.legumulaunch
+  ];
 }

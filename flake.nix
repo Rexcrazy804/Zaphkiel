@@ -1,16 +1,81 @@
 {
   description = "Rexiel Scarlet's Flake";
 
-  # I might have just made reading my flake a hellscape
-  # Presenting, the *Dandelion* setup
-  outputs = {...} @ inputs: let
-    dandelion = import ./dandelion.nix inputs;
-    inherit (dandelion) importModules recursiveImport;
-  in
-    importModules [
-      (recursiveImport ./modules) # dandelion modules (uses dandelion.<whatever> namespace)
-      (recursiveImport ./flake) # everything else including your typical packages, devShells, etc
-    ];
+  # In search of beauty I found simplicity.
+  outputs = {
+    self,
+    nixpkgs,
+    systems,
+    ...
+  } @ inputs: let
+    inherit (nixpkgs.lib) genAttrs filesystem nixosSystem;
+
+    pkgsOf = nixpkgs.legacyPackages;
+    eachSystem = genAttrs (import systems);
+
+    hosts = ["aphrodite" "flora" "persephone" "seraphine"];
+  in {
+    formatter = eachSystem (system: self.legacyPackages.${system}.irminsul);
+
+    devShells = eachSystem (system: {
+      default = pkgsOf.${system}.callPackage ./flake/devshell.nix {
+        inherit (self.legacyPackages.${system}) irminsul;
+      };
+    });
+
+    legacyPackages = eachSystem (system:
+      filesystem.packagesFromDirectoryRecursive {
+        inherit (pkgsOf.${system}) newScope callPackage;
+        directory = ./pkgs;
+      });
+
+    packages = eachSystem (system: let
+      pkgs = pkgsOf.${system};
+      stp = inputs.stash.packages.${system}.default;
+    in {
+      hjem-cli = inputs.hjem.packages.${system}.hjem;
+      equibop = pkgs.equibop;
+
+      xvim = pkgs.callPackage ./flake/packages/xvim {
+        inherit (self.legacyPackages.${system}) sources;
+        mnw = inputs.mnw.lib;
+      };
+
+      stash = pkgs.symlinkJoin {
+        inherit (stp) meta version pname;
+        paths = [stp];
+        postBuild = ''
+          rm $out/bin/wl-copy
+          rm $out/bin/wl-paste
+        '';
+      };
+    });
+
+    nixosModules = {
+      kurukuruDM = {pkgs, ...}: {
+        imports = [./flake/nixosModules/kurukuruDM.nix];
+        # TODO this is ugly, just write to the option directly with mkDefault
+        nixpkgs.overlays = [
+          (_: _: {
+            inherit (self.legacyPackages.${pkgs.stdenv.hostPlatform.system}) kurukurubar;
+          })
+        ];
+      };
+      default = self.nixosModules.kurukuruDM;
+    };
+
+    nixosConfigurations = genAttrs hosts (hostName:
+      nixosSystem {
+        modules = [./modules/hosts/${hostName}.nix];
+        specialArgs = {inherit inputs;};
+      });
+
+    paths = {
+      dots = ./dots;
+      secrets = ./secrets;
+      patches = ./patches;
+    };
+  };
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";

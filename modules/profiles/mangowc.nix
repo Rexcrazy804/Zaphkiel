@@ -1,8 +1,6 @@
-{self, ...}: {
-  dandelion.profiles.mangowc = {
-    imports = [
-      self.dandelion.modules.mangowc
-      self.dandelion.modules.compositor-common
-    ];
-  };
+{
+  imports = [
+    ../programs/mangowc.nix
+    ../programs/compositor-common.nix
+  ];
 }

@@ -1,89 +1,88 @@
 {
-  self,
-  hs-todo,
+  pkgs,
+  lib,
+  inputs,
+  config,
   ...
-}: {
-  dandelion.modules.compositor-common = {
-    pkgs,
-    lib,
-    ...
-  }: let
-    inherit (lib) mkForce attrValues;
+}: let
+  inherit (lib) mkForce attrValues;
+  inherit (config.nixpkgs.hostPlatform) system;
+  inherit (inputs) self hs-todo;
 
-    system = pkgs.stdenv.hostPlatform.system;
-    pkgx = self.lib.mkPkgx' pkgs;
-    todo = hs-todo.packages.${system}.default;
-  in {
-    # for whatever reason swappy likes to open images
-    # don't let that fucker open images
-    xdg.mime.defaultApplications = {
-      "image/jpeg" = ["imv.desktop"];
-      "image/png" = ["imv.desktop"];
-      "application/pdf" = ["firefox.desktop"];
-    };
-
-    services.gnome.gnome-keyring.enable = true;
-
-    # required for mounting mobile phones
-    services.gvfs.enable = true;
-
-    # required when kde plasma is not installed .w.
-    # ask me how I knew
-    services.power-profiles-daemon.enable = true;
-    services.upower = {
-      enable = true;
-      usePercentageForPolicy = true;
-      criticalPowerAction = "PowerOff";
-    };
-
-    # if I end up switching out of wayland compositoers
-    # this may not belong in compositor common
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-    # dependencies .w.
-    environment.systemPackages = attrValues {
-      # internal overlay
-      inherit (pkgx) kokCursor kurukurubar stash mpv-wrapped;
-      inherit (pkgx.scripts) taildrop gpurecording cowask npins-show wallcrop;
-      # Themes
-      inherit (pkgs) rose-pine-icon-theme;
-      inherit (pkgs.kdePackages) qt6ct breeze;
-      catppuccin-gtk = pkgs.catppuccin-gtk.override {
-        accents = ["mauve"];
-        variant = "mocha";
-      };
-      # utility
-      inherit (pkgs) wl-clipboard grim slurp brightnessctl;
-      inherit (pkgs) trashy fuzzel wl-screenrec;
-      inherit (pkgs) libnotify swappy imv wayfreeze networkmanagerapplet;
-      inherit (pkgs) yazi ripdrag seahorse;
-      inherit (pkgs) foot libsixel;
-      # external
-      inherit todo;
-    };
-
-    qt.enable = true;
-    programs.dconf.profiles.user.databases = [
-      {
-        settings = {
-          "org/gnome/desktop/interface" = {
-            cursor-theme = "Kokomi_Cursor";
-            gtk-theme = "rose-pine";
-            icon-theme = "rose-pine";
-            document-font-name = "DejaVu Serif";
-            font-name = "DejaVu Sans";
-            monospace-font-name = "CaskaydiaMono NF";
-            accent-color = "purple";
-            color-scheme = "prefer-dark";
-          };
-        };
-      }
-    ];
-
-    services.hypridle.enable = true;
-    systemd.user.services.hypridle.path = mkForce (attrValues {
-      inherit (pkgs) systemd procps brightnessctl;
-      inherit (pkgx) kurukurubar;
-    });
+  pkgx = self.legacyPackages.${system};
+  pkgx' = self.packages.${system};
+  todo = hs-todo.packages.${system}.default;
+in {
+  # for whatever reason swappy likes to open images
+  # don't let that fucker open images
+  xdg.mime.defaultApplications = {
+    "image/jpeg" = ["imv.desktop"];
+    "image/png" = ["imv.desktop"];
+    "application/pdf" = ["firefox.desktop"];
   };
+
+  services.gnome.gnome-keyring.enable = true;
+
+  # required for mounting mobile phones
+  services.gvfs.enable = true;
+
+  # required when kde plasma is not installed .w.
+  # ask me how I knew
+  services.power-profiles-daemon.enable = true;
+  services.upower = {
+    enable = true;
+    usePercentageForPolicy = true;
+    criticalPowerAction = "PowerOff";
+  };
+
+  # if I end up switching out of wayland compositoers
+  # this may not belong in compositor common
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  # dependencies .w.
+  environment.systemPackages = attrValues {
+    # internal overlay
+    inherit (pkgx) kokCursor kurukurubar mpv-wrapped;
+    inherit (pkgx.scripts) taildrop gpurecording cowask npins-show wallcrop;
+    inherit (pkgx') stash;
+    # Themes
+    inherit (pkgs) rose-pine-icon-theme;
+    inherit (pkgs.kdePackages) qt6ct breeze;
+    catppuccin-gtk = pkgs.catppuccin-gtk.override {
+      accents = ["mauve"];
+      variant = "mocha";
+    };
+    # utility
+    inherit (pkgs) wl-clipboard grim slurp brightnessctl;
+    inherit (pkgs) trashy fuzzel wl-screenrec;
+    inherit (pkgs) libnotify swappy imv wayfreeze networkmanagerapplet;
+    inherit (pkgs) yazi ripdrag seahorse;
+    inherit (pkgs) foot libsixel;
+    # external
+    inherit todo;
+  };
+
+  qt.enable = true;
+  programs.dconf.profiles.user.databases = [
+    {
+      settings = {
+        "org/gnome/desktop/interface" = {
+          cursor-theme = "Kokomi_Cursor";
+          gtk-theme = "rose-pine";
+          icon-theme = "rose-pine";
+          document-font-name = "DejaVu Serif";
+          font-name = "DejaVu Sans";
+          monospace-font-name = "CaskaydiaMono NF";
+          accent-color = "purple";
+          color-scheme = "prefer-dark";
+        };
+      };
+    }
+  ];
+
+  services.hypridle.enable = true;
+  systemd.user.services.hypridle.path = mkForce (attrValues {
+    inherit (pkgs) systemd procps brightnessctl;
+    inherit (pkgx) kurukurubar;
+  });
 }

@@ -1,71 +1,72 @@
-{self, ...}: {
-  dandelion.modules.mangowc = {
-    config,
-    lib,
-    pkgs,
-    ...
-  }: let
-    inherit (lib) mkEnableOption mkOption mkIf mkForce;
-    pkgx = self.lib.mkPkgx' pkgs;
-    cfg = config.zaphkiel.programs.mangowc;
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: let
+  inherit (lib) mkEnableOption mkOption mkIf mkForce;
+  inherit (config.nixpkgs.hostPlatform) system;
+  inherit (inputs.self.legacyPackages.${system}) mangowc;
 
-    uwsmWithPlugin = pkgs.symlinkJoin {
-      inherit (pkgs.uwsm) pname version;
-      paths = [pkgs.uwsm];
-      postBuild = ''
-        ln -sf ${pkgx.mangowc.uwsm-plugin} $out/share/uwsm/plugins/mango.sh
-      '';
+  cfg = config.zaphkiel.programs.mangowc;
 
-      meta = pkgs.uwsm.meta // {outputsToInstall = ["out"];};
+  uwsmWithPlugin = pkgs.symlinkJoin {
+    inherit (pkgs.uwsm) pname version;
+    paths = [pkgs.uwsm];
+    postBuild = ''
+      ln -sf ${mangowc.uwsm-plugin} $out/share/uwsm/plugins/mango.sh
+    '';
+
+    meta = pkgs.uwsm.meta // {outputsToInstall = ["out"];};
+  };
+in {
+  options.zaphkiel.programs.mangowc = {
+    package = mkOption {
+      default = mangowc;
     };
-  in {
-    options.zaphkiel.programs.mangowc = {
-      package = mkOption {
-        default = pkgx.mangowc;
+    withUWSM = mkEnableOption "uwsm for mangowc" // {default = true;};
+  };
+
+  config = {
+    environment.systemPackages = [
+      cfg.package
+      pkgs.wlsunset
+    ];
+
+    systemd.user.services.hypridle.path = mkForce [cfg.package];
+
+    # REQUIRES uwsm finalize in autostart.sh
+    programs.uwsm = mkIf cfg.withUWSM {
+      enable = true;
+      package = uwsmWithPlugin;
+      waylandCompositors.mango = {
+        prettyName = "MangoWC";
+        comment = "Mango compositor managed by UWSM";
+        binPath = "/run/current-system/sw/bin/mango";
       };
-      withUWSM = mkEnableOption "uwsm for mangowc" // {default = true;};
     };
 
-    config = {
-      environment.systemPackages = [
-        cfg.package
-        pkgs.wlsunset
-      ];
-
-      systemd.user.services.hypridle.path = mkForce [cfg.package];
-
-      # REQUIRES uwsm finalize in autostart.sh
-      programs.uwsm = mkIf cfg.withUWSM {
-        enable = true;
-        package = uwsmWithPlugin;
-        waylandCompositors.mango = {
-          prettyName = "MangoWC";
-          comment = "Mango compositor managed by UWSM";
-          binPath = "/run/current-system/sw/bin/mango";
-        };
+    xdg.portal = {
+      enable = true;
+      wlr.enable = true;
+      configPackages = [cfg.package];
+      extraPortals = [pkgs.xdg-desktop-portal-gtk];
+      config.mango = {
+        # borrowed from config for sway
+        default = ["gtk"];
+        "org.freedesktop.impl.portal.ScreenCast" = "wlr";
+        "org.freedesktop.impl.portal.Screenshot" = "wlr";
+        "org.freedesktop.impl.portal.Inhibit" = "none";
       };
+    };
 
-      xdg.portal = {
-        enable = true;
-        wlr.enable = true;
-        configPackages = [cfg.package];
-        extraPortals = [pkgs.xdg-desktop-portal-gtk];
-        config.mango = {
-          # borrowed from config for sway
-          default = ["gtk"];
-          "org.freedesktop.impl.portal.ScreenCast" = "wlr";
-          "org.freedesktop.impl.portal.Screenshot" = "wlr";
-          "org.freedesktop.impl.portal.Inhibit" = "none";
-        };
-      };
+    security.polkit.enable = true;
+    programs.xwayland.enable = true;
 
-      security.polkit.enable = true;
-      programs.xwayland.enable = true;
-
-      services = {
-        displayManager.sessionPackages = mkIf (! cfg.withUWSM) [cfg.package];
-        graphical-desktop.enable = true;
-      };
+    services = {
+      displayManager.sessionPackages = mkIf (! cfg.withUWSM) [cfg.package];
+      graphical-desktop.enable = true;
     };
   };
 }

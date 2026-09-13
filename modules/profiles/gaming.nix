@@ -1,10 +1,11 @@
-{self, ...}: {
-  dandelion.profiles.gaming = {
-    imports = [
-      self.dandelion.modules.wine
-      self.dandelion.modules.proton
-      self.dandelion.modules.sunshine
-      self.dandelion.modules.hjem-games
-    ];
-  };
+{
+  imports = [
+    ../programs/wine.nix
+    ../programs/proton.nix
+    ../services/sunshine.nix
+  ];
+
+  hjem.extraModules = [
+    ../utils/hjem-games.nix
+  ];
 }

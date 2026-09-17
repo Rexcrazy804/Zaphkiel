@@ -36,7 +36,7 @@
         mc.vanilla.maria.net 34.141.241.246
 
         seraphine fd7a:115c:a1e0::eb01:7412
-        aphrodite fd7a:115c:a1e0::6e01:5604
+        aphrodite fd7a:115c:a1e0::2b2e:557d
         zaphkiel fd7a:115c:a1e0::5d01:ae12
         raphael fd7a:115c:a1e0::5801:e445
         persephone fd7a:115c:a1e0::6a01:4614

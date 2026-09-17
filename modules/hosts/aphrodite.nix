@@ -70,10 +70,7 @@ in {
 
   networking = {
     nftables.enable = true;
-    firewall.interfaces."tailscale0".allowedTCPPorts =
-      config.services.openssh.ports
-      # radicle internal and exposed ports
-      ++ [config.services.radicle.node.listenPort 10000];
+    firewall.interfaces."tailscale0".allowedTCPPorts = config.services.openssh.ports;
   };
 
   environment.systemPackages = with pkgs; [

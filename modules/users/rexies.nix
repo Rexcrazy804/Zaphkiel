@@ -23,7 +23,8 @@ in {
     shell = pkgs.fish;
     isNormalUser = true;
     extraGroups = ["networkmanager" "wheel" "multimedia"];
-    hashedPasswordFile = config.age.secrets.rexiesPass.path;
+    # this does not do anything really since mutable users is true
+    # hashedPasswordFile = config.age.secrets.rexiesPass.path;
 
     # only declare common packages here
     # others: hosts/<hostname>/user-configuration.nix

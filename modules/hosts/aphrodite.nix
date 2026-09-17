@@ -49,8 +49,7 @@ in {
   # network stuff
   services.openssh = {
     startWhenNeeded = lib.mkForce false;
-    # TODO
-    # openFirewall = lib.mkForce false;
+    openFirewall = lib.mkForce false;
   };
 
   networking = {

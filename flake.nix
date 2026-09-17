@@ -8,12 +8,12 @@
     systems,
     ...
   } @ inputs: let
-    inherit (nixpkgs.lib) genAttrs filesystem nixosSystem;
+    inherit (nixpkgs.lib) genAttrs filesystem nixosSystem toLower;
 
     pkgsOf = nixpkgs.legacyPackages;
     eachSystem = genAttrs (import systems);
 
-    hosts = ["aphrodite" "flora" "persephone" "seraphine"];
+    hosts = ["Aphrodite" "Flora" "Persephone" "Seraphine"];
   in {
     formatter = eachSystem (system: self.legacyPackages.${system}.irminsul);
 
@@ -66,7 +66,7 @@
 
     nixosConfigurations = genAttrs hosts (hostName:
       nixosSystem {
-        modules = [./modules/hosts/${hostName}.nix];
+        modules = [./modules/hosts/${toLower hostName}.nix];
         specialArgs = {inherit inputs;};
       });
 

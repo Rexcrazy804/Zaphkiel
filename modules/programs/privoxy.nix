@@ -16,7 +16,7 @@
       };
       proxy = mkOption {
         type = str;
-        default = "100.121.86.4:8888";
+        default = "100.118.85.124:8888";
       };
     };
   };

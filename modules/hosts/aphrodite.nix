@@ -1,23 +1,33 @@
 {
+  pkgs,
   config,
   lib,
   inputs,
   ...
 }: let
-  inherit (config.nixpkgs.hostPlatform) system;
-  inherit (inputs.self.legacyPackages.${system}) images;
   inherit (inputs.self) paths;
 in {
   imports = [
+    ../utils/zaphkiel-data.nix
     ../users/rexies.nix
     ../dots/rexies-cli.nix
 
-    ../profiles/default.nix
+    ../system/locales.nix
 
-    ../hardware/qemu-guest.nix
+    ../programs/age.nix
+    ../programs/hjem.nix
+    ../programs/hjem-impure.nix
+    ../programs/nix.nix
+    ../programs/fish.nix
+    ../programs/direnv.nix
+
+    ../services/dnscrypt.nix
+    ../services/tailscale.nix
+    ../services/openssh.nix
     ../services/tinyproxy.nix
     ../services/fail2ban.nix
-    ../services/radicle.nix
+
+    ../hardware/qemu-guest.nix
   ];
 
   # info
@@ -28,14 +38,12 @@ in {
   time.timeZone = "Asia/Kolkata";
 
   zaphkiel = {
-    data.wallpaper = images.corvus;
     secrets.tailAuth.file = paths.secrets + /secret8.age;
     services.tailscale = {
       exitNode.enable = true;
       exitNode.networkDevice = "ens18";
       authFile = config.age.secrets.tailAuth.path;
     };
-    programs.shpool.users = ["rexies"];
   };
 
   # network stuff
@@ -43,6 +51,7 @@ in {
     startWhenNeeded = lib.mkForce false;
     openFirewall = lib.mkForce false;
   };
+
   networking = {
     interfaces = {
       ens18.ipv4.addresses = [
@@ -61,29 +70,56 @@ in {
 
   networking = {
     nftables.enable = true;
-    firewall.interfaces."tailscale0".allowedTCPPorts =
-      config.services.openssh.ports
-      # radicle internal and exposed ports
-      ++ [config.services.radicle.node.listenPort 10000];
+    firewall.interfaces."tailscale0".allowedTCPPorts = config.services.openssh.ports;
   };
 
-  # radicle
-  services.radicle = {
-    publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHhkSRUQLV7JpjtPdbFR8vXnJhLhSfbh3vL+j9v/5Bv/";
-    privateKey = "/etc/ssh/ssh_host_ed25519_key";
-    settings.node = {
-      alias = "radicle.aphrodite.ts.net";
-      externalAddresses = ["aphrodite.fell-rigel.ts.net:8776" "aphrodite.fell-rigel.ts.net:10000"];
+  environment.systemPackages = with pkgs; [
+    git
+    jujutsu
+  ];
+
+  # hardware
+
+  boot = {
+    loader.grub.enable = true;
+    loader.grub.device = "/dev/sda"; # or "nodev" for efi only
+    tmp.cleanOnBoot = true;
+    initrd.availableKernelModules = ["ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod"];
+    initrd.kernelModules = [];
+    kernelModules = [];
+    extraModulePackages = [];
+  };
+
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/0f3acd6d-7bcf-4ca6-b34d-c9103faeea6a";
+      fsType = "btrfs";
+      options = ["subvol=root" "compress=zstd"];
+    };
+
+    "/home" = {
+      device = "/dev/disk/by-uuid/0f3acd6d-7bcf-4ca6-b34d-c9103faeea6a";
+      fsType = "btrfs";
+      options = ["subvol=home" "compress=zstd"];
+    };
+
+    "/nix" = {
+      device = "/dev/disk/by-uuid/0f3acd6d-7bcf-4ca6-b34d-c9103faeea6a";
+      fsType = "btrfs";
+      options = ["subvol=nix" "compress=zstd" "noatime"];
+    };
+
+    "/swap" = {
+      device = "/dev/disk/by-uuid/0f3acd6d-7bcf-4ca6-b34d-c9103faeea6a";
+      fsType = "btrfs";
+      options = ["subvol=swap" "noatime"];
     };
   };
 
-  # hardware
-  boot.tmp.cleanOnBoot = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.initrd.availableKernelModules = ["ata_piix" "uhci_hcd" "xen_blkfront" "vmw_pvscsi"];
-  boot.initrd.kernelModules = ["nvme"];
-  fileSystems."/" = {
-    device = "/dev/sda1";
-    fsType = "ext4";
-  };
+  swapDevices = [
+    {
+      device = "/swap/swapfile";
+      size = 4 * 1024;
+    }
+  ];
 }

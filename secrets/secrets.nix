@@ -4,7 +4,6 @@ let
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICELSL45m4ptWDZwQDi2AUmCgt4n93KsmZtt69fyb0vy"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHZTLQQzgCvdaAPdxUkpytDHgwd8K1N1IWtriY4tWSvn"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICZvsZTvR5wQedjnuSoz9p7vK7vLxCdfOdRFmbfQ7GUd rexies@Seraphine"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHhkSRUQLV7JpjtPdbFR8vXnJhLhSfbh3vL+j9v/5Bv/ rexies@Aphrodite"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFa4hzkxc5kiBZ4Tr5V4DF1StW9Am9eDzeboIKtGRt89 rexies@Persephone"
     ];
   };
@@ -13,7 +12,7 @@ let
     Zaphkiel = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINZAm8+KGrsCGT7dJbz/Rcm18NslDLrYzzcgHZ4334aa"];
     Raphael = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILJFWrIy+ZoppWlZIG6qHrCfM9yChsKdW39iP5yPeBdl"];
     Seraphine = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID2iNLNXkHv5CXeKy7zhR/bbJ/3SKjp/g/i6l09rjFdZ"];
-    Aphrodite = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILfTXG9nFMbm3Gwkx+RT4ift402Q6sQiQrAKdl3lN3C5"];
+    Aphrodite = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILup627s9tckF4lxf5TjcIbodJU31qrtBw5c094KPsD3"];
     Persephone = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHmrX1LN/s0rIGBVUFzBeDHqWTD6+wEVqgdmNf6qfYLj"];
   };
 in {

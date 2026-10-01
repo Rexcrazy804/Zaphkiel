@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (lib) concatStringsSep mapAttrs attrValues mkEnableOption;
-  inherit (lib) mkOption mkIf strings mkPackageOption optionalAttrs;
+  inherit (lib) mkOption mkIf strings optionalAttrs;
   inherit (lib) filterAttrs attrNames elemAt warn length optional;
   inherit (lib) mkRenamedOptionModule;
   inherit (lib.types) path lines enum nullOr;
@@ -48,17 +48,15 @@ in {
   ];
   options.programs.kurukuruDM = {
     enable = mkEnableOption "kurukuru display manager";
-    package =
-      mkPackageOption pkgs "Kurukurubar package" {
-        default = "kurukurubar";
-      }
-      // {
-        apply = opt:
-          opt.override {
-            asGreeter = true;
-            customColors = cfg.settings.colors;
-          };
-      };
+    package = mkOption {
+      # NOTE default is supplied externally by the flake
+      description = "kurukurubar package to use";
+      apply = opt:
+        opt.override {
+          asGreeter = true;
+          customColors = cfg.settings.colors;
+        };
+    };
     settings = {
       wallpaper = mkOption {
         type = nullOr path;

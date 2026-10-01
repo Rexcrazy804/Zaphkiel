@@ -52,14 +52,15 @@
     });
 
     nixosModules = {
-      kurukuruDM = {pkgs, ...}: {
+      kurukuruDM = {
+        lib,
+        config,
+        ...
+      }: let
+        inherit (config.nixpkgs.hostPlatform) system;
+      in {
         imports = [./flake/nixosModules/kurukuruDM.nix];
-        # TODO this is ugly, just write to the option directly with mkDefault
-        nixpkgs.overlays = [
-          (_: _: {
-            inherit (self.legacyPackages.${pkgs.stdenv.hostPlatform.system}) kurukurubar;
-          })
-        ];
+        programs.kurukuruDM.package = lib.mkDefault self.legacyPackages.${system}.kurukurubar;
       };
       default = self.nixosModules.kurukuruDM;
     };

@@ -8,19 +8,8 @@
 }:
 lib.fix (self: {
   vimPlugins = callPackage ./plugins.nix {inherit sources;};
-  minimal = mnw.wrap (pkgs // {inherit (self) vimPlugins;}) ./config.nix;
-  default = self.minimal.override (prev: {
-    extraBinPath =
-      prev.extraBinPath
-      ++ [
-        # language servers
-        pkgs.nil
-        pkgs.lua-language-server
-        pkgs.kdePackages.qtdeclarative
-        # formatter
-        pkgs.alejandra
-      ];
-  });
+  default = mnw.wrap (pkgs // {inherit (self) vimPlugins;}) ./maximal.nix;
+  minimal = mnw.wrap pkgs ./minimal.nix;
   vivi = self.default.override (prev: {
     initLua =
       prev.initLua

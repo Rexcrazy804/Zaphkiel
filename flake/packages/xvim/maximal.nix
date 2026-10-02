@@ -14,6 +14,12 @@
     pkgs.wl-clipboard
     pkgs.fd
     pkgs.imagemagick
+    # language servers
+    pkgs.nil
+    pkgs.lua-language-server
+    pkgs.kdePackages.qtdeclarative
+    # formatter
+    pkgs.alejandra
   ];
 
   providers.python3.enable = true;

@@ -82,7 +82,6 @@ in {
   # user space
   users.users."rexies".packages = [
     equibop
-    pkgs.radicle-tui
     pkgs.kopuz
   ];
 

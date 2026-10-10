@@ -40,7 +40,6 @@ in {
       pkgs.delta
       pkgs.yazi
       pkgs.foot
-      pkgs.radicle-tui
     ];
   };
 

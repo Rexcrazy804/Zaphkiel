@@ -5,7 +5,7 @@
   writers,
   writeJQ,
   jq,
-  heroic-unwrapped,
+  legendary-gl,
   umu-launcher,
 }: let
   inherit (lib) getExe;
@@ -19,5 +19,5 @@
 in
   writers.writeFishBin "legumulaunch" ''
     # must be piped to fish to launch
-    ${getExe heroic-unwrapped.legendary} launch $argv[1] --no-wine --json | ${getExe jq} -r -f ${legparse}
+    ${getExe legendary-gl} launch $argv[1] --no-wine --json | ${getExe jq} -r -f ${legparse}
   ''

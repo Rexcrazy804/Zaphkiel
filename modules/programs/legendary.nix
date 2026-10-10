@@ -8,7 +8,7 @@
   inherit (inputs.self.legacyPackages.${system}) scripts;
 in {
   environment.systemPackages = [
-    pkgs.heroic-unwrapped.legendary
+    pkgs.legendary-gl
     scripts.legumulaunch
   ];
 }

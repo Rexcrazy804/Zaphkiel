@@ -15,9 +15,9 @@ in {
       ${cfg.finalOpts} ${cfg.package}/bin/kurukurubar && pkill mango
     '';
     mangoConf = pkgs.writeText "config.conf" ''
-      monitorrule=name:eDP-1,width:1920,height:1080,refresh:60,x:0,y:0,scale:1,vrr:0,rr:0
+      monitor_rule=name:eDP-1,width:1920,height:1080,refresh:60,x:0,y:0,scale:1,vrr:0,rr:0
       cursor_theme=Kokomi_Cursor
-      exec-once = ${autostart}
+      exec_once = ${autostart}
     '';
   in
     lib.mkForce "env ${mangowc}/bin/mango -c ${mangoConf}";

@@ -4,6 +4,7 @@ vim.o.relativenumber = true
 vim.o.cursorline = true
 vim.o.cursorlineopt = "number"
 vim.o.signcolumn = "yes"
+vim.o.autoread = true
 
 -- tabs
 vim.o.expandtab = true

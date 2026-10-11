@@ -3,7 +3,7 @@
   providers.python3.enable = true;
   initLua = ''
     require("config")
-    vim.cmd.colorscheme "catppuccin"
+    require("native")
   '';
 
   plugins.dev.myconfig = {

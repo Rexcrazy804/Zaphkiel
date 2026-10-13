@@ -41,6 +41,8 @@
         mnw = inputs.mnw.lib;
       };
 
+      slimv = pkgs.callPackage ./flake/packages/slimv {};
+
       stash = pkgs.symlinkJoin {
         inherit (stp) meta version pname;
         paths = [stp];

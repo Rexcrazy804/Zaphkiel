@@ -66,9 +66,6 @@
         direnv-nvim
         nvim-dbee
         ;
-
-      # I cannot be arsed to allowUnfree at toplevel so we do this
-      slimv = pkgs.vimPlugins.slimv.overrideAttrs (_old: {meta.license = [];});
     };
 
     dev.myconfig = {

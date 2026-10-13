@@ -1,5 +1,6 @@
 return {
   "slimv",
+  enabled = false,
   ft = { "lisp", "cl" },
   after = function()
     if vim.g.vscode then return end

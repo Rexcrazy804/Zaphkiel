@@ -4,7 +4,10 @@
 }:
 vim-full.customize {
   name = "vim";
+  vimrcConfig.customRC = ''
+    colorscheme catppuccin
+  '';
   vimrcConfig.packages.myplugins = {
-    start = [vimPlugins.slimv];
+    start = [vimPlugins.vim-nix vimPlugins.slimv];
   };
 }

@@ -140,7 +140,6 @@ in {
       function fish_user_key_bindings
         bind --mode insert alt-c 'cdi; commandline -f repaint'
         bind --mode insert alt-f 'fzf-file-widget'
-        bind --mode insert ctrl-b 'shpool detach'
         bind --mode insert alt-l 'echo ""; jj log 2>/dev/null || ls; commandline -f repaint'
         bind --mode insert alt-j 'jj; commandline -f repaint'
       end

@@ -12,7 +12,6 @@
     ../programs/nix.nix
     ../programs/fish.nix
     ../programs/direnv.nix
-    ../programs/shpool.nix
 
     ../services/dnscrypt.nix
     ../services/tailscale.nix

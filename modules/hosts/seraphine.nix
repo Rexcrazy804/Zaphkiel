@@ -39,7 +39,6 @@ in {
     };
     programs = {
       privoxy.forwards = [{domains = [".donmai.us" ".yande.re" "www.zerochan.net"];}];
-      shpool.users = ["rexies"];
     };
     graphics.intel.hwAccelDriver = "media-driver";
     services = {

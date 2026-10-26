@@ -16,6 +16,9 @@ vim-full.customize {
      endfunc
 
      set findfunc=FindGitFiles
+
+     let g:slimv_repl_split=2
+     let g:slimv_repl_split_size=10
   '';
   vimrcConfig.packages.myplugins = {
     start = [vimPlugins.vim-nix vimPlugins.slimv];

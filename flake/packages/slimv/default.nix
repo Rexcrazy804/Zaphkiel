@@ -4,27 +4,29 @@
 }:
 vim-full.customize {
   name = "vim";
-  vimrcConfig.customRC = ''
-     colorscheme catppuccin
+  vimrcConfig.customRC =
+    # vim
+    ''
+      colorscheme catppuccin
 
-     set wildmode=noselect:lastused,full
-     set wildoptions=pum,fuzzy,tagfile
+      set wildmode=noselect:lastused,full
+      set wildoptions=pum,fuzzy,tagfile
 
-    func FindGitFiles(cmdarg, cmdcomplete)
-       let fnames = systemlist('git ls-files')
-       return matchfuzzy(fnames, a:cmdarg)
-     endfunc
+      func FindGitFiles(cmdarg, cmdcomplete)
+          let fnames = systemlist('git ls-files')
+          return matchfuzzy(fnames, a:cmdarg)
+      endfunc
 
-     set findfunc=FindGitFiles
+      set findfunc=FindGitFiles
 
-     let g:slimv_repl_split=2
-     let g:slimv_repl_split_size=10
+      let g:slimv_repl_split=2
+      let g:slimv_repl_split_size=10
 
-     augroup unlist_special_files
-       autocmd!
-       autocmd BufRead,BufNewFile REPL setlocal nobuflisted
-     augroup END
-  '';
+      augroup unlist_special_files
+        autocmd!
+        autocmd BufRead,BufNewFile REPL setlocal nobuflisted
+      augroup END
+    '';
   vimrcConfig.packages.myplugins = {
     start = [vimPlugins.vim-nix vimPlugins.slimv];
   };

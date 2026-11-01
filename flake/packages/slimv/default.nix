@@ -19,6 +19,11 @@ vim-full.customize {
 
      let g:slimv_repl_split=2
      let g:slimv_repl_split_size=10
+
+     augroup unlist_special_files
+       autocmd!
+       autocmd BufRead,BufNewFile REPL setlocal nobuflisted
+     augroup END
   '';
   vimrcConfig.packages.myplugins = {
     start = [vimPlugins.vim-nix vimPlugins.slimv];

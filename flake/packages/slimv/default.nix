@@ -24,7 +24,7 @@ vim-full.customize {
 
       augroup unlist_special_files
         autocmd!
-        autocmd BufRead,BufNewFile REPL setlocal nobuflisted
+        autocmd BufEnter REPL setlocal nobuflisted
       augroup END
     '';
   vimrcConfig.packages.myplugins = {

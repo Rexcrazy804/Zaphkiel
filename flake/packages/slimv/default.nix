@@ -26,6 +26,8 @@ vim-full.customize {
         autocmd!
         autocmd BufEnter REPL setlocal nobuflisted
       augroup END
+
+      set dir=~/tmp " don't put swapfiles in my working copy thank you
     '';
   vimrcConfig.packages.myplugins = {
     start = [vimPlugins.vim-nix vimPlugins.slimv];

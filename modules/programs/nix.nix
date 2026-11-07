@@ -32,7 +32,7 @@ in {
     # package = pkgs.nixVersions.nix_2_30;
     registry = {
       nixpkgs.flake = inputs.nixpkgs;
-      my-templates.flake = inputs.rexies-nix-templates;
+      # my-templates.flake = inputs.rexies-nix-templates;
     };
     channel.enable = false;
     settings = {

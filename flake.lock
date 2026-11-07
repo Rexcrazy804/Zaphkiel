@@ -172,21 +172,6 @@
         "type": "github"
       }
     },
-    "rexies-nix-templates": {
-      "locked": {
-        "lastModified": 1786188526,
-        "narHash": "sha256-kPAjbnSr9dpDkqigP3cxx0UMPa4SOFXaKWOtqmbQ3qE=",
-        "ref": "refs/heads/main",
-        "rev": "0bed023b012e2428ff6cd45a5c7f89673dd54d38",
-        "revCount": 12,
-        "type": "git",
-        "url": "https://iris.radicle.network/z3NZwrezFXNuUTHfazunz9BTygnHF"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://iris.radicle.network/z3NZwrezFXNuUTHfazunz9BTygnHF"
-      }
-    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -198,7 +183,6 @@
         "mnw": "mnw",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
-        "rexies-nix-templates": "rexies-nix-templates",
         "stash": "stash",
         "systems": "systems"
       }

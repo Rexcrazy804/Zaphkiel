@@ -7,7 +7,7 @@
 }: let
   inherit (config.nixpkgs.hostPlatform) system;
   inherit (inputs.self.legacyPackages.${system}) images;
-  inherit (inputs.self.packages.${system}) equibop;
+  inherit (inputs.self.packages.${system}) equibop slimv;
   inherit (inputs.self) paths;
 in {
   imports = [
@@ -81,6 +81,7 @@ in {
   # user space
   users.users."rexies".packages = [
     equibop
+    slimv
     pkgs.kopuz
   ];
 

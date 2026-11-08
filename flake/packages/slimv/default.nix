@@ -30,6 +30,6 @@ vim-full.customize {
       set dir=~/tmp " don't put swapfiles in my working copy thank you
     '';
   vimrcConfig.packages.myplugins = {
-    start = [vimPlugins.vim-nix vimPlugins.slimv];
+    start = [vimPlugins.vim-nix (vimPlugins.slimv.overrideAttrs (_: {meta.licenses = [];}))];
   };
 }

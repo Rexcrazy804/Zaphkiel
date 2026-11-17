@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   config,
   inputs,
   ...
@@ -82,7 +81,6 @@ in {
   users.users."rexies".packages = [
     equibop
     slimv
-    pkgs.kopuz
   ];
 
   hjem.users.rexies = {

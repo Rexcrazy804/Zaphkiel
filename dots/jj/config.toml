@@ -11,9 +11,12 @@ behavior = "drop"
 backend = "gpg"
 key = "00AC2D589EE7B0EBA5F03969E22FC5FD4007C746"
 
+[revsets]
+git-sign-on-push = "~signed() & mine()"
+
 [git]
 colocate = true
-sign-on-push = true
+
 write-change-id-header = true
 private-commits = "description('wip:*') | description('private:*') | description('temp:*')"
 

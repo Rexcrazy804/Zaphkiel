@@ -22,7 +22,7 @@ private-commits = "description('wip:*') | description('private:*') | description
 
 [ui]
 default-command = "diff"
-diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
+diff-editor = ["nvim", "-c", "HunkDiffEditor $left $right $output"]
 diff-instructions = false
 
 [aliases]
